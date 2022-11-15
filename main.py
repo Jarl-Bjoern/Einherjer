@@ -289,7 +289,7 @@ def main(Counter_Connections = 0, Dict_Result = {'Header': {}, 'Information': {}
             # ToDo: Write an overview with all lookupable dns names for an great overview about all systems #
             #       Write an Template with all relevant Patch EOL's                                         #
             #       Write a Scanner for Cookies                                                             #
-            #       Write module to implementare proxy connections                                          #
+            #       Write module to implementate proxy connections                                          #
             #################################################################################################
 
             if ("csv" in args.format):
