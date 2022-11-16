@@ -171,7 +171,8 @@ def Check_Security_Flags(url, t_seconds):
 
     for cookie in r.cookies:
 	for i,j in cookie.__dict__.items():
-		print (f'{i} : {j}')
+		if ('_rest' in i):
+			print (f'{i} : {j}')
 
 #                        try:
 #                            Cookie = r.cookies.get_dict()
