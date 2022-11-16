@@ -158,7 +158,12 @@ def Check_Certificate(url, Counter_URL = 0):
     if (Counter_URL > 1): Port = url.split(':')[2]
     else: Port = 443
     Cert = get_server_certificate((url, int(Port)))
-    x509 = OpenSSL.crypto.load_certificate(OpenSSL.crypto.FILETYPE_PEM, Cert)
+
+    with create_connection((url, 443), timeout=t_seconds) as sock:
+        with context.wrap_socket(sock, server_hostname=url) as ssock:
+            cert_der = ssock.getpeercert(True)
+            cert = x509.load_der_x509_certificate(cert_der, default_backend())
+            print (cert.signature_hash_algorithm.name)
 
 def Check_Security_Flags(url, t_seconds):
     r = get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
