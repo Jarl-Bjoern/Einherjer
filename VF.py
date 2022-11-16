@@ -81,6 +81,7 @@ Program_Description = """-------------------------------------------------------
 
 # Design
 disable_warnings() # Removes the SSL-self-signed-certificate warning
+disable_warnings(InsecureRequestsWarning)
 progress_columns = (
     SpinnerColumn(),
     "[progress.description]{task.description}",
