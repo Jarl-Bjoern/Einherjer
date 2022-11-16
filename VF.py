@@ -170,8 +170,8 @@ def Check_Security_Flags(url, t_seconds):
     r = get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
 
     for cookie in r.cookies:
-        print (cookie.__dict__)
-        print (cookie.secure)
+	for i,j in cookie.__dict__.items():
+		print (f'{i} : {j}')
 
 #                        try:
 #                            Cookie = r.cookies.get_dict()
