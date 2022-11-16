@@ -26,6 +26,8 @@ def Module_Error(Text):
 try:
     from argparse import ArgumentParser, FileType, RawTextHelpFormatter, SUPPRESS
     from contextlib import redirect_stdout
+    from cryptography import x509
+    from cryptography.hazmat.backends import default_backend
     from multiprocessing import active_children, cpu_count, Process, Queue
     from numpy import array
     from os import getcwd, makedirs, name as osname, remove, system, walk
@@ -49,7 +51,7 @@ try:
     from threading import Thread, enumerate as Th_enumerate
     from urllib3 import disable_warnings
     from urllib3.exceptions import *
-    import paramiko
+    import asyncio, asyncssh, paramiko
     with redirect_stdout(None):
         from webdriver_manager.chrome import ChromeDriverManager
 except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
