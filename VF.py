@@ -227,7 +227,7 @@ def SSH_Vulns(Target, Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key
                         Result += 1
                         if ("server_host_key_algorithms" not in Report[Result] and "encryption_algorithms" not in Report[Result] and "mac_algorithms" not in Report[Result] and "compression_algorithms" not in Report[Result]):
                             if (Report[Result][8:-1] not in Array_SSH_Algorithms):
-                                if ('@openssh.com' in Report[Result][8:-1]):
+                                if ('@' in Report[Result][8:-1]):
                                     if (Report[Result][8:-1].split("@")[0] not in Array_SSH_Algorithms):
                                         Dict_SSH_Results[Target].append(Report[Result][8:-1])
                                 else:
@@ -243,7 +243,7 @@ def SSH_Vulns(Target, Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key
                 f.write(f'{i};')
                 for j in Dict_System[i]:
                     for k in range(0, len(Dict_System[i][j])):
-                        if (k != len(Dict_System[i][j])): f.write(f'{Dict_System[i][j][k]},')
+                        if (k != len(Dict_System[i][j])-1): f.write(f'{Dict_System[i][j][k]}, ')
                         else: f.write(f'{Dict_System[i][j][k]}')
                     f.write(f';')
                 f.write('\n')
