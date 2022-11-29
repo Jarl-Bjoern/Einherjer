@@ -23,7 +23,7 @@ Array_SSH_Algorithms = [
     "ecdh-sha2-nistp521",
     # Optional
     "curve25519-sha256",
-	"diffie-hellman-group18-sha512",
+    "diffie-hellman-group18-sha512",
     # Server_Host_Key_Algorithm OR Public_Key_Algorithm
     "pgp-sign-dss",
     "ecdsa-sha2-nistp256",
@@ -189,9 +189,9 @@ def Check_Security_Flags(url, t_seconds):
     r = get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
 
     for cookie in r.cookies:
-	for i,j in cookie.__dict__.items():
-		if ('_rest' in i):
-			print (f'{i} : {j}')
+        for i,j in cookie.__dict__.items():
+            if ('_rest' in i):
+                print (f'{i} : {j}')
 
 #                        try:
 #                            Cookie = r.cookies.get_dict()
