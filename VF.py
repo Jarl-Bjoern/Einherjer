@@ -183,8 +183,7 @@ def Check_Website(url, t_seconds):
 				Pos_Start, Pos_Ende = x.span()[0], x.span()[1]
 				f.write(f'{i} : {str(r.content)[Pos_Start:Pos_Ende+20].split("<")[0]}\n')
 			except: f.write(f'{i} : -\n')
-	
-	
+
 def Check_Security_Flags(url, t_seconds):
     r = get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
 
@@ -201,7 +200,7 @@ def Check_Security_Flags(url, t_seconds):
 #                                elif ('Test' not in head):
 #                        except: pass
 #
-#                        
+#
 #                        Dict_Result['Security_Flag']
 
 
