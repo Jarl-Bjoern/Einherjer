@@ -113,7 +113,7 @@ def Initialien():
     Header = """
 💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀
 💀\t\t\t\t\t\t\t\t💀
-💀\t\t      """+Colors.UNDERLINE+"HTTP-Security-Check"+Colors.RESET+ """\t\t\t💀
+💀\t\t      """+Colors.UNDERLINE+"Einherjer"+Colors.RESET+ """\t\t\t💀
 💀\t\t\t  """+Colors.ORANGE+"Version "+Colors.BLUE+"0.6"+Colors.RESET+"""\t\t\t\t💀
 💀\t\t\t\t\t\t\t\t💀
 💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀\n\n
