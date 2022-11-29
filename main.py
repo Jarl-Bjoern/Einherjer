@@ -8,36 +8,6 @@ from VF import *
 def main(Counter_Connections = 0, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, 'Fuzzing': {}, 'Security_Flag': {}}):
     global End_Result, Location, Switch_nmap, Kill_Command
 
-    def Connect_Error(url):
-        try:
-            with open(join(Location, f'{Date}_failed-url.txt'), 'w') as f:
-                f.write(f'{url}\n')
-        except FileExistsError:
-            Question = input(f"The file already exists\n\n{e}\n\nDo you want to override it? (Y/N)")
-            if (Question == 'Y' or Question == 'y'):
-                try: remove(join(Location, f'{Date}_failed-url.txt'))
-                except FileNotFoundError: pass
-                with open(join(Location, f'{Date}_failed-url.txt'), 'w') as f:
-                    f.write(f'{url}\n')
-            elif (Question == 'N' or Question == 'n'):
-                n = 0
-                for _, _, files in walk(Location, topdown=False):
-                    for file in array(files):
-                        if (file.endswith('.txt') and 'failed-url' in file): n += 1
-                with open(join(Location, f'{Date}_failed-url_{n}.txt'), 'w') as f:
-                    f.write(f'{url}\n')
-            else: Error_Message('Your decision is not acceptable.')
-
-    def Get_Host_Name(url, Temp = ""):
-        try: Temp = gethostbyaddr(url)
-        except herror: pass
-        return Temp
-
-    def Write_Log(url, host):
-        Connect_Error(url)
-        if (host != ""): Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - {host} - FAILED\n')
-        else: Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - FAILED\n')
-
     def Thread_Scanning_Start(url, t_seconds, queue, driver, scan_ssl, scan_header, scan_fuzzing, scan_ssh, scan_fuzzing_recurse, scan_security_flag, Count_Double_Point = 0, Host_Name = "", Target = ""):
         global Kill_Command
 
