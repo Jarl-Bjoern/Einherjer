@@ -197,11 +197,6 @@ def Check_Certificate(url, Counter_URL = 0):
             print (cert.signature_hash_algorithm.name)
 
 def Check_Website(url, t_seconds):
-	from re import search
-	from requests import get
-	from sys import argv
-	from time import sleep
-
 	with open(argv[1], 'r') as f:
 		Text = f.read().splitlines()
 
