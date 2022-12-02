@@ -159,8 +159,8 @@ def main(Counter_Connections = 0, Dict_Result = {'Header': {}, 'Information': {}
             try: makedirs(args.output_location)
             except:
                 print ("Your location can't be found or was not allowed.")
-                makedirs(join(getcwd(), args.output_location))
-    else: Location = getcwd()
+                makedirs(join(dirname(realpath(__file__)), args.output_location))
+    else: Location = dirname(realpath(__file__))
 
     if (args.method == "Threading" or args.method == "threading" or args.method == "t" or args.method == "Thread" or args.method == "thread"): Method = "Thread"
     elif (args.method == "Multiprocessing" or args.method == 'multiprocessing' or args.method == 'mp' or args.method == 'MP'): Method = "MP"
