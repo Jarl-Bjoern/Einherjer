@@ -30,7 +30,7 @@ try:
     from cryptography.hazmat.backends import default_backend
     from multiprocessing import active_children, cpu_count, Process, Queue
     from numpy import array
-    from os import getcwd, makedirs, name as osname, remove, system, walk
+    from os import makedirs, name as osname, remove, system, walk
     from os.path import dirname, exists, join, realpath
     from requests import get
     from requests.exceptions import *
