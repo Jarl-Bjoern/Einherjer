@@ -34,6 +34,7 @@ try:
     from os.path import dirname, exists, join, realpath
     from requests import get
     from requests.exceptions import *
+    from re import search
     from rich.progress import BarColumn, Progress, SpinnerColumn, TaskProgressColumn, TimeElapsedColumn, TimeRemainingColumn
     from selenium import webdriver
     from selenium.common.exceptions import *
