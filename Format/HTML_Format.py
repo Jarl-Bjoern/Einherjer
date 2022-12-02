@@ -1,14 +1,14 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Rainer C. B. Herold
 
 # Libraries
 try:
-    from ..VF import *
+    from resources.VF import *
 except ImportError:
-    import sys
-    sys.path.append('.')
-    from VF import *
+    from sys import path as syspath
+    syspath.append('.')
+    from resources.VF import *
 
 def HTML_Table(Dict_Result, Body_HTML = ""):
     global Location
