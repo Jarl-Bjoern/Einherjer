@@ -31,7 +31,7 @@ try:
     from multiprocessing import active_children, cpu_count, Process, Queue
     from numpy import array
     from os import getcwd, makedirs, name as osname, remove, system, walk
-    from os.path import exists, join
+    from os.path import dirname, exists, join, realpath
     from requests import get
     from requests.exceptions import *
     from rich.progress import BarColumn, Progress, SpinnerColumn, TaskProgressColumn, TimeElapsedColumn, TimeRemainingColumn
