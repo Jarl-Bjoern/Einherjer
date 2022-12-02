@@ -4,11 +4,11 @@
 
 # Libraries
 try:
-    from ..VF import *
+    from resources.VF import *
 except ImportError:
-    import sys
-    sys.path.append('.')
-    from VF import *
+    from sys import path as syspath
+    syspath.append('.')
+    from resources.VF import *
 
 def CSV_Table(Dict_Result):
     try: import csv
