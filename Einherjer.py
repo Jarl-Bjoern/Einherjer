@@ -3,7 +3,7 @@
 # Rainer C. B. Herold
 
 # Variables_And_Functions
-from VF import *
+from resources.VF import *
 
 def main(Counter_Connections = 0, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, 'Fuzzing': {}, 'Security_Flag': {}}):
     global End_Result, Location, Switch_nmap, Kill_Command
