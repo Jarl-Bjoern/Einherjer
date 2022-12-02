@@ -46,7 +46,7 @@ try:
     from socket import create_connection, gaierror, gethostbyaddr, herror, setdefaulttimeout
     from ssl import _create_unverified_context as create_unverified_context, get_server_certificate
     from subprocess import getoutput
-    from sys import stdout
+    from sys import path as syspath, stdout
     from time import sleep, strftime, perf_counter
     from threading import Thread, enumerate as Th_enumerate
     from urllib3 import disable_warnings
