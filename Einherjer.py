@@ -117,8 +117,8 @@ def main(Counter_Connections = 0, Dict_Result = {'Header': {}, 'Information': {}
             if (osname != 'nt'): options.binary_location = "/usr/bin/chromium"
 
         def Driver_Specification(option):
-            if (osname == 'nt'): driver = webdriver.Chrome(service=Service(join(getcwd(), 'resources/chromedriver.exe')), options=option)
-            else: driver = webdriver.Chrome(service=Service(join(getcwd(), 'resources/chromedriver')), options=option)
+            if (osname == 'nt'): driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)), 'resources/chromedriver.exe')), options=option)
+            else: driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)), 'resources/chromedriver')), options=option)
             return driver
 
         if ("ttl" in getoutput('ping -c 2 8.8.8.8')):
