@@ -239,6 +239,7 @@ def SSH_Vulns(Target, Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key
     except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
     global Location, existing_nmap_file, Switch_nmap
 
+    # Test1
     def Check_SSH_Values(List_With_Keys, Temp_Key = ""):
         Array_Temp = []
         for i in List_With_Keys:
@@ -247,6 +248,31 @@ def SSH_Vulns(Target, Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key
             if (Temp_Key not in Array_SSH_Algorithms):
                 Array_Temp.append(Temp_Key)
         return Array_Temp
+
+    # Test2
+#sock = create_connection(("127.0.0.1",22),5)
+#sock.send(b"SSH-2.0-7331SSH\r\n")
+#sock_recv = sock.recv(984)
+#print (sock_recv)
+
+#class MySSHClient(asyncssh.SSHClient):
+#    def connection_made(self, conn: asyncssh.SSHClientConnection) -> None:
+#        print(conn.get_extra_info('client_version'))
+#        print(conn.get_extra_info('send_mac'))
+#        print(conn.get_extra_info('send_compression'))
+#
+#    def auth_completed(self) -> None:
+#        print('Authentication successful.')
+#
+#async def run_client():
+#    result = await asyncssh.get_server_auth_methods('127.0.0.1')
+#    print (result)
+#    conn, client = await asyncssh.create_connection(MySSHClient, '127.0.0.1', known_hosts=None)
+#try:
+#    loop = asyncio.new_event_loop()
+#    asyncio.set_event_loop(loop)
+#    loop.run_until_complete(run_client())
+#except (OSError, asyncssh.Error) as e: exit(f'SSH connection failed: {str(e)}')    
 
     if (Switch_nmap == False):
         Dict_System = {}
