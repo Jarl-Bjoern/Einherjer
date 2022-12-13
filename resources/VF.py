@@ -132,7 +132,7 @@ def Create_Location_Dir(output_location_dir):
         return output_location_dir
     except:
         makedirs(join(dirname(realpath(__file__)), output_location_dir))
-        print (f"Your location can't be found or was not allowed!\n\nYour new location was set to {join(dirname(realpath(__file__)), output_location_dir))}")
+        print (f"Your location can't be found or was not allowed!\n\nYour new location was set to {join(dirname(realpath(__file__)), output_location_dir)}")
         return join(dirname(realpath(__file__)), output_location_dir)
 
 def Try_Remove_File(x):
