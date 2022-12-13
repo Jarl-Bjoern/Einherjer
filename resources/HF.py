@@ -52,6 +52,7 @@ try:
     from threading import Thread, enumerate as Th_enumerate
     from urllib3 import disable_warnings
     from urllib3.exceptions import *
+    from webbrowser import open as webbrowser_open
     import asyncio, asyncssh, paramiko
     with redirect_stdout(None):
         from webdriver_manager.chrome import ChromeDriverManager
