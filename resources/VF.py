@@ -185,8 +185,7 @@ def Log_File(Text):
 
 def Read_Template(template_file):
     if (exists(template_file)):
-        with open(template_file, 'r') as f:
-            return f.read().splitlines()
+	return Read_File(template_file)
     else: Error_Message(f'The requested File {template_file} does not exist!')
 
 def Check_Site_Paths(url, t_seconds):
@@ -213,17 +212,16 @@ def Check_Certificate(url, Counter_URL = 0):
             print (cert.signature_hash_algorithm.name)
 
 def Check_Website(url, t_seconds):
-	with open(argv[1], 'r') as f:
-		Text = f.read().splitlines()
+     Text = Read_File(argv[1])
 
-	with open('/opt/test.txt', 'w') as f:
-		for i in Text:
-			r = get(str(i), verify=False, timeout=(25,25))
-			x = search(r'Apache', str(r.content))
-			try:
-				Pos_Start, Pos_Ende = x.span()[0], x.span()[1]
-				f.write(f'{i} : {str(r.content)[Pos_Start:Pos_Ende+20].split("<")[0]}\n')
-			except: f.write(f'{i} : -\n')
+     with open('/opt/test.txt', 'w') as f:
+         for i in Text:
+             r = get(str(i), verify=False, timeout=(25,25))
+             x = search(r'Apache', str(r.content))
+             try:
+                 Pos_Start, Pos_Ende = x.span()[0], x.span()[1]
+                 f.write(f'{i} : {str(r.content)[Pos_Start:Pos_Ende+20].split("<")[0]}\n')
+             except: f.write(f'{i} : -\n')
 
 def Check_Security_Flags(url, t_seconds):
     r = get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
