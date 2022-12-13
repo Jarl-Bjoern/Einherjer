@@ -348,9 +348,12 @@ def SSL_Vulns(url, t_seconds, context = create_unverified_context(), Dict_SSL = 
 
     if ('http://' in url): URL = url.split('http://')[1]
     elif ('https://' in url): URL = srl.split('https://')[1]
+	
+    if (':' in URL): Port = URL.split(':')[1]
+    else: Port = 443
 
     try:
-        with create_connection((URL, 443), timeout=t_seconds) as sock:
+        with create_connection((URL, int(Port)), timeout=t_seconds) as sock:
             with context.wrap_socket(sock, server_hostname=URL) as ssock:
                 Cert_Info = ssock.getpeercert())
                 for Ciphers in ssock.shared_ciphers():
