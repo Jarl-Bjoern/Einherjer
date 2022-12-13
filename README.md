@@ -143,13 +143,15 @@ config arguments:
 
 performance arguments:
   -mx MAX_CONNECTIONS, --max-connections MAX_CONNECTIONS
-                        Defines the max connections via threads or processes for every try to scan. Default: 8
-                                                                                                                                                                                                                                                                                                                            
+                        Defines the max connections via threads or processes for every try to scan.
+                        
+                        Default: 8
+                                                                                                                             
                         -------------------------------------------------------------------------------------                                                                                                                                                                                                               
   -m {Multiprocessing,multiprocessing,mp,MP,threading,Threading,t,Thread,thread}, --method {Multiprocessing,
                         multiprocessing,mp,MP,threading,Threading,t,Thread,thread}
                         Defines which method you wanted to use.
-                                                                                                                                                                                                                                                                                                                            
+                                                                                                            
                         -------------------------------------------------------------------------------------                                                                                                                                                                                                               
   -to TIMEOUT, --timeout TIMEOUT
                         Specify the connection http timeout in seconds. Default: 30 seconds
