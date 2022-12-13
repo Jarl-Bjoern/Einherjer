@@ -130,6 +130,14 @@ def Read_File(file_path):
 def Error_Message(x):
     print(x), sleep(2), exit()
 
+def Thread_Check(Check_Value, Array_Check):
+    global Array_Threads, Counter_Connections
+
+    if (Check_Value not in str(Array_Check)):
+        try: Array_Threads.remove(Check_Value)
+        except ValueError: pass
+        Counter_Connections -= 1
+
 def Create_Location_Dir(output_location_dir):
     try:
         makedirs(output_location_dir)
