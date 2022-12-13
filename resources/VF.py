@@ -212,10 +212,8 @@ def Check_Certificate(url, Counter_URL = 0):
             print (cert.signature_hash_algorithm.name)
 
 def Check_Website(url, t_seconds):
-     Text = Read_File(argv[1])
-
      with open('/opt/test.txt', 'w') as f:
-         for i in Text:
+         for i in Read_File(argv[1]):
              r = get(str(i), verify=False, timeout=(25,25))
              x = search(r'Apache', str(r.content))
              try:
