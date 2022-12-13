@@ -209,16 +209,16 @@ def main(Counter_Connections = 0, Dict_Result = {'Header': {}, 'Information': {}
                     Timer = perf_counter()
                     while (len(Array_Threads) > 0):
                         for Thread_ID in array(Array_Threads):
-                            if (Method == "Thread"):
-                                if (Thread_ID not in str(Th_enumerate())):
-                                    try: Array_Threads.remove(Thread_ID)
-                                    except ValueError: pass
-                                    Counter_Connections -= 1
-                            elif (Method == "MP"):
-                                if (Thread_ID not in str(active_children())):
-                                    try: Array_Threads.remove(Thread_ID)
-                                    except ValueError: pass
-                                    Counter_Connections -= 1
+                            if (Method == "Thread"): Thread_Check(Thread_ID, Th_enumerate())
+#                                if (Thread_ID not in str(Th_enumerate())):
+#                                    try: Array_Threads.remove(Thread_ID)
+#                                    except ValueError: pass
+#                                    Counter_Connections -= 1
+                            elif (Method == "MP"): Thread_Check(Thread_ID, active_children())
+#                                if (Thread_ID not in str(active_children())):
+#                                    try: Array_Threads.remove(Thread_ID)
+#                                    except ValueError: pass
+#                                    Counter_Connections -= 1
                         Status = perf_counter()
                         if (int(Status - Timer) < 90):
                             sleep(2.25)
@@ -233,14 +233,14 @@ def main(Counter_Connections = 0, Dict_Result = {'Header': {}, 'Information': {}
             Timer = perf_counter()
             while (len(Array_Threads) > 0):
                 for Thread_ID in array(Array_Threads):
-                    if (Method == "Thread"):
-                        if (Thread_ID not in str(Th_enumerate())):
-                            try: Array_Threads.remove(Thread_ID)
-                            except ValueError: pass
-                    elif (Method == "MP"):
-                        if (Thread_ID not in str(active_children())):
-                            try: Array_Threads.remove(Thread_ID)
-                            except ValueError: pass
+                    if (Method == "Thread"): Thread_Check(Thread_ID, Th_enumerate())
+#                       if (Thread_ID not in str(Th_enumerate())):
+#                           try: Array_Threads.remove(Thread_ID)
+#                           except ValueError: pass
+                    elif (Method == "MP"): Thread_Check(Thread_ID, active_children())
+#                       if (Thread_ID not in str(active_children())):
+#                           try: Array_Threads.remove(Thread_ID)
+#                           except ValueError: pass
                     Status = perf_counter()
                     if (int(Status - Timer) < 600):
                         sleep(2.25)
