@@ -159,14 +159,8 @@ def main(Counter_Connections = 0, Dict_Result = {'Header': {}, 'Information': {}
             if ('.' in args.output_location or './' in args.output_location):
                 makedirs(join(dirname(realpath(__file__)), args.output_location))
                 Location = join(dirname(realpath(__file__)), args.output_location))
-            elif ('/' in args.output_location and not '.' in args.output_location):
-                try:
-                    makedirs(args.output_location)
-                    dirname(args.output_location)
-                except:
-                    makedirs(join(dirname(realpath(__file__)), args.output_location))
-                    print (f"Your location can't be found or was not allowed!\n\nYour new location was set to {join(dirname(realpath(__file__)), args.output_location))}")
-                    Location = join(dirname(realpath(__file__)), args.output_location))
+            elif ('.' not in args.output_location and '/' not in args.output_location): Location = Create_Location_Dir(args.output_location)
+            elif ('/' in args.output_location and not '.' in args.output_location): Location = Create_Location_Dir(args.output_location)
     else: Location = dirname(realpath(__file__))
 
     if (args.method == "Threading" or args.method == "threading" or args.method == "t" or args.method == "Thread" or args.method == "thread"): Method = "Thread"
