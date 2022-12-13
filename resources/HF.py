@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Rainer C. B. Herold
+# Rainer Christian Bjoern Herold
 # Vers 0.1 30.05.2022
 # Vers 0.2 06.06.2022
 # Vers 0.3 09.06.2022
@@ -10,12 +10,12 @@
 # Vers 0.7 20.09.2022
 
 # Author
-__author__ = "Rainer C. B. Herold"
-__copyright__ = "Copyright 2022, Rainer C. B. Herold"
-__credits__ = "Rainer C. B. Herold"
-__license__ = ""
+__author__ = "Rainer Christian Bjoern Herold"
+__copyright__ = "Copyright 2022, Rainer Christian Bjoern Herold"
+__credits__ = "Rainer Christian Bjoern Herold"
+__license__ = "MIT license"
 __version__ = "0.7"
-__maintainer__ = "Rainer C. B. Herold"
+__maintainer__ = "Rainer Christian Bjoern Herold"
 __status__ = "Production"
 
 # Base_Function
