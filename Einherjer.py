@@ -112,8 +112,6 @@ def main(Counter_Connections = 0, Dict_Result = {'Header': {}, 'Information': {}
 
     # Webdriver_Options
     if (args.scan_site_screenshot != False):
-        try: import webbrowser
-        except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
         options = webdriver.ChromeOptions()
         for _ in Array_Selenium: options.add_argument(_)
         if (args.custom_chromium_path != None): options.binary_location = args.custom_chromium_path
@@ -139,7 +137,7 @@ def main(Counter_Connections = 0, Dict_Result = {'Header': {}, 'Information': {}
                             if ("chrome=" in _):
                                 print(f'Webdriver: {_.split("chrome=")[1][:-1]}')
                         if ('xfce' in getoutput('ls /usr/bin/*session') or 'gnome' in getoutput('ls /usr/bin/*session')):
-                            sleep(3.5), webbrowser.open("https://chromedriver.chromium.org/downloads")
+                            sleep(3.5), webbrowser_open("https://chromedriver.chromium.org/downloads")
                     Error_Message("\nIt looks like you do not have the correct Chromedriver version installed.\n\nPlease go to https://chromedriver.chromium.org/downloads and download the correct chromedriver and paste it into the resources folder.\n")
                 except WebDriverException: Error_Message("\nIt looks like that you do not have Chromedriver installed.\n\nPlease go to https://chromedriver.chromium.org/downloads and download the correct chromedriver and paste it into the resources folder.\n")
             driver.implicitly_wait(args.timeout), driver.set_window_size(1920,1080), driver.execute_script("document.body.style.zoom='250%'")
@@ -203,12 +201,9 @@ def main(Counter_Connections = 0, Dict_Result = {'Header': {}, 'Information': {}
             for Target in array(Text):
                 Array_Thread_Args.append(Target), Array_Thread_Args.append(args.timeout), Array_Thread_Args.append(queue)
                 for _ in Array_Switch: Array_Thread_Args.append(_)
-                if (Method == "Thread"):
-                    t1 = Thread(target=Thread_Scanning_Start, args=Array_Thread_Args, daemon=True)
-                    t1.start()
-                elif (Method == "MP"):
-                    p = Process(target=Thread_Scanning_Start, args=Array_Thread_Args, daemon=True)
-                    p.start()
+                if (Method == "Thread"): p = Thread(target=Thread_Scanning_Start, args=Array_Thread_Args, daemon=True)
+                elif (Method == "MP"): p = Process(target=Thread_Scanning_Start, args=Array_Thread_Args, daemon=True)
+                p.start()
                 Counter_Connections += 1
                 if (Counter_Connections == args.max_connections):
                     Timer = perf_counter()
@@ -232,10 +227,7 @@ def main(Counter_Connections = 0, Dict_Result = {'Header': {}, 'Information': {}
                             Array_Threads.clear(), sleep (1.5)
                             Kill_Command = False
                 else:
-                    if (Method == "Thread"):
-                        if (t1.name not in Array_Threads): Array_Threads.append(t1.name), sleep(args.sleep)
-                    elif (Method == "MP"):
-                        if (p.name not in Array_Threads): Array_Threads.append(p.name), sleep(args.sleep)
+                     if (p.name not in Array_Threads): Array_Threads.append(p.name), sleep(args.sleep)
                 progress.update(task_Scan, advance=Counter_Bar)
                 Array_Thread_Args.clear()
             Timer = perf_counter()
