@@ -93,6 +93,14 @@ progress_columns = (
     TimeRemainingColumn(),
 )
 
+# Classes
+class Colors:
+    GREEN = '\033[32m'
+    ORANGE = '\033[33m'
+    BLUE = '\033[34m'
+    UNDERLINE = '\033[4m'
+    RESET = '\033[0m'
+
 # Functions
 def Stdout_Output(Text_Array):
     for char in Text_Array:
@@ -101,13 +109,6 @@ def Stdout_Output(Text_Array):
         sleep(0.01)
 
 def Initialien():
-    class Colors:
-        GREEN = '\033[32m'
-        ORANGE = '\033[33m'
-        BLUE = '\033[34m'
-        UNDERLINE = '\033[4m'
-        RESET = '\033[0m'
-
     if (osname == 'nt'): system('cls')
     else: system('clear')
     Header = """
