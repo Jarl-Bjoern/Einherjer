@@ -157,7 +157,7 @@ def main(Counter_Connections = 0, Dict_Result = {'Header': {}, 'Information': {}
     if (args.output_location != None):
         if not exists(args.output_location):
             if ('.' in args.output_location or './' in args.output_location):
-                makedirs(join(dirname(realpath(__file__)), args.output_location)
+                makedirs(join(dirname(realpath(__file__)), args.output_location))
                 Location = join(dirname(realpath(__file__)), args.output_location)
             elif ('.' not in args.output_location and '/' not in args.output_location): Location = Create_Location_Dir(args.output_location)
             elif ('/' in args.output_location and not '.' in args.output_location): Location = Create_Location_Dir(args.output_location)
