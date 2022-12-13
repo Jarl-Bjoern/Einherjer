@@ -59,13 +59,13 @@ def main(Counter_Connections = 0, Dict_Result = {'Header': {}, 'Information': {}
         else:
             Write_Log(url, Host_Name), Connect_Error(url, Host_Name)
 
-    parser = ArgumentParser(add_help=False, formatter_class=RawTextHelpFormatter, description=Program_Description)
-    required = parser.add_argument_group('required arguments')
-    scan_arguments = parser.add_argument_group('scan arguments')
-    target_arguments = parser.add_argument_group('target arguments')
-    config_arguments = parser.add_argument_group('config arguments')
-    performance_arguments = parser.add_argument_group('performance arguments')
-    optional = parser.add_argument_group('optional arguments')
+    parser = ArgumentParser(add_help=False, formatter_class=RawTextHelpFormatter, description=Colors.ORANGE+Program_Description+Colors.RESET)
+    required = parser.add_argument_group(Colors.ORANGE+'required arguments'+Colors.RESET)
+    scan_arguments = parser.add_argument_group(Colors.ORANGE+'scan arguments'+Colors.RESET)
+    target_arguments = parser.add_argument_group(Colors.ORANGE+'target arguments'+Colors.RESET)
+    config_arguments = parser.add_argument_group(Colors.ORANGE+'config arguments'+Colors.RESET)
+    performance_arguments = parser.add_argument_group(Colors.ORANGE+'performance arguments'+Colors.RESET)
+    optional = parser.add_argument_group(Colors.ORANGE+'optional arguments'+Colors.RESET)
 
     required.add_argument('-f', '--format', choices=['csv','docx','html','json','latex','pdf','tex','xlsx','xml'], type=str, help='Specify your used format like xlsx (Excel), Docx (MS Word), LaTeX or PDF.\n-------------------------------------------------------------------------------------', required=True)
     required.add_argument('-o', '--output-location', type=str, help='Specify the location where the result should be saved.\n-------------------------------------------------------------------------------------', required=True)
