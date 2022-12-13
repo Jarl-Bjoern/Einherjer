@@ -256,13 +256,6 @@ def main(Counter_Connections = 0, Dict_Result = {'Header': {}, 'Information': {}
                 sleep(0.75)
             Dict_Result = queue.get()
 
-            #################################################################################################
-            # ToDo: Write an overview with all lookupable dns names for an great overview about all systems #
-            #       Write an Template with all relevant Patch EOL's                                         #
-            #       Write a Scanner for Cookies                                                             #
-            #       Write module to implementate proxy connections                                          #
-            #################################################################################################
-
             if ("csv" in args.format):
                 from Format.CSV_Format import CSV_Table
                 CSV_Table(Dict_Result)
