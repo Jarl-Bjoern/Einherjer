@@ -100,8 +100,7 @@ def main(Counter_Connections = 0, Dict_Result = {'Header': {}, 'Information': {}
     if (args.target == None and args.import_list == None): Error_Message('The program cannot be started without attack targets\n\n')
     elif (args.target == None and args.import_list != None):
         try:
-            with open(args.import_list, 'r') as f:
-                Text = f.readlines()
+            Text = Read_File(args.import_list)
             Text.sort()
         except FileNotFoundError as e: Error_Message(f"Your targetlist can't be found!\n\n{e}")
     else: Text = [args.target]
@@ -143,16 +142,14 @@ def main(Counter_Connections = 0, Dict_Result = {'Header': {}, 'Information': {}
 
     if (args.add_wordlist != None and args.add_multiple_wordlists == None):
         if (args.add_wordlist not in Array_Wordlists):
-            with open(args.add_wordlist) as f:
-                for i in f.read().splitlines():
-                    if i not in Array_Wordlists: Array_Wordlists.append(i)
+            for word in Read_File(args.add_wordlist):
+                if (word not in Array_Wordlists): Array_Wordlists.append(word)
     elif (args.add_wordlist == None and args.add_multiple_wordlists != None):
         for root,_,files in walk(args.add_multiple_wordlists):
             for file in files:
-                with open(join(root, file)) as f:
-                    for i in f.readlines():
-                        if (i not in Array_Wordlists):
-                            Array_Wordlists.append(i)
+                for word in Read_File(join(root, file)):
+                    if (word not in Array_Wordlists):
+                        Array_Wordlists.append(word)
 
     if (args.output_location != None):
         if not exists(args.output_location):
@@ -199,8 +196,8 @@ def main(Counter_Connections = 0, Dict_Result = {'Header': {}, 'Information': {}
             task_Scan = progress.add_task("[cyan]Scanning for vulnerabilities...", total=len(Text))
             task_Filter = progress.add_task("[cyan]Filtering the results...", total=100, start=False)
             for Target in array(Text):
-                Array_Thread_Args.append(Target.split('\n')[0]), Array_Thread_Args.append(args.timeout), Array_Thread_Args.append(queue)
-                for i in Array_Switch: Array_Thread_Args.append(i)
+                Array_Thread_Args.append(Target), Array_Thread_Args.append(args.timeout), Array_Thread_Args.append(queue)
+                for _ in Array_Switch: Array_Thread_Args.append(_)
                 if (Method == "Thread"):
                     t1 = Thread(target=Thread_Scanning_Start, args=Array_Thread_Args, daemon=True)
                     t1.start()
