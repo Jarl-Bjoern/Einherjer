@@ -3,7 +3,7 @@
 # Rainer C. B. Herold
 
 # Libraries
-from HF import *
+from resources.HF import *
 
 # Arrays
 Array_Header = ['X-Frame-Options', 'X-XSS-Protection', 'Content-Security-Policy', 'Strict-Transport-Security', 'X-Content-Type-Options', 'Referrer-Policy']
