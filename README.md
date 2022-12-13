@@ -66,7 +66,9 @@ scan arguments:
                                                                                                                                                                                                                                                                                                                             
                         -------------------------------------------------------------------------------------                                                                                                                                                                                                               
   -sSsr [SCAN_SITE_SCREENSHOT_RECURSIVE], --scan-site-screenshot-recursive [SCAN_SITE_SCREENSHOT_RECURSIVE]
-                        With this function you can create screenshots of the target pages, but with the special feature that any results are checked with the fuzzing and screenshots are created from them in each case.
+                        With this function you can create screenshots of the target pages, but with the 
+                        special feature that any results are checked with the fuzzing and screenshots are
+                        created from them in each case.
                                                                                                                                                                                                                                                                                                                             
                         -------------------------------------------------------------------------------------                                                                                                                                                                                                               
   -sSSL [SCAN_SITE_SSL], --scan-site-ssl [SCAN_SITE_SSL]
@@ -102,7 +104,8 @@ scan arguments:
                                                                                                                                                                                                                                                                                                                             
                         -------------------------------------------------------------------------------------                                                                                                                                                                                                               
   -amW ADD_MULTIPLE_WORDLISTS, --add-multiple-wordlists ADD_MULTIPLE_WORDLISTS
-                        With this function you add several word lists which are checked for duplicates and sort them out for fuzzing.
+                        With this function you add several word lists which are checked for duplicates and 
+                        sort them out for fuzzing.
                                                                                                                                                                                                                                                                                                                             
                         -------------------------------------------------------------------------------------                                                                                                                                                                                                               
 
@@ -143,7 +146,8 @@ performance arguments:
                         Defines the max connections via threads or processes for every try to scan. Default: 8
                                                                                                                                                                                                                                                                                                                             
                         -------------------------------------------------------------------------------------                                                                                                                                                                                                               
-  -m {Multiprocessing,multiprocessing,mp,MP,threading,Threading,t,Thread,thread}, --method {Multiprocessing,multiprocessing,mp,MP,threading,Threading,t,Thread,thread}
+  -m {Multiprocessing,multiprocessing,mp,MP,threading,Threading,t,Thread,thread}, --method {Multiprocessing,
+                        multiprocessing,mp,MP,threading,Threading,t,Thread,thread}
                         Defines which method you wanted to use.
                                                                                                                                                                                                                                                                                                                             
                         -------------------------------------------------------------------------------------                                                                                                                                                                                                               
