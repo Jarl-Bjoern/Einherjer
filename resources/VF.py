@@ -339,11 +339,13 @@ def SSL_Vulns(url, t_seconds, context = create_unverified_context(), Dict_SSL = 
                 Array_Temp.append(Temp_Key)
         return Array_Temp
 
-    try:
-        with create_connection((url, 443), timeout=t_seconds) as sock:
-            with context.wrap_socket(sock, server_hostname=url) as ssock:
-                print (ssock.getpeercert())
+    if ('http://' in url): URL = url.split('http://')[1]
+    elif ('https://' in url): URL = srl.split('https://')[1]
 
+    try:
+        with create_connection((URL, 443), timeout=t_seconds) as sock:
+            with context.wrap_socket(sock, server_hostname=URL) as ssock:
+                Cert_Info = ssock.getpeercert())
                 # Ciphers[0] Cryptography
                 # Ciphers[1] TLS Version
                 # Ciphers[2] Buffersize
