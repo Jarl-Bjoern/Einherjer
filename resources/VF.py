@@ -344,6 +344,10 @@ def SSL_Vulns(url, t_seconds, context = create_unverified_context(), Dict_SSL = 
                 Array_Temp.append(Temp_Key)
         return Array_Temp
 
+    def Check_Protocol(Ciphers):
+	if (Ciphers != "TLSv1.3" or Ciphers != "TLSv1.2"): return Ciphers
+	else: return Ciphers
+
     if ('http://' in url): URL = url.split('http://')[1]
     elif ('https://' in url): URL = srl.split('https://')[1]
 
@@ -351,19 +355,17 @@ def SSL_Vulns(url, t_seconds, context = create_unverified_context(), Dict_SSL = 
         with create_connection((URL, 443), timeout=t_seconds) as sock:
             with context.wrap_socket(sock, server_hostname=URL) as ssock:
                 Cert_Info = ssock.getpeercert())
-                # Ciphers[0] Cryptography
-                # Ciphers[1] TLS Version
-                # Ciphers[2] Buffersize
                 for Ciphers in ssock.shared_ciphers():
-                    if (Ciphers[0] in Array_TLS_Algorithms):
-                        for Algorithm in range(0,len(Array_TLS_Algorithms)):
-                            if (Array_TLS_Algorithms[Algorithm] in Ciphers[0]):
-                                if (Array_TLS_Algorithms[0] in Ciphers[0]):
-                                    if ("SHA256" in Ciphers[0] or "SHA512" in Ciphers[0]): Dict_SSL['Ciphers'] = Ciphers[0]
-                                else: Dict_SSL['Ciphers'] = Ciphers[0]
-                    else:
-                        if (Ciphers[1] != "TLSv1.3" or Ciphers[1] != "TLSv1.2"): Dict_SSL['TLS'] = Ciphers[1]
-                        else: Dict_SSL['TLS'] = Ciphers[1]
+                    for Algorithm in array(Array_TLS_Algorithms):
+			if (Algorithm in Ciphers[0]):
+			    if (Array_TLS_Algorithms[0] in Ciphers[0]):
+			        if ("SHA256" in Ciphers[0] or "SHA512" in Ciphers[0]): Dict_SSL['Ciphers'] = Ciphers[0]
+				Dict_SSL['TLS'] = Check_Protocol(Ciphers[1])
+                                break
+			    else:
+                                Dict_SSL['Ciphers'] = Ciphers[0]
+                                Dict_SSL['TLS'] = Check_Protocol(Ciphers[1])
+                                break
         return Dict_SSL
     except (ConnectionRefusedError, gaierror): Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n')
 
