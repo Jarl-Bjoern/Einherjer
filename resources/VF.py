@@ -224,12 +224,14 @@ def Check_Website(url, t_seconds):
              except: f.write(f'{i} : -\n')
 
 def Check_Security_Flags(url, t_seconds):
-    r = get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
+    s = Session()
+    r = s.get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
 
-    for cookie in r.cookies:
-        for i,j in cookie.__dict__.items():
-            if ('_rest' in i):
-                print (f'{i} : {j}')
+    for cookie in dict(s.cookies):
+	pass
+#        for i,j in cookie.__dict__.items():
+#            if ('_rest' in i):
+#                print (f'{i} : {j}')
 
 #                        try:
 #                            Cookie = r.cookies.get_dict()
@@ -241,6 +243,7 @@ def Check_Security_Flags(url, t_seconds):
 #
 #
 #                        Dict_Result['Security_Flag']
+    return Dict_Result
 
 
 def SSH_Vulns(Target, Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': []}):
