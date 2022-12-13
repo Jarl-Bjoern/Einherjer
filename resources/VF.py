@@ -63,7 +63,7 @@ Dict_Proxies = {}
 Date, End_Result, Location, COLOR_Headline, Process_Limit, Thread_Limit = strftime('%Y-%m-%d_%H-%M-%S'), "\n\nYour Scan was successful and the result will be found at the following location:\n", "", "magenta", "", ""
 File_Name, Switch_nmap, existing_nmap_file, Method, Kill_Command = f"{Date}-result", False, "", "", False
 Program_Description = """-------------------------------------------------------------------------------------
-|  Created by Rainer C. B. Herold                                                   |
+|  Rainer Christian Bjoern Herold                                                   |
 |  Copyright 2022. All rights reserved.                                             |
 |                                                                                   |
 |  Please do not use the program for illegal activities.                            |
