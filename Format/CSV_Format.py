@@ -73,9 +73,6 @@ def CSV_Table(Dict_Result):
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
                     else: Array_Temp.append("X")
                 writer.writerow(Array_Temp)
-    ############
-    # NEU      #
-    ############
     if (Dict_Result['Security_Flag'] != None):
         with open(join(Location, f'{File_Name}_Security_Flags.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
