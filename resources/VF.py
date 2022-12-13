@@ -123,6 +123,10 @@ def Initialien():
 """
     Stdout_Output(Header)
 
+def Read_File(file_path):
+    with open(file_path, 'r') as f:
+	return f.read().splitlines()
+
 def Error_Message(x):
     print(x), sleep(2), exit()
 
