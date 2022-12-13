@@ -112,17 +112,17 @@ scan arguments:
 target arguments:
   -iL IMPORT_LIST, --import-list IMPORT_LIST
                         Import your target list in the following example:
-                        http://192.168.2.2                                                                                                                                                                                                                                                                                  
-                        https://192.168.2.3                                                                                                                                                                                                                                                                                 
-                        https://192.168.2.4:8443                                                                                                                                                                                                                                                                            
-                        192.168.2.5:22                                                                                                                                                                                                                                                                                      
-                                                                                                                                                                                                                                                                                                                            
+                          - http://192.168.2.2
+                          - https://192.168.2.3
+                          - https://192.168.2.4:8443
+                          - 192.168.2.5:22                                                                                                                                                                                                                                                                                                
                         -------------------------------------------------------------------------------------                                                                                                                                                                                                               
   -t TARGET, --target TARGET
                         Specify a single target.
-                                                                                                                                                                                                                                                                                                                            
-                        -------------------------------------------------------------------------------------                                                                                                                                                                                                               
 
+
+                        ------------------------------------------------------------------------------------- 
+                        
 config arguments:
   -aP ADD_PROXY, --add-proxy ADD_PROXY
                         Specify your proxy.
