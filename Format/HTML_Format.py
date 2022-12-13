@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Rainer C. B. Herold
+# Rainer Christian Bjoern Herold
 
 # Libraries
 try:
