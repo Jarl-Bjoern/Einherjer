@@ -68,7 +68,6 @@ def main(Counter_Connections = 0, Dict_Result = {'Header': {}, 'Information': {}
     optional = parser.add_argument_group(Colors.ORANGE+'optional arguments'+Colors.RESET)
 
     required.add_argument('-f', '--format', choices=['csv','docx','html','json','latex','pdf','tex','xlsx','xml'], type=str, help=Colors.GREEN+'Specify your used format like xlsx (Excel), Docx (MS Word), LaTeX or PDF.'+Colors.RESET+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET, required=True)
-    required.add_argument('-o', '--output-location', type=str, help=Colors.GREEN+'Specify the location where the result should be saved.'+Colors.RESET+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET, required=True)
     required.add_argument('-s', '--sleep', type=float, help=Colors.GREEN+'Set the pauses between the scans to do not DDoS the target.'+Colors.RESET+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET, required=True)
     scan_arguments.add_argument('-sA', '--scan-all', type=bool, nargs='?', const=True, help=Colors.GREEN+'With this it is possible to scan all functions'+Colors.RESET+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET, default=False)
     scan_arguments.add_argument('-sSs', '--scan-site-screenshot', type=bool, nargs='?', const=True, help=Colors.GREEN+'With this function you can create screenshots of the start pages.'+Colors.RESET+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET, default=False)
@@ -85,6 +84,7 @@ def main(Counter_Connections = 0, Dict_Result = {'Header': {}, 'Information': {}
     target_arguments.add_argument('-iL', '--import-list', type=str, help=Colors.GREEN+'Import your target list in the following example:\nhttp://192.168.2.2\nhttps://192.168.2.3\nhttps://192.168.2.4:8443\n192.168.2.5:22'+Colors.RESET+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)    
     target_arguments.add_argument('-t', '--target', type=str, help=Colors.GREEN+'Specify a single target.'+Colors.RESET+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     config_arguments.add_argument('-aP', '--add-proxy', type=str, help=Colors.GREEN+'Specify your proxy.'+Colors.RESET+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    config_arguments.add_argument('-o', '--output-location', type=str, help=Colors.GREEN+'Specify the location where the result should be saved.'+Colors.RESET+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     config_arguments.add_argument('-rCssh', '--read-config-ssh-ciphers', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.RESET+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     config_arguments.add_argument('-rCssl', '--read-config-ssl-ciphers', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.RESET+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     performance_arguments.add_argument('-mx', '--max-connections', type=int, default=cpu_count()*2, help=Colors.GREEN+f'Defines the max connections via threads or processes for every try to scan. Default: {cpu_count()*2}'+Colors.RESET+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
@@ -144,22 +144,29 @@ def main(Counter_Connections = 0, Dict_Result = {'Header': {}, 'Information': {}
     if (args.add_wordlist != None and args.add_multiple_wordlists == None):
         if (args.add_wordlist not in Array_Wordlists):
             with open(args.add_wordlist) as f:
-                for i in f.readlines():
+                for i in f.read().splitlines():
                     if i not in Array_Wordlists: Array_Wordlists.append(i)
     elif (args.add_wordlist == None and args.add_multiple_wordlists != None):
         for root,_,files in walk(args.add_multiple_wordlists):
             for file in files:
                 with open(join(root, file)) as f:
                     for i in f.readlines():
-                        if (i[:-1] not in Array_Wordlists):
-                            Array_Wordlists.append(i[:-1])
+                        if (i not in Array_Wordlists):
+                            Array_Wordlists.append(i)
 
     if (args.output_location != None):
         if not exists(args.output_location):
-            try: makedirs(args.output_location)
-            except:
-                print ("Your location can't be found or was not allowed.")
+            if ('.' in args.output_location or './' in args.output_location):
                 makedirs(join(dirname(realpath(__file__)), args.output_location))
+                Location = join(dirname(realpath(__file__)), args.output_location))
+            elif ('/' in args.output_location and not '.' in args.output_location):
+                try:
+                    makedirs(args.output_location)
+                    dirname(args.output_location)
+                except:
+                    makedirs(join(dirname(realpath(__file__)), args.output_location))
+                    print (f"Your location can't be found or was not allowed!\n\nYour new location was set to {join(dirname(realpath(__file__)), args.output_location))}")
+                    Location = join(dirname(realpath(__file__)), args.output_location))
     else: Location = dirname(realpath(__file__))
 
     if (args.method == "Threading" or args.method == "threading" or args.method == "t" or args.method == "Thread" or args.method == "thread"): Method = "Thread"
