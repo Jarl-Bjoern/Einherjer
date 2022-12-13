@@ -19,7 +19,7 @@ Not all functions are done
 ```bash
 sudo git clone https://github.com/Jarl-Bjoern/einherjer/
 cd einherjer
-sudo python3 einherjer.py
+sudo python3 Einherjer.py
 ```
 
 <a name="help_install"></a>
