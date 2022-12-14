@@ -44,7 +44,7 @@ try:
     from selenium.webdriver.chrome.service import Service
     from selenium.webdriver.remote.webdriver import WebDriver
     from socket import create_connection, gaierror, gethostbyaddr, herror, setdefaulttimeout
-    from ssl import create_default_context, _create_unverified_context as create_unverified_context, get_server_certificate
+    from ssl import cert_time_to_seconds, create_default_context, _create_unverified_context as create_unverified_context, get_server_certificate
     from subprocess import getoutput
     from sys import stdout
     from time import sleep, strftime, perf_counter
