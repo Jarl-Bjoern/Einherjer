@@ -5,8 +5,8 @@
 # Variables_And_Functions
 from resources.VF import *
 
-def main(Counter_Connections = 0, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, 'Fuzzing': {}, 'Security_Flag': {}}):
-    global End_Result, Location, Switch_nmap, Kill_Command
+def main(Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, 'Fuzzing': {}, 'Security_Flag': {}}):
+    global Counter_Connections, End_Result, Location, Switch_nmap, Kill_Command
 
     def Thread_Scanning_Start(url, t_seconds, queue, driver, scan_ssl, scan_header, scan_fuzzing, scan_ssh, scan_fuzzing_recurse, scan_security_flag, Count_Double_Point = 0, Host_Name = "", Target = ""):
         global Kill_Command
@@ -210,15 +210,7 @@ def main(Counter_Connections = 0, Dict_Result = {'Header': {}, 'Information': {}
                     while (len(Array_Threads) > 0):
                         for Thread_ID in array(Array_Threads):
                             if (Method == "Thread"): Thread_Check(Thread_ID, Th_enumerate())
-#                                if (Thread_ID not in str(Th_enumerate())):
-#                                    try: Array_Threads.remove(Thread_ID)
-#                                    except ValueError: pass
-#                                    Counter_Connections -= 1
                             elif (Method == "MP"): Thread_Check(Thread_ID, active_children())
-#                                if (Thread_ID not in str(active_children())):
-#                                    try: Array_Threads.remove(Thread_ID)
-#                                    except ValueError: pass
-#                                    Counter_Connections -= 1
                         Status = perf_counter()
                         if (int(Status - Timer) < 90):
                             sleep(2.25)
@@ -234,13 +226,7 @@ def main(Counter_Connections = 0, Dict_Result = {'Header': {}, 'Information': {}
             while (len(Array_Threads) > 0):
                 for Thread_ID in array(Array_Threads):
                     if (Method == "Thread"): Thread_Check(Thread_ID, Th_enumerate())
-#                       if (Thread_ID not in str(Th_enumerate())):
-#                           try: Array_Threads.remove(Thread_ID)
-#                           except ValueError: pass
                     elif (Method == "MP"): Thread_Check(Thread_ID, active_children())
-#                       if (Thread_ID not in str(active_children())):
-#                           try: Array_Threads.remove(Thread_ID)
-#                           except ValueError: pass
                     Status = perf_counter()
                     if (int(Status - Timer) < 600):
                         sleep(2.25)
