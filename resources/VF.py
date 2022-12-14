@@ -355,7 +355,7 @@ def SSL_Vulns(url, t_seconds, context = create_unverified_context(), Dict_SSL = 
         else: return Ciphers
 
     if ('http://' in url): URL = url.split('http://')[1]
-    elif ('https://' in url): URL = srl.split('https://')[1]
+    elif ('https://' in url): URL = url.split('https://')[1]
 
     if (':' in URL): Port = URL.split(':')[1]
     else: Port = 443
