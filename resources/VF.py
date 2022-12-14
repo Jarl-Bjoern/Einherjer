@@ -340,7 +340,7 @@ def SSH_Vulns(Target, Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key
                     f.write(f';')
                 f.write('\n')
 
-def SSL_Vulns(url, t_seconds, context = create_unverified_context(), Dict_SSL = {}):
+def SSL_Vulns(url, t_seconds, context = create_unverified_context(), Dict_SSL = {'Ciphers': [], 'TLS': [], 'Certificate': []}, Counter_URL = 0):
     def Check_SSL_Values(List_With_Keys, Temp_Key = ""):
         Array_Temp = []
         for i in List_With_Keys:
@@ -357,23 +357,28 @@ def SSL_Vulns(url, t_seconds, context = create_unverified_context(), Dict_SSL = 
     if ('http://' in url): URL = url.split('http://')[1]
     elif ('https://' in url): URL = url.split('https://')[1]
 
-    if (':' in URL): Port = URL.split(':')[1]
+    for _ in url:
+       if (_ == ':'): Counter_URL += 1
+    if (Counter_URL > 1): Port = url.split(':')[2]
     else: Port = 443
 
     try:
         with create_connection((URL, int(Port)), timeout=t_seconds) as sock:
             with context.wrap_socket(sock, server_hostname=URL) as ssock:
-                Cert_Info = ssock.getpeercert()
+                cert_der = ssock.getpeercert(True)
+                cert = x509.load_der_x509_certificate(cert_der, default_backend())
+                Cert_EOL = cert.not_valid_after
+                Cert_Signature_Algorithm = cert.signature_hash_algorithm.name.upper()
                 for Ciphers in ssock.shared_ciphers():
                     for Algorithm in array(Array_TLS_Algorithms):
                         if (Algorithm in Ciphers[0]):
                             if (Array_TLS_Algorithms[0] in Ciphers[0]):
-                                if ("SHA256" in Ciphers[0] or "SHA512" in Ciphers[0]): Dict_SSL['Ciphers'] = Ciphers[0]
-                                Dict_SSL['TLS'] = Check_Protocol(Ciphers[1])
+                                if ("SHA256" in Ciphers[0] or "SHA512" in Ciphers[0]): Dict_SSL['Ciphers'].append(Ciphers[0])
+                                Dict_SSL['TLS'].append(Check_Protocol(Ciphers[1]))
                                 break
                             else:
-                                Dict_SSL['Ciphers'] = Ciphers[0]
-                                Dict_SSL['TLS'] = Check_Protocol(Ciphers[1])
+                                Dict_SSL['Ciphers'].append(Ciphers[0])
+                                Dict_SSL['TLS'].append(Check_Protocol(Ciphers[1]))
                                 break
         return Dict_SSL
     except (ConnectionRefusedError, gaierror): Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n')
