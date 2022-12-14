@@ -3,12 +3,12 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-try:
-    from resources.VF import *
-except ImportError:
-    from sys import path as syspath
-    syspath.append('.')
-    from resources.VF import *
+#try:
+from resources.VF import *
+#except ImportError:
+#    from sys import path as syspath
+#    syspath.append('.')
+#    from resources.VF import *
 
 def Create_XML(Dict_Result):
     try: import lxml.etree, lxml.builder
