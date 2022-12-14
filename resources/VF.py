@@ -125,7 +125,7 @@ def Initialien():
 
 def Read_File(file_path):
     with open(file_path, 'r') as f:
-	return f.read().splitlines()
+        return f.read().splitlines()
 
 def Error_Message(x):
     print(x), sleep(2), exit()
@@ -193,7 +193,7 @@ def Log_File(Text):
 
 def Read_Template(template_file):
     if (exists(template_file)):
-	return Read_File(template_file)
+        return Read_File(template_file)
     else: Error_Message(f'The requested File {template_file} does not exist!')
 
 def Check_Site_Paths(url, t_seconds):
@@ -234,7 +234,7 @@ def Check_Security_Flags(url, t_seconds):
     r = s.get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
 
     for cookie in dict(s.cookies):
-	pass
+        pass
 #        for i,j in cookie.__dict__.items():
 #            if ('_rest' in i):
 #                print (f'{i} : {j}')
@@ -351,27 +351,27 @@ def SSL_Vulns(url, t_seconds, context = create_unverified_context(), Dict_SSL = 
         return Array_Temp
 
     def Check_Protocol(Ciphers):
-	if (Ciphers != "TLSv1.3" or Ciphers != "TLSv1.2"): return Ciphers
-	else: return Ciphers
+        if (Ciphers != "TLSv1.3" or Ciphers != "TLSv1.2"): return Ciphers
+        else: return Ciphers
 
     if ('http://' in url): URL = url.split('http://')[1]
     elif ('https://' in url): URL = srl.split('https://')[1]
-	
+
     if (':' in URL): Port = URL.split(':')[1]
     else: Port = 443
 
     try:
         with create_connection((URL, int(Port)), timeout=t_seconds) as sock:
             with context.wrap_socket(sock, server_hostname=URL) as ssock:
-                Cert_Info = ssock.getpeercert())
+                Cert_Info = ssock.getpeercert()
                 for Ciphers in ssock.shared_ciphers():
                     for Algorithm in array(Array_TLS_Algorithms):
 			if (Algorithm in Ciphers[0]):
 			    if (Array_TLS_Algorithms[0] in Ciphers[0]):
 			        if ("SHA256" in Ciphers[0] or "SHA512" in Ciphers[0]): Dict_SSL['Ciphers'] = Ciphers[0]
-				Dict_SSL['TLS'] = Check_Protocol(Ciphers[1])
+                                Dict_SSL['TLS'] = Check_Protocol(Ciphers[1])
                                 break
-			    else:
+                            else:
                                 Dict_SSL['Ciphers'] = Ciphers[0]
                                 Dict_SSL['TLS'] = Check_Protocol(Ciphers[1])
                                 break
