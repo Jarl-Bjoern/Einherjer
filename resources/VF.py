@@ -178,14 +178,14 @@ def Connect_Error(url):
         else: Error_Message('Your decision is not acceptable.')
 
 def Get_Host_Name(url, Temp = ""):
-        try: Temp = gethostbyaddr(url)
-        except herror: pass
-        return Temp
+    try: Temp = gethostbyaddr(url)
+    except herror: pass
+    return Temp
 
 def Write_Log(url, host):
-        Connect_Error(url)
-        if (host != ""): Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - {host} - FAILED\n')
-        else: Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - FAILED\n')
+    Connect_Error(url)
+    if (host != ""): Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - {host} - FAILED\n')
+    else: Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - FAILED\n')
 
 def Log_File(Text):
     with open(join(Location, f"{Date}.log"), "a") as f:
@@ -366,9 +366,9 @@ def SSL_Vulns(url, t_seconds, context = create_unverified_context(), Dict_SSL = 
                 Cert_Info = ssock.getpeercert()
                 for Ciphers in ssock.shared_ciphers():
                     for Algorithm in array(Array_TLS_Algorithms):
-			if (Algorithm in Ciphers[0]):
-			    if (Array_TLS_Algorithms[0] in Ciphers[0]):
-			        if ("SHA256" in Ciphers[0] or "SHA512" in Ciphers[0]): Dict_SSL['Ciphers'] = Ciphers[0]
+                        if (Algorithm in Ciphers[0]):
+                            if (Array_TLS_Algorithms[0] in Ciphers[0]):
+                                if ("SHA256" in Ciphers[0] or "SHA512" in Ciphers[0]): Dict_SSL['Ciphers'] = Ciphers[0]
                                 Dict_SSL['TLS'] = Check_Protocol(Ciphers[1])
                                 break
                             else:
