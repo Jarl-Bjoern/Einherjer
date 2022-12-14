@@ -223,7 +223,7 @@ def Check_Certificate(url, Counter_URL = 0):
 def Check_Website(url, t_seconds, Dict_Temp = {}, Array_Output = [], Temp_Array = []):
     Array_Filter = ["Apache/", "Tomcat/", "Server Version:"]
     
-     with open('/opt/test.txt', 'w') as f:
+    with open('/opt/test.txt', 'w') as f:
          for i in array(Read_File(argv[1])):
              r = get(str(i), verify=False, timeout=(25,25))
              for _ in array(Array_Filter):
