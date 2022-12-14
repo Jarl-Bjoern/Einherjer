@@ -219,15 +219,24 @@ def Check_Certificate(url, Counter_URL = 0):
             cert = x509.load_der_x509_certificate(cert_der, default_backend())
             print (cert.signature_hash_algorithm.name)
 
-def Check_Website(url, t_seconds):
+def Check_Website(url, t_seconds, Dict_Temp = {}, Array_Output = [], Temp_Array = []):
+    Array_Filter = ["Apache/", "Tomcat/", "Server Version:"]
+    
      with open('/opt/test.txt', 'w') as f:
-         for i in Read_File(argv[1]):
+         for i in array(Read_File(argv[1])):
              r = get(str(i), verify=False, timeout=(25,25))
-             x = search(r'Apache', str(r.content))
-             try:
-                 Pos_Start, Pos_Ende = x.span()[0], x.span()[1]
-                 f.write(f'{i} : {str(r.content)[Pos_Start:Pos_Ende+20].split("<")[0]}\n')
-             except: f.write(f'{i} : -\n')
+             for _ in array(Array_Filter):
+                 x = search(rf'^.*{_}.*', str(r.content))
+                 if (x != None):
+                    for j in array(r.text.splitlines()):
+                        if (_ in j):
+                            Temp_Array = resplit("<dl>|<dt>|</dt>", j)
+                            if (len(Temp_Array) > 1):
+                                for k in array(Temp_Array):
+                                    if (len(k) > 1):
+                                        if (f'{i} - {k}' not in Array_Output): Array_Output.append(f'{i} - {k}')
+
+    return Dict_Temp
 
 def Check_Security_Flags(url, t_seconds):
     s = Session()
