@@ -3,12 +3,7 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-try:
-    from resources.VF import *
-except ImportError:
-    from sys import path as syspath
-    syspath.append('.')
-    from resources.VF import *
+from resources.VF import *
 
 def Create_PDF():
     try:
