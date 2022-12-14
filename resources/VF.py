@@ -60,8 +60,8 @@ Array_TLS_Algorithms = ["SHA","MD5","RC2","RC4","IDEA","ADH","3DES","NULL","PSK"
 Dict_Proxies = {}
 
 # Variables
-Date, End_Result, Location, COLOR_Headline, Process_Limit, Thread_Limit = strftime('%Y-%m-%d_%H-%M-%S'), "\n\nYour Scan was successful and the result will be found at the following location:\n", "", "magenta", "", ""
-File_Name, Switch_nmap, existing_nmap_file, Method, Kill_Command = f"{Date}-result", False, "", "", False
+Date, End_Result, Location, COLOR_Headline, Process_Limit, Thread_Limit = strftime('%Y-%m-%d_%H-%M-%S'), "\n\nYour Scan was successful and the result will be found at the following location:\n", "", "black", "", ""
+File_Name, Switch_nmap, existing_nmap_file, Method, Kill_Command, Counter_Connections = f"{Date}-result", False, "", "", False, 0
 Program_Description = """-------------------------------------------------------------------------------------
 |  Rainer Christian Bjoern Herold                                                   |
 |  Copyright 2022. All rights reserved.                                             |
