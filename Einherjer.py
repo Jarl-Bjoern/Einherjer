@@ -282,7 +282,7 @@ def main(Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, '
                 progress.update(task_Scan, advance=Counter_Bar)
                 progress.update(task_Filter, advance=0.5)
                 sleep(0.01)
-    Stdout_Output(End_Result)
+    Stdout_Output(End_Result, 0.01)
 
 if __name__ == '__main__':
     main()
