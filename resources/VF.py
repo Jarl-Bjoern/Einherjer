@@ -180,7 +180,9 @@ def Connect_Error(url):
 
 def Get_Host_Name(url, Temp = ""):
     try: Temp = gethostbyaddr(url)
-    except herror: pass
+    except herror:
+        try: Temp = gethostbyname(url)
+        except herror: pass
     return Temp
 
 def Write_Log(url, host):
