@@ -105,10 +105,10 @@ def main(Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, '
     if (args.target == None and args.import_list == None): Error_Message('The program cannot be started without attack targets\n\n')
     elif (args.target == None and args.import_list != None):
         try:
-            Text = Read_File(args.import_list)
-            Text.sort()
+            Array_Targets = Read_File(args.import_list)
+            Array_Targets.sort()
         except FileNotFoundError as e: Error_Message(f"Your targetlist can't be found!\n\n{e}")
-    else: Text = [args.target]
+    else: Array_Targets = [args.target]
 
     # Webdriver_Options
     if (args.scan_site_screenshot != False):
@@ -195,14 +195,14 @@ def main(Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, '
 
     Initialien()
     setdefaulttimeout(args.timeout)
-    Counter_Bar = float(100/len(Text))
+    Counter_Bar = float(100/len(Array_Targets))
     if __name__ == '__main__':
         with Progress(*progress_columns) as progress:
             queue = Queue()
             queue.put(Dict_Result)
-            task_Scan = progress.add_task("[cyan]Scanning for vulnerabilities...", total=len(Text))
+            task_Scan = progress.add_task("[cyan]Scanning for vulnerabilities...", total=len(Array_Targets))
             task_Filter = progress.add_task("[cyan]Filtering the results...", total=100, start=False)
-            for Target in array(Text):
+            for Target in array(Array_Targets):
                 Array_Thread_Args.append(Target), Array_Thread_Args.append(args.timeout), Array_Thread_Args.append(queue)
                 for _ in Array_Switch: Array_Thread_Args.append(_)
                 if (Method == "Thread"): p = Thread(target=Thread_Scanning_Start, args=Array_Thread_Args, daemon=True)
