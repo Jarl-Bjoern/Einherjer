@@ -405,11 +405,11 @@ def Take_Screenshot(driver, url, Screen_Dir = join(Location, 'Screenshots')):
     finally: driver.quit()
 
     for Picture in listdir(Screen_Dir):
-        raw_image = cv2.imread(join(Screen_Dir, Picture))
+        raw_image = imread(join(Screen_Dir, Picture))
         height = raw_image.shape[0]
         width = raw_image.shape[1]
         start_point, end_point = (0,0), (width, height)
         color = (0,0,0)
         thickness = 10
-        img = cv2.rectangle(raw_image, start_point, end_point, color, thickness)
-        cv2.imwrite(join(Screen_Dir, Picture), img)
+        img = rectangle(raw_image, start_point, end_point, color, thickness)
+        imwrite(join(Screen_Dir, Picture), img)
