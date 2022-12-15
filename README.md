@@ -19,6 +19,7 @@ Not all functions are done
 ```bash
 sudo git clone https://github.com/Jarl-Bjoern/einherjer/
 cd einherjer
+pip3 install -r requirements.txt
 sudo python3 Einherjer.py
 ```
 
