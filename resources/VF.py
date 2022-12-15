@@ -114,13 +114,13 @@ def Initialien():
     if (osname == 'nt'): system('cls')
     else: system('clear')
     Header = """
-💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀
+💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀
 💀\t\t\t\t\t\t\t\t\t\t\t\t\t\t  💀
 💀\t\t\t\t\t           """+Colors.UNDERLINE+"Einherjer"+Colors.RESET+ """\t\t\t\t\t\t\t  💀
 💀\t\t\t\t\t\t  """+Colors.ORANGE+"Version "+Colors.BLUE+"0.7"+Colors.RESET+"""\t\t\t\t\t\t\t  💀
 💀\t\t\t\t\t"""+Colors.CYAN+"Rainer Christian Bjoern Herold"+Colors.RESET+"""\t\t\t\t\t\t  💀
 💀\t\t\t\t\t\t\t\t\t\t\t\t\t\t  💀
-💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀\n\n
+💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀\n\n
 """
     Stdout_Output(Header)
 
@@ -222,7 +222,7 @@ def Check_Certificate(url, Counter_URL = 0):
 
 def Check_Website(url, t_seconds, Dict_Temp = {}, Array_Output = [], Temp_Array = []):
     Array_Filter = ["Apache/", "Tomcat/", "Server Version:"]
-    
+
     with open('/opt/test.txt', 'w') as f:
          for i in array(Read_File(argv[1])):
              r = get(str(i), verify=False, timeout=(25,25))
@@ -300,7 +300,7 @@ def SSH_Vulns(Target, Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key
 #    loop = asyncio.new_event_loop()
 #    asyncio.set_event_loop(loop)
 #    loop.run_until_complete(run_client())
-#except (OSError, asyncssh.Error) as e: exit(f'SSH connection failed: {str(e)}')    
+#except (OSError, asyncssh.Error) as e: exit(f'SSH connection failed: {str(e)}')
 
     if (Switch_nmap == False):
         Dict_System = {}
@@ -394,9 +394,6 @@ def SSL_Vulns(url, t_seconds, context = create_unverified_context(), Dict_SSL = 
     except (ConnectionRefusedError, gaierror): Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n')
 
 def Take_Screenshot(driver, url, Screen_Dir = join(Location, 'Screenshots')):
-    try: import cv2
-    except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
-
     try: makedirs(Screen_Dir)
     except FileExistsError: pass
     if ("://" in url): Screen_Name = url.split('://')[1]
