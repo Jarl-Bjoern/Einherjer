@@ -28,6 +28,7 @@ try:
     from contextlib import redirect_stdout
     from cryptography import x509
     from cryptography.hazmat.backends import default_backend
+    from cv2 import imread, imwrite, rectangle
     from datetime import datetime
     from multiprocessing import active_children, cpu_count, Process, Queue
     from numpy import array
@@ -43,7 +44,7 @@ try:
     from selenium.webdriver.common.keys import Keys
     from selenium.webdriver.chrome.service import Service
     from selenium.webdriver.remote.webdriver import WebDriver
-    from socket import create_connection, gaierror, gethostbyaddr, herror, setdefaulttimeout
+    from socket import create_connection, gaierror, gethostbyaddr, gethostbyname, herror, setdefaulttimeout
     from ssl import cert_time_to_seconds, create_default_context, _create_unverified_context as create_unverified_context, get_server_certificate
     from subprocess import getoutput
     from sys import stdout
@@ -52,7 +53,7 @@ try:
     from urllib3 import disable_warnings
     from urllib3.exceptions import *
     from webbrowser import open as webbrowser_open
-    import asyncio, asyncssh, cv2, paramiko
+    import asyncio, asyncssh, paramiko
     with redirect_stdout(None):
         from webdriver_manager.chrome import ChromeDriverManager
 except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
