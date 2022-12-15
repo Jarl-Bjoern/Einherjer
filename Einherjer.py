@@ -5,8 +5,8 @@
 # Variables_And_Functions
 from resources.VF import *
 
-def main(File_Name, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, 'Fuzzing': {}, 'Security_Flag': {}}):
-    global Counter_Connections, End_Result, Location, Switch_nmap, Kill_Command
+def main(Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, 'Fuzzing': {}, 'Security_Flag': {}}):
+    global Counter_Connections, End_Result, File_Name, Location, Switch_nmap, Kill_Command
 
     def Thread_Scanning_Start(url, t_seconds, queue, driver, scan_ssl, scan_header, scan_fuzzing, scan_ssh, scan_fuzzing_recurse, scan_security_flag, Count_Double_Point = 0, Host_Name = "", Target = ""):
         global Kill_Command
