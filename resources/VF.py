@@ -104,11 +104,11 @@ class Colors:
     RESET = '\033[0m'
 
 # Functions
-def Stdout_Output(Text_Array):
+def Stdout_Output(Text_Array, Output_Seconds):
     for char in Text_Array:
         stdout.write(char)
         stdout.flush()
-        sleep(0.01)
+        sleep(Output_Seconds)
 
 def Initialien():
     if (osname == 'nt'): system('cls')
@@ -122,7 +122,7 @@ def Initialien():
 💀\t\t\t\t\t\t\t\t\t\t\t\t\t\t  💀
 💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀\n\n
 """
-    Stdout_Output(Header)
+    Stdout_Output(Header, 0.004)
 
 def Read_File(file_path):
     with open(file_path, 'r') as f:
