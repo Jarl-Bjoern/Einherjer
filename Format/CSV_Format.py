@@ -5,12 +5,12 @@
 # Libraries
 from resources.VF import *
 
-def CSV_Table(Dict_Result):
+def CSV_Table(Dict_Result, location, output_name):
     try: import csv
     except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
-    global Location
+
     if (Dict_Result['Header'] != {}):
-        with open(join(Location, f'{File_Name}_header.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
+        with open(join(location, f'{output_name}_header.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
             writer.writerow((['URL','DNS'] + Array_Header))
             for Target in Dict_Result['Header']:
@@ -28,7 +28,7 @@ def CSV_Table(Dict_Result):
                     else: Array_Temp.append("X")
                 writer.writerow(Array_Temp)
     if (Dict_Result['Information'] != {}):
-        with open(join(Location, f'{File_Name}_information_disclosure.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
+        with open(join(location, f'{output_name}_information_disclosure.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
             writer.writerow((['URL','DNS'] + Array_Information_Disclosure_Header))
             for Target in Dict_Result['Header']:
@@ -45,7 +45,7 @@ def CSV_Table(Dict_Result):
                     else: Array_Temp.append("X")
                 writer.writerow(Array_Temp)
     if (Dict_Result['SSH'] != {}):
-        with open(join(Location, f'{File_Name}_SSH-Vulns.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
+        with open(join(location, f'{output_name}_SSH-Vulns.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
             writer.writerow((['Host','DNS'] + Array_SSH_Header))
             for Target in Dict_Result['SSH']:
@@ -69,7 +69,7 @@ def CSV_Table(Dict_Result):
                     else: Array_Temp.append("X")
                 writer.writerow(Array_Temp)
     if (Dict_Result['Security_Flag'] != {}):
-        with open(join(Location, f'{File_Name}_Security_Flags.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
+        with open(join(location, f'{output_name}_Security_Flags.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
             writer.writerow((['Host','DNS'] + Array_Security_Flags))
             for Target in Dict_Result['Security_Flag']:
