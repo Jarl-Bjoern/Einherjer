@@ -9,7 +9,7 @@ UNDER CONSTRUCTION
 
 Not all functions are working yet.
 
-I spend a lot of free time until it is completely ready and bug free.
+I spend a lot of time in this project until it is completely ready and bug free.
 
 The current use is at your own risk.
 
