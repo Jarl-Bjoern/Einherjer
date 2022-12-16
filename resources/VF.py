@@ -22,7 +22,6 @@ Array_SSH_Algorithms = [
     "ecdh-sha2-nistp256",
     "ecdh-sha2-nistp384",
     "ecdh-sha2-nistp521",
-    # Optional
     "curve25519-sha256",
     "diffie-hellman-group18-sha512",
     # Server_Host_Key_Algorithm OR Public_Key_Algorithm
@@ -33,7 +32,6 @@ Array_SSH_Algorithms = [
     "x509v3-ecdsa-sha2-nistp256",
     "x509v3-ecdsa-sha2-nistp384",
     "x509v3-ecdsa-sha2-nistp521",
-    # Optional
     "rsa-sha2-256",
     "rsa-sha2-512",
     "ssh-ed25519",
@@ -43,7 +41,6 @@ Array_SSH_Algorithms = [
     "aes128-ctr",
     "aes192-ctr",
     "aes256-ctr",
-    # Optional
     "chacha20-poly1305",
     "aes128-gcm",
     "aes256-gcm",
@@ -52,7 +49,6 @@ Array_SSH_Algorithms = [
     "hmac-sha2-512",
     "hmac-sha2-256-etm",
     "hmac-sha2-512-etm",
-    #Optional
     "umac-128",
     "umac-128-etm"]
 Array_TLS_Algorithms = ["SHA","MD5","RC2","RC4","IDEA","ADH","3DES","NULL","PSK","ANON","CBC","DHE","ECDHE"]
