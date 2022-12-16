@@ -53,8 +53,8 @@ Array_SSH_Algorithms = [
     "umac-128-etm"]
 Array_TLS_Algorithms = ["SHA","MD5","RC2","RC4","IDEA","ADH","3DES","NULL","PSK","ANON","CBC","DHE","ECDHE"]
 
-# Dict
-Dict_Proxies = {}
+# Dictionaries
+Dict_Proxies = {'http': '', 'https': ''}
 
 # Variables
 Date, End_Result, Location, COLOR_Headline, Process_Limit, Thread_Limit = strftime('%Y-%m-%d_%H-%M-%S'), "\n\nYour Scan was successful and the result will be found at the following location:\n", "", "black", "", ""
