@@ -57,7 +57,7 @@ def main(Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, '
                     queue.put(Dict_Result)
                     break
         else:
-            Write_Log(url, Host_Name), Connect_Error(url, Host_Name)
+            Write_Log(url, Host_Name)
 
     parser = ArgumentParser(add_help=False, formatter_class=RawTextHelpFormatter, description=Colors.ORANGE+Program_Description+Colors.RESET)
     required = parser.add_argument_group(Colors.ORANGE+'required arguments'+Colors.RESET)
