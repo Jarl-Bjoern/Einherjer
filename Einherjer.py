@@ -8,13 +8,13 @@ from resources.VF import *
 def main(Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, 'Fuzzing': {}, 'Security_Flag': {}}):
     global Counter_Connections, End_Result, File_Name, Location, Switch_nmap, Kill_Command
 
-    def Thread_Scanning_Start(url, t_seconds, queue, driver, scan_ssl, scan_header, scan_fuzzing, scan_ssh, scan_fuzzing_recurse, scan_security_flag, Count_Double_Point = 0, Host_Name = "", Target = ""):
+    def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_header, scan_fuzzing, scan_ssh, scan_fuzzing_recurse, scan_security_flag, Count_Double_Point = 0, Host_Name = "", Target = ""):
         global Kill_Command
 
         while (Kill_Command != True):
                 try:
                     Dict_Result = queue.get()
-                    if (driver != None and '//' in url and 'http' in url): Take_Screenshot(driver, url)
+                    if (driver_options != None and '//' in url and 'http' in url): Take_Screenshot(driver, url)
                     if (scan_header != False and '//' in url and 'http' in url):
                         Dict_Temp_Header, Dict_Temp_Information_Disclosure = {},{}
                         try:
@@ -115,6 +115,7 @@ def main(Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, '
 
     # Webdriver_Options
     if (args.scan_site_screenshot != False):
+        if ("ttl" in getoutput('ping -c 2 8.8.8.8')): Chrome_Path = ChromeDriverManager().install()
         options = webdriver.ChromeOptions()
         for _ in Array_Selenium: options.add_argument(_)
         if (args.custom_chromium_path != None): options.binary_location = args.custom_chromium_path
@@ -126,27 +127,25 @@ def main(Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, '
             else: driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)), 'resources/chromedriver')), options=option)
             return driver
 
-        if ("ttl" in getoutput('ping -c 2 8.8.8.8')):
-            if (osname == 'nt'):
-                Chrome_Path = ChromeDriverManager().install()
-                driver = webdriver.Chrome(service=Service(Chrome_Path), options=options)
-            else:
-                try: driver = Driver_Specification(options)
-                except (ConnectionError): pass
-                except (MaxRetryError, ProxyError, ProxySchemeUnknown): Error_Message("\n\nThere is a error in your proxy configuration or the proxy server is blocking your connection.\n\n")
-                except (gaierror, NewConnectionError): Error_Message("\n\nIt was not possible to connect to the Server.\n\n")
-                except SessionNotCreatedException as e:
-                    if (osname != 'nt'):
-                        print (f'Chromium: {getoutput("apt-cache policy chromium").splitlines()[1][1:].split(":")[1][1:]})')
-                        for _ in str(e).splitlines():
-                            if ("chrome=" in _):
-                                print(f'Webdriver: {_.split("chrome=")[1][:-1]}')
-                        if ('xfce' in getoutput('ls /usr/bin/*session') or 'gnome' in getoutput('ls /usr/bin/*session')):
-                            sleep(3.5), webbrowser_open("https://chromedriver.chromium.org/downloads")
-                    Error_Message("\nIt looks like you do not have the correct Chromedriver version installed.\n\nPlease go to https://chromedriver.chromium.org/downloads and download the correct chromedriver and paste it into the resources folder.\n")
-                except WebDriverException: Error_Message("\nIt looks like that you do not have Chromedriver installed.\n\nPlease go to https://chromedriver.chromium.org/downloads and download the correct chromedriver and paste it into the resources folder.\n")
-            driver.implicitly_wait(args.timeout), driver.set_window_size(1920,1080), driver.execute_script("document.body.style.zoom='250%'")
-        else: driver = Driver_Specification(options)
+        if (osname == 'nt'):
+            if ("ttl" in getoutput('ping -c 2 8.8.8.8')): driver = webdriver.Chrome(service=Service(Chrome_Path), options=options)
+            else: driver = Driver_Specification(options)
+        else:
+            try: driver = Driver_Specification(options)
+            except (ConnectionError): pass
+            except (MaxRetryError, ProxyError, ProxySchemeUnknown): Error_Message("\n\nThere is a error in your proxy configuration or the proxy server is blocking your connection.\n\n")
+            except (gaierror, NewConnectionError): Error_Message("\n\nIt was not possible to connect to the Server.\n\n")
+            except SessionNotCreatedException as e:
+                if (osname != 'nt'):
+                    print (f'Chromium: {getoutput("apt-cache policy chromium").splitlines()[1][1:].split(":")[1][1:]})')
+                    for _ in str(e).splitlines():
+                        if ("chrome=" in _):
+                            print(f'Webdriver: {_.split("chrome=")[1][:-1]}')
+                    if ('xfce' in getoutput('ls /usr/bin/*session') or 'gnome' in getoutput('ls /usr/bin/*session')):
+                        sleep(3.5), webbrowser_open("https://chromedriver.chromium.org/downloads")
+                Error_Message("\nIt looks like you do not have the correct Chromedriver version installed.\n\nPlease go to https://chromedriver.chromium.org/downloads and download the correct chromedriver and paste it into the resources folder.\n")
+            except WebDriverException: Error_Message("\nIt looks like that you do not have Chromedriver installed.\n\nPlease go to https://chromedriver.chromium.org/downloads and download the correct chromedriver and paste it into the resources folder.\n")
+        driver.implicitly_wait(args.timeout), driver.set_window_size(1920,1080), driver.execute_script("document.body.style.zoom='250%'")
 
     if (args.add_wordlist != None and args.add_multiple_wordlists == None):
         if (args.add_wordlist not in Array_Wordlists):
