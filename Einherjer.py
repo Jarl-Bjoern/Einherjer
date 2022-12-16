@@ -5,7 +5,7 @@
 # Variables_And_Functions
 from resources.VF import *
 
-def main(Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, 'Fuzzing': {}, 'Security_Flag': {}}):
+def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, 'Fuzzing': {}, 'Security_Flag': {}}):
     global Counter_Connections, End_Result, File_Name, Location, Switch_nmap, Kill_Command
 
     def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_header, scan_fuzzing, scan_ssh, scan_fuzzing_recurse, scan_security_flag, Count_Double_Point = 0, Host_Name = "", Target = ""):
@@ -158,21 +158,21 @@ def main(Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, '
     if (args.output_location != None):
         if exists(args.output_location):
             if ('.' in args.output_location or './' in args.output_location):
-                if ('./' in args.output_location): Location = join(getcwd(), args.output_location[2:])
-                else: Location = join(getcwd(), args.output_location)
-            elif ('.' not in args.output_location and '/' not in args.output_location): Location = join(getcwd(), args.output_location)
-            elif ('/' in args.output_location and not '.' in args.output_location): Location = args.output_location
+                if ('./' in args.output_location): Location = join(getcwd(), f"{args.output_location[2:]}/{Date}")
+                else: Location = join(getcwd(), f"{args.output_location}/{Date}")
+            elif ('.' not in args.output_location and '/' not in args.output_location): Location = join(getcwd(), f"{args.output_location}/{Date}")
+            elif ('/' in args.output_location and not '.' in args.output_location): Location = f"{args.output_location}/{Date}"
         else:
             if ('.' in args.output_location or './' in args.output_location):
                 if ('./' in args.output_location):
-                    makedirs(join(getcwd(), args.output_location[2:]))
-                    Location = join(getcwd(), args.output_location[2:])
+                    makedirs(join(getcwd(), f"{args.output_location[2:]}/{Date}"))
+                    Location = join(getcwd(), f"{args.output_location[2:]}/{Date}")
                 else:
-                    makedirs(join(getcwd(), args.output_location))
-                    Location = join(getcwd(), args.output_location)
-            elif ('.' not in args.output_location and '/' not in args.output_location): Location = Create_Location_Dir(join(getcwd(), args.output_location))
-            elif ('/' in args.output_location and not '.' in args.output_location): Location = Create_Location_Dir(args.output_location)
-    else: Location = dirname(realpath(__file__))
+                    makedirs(join(getcwd(), f"{args.output_location}/{Date}"))
+                    Location = join(getcwd(), f"{args.output_location}/{Date}")
+            elif ('.' not in args.output_location and '/' not in args.output_location): Location = Create_Location_Dir(join(getcwd(), f"{args.output_location}/{Date}"))
+            elif ('/' in args.output_location and not '.' in args.output_location): Location = Create_Location_Dir(f"{args.output_location}/{Date}")
+    else: Location = join(dirname(realpath(__file__)), f"{args.output_location}/{Date}")
 
     if (args.method == "Threading" or args.method == "threading" or args.method == "t" or args.method == "Thread" or args.method == "thread"): Method = "Thread"
     elif (args.method == "Multiprocessing" or args.method == 'multiprocessing' or args.method == 'mp' or args.method == 'MP'): Method = "MP"
@@ -287,7 +287,7 @@ def main(Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, '
         Stdout_Output(Colors.ORANGE+f'   - {_}\n'+Colors.RESET, 0.01)
 # Main
 if __name__ == '__main__':
-    try: main()
+    try: main(Date)
     except KeyboardInterrupt:
         Kill_Command = True
         exit()
