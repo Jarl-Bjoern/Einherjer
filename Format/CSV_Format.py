@@ -5,11 +5,12 @@
 # Libraries
 from resources.VF import *
 
-def CSV_Table(Dict_Result, location, output_name):
+def CSV_Table(Dict_Result, location, output_name, Array_Files = []):
     try: import csv
     except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
 
     if (Dict_Result['Header'] != {}):
+        Array_Files.append(join(location, f'{output_name}_header.csv'))
         with open(join(location, f'{output_name}_header.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
             writer.writerow((['URL','DNS'] + Array_Header))
@@ -28,6 +29,7 @@ def CSV_Table(Dict_Result, location, output_name):
                     else: Array_Temp.append("X")
                 writer.writerow(Array_Temp)
     if (Dict_Result['Information'] != {}):
+        Array_Files.append(join(location, f'{output_name}_header.csv'))
         with open(join(location, f'{output_name}_information_disclosure.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
             writer.writerow((['URL','DNS'] + Array_Information_Disclosure_Header))
@@ -45,6 +47,7 @@ def CSV_Table(Dict_Result, location, output_name):
                     else: Array_Temp.append("X")
                 writer.writerow(Array_Temp)
     if (Dict_Result['SSH'] != {}):
+        Array_Files.append(join(location, f'{output_name}_header.csv'))
         with open(join(location, f'{output_name}_SSH-Vulns.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
             writer.writerow((['Host','DNS'] + Array_SSH_Header))
@@ -69,6 +72,7 @@ def CSV_Table(Dict_Result, location, output_name):
                     else: Array_Temp.append("X")
                 writer.writerow(Array_Temp)
     if (Dict_Result['Security_Flag'] != {}):
+        Array_Files.append(join(location, f'{output_name}_header.csv'))
         with open(join(location, f'{output_name}_Security_Flags.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
             writer.writerow((['Host','DNS'] + Array_Security_Flags))
@@ -92,3 +96,4 @@ def CSV_Table(Dict_Result, location, output_name):
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
                     else: Array_Temp.append("X")
                 writer.writerow(Array_Temp)
+    return Array_Files
