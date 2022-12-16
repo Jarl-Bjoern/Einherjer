@@ -109,7 +109,7 @@ def main(Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, '
     elif (args.target == None and args.import_list != None):
         try:
             Array_Targets = Read_File(args.import_list)
-            if (args.random_order == True): Array_Targets.shuffle()
+            if (args.random_order == True): shuffle(Array_Targets)
             else: Array_Targets.sort()
         except FileNotFoundError as e: Error_Message(f"Your targetlist can't be found!\n\n{e}")
     else: Array_Targets = [args.target]
