@@ -32,7 +32,7 @@ try:
     from datetime import datetime
     from multiprocessing import active_children, cpu_count, Process, Queue
     from numpy import array
-    from os import listdir, makedirs, name as osname, remove, system, walk
+    from os import getcwd, listdir, makedirs, name as osname, remove, system, walk
     from os.path import dirname, exists, join, realpath
     from requests import get, Session
     from requests.exceptions import *
