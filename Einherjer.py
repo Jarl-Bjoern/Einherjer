@@ -284,5 +284,9 @@ def main(Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, '
                 sleep(0.01)
     Stdout_Output(End_Result, 0.01)
 
+# Main
 if __name__ == '__main__':
-    main()
+    try: main()
+    except KeyboardInterrupt:
+        Kill_Command = True
+        exit()
