@@ -282,9 +282,12 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
                 progress.update(task_Filter, advance=0.5)
                 sleep(0.01)
 
-    Stdout_Output(Colors.CYAN+End_Result+Colors.RESET, 0.01)
-    for _ in Array_Output:
-        Stdout_Output(Colors.ORANGE+f'   - {_}\n'+Colors.RESET, 0.01)
+    if (Array_Output != []):
+        Stdout_Output(Colors.CYAN+End_Result+Colors.RESET, 0.01)
+        for _ in Array_Output:
+            Stdout_Output(Colors.ORANGE+f'   - {_}\n'+Colors.RESET, 0.01)
+    else: Stdout_Output(Colors.ORANGE+f'\nIt was not possible to collect any kind of data!\n\nCheck your connection or targets and try it again.'+Colors.RESET, 0.01)
+
 # Main
 if __name__ == '__main__':
     try: main(Date)
