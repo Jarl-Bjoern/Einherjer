@@ -6,7 +6,7 @@
 from resources.VF import *
 
 def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, 'Fuzzing': {}, 'Security_Flag': {}}):
-    global Counter_Connections, End_Result, File_Name, Location, Switch_nmap, Kill_Command
+    global Counter_Connections, End_Result, Location, Switch_nmap, Kill_Command
 
     def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_header, scan_fuzzing, scan_ssh, scan_fuzzing_recurse, scan_security_flag, Count_Double_Point = 0, Host_Name = "", Target = ""):
         global Kill_Command
@@ -250,7 +250,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
 
             if ("csv" in args.format):
                 from Format.CSV_Format import CSV_Table
-                Array_Output = CSV_Table(Dict_Result, Location, File_Name)
+                Array_Output = CSV_Table(Dict_Result, Location)
             elif ("docx" in args.format or "word" in args.format):
                 from Format.Word_Format import Word_Table
                 Word_Table(Dict_Result)
