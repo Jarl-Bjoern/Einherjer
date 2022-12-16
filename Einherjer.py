@@ -97,7 +97,7 @@ def main(Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, '
     performance_arguments.add_argument('-mx', '--max-connections', type=int, default=cpu_count()*2, help=Colors.GREEN+f'Defines the max connections via threads or processes for every try to scan. \n\nDefault: {cpu_count()*2}'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     performance_arguments.add_argument('-m', '--method', type=str, choices=['Multiprocessing', 'multiprocessing', 'mp', 'MP', 'threading', 'Threading', 't', 'Thread', 'thread'], default='Threading', help=Colors.GREEN+'Defines which method you wanted to use.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     performance_arguments.add_argument('-to', '--timeout', type=int, default=30, help=Colors.GREEN+'Specify the connection http timeout in seconds. Default: 30 seconds'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
-    performance_arguments.add_argument('-r', '--random-order', type=bool, nargs='?', const=True, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    performance_arguments.add_argument('-r', '--random-order', type=bool, nargs='?', default=False, help=Colors.GREEN+'This parameter randomize your targets.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     performance_arguments.add_argument('-tHo', '--thread-timeout', type=int, default=60, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     optional.add_argument('-app', '--append-to-existing-xlsx', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     optional.add_argument('-c', '--custom-chromium-path', type=str, help=Colors.GREEN+'Specify the location of your custom chromium.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
@@ -109,7 +109,8 @@ def main(Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, '
     elif (args.target == None and args.import_list != None):
         try:
             Array_Targets = Read_File(args.import_list)
-            Array_Targets.sort()
+            if (args.random_order == True): Array_Targets.shuffle()
+            else: Array_Targets.sort()
         except FileNotFoundError as e: Error_Message(f"Your targetlist can't be found!\n\n{e}")
     else: Array_Targets = [args.target]
 
@@ -120,11 +121,6 @@ def main(Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, '
         if (args.custom_chromium_path != None): options.binary_location = args.custom_chromium_path
         else:
             if (osname != 'nt'): options.binary_location = "/usr/bin/chromium"
-
-        def Driver_Specification(option):
-            if (osname == 'nt'): driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)), 'resources/chromedriver.exe')), options=option)
-            else: driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)), 'resources/chromedriver')), options=option)
-            return driver
 
         if ("ttl" in getoutput('ping -c 2 8.8.8.8')):
             if (osname == 'nt'):
