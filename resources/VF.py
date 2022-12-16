@@ -160,8 +160,6 @@ def Try_Remove_File(x):
         except PermissionError: Error_Message(f"The file {x} is already open!\nPlease close it and wait five seconds.")
         sleep(5)
 
-def Connect_Error(url): pass
-
 def Get_Host_Name(url, Temp = ""):
     try: Temp = gethostbyaddr(url)
     except (gaierror, herror):
