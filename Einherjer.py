@@ -115,6 +115,8 @@ def main(Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, '
 
     # Webdriver_Options
     if (args.scan_site_screenshot != False):
+        
+        
         options = webdriver.ChromeOptions()
         for _ in Array_Selenium: options.add_argument(_)
         if (args.custom_chromium_path != None): options.binary_location = args.custom_chromium_path
@@ -127,7 +129,9 @@ def main(Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, '
             return driver
 
         if ("ttl" in getoutput('ping -c 2 8.8.8.8')):
-            if (osname == 'nt'): driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+            if (osname == 'nt'):
+                Chrome_Path = ChromeDriverManager().install()
+                driver = webdriver.Chrome(service=Service(Chrome_Path), options=options)
             else:
                 try: driver = Driver_Specification(options)
                 except (ConnectionError): pass
