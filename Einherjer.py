@@ -243,38 +243,30 @@ def main(Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, '
 
             if ("csv" in args.format):
                 from Format.CSV_Format import CSV_Table
-                CSV_Table(Dict_Result, Location, File_Name)
-                End_Result += join(Location, f'"{File_Name}.csv"\n')
+                Array_Output = CSV_Table(Dict_Result, Location, File_Name)
             elif ("docx" in args.format or "word" in args.format):
                 from Format.Word_Format import Word_Table
                 Word_Table(Dict_Result)
-                End_Result += join(Location, f'"{File_Name}.docx"\n')
             elif ("html" in args.format):
                 from Format.HTML_Format import HTML_Table
                 HTML_Table(Dict_Result)
-                End_Result += join(Location, f'"{File_Name}.html"\n')
             elif ("json" in args.format):
                 from Format.JSON_Format import Create_JSON
                 #Create_Json(Dict_Result)
-                End_Result += join(Location, f'"{File_Name}.json"\n')
             elif ("latex" in args.format or "tex" in args.format):
                 from Format.LaTeX_Format import Latex_Table
                 Latex_Table(Dict_Result)
-                End_Result += join(Location, f'"{File_Name}.tex"\n')
             elif ("pdf" in args.format):
                 from Format.PDF_Format import Create_PDF
                 Word_Table(Dict_Result)
                 if (osname == 'nt'): Create_PDF()
                 else: print("At this point it's not be possible to convert a docx file into a pdf under linux.\nPlease try it under windows.\n")
-                End_Result += join(Location, f'"{File_Name}.docx"\n')
             elif ("xlsx" in args.format):
                 from Format.Excel_Format import Excel_Table
                 Excel_Table(Dict_Result)
-                End_Result += join(Location, f'"{File_Name}.xlsx"\n')
             elif ("xml" in args.format):
                 from Format.XML_Format import Create_XML
                 #Create_XML(Dict_Result)
-                End_Result += join(Location, f'"{File_Name}.xml"\n')
             else: Error_Message("Your Decision was not acceptable!")
 
             progress.start_task(task_Filter)
@@ -282,8 +274,10 @@ def main(Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, '
                 progress.update(task_Scan, advance=Counter_Bar)
                 progress.update(task_Filter, advance=0.5)
                 sleep(0.01)
-    Stdout_Output(End_Result, 0.01)
 
+    Stdout_Output(Colors.CYAN+End_Result+Colors.RESET, 0.01)
+    for _ in Array_Output:
+        Stdout_Output(Colors.ORANGE+f'   - {_}\n'+Colors.RESET, 0.01)
 # Main
 if __name__ == '__main__':
     try: main()
