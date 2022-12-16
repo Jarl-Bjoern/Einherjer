@@ -7,7 +7,11 @@
 # General Description
 UNDER CONSTRUCTION
 
-Not all functions are done
+Not all functions are working yet.
+
+I spend a lot of free time until it is completely ready and bug free.
+
+The current use is at your own risk.
 
 # Table of Contents
 - [How to download and install the tool](#download_install)
