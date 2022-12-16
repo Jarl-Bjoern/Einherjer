@@ -141,6 +141,11 @@ def Thread_Check(Check_Value, Array_Check):
         except ValueError: pass
         Counter_Connections -= 1
 
+def Driver_Specification(option):
+    if (osname == 'nt'): driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)), 'resources/chromedriver.exe')), options=option)
+    else: driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)), 'resources/chromedriver')), options=option)
+    return driver
+
 def Create_Location_Dir(output_location_dir):
     try:
         makedirs(output_location_dir)
