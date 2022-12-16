@@ -385,7 +385,9 @@ def SSL_Vulns(url, t_seconds, context = create_unverified_context(), Dict_SSL = 
     except (ConnectionRefusedError, gaierror): Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n')
 
 def Take_Screenshot(driver, url, location):
-    Screen_Dir = join(location, 'Screenshots')
+    global Location
+
+    Screen_Dir = join(Location, 'Screenshots')
     try: makedirs(Screen_Dir)
     except FileExistsError: pass
     if ("://" in url): Screen_Name = url.split('://')[1]
