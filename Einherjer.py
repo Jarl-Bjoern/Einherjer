@@ -286,7 +286,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
         Stdout_Output(Colors.CYAN+End_Result+Colors.RESET, 0.01)
         for _ in Array_Output:
             Stdout_Output(Colors.ORANGE+f'   - {_}\n'+Colors.RESET, 0.01)
-    else: Stdout_Output(Colors.ORANGE+f'\nIt was not possible to collect any kind of data!\n\nCheck your connection or targets and try it again.'+Colors.RESET, 0.01)
+    else: Stdout_Output(Colors.ORANGE+f'\n\t\t\t\tIt was not possible to collect any kind of data!\n\n\t\t\t     Check your connection or target file and try it again.'+Colors.RESET, 0.01)
 
 # Main
 if __name__ == '__main__':
