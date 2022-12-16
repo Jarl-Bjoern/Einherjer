@@ -36,6 +36,7 @@ try:
     from os.path import dirname, exists, join, realpath
     from requests import get, Session
     from requests.exceptions import *
+    from random import shuffle
     from re import search, split as resplit
     from rich.progress import BarColumn, Progress, SpinnerColumn, TaskProgressColumn, TimeElapsedColumn, TimeRemainingColumn
     from selenium import webdriver
