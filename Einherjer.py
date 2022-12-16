@@ -157,15 +157,15 @@ def main(Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, '
     if (args.output_location != None):
         if exists(args.output_location):
             if ('.' in args.output_location or './' in args.output_location):
-                if ('./' in args.output_location): Location = join(getcwd(), args.output_location[3:])
+                if ('./' in args.output_location): Location = join(getcwd(), args.output_location[2:])
                 else: Location = join(getcwd(), args.output_location)
             elif ('.' not in args.output_location and '/' not in args.output_location): Location = join(dirname(realpath(__file__)), args.output_location)
             elif ('/' in args.output_location and not '.' in args.output_location): Location = args.output_location
         else:
             if ('.' in args.output_location or './' in args.output_location):
                 if ('./' in args.output_location):
-                    makedirs(join(getcwd(), args.output_location[3:]))
-                    Location = join(getcwd(), args.output_location[3:])
+                    makedirs(join(getcwd(), args.output_location[2:]))
+                    Location = join(getcwd(), args.output_location[2:])
                 else:
                     makedirs(join(getcwd(), args.output_location))
                     Location = join(getcwd(), args.output_location)
