@@ -158,39 +158,26 @@ def Try_Remove_File(x):
         except PermissionError: Error_Message(f"The file {x} is already open!\nPlease close it and wait five seconds.")
         sleep(5)
 
-def Connect_Error(url):
-    try:
-        with open(join(Location, f'{Date}_failed-url.txt'), 'w') as f:
-            f.write(f'{url}\n')
-    except FileExistsError:
-        Question = input(f"The file already exists\n\n{e}\n\nDo you want to override it? (Y/N)")
-        if (Question == 'Y' or Question == 'y'):
-            try: remove(join(Location, f'{Date}_failed-url.txt'))
-            except FileNotFoundError: pass
-            with open(join(Location, f'{Date}_failed-url.txt'), 'w') as f:
-                f.write(f'{url}\n')
-        elif (Question == 'N' or Question == 'n'):
-            n = 0
-            for _, _, files in walk(Location, topdown=False):
-                for file in array(files):
-                    if (file.endswith('.txt') and 'failed-url' in file): n += 1
-            with open(join(Location, f'{Date}_failed-url_{n}.txt'), 'w') as f:
-                f.write(f'{url}\n')
-        else: Error_Message('Your decision is not acceptable.')
+def Connect_Error(url): pass
 
 def Get_Host_Name(url, Temp = ""):
     try: Temp = gethostbyaddr(url)
-    except herror:
-        try: Temp = gethostbyname(url)
-        except herror: pass
+    except (gaierror, herror):
+        try:
+            Temp = gethostbyname(url)
+            if (Temp == url): Temp = ""
+        except (gaierror, herror): pass
     return Temp
 
-def Write_Log(url, host):
-    Connect_Error(url)
+def Write_Log(url, host, Log_Path = dirname(realpath(__file__)).replace('resources', 'Logs')):
+    if (not exists(Log_Path)): makedirs(Log_Path)
+    with open(join(Log_Path, f'{Date}_failed-url.txt'), 'a') as f:
+        f.write(f'{url}\n')
     if (host != ""): Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - {host} - FAILED\n')
     else: Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - FAILED\n')
 
-def Log_File(Text):
+def Log_File(Text, Log_Path = dirname(realpath(__file__)).replace('resources', 'Logs')):
+    if (not exists(Log_Path)): makedirs(Log_Path)
     with open(join(Location, f"{Date}.log"), "a") as f:
         f.write(Text)
 
