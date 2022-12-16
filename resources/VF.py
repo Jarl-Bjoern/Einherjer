@@ -180,7 +180,7 @@ def Write_Log(url, host, Log_Path = dirname(realpath(__file__)).replace('resourc
 
 def Log_File(Text, Log_Path = dirname(realpath(__file__)).replace('resources', 'Logs')):
     if (not exists(Log_Path)): makedirs(Log_Path)
-    with open(join(Location, f"{Date}.log"), "a") as f:
+    with open(join(Log_Path, f"{Date}.log"), "a") as f:
         f.write(Text)
 
 def Read_Template(template_file):
