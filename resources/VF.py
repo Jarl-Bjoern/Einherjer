@@ -238,9 +238,9 @@ def Check_Security_Flags(url, t_seconds):
     s = Session()
     r = s.get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
 
-    if ('')
-    for cookie in dict(s.cookies):
-        
+    for Flag in Array_Security_Flags:
+        if (Flag not in dict(s.cookies)): pass
+    for cookie in dict(s.cookies): pass
 #        for i,j in cookie.__dict__.items():
 #            if ('_rest' in i):
 #                print (f'{i} : {j}')
