@@ -98,7 +98,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
     performance_arguments.add_argument('-m', '--method', type=str, choices=['Multiprocessing', 'multiprocessing', 'mp', 'MP', 'threading', 'Threading', 't', 'Thread', 'thread'], default='Threading', help=Colors.GREEN+'Defines which method you wanted to use.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     performance_arguments.add_argument('-to', '--timeout', type=int, default=30, help=Colors.GREEN+'Specify the connection http timeout in seconds.\n\nDefault: 30 seconds'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     performance_arguments.add_argument('-r', '--random-order', type=bool, nargs='?', default=False, help=Colors.GREEN+'This parameter randomize your targets.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
-    performance_arguments.add_argument('-tHo', '--thread-timeout', type=int, default=60, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    performance_arguments.add_argument('-tHo', '--thread-timeout', type=int, default=90, help=Colors.GREEN+'This parameter sets the max time to wait until a thread will be terminated\n\nDefault: 90 Seconds'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     optional.add_argument('-app', '--append-to-existing-xlsx', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     optional.add_argument('-c', '--custom-chromium-path', type=str, help=Colors.GREEN+'Specify the location of your custom chromium.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     optional.add_argument('-h','--help', action='help', default=SUPPRESS, help=Colors.GREEN+'Show this help message and exit.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
@@ -223,7 +223,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
                             if (Method == "Thread"): Thread_Check(Thread_ID, Th_enumerate())
                             elif (Method == "MP"): Thread_Check(Thread_ID, active_children())
                         Status = perf_counter()
-                        if (int(Status - Timer) < 90):
+                        if (int(Status - Timer) < args.thread_timeout):
                             sleep(2.25)
                         else:
                             Kill_Command, Counter_Connections = True, 0
