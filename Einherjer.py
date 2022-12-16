@@ -29,8 +29,13 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
                             if (Host_Name != ""):
                                 Dict_Temp_Header['DNS'], Dict_Temp_Information_Disclosure['DNS'] = Host_Name[0], Host_Name[0]
                             else: Dict_Temp_Header['DNS'], Dict_Temp_Information_Disclosure['DNS'] = "",""
-                            #if (type(Host_Name) == tuple or type(Host_Name) == list): print ("test")
-                            #elif (type(Host_Name) == str): print ("Test2")
+#                            if (type(Host_Name) == tuple or type(Host_Name) == list):
+#                                print ("test")
+#                                for i in test:
+#                                    if (i != []):
+#                                        if (type(i) != list): print (i)
+#                                        else: print (i[0])
+#                            elif (type(Host_Name) == str): print ("Test2")
                             # Header_Check
                             for Header in r.headers.items():
                                 if (Header[0] in Array_Header): Dict_Temp_Header[Header[0]] = Header[1]
