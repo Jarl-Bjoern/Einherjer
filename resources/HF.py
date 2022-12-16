@@ -54,7 +54,8 @@ try:
     from urllib3 import disable_warnings
     from urllib3.exceptions import *
     from webbrowser import open as webbrowser_open
-    import asyncio, asyncssh, paramiko
+    import asyncio, asyncssh
+    #paramiko
     with redirect_stdout(None):
         from webdriver_manager.chrome import ChromeDriverManager
 except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
