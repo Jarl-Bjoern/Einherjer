@@ -115,8 +115,6 @@ def main(Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, '
 
     # Webdriver_Options
     if (args.scan_site_screenshot != False):
-        
-        
         options = webdriver.ChromeOptions()
         for _ in Array_Selenium: options.add_argument(_)
         if (args.custom_chromium_path != None): options.binary_location = args.custom_chromium_path
