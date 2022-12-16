@@ -10,6 +10,7 @@ Array_Header = ['X-Frame-Options', 'X-XSS-Protection', 'Content-Security-Policy'
 Array_Threads, Array_Paths, Array_Wordlists, Array_SSL_Vulns, Array_Fuzzing, Array_Thread_Args, Array_Switch, Array_Results, Array_Security_Flags = [],[],[],[],[],[],[],[],[]
 Array_Selenium = ['--start_maximized','--no-sandbox','--remote-debugging-port=19222','--ignore-certificate-errors','--test-type','--headless','--log-level=3']
 Array_Information_Disclosure_Header = ["X-Powered-By", "Server"]
+Array_Security_Flags = ['SameSite', 'samesite', 'HttpOnly', 'httponly', 'Secure', 'secure', 'JSessID']
 Array_SSH_Header = ['kex_algorithms', 'server_host_key_algorithms', 'encryption_algorithms', 'mac_algorithms']
 Array_SSH_Algorithms = [
     # Key Exchange Methods
@@ -237,8 +238,9 @@ def Check_Security_Flags(url, t_seconds):
     s = Session()
     r = s.get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
 
+    if ('')
     for cookie in dict(s.cookies):
-        pass
+        
 #        for i,j in cookie.__dict__.items():
 #            if ('_rest' in i):
 #                print (f'{i} : {j}')
