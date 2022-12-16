@@ -105,7 +105,7 @@ def main(Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, '
     debug_arguments.add_argument('-d', '--debug', type=bool, nargs='?', default=False, help=Colors.GREEN+'This Parameter deactivates the terminal clearing after starting the tool.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     args = parser.parse_args()
-    if (args.target == None and args.import_list == None): Error_Message('The program cannot be started without attack targets\n\n')
+    if (args.target == None and args.import_list == None): Error_Message('The program cannot be started without targets')
     elif (args.target == None and args.import_list != None):
         try:
             Array_Targets = Read_File(args.import_list)
