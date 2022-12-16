@@ -110,9 +110,11 @@ def Stdout_Output(Text_Array, Output_Seconds):
         stdout.flush()
         sleep(Output_Seconds)
 
-def Initialien():
-    if (osname == 'nt'): system('cls')
-    else: system('clear')
+def Initialien(debug_parameter):
+    if (debug_parameter == False):
+        if (osname == 'nt'): system('cls')
+        else: system('clear')
+    else: system('')
     Header = """
 💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀
 💀\t\t\t\t\t\t\t\t\t\t\t\t\t\t  💀
