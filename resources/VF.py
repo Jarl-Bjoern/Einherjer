@@ -478,7 +478,7 @@ def Take_Screenshot(driver, url, location):
             Chrome_Path = ChromeDriverManager().install()
             driver = webdriver.Chrome(service=Service(Chrome_Path), options=options)
         else:
-            driver = Web
+            driver = Web.Driver_Specification(options)
     else: driver = Driver_Specification(options)
     driver.implicitly_wait(args.timeout), driver.set_window_size(1920,1080), driver.execute_script("document.body.style.zoom='250%'")
 
