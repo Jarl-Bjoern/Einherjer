@@ -231,10 +231,12 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
                             elif (Method == "MP"):
                                 if (Thread_ID not in str(active_children())):
                                     Dict_Threads.pop(Thread_ID, None)
+                                    Counter_Connections -= 1
                                 else:
                                     if ((time() - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
                                         Dict_Threads[Thread_ID][0].terminate()
                                         Dict_Threads.pop(Thread_ID, None)
+                                        Counter_Connections -= 1
                         sleep(2.25)
                 else:
                      if (p.name not in Dict_Threads):
