@@ -77,6 +77,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
     # Webdriver_Options
     if (args.scan_site_screenshot != False):
         try:
+            from cv2 import imread, imwrite, rectangle
             from selenium import webdriver
             from selenium.common.exceptions import *
             from selenium.webdriver.common.by import By
