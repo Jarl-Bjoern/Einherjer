@@ -3,7 +3,7 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-from resources.VF import *
+from Resources.VF import *
 
 def Excel_Table(Dict_Result, Array_Letter = ['A','B','C','D','E','F','G']):
     try:
