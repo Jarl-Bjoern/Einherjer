@@ -240,5 +240,4 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
 if __name__ == '__main__':
     try: main(Date)
     except KeyboardInterrupt:
-        Kill_Command = True
         exit()
