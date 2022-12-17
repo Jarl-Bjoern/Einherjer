@@ -164,8 +164,8 @@ class Logs:
 
 class Web:
     def Driver_Specification(option):
-        if (osname == 'nt'): driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)), 'Resources/chromedriver.exe')), options=option)
-        else: driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)), 'Resources/chromedriver')), options=option)
+        if (osname == 'nt'): driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)), 'Resources/Webdriver/chromedriver.exe')), options=option)
+        else: driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)), 'Resources/Webdriver/chromedriver')), options=option)
         return driver
 
     def Configurate_Driver(options, driver = None):
@@ -224,8 +224,8 @@ def Thread_Check(Check_Value, Array_Check):
         Counter_Connections -= 1
 
 def Driver_Specification(option):
-    if (osname == 'nt'): driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)), 'Resources/chromedriver.exe')), options=option)
-    else: driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)), 'Resources/chromedriver')), options=option)
+    if (osname == 'nt'): driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)), 'Resources/Webdriver/chromedriver.exe')), options=option)
+    else: driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)), 'Resources/Webdriver/chromedriver')), options=option)
     return driver
 
 def Create_Location_Dir(output_location_dir):
