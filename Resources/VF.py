@@ -57,7 +57,7 @@ Array_TLS_Algorithms = ["SHA","MD5","RC2","RC4","IDEA","ADH","3DES","NULL","PSK"
 Dict_Proxies = {'http': '', 'https': ''}
 
 # Variables
-Date, Location, COLOR_Headline, Process_Limit, Thread_Limit, Log_Path = strftime('%Y-%m-%d_%H-%M-%S'), "", "black", "", "", dirname(realpath(__file__)).replace('resources', 'Logs')
+Date, Location, COLOR_Headline, Process_Limit, Thread_Limit, Log_Path = strftime('%Y-%m-%d_%H-%M-%S'), "", "black", "", "", dirname(realpath(__file__)).replace('Resources', 'Logs')
 Switch_Internet_Connection, Switch_nmap, existing_nmap_file, Method, Kill_Command, Counter_Connections = False, False, "", "", False, 0 
 Program_Description = """-------------------------------------------------------------------------------------
 |  Rainer Christian Bjoern Herold                                                   |
@@ -164,8 +164,8 @@ class Logs:
 
 class Web:
     def Driver_Specification(option):
-        if (osname == 'nt'): driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)), 'resources/chromedriver.exe')), options=option)
-        else: driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)), 'resources/chromedriver')), options=option)
+        if (osname == 'nt'): driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)), 'Resources/chromedriver.exe')), options=option)
+        else: driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)), 'Resources/chromedriver')), options=option)
         return driver
 
     def Configurate_Driver(options, driver = None):
@@ -181,8 +181,8 @@ class Web:
                         print(f'Webdriver: {_.split("chrome=")[1][:-1]}')
                 if ('xfce' in getoutput('ls /usr/bin/*session') or 'gnome' in getoutput('ls /usr/bin/*session')):
                     sleep(3.5), webbrowser_open("https://chromedriver.chromium.org/downloads")
-            Error_Message("\nIt looks like you do not have the correct Chromedriver version installed.\n\nPlease go to https://chromedriver.chromium.org/downloads and download the correct chromedriver and paste it into the resources folder.\n")
-        except WebDriverException: Error_Message("\nIt looks like that you do not have Chromedriver installed.\n\nPlease go to https://chromedriver.chromium.org/downloads and download the correct chromedriver and paste it into the resources folder.\n")
+            Error_Message("\nIt looks like you do not have the correct Chromedriver version installed.\n\nPlease go to https://chromedriver.chromium.org/downloads and download the correct chromedriver and paste it into the Resources folder.\n")
+        except WebDriverException: Error_Message("\nIt looks like that you do not have Chromedriver installed.\n\nPlease go to https://chromedriver.chromium.org/downloads and download the correct chromedriver and paste it into the Resources folder.\n")
         return driver
 
 # Functions
@@ -224,8 +224,8 @@ def Thread_Check(Check_Value, Array_Check):
         Counter_Connections -= 1
 
 def Driver_Specification(option):
-    if (osname == 'nt'): driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)), 'resources/chromedriver.exe')), options=option)
-    else: driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)), 'resources/chromedriver')), options=option)
+    if (osname == 'nt'): driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)), 'Resources/chromedriver.exe')), options=option)
+    else: driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)), 'Resources/chromedriver')), options=option)
     return driver
 
 def Create_Location_Dir(output_location_dir):
@@ -256,7 +256,7 @@ def Get_Host_Name(url, Temp = ""):
         except (gaierror, herror): pass
     return Temp
 
-def Write_Log(url, host, Log_Path = dirname(realpath(__file__)).replace('resources', 'Logs')):
+def Write_Log(url, host, Log_Path = dirname(realpath(__file__)).replace('Resources', 'Logs')):
     if (not exists(Log_Path)): makedirs(Log_Path)
     with open(join(Log_Path, f'{Date}_failed-url.txt'), 'a') as f:
         f.write(f'{url}\n')
