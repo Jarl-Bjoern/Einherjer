@@ -3,7 +3,7 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-from resources.VF import *
+from Resources.VF import *
 
 def Create_JSON(Dict_Result):
     try: import json
