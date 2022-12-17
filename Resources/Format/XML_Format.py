@@ -4,7 +4,7 @@
 
 # Libraries
 #try:
-from resources.VF import *
+from Resources.VF import *
 #except ImportError:
 #    from sys import path as syspath
 #    syspath.append('.')
