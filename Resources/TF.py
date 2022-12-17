@@ -1,11 +1,3 @@
-def Thread_Check(Check_Value, Array_Check):
-    global Array_Threads, Counter_Connections
-
-    if (Check_Value not in str(Array_Check)):
-        try: Array_Threads.remove(Check_Value)
-        except ValueError: pass
-        Counter_Connections -= 1
-
 def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_header, scan_fuzzing, scan_ssh, scan_fuzzing_recurse, scan_security_flag, Count_Double_Point = 0, Host_Name = "", Target = ""):
     global Kill_Command
 
