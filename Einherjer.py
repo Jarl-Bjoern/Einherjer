@@ -171,12 +171,8 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
             elif ('/' in args.output_location and not '.' in args.output_location): Location = f"{args.output_location}/{Date}"
         else:
             if ('.' in args.output_location or './' in args.output_location):
-                if ('./' in args.output_location):
-                    makedirs(join(getcwd(), f"{args.output_location[2:]}/{Date}"))
-                    Location = join(getcwd(), f"{args.output_location[2:]}/{Date}")
-                else:
-                    makedirs(join(getcwd(), f"{args.output_location}/{Date}"))
-                    Location = join(getcwd(), f"{args.output_location}/{Date}")
+                if ('./' in args.output_location): Location = Create_Location_Dir(join(getcwd(), f"{args.output_location[2:]}/{Date}"))
+                else: Location = Create_Location_Dir(join(getcwd(), f"{args.output_location}/{Date}"))
             elif ('.' not in args.output_location and '/' not in args.output_location): Location = Create_Location_Dir(join(getcwd(), f"{args.output_location}/{Date}"))
             elif ('/' in args.output_location and not '.' in args.output_location): Location = Create_Location_Dir(f"{args.output_location}/{Date}")
     else: Location = join(dirname(realpath(__file__)), f"{args.output_location}/{Date}")
