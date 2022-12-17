@@ -79,7 +79,6 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
         try:
             from cv2 import imread, imwrite, rectangle
             from selenium import webdriver
-            from selenium.common.exceptions import *
             from selenium.webdriver.common.by import By
             from selenium.webdriver.common.keys import Keys
             from selenium.webdriver.chrome.service import Service
