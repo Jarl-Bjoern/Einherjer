@@ -57,7 +57,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
     if (args.target == None and args.import_list == None): Error_Message('The program cannot be started without targets')
     elif (args.target == None and args.import_list != None):
         try:
-            Array_Targets = Read_File(args.import_list)
+            Array_Targets = Standard.Read_File(args.import_list)
             if (args.random_order == True): shuffle(Array_Targets)
             else: Array_Targets.sort()
         except FileNotFoundError as e: Error_Message(f"Your targetlist can't be found!\n\n{e}")
@@ -97,12 +97,12 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
 
     if (args.add_wordlist != None and args.add_multiple_wordlists == None):
         if (args.add_wordlist not in Array_Wordlists):
-            for word in Read_File(args.add_wordlist):
+            for word in Standard.Read_File(args.add_wordlist):
                 if (word not in Array_Wordlists): Array_Wordlists.append(word)
     elif (args.add_wordlist == None and args.add_multiple_wordlists != None):
         for root,_,files in walk(args.add_multiple_wordlists):
             for file in files:
-                for word in Read_File(join(root, file)):
+                for word in Standard.Read_File(join(root, file)):
                     if (word not in Array_Wordlists):
                         Array_Wordlists.append(word)
 
@@ -115,10 +115,10 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
             elif ('/' in args.output_location and not '.' in args.output_location): Location = f"{args.output_location}/{Date}"
         else:
             if ('.' in args.output_location or './' in args.output_location):
-                if ('./' in args.output_location): Location = Create_Location_Dir(join(getcwd(), f"{args.output_location[2:]}/{Date}"))
-                else: Location = Create_Location_Dir(join(getcwd(), f"{args.output_location}/{Date}"))
-            elif ('.' not in args.output_location and '/' not in args.output_location): Location = Create_Location_Dir(join(getcwd(), f"{args.output_location}/{Date}"))
-            elif ('/' in args.output_location and not '.' in args.output_location): Location = Create_Location_Dir(f"{args.output_location}/{Date}")
+                if ('./' in args.output_location): Location = Standard.Create_Location_Dir(join(getcwd(), f"{args.output_location[2:]}/{Date}"))
+                else: Location = Standard.Create_Location_Dir(join(getcwd(), f"{args.output_location}/{Date}"))
+            elif ('.' not in args.output_location and '/' not in args.output_location): Location = Standard.Create_Location_Dir(join(getcwd(), f"{args.output_location}/{Date}"))
+            elif ('/' in args.output_location and not '.' in args.output_location): Location = Standard.Create_Location_Dir(f"{args.output_location}/{Date}")
     else: Location = join(dirname(realpath(__file__)), f"{args.output_location}/{Date}")
 
     if (args.read_config_ssh_ciphers != None): pass
@@ -147,7 +147,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
         if (args.scan_security_flags != False): Array_Switch.append(True)
         else: Array_Switch.append(False)
 
-    Initialien(args.debug)
+    Standard.Initialien(args.debug)
     setdefaulttimeout(args.timeout)
     Counter_Bar = float(100/len(Array_Targets))
     if __name__ == '__main__':
@@ -171,7 +171,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
                             else:
                                 if ((time() - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
                                     Dict_Threads[Thread_ID][0].terminate()
-                                    Write_Log(Target)
+                                    Logs.Write_Log(Target)
                                     Dict_Threads.pop(Thread_ID, None)
                                     Counter_Connections -= 1
                         sleep(2.25)
@@ -197,27 +197,27 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
                 Array_Output = CSV_Table(Dict_Result, Location)
             elif ("docx" in args.format or "word" in args.format):
                 from Resources.Format.Word_Format import Word_Table
-                Word_Table(Dict_Result)
+                Array_Output = Word_Table(Dict_Result)
             elif ("html" in args.format):
                 from Resources.Format.HTML_Format import HTML_Table
-                HTML_Table(Dict_Result)
+                Array_Output = HTML_Table(Dict_Result)
             elif ("json" in args.format):
                 from Resources.Format.JSON_Format import Create_JSON
                 #Create_Json(Dict_Result)
             elif ("latex" in args.format or "tex" in args.format):
                 from Resources.Format.LaTeX_Format import Latex_Table
-                Latex_Table(Dict_Result)
+                Array_Output = Latex_Table(Dict_Result)
             elif ("pdf" in args.format):
                 from Resources.Format.PDF_Format import Create_PDF
-                Word_Table(Dict_Result)
+                Array_Output = Word_Table(Dict_Result)
                 if (osname == 'nt'): Create_PDF()
                 else: print("At this point it's not be possible to convert a docx file into a pdf under linux.\nPlease try it under windows.\n")
             elif ("xlsx" in args.format):
                 from Resources.Format.Excel_Format import Excel_Table
-                Excel_Table(Dict_Result)
+                Array_Output = Excel_Table(Dict_Result)
             elif ("xml" in args.format):
                 from Resources.Format.XML_Format import Create_XML
-                #Create_XML(Dict_Result)
+                #Array_Output = Create_XML(Dict_Result)
             else: Error_Message("Your Decision was not acceptable!")
 
             progress.start_task(task_Filter)
@@ -227,10 +227,10 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
                 sleep(0.01)
 
     if (Array_Output != []):
-        Stdout_Output(Colors.CYAN+"\n\nYour Scan was successful and the result will be found at the following location:\n"+Colors.RESET, 0.01)
+        Standard.Stdout_Output(Colors.CYAN+"\n\nYour Scan was successful and the result will be found at the following location:\n"+Colors.RESET, 0.01)
         for _ in Array_Output:
-            Stdout_Output(Colors.ORANGE+f'   - {_}\n'+Colors.RESET, 0.01)
-    else: Stdout_Output(Colors.ORANGE+f'\n\t\t\t\tIt was not possible to collect any kind of data!\n\n\t\t\t     Check your connection or target file and try it again.'+Colors.RESET, 0.01)
+            Standard.Stdout_Output(Colors.ORANGE+f'   - {_}\n'+Colors.RESET, 0.01)
+    else: Standard.Stdout_Output(Colors.ORANGE+f'\n\t\t\t\tIt was not possible to collect any kind of data!\n\n\t\t\t     Check your connection or target file and try it again.'+Colors.RESET, 0.01)
 
 # Main
 if __name__ == '__main__':
