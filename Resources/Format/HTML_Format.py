@@ -3,7 +3,7 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-from resources.VF import *
+from Resources.VF import *
 
 def HTML_Table(Dict_Result, Body_HTML = ""):
     global Location
