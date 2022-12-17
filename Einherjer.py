@@ -225,34 +225,34 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
                 p.start()
                 Counter_Connections += 1
                 if (Counter_Connections == args.max_connections):
-                    Timer = perf_counter()
-                    while (len(Array_Threads) > 0):
-                        for Thread_ID in array(Array_Threads):
+                    while (len(Dict_Threads) > 0):
+                        for Thread_ID in Dict_Threads:
                             if (Method == "Thread"): Thread_Check(Thread_ID, Th_enumerate())
-                            elif (Method == "MP"): Thread_Check(Thread_ID, active_children())
-                        Status = perf_counter()
-                        if (int(Status - Timer) < args.thread_timeout):
-                            sleep(2.25)
-                        else:
-                            Kill_Command, Counter_Connections = True, 0
-                            Array_Threads.clear(), sleep (1.5)
-                            Kill_Command = False
+                            elif (Method == "MP"):
+                                if (Thread_ID not in str(active_children())):
+                                    Dict_Threads.pop(Thread_ID, None)
+                                else:
+                                    if ((time() - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
+                                        Dict_Threads[Thread_ID][0].terminate()
+                                        Dict_Threads.pop(Thread_ID, None)
+                        sleep(2.25)
                 else:
-                     if (p.name not in Array_Threads): Array_Threads.append(p.name), sleep(args.sleep)
+                     if (p.name not in Dict_Threads):
+                            Dict_Threads[p.name] = [p, time()]
+                            sleep(args.sleep)
                 progress.update(task_Scan, advance=Counter_Bar)
                 Array_Thread_Args.clear()
             Timer = perf_counter()
             while (len(Array_Threads) > 0):
-                for Thread_ID in array(Array_Threads):
+                for Thread_ID in Dict_Threads:
                     if (Method == "Thread"): Thread_Check(Thread_ID, Th_enumerate())
-                    elif (Method == "MP"): Thread_Check(Thread_ID, active_children())
-                    Status = perf_counter()
-                    if (int(Status - Timer) < 600):
-                        sleep(2.25)
-                    else:
-                        Kill_Command = True
-                        Array_Threads.clear(), sleep (1.5)
-                        Kill_Command = False
+                    elif (Method == "MP"):
+                        if (Thread_ID not in str(active_children())):
+                            Dict_Threads.pop(Thread_ID, None)
+                        else:
+                            if ((time() - Dict_Threads[Thread_ID][1]) > 900):
+                                Dict_Threads[Thread_ID][0].terminate()
+                                Dict_Threads.pop(Thread_ID, None)
                 sleep(0.75)
             Dict_Result = queue.get()
 
