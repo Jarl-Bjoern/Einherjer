@@ -395,10 +395,8 @@ def SSL_Vulns(url, t_seconds, context = create_unverified_context(), Dict_SSL = 
         return Dict_SSL
     except (ConnectionRefusedError, gaierror): Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n')
 
-def Take_Screenshot(driver, url, location):
-    global Switch_Internet_Connection
-
-    if (Switch_Internet_Connection == True):
+def Take_Screenshot(driver, url, location, switch_connection):
+    if (switch_connection == True):
         if (osname == 'nt'):
             Chrome_Path = ChromeDriverManager().install()
             driver = webdriver.Chrome(service=Service(Chrome_Path), options=options)
