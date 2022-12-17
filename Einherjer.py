@@ -35,7 +35,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
     scan_arguments.add_argument('-amW', '--add-multiple-wordlists', type=str, help=Colors.GREEN+'With this function you add several word lists which are checked for duplicates and\nsort them out for fuzzing.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     scan_arguments.add_argument('-6', '--ipv6', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     target_arguments.add_argument('-iL', '--import-list', type=str, help=Colors.GREEN+'Import your target list in the following example:\n  - http://192.168.2.2\n  - https://192.168.2.3\n  - https://192.168.2.4:8443\n  - 192.168.2.5:22'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)    
-    target_arguments.add_argument('-t', '--target', type=str, help=Colors.GREEN+'Specify a single target.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    target_arguments.add_argument('-t', '--target', type=str, nargs='*', help=Colors.GREEN+'Specify a single or multiple targets like in the following example:\n   - 127.0.0.1, http://127.0.0.1, https://127.0.0.1'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     auth_arguments.add_argument('-aC', '--add-cert', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     auth_arguments.add_argument('-aUL', '--add-user-list', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     auth_arguments.add_argument('-aCPw', '--add-cert-password', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
@@ -61,7 +61,18 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
             if (args.random_order == True): shuffle(Array_Targets)
             else: Array_Targets.sort()
         except FileNotFoundError as e: Logs.Error_Message(f"Your targetlist can't be found!\n\n{e}")
-    else: Array_Targets = [args.target]
+    else:
+        if (len(args.target) > 1):
+            Array_Targets = []
+            for _ in args.target:
+                if (',' in _): Array_Targets.append(_[:-1])
+                else: Array_Targets.append(_)
+        else:
+            if (',' in args.target[0]):
+                Temp_Split = args.target[0].split(',')
+                for _ in Temp_Split:
+                    if (_ != ''): Array_Targets.append(_)
+            else: Array_Targets = [args.target[0]]
 
     # Webdriver_Options
     if (args.scan_site_screenshot != False):
