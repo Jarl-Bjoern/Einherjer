@@ -4,7 +4,7 @@
 
 # Libraries
 from Resources.TF import *
-
+        Write_Log(url, Host_Name)
 # Main_Function
 def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, 'Fuzzing': {}, 'Security_Flag': {}}):
     global Counter_Connections, Location, Kill_Command, Switch_Internet_Connection, Switch_nmap
@@ -171,12 +171,13 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
                             else:
                                 if ((time() - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
                                     Dict_Threads[Thread_ID][0].terminate()
+                                    Write_Log(Target)
                                     Dict_Threads.pop(Thread_ID, None)
                                     Counter_Connections -= 1
                         sleep(2.25)
                 else:
                      if (p.name not in Dict_Threads):
-                            Dict_Threads[p.name] = [p, time()]
+                            Dict_Threads[p.name] = [p, time(), Target]
                             sleep(args.sleep)
                 progress.update(task_Scan, advance=Counter_Bar)
                 Array_Thread_Args.clear()
