@@ -57,8 +57,8 @@ Array_TLS_Algorithms = ["SHA","MD5","RC2","RC4","IDEA","ADH","3DES","NULL","PSK"
 Dict_Proxies = {'http': '', 'https': ''}
 
 # Variables
-Date, Location, COLOR_Headline, Process_Limit, Thread_Limit = strftime('%Y-%m-%d_%H-%M-%S'), "", "black", "", ""
-Switch_Internet_Connection, Switch_nmap, existing_nmap_file, Method, Kill_Command, Counter_Connections = False, False, "", "", False, 0
+Date, Location, COLOR_Headline, Process_Limit, Thread_Limit, Log_Path = strftime('%Y-%m-%d_%H-%M-%S'), "", "black", "", "", dirname(realpath(__file__)).replace('resources', 'Logs')
+Switch_Internet_Connection, Switch_nmap, existing_nmap_file, Method, Kill_Command, Counter_Connections = False, False, "", "", False, 0 
 Program_Description = """-------------------------------------------------------------------------------------
 |  Rainer Christian Bjoern Herold                                                   |
 |  Copyright 2022. All rights reserved.                                             |
@@ -147,20 +147,17 @@ class Standard:
             sleep(5)
 
 class Logs:
-    def __init__():
-        Log_Path = dirname(realpath(__file__)).replace('resources', 'Logs')
-
     def Error_Message(x):
         print(x), sleep(2), exit()
 
-    def Write_Log(url, host, Log_Path = dirname(realpath(__file__)).replace('resources', 'Logs')):
+    def Write_Log(url, host):
         if (not exists(Log_Path)): makedirs(Log_Path)
         with open(join(Log_Path, f'{Date}_failed-url.txt'), 'a') as f:
             f.write(f'{url}\n')
         if (host != ""): Logs.Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - {host} - FAILED\n')
         else: Logs.Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - FAILED\n')
 
-    def Log_File(Text, Log_Path = dirname(realpath(__file__)).replace('resources', 'Logs')):
+    def Log_File(Text):
         if (not exists(Log_Path)): makedirs(Log_Path)
         with open(join(Log_Path, f"{Date}.log"), "a") as f:
             f.write(Text)
