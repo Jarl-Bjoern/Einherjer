@@ -7,7 +7,7 @@ from Resources.TF import *
 
 # Main_Function
 def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, 'Fuzzing': {}, 'Security_Flag': {}}, Dict_Threads = {}, Counter_Connections = 0, Array_Switch = []):
-    global Location, Switch_Internet_Connection, Switch_nmap
+    global Switch_Internet_Connection, Switch_nmap
 
     parser = ArgumentParser(add_help=False, formatter_class=RawTextHelpFormatter, description=Colors.ORANGE+Program_Description+Colors.RESET, allow_abbrev=False)
     required = parser.add_argument_group(Colors.ORANGE+'required arguments'+Colors.RESET)
