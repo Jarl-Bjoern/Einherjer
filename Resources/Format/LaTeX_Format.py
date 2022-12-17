@@ -3,7 +3,7 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-from resources.VF import *
+from Resources.VF import *
 
 def Latex_Table(Dict_Result, Table_Body = ""):
     global Location
