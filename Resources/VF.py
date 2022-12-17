@@ -58,7 +58,7 @@ Dict_Proxies = {'http': '', 'https': ''}
 
 # Variables
 Date, Location, COLOR_Headline, Log_Path = strftime('%Y-%m-%d_%H-%M-%S'), "", "black", dirname(realpath(__file__)).replace('Resources', 'Logs')
-Switch_Internet_Connection, Switch_nmap, existing_nmap_file, Counter_Connections = False, False, "", 0 
+Switch_Internet_Connection, Switch_nmap, existing_nmap_file, Counter_Connections = False, False, "", 0
 Program_Description = """-------------------------------------------------------------------------------------
 |  Rainer Christian Bjoern Herold                                                   |
 |  Copyright 2022. All rights reserved.                                             |
@@ -158,8 +158,8 @@ class Logs:
         if (not exists(Log_Path)): makedirs(Log_Path)
         with open(join(Log_Path, f'{Date}_failed-url.txt'), 'a') as f:
             f.write(f'{url}\n')
-        if (host != ""): Logs.Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - {host} - FAILED\n')
-        else: Logs.Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - FAILED\n')
+        if (host != ""): Logs.Log_File(Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - '+Colors.RED+'FAILED\n'+Colors.RESET)
+        else: Logs.Log_File(Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - '+Colors.RED+'FAILED\n'+Colors.RESET)
 
     def Log_File(Text):
         if (not exists(Log_Path)): makedirs(Log_Path)
