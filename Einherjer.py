@@ -3,7 +3,7 @@
 # Rainer Christian Bjoern Herold
 
 # Variables_And_Functions
-from resources.VF import *
+from Resources.VF import *
 
 def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, 'Fuzzing': {}, 'Security_Flag': {}}):
     global Counter_Connections, Location, Kill_Command, Switch_Internet_Connection, Switch_nmap
@@ -257,30 +257,30 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
             Dict_Result = queue.get()
 
             if ("csv" in args.format):
-                from Format.CSV_Format import CSV_Table
+                from Resources.Format.CSV_Format import CSV_Table
                 Array_Output = CSV_Table(Dict_Result, Location)
             elif ("docx" in args.format or "word" in args.format):
-                from Format.Word_Format import Word_Table
+                from Resources.Format.Word_Format import Word_Table
                 Word_Table(Dict_Result)
             elif ("html" in args.format):
-                from Format.HTML_Format import HTML_Table
+                from Resources.Format.HTML_Format import HTML_Table
                 HTML_Table(Dict_Result)
             elif ("json" in args.format):
-                from Format.JSON_Format import Create_JSON
+                from Resources.Format.JSON_Format import Create_JSON
                 #Create_Json(Dict_Result)
             elif ("latex" in args.format or "tex" in args.format):
-                from Format.LaTeX_Format import Latex_Table
+                from Resources.Format.LaTeX_Format import Latex_Table
                 Latex_Table(Dict_Result)
             elif ("pdf" in args.format):
-                from Format.PDF_Format import Create_PDF
+                from Resources.Format.PDF_Format import Create_PDF
                 Word_Table(Dict_Result)
                 if (osname == 'nt'): Create_PDF()
                 else: print("At this point it's not be possible to convert a docx file into a pdf under linux.\nPlease try it under windows.\n")
             elif ("xlsx" in args.format):
-                from Format.Excel_Format import Excel_Table
+                from Resources.Format.Excel_Format import Excel_Table
                 Excel_Table(Dict_Result)
             elif ("xml" in args.format):
-                from Format.XML_Format import Create_XML
+                from Resources.Format.XML_Format import Create_XML
                 #Create_XML(Dict_Result)
             else: Error_Message("Your Decision was not acceptable!")
 
