@@ -102,7 +102,6 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
     config_arguments.add_argument('-rCssh', '--read-config-ssh-ciphers', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     config_arguments.add_argument('-rCssl', '--read-config-ssl-ciphers', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     performance_arguments.add_argument('-mx', '--max-connections', type=int, default=cpu_count()*2, help=Colors.GREEN+f'Defines the max connections via threads or processes for every try to scan. \n\nDefault: {cpu_count()*2}'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
-    performance_arguments.add_argument('-m', '--method', type=str, choices=['Multiprocessing', 'multiprocessing', 'mp', 'MP', 'threading', 'Threading', 't', 'Thread', 'thread'], default='Threading', help=Colors.GREEN+'Defines which method you wanted to use.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     performance_arguments.add_argument('-to', '--timeout', type=int, default=30, help=Colors.GREEN+'Specify the connection http timeout in seconds.\n\nDefault: 30 seconds'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     performance_arguments.add_argument('-r', '--random-order', type=bool, nargs='?', default=False, help=Colors.GREEN+'This parameter randomize your targets.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     performance_arguments.add_argument('-tHo', '--thread-timeout', type=int, default=90, help=Colors.GREEN+'This parameter sets the max time to wait until a thread will be terminated\n\nDefault: 90 Seconds'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
@@ -179,9 +178,6 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
             elif ('/' in args.output_location and not '.' in args.output_location): Location = Create_Location_Dir(f"{args.output_location}/{Date}")
     else: Location = join(dirname(realpath(__file__)), f"{args.output_location}/{Date}")
 
-    if (args.method == "Threading" or args.method == "threading" or args.method == "t" or args.method == "Thread" or args.method == "thread"): Method = "Thread"
-    elif (args.method == "Multiprocessing" or args.method == 'multiprocessing' or args.method == 'mp' or args.method == 'MP'): Method = "MP"
-
     if (args.read_config_ssh_ciphers != None): pass
     if (args.read_config_ssl_ciphers != None): pass
 
@@ -220,23 +216,20 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
             for Target in array(Array_Targets):
                 Array_Thread_Args.append(Target), Array_Thread_Args.append(args.timeout), Array_Thread_Args.append(queue)
                 for _ in Array_Switch: Array_Thread_Args.append(_)
-                if (Method == "Thread"): p = Thread(target=Thread_Scanning_Start, args=Array_Thread_Args, daemon=True)
-                elif (Method == "MP"): p = Process(target=Thread_Scanning_Start, args=Array_Thread_Args, daemon=True)
+                p = Process(target=Thread_Scanning_Start, args=Array_Thread_Args, daemon=True)
                 p.start()
                 Counter_Connections += 1
                 if (Counter_Connections == args.max_connections):
                     while (len(Dict_Threads) > 0):
                         for Thread_ID in Dict_Threads:
-                            if (Method == "Thread"): Thread_Check(Thread_ID, Th_enumerate())
-                            elif (Method == "MP"):
-                                if (Thread_ID not in str(active_children())):
+                            if (Thread_ID not in str(active_children())):
+                                Dict_Threads.pop(Thread_ID, None)
+                                Counter_Connections -= 1
+                            else:
+                                if ((time() - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
+                                    Dict_Threads[Thread_ID][0].terminate()
                                     Dict_Threads.pop(Thread_ID, None)
                                     Counter_Connections -= 1
-                                else:
-                                    if ((time() - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
-                                        Dict_Threads[Thread_ID][0].terminate()
-                                        Dict_Threads.pop(Thread_ID, None)
-                                        Counter_Connections -= 1
                         sleep(2.25)
                 else:
                      if (p.name not in Dict_Threads):
@@ -246,14 +239,12 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
                 Array_Thread_Args.clear()
             while (len(Dict_Threads) > 0):
                 for Thread_ID in Dict_Threads:
-                    if (Method == "Thread"): Thread_Check(Thread_ID, Th_enumerate())
-                    elif (Method == "MP"):
-                        if (Thread_ID not in str(active_children())):
+                    if (Thread_ID not in str(active_children())):
+                        Dict_Threads.pop(Thread_ID, None)
+                    else:
+                        if ((time() - Dict_Threads[Thread_ID][1]) > 900):
+                            Dict_Threads[Thread_ID][0].terminate()
                             Dict_Threads.pop(Thread_ID, None)
-                        else:
-                            if ((time() - Dict_Threads[Thread_ID][1]) > 900):
-                                Dict_Threads[Thread_ID][0].terminate()
-                                Dict_Threads.pop(Thread_ID, None)
                 sleep(0.75)
             Dict_Result = queue.get()
 
