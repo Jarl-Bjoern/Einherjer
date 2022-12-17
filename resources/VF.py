@@ -169,7 +169,7 @@ class Web:
         return driver
 
     def Configurate_Driver(options, driver = None):
-        try: driver = Driver_Specification(options)
+        try: driver = Web.Driver_Specification(options)
         except (ConnectionError): pass
         except (MaxRetryError, ProxyError, ProxySchemeUnknown): Error_Message("\n\nThere is a error in your proxy configuration or the proxy server is blocking your connection.\n\n")
         except (gaierror, NewConnectionError): Error_Message("\n\nIt was not possible to connect to the Server.\n\n")
