@@ -186,58 +186,10 @@ class Web:
         return driver
 
 # Functions
-def Stdout_Output(Text_Array, Output_Seconds):
-    for char in Text_Array:
-        stdout.write(char)
-        stdout.flush()
-        sleep(Output_Seconds)
-
-def Initialien(debug_parameter):
-    if (debug_parameter == False):
-        if (osname == 'nt'): system('cls')
-        else: system('clear')
-    else: system('')
-    Header = """
-💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀
-💀\t\t\t\t\t\t\t\t\t\t\t\t\t\t  💀
-💀\t\t\t\t\t           """+Colors.UNDERLINE+"Einherjer"+Colors.RESET+ """\t\t\t\t\t\t\t  💀
-💀\t\t\t\t\t\t  """+Colors.ORANGE+"Version "+Colors.BLUE+"0.7"+Colors.RESET+"""\t\t\t\t\t\t\t  💀
-💀\t\t\t\t\t"""+Colors.CYAN+"Rainer Christian Bjoern Herold"+Colors.RESET+"""\t\t\t\t\t\t  💀
-💀\t\t\t\t\t\t\t\t\t\t\t\t\t\t  💀
-💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀\n\n
-"""
-    Stdout_Output(Header, 0.004)
-
-def Read_File(file_path):
-    with open(file_path, 'r') as f:
-        return f.read().splitlines()
-
-def Error_Message(x):
-    print(x), sleep(2), exit()
-
 def Driver_Specification(option):
     if (osname == 'nt'): driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)), 'Resources/Webdriver/chromedriver.exe')), options=option)
     else: driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)), 'Resources/Webdriver/chromedriver')), options=option)
     return driver
-
-def Create_Location_Dir(output_location_dir):
-    try:
-        makedirs(output_location_dir)
-        return output_location_dir
-    except:
-        makedirs(join(dirname(realpath(__file__)), output_location_dir))
-        print (f"Your location can't be found or was not allowed!\n\nYour new location was set to {join(dirname(realpath(__file__)), output_location_dir)}")
-        return join(dirname(realpath(__file__)), output_location_dir)
-
-def Try_Remove_File(x):
-    while True:
-        try:
-            remove(x)
-            break
-        except FileNotFoundError:
-            break
-        except PermissionError: Error_Message(f"The file {x} is already open!\nPlease close it and wait five seconds.")
-        sleep(5)
 
 def Get_Host_Name(url, Temp = ""):
     try: Temp = gethostbyaddr(url)
@@ -247,18 +199,6 @@ def Get_Host_Name(url, Temp = ""):
             if (Temp == url): Temp = ""
         except (gaierror, herror): pass
     return Temp
-
-def Write_Log(url, host, Log_Path = dirname(realpath(__file__)).replace('Resources', 'Logs')):
-    if (not exists(Log_Path)): makedirs(Log_Path)
-    with open(join(Log_Path, f'{Date}_failed-url.txt'), 'a') as f:
-        f.write(f'{url}\n')
-    if (host != ""): Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - {host} - FAILED\n')
-    else: Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - FAILED\n')
-
-def Log_File(Text, Log_Path = dirname(realpath(__file__)).replace('resources', 'Logs')):
-    if (not exists(Log_Path)): makedirs(Log_Path)
-    with open(join(Log_Path, f"{Date}.log"), "a") as f:
-        f.write(Text)
 
 def Read_Template(template_file):
     if (exists(template_file)):
