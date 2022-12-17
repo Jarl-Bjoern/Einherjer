@@ -58,7 +58,7 @@ Dict_Proxies = {'http': '', 'https': ''}
 
 # Variables
 Date, Location, COLOR_Headline, Process_Limit, Thread_Limit = strftime('%Y-%m-%d_%H-%M-%S'), "", "black", "", ""
-Switch_nmap, existing_nmap_file, Method, Kill_Command, Counter_Connections = False, "", "", False, 0
+Switch_Internet_Connection, Switch_nmap, existing_nmap_file, Method, Kill_Command, Counter_Connections = False, False, "", "", False, 0
 Program_Description = """-------------------------------------------------------------------------------------
 |  Rainer Christian Bjoern Herold                                                   |
 |  Copyright 2022. All rights reserved.                                             |
