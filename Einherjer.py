@@ -76,6 +76,18 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
 
     # Webdriver_Options
     if (args.scan_site_screenshot != False):
+        try:
+            from selenium import webdriver
+            from selenium.common.exceptions import *
+            from selenium.webdriver.common.by import By
+            from selenium.webdriver.common.keys import Keys
+            from selenium.webdriver.chrome.service import Service
+            from selenium.webdriver.remote.webdriver import WebDriver
+            from webbrowser import open as webbrowser_open
+            with redirect_stdout(None):
+               from webdriver_manager.chrome import ChromeDriverManager
+        except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
+        
         if ("ttl" in getoutput('ping -c 2 8.8.8.8')):
             Switch_Internet_Connection = True
         options = webdriver.ChromeOptions()
