@@ -242,7 +242,6 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
                             sleep(args.sleep)
                 progress.update(task_Scan, advance=Counter_Bar)
                 Array_Thread_Args.clear()
-            Timer = perf_counter()
             while (len(Dict_Threads) > 0):
                 for Thread_ID in Dict_Threads:
                     if (Method == "Thread"): Thread_Check(Thread_ID, Th_enumerate())
