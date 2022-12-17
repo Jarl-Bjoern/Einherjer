@@ -7,7 +7,7 @@ from Resources.HF import *
 
 # Arrays
 Array_Header = ['X-Frame-Options', 'X-XSS-Protection', 'Content-Security-Policy', 'Strict-Transport-Security', 'X-Content-Type-Options', 'Referrer-Policy']
-Array_Paths, Array_Wordlists, Array_SSL_Vulns, Array_Fuzzing, Array_Thread_Args, Array_Results, Array_Security_Flags = [],[],[],[],[],[],[]
+Array_Paths, Array_Wordlists, Array_SSL_Vulns, Array_Fuzzing, Array_Results, Array_Security_Flags = [],[],[],[],[],[]
 Array_Selenium = ['--start_maximized','--no-sandbox','--remote-debugging-port=19222','--ignore-certificate-errors','--test-type','--headless','--log-level=3']
 Array_Information_Disclosure_Header = ["X-Powered-By", "Server"]
 Array_Security_Flags = ['SameSite', 'samesite', 'HttpOnly', 'httponly', 'Secure', 'secure', 'JSessID']
