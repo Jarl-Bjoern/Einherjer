@@ -51,6 +51,7 @@ try:
     from sys import stdout
     from time import sleep, strftime, perf_counter
     from threading import Thread, enumerate as Th_enumerate
+    from traceback import print_exc
     from urllib3 import disable_warnings
     from urllib3.exceptions import *
     from webbrowser import open as webbrowser_open
