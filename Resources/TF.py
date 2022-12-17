@@ -9,7 +9,7 @@ from Resources.VF import *
 def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_header, scan_fuzzing, scan_ssh, scan_fuzzing_recurse, scan_security_flag, Count_Double_Point = 0, Host_Name = "", Target = ""):
     try:
         Dict_Result = queue.get()
-        if (driver_options != None and '//' in url and 'http' in url): Take_Screenshot(driver, url)
+        if (driver_options != None and '//' in url and 'http' in url): Take_Screenshot(url, driver_options)
         if (scan_header != False and '//' in url and 'http' in url):
             Dict_Temp_Header, Dict_Temp_Information_Disclosure = {},{}
             try:
@@ -40,9 +40,9 @@ def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_
                             if (Temp_Header not in Dict_Temp_Header): Dict_Temp_Header[Temp_Header] = "FEHLT"
                     Dict_Result['Header'][url] = Dict_Temp_Header
                     if (len(Dict_Temp_Information_Disclosure) > 0): Dict_Result['Information'][url] = Dict_Temp_Information_Disclosure
-                if (Host_Name != ""): Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - {Host_Name[0]} - {r}\n{r.headers.items()}\n{Dict_Temp_Header}\n')
-                else: Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - {r}\n{r.headers.items()}\n{Dict_Temp_Header}\n')
-            except ReadTimeout: Write_Log(url, Host_Name)
+                if (Host_Name != ""): Logs.Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - {Host_Name[0]} - {r}\n{r.headers.items()}\n{Dict_Temp_Header}\n')
+                else: Logs.Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - {r}\n{r.headers.items()}\n{Dict_Temp_Header}\n')
+            except ReadTimeout: Logs.Write_Log(url, Host_Name)
         if (scan_ssl != False and '//' in url and 'http' in url): Dict_Result['SSL'] = SSL_Vulns(url, t_seconds)
         if (scan_security_flag != False and '//' in url and 'http' in url): Dict_Result['Security_Flag'] = Check_Security_Flags(url, t_seconds)
         if (scan_fuzzing != False and '//' in url and 'http' in url): Dict_Result['Fuzzing'] = Check_Site_Paths(url, t_seconds)
@@ -53,7 +53,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_
                 else:
                     Target = url.split(':')
                     Dict_Result['SSH'][url] = SSH_Vulns((Target[0]), int(Target[1]))
-            except paramiko.ssh_exception.SSHException: Write_Log(url, Host_Name)
-    except (ConnectionError, gaierror, WebDriverException, RequestException): Write_Log(url, Host_Name)
+            except paramiko.ssh_exception.SSHException: Logs.Write_Log(url, Host_Name)
+    except (ConnectionError, gaierror, WebDriverException, RequestException): Logs.Write_Log(url, Host_Name)
     finally:
         queue.put(Dict_Result)
