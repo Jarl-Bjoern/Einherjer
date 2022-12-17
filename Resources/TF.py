@@ -57,4 +57,3 @@ def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_
     except (ConnectionError, gaierror, WebDriverException, RequestException): Write_Log(url, Host_Name)
     finally:
         queue.put(Dict_Result)
-        break
