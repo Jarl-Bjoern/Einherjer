@@ -87,7 +87,9 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
             with redirect_stdout(None):
                from webdriver_manager.chrome import ChromeDriverManager
         except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
-        
+
+        Array_Selenium = ['--start_maximized','--no-sandbox','--remote-debugging-port=19222','--ignore-certificate-errors','--test-type','--headless','--log-level=3']
+
         if ("ttl" in getoutput('ping -c 2 8.8.8.8')):
             Switch_Internet_Connection = True
         options = webdriver.ChromeOptions()
