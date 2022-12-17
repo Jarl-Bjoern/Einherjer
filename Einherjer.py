@@ -226,27 +226,27 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
                 Array_Output = CSV_Table(Dict_Result, Location)
             elif ("docx" in args.format or "word" in args.format):
                 from Resources.Format.Word_Format import Word_Table
-                Array_Output = Word_Table(Dict_Result)
+                Array_Output = Word_Table(Dict_Result, Location)
             elif ("html" in args.format):
                 from Resources.Format.HTML_Format import HTML_Table
-                Array_Output = HTML_Table(Dict_Result)
+                Array_Output = HTML_Table(Dict_Result, Location)
             elif ("json" in args.format):
-                from Resources.Format.JSON_Format import Create_JSON
-                #Create_Json(Dict_Result)
+                from Resources.Format.JSON_Format import JSON_Table
+                #Array_Output = JSON_Table(Dict_Result, Location)
             elif ("latex" in args.format or "tex" in args.format):
                 from Resources.Format.LaTeX_Format import Latex_Table
-                Array_Output = Latex_Table(Dict_Result)
+                Array_Output = Latex_Table(Dict_Result, Location)
             elif ("pdf" in args.format):
                 from Resources.Format.PDF_Format import Create_PDF
-                Array_Output = Word_Table(Dict_Result)
-                if (osname == 'nt'): Create_PDF()
+                Array_Output = Word_Table(Dict_Result, Location)
+                if (osname == 'nt'): Create_PDF(Location)
                 else: print("At this point it's not be possible to convert a docx file into a pdf under linux.\nPlease try it under windows.\n")
             elif ("xlsx" in args.format):
                 from Resources.Format.Excel_Format import Excel_Table
-                Array_Output = Excel_Table(Dict_Result)
+                Array_Output = Excel_Table(Dict_Result, Location)
             elif ("xml" in args.format):
-                from Resources.Format.XML_Format import Create_XML
-                #Array_Output = Create_XML(Dict_Result)
+                from Resources.Format.XML_Format import XML_Table
+                #Array_Output = XML_Table(Dict_Result, Location)
             else: Error_Message("Your Decision was not acceptable!")
 
             progress.start_task(task_Filter)
