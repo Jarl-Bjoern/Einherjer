@@ -7,7 +7,7 @@ from Resources.HF import *
 
 # Arrays
 Array_Header = ['X-Frame-Options', 'X-XSS-Protection', 'Content-Security-Policy', 'Strict-Transport-Security', 'X-Content-Type-Options', 'Referrer-Policy']
-Array_Threads, Array_Paths, Array_Wordlists, Array_SSL_Vulns, Array_Fuzzing, Array_Thread_Args, Array_Switch, Array_Results, Array_Security_Flags = [],[],[],[],[],[],[],[],[]
+Array_Paths, Array_Wordlists, Array_SSL_Vulns, Array_Fuzzing, Array_Thread_Args, Array_Switch, Array_Results, Array_Security_Flags = [],[],[],[],[],[],[],[]
 Array_Selenium = ['--start_maximized','--no-sandbox','--remote-debugging-port=19222','--ignore-certificate-errors','--test-type','--headless','--log-level=3']
 Array_Information_Disclosure_Header = ["X-Powered-By", "Server"]
 Array_Security_Flags = ['SameSite', 'samesite', 'HttpOnly', 'httponly', 'Secure', 'secure', 'JSessID']
@@ -57,8 +57,8 @@ Array_TLS_Algorithms = ["SHA","MD5","RC2","RC4","IDEA","ADH","3DES","NULL","PSK"
 Dict_Proxies = {'http': '', 'https': ''}
 
 # Variables
-Date, Location, COLOR_Headline, Process_Limit, Thread_Limit, Log_Path = strftime('%Y-%m-%d_%H-%M-%S'), "", "black", "", "", dirname(realpath(__file__)).replace('Resources', 'Logs')
-Switch_Internet_Connection, Switch_nmap, existing_nmap_file, Method, Kill_Command, Counter_Connections = False, False, "", "", False, 0 
+Date, Location, COLOR_Headline, Log_Path = strftime('%Y-%m-%d_%H-%M-%S'), "", "black", dirname(realpath(__file__)).replace('Resources', 'Logs')
+Switch_Internet_Connection, Switch_nmap, existing_nmap_file, Counter_Connections = False, False, "", 0 
 Program_Description = """-------------------------------------------------------------------------------------
 |  Rainer Christian Bjoern Herold                                                   |
 |  Copyright 2022. All rights reserved.                                             |
@@ -214,14 +214,6 @@ def Read_File(file_path):
 
 def Error_Message(x):
     print(x), sleep(2), exit()
-
-def Thread_Check(Check_Value, Array_Check):
-    global Array_Threads, Counter_Connections
-
-    if (Check_Value not in str(Array_Check)):
-        try: Array_Threads.remove(Check_Value)
-        except ValueError: pass
-        Counter_Connections -= 1
 
 def Driver_Specification(option):
     if (osname == 'nt'): driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)), 'Resources/Webdriver/chromedriver.exe')), options=option)
