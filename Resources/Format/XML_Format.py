@@ -5,6 +5,6 @@
 # Libraries
 from Resources.VF import *
 
-def Create_XML(Dict_Result):
+def XML_Table(Dict_Result, location):
     try: import lxml.etree, lxml.builder
     except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
