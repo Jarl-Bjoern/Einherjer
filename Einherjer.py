@@ -6,7 +6,7 @@
 from resources.VF import *
 
 def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, 'Fuzzing': {}, 'Security_Flag': {}}):
-    global Counter_Connections, Location, Switch_nmap, Kill_Command
+    global Counter_Connections, Location, Kill_Command, Switch_Internet_Connection, Switch_nmap
 
     def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_header, scan_fuzzing, scan_ssh, scan_fuzzing_recurse, scan_security_flag, Count_Double_Point = 0, Host_Name = "", Target = ""):
         global Kill_Command
@@ -123,13 +123,15 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
 
     # Webdriver_Options
     if (args.scan_site_screenshot != False):
+        if ("ttl" in getoutput('ping -c 2 8.8.8.8'):
+            Switch_Internet_Connection = True
         options = webdriver.ChromeOptions()
         for _ in Array_Selenium: options.add_argument(_)
         if (args.custom_chromium_path != None): options.binary_location = args.custom_chromium_path
         else:
             if (osname != 'nt'): options.binary_location = "/usr/bin/chromium"
 
-        if ("ttl" in getoutput('ping -c 2 8.8.8.8')):
+        if (Switch_Internet_Connection == True):
             if (osname == 'nt'):
                 Chrome_Path = ChromeDriverManager().install()
                 driver = webdriver.Chrome(service=Service(Chrome_Path), options=options)
