@@ -4,7 +4,7 @@
 
 # Libraries
 from Resources.TF import *
-        Write_Log(url, Host_Name)
+
 # Main_Function
 def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, 'Fuzzing': {}, 'Security_Flag': {}}):
     global Counter_Connections, Location, Kill_Command, Switch_Internet_Connection, Switch_nmap
