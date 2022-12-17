@@ -5,6 +5,6 @@
 # Libraries
 from Resources.VF import *
 
-def Create_JSON(Dict_Result):
+def JSON_Table(Dict_Result):
     try: import json
     except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
