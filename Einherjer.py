@@ -222,30 +222,30 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
             Dict_Result = queue.get()
 
             if ("csv" in args.format):
-                from Resources.Format.CSV_Format import CSV_Table
+                from Resources.Format.CSV import CSV_Table
                 Array_Output = CSV_Table(Dict_Result, Location)
             elif ("docx" in args.format or "word" in args.format):
-                from Resources.Format.Word_Format import Word_Table
+                from Resources.Format.Word import Word_Table
                 Array_Output = Word_Table(Dict_Result, Location)
             elif ("html" in args.format):
-                from Resources.Format.HTML_Format import HTML_Table
+                from Resources.Format.HTML import HTML_Table
                 Array_Output = HTML_Table(Dict_Result, Location)
             elif ("json" in args.format):
-                from Resources.Format.JSON_Format import JSON_Table
+                from Resources.Format.JSON import JSON_Table
                 #Array_Output = JSON_Table(Dict_Result, Location)
             elif ("latex" in args.format or "tex" in args.format):
-                from Resources.Format.LaTeX_Format import Latex_Table
+                from Resources.Format.LaTeX import Latex_Table
                 Array_Output = Latex_Table(Dict_Result, Location)
             elif ("pdf" in args.format):
-                from Resources.Format.PDF_Format import Create_PDF
+                from Resources.Format.PDF import Create_PDF
                 Array_Output = Word_Table(Dict_Result, Location)
                 if (osname == 'nt'): Create_PDF(Location)
                 else: print("At this point it's not be possible to convert a docx file into a pdf under linux.\nPlease try it under windows.\n")
             elif ("xlsx" in args.format):
-                from Resources.Format.Excel_Format import Excel_Table
+                from Resources.Format.Excel import Excel_Table
                 Array_Output = Excel_Table(Dict_Result, Location)
             elif ("xml" in args.format):
-                from Resources.Format.XML_Format import XML_Table
+                from Resources.Format.XML import XML_Table
                 #Array_Output = XML_Table(Dict_Result, Location)
             else: Error_Message("Your Decision was not acceptable!")
 
