@@ -123,7 +123,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
 
     # Webdriver_Options
     if (args.scan_site_screenshot != False):
-        if ("ttl" in getoutput('ping -c 2 8.8.8.8'):
+        if ("ttl" in getoutput('ping -c 2 8.8.8.8')):
             Switch_Internet_Connection = True
         options = webdriver.ChromeOptions()
         for _ in Array_Selenium: options.add_argument(_)
