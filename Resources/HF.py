@@ -26,9 +26,6 @@ def Module_Error(Text):
 try:
     from argparse import ArgumentParser, FileType, RawTextHelpFormatter, SUPPRESS
     from contextlib import redirect_stdout
-    from cryptography import x509
-    from cryptography.hazmat.backends import default_backend
-    from cv2 import imread, imwrite, rectangle
     from datetime import datetime
     from multiprocessing import active_children, cpu_count, Process, Queue
     from numpy import array
@@ -48,6 +45,4 @@ try:
     from traceback import print_exc
     from urllib3 import disable_warnings
     from urllib3.exceptions import *
-    import asyncio, asyncssh
-    #paramiko
 except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
