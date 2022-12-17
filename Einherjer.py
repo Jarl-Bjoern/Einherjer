@@ -60,7 +60,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
             Array_Targets = Standard.Read_File(args.import_list)
             if (args.random_order == True): shuffle(Array_Targets)
             else: Array_Targets.sort()
-        except FileNotFoundError as e: Logs.Error_Message(f"Your targetlist can't be found!\n\n{e}")
+        except FileNotFoundError as e: Logs.Error_Message(f"Your targetlist can't be found!\n\n{args.import_list}")
     else:
         if (len(args.target) > 1):
             Array_Targets = []
