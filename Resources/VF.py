@@ -397,7 +397,7 @@ def SSL_Vulns(url, t_seconds, context = create_unverified_context(), Dict_SSL = 
     except (ConnectionRefusedError, gaierror): Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n')
 
 def Take_Screenshot(driver, url, location):
-    global Location, Switch_Internet_Connection
+    global Switch_Internet_Connection
 
     if (Switch_Internet_Connection == True):
         if (osname == 'nt'):
@@ -408,7 +408,7 @@ def Take_Screenshot(driver, url, location):
     else: driver = Web.Driver_Specification(options)
     driver.implicitly_wait(args.timeout), driver.set_window_size(1920,1080), driver.execute_script("document.body.style.zoom='250%'")
 
-    Screen_Dir = join(Location, 'Screenshots')
+    Screen_Dir = join(location, 'Screenshots')
     try: makedirs(Screen_Dir)
     except FileExistsError: pass
     if ("://" in url): Screen_Name = url.split('://')[1]
