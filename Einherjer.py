@@ -6,7 +6,7 @@
 from resources.VF import *
 
 def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, 'Fuzzing': {}, 'Security_Flag': {}}):
-    global Counter_Connections, End_Result, Location, Switch_nmap, Kill_Command
+    global Counter_Connections, Location, Switch_nmap, Kill_Command
 
     def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_header, scan_fuzzing, scan_ssh, scan_fuzzing_recurse, scan_security_flag, Count_Double_Point = 0, Host_Name = "", Target = ""):
         global Kill_Command
@@ -293,7 +293,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
                 sleep(0.01)
 
     if (Array_Output != []):
-        Stdout_Output(Colors.CYAN+End_Result+Colors.RESET, 0.01)
+        Stdout_Output(Colors.CYAN+"\n\nYour Scan was successful and the result will be found at the following location:\n"+Colors.RESET, 0.01)
         for _ in Array_Output:
             Stdout_Output(Colors.ORANGE+f'   - {_}\n'+Colors.RESET, 0.01)
     else: Stdout_Output(Colors.ORANGE+f'\n\t\t\t\tIt was not possible to collect any kind of data!\n\n\t\t\t     Check your connection or target file and try it again.'+Colors.RESET, 0.01)
