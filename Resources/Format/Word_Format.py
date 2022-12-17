@@ -5,7 +5,7 @@
 # Libraries
 from Resources.VF import *
 
-def Word_Table(Dict_Result):
+def Word_Table(Dict_Result, location):
     try:
         from docx import Document
         from docx.enum.style import WD_STYLE_TYPE
@@ -16,7 +16,6 @@ def Word_Table(Dict_Result):
         from docx.shared import Inches, Pt, RGBColor
     except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
 
-    global Location
     document = Document()
 
     def Text_Format(Format, Size):
@@ -76,20 +75,5 @@ def Word_Table(Dict_Result):
             else: Cell[m].text = "X"
         n += 1
 
-    if (exists(join(Location, f'{File_Name}.docx'))):
-        Question = input(f"The file already exists\n\n{e}\n\nDo you want to override it? (Y/N)")
-        if (Question == 'Y' or Question == 'y'):
-            Try_Remove_File(join(Location, f'{File_Name}.docx'))
-            try: document.save(f'{File_Name}.docx')
-            except OSError: document.save(join(getcwd(), f'{File_Name[:10]}{File_Name[19:]}.docx'))
-        elif (Question == 'N' or Question == 'n'):
-            n = 0
-            for _, _, files in walk(Location, topdown=False):
-                for file in files:
-                    if (file.endswith('.docx') and 'result' in file): n += 1
-            try: document.save(join(Location, f'{File_Name}_{n}.docx'))
-            except OSError: document.save(join(getcwd(), f'{File_Name[:10]}{File_Name[19:]}_{n}.docx'))
-        else: Error_Message('Your decision is not acceptable.')
-    else:
-        try: document.save(join(Location, f'{File_Name}.docx'))
-        except OSError: document.save(join(getcwd(), f'{File_Name[:10]}{File_Name[19:]}.docx'))
+    try: document.save(join(location, f'Findings.docx'))
+    except OSError: sleep(10), document.save(join(location, f'Findings.docx')
