@@ -89,21 +89,8 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
                 Chrome_Path = ChromeDriverManager().install()
                 driver = webdriver.Chrome(service=Service(Chrome_Path), options=options)
             else:
-                try: driver = Driver_Specification(options)
-                except (ConnectionError): pass
-                except (MaxRetryError, ProxyError, ProxySchemeUnknown): Error_Message("\n\nThere is a error in your proxy configuration or the proxy server is blocking your connection.\n\n")
-                except (gaierror, NewConnectionError): Error_Message("\n\nIt was not possible to connect to the Server.\n\n")
-                except SessionNotCreatedException as e:
-                    if (osname != 'nt'):
-                        print (f'Chromium: {getoutput("apt-cache policy chromium").splitlines()[1][1:].split(":")[1][1:]})')
-                        for _ in str(e).splitlines():
-                            if ("chrome=" in _):
-                                print(f'Webdriver: {_.split("chrome=")[1][:-1]}')
-                        if ('xfce' in getoutput('ls /usr/bin/*session') or 'gnome' in getoutput('ls /usr/bin/*session')):
-                            sleep(3.5), webbrowser_open("https://chromedriver.chromium.org/downloads")
-                    Error_Message("\nIt looks like you do not have the correct Chromedriver version installed.\n\nPlease go to https://chromedriver.chromium.org/downloads and download the correct chromedriver and paste it into the resources folder.\n")
-                except WebDriverException: Error_Message("\nIt looks like that you do not have Chromedriver installed.\n\nPlease go to https://chromedriver.chromium.org/downloads and download the correct chromedriver and paste it into the resources folder.\n")
-        else: driver = Driver_Specification(options)
+                driver = Web.Driver_Specification(options)
+        else: driver = Web.Driver_Specification(options)
         driver.implicitly_wait(args.timeout), driver.set_window_size(1920,1080), driver.execute_script("document.body.style.zoom='250%'")
 
     if (args.add_wordlist != None and args.add_multiple_wordlists == None):
