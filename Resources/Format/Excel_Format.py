@@ -5,17 +5,16 @@
 # Libraries
 from Resources.VF import *
 
-def Excel_Table(Dict_Result, Array_Letter = ['A','B','C','D','E','F','G']):
+def Excel_Table(Dict_Result, location, Array_Letter = ['A','B','C','D','E','F','G']):
     try:
         from xlsxwriter import Workbook
         from pandas import ExcelFile, DataFrame, read_excel
     except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
-    global Location
 
     def Excel_Analysis(Dict_DNS = {}):
-        x1 = ExcelFile(join(Location, 'Findings.xlsx'))
+        x1 = ExcelFile(join(location, 'Findings.xlsx'))
 
-        with open(join(Location, 'DNS_Vorlage.txt')) as f:
+        with open(join(location, 'DNS_Vorlage.txt')) as f:
             Text = f.readlines()
 
         for i in Text:
@@ -28,9 +27,9 @@ def Excel_Table(Dict_Result, Array_Letter = ['A','B','C','D','E','F','G']):
 
         for i in x1.sheet_names:
             if (i == 'Open Ports'):
-                data = read_excel(join(Location, 'Findings.xlsx'), sheet_name=i)
+                data = read_excel(join(location, 'Findings.xlsx'), sheet_name=i)
 
-        with open(join(Location, 'filtered_DNS_hosts.txt'), 'w') as f:
+        with open(join(location, 'filtered_DNS_hosts.txt'), 'w') as f:
             for index, row in DataFrame(data, columns=['Host']).iterrows():
                 if (" " in row['Host']): Temp = row['Host'].replace(" ","")
                 else: Temp = row['Host']
@@ -75,15 +74,15 @@ def Excel_Table(Dict_Result, Array_Letter = ['A','B','C','D','E','F','G']):
             m += 1
         workbook.close()
 
-    if (not exists(join(Location, f'{File_Name}.xlsx'))): Generate_Excel(join(Location, f'{File_Name}.xlsx'))
+    if (not exists(join(location, 'Findings.xlsx'))): Generate_Excel(join(location, 'Findings.xlsx'))
     else:
         Question = input(f"The file already exists\n\n{e}\n\nDo you want to override it? (Y/N)")
         if (Question == 'Y' or Question == 'y'):
-            Try_Remove_File(join(Location, f'{File_Name}.xlsx')), Generate_Excel(join(Location, f'{File_Name}.xlsx'))
+            Try_Remove_File(join(location, 'Findings.xlsx')), Generate_Excel(join(location, 'Findings.xlsx'))
         elif (Question == 'N' or Question == 'n'):
             n = 0
             for _, _, files in walk('.', topdown=False):
                 for file in array(files):
-                    if (file.endswith('.xlsx') and f'{File_Name}' in file): n += 1
-            Generate_Excel(join(Location, f'{File_Name}_{n}.xlsx'))
+                    if (file.endswith('.xlsx') and 'Findings' in file): n += 1
+            Generate_Excel(join(location, f'Findings_{n}.xlsx'))
         else: Error_Message("Your decision is not acceptable.","")
