@@ -143,7 +143,7 @@ class Standard:
                 break
             except FileNotFoundError:
                 break
-            except PermissionError: Error_Message(f"The file {x} is already open!\nPlease close it and wait five seconds.")
+            except PermissionError: Logs.Error_Message(f"The file {x} is already open!\nPlease close it and wait five seconds.")
             sleep(5)
 
 class Logs:
