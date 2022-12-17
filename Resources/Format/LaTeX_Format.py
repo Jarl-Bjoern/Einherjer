@@ -5,12 +5,11 @@
 # Libraries
 from Resources.VF import *
 
-def Latex_Table(Dict_Result, Table_Body = ""):
-    global Location
+def Latex_Table(Dict_Result, location, Table_Body = ""):
     Define_Color = r"""\input{libs/packages.tex}
 \definecolor{redbg}{rgb}{0.85,0.1,0.1}
 \definecolor{greenbg}{rgb}{0.1,0.85,0.1}"""
-    with open(join(Location, f'{Date}-main.text'), 'w') as f:
+    with open(join(location, f'main.tex'), 'a') as f:
         f.write(Define_Color)
 
     Standard_Head = r"""\begin{longtable}
@@ -39,8 +38,8 @@ def Latex_Table(Dict_Result, Table_Body = ""):
 
     while True:
         try:
-            with open(join(Location, f'{File_Name}.tex'), 'w') as f:
+            with open(join(location, f'Findings.tex'), 'a') as f:
                 f.write(Standard_Head), f.write(Table_Body), f.write(Table_Footer)
             break
-        except PermissionError: Error_Message(f"The file {File_Name} is already open!\nPlease close it and wait five seconds.")
+        except PermissionError: Error_Message(f"The file 'Findings.tex' is already open!\nPlease close it and wait five seconds.")
         sleep(5)
