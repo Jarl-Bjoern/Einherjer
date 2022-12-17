@@ -147,6 +147,9 @@ class Standard:
             sleep(5)
 
 class Logs:
+    def __init__():
+        Log_Path = dirname(realpath(__file__)).replace('resources', 'Logs')
+
     def Error_Message(x):
         print(x), sleep(2), exit()
 
@@ -154,8 +157,8 @@ class Logs:
         if (not exists(Log_Path)): makedirs(Log_Path)
         with open(join(Log_Path, f'{Date}_failed-url.txt'), 'a') as f:
             f.write(f'{url}\n')
-        if (host != ""): Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - {host} - FAILED\n')
-        else: Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - FAILED\n')
+        if (host != ""): Logs.Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - {host} - FAILED\n')
+        else: Logs.Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - FAILED\n')
 
     def Log_File(Text, Log_Path = dirname(realpath(__file__)).replace('resources', 'Logs')):
         if (not exists(Log_Path)): makedirs(Log_Path)
