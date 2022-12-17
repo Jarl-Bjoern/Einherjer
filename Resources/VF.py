@@ -138,7 +138,7 @@ class Standard:
     def Read_Template(template_file):
         if (exists(template_file)):
             return Standard.Read_File(template_file)
-        else: Error_Message(f'The requested File {template_file} does not exist!')
+        else: Logs.Error_Message(f'The requested File {template_file} does not exist!')
 
     def Try_Remove_File(x):
         while True:
@@ -175,8 +175,8 @@ class Web:
     def Configurate_Driver(options, driver = None):
         try: driver = Web.Driver_Specification(options)
         except (ConnectionError): pass
-        except (MaxRetryError, ProxyError, ProxySchemeUnknown): Error_Message("\n\nThere is a error in your proxy configuration or the proxy server is blocking your connection.\n\n")
-        except (gaierror, NewConnectionError): Error_Message("\n\nIt was not possible to connect to the Server.\n\n")
+        except (MaxRetryError, ProxyError, ProxySchemeUnknown): Logs.Error_Message("\n\nThere is a error in your proxy configuration or the proxy server is blocking your connection.\n\n")
+        except (gaierror, NewConnectionError): Logs.Error_Message("\n\nIt was not possible to connect to the Server.\n\n")
         except SessionNotCreatedException as e:
             if (osname != 'nt'):
                 print (f'Chromium: {getoutput("apt-cache policy chromium").splitlines()[1][1:].split(":")[1][1:]})')
@@ -185,8 +185,8 @@ class Web:
                         print(f'Webdriver: {_.split("chrome=")[1][:-1]}')
                 if ('xfce' in getoutput('ls /usr/bin/*session') or 'gnome' in getoutput('ls /usr/bin/*session')):
                     sleep(3.5), webbrowser_open("https://chromedriver.chromium.org/downloads")
-            Error_Message("\nIt looks like you do not have the correct Chromedriver version installed.\n\nPlease go to https://chromedriver.chromium.org/downloads and download the correct chromedriver and paste it into the Resources folder.\n")
-        except WebDriverException: Error_Message("\nIt looks like that you do not have Chromedriver installed.\n\nPlease go to https://chromedriver.chromium.org/downloads and download the correct chromedriver and paste it into the Resources folder.\n")
+            Logs.Error_Message("\nIt looks like you do not have the correct Chromedriver version installed.\n\nPlease go to https://chromedriver.chromium.org/downloads and download the correct chromedriver and paste it into the Resources folder.\n")
+        except WebDriverException: Logs.Error_Message("\nIt looks like that you do not have Chromedriver installed.\n\nPlease go to https://chromedriver.chromium.org/downloads and download the correct chromedriver and paste it into the Resources folder.\n")
         return driver
 
 # Functions
