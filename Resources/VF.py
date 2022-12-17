@@ -136,6 +136,11 @@ class Standard:
         with open(file_path, 'r') as f:
             return f.read().splitlines()
 
+    def Read_Template(template_file):
+        if (exists(template_file)):
+            return Standard.Read_File(template_file)
+        else: Error_Message(f'The requested File {template_file} does not exist!')
+
     def Try_Remove_File(x):
         while True:
             try:
@@ -186,11 +191,6 @@ class Web:
         return driver
 
 # Functions
-def Driver_Specification(option):
-    if (osname == 'nt'): driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)), 'Resources/Webdriver/chromedriver.exe')), options=option)
-    else: driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)), 'Resources/Webdriver/chromedriver')), options=option)
-    return driver
-
 def Get_Host_Name(url, Temp = ""):
     try: Temp = gethostbyaddr(url)
     except (gaierror, herror):
@@ -199,11 +199,6 @@ def Get_Host_Name(url, Temp = ""):
             if (Temp == url): Temp = ""
         except (gaierror, herror): pass
     return Temp
-
-def Read_Template(template_file):
-    if (exists(template_file)):
-        return Read_File(template_file)
-    else: Error_Message(f'The requested File {template_file} does not exist!')
 
 def Check_Site_Paths(url, t_seconds):
     for Word in Array_Wordlists:
