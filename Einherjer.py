@@ -54,13 +54,13 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
     debug_arguments.add_argument('-d', '--debug', type=bool, nargs='?', default=False, help=Colors.GREEN+'This Parameter deactivates the terminal clearing after starting the tool.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     args = parser.parse_args()
-    if (args.target == None and args.import_list == None): Error_Message('The program cannot be started without targets')
+    if (args.target == None and args.import_list == None): Logs.Error_Message('The program cannot be started without targets')
     elif (args.target == None and args.import_list != None):
         try:
             Array_Targets = Standard.Read_File(args.import_list)
             if (args.random_order == True): shuffle(Array_Targets)
             else: Array_Targets.sort()
-        except FileNotFoundError as e: Error_Message(f"Your targetlist can't be found!\n\n{e}")
+        except FileNotFoundError as e: Logs.Error_Message(f"Your targetlist can't be found!\n\n{e}")
     else: Array_Targets = [args.target]
 
     # Webdriver_Options
