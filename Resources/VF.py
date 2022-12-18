@@ -106,7 +106,7 @@ class Standard:
             sleep(Output_Seconds)
 
     def Create_Underline(Text, max_numbers, word = ""):
-        for _ in range(0, max_numbers)
+        for _ in range(0, max_numbers):
             word += Text
         return word
 
