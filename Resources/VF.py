@@ -57,7 +57,7 @@ Dict_Proxies = {'http': '', 'https': ''}
 
 # Variables
 Date, COLOR_Headline, Log_Path = strftime('%Y-%m-%d_%H-%M-%S'), "black", dirname(realpath(__file__)).replace('Resources', 'Logs')
-Switch_Internet_Connection, Switch_nmap, existing_nmap_file, Counter_Connections = False, False, "", 0
+Switch_Internet_Connection, Switch_nmap, existing_nmap_file = False, False, ""
 Program_Description = """-------------------------------------------------------------------------------------
 |  Rainer Christian Bjoern Herold                                                   |
 |  Copyright 2022. All rights reserved.                                             |
