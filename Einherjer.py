@@ -106,6 +106,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
                 driver = Web.Driver_Specification(options)
         else: driver = Web.Driver_Specification(options)
         driver.implicitly_wait(args.timeout), driver.set_window_size(1920,1080), driver.execute_script("document.body.style.zoom='250%'")
+        del ChromeDriverManager, webbrowser_open
 
     if (args.add_wordlist != None and args.add_multiple_wordlists == None):
         if (args.add_wordlist not in Array_Wordlists):
