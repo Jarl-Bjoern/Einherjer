@@ -270,53 +270,56 @@ def Check_Security_Flags(url, t_seconds):
 
 
 def SSH_Vulns(Target, Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': []}):
-    try: from paramiko.transport import Transport
+    try:
+        from paramiko.transport import Transport
+        from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
     except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
-    global Location, existing_nmap_file, Switch_nmap
-
-    # Test1
-    def Check_SSH_Values(List_With_Keys, Temp_Key = ""):
-        Array_Temp = []
-        for i in List_With_Keys:
-            if ('@' in i): Temp_Key = i.split('@')[0]
-            else: Temp_Key = i
-            if (Temp_Key not in Array_SSH_Algorithms):
-                Array_Temp.append(Temp_Key)
-        return Array_Temp
-
-    # Test2
-#sock = create_connection(("127.0.0.1",22),5)
-#sock.send(b"SSH-2.0-7331SSH\r\n")
-#sock_recv = sock.recv(984)
-#print (sock_recv)
-
-#class MySSHClient(asyncssh.SSHClient):
-#    def connection_made(self, conn: asyncssh.SSHClientConnection) -> None:
-#        print(conn.get_extra_info('client_version'))
-#        print(conn.get_extra_info('send_mac'))
-#        print(conn.get_extra_info('send_compression'))
-#
-#    def auth_completed(self) -> None:
-#        print('Authentication successful.')
-#
-#async def run_client():
-#    result = await asyncssh.get_server_auth_methods('127.0.0.1')
-#    print (result)
-#    conn, client = await asyncssh.create_connection(MySSHClient, '127.0.0.1', known_hosts=None)
-#try:
-#    loop = asyncio.new_event_loop()
-#    asyncio.set_event_loop(loop)
-#    loop.run_until_complete(run_client())
-#except (OSError, asyncssh.Error) as e: exit(f'SSH connection failed: {str(e)}')
+    global existing_nmap_file, Switch_nmap
 
     if (Switch_nmap == False):
+        def Check_SSH_Values(List_With_Keys, Temp_Key = ""):
+            Array_Temp = []
+            for i in List_With_Keys:
+                if ('@' in i): Temp_Key = i.split('@')[0]
+                else: Temp_Key = i
+                if (Temp_Key not in Array_SSH_Algorithms):
+                    Array_Temp.append(Temp_Key)
+            return Array_Temp
+
         Dict_System = {}
-        opts = Transport(Target, ).get_security_options()
+        opts = Transport(Target, 22).get_security_options()
         Dict_System['kex_algorithms'] = Check_SSH_Values(opts.kex)
         Dict_System['server_host_key_algorithms'] = Check_SSH_Values(opts.key_types)
         Dict_System['encryption_algorithms'] = Check_SSH_Values(opts.ciphers)
         Dict_System['mac_algorithms'] = Check_SSH_Values(opts.digests)
         #print(opts.compression)
+
+        sock = create_connection((Target,22),5)
+        sock.send(b"SSH-2.0-7331SSH\r\n")
+        Server_Banner = sock.recv(984)
+        print (Server_Banner)
+
+        class MySSHClient(SSHClient):
+            def connection_made(self, conn: SSHClientConnection) -> None:
+                print(conn.get_extra_info('client_version'))
+                print(conn.get_extra_info('send_mac'))
+                print(conn.get_extra_info('send_compression'))
+
+            def auth_completed(self) -> None:
+                print('Authentication successful.')
+
+        async def check_auth():
+            return await get_server_auth_methods(url)
+
+        #async def run_client():
+        #    result = await asyncssh.get_server_auth_methods('127.0.0.1')
+        #    conn, client = await asyncssh.create_connection(MySSHClient, '127.0.0.1', known_hosts=None)
+        try:
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+            Auth_Methods = loop.run_until_complete(check_auth())
+            #loop.run_until_complete(run_client())
+        except (OSError, asyncssh.Error) as e: exit(f'SSH connection failed: {str(e)}')
 
         return Dict_System
     else:
@@ -346,7 +349,7 @@ def SSH_Vulns(Target, Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key
                     Dict_System[f'{IP_Address}:{Port}'] = Dict_SSH_Results
                     Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': []}
 
-        with open(join(Location, 'Vulns.txt'), 'w') as f:
+        with open(join(location, 'Vulns.txt'), 'w') as f:
             f.write("Host;kex_algorithms;server_host_key_algorithms;encryption_algorithms;mac_algorithms\n")
             for i in Dict_System:
                 f.write(f'{i};')
