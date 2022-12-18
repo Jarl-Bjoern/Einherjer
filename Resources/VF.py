@@ -270,10 +270,6 @@ def Check_Security_Flags(url, t_seconds):
 
 
 def SSH_Vulns(Target, Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': []}):
-    try:
-        from paramiko.transport import Transport
-        from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
-    except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
     global existing_nmap_file, Switch_nmap
 
     if (Switch_nmap == False):
