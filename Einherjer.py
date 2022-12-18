@@ -132,7 +132,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
                 else: Location = Standard.Create_Location_Dir(join(getcwd(), f"{args.output_location}/{Date}"))
             elif ('.' not in args.output_location and '/' not in args.output_location): Location = Standard.Create_Location_Dir(join(getcwd(), f"{args.output_location}/{Date}"))
             elif ('/' in args.output_location and not '.' in args.output_location): Location = Standard.Create_Location_Dir(f"{args.output_location}/{Date}")
-    else: Location = join(dirname(realpath(__file__)), Date)
+    else: Location = Standard.Create_Location_Dir(join(dirname(realpath(__file__)), Date))
 
     if (args.read_config_ssh_ciphers != None): pass
     if (args.read_config_ssl_ciphers != None): pass
