@@ -29,7 +29,7 @@ sudo python3 Einherjer.py
 
 <a name="help_install"></a>
 ## Using the help section to see which parameters do we have
-```
+``python
 usage: Einherjer.py -f {csv,docx,html,json,latex,pdf,tex,xlsx,xml} -s SLEEP [-sA [SCAN_ALL]] [-sSs [SCAN_SITE_SCREENSHOT]] [-sSsr [SCAN_SITE_SCREENSHOT_RECURSIVE]] [-sSSL [SCAN_SITE_SSL]] [-sSh [SCAN_SITE_HEADER]] [-sSF [SCAN_SITE_FUZZING]] [-sSSH [SCAN_SSH]] [-sSSF [SCAN_SECURITY_FLAGS]] [-sC [SCAN_CREDENTIALS]]
                     [-aNr ADD_NMAP_SSH_RESULT] [-aW ADD_WORDLIST] [-amW ADD_MULTIPLE_WORDLISTS] [-6 IPV6] [-iL IMPORT_LIST] [-t [TARGET ...]] [-aC ADD_CERT] [-aUL ADD_USER_LIST] [-aCPw ADD_CERT_PASSWORD] [-aHP ADD_HTTP_PROXY] [-aHSP ADD_HTTPS_PROXY] [-o OUTPUT_LOCATION] [-rCssh READ_CONFIG_SSH_CIPHERS]
                     [-rCssl READ_CONFIG_SSL_CIPHERS] [-mx MAX_CONNECTIONS] [-to TIMEOUT] [-r [RANDOM_ORDER]] [-tHo THREAD_TIMEOUT] [-app APPEND_TO_EXISTING_XLSX] [-c CUSTOM_CHROMIUM_PATH] [-h] [-d [DEBUG]]
