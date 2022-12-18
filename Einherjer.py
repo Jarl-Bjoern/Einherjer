@@ -165,6 +165,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
         if (args.scan_ssh != False):
             try:
                 from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
+                from paramiko.transport import Transport
                 import asyncio
             except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
             Array_Switch.append(True)
