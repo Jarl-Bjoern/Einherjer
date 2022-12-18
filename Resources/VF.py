@@ -105,6 +105,11 @@ class Standard:
             stdout.flush()
             sleep(Output_Seconds)
 
+    def Create_Underline(Text, max_numbers, word = ""):
+        for _ in range(0, max_numbers)
+            word += Text
+        return word
+
     def Initialien(debug_parameter):
         if (debug_parameter == False):
             if (osname == 'nt'): system('cls')
