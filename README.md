@@ -29,51 +29,51 @@ sudo python3 Einherjer.py
 
 <a name="help_install"></a>
 ## Using the help section to see which parameters do we have
-```bash
+```
 usage: Einherjer.py -f {csv,docx,html,json,latex,pdf,tex,xlsx,xml} -s SLEEP [-sA [SCAN_ALL]] [-sSs [SCAN_SITE_SCREENSHOT]] [-sSsr [SCAN_SITE_SCREENSHOT_RECURSIVE]] [-sSSL [SCAN_SITE_SSL]] [-sSh [SCAN_SITE_HEADER]] [-sSF [SCAN_SITE_FUZZING]] [-sSSH [SCAN_SSH]] [-sSSF [SCAN_SECURITY_FLAGS]] [-sC [SCAN_CREDENTIALS]]
-                    [-aNr ADD_NMAP_SSH_RESULT] [-aW ADD_WORDLIST] [-amW ADD_MULTIPLE_WORDLISTS] [-iL IMPORT_LIST] [-t TARGET] [-aP ADD_PROXY] [-o OUTPUT_LOCATION] [-rCssh READ_CONFIG_SSH_CIPHERS] [-rCssl READ_CONFIG_SSL_CIPHERS] [-mx MAX_CONNECTIONS]
-                    [-m {Multiprocessing,multiprocessing,mp,MP,threading,Threading,t,Thread,thread}] [-to TIMEOUT] [-r [RANDOM_ORDER]] [-tHo THREAD_TIMEOUT] [-app APPEND_TO_EXISTING_XLSX] [-c CUSTOM_CHROMIUM_PATH] [-h]
+                    [-aNr ADD_NMAP_SSH_RESULT] [-aW ADD_WORDLIST] [-amW ADD_MULTIPLE_WORDLISTS] [-6 IPV6] [-iL IMPORT_LIST] [-t [TARGET ...]] [-aC ADD_CERT] [-aUL ADD_USER_LIST] [-aCPw ADD_CERT_PASSWORD] [-aHP ADD_HTTP_PROXY] [-aHSP ADD_HTTPS_PROXY] [-o OUTPUT_LOCATION] [-rCssh READ_CONFIG_SSH_CIPHERS]
+                    [-rCssl READ_CONFIG_SSL_CIPHERS] [-mx MAX_CONNECTIONS] [-to TIMEOUT] [-r [RANDOM_ORDER]] [-tHo THREAD_TIMEOUT] [-app APPEND_TO_EXISTING_XLSX] [-c CUSTOM_CHROMIUM_PATH] [-h] [-d [DEBUG]]
 
 -------------------------------------------------------------------------------------
-|  Rainer Christian Bjoern Herold                                                   |                                                                                                                                                                                                                                       
-|  Copyright 2022. All rights reserved.                                             |                                                                                                                                                                                                                                       
-|                                                                                   |                                                                                                                                                                                                                                       
-|  Please do not use the program for illegal activities.                            |                                                                                                                                                                                                                                       
-|                                                                                   |                                                                                                                                                                                                                                       
-|  If you got any problems don't hesitate to contact me so I can try to fix them.   |                                                                                                                                                                                                                                       
-|                                                                                   |                                                                                                                                                                                                                                       
-|  If you use the "Kali-Last-Snapshot" repository, you might install a slightly     |                                                                                                                                                                                                                                       
-|  older driver of Chromium with the command "apt install -y chromium". If this     |                                                                                                                                                                                                                                       
-|  is the case, then you should check after the installation with the command       |                                                                                                                                                                                                                                       
-|  "apt-cache policy chromium" which version was installed and then download the    |                                                                                                                                                                                                                                       
-|  appropriate Chrome Webdriver from the following page                             |                                                                                                                                                                                                                                       
-|  "https://chromedriver.chromium.org/downloads" and replace it instead.            |                                                                                                                                                                                                                                       
--------------------------------------------------------------------------------------                                                                                                                                                                                                                                       
-                                                                                                                                                                                                                                                                                                                            
+|  Rainer Christian Bjoern Herold                                                   |
+|  Copyright 2022. All rights reserved.                                             |
+|                                                                                   |
+|  Please do not use the program for illegal activities.                            |
+|                                                                                   |
+|  If you got any problems don't hesitate to contact me so I can try to fix them.   |
+|                                                                                   |
+|  If you use the "Kali-Last-Snapshot" repository, you might install a slightly     |
+|  older driver of Chromium with the command "apt install -y chromium". If this     |
+|  is the case, then you should check after the installation with the command       |
+|  "apt-cache policy chromium" which version was installed and then download the    |
+|  appropriate Chrome Webdriver from the following page                             |
+|  "https://chromedriver.chromium.org/downloads" and replace it instead.            |
+-------------------------------------------------------------------------------------
+
 
 required arguments:
   -f {csv,docx,html,json,latex,pdf,tex,xlsx,xml}, --format {csv,docx,html,json,latex,pdf,tex,xlsx,xml}
                         Specify your used format like xlsx (Excel), Docx (MS Word), LaTeX or PDF.
-                                                                                                                                                                                                                                                                                                                            
-                        -------------------------------------------------------------------------------------                                                                                                                                                                                                               
+                        
+                        -------------------------------------------------------------------------------------
   -s SLEEP, --sleep SLEEP
                         Set the pauses between the scans to do not DDoS the target.
-                                                                                                                                                                                                                                                                                                                            
-                        -------------------------------------------------------------------------------------                                                                                                                                                                                                               
+                        
+                        -------------------------------------------------------------------------------------
 
 scan arguments:
   -sA [SCAN_ALL], --scan-all [SCAN_ALL]
                         With this it is possible to scan all functions
-                                                                                                                                                                                                                                                                                                                            
+                        
                         -------------------------------------------------------------------------------------                                                                                                                                                                                                               
   -sSs [SCAN_SITE_SCREENSHOT], --scan-site-screenshot [SCAN_SITE_SCREENSHOT]
                         With this function you can create screenshots of the start pages.
                                                                                                                                                                                                                                                                                                                             
                         -------------------------------------------------------------------------------------                                                                                                                                                                                                               
   -sSsr [SCAN_SITE_SCREENSHOT_RECURSIVE], --scan-site-screenshot-recursive [SCAN_SITE_SCREENSHOT_RECURSIVE]
-                        With this function you can create screenshots of the target pages, but with the 
-                        special feature that any results are checked with the fuzzing and screenshots are
-                        created from them in each case.
+                        With this function you can create screenshots of the target pages,
+                        but with the special feature that any results are checked with the fuzzing                                                                                                                                                                                                                          
+                        and screenshots are created from them in each case.                                                                                                                                                                                                                                                 
                                                                                                                                                                                                                                                                                                                             
                         -------------------------------------------------------------------------------------                                                                                                                                                                                                               
   -sSSL [SCAN_SITE_SSL], --scan-site-ssl [SCAN_SITE_SSL]
@@ -81,7 +81,8 @@ scan arguments:
                                                                                                                                                                                                                                                                                                                             
                         -------------------------------------------------------------------------------------                                                                                                                                                                                                               
   -sSh [SCAN_SITE_HEADER], --scan-site-header [SCAN_SITE_HEADER]
-                        Use this function to check the HTTP headers for useful information and misconfigurations.
+                        Use this function to check the HTTP headers for useful information and
+                        misconfigurations.                                                                                                                                                                                                                                                                                  
                                                                                                                                                                                                                                                                                                                             
                         -------------------------------------------------------------------------------------                                                                                                                                                                                                               
   -sSF [SCAN_SITE_FUZZING], --scan-site-fuzzing [SCAN_SITE_FUZZING]
@@ -105,32 +106,54 @@ scan arguments:
                                                                                                                                                                                                                                                                                                                             
                         -------------------------------------------------------------------------------------                                                                                                                                                                                                               
   -aW ADD_WORDLIST, --add-wordlist ADD_WORDLIST
-                        With this function you add a word list for fuzzing.
+                        With this function you add a wordlist for fuzzing.
                                                                                                                                                                                                                                                                                                                             
                         -------------------------------------------------------------------------------------                                                                                                                                                                                                               
   -amW ADD_MULTIPLE_WORDLISTS, --add-multiple-wordlists ADD_MULTIPLE_WORDLISTS
-                        With this function you add several word lists which are checked for duplicates and 
-                        sort them out for fuzzing.
+                        This parameter specifies a location with several wordlists which will be checked for
+                        duplicates and sort them out for fuzzing.                                                                                                                                                                                                                                                           
+                                                                                                                                                                                                                                                                                                                            
+                        -------------------------------------------------------------------------------------                                                                                                                                                                                                               
+  -6 IPV6, --ipv6 IPV6  UNDER CONSTRUCTION.
                                                                                                                                                                                                                                                                                                                             
                         -------------------------------------------------------------------------------------                                                                                                                                                                                                               
 
 target arguments:
   -iL IMPORT_LIST, --import-list IMPORT_LIST
                         Import your target list in the following example:
-                          - http://192.168.2.2
-                          - https://192.168.2.3
-                          - https://192.168.2.4:8443
-                          - 192.168.2.5:22                                                                                                                                                                                                                                                                                                
+                          - http://192.168.2.2                                                                                                                                                                                                                                                                              
+                          - https://192.168.2.3                                                                                                                                                                                                                                                                             
+                          - https://192.168.2.4:8443                                                                                                                                                                                                                                                                        
+                          - 192.168.2.5:22                                                                                                                                                                                                                                                                                  
+                                                                                                                                                                                                                                                                                                                            
                         -------------------------------------------------------------------------------------                                                                                                                                                                                                               
-  -t TARGET, --target TARGET
-                        Specify a single target.
+  -t [TARGET ...], --target [TARGET ...]
+                        Specify a single or multiple targets like in the following example:
+                           - 127.0.0.1, http://127.0.0.1, https://127.0.0.1                                                                                                                                                                                                                                                 
+                                                                                                                                                                                                                                                                                                                            
+                        -------------------------------------------------------------------------------------                                                                                                                                                                                                               
 
+authentication arguments:
+  -aC ADD_CERT, --add-cert ADD_CERT
+                        UNDER CONSTRUCTION.
+                                                                                                                                                                                                                                                                                                                            
+                        -------------------------------------------------------------------------------------                                                                                                                                                                                                               
+  -aUL ADD_USER_LIST, --add-user-list ADD_USER_LIST
+                        UNDER CONSTRUCTION.
+                                                                                                                                                                                                                                                                                                                            
+                        -------------------------------------------------------------------------------------                                                                                                                                                                                                               
+  -aCPw ADD_CERT_PASSWORD, --add-cert-password ADD_CERT_PASSWORD
+                        UNDER CONSTRUCTION.
+                                                                                                                                                                                                                                                                                                                            
+                        -------------------------------------------------------------------------------------                                                                                                                                                                                                               
 
-                        ------------------------------------------------------------------------------------- 
-                        
 config arguments:
-  -aP ADD_PROXY, --add-proxy ADD_PROXY
-                        Specify your proxy.
+  -aHP ADD_HTTP_PROXY, --add-http-proxy ADD_HTTP_PROXY
+                        Specify your HTTP-Proxy.
+                                                                                                                                                                                                                                                                                                                            
+                        -------------------------------------------------------------------------------------                                                                                                                                                                                                               
+  -aHSP ADD_HTTPS_PROXY, --add-https-proxy ADD_HTTPS_PROXY
+                        Specify your HTTPS-Proxy.
                                                                                                                                                                                                                                                                                                                             
                         -------------------------------------------------------------------------------------                                                                                                                                                                                                               
   -o OUTPUT_LOCATION, --output-location OUTPUT_LOCATION
@@ -148,26 +171,25 @@ config arguments:
 
 performance arguments:
   -mx MAX_CONNECTIONS, --max-connections MAX_CONNECTIONS
-                        Defines the max connections via threads or processes for every try to scan.
-                        
-                        Default: 8
-                                                                                                                             
-                        -------------------------------------------------------------------------------------                                                                                                                                                                                                               
-  -m {Multiprocessing,multiprocessing,mp,MP,threading,Threading,t,Thread,thread}, --method {Multiprocessing,
-                        multiprocessing,mp,MP,threading,Threading,t,Thread,thread}
-                        Defines which method you wanted to use.
-                                                                                                            
+                        Defines the max connections for threads and processes. 
+                                                                                                                                                                                                                                                                                                                            
+                        Default: 8                                                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                                                                                            
                         -------------------------------------------------------------------------------------                                                                                                                                                                                                               
   -to TIMEOUT, --timeout TIMEOUT
-                        Specify the connection http timeout in seconds. Default: 30 seconds
+                        Specify the connection http timeout in seconds.
+                                                                                                                                                                                                                                                                                                                            
+                        Default: 30 seconds                                                                                                                                                                                                                                                                                 
                                                                                                                                                                                                                                                                                                                             
                         -------------------------------------------------------------------------------------                                                                                                                                                                                                               
   -r [RANDOM_ORDER], --random-order [RANDOM_ORDER]
-                        UNDER CONSTRUCTION
+                        This parameter randomize your targets.
                                                                                                                                                                                                                                                                                                                             
                         -------------------------------------------------------------------------------------                                                                                                                                                                                                               
   -tHo THREAD_TIMEOUT, --thread-timeout THREAD_TIMEOUT
-                        UNDER CONSTRUCTION
+                        This parameter sets the max time to wait until a thread will be terminated
+                                                                                                                                                                                                                                                                                                                            
+                        Default: 90 Seconds                                                                                                                                                                                                                                                                                 
                                                                                                                                                                                                                                                                                                                             
                         -------------------------------------------------------------------------------------                                                                                                                                                                                                               
 
@@ -182,7 +204,13 @@ optional arguments:
                         -------------------------------------------------------------------------------------                                                                                                                                                                                                               
   -h, --help            Show this help message and exit.
                                                                                                                                                                                                                                                                                                                             
-                        ------------------------------------------------------------------------------------- 
+                        -------------------------------------------------------------------------------------                                                                                                                                                                                                               
+
+debug arguments:
+  -d [DEBUG], --debug [DEBUG]
+                        This Parameter deactivates the terminal clearing after starting the tool.
+                                                                                                                                                                                                                                                                                                                            
+                        -------------------------------------------------------------------------------------
 ```
 
 # Remark
