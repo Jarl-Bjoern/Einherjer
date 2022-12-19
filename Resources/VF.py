@@ -194,14 +194,28 @@ class Web:
         return driver
 
 # Functions
-def Get_Host_Name(url, Temp = ""):
+def Get_Host_Name(url, Temp = "", Word = ""):
     try: Temp = gethostbyaddr(url)
     except (gaierror, herror):
         try:
             Temp = gethostbyname(url)
             if (Temp == url): Temp = ""
         except (gaierror, herror): pass
-    return Temp
+
+    if (type(Temp) == tuple or type(Temp) == list):
+        for _ in Temp:
+            if (_ != []):
+                if (type(_) != list):
+                    if (_ != Temp[len(Temp)]): Word += "f{_}, "
+                    else: Word += "f{_}"
+                else:
+                    for j in _:
+                        if (j != _[len(_)]): Word += f"{j}, "
+                        else:
+                            if (_ != Temp[len(Temp)]): Word += f"{j}, "
+                            else: Word += f"{j}"
+    elif (type(Temp) == str): Word = Temp
+    return Word
 
 def Check_Site_Paths(url, t_seconds):
     for Word in Array_Wordlists:
