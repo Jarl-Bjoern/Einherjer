@@ -22,15 +22,8 @@ def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_
                     else: Host_Name = Get_Host_Name(url.split('//')[1])
                 else: Host_Name = Get_Host_Name(url)
                 if (Host_Name != ""):
-                    Dict_Temp_Header['DNS'], Dict_Temp_Information_Disclosure['DNS'] = Host_Name[0], Host_Name[0]
+                    Dict_Temp_Header['DNS'], Dict_Temp_Information_Disclosure['DNS'] = Host_Name, Host_Name
                 else: Dict_Temp_Header['DNS'], Dict_Temp_Information_Disclosure['DNS'] = "",""
-#                            if (type(Host_Name) == tuple or type(Host_Name) == list):
-#                                print ("test")
-#                                for i in test:
-#                                    if (i != []):
-#                                        if (type(i) != list): print (i)
-#                                        else: print (i[0])
-#                            elif (type(Host_Name) == str): print ("Test2")
                 # Header_Check
                 for Header in r.headers.items():
                     if (Header[0] in Array_Header): Dict_Temp_Header[Header[0]] = Header[1]
