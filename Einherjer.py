@@ -109,10 +109,12 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
         del ChromeDriverManager, webbrowser_open
 
     if (args.add_wordlist != None and args.add_multiple_wordlists == None):
+        Array_Wordlists = []
         if (args.add_wordlist not in Array_Wordlists):
             for word in Standard.Read_File(args.add_wordlist):
                 if (word not in Array_Wordlists): Array_Wordlists.append(word)
     elif (args.add_wordlist == None and args.add_multiple_wordlists != None):
+        Array_Wordlists = []
         for root,_,files in walk(args.add_multiple_wordlists):
             for file in files:
                 for word in Standard.Read_File(join(root, file)):
