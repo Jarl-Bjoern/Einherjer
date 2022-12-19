@@ -206,13 +206,13 @@ def Get_Host_Name(url, Temp = "", Word = ""):
         for _ in Temp:
             if (_ != []):
                 if (type(_) != list):
-                    if (_ != Temp[len(Temp)]): Word += "f{_}, "
-                    else: Word += "f{_}"
+                    if (_ != Temp[len(Temp)-1]): Word += f"{_}, "
+                    else: Word += f"{_}"
                 else:
                     for j in _:
-                        if (j != _[len(_)]): Word += f"{j}, "
+                        if (j != _[len(_)-1]): Word += f"{j}, "
                         else:
-                            if (_ != Temp[len(Temp)]): Word += f"{j}, "
+                            if (_ != Temp[len(Temp)-1]): Word += f"{j}, "
                             else: Word += f"{j}"
     elif (type(Temp) == str): Word = Temp
     return Word
