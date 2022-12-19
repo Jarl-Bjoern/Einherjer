@@ -131,9 +131,11 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
         elif ('/' in args.output_location and not '.' in args.output_location): Location = Standard.Create_Location_Dir(f"{args.output_location}/{Date}")
     else: Location = Standard.Create_Location_Dir(join(dirname(realpath(__file__)), Date))
 
+    if (args.read_config_http_header != None): pass
+    if (args.read_config_cookie_security_flags != None): pass
     if (args.read_config_ssh_ciphers != None): pass
     if (args.read_config_ssl_ciphers != None): pass
-
+    
     if (args.add_http_proxy != None): Dict_Proxies['http'] = args.add_http_proxy
     if (args.add_https_proxy != None): Dict_Proxies['https'] = args.add_https_proxy
 
