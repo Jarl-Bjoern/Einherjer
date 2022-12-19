@@ -217,8 +217,8 @@ def Get_Host_Name(url, Temp = "", Word = ""):
     elif (type(Temp) == str): Word = Temp
     return Word
 
-def Check_Site_Paths(url, t_seconds, Array_Temp = [], Array_Status_Code = ["200", "302", "405", "500"]):
-    for Word in Array_Wordlists:
+def Check_Site_Paths(url, t_seconds, array_wordlists, Array_Temp = [], Array_Status_Code = ["200", "302", "405", "500"]):
+    for Word in array_wordlists:
         URL = f'{url}/{Word}'
         r = get(URL, timeout=t_seconds, verify=False, allow_redirects=True)
         if (str(r.status_code) in Array_Status_Code):
