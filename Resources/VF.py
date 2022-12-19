@@ -7,7 +7,7 @@ from Resources.HF import *
 
 # Arrays
 Array_Header = ['X-Frame-Options', 'X-XSS-Protection', 'Content-Security-Policy', 'Strict-Transport-Security', 'X-Content-Type-Options', 'Referrer-Policy']
-Array_Paths, Array_Wordlists, Array_SSL_Vulns, Array_Fuzzing, Array_Results, Array_Security_Flags = [],[],[],[],[],[]
+Array_Paths, Array_Wordlists, Array_SSL_Vulns, Array_Results, Array_Security_Flags = [],[],[],[],[]
 Array_Information_Disclosure_Header = ["X-Powered-By", "Server"]
 Array_Security_Flags = ['SameSite', 'samesite', 'HttpOnly', 'httponly', 'Secure', 'secure', 'JSessID']
 Array_SSH_Header = ['kex_algorithms', 'server_host_key_algorithms', 'encryption_algorithms', 'mac_algorithms']
@@ -217,12 +217,14 @@ def Get_Host_Name(url, Temp = "", Word = ""):
     elif (type(Temp) == str): Word = Temp
     return Word
 
-def Check_Site_Paths(url, t_seconds):
+def Check_Site_Paths(url, t_seconds, Array_Temp = [], Array_Status_Code = ["200", "302", "405", "500"]):
     for Word in Array_Wordlists:
         URL = f'{url}/{Word}'
         r = get(URL, timeout=t_seconds, verify=False, allow_redirects=True)
-        if (str(r.status_code) == "200" or str(r.status_code) == "302" or str(r.status_code) == "405" or str(r.status_code) == "500"):
-            if (URL not in Array_Fuzzing): Array_Fuzzing.append(URL)
+        if (str(r.status_code) in Array_Status_Code):
+            if (URL not in Array_Temp): Array_Temp.append(URL)
+
+    return Array_Temp
 
 def Check_Certificate(url, Counter_URL = 0):
     try: import OpenSSL
