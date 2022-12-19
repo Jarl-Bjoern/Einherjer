@@ -19,7 +19,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
     optional = parser.add_argument_group(Colors.ORANGE+'optional arguments'+Colors.RESET)
     debug_arguments = parser.add_argument_group(Colors.ORANGE+'debug arguments'+Colors.RESET)
 
-    required.add_argument('-f', '--format', choices=['csv','docx','html','json','latex','pdf','tex','xlsx','xml'], type=str, help=Colors.GREEN+'Specify your used format like xlsx (Excel), Docx (MS Word), LaTeX or PDF.'+Colors.RESET+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET, required=True)
+    required.add_argument('-f', '--format', choices=['csv','docx','html','json','md','pdf','tex','xlsx','xml'], type=str, help=Colors.GREEN+'Specify your used format like xlsx (Excel), Docx (MS Word), LaTeX or PDF.'+Colors.RESET+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET, required=True)
     required.add_argument('-s', '--sleep', type=float, help=Colors.GREEN+'Set the pauses between the scans to do not DDoS the target.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET, required=True)
     scan_arguments.add_argument('-sA', '--scan-all', type=bool, nargs='?', const=True, help=Colors.GREEN+'With this it is possible to scan all functions'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET, default=False)
     scan_arguments.add_argument('-sSs', '--scan-site-screenshot', type=bool, nargs='?', const=True, help=Colors.GREEN+'With this function you can create screenshots of the start pages.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET, default=False)
@@ -231,14 +231,17 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
             elif ("json" in args.format):
                 from Resources.Format.JSON import JSON_Table
                 #Array_Output = JSON_Table(Dict_Result, Location)
-            elif ("latex" in args.format or "tex" in args.format):
-                from Resources.Format.LaTeX import Latex_Table
-                Array_Output = Latex_Table(Dict_Result, Location)
+            elif ("md" in args.format):
+                from Resources.Format.Markdown import Markdown_Table
+                Array_Output = Markdown_Table(Dict_Result, Location)
             elif ("pdf" in args.format):
                 from Resources.Format.PDF import Create_PDF
                 Array_Output = Word_Table(Dict_Result, Location)
                 if (osname == 'nt'): Create_PDF(Location)
                 else: print("At this point it's not be possible to convert a docx file into a pdf under linux.\nPlease try it under windows.\n")
+            elif ("tex" in args.format):
+                from Resources.Format.LaTeX import Latex_Table
+                Array_Output = Latex_Table(Dict_Result, Location)
             elif ("xlsx" in args.format):
                 from Resources.Format.Excel import Excel_Table
                 Array_Output = Excel_Table(Dict_Result, Location)
