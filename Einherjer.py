@@ -59,10 +59,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
     args = parser.parse_args()
     if (args.target == None and args.import_list == None): Logs.Error_Message('The program cannot be started without targets')
     elif (args.target == None and args.import_list != None):
-        try:
-            Array_Targets = Standard.Read_File(args.import_list)
-            if (args.random_order == True): shuffle(Array_Targets)
-            else: Array_Targets.sort()
+        try: Array_Targets = Standard.Read_File(args.import_list)
         except FileNotFoundError as e: Logs.Error_Message(f"Your targetlist can't be found!\n\n{args.import_list}")
     else:
         if (len(args.target) > 1):
@@ -76,6 +73,11 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
                 for _ in Temp_Split:
                     if (_ != ''): Array_Targets.append(_)
             else: Array_Targets = [args.target[0]]
+    if (args.random_order == True):
+        from random import shuffle
+        shuffle(Array_Targets)
+        del shuffle
+    else: Array_Targets.sort()
 
     # Webdriver_Options
     if (args.scan_site_screenshot != False):
