@@ -31,7 +31,7 @@ try:
     from numpy import array
     from os import getcwd, listdir, makedirs, name as osname, remove, system, walk
     from os.path import dirname, exists, join, realpath
-    from requests import get, Session
+    from requests import get
     from requests.exceptions import *
     from re import search, split as resplit
     from rich.progress import BarColumn, Progress, SpinnerColumn, TaskProgressColumn, TimeElapsedColumn, TimeRemainingColumn
