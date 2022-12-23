@@ -82,7 +82,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
     # Webdriver_Options
     if (args.scan_site_screenshot != False):
         try:
-            from cv2 import imread, imwrite, rectangle
+            from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
             from selenium import webdriver
             from selenium.webdriver.common.by import By
             from selenium.webdriver.common.keys import Keys
