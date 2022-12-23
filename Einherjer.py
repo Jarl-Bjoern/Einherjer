@@ -148,6 +148,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
             from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
             from cryptography import x509
             from cryptography.hazmat.backends import default_backend
+            from requests import Session
             import asyncio
         except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
         Array_Switch.append(driver),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True)
@@ -176,7 +177,10 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
         if (args.add_nmap_ssh_result != None): Switch_nmap = True
         if (args.scan_site_screenshot_recursive != False): Array_Switch.append(True)
         else: Array_Switch.append(False)
-        if (args.scan_security_flags != False): Array_Switch.append(True)
+        if (args.scan_security_flags != False):
+            try: from requests import Session
+            except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
+            Array_Switch.append(True)
         else: Array_Switch.append(False)
 
     Standard.Initialien(args.debug)
