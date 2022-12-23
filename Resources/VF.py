@@ -193,6 +193,18 @@ class Web:
         except WebDriverException: Logs.Error_Message("\nIt looks like that you do not have Chromedriver installed.\n\nPlease go to https://chromedriver.chromium.org/downloads and download the correct chromedriver and paste it into the Resources folder.\n")
         return driver
 
+    def Screenshot_Filter(Path):
+        for Pictures in listdir(Path):
+            Picture = imread(join(Path, Pictures))
+            for _ in listdir(Path):
+                if (_ != Picture):
+                    Duplicate = imread(join(Path, _))
+                    Difference = subtract(Picture, Duplicate)
+                    b,g,r = cvsplit(difference)
+
+                    if (countNonZero(b) == 0 and countNonZero(g) == 0 and countNonZero(r) == 0):
+                        pass
+
 # Functions
 def Get_Host_Name(url, Temp = "", Word = ""):
     try: Temp = gethostbyaddr(url)
