@@ -148,6 +148,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
             from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
             from cryptography import x509
             from cryptography.hazmat.backends import default_backend
+            from paramiko.transport import Transport
             from requests import Session
             import asyncio
         except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
