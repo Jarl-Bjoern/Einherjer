@@ -3,7 +3,7 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-from argparse import ArgumentParser, FileType, RawTextHelpFormatter, SUPPRESS
+from Resources.VF import *
 
 # Functions
 def Argument_Parser():
