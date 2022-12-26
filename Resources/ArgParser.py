@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# Rainer Christian Bjoern Herold
+
+# Libraries
+from argparse import ArgumentParser, FileType, RawTextHelpFormatter, SUPPRESS
+
+# Functions
 def Argument_Parser():
     Program_Description = """-------------------------------------------------------------------------------------
     |  Rainer Christian Bjoern Herold                                                   |
