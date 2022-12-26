@@ -18,9 +18,9 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                 Array_Temp = []
                 Array_Temp.append(Target)
                 for Result_Left, Result_Right in Dict_Result['Header'][Target].items():
-                    if ((Result_Left == "X-XSS-Protection" or Result_Left == Array_Header[1].lower() or Result_Left == Array_Header[1].isupper()) and (Result_Right == "1" or (Result_Right == "1; mode=block" or Result_Right == "1; mode=BLOCK"))): Result_Right = "FEHLT"
-                    elif ((Result_Left == "X-Content-Type-Options" or Result_Left == Array_Header[4].lower() or Result_Left == Array_Header[4].isupper()) and (Result_Right != "nosniff" or Result_Right != "NOSNIFF")): Result_Right = "FEHLT"
-                    elif ((Result_Left == "X-Frame-Options" or Result_Left == Array_Header[0].lower() or Result_Left == Array_Header[0].isupper()) and (Result_Right != "DENY" or Result_Right != "deny")): Result_Right = "FEHLT"
+                    if ((Result_Left == "X-XSS-PROTECTION") and (Result_Right == "1" or (Result_Right == "1; MODE=BLOCK"))): Result_Right = "FEHLT"
+                    elif ((Result_Left == "X-CONTENT-TYPE-OPTIONS") and (Result_Right != "NOSNIFF")): Result_Right = "FEHLT"
+                    elif ((Result_Left == "X-FRAME-OPTIONS") and (Result_Right != "DENY"): Result_Right = "FEHLT"
                     elif (Result_Left == "DNS" and Result_Right == ""): Result_Right = "FEHLT"
 
                     if (Result_Left != "DNS" and Result_Right != "FEHLT"): Array_Temp.append("✓")
