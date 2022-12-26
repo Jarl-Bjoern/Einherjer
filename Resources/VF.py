@@ -8,7 +8,7 @@ from Resources.HF import *
 # Arrays
 Array_Header = ['X-FRAME-OPTIONS', 'X-XSS-PROTECTION', 'CONTENT-SECURITY-POLICY', 'STRICT-TRANSPORT-SECURITY', 'X-CONTENT-TYPE-OPTIONS', 'REFERRER-POLICY']
 Array_Paths, Array_SSL_Vulns, Array_Results = [],[],[]
-Array_Information_Disclosure_Header = ["X-Powered-By", "Server"]
+Array_Information_Disclosure_Header = ["X-POWERED-BY", "SERVER"]
 Array_Security_Flags = ['SameSite', 'samesite', 'HttpOnly', 'httponly', 'Secure', 'secure', 'JSessID']
 Array_SSH_Header = ['kex_algorithms', 'server_host_key_algorithms', 'encryption_algorithms', 'mac_algorithms']
 Array_SSH_Algorithms = [
