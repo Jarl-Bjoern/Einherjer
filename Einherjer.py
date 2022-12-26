@@ -96,7 +96,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
     if (args.read_config_cookie_security_flags != None): pass
     if (args.read_config_ssh_ciphers != None): pass
     if (args.read_config_ssl_ciphers != None): pass
-    
+
     if (args.add_http_proxy != None): Dict_Proxies['http'] = args.add_http_proxy
     if (args.add_https_proxy != None): Dict_Proxies['https'] = args.add_https_proxy
 
