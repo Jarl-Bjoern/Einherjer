@@ -190,12 +190,19 @@ class Web:
                         pass
 
 # Functions
-def Get_Host_Name(url, Temp = "", Word = ""):
-    try: Temp = gethostbyaddr(url)
+def Get_Host_Name(url, Count_Double_Point = 0, Target = "", Temp = "", Word = ""):
+    if ('//' in url):
+        for i in range(0, len(url)):
+            if (url[i] == ":"): Count_Double_Point += 1
+        if (Count_Double_Point == 2): Target = url.split('//')[1].split(':')[0]
+        else: Target = url.split('//')[1]
+    else: Target = url
+
+    try: Temp = gethostbyaddr(Target)
     except (gaierror, herror):
         try:
-            Temp = gethostbyname(url)
-            if (Temp == url): Temp = ""
+            Temp = gethostbyname(Target)
+            if (Temp == Target): Temp = ""
         except (gaierror, herror): pass
 
     if (type(Temp) == tuple or type(Temp) == list):
