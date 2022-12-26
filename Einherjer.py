@@ -10,7 +10,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
     global Switch_Internet_Connection, Switch_nmap
 
     # Argument_Parser
-    from Resources.ArgParser import *
+    from Resources.ArgParser import Argument_Parser
     args = Argument_Parser(Program_Description)
     del ArgumentParser, FileType, RawTextHelpFormatter, SUPPRESS
 
