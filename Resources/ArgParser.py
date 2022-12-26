@@ -7,7 +7,7 @@ from Resources.VF import *
 
 # Functions
 def Argument_Parser():
-    from argparse import ArgumentParser, FileType, RawTextHelpFormatter, SUPPRESS
+    from argparse import ArgumentParser, RawTextHelpFormatter, SUPPRESS
 
     Program_Description = """-------------------------------------------------------------------------------------
 |  Rainer Christian Bjoern Herold                                                   |
@@ -74,5 +74,5 @@ def Argument_Parser():
     optional.add_argument('-h','--help', action='help', default=SUPPRESS, help=Colors.GREEN+'Show this help message and exit.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     debug_arguments.add_argument('-d', '--debug', type=bool, nargs='?', default=False, help=Colors.GREEN+'This Parameter deactivates the terminal clearing after starting the tool.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
-    del ArgumentParser, FileType, RawTextHelpFormatter, SUPPRESS
+    del ArgumentParser, RawTextHelpFormatter, SUPPRESS
     return parser.parse_args()
