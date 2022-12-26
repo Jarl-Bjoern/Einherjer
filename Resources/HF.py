@@ -24,7 +24,6 @@ def Module_Error(Text):
 
 # Libraries
 try:
-    from argparse import ArgumentParser, FileType, RawTextHelpFormatter, SUPPRESS
     from contextlib import redirect_stdout
     from datetime import datetime
     from multiprocessing import active_children, cpu_count, Process, Queue
