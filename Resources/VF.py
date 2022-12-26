@@ -268,8 +268,10 @@ def Check_Security_Flags(url, t_seconds):
     s = Session()
     r = s.get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
 
-    for Flag in Array_Security_Flags:
-        if (Flag not in dict(s.cookies)): pass
+    for Header_Key, Header_Values in r.headers.items():
+        if ("COOKIE" in Header_Key.upper()):
+            for Flag in Array_Security_Flags:
+                if (Flag not in Header_Values): pass
     for cookie in dict(s.cookies): pass
 #        for i,j in cookie.__dict__.items():
 #            if ('_rest' in i):
