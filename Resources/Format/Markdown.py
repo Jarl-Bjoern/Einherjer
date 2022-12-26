@@ -37,7 +37,7 @@ def Markdown_Table(Dict_Result, location, Array_Files = []):
                     elif (Result_Left == Array_Information_Disclosure_Header[1] and Result_Right == ""): Result_Right = "FEHLT"
 
                     if (Result_Left != "DNS" and Result_Right != "FEHLT"): Temp_Word += f'| {Result_Right} | '
-                    elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Temp_Word += f'| {Result_Right)} | '
+                    elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Temp_Word += f'| {Result_Right} | '
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Temp_Word += '| - | '
                     else: Temp_Word += '| X | '
                 md_file.write(f'{Temp_Word}\n')
