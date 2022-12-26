@@ -14,6 +14,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
     args = Argument_Parser()
     del Argument_Parser
 
+    # Target_Options
     if (args.target == None and args.import_list == None): Logs.Error_Message('The program cannot be started without targets')
     elif (args.target == None and args.import_list != None):
         try: Array_Targets = Standard.Read_File(args.import_list)
@@ -71,6 +72,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
         driver.implicitly_wait(args.timeout), driver.set_window_size(1920,1080), driver.execute_script("document.body.style.zoom='250%'")
         del ChromeDriverManager, webbrowser_open
 
+    # Wordlist_Filtering
     if (args.add_wordlist != None and args.add_multiple_wordlists == None):
         Array_Wordlists = []
         if (args.add_wordlist not in Array_Wordlists):
@@ -84,6 +86,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
                     if (word not in Array_Wordlists):
                         Array_Wordlists.append(word)
 
+    # Output_Location
     if (args.output_location != None):
         if ('.' in args.output_location or './' in args.output_location):
             if ('./' in args.output_location): Location = Standard.Create_Location_Dir(join(getcwd(), f"{args.output_location[2:]}/{Date}"))
@@ -92,14 +95,17 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
         elif ('/' in args.output_location and not '.' in args.output_location): Location = Standard.Create_Location_Dir(f"{args.output_location}/{Date}")
     else: Location = Standard.Create_Location_Dir(join(dirname(realpath(__file__)), Date))
 
+    # Template_Filtering
     if (args.read_config_http_header != None): pass
     if (args.read_config_cookie_security_flags != None): pass
     if (args.read_config_ssh_ciphers != None): pass
     if (args.read_config_ssl_ciphers != None): pass
 
+    # Proxy_Settings
     if (args.add_http_proxy != None): Dict_Proxies['http'] = args.add_http_proxy
     if (args.add_https_proxy != None): Dict_Proxies['https'] = args.add_https_proxy
 
+    # Scanning_Options
     if (args.scan_all == False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False): Error_Message('The scanning method is missing!\n')
     elif (args.scan_all != False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
         try:
@@ -142,6 +148,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
             Array_Switch.append(True)
         else: Array_Switch.append(False)
 
+    # Program_Start
     Standard.Initialien(args.debug)
     setdefaulttimeout(args.timeout)
     Counter_Bar = float(100/len(Array_Targets))
@@ -191,6 +198,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
                 sleep(0.75)
             Dict_Result = queue.get()
 
+            # Format_Filtering
             if ("csv" in args.format):
                 from Resources.Format.CSV import CSV_Table
                 Array_Output = CSV_Table(Dict_Result, Location)
@@ -222,12 +230,14 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
                 #Array_Output = XML_Table(Dict_Result, Location)
             else: Error_Message("Your Decision was not acceptable!")
 
+            # Progress_End
             progress.start_task(task_Filter)
             while not progress.finished:
                 progress.update(task_Scan, advance=Counter_Bar)
                 progress.update(task_Filter, advance=0.5)
                 sleep(0.01)
 
+    # Output_End
     if (Array_Output != []):
         Standard.Stdout_Output(Colors.CYAN+"\n\nYour Scan was successful and the result will be found at the following location:\n"+Colors.RESET, 0.01)
         for _ in Array_Output:
