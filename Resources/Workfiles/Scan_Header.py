@@ -13,8 +13,8 @@ def Test(Count_Double_Point = 0, Host_Name = ""):
         else: Dict_Temp_Header['DNS'], Dict_Temp_Information_Disclosure['DNS'] = "",""
         # Header_Check
         for Header in r.headers.items():
-            if (Header[0] in Array_Header): Dict_Temp_Header[Header[0]] = Header[1]
-            elif (Header[0] in Array_Information_Disclosure_Header): Dict_Temp_Information_Disclosure[Header[0]] = Header[1]
+            if (Header[0].upper() in Array_Header): Dict_Temp_Header[Header[0].upper()] = Header[1].upper()
+            elif (Header[0].upper() in Array_Information_Disclosure_Header): Dict_Temp_Information_Disclosure[Header[0].upper()] = Header[1].upper()
             else:
                 for Temp_Header in array(Array_Header):
                     if (Temp_Header not in Dict_Temp_Header): Dict_Temp_Header[Temp_Header] = "FEHLT"
