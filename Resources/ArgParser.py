@@ -1,4 +1,6 @@
 def Argument_Parser():
+    from argparse import ArgumentParser, FileType, RawTextHelpFormatter, SUPPRESS
+
     Program_Description = """-------------------------------------------------------------------------------------
     |  Rainer Christian Bjoern Herold                                                   |
     |  Copyright 2022. All rights reserved.                                             |
