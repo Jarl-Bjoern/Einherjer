@@ -6,7 +6,7 @@
 from Resources.HF import *
 
 # Arrays
-Array_Header = ['X-Frame-Options', 'X-XSS-Protection', 'Content-Security-Policy', 'Strict-Transport-Security', 'X-Content-Type-Options', 'Referrer-Policy']
+Array_Header = ['X-FRAME-OPTIONS', 'X-XSS-PROTECTION', 'CONTENT-SECURITY-POLICY', 'STRICT-TRANSPORT-SECURITY', 'X-CONTENT-TYPE-OPTIONS', 'REFERRER-POLICY']
 Array_Paths, Array_SSL_Vulns, Array_Results = [],[],[]
 Array_Information_Disclosure_Header = ["X-Powered-By", "Server"]
 Array_Security_Flags = ['SameSite', 'samesite', 'HttpOnly', 'httponly', 'Secure', 'secure', 'JSessID']
