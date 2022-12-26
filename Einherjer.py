@@ -31,7 +31,8 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
                     if (_ != ''): Array_Targets.append(_)
             else: Array_Targets = [args.target[0]]
     if (args.random_order == True):
-        from random import shuffle
+        try: from random import shuffle
+        except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
         shuffle(Array_Targets)
         del shuffle
     else: Array_Targets.sort()
