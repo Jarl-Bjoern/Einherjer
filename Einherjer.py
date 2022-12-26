@@ -11,7 +11,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
 
     # Argument_Parser
     from Resources.ArgParser import Argument_Parser
-    args = Argument_Parser(Program_Description)
+    args = Argument_Parser()
     del ArgumentParser, FileType, RawTextHelpFormatter, SUPPRESS
 
     if (args.target == None and args.import_list == None): Logs.Error_Message('The program cannot be started without targets')
