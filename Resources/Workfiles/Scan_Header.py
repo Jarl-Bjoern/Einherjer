@@ -1,4 +1,4 @@
-def Test():
+def Test(Count_Double_Point = 0, Host_Name = ""):
     Dict_Temp_Header, Dict_Temp_Information_Disclosure = {},{}
     try:
         r = get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
