@@ -15,12 +15,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_
             try:
                 r = get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
                 # Host_Name_Filtering
-                if ('//' in url):
-                    for i in range(0, len(url)):
-                        if (url[i] == ":"): Count_Double_Point += 1
-                    if (Count_Double_Point == 2): Host_Name = Get_Host_Name(url.split('//')[1].split(':')[0])
-                    else: Host_Name = Get_Host_Name(url.split('//')[1])
-                else: Host_Name = Get_Host_Name(url)
+                Host_Name = Get_Host_Name(url)
                 if (Host_Name != ""):
                     Dict_Temp_Header['DNS'], Dict_Temp_Information_Disclosure['DNS'] = Host_Name, Host_Name
                 else: Dict_Temp_Header['DNS'], Dict_Temp_Information_Disclosure['DNS'] = "",""
