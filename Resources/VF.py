@@ -3,7 +3,7 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-from Resources.HF import *
+from Resources.Header_File import *
 from Resources.Colors import Colors
 
 # Arrays
