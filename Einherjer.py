@@ -6,13 +6,13 @@
 from Resources.TF import *
 
 # Main_Function
-def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, 'Fuzzing': {}, 'Security_Flag': {}}, Array_Switch = [], Array_Thread_Args = [], Dict_Threads = {}, Counter_Connections = 0):
+def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, 'Fuzzing': {}, 'Security_Flag': {}}, Array_Switch = [], Array_Thread_Args = [], Dict_Threads = {}, Counter_Connections = 0):
     global Switch_Internet_Connection, Switch_nmap
 
     # Argument_Parser
-    from Resources.ArgParser import Argument_Parser
-    args = Argument_Parser()
-    del Argument_Parser
+#    from Resources.ArgParser import Argument_Parser
+#    args = Argument_Parser()
+#    del Argument_Parser
 
     # Target_Options
     if (args.target == None and args.import_list == None): Logs.Error_Message('The program cannot be started without targets')
@@ -40,19 +40,6 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
 
     # Webdriver_Options
     if (args.scan_site_screenshot != False):
-        try:
-            from contextlib import redirect_stdout
-            from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
-            from selenium import webdriver
-            from selenium.webdriver.common.by import By
-            from selenium.webdriver.common.keys import Keys
-            from selenium.webdriver.chrome.service import Service
-            from selenium.webdriver.remote.webdriver import WebDriver
-            from webbrowser import open as webbrowser_open
-            with redirect_stdout(None):
-               from webdriver_manager.chrome import ChromeDriverManager
-        except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
-
         Array_Selenium = ['--start_maximized','--no-sandbox','--remote-debugging-port=19222','--ignore-certificate-errors','--test-type','--headless','--log-level=3']
 
         if ("ttl" in getoutput('ping -c 2 8.8.8.8')):
@@ -109,45 +96,45 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
     # Scanning_Options
     if (args.scan_all == False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False): Error_Message('The scanning method is missing!\n')
     elif (args.scan_all != False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
-        try:
-            from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
-            from cryptography import x509
-            from cryptography.hazmat.backends import default_backend
-            from paramiko.transport import Transport
-            from requests import get, Session
-            from socket import create_connection
-            import asyncio
-        except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
+#       try:
+#           from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
+#           from cryptography import x509
+#           from cryptography.hazmat.backends import default_backend
+#           from paramiko.transport import Transport
+#           from requests import get, Session
+#           from socket import create_connection
+#           import asyncio
+#       except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
         Array_Switch.append(driver),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True)
     elif (args.scan_all == False):
         try:
             if (args.scan_site_screenshot != False): Array_Switch.append(driver)
             else: Array_Switch.append(None)
             if (args.scan_site_ssl != False):
-                from cryptography import x509
-                from cryptography.hazmat.backends import default_backend
-                from socket import create_connection
+ #               from cryptography import x509
+ #               from cryptography.hazmat.backends import default_backend
+ #               from socket import create_connection
                 Array_Switch.append(True)
             else: Array_Switch.append(False)
             if (args.scan_site_header != False):
-                from requests import get
+#                from requests import get
                 Array_Switch.append(True)
             else: Array_Switch.append(False)
             if (args.scan_site_fuzzing != False):
-                from requests import get
+#                from requests import get
                 Array_Switch.append(True)
             else: Array_Switch.append(False)
             if (args.scan_ssh != False):
-                from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
-                from paramiko.transport import Transport
-                import asyncio
+#                from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
+#                from paramiko.transport import Transport
+#                import asyncio
                 Array_Switch.append(True)
             else: Array_Switch.append(False)
             if (args.add_nmap_ssh_result != None): Switch_nmap = True
             if (args.scan_site_screenshot_recursive != False): Array_Switch.append(True)
             else: Array_Switch.append(False)
             if (args.scan_security_flags != False):
-                from requests import Session
+#                from requests import Session
                 Array_Switch.append(True)
             else: Array_Switch.append(False)
         except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
@@ -250,5 +237,60 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
 
 # Main
 if __name__ == '__main__':
-    try: main(Date)
+    # Argument_Parser
+    from Resources.ArgParser import Argument_Parser
+    args = Argument_Parser()
+    del Argument_Parser
+    
+    # Scanning_Module_Filtering
+    if (args.scan_all == False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False): Error_Message('The scanning method is missing!\n')
+    elif (args.scan_all != False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
+        try:
+            from contextlib import redirect_stdout
+            from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
+            from selenium import webdriver
+            from selenium.webdriver.common.by import By
+            from selenium.webdriver.common.keys import Keys
+            from selenium.webdriver.chrome.service import Service
+            from selenium.webdriver.remote.webdriver import WebDriver
+            from webbrowser import open as webbrowser_open
+            with redirect_stdout(None):
+               from webdriver_manager.chrome import ChromeDriverManager
+            from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
+            from cryptography import x509
+            from cryptography.hazmat.backends import default_backend
+            from paramiko.transport import Transport
+            from requests import get, Session
+            from socket import create_connection
+            import asyncio
+        except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
+    elif (args.scan_all == False):
+        try:
+            if (args.scan_site_screenshot != False):
+                from contextlib import redirect_stdout
+                from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
+                from selenium import webdriver
+                from selenium.webdriver.common.by import By
+                from selenium.webdriver.common.keys import Keys
+                from selenium.webdriver.chrome.service import Service
+                from selenium.webdriver.remote.webdriver import WebDriver
+                from webbrowser import open as webbrowser_open
+                with redirect_stdout(None):
+                   from webdriver_manager.chrome import ChromeDriverManager
+            if (args.scan_site_ssl != False):
+                from cryptography import x509
+                from cryptography.hazmat.backends import default_backend
+                from socket import create_connection
+            if (args.scan_site_header != False or args.scan_site_fuzzing != False):
+                from requests import get
+            if (args.scan_ssh != False):
+                from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
+                from paramiko.transport import Transport
+                import asyncio
+            if (args.scan_security_flags != False):
+                from requests import Session
+        except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
+    
+    # Main_Start
+    try: main(Date, args)
     except KeyboardInterrupt: exit()
