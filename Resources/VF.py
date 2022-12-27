@@ -4,7 +4,6 @@
 
 # Libraries
 from Resources.HF import *
-from Einherjer import *
 
 # Arrays
 Array_Header = ['X-FRAME-OPTIONS', 'X-XSS-PROTECTION', 'CONTENT-SECURITY-POLICY', 'STRICT-TRANSPORT-SECURITY', 'X-CONTENT-TYPE-OPTIONS', 'REFERRER-POLICY']
