@@ -44,15 +44,6 @@ try:
     from urllib3.exceptions import *
 except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
 
-class Colors:
-    CYAN = '\033[36m'
-    GREEN = '\033[32m'
-    ORANGE = '\033[33m'
-    BLUE = '\033[34m'
-    RED = '\033[31m'
-    UNDERLINE = '\033[4m'
-    RESET = '\033[0m'
-
 # Argument_Parser
 from Resources.ArgParser import Argument_Parser
 args = Argument_Parser()
