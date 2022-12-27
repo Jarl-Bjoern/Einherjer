@@ -4,6 +4,7 @@
 
 # Libraries
 from Resources.HF import *
+from Resources.Colors import Colors
 
 # Arrays
 Array_Header = ['X-FRAME-OPTIONS', 'X-XSS-PROTECTION', 'CONTENT-SECURITY-POLICY', 'STRICT-TRANSPORT-SECURITY', 'X-CONTENT-TYPE-OPTIONS', 'REFERRER-POLICY']
