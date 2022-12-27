@@ -9,11 +9,6 @@ from Resources.TF import *
 def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, 'Fuzzing': {}, 'Security_Flag': {}}, Array_Switch = [], Array_Thread_Args = [], Dict_Threads = {}, Counter_Connections = 0):
     global Switch_Internet_Connection, Switch_nmap
 
-    # Argument_Parser
-#    from Resources.ArgParser import Argument_Parser
-#    args = Argument_Parser()
-#    del Argument_Parser
-
     # Target_Options
     if (args.target == None and args.import_list == None): Logs.Error_Message('The program cannot be started without targets')
     elif (args.target == None and args.import_list != None):
@@ -96,46 +91,23 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
     # Scanning_Options
     if (args.scan_all == False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False): Error_Message('The scanning method is missing!\n')
     elif (args.scan_all != False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
-#       try:
-#           from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
-#           from cryptography import x509
-#           from cryptography.hazmat.backends import default_backend
-#           from paramiko.transport import Transport
-#           from requests import get, Session
-#           from socket import create_connection
-#           import asyncio
-#       except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
         Array_Switch.append(driver),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True)
     elif (args.scan_all == False):
         try:
             if (args.scan_site_screenshot != False): Array_Switch.append(driver)
             else: Array_Switch.append(None)
-            if (args.scan_site_ssl != False):
- #               from cryptography import x509
- #               from cryptography.hazmat.backends import default_backend
- #               from socket import create_connection
-                Array_Switch.append(True)
+            if (args.scan_site_ssl != False): Array_Switch.append(True)
             else: Array_Switch.append(False)
-            if (args.scan_site_header != False):
-#                from requests import get
-                Array_Switch.append(True)
+            if (args.scan_site_header != False): Array_Switch.append(True)
             else: Array_Switch.append(False)
-            if (args.scan_site_fuzzing != False):
-#                from requests import get
-                Array_Switch.append(True)
+            if (args.scan_site_fuzzing != False): Array_Switch.append(True)
             else: Array_Switch.append(False)
-            if (args.scan_ssh != False):
-#                from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
-#                from paramiko.transport import Transport
-#                import asyncio
-                Array_Switch.append(True)
+            if (args.scan_ssh != False): Array_Switch.append(True)
             else: Array_Switch.append(False)
             if (args.add_nmap_ssh_result != None): Switch_nmap = True
             if (args.scan_site_screenshot_recursive != False): Array_Switch.append(True)
             else: Array_Switch.append(False)
-            if (args.scan_security_flags != False):
-#                from requests import Session
-                Array_Switch.append(True)
+            if (args.scan_security_flags != False): Array_Switch.append(True)
             else: Array_Switch.append(False)
         except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
 
