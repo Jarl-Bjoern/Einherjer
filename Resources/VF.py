@@ -220,7 +220,7 @@ def Get_Host_Name(url, Count_Double_Point = 0, Target = "", Temp = "", Word = ""
     elif (type(Temp) == str): Word = Temp
     return Word
 
-def Check_Site_Header(url, t_seconds, Host_Name, Dict_Temp_Header = {}, Dict_Temp_Information_Disclosure = {})
+def Check_Site_Header(url, t_seconds, Host_Name, Dict_Temp_Header = {}, Dict_Temp_Information_Disclosure = {}):
     try:
         r = get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
         if (Host_Name != ""): Dict_Temp_Header['DNS'], Dict_Temp_Information_Disclosure['DNS'] = Host_Name, Host_Name
