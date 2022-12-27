@@ -3,7 +3,7 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-from Resources.VF import *
+from Resources.Variables_File import *
 
 def HTML_Table(Dict_Result, location, Body_HTML = ""):
     Head_HTML = f"""<!DOCTYPE html>
