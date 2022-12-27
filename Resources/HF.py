@@ -25,7 +25,7 @@ def Module_Error(Text):
 # Libraries
 try:
     from datetime import datetime
-    from multiprocessing import active_children, cpu_count, Process, Queue
+    from multiprocessing import active_children, Process, Queue
     from numpy import array
     from os import getcwd, listdir, makedirs, name as osname, remove, system, walk
     from os.path import dirname, exists, join, realpath
