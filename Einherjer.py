@@ -120,42 +120,37 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
         except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
         Array_Switch.append(driver),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True)
     elif (args.scan_all == False):
-        if (args.scan_site_screenshot != False): Array_Switch.append(driver)
-        else: Array_Switch.append(None)
-        if (args.scan_site_ssl != False):
-            try:
+        try:
+            if (args.scan_site_screenshot != False): Array_Switch.append(driver)
+            else: Array_Switch.append(None)
+            if (args.scan_site_ssl != False):
                 from cryptography import x509
                 from cryptography.hazmat.backends import default_backend
                 from socket import create_connection
-            except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
-            Array_Switch.append(True)
-        else: Array_Switch.append(False)
-        if (args.scan_site_header != False):
-            try: from requests import get
-            except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
-            Array_Switch.append(True)
-        else: Array_Switch.append(False)
-        if (args.scan_site_fuzzing != False):
-            try: from requests import get
-            except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
-            Array_Switch.append(True)
-        else: Array_Switch.append(False)
-        if (args.scan_ssh != False):
-            try:
+                Array_Switch.append(True)
+            else: Array_Switch.append(False)
+            if (args.scan_site_header != False):
+                from requests import get
+                Array_Switch.append(True)
+            else: Array_Switch.append(False)
+            if (args.scan_site_fuzzing != False):
+                from requests import get
+                Array_Switch.append(True)
+            else: Array_Switch.append(False)
+            if (args.scan_ssh != False):
                 from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
                 from paramiko.transport import Transport
                 import asyncio
-            except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
-            Array_Switch.append(True)
-        else: Array_Switch.append(False)
-        if (args.add_nmap_ssh_result != None): Switch_nmap = True
-        if (args.scan_site_screenshot_recursive != False): Array_Switch.append(True)
-        else: Array_Switch.append(False)
-        if (args.scan_security_flags != False):
-            try: from requests import Session
-            except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
-            Array_Switch.append(True)
-        else: Array_Switch.append(False)
+                Array_Switch.append(True)
+            else: Array_Switch.append(False)
+            if (args.add_nmap_ssh_result != None): Switch_nmap = True
+            if (args.scan_site_screenshot_recursive != False): Array_Switch.append(True)
+            else: Array_Switch.append(False)
+            if (args.scan_security_flags != False):
+                from requests import Session
+                Array_Switch.append(True)
+            else: Array_Switch.append(False)
+        except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
 
     # Program_Start
     Standard.Initialien(args.debug)
