@@ -6,7 +6,7 @@
 from Resources.VF import *
 
 # Functions
-def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_header, scan_fuzzing, scan_ssh, scan_fuzzing_recurse, scan_security_flag, Count_Double_Point = 0, Host_Name = "", Target = ""):
+def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_header, scan_fuzzing, scan_ssh, scan_fuzzing_recurse, scan_security_flag, Host_Name = "", Target = ""):
     try:
         Dict_Result = queue.get()
         Host_Name = Get_Host_Name(url)
