@@ -8,7 +8,6 @@ from Resources.Colors import Colors
 # Functions
 def Argument_Parser():
     from argparse import ArgumentParser, RawTextHelpFormatter, SUPPRESS
-    from multiprocessing import cpu_count
 
     Program_Description = """-------------------------------------------------------------------------------------
 |  Rainer Christian Bjoern Herold                                                   |
@@ -66,7 +65,7 @@ def Argument_Parser():
     config_arguments.add_argument('-rCcsf', '--read-config-cookie-security-flags', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     config_arguments.add_argument('-rCssh', '--read-config-ssh-ciphers', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     config_arguments.add_argument('-rCssl', '--read-config-ssl-ciphers', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
-    performance_arguments.add_argument('-mx', '--max-connections', type=int, default=15, help=Colors.GREEN+f'Defines the max connections for threads and processes. \n\nDefault: {cpu_count()*2}'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    performance_arguments.add_argument('-mx', '--max-connections', type=int, default=15, help=Colors.GREEN+'Defines the max connections for threads and processes.\n\nDefault: 15'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     performance_arguments.add_argument('-to', '--timeout', type=int, default=30, help=Colors.GREEN+'Specify the connection http timeout in seconds.\n\nDefault: 30 seconds'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     performance_arguments.add_argument('-r', '--random-order', type=bool, nargs='?', default=False, help=Colors.GREEN+'This parameter randomize your targets.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     performance_arguments.add_argument('-tHo', '--thread-timeout', type=int, default=90, help=Colors.GREEN+'This parameter sets the max time to wait until a thread will be terminated\n\nDefault: 90 Seconds'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
