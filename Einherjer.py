@@ -113,7 +113,8 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
             from cryptography import x509
             from cryptography.hazmat.backends import default_backend
             from paramiko.transport import Transport
-            from requests import Session
+            from requests import get, Session
+            from socket import create_connection
             import asyncio
         except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
         Array_Switch.append(driver),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True)
@@ -124,12 +125,19 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
             try:
                 from cryptography import x509
                 from cryptography.hazmat.backends import default_backend
+                from socket import create_connection
             except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
             Array_Switch.append(True)
         else: Array_Switch.append(False)
-        if (args.scan_site_header != False): Array_Switch.append(True)
+        if (args.scan_site_header != False):
+            try: from requests import get
+            except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
+            Array_Switch.append(True)
         else: Array_Switch.append(False)
-        if (args.scan_site_fuzzing != False): Array_Switch.append(True)
+        if (args.scan_site_fuzzing != False):
+            try: from requests import get
+            except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
+            Array_Switch.append(True)
         else: Array_Switch.append(False)
         if (args.scan_ssh != False):
             try:
