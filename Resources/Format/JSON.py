@@ -3,7 +3,7 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-from Resources.VF import *
+from Resources.Variables_File import *
 
 def JSON_Table(Dict_Result):
     try: import json
