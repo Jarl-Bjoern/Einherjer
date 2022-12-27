@@ -41,6 +41,7 @@ def main(Date, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL':
     # Webdriver_Options
     if (args.scan_site_screenshot != False):
         try:
+            from contextlib import redirect_stdout
             from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
             from selenium import webdriver
             from selenium.webdriver.common.by import By
