@@ -4,8 +4,7 @@
 
 # Libraries
 from Resources.Colors import Colors
-from Resources.Header_Files.Libraries import dirname, makedirs, realpath
-from Resources.Header_Files.Variables import Date
+from Resources.Header_Files.Libraries import Date, dirname, makedirs, realpath
 
 class Logs:
     def Error_Message(x):
