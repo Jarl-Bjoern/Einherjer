@@ -6,7 +6,7 @@
 from Resources.Header_Files.Threads import *
 
 # Main_Function
-def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, 'Fuzzing': {}, 'Security_Flag': {}}, Array_Switch = [], Array_Thread_Args = [], Dict_Threads = {}, Counter_Connections = 0):
+def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, 'Fuzzing': {}, 'Security_Flag': {}}, Array_Switch = [], Array_Thread_Args = [], Dict_Switch = {}, Dict_Threads = {}, Counter_Connections = 0):
     global Switch_Internet_Connection, Switch_nmap
 
     # Target_Options
