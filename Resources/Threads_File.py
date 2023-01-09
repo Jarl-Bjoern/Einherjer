@@ -28,7 +28,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_
                 else:
                     Target = url.split(':')
                     Dict_Result['SSH'][url] = SSH_Vulns((Target[0]), int(Target[1]))
-            except paramiko.ssh_exception.SSHException: Logs.Write_Log(url, Host_Name)
+            except SSHException: Logs.Write_Log(url, Host_Name)
     except (ConnectionError, gaierror, WebDriverException, RequestException): Logs.Write_Log(url, Host_Name)
     finally:
         queue.put(Dict_Result)
