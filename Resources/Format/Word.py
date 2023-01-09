@@ -3,7 +3,7 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-from Resources.Variables_File import *
+from Resources.Header_Files.Variables import *
 
 def Word_Table(Dict_Result, location):
     try:
