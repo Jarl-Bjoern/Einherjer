@@ -173,6 +173,7 @@ def Check_Security_Flags(url, t_seconds, Dict_Temp = {}):
     s = Session()
     r = s.get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
 
+    # Normal_Cookie
     for Header_Key, Header_Values in r.headers.items():
         if ("COOKIE" in Header_Key.upper()):
             for Flag in Array_Security_Flags:
@@ -182,7 +183,9 @@ def Check_Security_Flags(url, t_seconds, Dict_Temp = {}):
                         if ("SAMESITE=LAX" in Header_Values or "SAMESITE=STRICT" in Header_Values): Dict_Temp[Flag] = Flag
                         else: Dict_Temp[Flag] = "FEHLT"
                     else: Dict_Temp[Flag] = Flag
-    for cookie in dict(s.cookies): pass
+
+    # Cookie_Jar
+#    for cookie in dict(s.cookies): pass
 #        for i,j in cookie.__dict__.items():
 #            if ('_rest' in i):
 #                print (f'{i} : {j}')
