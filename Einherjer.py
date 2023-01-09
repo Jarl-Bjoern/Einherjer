@@ -120,8 +120,6 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
             queue = Queue()
             queue.put(Dict_Result)
             task_Scan = progress.add_task("[cyan]Scanning for vulnerabilities...", total=len(Array_Targets))
-            task_Waiting = progress.add_task("[cyan]Wait until the remaining processes are closed...", total=len(Dict_Threads), start=False)
-            task_Filter = progress.add_task("[cyan]Filtering the results...", total=100, start=False)
             for Target in array(Array_Targets):
                 Array_Thread_Args.append(Target), Array_Thread_Args.append(args.timeout), Array_Thread_Args.append(queue)
                 for _ in Array_Switch: Array_Thread_Args.append(_)
@@ -149,12 +147,14 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
                             sleep(args.sleep)
                 progress.update(task_Scan, advance=Counter_Bar)
                 Array_Thread_Args.clear()
+            task_Processes = progress.add_task("[cyan]Wait until the remaining processes are closed...", total=len(Dict_Threads), start=False)
+            task_Filter = progress.add_task("[cyan]Filtering the results...", total=100, start=False)
             while (len(Dict_Threads) > 0):
                 try:
                     for Thread_ID in Dict_Threads:
                         if (Thread_ID not in str(active_children())):
                             Dict_Threads.pop(Thread_ID, None)
-                            progress.update(task_Scan, advance=Counter_Bar)
+                            progress.update(task_Processes, advance=0.75)
                         else:
                             if ((time() - Dict_Threads[Thread_ID][1]) > 900):
                                 Dict_Threads[Thread_ID][0].terminate()
@@ -198,8 +198,8 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
             # Progress_End
             progress.start_task(task_Filter)
             while not progress.finished:
-                progress.update(task_Scan, advance=0.75)
-                progress.update(task_Wait, advance=0.5)
+                progress.update(task_Scan, advance=Counter_Bar)
+                progress.update(task_Processes, advance=0.75)
                 progress.update(task_Filter, advance=0.5)
                 sleep(0.01)
 
