@@ -1,2 +1,2 @@
-X-Powered-By
-Server
+X-POWERED-BY
+SERVER
