@@ -52,6 +52,9 @@ class Standard:
             if ("=" in _):
                 Temp = _.split('=')
                 Array_Temp_Zero.append(Temp[0]), Array_Temp_One.append(Temp[1])
+            elif (":" in _):
+                Temp = _.split(':')
+                Array_Temp_Zero.append(Temp[0]), Array_Temp_One.append(Temp[1])
         return Array_Temp_Zero, Array_Temp_One
 
     def Read_Template(template_file):
