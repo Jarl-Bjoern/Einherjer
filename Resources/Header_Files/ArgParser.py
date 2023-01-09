@@ -27,14 +27,14 @@ def Argument_Parser():
 """
 
     parser = ArgumentParser(add_help=False, formatter_class=RawTextHelpFormatter, description=Colors.ORANGE+Program_Description+Colors.RESET, allow_abbrev=False)
+    auth_arguments = parser.add_argument_group(Colors.ORANGE+'authentication arguments'+Colors.RESET)
+    config_arguments = parser.add_argument_group(Colors.ORANGE+'config arguments'+Colors.RESET)
+    debug_arguments = parser.add_argument_group(Colors.ORANGE+'debug arguments'+Colors.RESET)
+    optional = parser.add_argument_group(Colors.ORANGE+'optional arguments'+Colors.RESET)
+    performance_arguments = parser.add_argument_group(Colors.ORANGE+'performance arguments'+Colors.RESET)
     required = parser.add_argument_group(Colors.ORANGE+'required arguments'+Colors.RESET)
     scan_arguments = parser.add_argument_group(Colors.ORANGE+'scan arguments'+Colors.RESET)
     target_arguments = parser.add_argument_group(Colors.ORANGE+'target arguments'+Colors.RESET)
-    auth_arguments = parser.add_argument_group(Colors.ORANGE+'authentication arguments'+Colors.RESET)
-    config_arguments = parser.add_argument_group(Colors.ORANGE+'config arguments'+Colors.RESET)
-    performance_arguments = parser.add_argument_group(Colors.ORANGE+'performance arguments'+Colors.RESET)
-    optional = parser.add_argument_group(Colors.ORANGE+'optional arguments'+Colors.RESET)
-    debug_arguments = parser.add_argument_group(Colors.ORANGE+'debug arguments'+Colors.RESET)
 
     required.add_argument('-f', '--format', choices=['csv','docx','html','json','md','pdf','tex','xlsx','xml'], type=str, help=Colors.GREEN+'Specify your used format like xlsx (Excel), Docx (MS Word), LaTeX or PDF.'+Colors.RESET+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET, required=True)
     required.add_argument('-s', '--sleep', type=float, help=Colors.GREEN+'Set the pauses between the scans to do not DDoS the target.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET, required=True)
