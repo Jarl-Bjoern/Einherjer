@@ -6,7 +6,7 @@
 from Resources.Header_Files.Threads import *
 
 # Main_Function
-def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, 'Fuzzing': {}, 'Security_Flag': {}}, Array_Switch = [], Array_Thread_Args = [], Dict_Switch = {}, Dict_Threads = {}, Counter_Connections = 0):
+def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, 'Fuzzing': {}, 'Security_Flag': {}}, Array_HTTP_Filter = [], Array_Switch = [], Array_Thread_Args = [], Dict_Switch = {}, Dict_Threads = {}, Counter_Connections = 0):
     global Switch_Internet_Connection, Switch_nmap
 
     # Target_Options
@@ -79,14 +79,11 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
     else: Location = Standard.Create_Location_Dir(join(dirname(realpath(__file__)), Date))
 
     # Template_Filtering
-    if (args.read_config_http_header != None): pass
-    else: pass
-    if (args.read_config_cookie_security_flags != None): pass
-    else: pass
-    if (args.read_config_ssh_ciphers != None): pass
-    else: pass
-    if (args.read_config_ssl_ciphers != None): pass
-    else: pass
+    if (args.read_config_http_header != None): Array_Header, Array_HTTP_Filter = Read_File(join(dirname(realpath(__file__)), "Templates/http_header.txt"))
+    if (args.read_config_http_header_api != None): Array_Header, Array_HTTP_Filter = Read_File(join(dirname(realpath(__file__)), "Templates/http_header_api.txt"))
+    if (args.read_config_cookie_security_flags != None): Array_Security_Flags = Read_File(join(dirname(realpath(__file__)), "Templates/http_cookie_security.txt"))
+    if (args.read_config_ssh_ciphers != None): Array_SSH_Algorithms = Read_File(join(dirname(realpath(__file__)), "Templates/ssh_ciphers.txt"))
+    if (args.read_config_ssl_ciphers != None): Array_TLS_Algorithms = Read_File(join(dirname(realpath(__file__)), "Templates/ssl_ciphers.txt"))
 
     # Proxy_Settings
     if (args.add_http_proxy != None): Dict_Proxies['http'] = args.add_http_proxy
