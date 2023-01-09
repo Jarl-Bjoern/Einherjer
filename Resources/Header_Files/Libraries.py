@@ -43,14 +43,15 @@ try:
     from traceback import print_exc
     from urllib3 import disable_warnings
     from urllib3.exceptions import *
-    with redirect_stdout(None):
+    from warnings import catch_warnings, simplefilter
+    with catch_warnings():
+        simplefilter("ignore")
         from paramiko.ssh_exception import SSHException
 except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
 
 # Argument_Parser
 from Resources.Header_Files.ArgParser import Argument_Parser
 args = Argument_Parser()
-del Argument_Parser
 
 # Scanning_Module_Filtering
 if (args.scan_all == False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False): Module_Error('The scanning method is missing!\n')
@@ -63,8 +64,10 @@ elif (args.scan_all != False and args.scan_site_screenshot == False and args.sca
         from selenium.webdriver.chrome.service import Service
         from selenium.webdriver.remote.webdriver import WebDriver
         from webbrowser import open as webbrowser_open
-        with redirect_stdout(None):
+        with catch_warnings():
+            simplefilter("ignore")
             from paramiko.transport import Transport
+        with redirect_stdout(None):
             from webdriver_manager.chrome import ChromeDriverManager
         from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
         from cryptography import x509
@@ -93,7 +96,8 @@ elif (args.scan_all == False):
             from requests import get
         if (args.scan_ssh != False):
             from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
-            with redirect_stdout(None):
+            with catch_warnings():
+                simplefilter("ignore")
                 from paramiko.transport import Transport
             import asyncio
         if (args.scan_security_flags != False):
@@ -101,4 +105,4 @@ elif (args.scan_all == False):
     except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
 
 # Delete_Unused_Functions
-del redirect_stdout
+del Argument_Parser, catch_warnings, redirect_stdout, simplefilter
