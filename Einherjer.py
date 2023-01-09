@@ -120,6 +120,8 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
             queue = Queue()
             queue.put(Dict_Result)
             task_Scan = progress.add_task("[cyan]Scanning for vulnerabilities...", total=len(Array_Targets))
+            task_Processes = progress.add_task("[cyan]Waiting for the results...", total=1, start=False)
+            task_Filter = progress.add_task("[cyan]Filtering the results...", total=100, start=False)
             for Target in array(Array_Targets):
                 Array_Thread_Args.append(Target), Array_Thread_Args.append(args.timeout), Array_Thread_Args.append(queue)
                 for _ in Array_Switch: Array_Thread_Args.append(_)
@@ -147,8 +149,7 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
                             sleep(args.sleep)
                 progress.update(task_Scan, advance=Counter_Bar)
                 Array_Thread_Args.clear()
-            task_Processes = progress.add_task("[cyan]Waiting for the remaining results...", total=len(Dict_Threads))
-            task_Filter = progress.add_task("[cyan]Filtering the results...", total=100, start=False)
+            if (len(Dict_Threads) > 0): task_Processes = progress.add_task("[cyan]Waiting for the results...", total=len(Dict_Threads))
             while (len(Dict_Threads) > 0):
                 try:
                     for Thread_ID in Dict_Threads:
