@@ -4,6 +4,7 @@
 
 # Libraries
 from Resources.Colors import Colors
+from Resources.Header_Files.Variables import *
 
 class Standard:
     def Stdout_Output(Text_Array, Output_Seconds):
