@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 # Rainer Christian Bjoern Herold
 
+# Libraries
+from Resources.Colors import Colors
+
 class Standard:
     def Stdout_Output(Text_Array, Output_Seconds):
         for char in Text_Array:
