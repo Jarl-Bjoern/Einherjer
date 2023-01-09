@@ -147,7 +147,7 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
                             sleep(args.sleep)
                 progress.update(task_Scan, advance=Counter_Bar)
                 Array_Thread_Args.clear()
-            task_Processes = progress.add_task("[cyan]Wait until the remaining processes are closed...", total=len(Dict_Threads), start=False)
+            task_Processes = progress.add_task("[cyan]Waiting for the remaining results...", total=len(Dict_Threads))
             task_Filter = progress.add_task("[cyan]Filtering the results...", total=100, start=False)
             while (len(Dict_Threads) > 0):
                 try:
