@@ -209,7 +209,6 @@ def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Temp = {}):
 
     return Dict_Temp
 
-
 def SSH_Vulns(Target, Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': []}):
     global existing_nmap_file, Switch_nmap
 
