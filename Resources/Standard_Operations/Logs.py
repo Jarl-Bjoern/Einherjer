@@ -7,6 +7,8 @@ from Resources.Colors import Colors
 from Resources.Header_Files.Variables import *
 
 class Logs:
+    global Date
+
     def Error_Message(x):
         print(x), sleep(2), exit()
 
@@ -18,8 +20,6 @@ class Logs:
         else: Logs.Log_File(Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - '+Colors.RED+'FAILED\n'+Colors.RESET)
 
     def Log_File(Text, Log_Path = dirname(realpath(__file__)).replace('Resources/Header_Files', 'Logs')):
-        global Date
-
         if (not exists(Log_Path)): makedirs(Log_Path)
         with open(join(Log_Path, f"{Date}.log"), "a") as f:
             f.write(Text)
