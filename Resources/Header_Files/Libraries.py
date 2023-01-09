@@ -46,7 +46,7 @@ try:
 except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
 
 # Argument_Parser
-from Resources.ArgParser import Argument_Parser
+from Resources.Header_Files.ArgParser import Argument_Parser
 args = Argument_Parser()
 del Argument_Parser
 
