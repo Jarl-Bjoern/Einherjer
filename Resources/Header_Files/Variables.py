@@ -12,7 +12,7 @@ from Resources.Standard_Operations.Logs import *
 Array_Header = ['X-FRAME-OPTIONS', 'X-XSS-PROTECTION', 'CONTENT-SECURITY-POLICY', 'STRICT-TRANSPORT-SECURITY', 'X-CONTENT-TYPE-OPTIONS', 'REFERRER-POLICY']
 Array_Paths, Array_SSL_Vulns, Array_Results = [],[],[]
 Array_Information_Disclosure_Header = ["X-POWERED-BY", "SERVER"]
-Array_Security_Flags = ['SAMESITE', 'HTTPONLY', 'SECURE', 'JSessID']
+Array_Security_Flags = ['SAMESITE', 'HTTPONLY', 'SECURE']
 Array_SSH_Header = ['kex_algorithms', 'server_host_key_algorithms', 'encryption_algorithms', 'mac_algorithms']
 Array_SSH_Algorithms = [
     # Key Exchange Methods
@@ -169,14 +169,19 @@ def Check_Website(url, t_seconds, Dict_Temp = {}, Array_Output = [], Temp_Array 
 
     return Dict_Temp
 
-def Check_Security_Flags(url, t_seconds):
+def Check_Security_Flags(url, t_seconds, Dict_Temp = {}):
     s = Session()
     r = s.get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
 
     for Header_Key, Header_Values in r.headers.items():
         if ("COOKIE" in Header_Key.upper()):
             for Flag in Array_Security_Flags:
-                if (Flag not in Header_Values): pass
+                if (Flag not in Header_Values): Dict_Temp[Flag] = "FEHLT"
+                else:
+                    if ("SAMESITE" in Header_Values):
+                        if ("SAMESITE=LAX" in Header_Values or "SAMESITE=STRICT" in Header_Values): Dict_Temp[Flag] = Flag
+                        else: Dict_Temp[Flag] = "FEHLT"
+                    else: Dict_Temp[Flag] = Flag
     for cookie in dict(s.cookies): pass
 #        for i,j in cookie.__dict__.items():
 #            if ('_rest' in i):
@@ -192,7 +197,7 @@ def Check_Security_Flags(url, t_seconds):
 #
 #
 #                        Dict_Result['Security_Flag']
-    return Dict_Result
+    return Dict_Temp
 
 
 def SSH_Vulns(Target, Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': []}):
