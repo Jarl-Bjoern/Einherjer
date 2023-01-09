@@ -106,3 +106,6 @@ elif (args.scan_all == False):
 
 # Delete_Unused_Functions
 del Argument_Parser, catch_warnings, redirect_stdout, simplefilter
+
+# Static_Date
+Date = strftime('%Y-%m-%d_%H-%M-%S')
