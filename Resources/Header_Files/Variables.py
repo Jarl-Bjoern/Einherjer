@@ -3,10 +3,10 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
+from Resources.Colors import Colors
 from Resources.Header_Files.Libraries import *
 from Resources.Standard_Operations.Standard import *
 from Resources.Standard_Operations.Logs import *
-from Resources.Colors import Colors
 
 # Arrays
 Array_Header = ['X-FRAME-OPTIONS', 'X-XSS-PROTECTION', 'CONTENT-SECURITY-POLICY', 'STRICT-TRANSPORT-SECURITY', 'X-CONTENT-TYPE-OPTIONS', 'REFERRER-POLICY']
