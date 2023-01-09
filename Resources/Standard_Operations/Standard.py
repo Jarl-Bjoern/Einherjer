@@ -47,6 +47,13 @@ class Standard:
         with open(file_path, 'r') as f:
             return f.read().splitlines()
 
+    def Read_File_Special(file_path, Array_Temp_Zero = [], Array_Temp_One = []):
+        for _ in Standard.Read_File(template_file):
+            if ("=" in _):
+                Temp = _.split('=')
+                Array_Temp_Zero.append(Temp[0]), Array_Temp_One.append(Temp[1])
+        return Array_Temp_Zero, Array_Temp_One
+
     def Read_Template(template_file):
         if (exists(template_file)):
             return Standard.Read_File(template_file)
