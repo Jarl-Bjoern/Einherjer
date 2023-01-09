@@ -80,9 +80,13 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
 
     # Template_Filtering
     if (args.read_config_http_header != None): pass
+    else: pass
     if (args.read_config_cookie_security_flags != None): pass
+    else: pass
     if (args.read_config_ssh_ciphers != None): pass
+    else: pass
     if (args.read_config_ssl_ciphers != None): pass
+    else: pass
 
     # Proxy_Settings
     if (args.add_http_proxy != None): Dict_Proxies['http'] = args.add_http_proxy
