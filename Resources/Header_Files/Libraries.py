@@ -64,11 +64,11 @@ elif (args.scan_all != False and args.scan_site_screenshot == False and args.sca
         from selenium.webdriver.remote.webdriver import WebDriver
         from webbrowser import open as webbrowser_open
         with redirect_stdout(None):
-           from webdriver_manager.chrome import ChromeDriverManager
+            from paramiko.transport import Transport
+            from webdriver_manager.chrome import ChromeDriverManager
         from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
         from cryptography import x509
-        from cryptography.hazmat.backends import default_backend
-        from paramiko.transport import Transport
+        from cryptography.hazmat.backends import default_backend        
         from requests import get, Session
         from socket import create_connection
         import asyncio
@@ -76,7 +76,6 @@ elif (args.scan_all != False and args.scan_site_screenshot == False and args.sca
 elif (args.scan_all == False):
     try:
         if (args.scan_site_screenshot != False):
-            from contextlib import redirect_stdout
             from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
             from selenium import webdriver
             from selenium.webdriver.common.by import By
@@ -94,7 +93,8 @@ elif (args.scan_all == False):
             from requests import get
         if (args.scan_ssh != False):
             from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
-            from paramiko.transport import Transport
+            with redirect_stdout(None):
+                from paramiko.transport import Transport
             import asyncio
         if (args.scan_security_flags != False):
             from requests import Session
