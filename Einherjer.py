@@ -149,7 +149,8 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
                             sleep(args.sleep)
                 progress.update(task_Scan, advance=Counter_Bar)
                 Array_Thread_Args.clear()
-            if (len(Dict_Threads) > 0): progress.update(task_Processes, total=len(Dict_Threads), start=True)
+            progress.start_task(task_Processes)
+            if (len(Dict_Threads) > 0): progress.update(task_Processes, total=len(Dict_Threads))
             while (len(Dict_Threads) > 0):
                 try:
                     for Thread_ID in Dict_Threads:
