@@ -3,7 +3,7 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-from Resources.Variables_File import *
+from Resources.Header_Files.Variables import *
 
 def Markdown_Table(Dict_Result, location, Array_Files = []):
     if (Dict_Result['Header'] != {}):
