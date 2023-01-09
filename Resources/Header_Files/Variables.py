@@ -59,7 +59,7 @@ Array_TLS_Algorithms = ["SHA","MD5","RC2","RC4","IDEA","ADH","3DES","NULL","PSK"
 Dict_Proxies = {'http': '', 'https': ''}
 
 # Variables
-Date, COLOR_Headline, Log_Path = strftime('%Y-%m-%d_%H-%M-%S'), "black", dirname(realpath(__file__)).replace('Resources', 'Logs')
+Date, COLOR_Headline, Log_Path = strftime('%Y-%m-%d_%H-%M-%S'), "black", dirname(realpath(__file__)).replace('Resources/Header_Files', 'Logs')
 Switch_Internet_Connection, Switch_nmap, existing_nmap_file = False, False, ""
 
 # Design
