@@ -79,11 +79,11 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
     else: Location = Standard.Create_Location_Dir(join(dirname(realpath(__file__)), Date))
 
     # Template_Filtering
-    if (args.read_config_http_header != None): Array_Header, Array_HTTP_Filter = Read_File(join(dirname(realpath(__file__)), "Templates/http_header.txt"))
-    if (args.read_config_http_header_api != None): Array_Header, Array_HTTP_Filter = Read_File(join(dirname(realpath(__file__)), "Templates/http_header_api.txt"))
-    if (args.read_config_cookie_security_flags != None): Array_Security_Flags = Read_File(join(dirname(realpath(__file__)), "Templates/http_cookie_security.txt"))
-    if (args.read_config_ssh_ciphers != None): Array_SSH_Algorithms = Read_File(join(dirname(realpath(__file__)), "Templates/ssh_ciphers.txt"))
-    if (args.read_config_ssl_ciphers != None): Array_TLS_Algorithms = Read_File(join(dirname(realpath(__file__)), "Templates/ssl_ciphers.txt"))
+    if (args.read_config_http_header != None): Array_Header, Array_HTTP_Filter = Standard.Read_File_Special(join(dirname(realpath(__file__)), "Templates/http_header.txt"))
+    if (args.read_config_http_header_api != None): Array_Header, Array_HTTP_Filter = Standard.Read_File_Special(join(dirname(realpath(__file__)), "Templates/http_header_api.txt"))
+    if (args.read_config_cookie_security_flags != None): Array_Security_Flags = Standard.Read_File(join(dirname(realpath(__file__)), "Templates/http_cookie_security.txt"))
+    if (args.read_config_ssh_ciphers != None): Array_SSH_Algorithms = Standard.Read_File(join(dirname(realpath(__file__)), "Templates/ssh_ciphers.txt"))
+    if (args.read_config_ssl_ciphers != None): Array_TLS_Algorithms = Standard.Read_File(join(dirname(realpath(__file__)), "Templates/ssl_ciphers.txt"))
 
     # Proxy_Settings
     if (args.add_http_proxy != None): Dict_Proxies['http'] = args.add_http_proxy
