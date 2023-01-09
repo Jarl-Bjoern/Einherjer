@@ -23,7 +23,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_
             Dict_Result['Fuzzing'] = Check_Site_Paths(url, t_seconds)
         if (scan_fuzzing_recurse != False and '//' in url and 'http' in url):
             pass
-        if (scan_ssh != False and '//' not in url):
+        if (scan_ssh != False and '//' in url and 'ssh' in url):
             try:
                 if (':' not in url): Dict_Result['SSH'][url] = SSH_Vulns((url, 22))
                 else:
