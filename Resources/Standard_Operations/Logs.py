@@ -7,8 +7,6 @@ from Resources.Colors import Colors
 from Resources.Header_Files.Variables import *
 
 class Logs:
-    global Date
-
     def Error_Message(x):
         print(x), sleep(2), exit()
 
