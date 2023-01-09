@@ -119,7 +119,7 @@ def Check_Site_Header(url, t_seconds, Host_Name, Dict_Temp_Header = {}, Dict_Tem
                 for Temp_Header in array(Array_Header):
                     if (Temp_Header not in Dict_Temp_Header): Dict_Temp_Header[Temp_Header] = "FEHLT"
         if (Host_Name != ""): Logs.Log_File(Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - {Host_Name} - '+Colors.BLUE+f'{r}'+Colors.ORANGE+'\nOriginal Output'+Colors.RED+' -> '+Colors.RESET+f'{r.headers.items()}'+Colors.ORANGE+'\n Einherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp_Header}\n')
-        else: Logs.Log_File(Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - '+Colors.BLUE+f'{r}'+Colors.ORANGE+'\nOriginal Output'+Colors.RED+' -> '+Colors.RESET+f'{r.headers.items()}'+Colors.ORANGE+'\n Einherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp_Header}\n')
+        else: Logs.Log_File(Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - '+Colors.BLUE+f'{r}'+Colors.ORANGE+'\nOriginal Output'+Colors.RED+' -> '+Colors.RESET+f'{r.headers.items()}'+Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp_Header}\n')
     except ReadTimeout: Logs.Write_Log(url, Host_Name)
 
     return Dict_Temp_Header, Dict_Temp_Information_Disclosure
@@ -169,9 +169,12 @@ def Check_Website(url, t_seconds, Dict_Temp = {}, Array_Output = [], Temp_Array 
 
     return Dict_Temp
 
-def Check_Security_Flags(url, t_seconds, Dict_Temp = {}):
+def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Temp = {}):
     s = Session()
     r = s.get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
+
+    if (Host_Name != ""): Dict_Temp['DNS'] = Host_Name
+    else: Dict_Temp['DNS'] = ""
 
     # Normal_Cookie
     for Header_Key, Header_Values in r.headers.items():
@@ -200,6 +203,10 @@ def Check_Security_Flags(url, t_seconds, Dict_Temp = {}):
 #
 #
 #                        Dict_Result['Security_Flag']
+
+    if (Host_Name != ""): Logs.Log_File(Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - {Host_Name} - '+Colors.BLUE+f'{r}'+Colors.ORANGE+'\nOriginal Output'+Colors.RED+' -> '+Colors.RESET+f'{r.headers.items()}'+Colors.ORANGE+'\n Einherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n')
+    else: Logs.Log_File(Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - '+Colors.BLUE+f'{r}'+Colors.ORANGE+'\nOriginal Output'+Colors.RED+' -> '+Colors.RESET+f'{r.headers.items()}'+Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n')
+
     return Dict_Temp
 
 
