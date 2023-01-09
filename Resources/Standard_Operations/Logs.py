@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 # Rainer Christian Bjoern Herold
 
+# Libraries
+from Resources.Colors import Colors
+
 class Logs:
     def Error_Message(x):
         print(x), sleep(2), exit()
