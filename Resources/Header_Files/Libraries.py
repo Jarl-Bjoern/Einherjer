@@ -24,12 +24,12 @@ def Module_Error(Text):
 
 # Libraries
 try:
+    from contextlib import redirect_stdout
     from datetime import datetime
     from multiprocessing import active_children, Process, Queue
     from numpy import array
     from os import getcwd, listdir, makedirs, name as osname, remove, system, walk
     from os.path import dirname, exists, join, realpath
-    from paramiko.ssh_exception import SSHException
     from requests.exceptions import *
     from re import search, split as resplit
     from rich.progress import BarColumn, Progress, SpinnerColumn, TaskProgressColumn, TimeElapsedColumn, TimeRemainingColumn
@@ -43,6 +43,8 @@ try:
     from traceback import print_exc
     from urllib3 import disable_warnings
     from urllib3.exceptions import *
+    with redirect_stdout(None):
+        from paramiko.ssh_exception import SSHException
 except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
 
 # Argument_Parser
@@ -54,7 +56,6 @@ del Argument_Parser
 if (args.scan_all == False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False): Module_Error('The scanning method is missing!\n')
 elif (args.scan_all != False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
     try:
-        from contextlib import redirect_stdout
         from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
         from selenium import webdriver
         from selenium.webdriver.common.by import By
@@ -98,3 +99,6 @@ elif (args.scan_all == False):
         if (args.scan_security_flags != False):
             from requests import Session
     except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
+
+# Delete_Unused_Functions
+del redirect_stdout
