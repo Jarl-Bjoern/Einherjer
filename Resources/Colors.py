@@ -8,5 +8,7 @@ class Colors:
     ORANGE = '\033[33m'
     BLUE = '\033[34m'
     RED = '\033[31m'
+    YELLOW = '\033[33m'
+    PURPLE = '\033[35m'
     UNDERLINE = '\033[4m'
     RESET = '\033[0m'
