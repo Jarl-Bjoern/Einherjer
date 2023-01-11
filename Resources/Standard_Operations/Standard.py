@@ -51,10 +51,10 @@ class Standard:
         for _ in Standard.Read_File(file_path):
             if ("=" in _):
                 Temp = _.split('=')
-                Array_Temp_Zero.append(Temp[0]), Array_Temp_One.append(Temp[1])
+                if (Temp[0] not in Array_Temp_Zero): Array_Temp_Zero.append(Temp[0]), Array_Temp_One.append(Temp[1])
             elif (":" in _):
                 Temp = _.split(':')
-                Array_Temp_Zero.append(Temp[0]), Array_Temp_One.append(Temp[1])
+                if (Temp[0] not in Array_Temp_Zero): Array_Temp_Zero.append(Temp[0]), Array_Temp_One.append(Temp[1])
         return Array_Temp_Zero, Array_Temp_One
 
    # def Read_Template(template_file):
