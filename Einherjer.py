@@ -31,7 +31,6 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
         except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
         shuffle(Array_Targets)
         del shuffle
-    else: Array_Targets.sort()
 
     # Webdriver_Options
     if (args.scan_site_screenshot != False):
