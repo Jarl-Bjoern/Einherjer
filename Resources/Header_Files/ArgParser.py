@@ -4,9 +4,10 @@
 
 # Libraries
 from Resources.Colors import Colors
+from Resources.Header_Files.Libraries import dirname, realpath
 
 # Functions
-def Argument_Parser():
+def Argument_Parser(Template_Location = ):
     from argparse import ArgumentParser, RawTextHelpFormatter, SUPPRESS
 
     Program_Description = """-------------------------------------------------------------------------------------
