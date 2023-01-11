@@ -57,10 +57,10 @@ class Standard:
                 Array_Temp_Zero.append(Temp[0]), Array_Temp_One.append(Temp[1])
         return Array_Temp_Zero, Array_Temp_One
 
-    def Read_Template(template_file):
-        if (exists(template_file)):
-            return Standard.Read_File(template_file)
-        else: Logs.Error_Message(f'The requested File {template_file} does not exist!')
+   # def Read_Template(template_file):
+   #     if (exists(template_file)):
+   #         return Standard.Read_File(template_file)
+   #     else: Logs.Error_Message(f'The requested File {template_file} does not exist!')
 
     def Try_Remove_File(x):
         while True:
