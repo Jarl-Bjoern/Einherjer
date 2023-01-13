@@ -149,7 +149,7 @@ def Check_Site_Paths(url, t_seconds, array_wordlists, Array_Temp = [], Array_Sta
 
     return Array_Temp
 
-def Check_Certificate(url, Counter_URL = 0):
+def Check_Certificate(url, t_seconds, context = create_unverified_context(), Counter_URL = 0):
     if ('http://' in url): URL = url.split('http://')[1]
     elif ('https://' in url): URL = url.split('https://')[1]
 
