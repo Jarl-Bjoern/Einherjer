@@ -150,20 +150,29 @@ def Check_Site_Paths(url, t_seconds, array_wordlists, Array_Temp = [], Array_Sta
     return Array_Temp
 
 def Check_Certificate(url, Counter_URL = 0):
-    try: import OpenSSL
-    except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
+    if ('http://' in url): URL = url.split('http://')[1]
+    elif ('https://' in url): URL = url.split('https://')[1]
 
-    for i in url:
-        if (i == ':'): Counter_URL += 1
+    for _ in url:
+       if (_ == ':'): Counter_URL += 1
     if (Counter_URL > 1): Port = url.split(':')[2]
     else: Port = 443
-    Cert = get_server_certificate((url, int(Port)))
 
-    with create_connection((url, 443), timeout=t_seconds) as sock:
-        with context.wrap_socket(sock, server_hostname=url) as ssock:
-            cert_der = ssock.getpeercert(True)
-            cert = x509.load_der_x509_certificate(cert_der, default_backend())
-            print (cert.signature_hash_algorithm.name)
+    try:
+        with create_connection((URL, int(Port)), timeout=t_seconds) as sock:
+            with context.wrap_socket(sock, server_hostname=URL) as ssock:
+                cert_der = ssock.getpeercert(True)
+                cert = x509.load_der_x509_certificate(cert_der, default_backend())
+
+                # Check_Certificate
+                Current_Date = datetime.now()
+                Cert_Creation_Date = cert.not_valid_before
+                Cert_EOL = cert.not_valid_after
+                Cert_Signature_Algorithm = cert.signature_hash_algorithm.name.upper()
+                Cert_Signature_OID_Algorithm = cert.signature_algorithm_oid.upper()
+                Cert_Issuer = cert.issuer
+                Date_Difference = (Current_Date - datetime()).total_seconds()/60/60
+    except (ConnectionRefusedError, gaierror): Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n')
 
 def Check_Website(url, t_seconds, Dict_Temp = {}, Array_Output = [], Temp_Array = []):
     Array_Filter = ["Apache/", "Tomcat/", "Server Version:"]
@@ -361,4 +370,4 @@ def SSL_Vulns(url, t_seconds, context = create_unverified_context(), Dict_SSL = 
                                 Dict_SSL['TLS'].append(Check_Protocol(Ciphers[1]))
                                 break
         return Dict_SSL
-    except (ConnectionRefusedError, gaierror): Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n')
+    except (ConnectionRefusedError, gaierror): Logs.Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n')
