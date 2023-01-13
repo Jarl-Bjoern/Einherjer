@@ -76,7 +76,7 @@ progress_columns = (
 )
 
 # Functions
-def Get_Host_Name(url, Count_Double_Point = 0, Target = "", Temp = "", Word = ""):
+def Get_Host_Name(url, Count_Double_Point = 0, Target = "", Temp = "", T_Switch = "", Word = ""):
     if ('//' in url):
         for i in range(0, len(url)):
             if (url[i] == ":"): Count_Double_Point += 1
@@ -95,14 +95,29 @@ def Get_Host_Name(url, Count_Double_Point = 0, Target = "", Temp = "", Word = ""
         for _ in Temp:
             if (_ != []):
                 if (type(_) != list):
-                    if (_ != Temp[len(Temp)-1]): Word += f"{_}, "
-                    else: Word += f"{_}"
+                    if (_ != Temp[len(Temp)-1] and _ != Target): Word += f"{_}, "
+                    elif (_ != Temp[len(Temp)-1] and _ == Target): pass
+                    elif (_ == Temp[len(Temp)-1] and _ == Target):
+                        if (Word[-1] == ","):
+                            T_Switch = Target[:-1]
+                            Word = T_Switch
+                    elif (_ == Temp[len(Temp)-1] and _ != Target): Word += f"{_}"
                 else:
                     for j in _:
-                        if (j != _[len(_)-1]): Word += f"{j}, "
-                        else:
-                            if (_ != Temp[len(Temp)-1]): Word += f"{j}, "
-                            else: Word += f"{j}"
+                        if (j != _[len(_)-1] and j != Target): Word += f"{j}, "
+                        elif (j != _[len(_)-1] and j == Target): pass
+                        elif (j == _[len(_)-1] and j == Target):
+                            if (Word[-1] == ","):
+                                T_Switch = Target[:-1]
+                                Word = T_Switch
+                        elif (j == _[len(_)-1] and j != Target):
+                            if (_ != Temp[len(Temp)-1] and _ != Target): Word += f"{j}, "
+                            elif (_ != Temp[len(Temp)-1] and _ == Target): pass
+                            elif (_ == Temp[len(Temp)-1] and _ == Target):
+                                if (Word[-1] == ","):
+                                    T_Switch = Target[:-1]
+                                    Word = T_Switch
+                            elif (_ == Temp[len(Temp)-1] and _ != Target): Word += f"{j}"
     elif (type(Temp) == str): Word = Temp
     return Word
 
