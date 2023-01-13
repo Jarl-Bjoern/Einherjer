@@ -323,11 +323,16 @@ def SSL_Vulns(url, t_seconds, context = create_unverified_context(), Dict_SSL = 
             with context.wrap_socket(sock, server_hostname=URL) as ssock:
                 cert_der = ssock.getpeercert(True)
                 cert = x509.load_der_x509_certificate(cert_der, default_backend())
+
+                # Check_Certificate
                 Current_Date = datetime.now()
-                Cert_Creation_Date = cert.not_valid_after
+                Cert_Creation_Date = cert.not_valid_before
+                Cert_EOL = cert.not_valid_after
                 Cert_Signature_Algorithm = cert.signature_hash_algorithm.name.upper()
+                Cert_Signature_OID_Algorithm = cert.signature_algorithm_oid.upper()
                 Date_Difference = (Current_Date - datetime()).total_seconds()/60/60
                 
+                # Check_Ciphers
                 for Ciphers in ssock.shared_ciphers():
                     for Algorithm in array(Array_TLS_Algorithms):
                         if (Algorithm in Ciphers[0]):
