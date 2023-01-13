@@ -330,6 +330,7 @@ def SSL_Vulns(url, t_seconds, context = create_unverified_context(), Dict_SSL = 
                 Cert_EOL = cert.not_valid_after
                 Cert_Signature_Algorithm = cert.signature_hash_algorithm.name.upper()
                 Cert_Signature_OID_Algorithm = cert.signature_algorithm_oid.upper()
+                Cert_Issuer = cert.issuer
                 Date_Difference = (Current_Date - datetime()).total_seconds()/60/60
                 
                 # Check_Ciphers
