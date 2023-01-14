@@ -76,6 +76,17 @@ progress_columns = (
 )
 
 # Functions
+def Filter_Host_Name(Element, Target, Array_Temp, Word, T_Switch):
+    if (Element != Array_Temp[len(Array_Temp)-1] and Element != Target): Word += f"{Element}, "
+    elif (Element != Array_Temp[len(Array_Temp)-1] and Element == Target): pass
+    elif (Element == Array_Temp[len(Array_Temp)-1] and Element == Target):
+        if (Word[-1] == ","):
+            T_Switch = Target[:-1]
+            Word = T_Switch
+    elif (Element == Array_Temp[len(Array_Temp)-1] and Element != Target): Word += f"{Element}"
+
+    return Word
+
 def Get_Host_Name(url, Count_Double_Point = 0, Target = "", Temp = "", T_Switch = "", Word = ""):
     if ('//' in url):
         for i in range(0, len(url)):
@@ -94,16 +105,17 @@ def Get_Host_Name(url, Count_Double_Point = 0, Target = "", Temp = "", T_Switch 
     if (type(Temp) == tuple or type(Temp) == list):
         for _ in Temp:
             if (_ != []):
-                if (type(_) != list):
-                    if (_ != Temp[len(Temp)-1] and _ != Target): Word += f"{_}, "
-                    elif (_ != Temp[len(Temp)-1] and _ == Target): pass
-                    elif (_ == Temp[len(Temp)-1] and _ == Target):
-                        if (Word[-1] == ","):
-                            T_Switch = Target[:-1]
-                            Word = T_Switch
-                    elif (_ == Temp[len(Temp)-1] and _ != Target): Word += f"{_}"
+                if (type(_) != list): Word = Filter_Host_Name(_, Target, Temp, Word)
+#                    if (_ != Temp[len(Temp)-1] and _ != Target): Word += f"{_}, "
+#                    elif (_ != Temp[len(Temp)-1] and _ == Target): pass
+#                    elif (_ == Temp[len(Temp)-1] and _ == Target):
+#                        if (Word[-1] == ","):
+#                            T_Switch = Target[:-1]
+#                            Word = T_Switch
+#                    elif (_ == Temp[len(Temp)-1] and _ != Target): Word += f"{_}"
                 else:
                     for j in _:
+#                        Word = Filter_Host_Name(j, Target, _, Word)
                         if (j != _[len(_)-1] and j != Target): Word += f"{j}, "
                         elif (j != _[len(_)-1] and j == Target): pass
                         elif (j == _[len(_)-1] and j == Target):
