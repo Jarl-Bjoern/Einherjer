@@ -33,6 +33,7 @@ def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Res
     debug_arguments = parser.add_argument_group(Colors.ORANGE+'debug arguments'+Colors.RESET)
     optional = parser.add_argument_group(Colors.ORANGE+'optional arguments'+Colors.RESET)
     performance_arguments = parser.add_argument_group(Colors.ORANGE+'performance arguments'+Colors.RESET)
+    program_arguments = parser.add_argument_group(Colors.ORANGE+'program arguments'+Colors.RESET)
     required = parser.add_argument_group(Colors.ORANGE+'required arguments'+Colors.RESET)
     scan_arguments = parser.add_argument_group(Colors.ORANGE+'scan arguments'+Colors.RESET)
     target_arguments = parser.add_argument_group(Colors.ORANGE+'target arguments'+Colors.RESET)
@@ -62,6 +63,9 @@ def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Res
     performance_arguments.add_argument('-r', '--random-order', type=bool, nargs='?', default=False, help=Colors.GREEN+'This parameter randomize your targets.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     performance_arguments.add_argument('-tHo', '--thread-timeout', type=int, default=90, help=Colors.GREEN+'This parameter sets the max time to wait until a thread will be terminated\n\nDefault: 90 Seconds'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     performance_arguments.add_argument('-fw', '--fuzzing-wait', type=int, default=1, help=Colors.GREEN+'This parameter specifies the default sleep between the fuzzing\n\nDefault: 1 Second'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+
+    program_arguments.add_argument('-pC', '--program-cmd', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    program_arguments.add_argument('-pS', '--program-server', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     required.add_argument('-f', '--format', choices=['csv','docx','html','json','md','pdf','tex','xlsx','xml'], type=str, help=Colors.GREEN+'Specify your used format like xlsx (Excel), Docx (MS Word), LaTeX or PDF.'+Colors.RESET+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET, required=True)
     required.add_argument('-s', '--sleep', type=float, help=Colors.GREEN+'Set the pauses between the scans to do not DDoS the target.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET, required=True)
