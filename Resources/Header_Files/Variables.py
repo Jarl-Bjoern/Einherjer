@@ -130,9 +130,7 @@ def Get_Host_Name(url, Count_Double_Point = 0, Target = "", Temp = "", T_Switch 
                                     T_Switch = Target[:-1]
                                     Word = T_Switch
                             elif (_ == Temp[len(Temp)-1] and _ != Target): Word += f"{j}"
-    elif (type(Temp) == str):
-        if (Temp != Target): Word = Temp
-        else: Word = ""
+    elif (type(Temp) == str): Word = Temp
     return Word
 
 def Check_Site_Header(url, t_seconds, Host_Name, Dict_Temp_Header = {}, Dict_Temp_Information_Disclosure = {}):
