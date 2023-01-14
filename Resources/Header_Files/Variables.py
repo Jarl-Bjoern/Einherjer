@@ -76,7 +76,7 @@ progress_columns = (
 )
 
 # Functions
-def Filter_Host_Name(Element, Target, Array_Temp, Word, T_Switch):
+def Filter_Host_Name(Element, Target, Array_Temp, Word, T_Switch = ""):
     if (Element != Array_Temp[len(Array_Temp)-1] and Element != Target): Word += f"{Element}, "
     elif (Element != Array_Temp[len(Array_Temp)-1] and Element == Target): pass
     elif (Element == Array_Temp[len(Array_Temp)-1] and Element == Target):
