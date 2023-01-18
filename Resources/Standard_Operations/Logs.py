@@ -4,7 +4,7 @@
 
 # Libraries
 from Resources.Colors import Colors
-from Resources.Header_Files.Libraries import Date, dirname, exists, join, makedirs, realpath, sleep
+from Resources.Header_Files.Libraries import Date, dirname, exists, join, makedirs, realpath, sleep, strftime
 
 class Logs:
     def Error_Message(x):
