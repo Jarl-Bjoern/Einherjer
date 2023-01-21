@@ -28,7 +28,7 @@ try:
     from datetime import datetime
     from multiprocessing import active_children, Process, Queue
     from numpy import array
-    from os import getcwd, listdir, makedirs, name as osname, remove, system, walk
+    from os import chmod, getcwd, listdir, makedirs, name as osname, remove, system, walk
     from os.path import dirname, exists, join, realpath
     from requests.exceptions import *
     from re import search, split as resplit
@@ -44,6 +44,7 @@ try:
     from urllib3 import disable_warnings
     from urllib3.exceptions import *
     from warnings import catch_warnings, simplefilter
+    import stat
     with catch_warnings():
         simplefilter("ignore")
         from paramiko.ssh_exception import SSHException
@@ -104,8 +105,12 @@ elif (args.scan_all == False):
             from requests import Session
     except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
 
+# Change_Permissions_For_Webdriver
+for _ in listdir(dirname(realpath(__file__)).replace('Header_Files', 'Webdriver')):
+    _.chmod(_.stat().st_mode | stat.S_IEXEC)
+
 # Delete_Unused_Functions
-del Argument_Parser, catch_warnings, redirect_stdout, simplefilter
+del Argument_Parser, catch_warnings, chmod, redirect_stdout, simplefilter, stat
 
 # Static_Date
 Date = strftime('%Y-%m-%d_%H-%M-%S')
