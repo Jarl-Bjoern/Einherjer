@@ -201,6 +201,10 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
                 progress.update(task_Filter, advance=0.5)
                 sleep(0.01)
 
+    if (args.scan_site_screenshot != False):
+        if (len(listdir(Screen_Dir)) > 0):
+            for _ in listdir(Screen_Dir): Array_Output.append(join(Screen_Dir, _))
+
     # Output_End
     if (Array_Output != []):
         Standard.Stdout_Output(Colors.CYAN+"\n\nYour Scan was successful and the result will be found at the following location:\n"+Colors.RESET, 0.01)
