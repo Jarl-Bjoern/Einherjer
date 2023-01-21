@@ -44,15 +44,6 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
         if (args.custom_chromium_path != None): options.binary_location = args.custom_chromium_path
         else:
             if (osname != 'nt'): options.binary_location = "/usr/bin/chromium"
-
-        if (Switch_Internet_Connection == True):
-            if (osname == 'nt'):
-                Chrome_Path = ChromeDriverManager().install()
-                driver = webdriver.Chrome(service=Service(Chrome_Path), options=options)
-            else:
-                driver = Web.Driver_Specification(options)
-        else: driver = Web.Driver_Specification(options)
-        driver.implicitly_wait(args.timeout), driver.set_window_size(1920,1080), driver.execute_script("document.body.style.zoom='250%'")
         del ChromeDriverManager, webbrowser_open
 
     # Wordlist_Filtering
