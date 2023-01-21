@@ -7,8 +7,10 @@ from Resources.Header_Files.Variables import *
 
 class Web:
     def Driver_Specification(options):
-        if (osname == 'nt'): driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)).split('Workfiles')[0], 'Webdriver/chromedriver.exe')), options=options)
-        else: driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)).split('Workfiles')[0], 'Webdriver/chromedriver')), options=options)
+        try:
+            if (osname == 'nt'): driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)).split('Workfiles')[0], 'Webdriver/chromedriver.exe')), options=options)
+            else: driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)).split('Workfiles')[0], 'Webdriver/chromedriver')), options=options)
+        except AttributeError: pass
         return driver
 
     def Configurate_Driver(options, driver = None):
