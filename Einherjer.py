@@ -39,11 +39,11 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
 
         if ("ttl" in getoutput('ping -c 2 8.8.8.8')):
             Switch_Internet_Connection = True
-        options = webdriver.ChromeOptions()
-        for _ in Array_Selenium: options.add_argument(_)
-        if (args.custom_chromium_path != None): options.binary_location = args.custom_chromium_path
+        driver_options = webdriver.ChromeOptions()
+        for _ in Array_Selenium: driver_options.add_argument(_)
+        if (args.custom_chromium_path != None): driver_options.binary_location = args.custom_chromium_path
         else:
-            if (osname != 'nt'): options.binary_location = "/usr/bin/chromium"
+            if (osname != 'nt'): driver_options.binary_location = "/usr/bin/chromium"
         del ChromeDriverManager, webbrowser_open
 
     # Wordlist_Filtering
@@ -83,10 +83,10 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
     # Scanning_Options
     if (args.scan_all == False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False): Error_Message('The scanning method is missing!\n')
     elif (args.scan_all != False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
-        Array_Switch.append(driver),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True)
+        Array_Switch.append(driver_options),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True)
     elif (args.scan_all == False):
         try:
-            if (args.scan_site_screenshot != False): Array_Switch.append(driver)
+            if (args.scan_site_screenshot != False): Array_Switch.append(driver_options)
             else: Array_Switch.append(None)
             if (args.scan_site_ssl != False): Array_Switch.append(True)
             else: Array_Switch.append(False)
