@@ -31,7 +31,6 @@ class Web:
                     sleep(3.5), webbrowser_open("https://chromedriver.chromium.org/downloads")
             Logs.Error_Message("\nIt looks like you do not have the correct Chromedriver version installed.\n\nPlease go to https://chromedriver.chromium.org/downloads and download the correct chromedriver and paste it into the Resources folder.\n")
         except WebDriverException:
-        except WebDriverException:
             Chromium_Check = getoutput("apt-cache policy chromium").splitlines()[1][1:].split(":")[1][1:]
             if ('none' in Chromium_Check): Logs.Error_Message("\nIt looks like that you do not have Chromium installed.\n\nPlease use apt install -y chromium or set up the location of your custom chromium path as a argument.\n")
             else: Logs.Error_Message(f"\nChromium: {Chromium_Check}\n\nIt looks like that you do not have Chromedriver installed.\n\nPlease go to https://chromedriver.chromium.org/downloads and download the correct chromedriver and paste it into the Resources folder.\n")
