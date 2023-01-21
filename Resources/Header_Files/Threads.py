@@ -5,6 +5,7 @@
 # Libraries
 from Resources.Header_Files.Variables import *
 from Resources.Standard_Operations.Logs import *
+from Resources.Workfiles.Scan_Screen import Take_Screenshot
 
 # Functions
 def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_header, scan_fuzzing, scan_ssh, scan_fuzzing_recurse, scan_security_flag, Host_Name = "", Target = ""):
