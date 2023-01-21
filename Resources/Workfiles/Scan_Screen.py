@@ -43,8 +43,9 @@ class Web:
                     if (countNonZero(b) == 0 and countNonZero(g) == 0 and countNonZero(r) == 0):
                         pass
 
-def Take_Screenshot(driver, url, location, switch_connection):
-    if (switch_connection == True):
+def Take_Screenshot(driver, url, location):
+    global Switch_Internet_Connection
+    if (Switch_Internet_Connection == True):
         if (osname == 'nt'):
             Chrome_Path = ChromeDriverManager().install()
             driver = webdriver.Chrome(service=Service(Chrome_Path), options=options)
