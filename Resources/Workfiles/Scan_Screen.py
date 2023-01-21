@@ -43,7 +43,7 @@ class Web:
                     if (countNonZero(b) == 0 and countNonZero(g) == 0 and countNonZero(r) == 0):
                         pass
 
-def Take_Screenshot(driver_options, url, location):
+def Take_Screenshot(url, driver_options, location):
     global Switch_Internet_Connection
     if (Switch_Internet_Connection == True):
         if (osname == 'nt'):
