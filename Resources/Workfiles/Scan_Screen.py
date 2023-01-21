@@ -9,7 +9,7 @@ class Web:
     def Driver_Specification(options, Chrome_Driver_Location = ""):
         if (osname == 'nt'): driver = join(dirname(realpath(__file__)).split('Workfiles')[0], 'Webdriver/chromedriver.exe')
         else: driver = join(dirname(realpath(__file__)).split('Workfiles')[0], 'Webdriver/chromedriver')
-        return webdriver.Chrome(service=Service(Chrome_Driver_Location), options=options)
+        return webdriver.Chrome(service=Service(Chrome_Driver_Location), options=options, executable_path=Chrome_Driver_Location)
 
     def Configurate_Driver(options, driver = None):
         try: driver = Web.Driver_Specification(options)
