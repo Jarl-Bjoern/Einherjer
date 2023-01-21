@@ -62,7 +62,6 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
 
         if ("ttl" in getoutput('ping -c 2 8.8.8.8')):
             Switch_Internet_Connection = True
-        #driver_options = webdriver.ChromeOptions()
         driver_options = Options()
         for _ in Array_Selenium: driver_options.add_argument(_)
         if (args.custom_chromium_path != None): driver_options.binary_location = args.custom_chromium_path
