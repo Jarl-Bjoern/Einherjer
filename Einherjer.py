@@ -4,6 +4,7 @@
 
 # Libraries
 from Resources.Header_Files.Threads import *
+from Resources.Workfiles.Scan_Screen import Web
 
 # Main_Function
 def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, 'Fuzzing': {}, 'Security_Flag': {}}, Array_HTTP_Filter = [], Array_Switch = [], Array_Thread_Args = [], Dict_Switch = {}, Dict_Threads = {}, Counter_Connections = 0):
