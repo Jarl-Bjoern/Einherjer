@@ -63,6 +63,7 @@ elif (args.scan_all != False and args.scan_site_screenshot == False and args.sca
         from selenium import webdriver
         from selenium.webdriver.common.by import By
         from selenium.webdriver.common.keys import Keys
+        from selenium.webdriver.chrome.options import Options
         from selenium.webdriver.chrome.service import Service
         from selenium.webdriver.remote.webdriver import WebDriver
         from webbrowser import open as webbrowser_open
@@ -85,6 +86,7 @@ elif (args.scan_all == False):
             from selenium import webdriver
             from selenium.webdriver.common.by import By
             from selenium.webdriver.common.keys import Keys
+            from selenium.webdriver.chrome.options import Options
             from selenium.webdriver.chrome.service import Service
             from selenium.webdriver.remote.webdriver import WebDriver
             from webbrowser import open as webbrowser_open
