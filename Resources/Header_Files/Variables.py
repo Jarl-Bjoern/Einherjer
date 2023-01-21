@@ -60,7 +60,7 @@ Dict_Proxies = {'http': '', 'https': ''}
 
 # Variables
 COLOR_Headline = "black"
-Switch_Internet_Connection, Switch_nmap, existing_nmap_file = False, False, ""
+Switch_nmap, existing_nmap_file = False, ""
 
 # Design
 disable_warnings(InsecureRequestWarning)
