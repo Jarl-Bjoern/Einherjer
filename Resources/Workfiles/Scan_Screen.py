@@ -6,14 +6,9 @@
 from Resources.Header_Files.Variables import *
 
 class Web:
-    def Driver_Specification(option):
-        try:
-            if (osname == 'nt'): driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)).split('Workfiles')[0], 'Webdriver/chromedriver.exe')), options=option)
-            else: driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)).split('Workfiles')[0], 'Webdriver/chromedriver')), options=option)
-        except WebDriverException:
-            Chromium_Check = getoutput("apt-cache policy chromium").splitlines()[1][1:].split(":")[1][1:]
-            if ('none' in Chromium_Check): Logs.Error_Message("\nIt looks like that you do not have Chromium installed.\n\nPlease use apt install -y chromium or set up the location of your custom chromium path as a argument.\n")
-            else: Logs.Error_Message(f"\nChromium: {Chromium_Check}\n\nIt looks like that you do not have Chromedriver installed.\n\nPlease go to https://chromedriver.chromium.org/downloads and download the correct chromedriver and paste it into the Resources folder.\n")
+    def Driver_Specification(options):
+        if (osname == 'nt'): driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)).split('Workfiles')[0], 'Webdriver/chromedriver.exe')), options=options)
+        else: driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)).split('Workfiles')[0], 'Webdriver/chromedriver')), options=options)
         return driver
 
     def Configurate_Driver(options, driver = None):
