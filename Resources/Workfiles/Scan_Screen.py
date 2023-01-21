@@ -10,7 +10,7 @@ class Web:
         try:
             if (osname == 'nt'): driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)).split('Workfiles')[0], 'Webdriver/chromedriver.exe')), options=options)
             else: driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)).split('Workfiles')[0], 'Webdriver/chromedriver')), options=options)
-        except AttributeError: pass
+        except AttributeError: Logs.Error_Message("\nIt was not possible to use the chromedriver. Please try another one or upgrade selenium and the installed chromium")
         return driver
 
     def Configurate_Driver(options, driver = None):
