@@ -43,9 +43,8 @@ class Web:
                     if (countNonZero(b) == 0 and countNonZero(g) == 0 and countNonZero(r) == 0):
                         pass
 
-def Take_Screenshot(url, driver_options, location):
-    global Switch_Internet_Connection
-    if (Switch_Internet_Connection == True):
+def Take_Screenshot(url, driver_options, Screen_Dir, switch_internet_connection):
+    if (switch_internet_connection == True):
         if (osname == 'nt'):
             Chrome_Path = ChromeDriverManager().install()
             driver = webdriver.Chrome(service=Service(Chrome_Path), options=driver_options)
@@ -54,9 +53,6 @@ def Take_Screenshot(url, driver_options, location):
     else: driver = Web.Driver_Specification(driver_options)
     driver.implicitly_wait(args.timeout), driver.set_window_size(1920,1080), driver.execute_script("document.body.style.zoom='250%'")
 
-    Screen_Dir = join(location, 'Screenshots')
-    try: makedirs(Screen_Dir)
-    except FileExistsError: pass
     if ("://" in url): Screen_Name = url.split('://')[1]
     else: Screen_Name = url
     try:
