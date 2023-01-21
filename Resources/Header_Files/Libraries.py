@@ -30,6 +30,7 @@ try:
     from numpy import array
     from os import chmod, getcwd, listdir, makedirs, name as osname, remove, system, walk
     from os.path import dirname, exists, join, realpath
+    from pathlib import Path
     from requests.exceptions import *
     from re import search, split as resplit
     from rich.progress import BarColumn, Progress, SpinnerColumn, TaskProgressColumn, TimeElapsedColumn, TimeRemainingColumn
@@ -106,9 +107,9 @@ elif (args.scan_all == False):
     except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
 
 # Change_Permissions_For_Webdriver
-for root, _, files in walk(dirname(realpath(__file__)).replace('Header_Files', 'Webdriver'), topdown=False):
-    for _ in files:
-        _.chmod(_.stat().st_mode | stat.S_IEXEC)
+for _ in listdir(dirname(realpath(__file__)).replace('Header_Files', 'Webdriver')):
+    f = Path(join(dirname(realpath(__file__)).replace('Header_Files', 'Webdriver'), _))
+    f.chmod(f.stat().st_mode | stat.S_IEXEC)
 
 # Delete_Unused_Functions
 del Argument_Parser, catch_warnings, chmod, redirect_stdout, simplefilter, stat
