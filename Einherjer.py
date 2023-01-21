@@ -7,8 +7,8 @@ from Resources.Header_Files.Threads import *
 from Resources.Workfiles.Scan_Screen import Web
 
 # Main_Function
-def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, 'Fuzzing': {}, 'Security_Flag': {}}, Array_HTTP_Filter = [], Array_Switch = [], Array_Thread_Args = [], Dict_Switch = {}, Dict_Threads = {}, Counter_Connections = 0):
-    global Switch_Internet_Connection, Switch_nmap
+def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 'SSL': {}, 'Fuzzing': {}, 'Security_Flag': {}}, Array_HTTP_Filter = [], Array_Switch = [], Array_Thread_Args = [], Dict_Switch = {}, Dict_Threads = {}, Counter_Connections = 0, Switch_Internet_Connection = False):
+    global Switch_nmap
 
     # Target_Options
     if (args.target == None and args.import_list == None): Logs.Error_Message('The program cannot be started without targets')
@@ -33,18 +33,6 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
         shuffle(Array_Targets)
         del shuffle
 
-    # Webdriver_Options
-    if (args.scan_site_screenshot != False):
-        Array_Selenium = ['--start_maximized','--no-sandbox','--remote-debugging-port=19222','--ignore-certificate-errors','--test-type','--headless','--log-level=3']
-
-        if ("ttl" in getoutput('ping -c 2 8.8.8.8')):
-            Switch_Internet_Connection = True
-        driver_options = webdriver.ChromeOptions()
-        for _ in Array_Selenium: driver_options.add_argument(_)
-        if (args.custom_chromium_path != None): driver_options.binary_location = args.custom_chromium_path
-        else:
-            if (osname != 'nt'): driver_options.binary_location = "/usr/bin/chromium"
-
     # Wordlist_Filtering
     if (args.add_wordlist != None and args.add_multiple_wordlists == None):
         Array_Wordlists = []
@@ -67,6 +55,22 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
         elif ('.' not in args.output_location and '/' not in args.output_location): Location = Standard.Create_Location_Dir(join(getcwd(), f"{args.output_location}/{Date}"))
         elif ('/' in args.output_location and not '.' in args.output_location): Location = Standard.Create_Location_Dir(f"{args.output_location}/{Date}")
     else: Location = Standard.Create_Location_Dir(join(dirname(realpath(__file__)), Date))
+
+    # Webdriver_Options
+    if (args.scan_site_screenshot != False):
+        Array_Selenium = ['--start_maximized','--no-sandbox','--remote-debugging-port=19222','--ignore-certificate-errors','--test-type','--headless','--log-level=3']
+
+        if ("ttl" in getoutput('ping -c 2 8.8.8.8')):
+            Switch_Internet_Connection = True
+        driver_options = webdriver.ChromeOptions()
+        for _ in Array_Selenium: driver_options.add_argument(_)
+        if (args.custom_chromium_path != None): driver_options.binary_location = args.custom_chromium_path
+        else:
+            if (osname != 'nt'): driver_options.binary_location = "/usr/bin/chromium"
+
+        Screen_Dir = join(Location, 'Screenshots')
+        try: makedirs(Screen_Dir)
+        except FileExistsError: pass
 
     # Template_Filtering
     if (args.read_config_http_header != None): Array_Header, Array_HTTP_Filter = Standard.Read_File_Special(join(dirname(realpath(__file__)), "Templates/http_header.txt"))
@@ -116,7 +120,7 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
             for Target in array(Array_Targets):
                 Array_Thread_Args.append(Target), Array_Thread_Args.append(args.timeout), Array_Thread_Args.append(queue)
                 for _ in Array_Switch: Array_Thread_Args.append(_)
-                Array_Thread_Args.append(Location)
+                Array_Thread_Args.append(Screen_Dir), Array_Thread_Args.append(Switch_Internet_Connection)
                 p = Process(target=Thread_Scanning_Start, args=Array_Thread_Args, daemon=True)
                 p.start()
                 Counter_Connections += 1
