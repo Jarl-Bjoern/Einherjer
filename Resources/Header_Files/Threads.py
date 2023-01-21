@@ -8,12 +8,12 @@ from Resources.Standard_Operations.Logs import *
 from Resources.Workfiles.Scan_Screen import Take_Screenshot
 
 # Functions
-def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_header, scan_fuzzing, scan_ssh, scan_fuzzing_recurse, scan_security_flag, location, Host_Name = "", Target = ""):
+def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_header, scan_fuzzing, scan_ssh, scan_fuzzing_recurse, scan_security_flag, screen_dir, Host_Name = "", Target = ""):
     try:
         Dict_Result = queue.get()
         Host_Name = Get_Host_Name(url)
         if (driver_options != None and '//' in url and 'http' in url):
-            Take_Screenshot(url, driver_options, location)
+            Take_Screenshot(url, driver_options, screen_dir)
         if (scan_header != False and '//' in url and 'http' in url):
             Dict_Result['Header'][url], Dict_Result['Information'][url] = Check_Site_Header(url, t_seconds, Host_Name)
         if (scan_ssl != False and '//' in url and 'http' in url):
