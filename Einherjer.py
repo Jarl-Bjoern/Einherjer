@@ -44,7 +44,6 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
         if (args.custom_chromium_path != None): driver_options.binary_location = args.custom_chromium_path
         else:
             if (osname != 'nt'): driver_options.binary_location = "/usr/bin/chromium"
-        del webbrowser_open
 
     # Wordlist_Filtering
     if (args.add_wordlist != None and args.add_multiple_wordlists == None):
