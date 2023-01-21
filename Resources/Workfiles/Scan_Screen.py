@@ -6,12 +6,12 @@
 from Resources.Header_Files.Variables import *
 
 class Web:
-    def Driver_Specification(options):
+    def Driver_Specification(options, Chrome_Driver_Location = ""):
         try:
-            if (osname == 'nt'): driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)).split('Workfiles')[0], 'Webdriver/chromedriver.exe')), options=options)
-            else: driver = webdriver.Chrome(service=Service(join(dirname(realpath(__file__)).split('Workfiles')[0], 'Webdriver/chromedriver')), options=options)
+            if (osname == 'nt'): driver = join(dirname(realpath(__file__)).split('Workfiles')[0], 'Webdriver/chromedriver.exe'))
+            else: driver = join(dirname(realpath(__file__)).split('Workfiles')[0], 'Webdriver/chromedriver'))
         except AttributeError as e: Logs.Error_Message(f"It was not possible to use the chromedriver. Please check that the used chromedriver is a executeable file or try a another one.\n")
-        return driver
+        return webdriver.Chrome(service=Service(Chrome_Driver_Location), options=options)
 
     def Configurate_Driver(options, driver = None):
         try: driver = Web.Driver_Specification(options)
