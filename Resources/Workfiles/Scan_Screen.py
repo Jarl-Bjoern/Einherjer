@@ -61,7 +61,7 @@ def Take_Screenshot(url, driver_options, Screen_Dir, switch_internet_connection)
     try:
         driver.get(url)
         driver.save_screenshot(join(Screen_Dir, f"{Date}_({Screen_Name}).png"))
-        Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d_%H:%M:%S")}'+Colors.RESET+' - {url} - '+Colors.CYAN+'A screenshot was successfully taken from the website.\n'+Colors.BLUE+'-----------------------------------------------------------------------------------------------------------\n'
+        Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d_%H:%M:%S")}'+Colors.RESET+' - {url} - '+Colors.CYAN+'A screenshot was successfully taken from the website.\n'+Colors.BLUE+'-----------------------------------------------------------------------------------------------------------\n')
     except MaxRetryError: Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d_%H:%M:%S")}'+Colors.RESET+' - {url} - '+Colors.CYAN+'It was not possible to connect to the website to take a screenshot\n'+Colors.BLUE+'-----------------------------------------------------------------------------------------------------------\n')
     finally: driver.quit()
 
