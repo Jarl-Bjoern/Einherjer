@@ -58,7 +58,7 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
 
     # Webdriver_Options
     if (args.scan_site_screenshot != False):
-        Array_Selenium = ['--start_maximized','--no-sandbox','--remote-debugging-port=19222','--ignore-certificate-errors','--test-type','--headless','--log-level=3']
+        Array_Selenium = ['--start_maximized','--no-sandbox','--remote-debugging-port=19222','--ignore-certificate-errors','--test-type','--headless','--log-level=3','--hide-scrollbars']
 
         if ("ttl" in getoutput('ping -c 2 8.8.8.8')):
             Switch_Internet_Connection = True
