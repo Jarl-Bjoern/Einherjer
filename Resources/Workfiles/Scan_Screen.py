@@ -4,6 +4,7 @@
 
 # Libraries
 from Resources.Header_Files.Variables import *
+from Resources.Standard_Operations.Logs import Logs
 
 class Web:
     def Driver_Specification(options, Chrome_Driver_Location = ""):
@@ -59,7 +60,8 @@ def Take_Screenshot(url, driver_options, Screen_Dir, switch_internet_connection)
     try:
         driver.get(url)
         driver.save_screenshot(join(Screen_Dir, f"{Date}_({Screen_Name}).png"))
-    except MaxRetryError: Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website to take screenshots\n')
+        Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d_%H:%M:%S")}'+Colors.RESET+' - {url} - '+Colors.CYAN+'A screenshot was successfully taken from the website.\n'+Colors.BLUE+'-----------------------------------------------------------------------------------------------------------\n'
+    except MaxRetryError: Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d_%H:%M:%S")}'+Colors.RESET+' - {url} - '+Colors.CYAN+'It was not possible to connect to the website to take a screenshot\n'+Colors.BLUE+'-----------------------------------------------------------------------------------------------------------\n')
     finally: driver.quit()
 
     for Picture in listdir(Screen_Dir):
