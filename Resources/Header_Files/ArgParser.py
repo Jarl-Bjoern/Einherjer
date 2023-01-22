@@ -24,6 +24,10 @@ def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Res
 |  "apt-cache policy chromium" which version was installed and then download the    |
 |  appropriate Chrome Webdriver from the following page                             |
 |  "https://chromedriver.chromium.org/downloads" and replace it instead.            |
+|                                                                                   |
+|  In some cases it can happen that after an installation of Chromium, the program  |
+|  cannot create processes, because no environment variable for the Chromedriver    |
+|  can be accessed, therefore the system must be restarted once.                    |
 -------------------------------------------------------------------------------------
 """
 
