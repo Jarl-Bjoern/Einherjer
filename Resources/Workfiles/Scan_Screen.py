@@ -34,7 +34,7 @@ class Web:
             else: Logs.Error_Message(f"\nChromium: {Chromium_Check}\n\nIt looks like that you do not have Chromedriver installed.\n\nPlease go to https://chromedriver.chromium.org/downloads and download the correct chromedriver and paste it into the Resources folder.\n")
         return driver
 
-    def Screenshot_Filter(Path):
+    def Screenshot_Filter(Path, Array_Temp = []):
         for Pictures in listdir(Path):
             Picture = imread(join(Path, Pictures))
             for _ in listdir(Path):
