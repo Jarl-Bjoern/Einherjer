@@ -202,7 +202,7 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
                 sleep(0.01)
 
     if (args.scan_site_screenshot != False):
-        Web.Screenshot_Filter(Screen_Dir)
+#        Web.Screenshot_Filter(Screen_Dir)
         if (len(listdir(Screen_Dir)) > 0):
             for _ in listdir(Screen_Dir): Array_Output.append(join(Screen_Dir, _))
 
