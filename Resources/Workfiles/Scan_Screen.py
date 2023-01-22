@@ -52,7 +52,7 @@ def Take_Screenshot(url, driver_options, Screen_Dir, switch_internet_connection)
         else:
             driver = Web.Driver_Specification(driver_options)
     else: driver = Web.Driver_Specification(driver_options)
-    driver.implicitly_wait(args.timeout), driver.set_window_size(1920,1080), driver.execute_script("document.body.style.zoom='250%'")
+    driver.implicitly_wait(args.screenshot_wait), driver.set_window_size(1920,1080), driver.execute_script("document.body.style.zoom='250%'")
 
     if ("://" in url): Screen_Name = url.split('://')[1]
     else: Screen_Name = url
