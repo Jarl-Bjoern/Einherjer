@@ -214,10 +214,10 @@ def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Temp = {}):
     for Header_Key, Header_Values in r.headers.items():
         if ("COOKIE" in Header_Key.upper()):
             for Flag in Array_Security_Flags:
-                if (Flag not in Header_Values): Dict_Temp[Flag] = "FEHLT"
+                if (Flag not in Header_Values.upper()): Dict_Temp[Flag] = "FEHLT"
                 else:
-                    if ("SAMESITE" in Header_Values):
-                        if ("SAMESITE=LAX" in Header_Values or "SAMESITE=STRICT" in Header_Values): Dict_Temp[Flag] = Flag
+                    if ("SAMESITE" in Header_Values.upper()):
+                        if ("SAMESITE=LAX" in Header_Values.upper() or "SAMESITE=STRICT" in Header_Values.upper()): Dict_Temp[Flag] = Flag
                         else: Dict_Temp[Flag] = "FEHLT"
                     else: Dict_Temp[Flag] = Flag
 
