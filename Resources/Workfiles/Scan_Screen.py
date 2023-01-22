@@ -41,7 +41,7 @@ class Web:
                 if (_ != Picture):
                     Duplicate = imread(join(Path, _))
                     Difference = subtract(Picture, Duplicate)
-                    b,g,r = cvsplit(difference)
+                    b,g,r = cvsplit(Difference)
 
                     if (countNonZero(b) == 0 and countNonZero(g) == 0 and countNonZero(r) == 0):
                         pass
