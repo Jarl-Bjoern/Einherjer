@@ -19,7 +19,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_
         if (scan_ssl != False and '//' in url and 'http' in url):
             Dict_Result['SSL'] = SSL_Vulns(url, t_seconds)
         if (scan_security_flag != False and '//' in url and 'http' in url):
-            Dict_Result['Security_Flag'] = Check_Security_Flags(url, t_seconds)
+            Dict_Result['Security_Flag'] = Check_Security_Flags(url, t_seconds, Host_Name)
         if (scan_fuzzing != False and '//' in url and 'http' in url):
             Dict_Result['Fuzzing'] = Check_Site_Paths(url, t_seconds)
         if (scan_fuzzing_recurse != False and '//' in url and 'http' in url):
