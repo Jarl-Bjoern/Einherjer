@@ -5,7 +5,7 @@
 # Libraries
 from Resources.Header_Files.Variables import *
 
-def Excel_Table(Dict_Result, location, Array_Letter = ['A','B','C','D','E','F','G','H']):
+def Excel_Table(Dict_Result, location, Array_Header_Letter = ['A','B','C','D','E','F','G','H'], Array_Files = []):
     try:
         from xlsxwriter import Workbook
         from pandas import ExcelFile, DataFrame, read_excel
@@ -56,13 +56,13 @@ def Excel_Table(Dict_Result, location, Array_Letter = ['A','B','C','D','E','F','
         m = 1
         worksheet.write(f'A1', 'URL', bold_text)
         for Header in Array_Header:
-            worksheet.write(f'{Array_Letter[m]}1', Header, rotate_text)
+            worksheet.write(f'{Array_Header_Letter[m]}1', Header, rotate_text)
             m += 1
 
         m = 2
         for Target in Dict_Result['Header']:
             Letter = 0
-            worksheet.write(f'{Array_Letter[Letter]}{m}', Target)
+            worksheet.write(f'{Array_Header_Letter[Letter]}{m}', Target)
             for Result_Left, Result_Right in Dict_Result['Header'][Target].items():
                 Letter += 1
                 if ((Result_Left == "X-XSS-PROTECTION") and (Result_Right == "1" or (Result_Right == "1; MODE=BLOCK"))): Result_Right = "FEHLT"
@@ -70,13 +70,14 @@ def Excel_Table(Dict_Result, location, Array_Letter = ['A','B','C','D','E','F','
                 elif (Result_Left == "X-FRAME-OPTIONS" and Result_Right != "DENY"): Result_Right = "FEHLT"
                 elif (Result_Left == "DNS" and Result_Right == ""): Result_Right = "FEHLT"
 
-                if (Result_Left != "DNS" and Result_Right != "FEHLT"): worksheet.write(f'{Array_Letter[Letter]}{m}', "✓", center_text)
-                elif (Result_Left == "DNS" and Result_Right != "FEHLT"): worksheet.write(f'{Array_Letter[Letter]}{m}', f"{Result_Right}", center_text)
-                elif (Result_Left == "DNS" and Result_Right == "FEHLT"): worksheet.write(f'{Array_Letter[Letter]}{m}', "-", center_text)
-                else: worksheet.write(f'{Array_Letter[Letter]}{m}', "X", center_text)
+                if (Result_Left != "DNS" and Result_Right != "FEHLT"): worksheet.write(f'{Array_Header_Letter[Letter]}{m}', "✓", center_text)
+                elif (Result_Left == "DNS" and Result_Right != "FEHLT"): worksheet.write(f'{Array_Header_Letter[Letter]}{m}', f"{Result_Right}", center_text)
+                elif (Result_Left == "DNS" and Result_Right == "FEHLT"): worksheet.write(f'{Array_Header_Letter[Letter]}{m}', "-", center_text)
+                else: worksheet.write(f'{Array_Header_Letter[Letter]}{m}', "X", center_text)
             m += 1
         workbook.close()
 
+    Array_Files.append(join(location, 'Findings.xlsx'))
     if (not exists(join(location, 'Findings.xlsx'))): Generate_Excel(join(location, 'Findings.xlsx'))
     else:
         Question = input(f"The file already exists\n\n{e}\n\nDo you want to override it? (Y/N)")
@@ -89,3 +90,5 @@ def Excel_Table(Dict_Result, location, Array_Letter = ['A','B','C','D','E','F','
                     if (file.endswith('.xlsx') and 'Findings' in file): n += 1
             Generate_Excel(join(location, f'Findings_{n}.xlsx'))
         else: Error_Message("Your decision is not acceptable.","")
+
+    return Array_Files
