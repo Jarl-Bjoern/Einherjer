@@ -13,4 +13,4 @@ selenium==4.7.2
 tqdm==4.64.1
 urllib3==1.26.11
 webdriver-manager==3.8.5
-xlsxwriter==3.0.3
+XlsxWriter==3.0.2
