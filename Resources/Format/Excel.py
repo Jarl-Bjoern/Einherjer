@@ -53,6 +53,7 @@ def Excel_Table(Dict_Result, location, Array_Header_Letter = ['A','B','C','D','E
         t2_cell_format = workbook.add_format()
         t2_cell_format.set_bg_color('Gray'), th_cell_format.set_fg_color('Black')
 
+        # HTTP_Header
         m = 1
         worksheet.write(f'A1', 'URL', bold_text)
         worksheet.write(f'B1', 'DNS', bold_text)
