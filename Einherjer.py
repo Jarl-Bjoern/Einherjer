@@ -136,7 +136,7 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
                                 else:
                                     if ((time() - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
                                         Dict_Threads[Thread_ID][0].terminate()
-                                        Logs.Write_Log(Target)
+                                        Logs.Write_Log(Target, "")
                                         Dict_Threads.pop(Thread_ID, None)
                                         Counter_Connections -= 1
                         except RuntimeError: pass
