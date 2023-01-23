@@ -65,11 +65,14 @@ def Excel_Table(Dict_Result, location, Array_Letter = ['A','B','C','D','E','F','
             worksheet.write(f'{Array_Letter[Letter]}{m}', Target)
             for Result_Left, Result_Right in Dict_Result['Header'][Target].items():
                 Letter += 1
-                if ((Result_Left == "X-XSS-Protection" or Result_Left == Array_Header[1].lower() or Result_Left == Array_Header[1].isupper()) and (Result_Right == "1" or (Result_Right == "1; mode=block" or Result_Right == "1; mode=BLOCK"))): Result_Right = "FEHLT"
-                elif ((Result_Left == "X-Content-Type-Options" or Result_Left == Array_Header[4].lower() or Result_Left == Array_Header[4].isupper()) and (Result_Right != "nosniff" or Result_Right != "NOSNIFF")): Result_Right = "FEHLT"
-                elif ((Result_Left == "X-Frame-Options" or Result_Left == Array_Header[0].lower() or Result_Left == Array_Header[0].isupper()) and (Result_Right != "DENY" or Result_Right != "deny")): Result_Right = "FEHLT"
+                if ((Result_Left == "X-XSS-PROTECTION") and (Result_Right == "1" or (Result_Right == "1; MODE=BLOCK"))): Result_Right = "FEHLT"
+                elif (Result_Left == "X-CONTENT-TYPE-OPTIONS" and Result_Right != "NOSNIFF"): Result_Right = "FEHLT"
+                elif (Result_Left == "X-FRAME-OPTIONS" and Result_Right != "DENY"): Result_Right = "FEHLT"
+                elif (Result_Left == "DNS" and Result_Right == ""): Result_Right = "FEHLT"
 
-                if (Result_Right != "FEHLT"): worksheet.write(f'{Array_Letter[Letter]}{m}', "✓", center_text)
+                if (Result_Left != "DNS" and Result_Right != "FEHLT"): worksheet.write(f'{Array_Letter[Letter]}{m}', "✓", center_text)
+                elif (Result_Left == "DNS" and Result_Right != "FEHLT"): worksheet.write(f'{Array_Letter[Letter]}{m}', f"{Result_Right}", center_text)
+                elif (Result_Left == "DNS" and Result_Right == "FEHLT"): worksheet.write(f'{Array_Letter[Letter]}{m}', "-", center_text)
                 else: worksheet.write(f'{Array_Letter[Letter]}{m}', "X", center_text)
             m += 1
         workbook.close()
