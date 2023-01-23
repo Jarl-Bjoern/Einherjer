@@ -72,8 +72,8 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                     else: Array_Temp.append("X")
                 writer.writerow(Array_Temp)
     if (Dict_Result['Security_Flag'] != {}):
-        Array_Files.append(join(location, f'result_Security_Flags.csv'))
-        with open(join(location, f'result_Security_Flags.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
+        Array_Files.append(join(location, f'result_security_flags.csv'))
+        with open(join(location, f'result_security_flags.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
             writer.writerow((['Host','DNS'] + Array_Security_Flags))
             for Target in Dict_Result['Security_Flag']:
