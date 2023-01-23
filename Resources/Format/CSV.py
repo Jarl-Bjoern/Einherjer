@@ -85,7 +85,7 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                             if (Result_Left == "DNS" and Result_Right == ""): 
                                 Result_Right = "FEHLT"
                                 break
-                            elif ((Result_Left == Array_Security_Flags[i] and Result_Right == ""):
+                            elif (Result_Left == Array_Security_Flags[i] and Result_Right == ""):
                                 Result_Right = "FEHLT"
                                 break
                     except IndexError: pass
