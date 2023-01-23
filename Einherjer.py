@@ -68,7 +68,8 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
         if (args.custom_chromium_path != None): driver_options.binary_location = args.custom_chromium_path
         else:
             if (osname != 'nt'): driver_options.binary_location = "/usr/bin/chromium"
-
+        if (osname == 'nt'): environ["CHROME_DRIVER_PATH"] = join(dirname(realpath(__file__)), "Resources/Webdriver/chromedriver.exe")
+        else: environ["CHROME_DRIVER_PATH"] = join(dirname(realpath(__file__)), "Resources/Webdriver/chromedriver")
         Screen_Dir = join(Location, 'Screenshots')
         try: makedirs(Screen_Dir)
         except FileExistsError: pass
