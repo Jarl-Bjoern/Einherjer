@@ -66,7 +66,7 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                     except IndexError: pass
 
                     # Umschreiben, da mehrere Arrays erzeugt werden in Ausgabe
-                    if (Result_Left != "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
+                    if (Result_Left != "DNS" and Result_Right != "FEHLT"): Array_Temp.append("✓")
                     elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
                     else: Array_Temp.append("X")
@@ -85,13 +85,12 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                             if (Result_Left == "DNS" and Result_Right == ""): 
                                 Result_Right = "FEHLT"
                                 break
-                            elif ((Result_Left == Array_SSH_Header[i] or Result_Left == Array_SSH_Header[i].isupper() or Result_Left == Array_SSH_Header[i].lower()) and Result_Right == ""):
+                            elif ((Result_Left == Array_Security_Flags[i] and Result_Right == ""):
                                 Result_Right = "FEHLT"
                                 break
                     except IndexError: pass
 
-                    # Umschreiben, da mehrere Arrays erzeugt werden in Ausgabe
-                    if (Result_Left != "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
+                    if (Result_Left != "DNS" and Result_Right != "FEHLT"): Array_Temp.append("✓")
                     elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
                     else: Array_Temp.append("X")
