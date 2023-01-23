@@ -5,7 +5,7 @@
 # Libraries
 from Resources.Header_Files.Variables import *
 
-def Excel_Table(Dict_Result, location, Array_Letter = ['A','B','C','D','E','F','G']):
+def Excel_Table(Dict_Result, location, Array_Letter = ['A','B','C','D','E','F','G','H']):
     try:
         from xlsxwriter import Workbook
         from pandas import ExcelFile, DataFrame, read_excel
@@ -40,7 +40,7 @@ def Excel_Table(Dict_Result, location, Array_Letter = ['A','B','C','D','E','F','
     def Generate_Excel(Excel_File):
         workbook = Workbook(Excel_File)
         worksheet = workbook.add_worksheet('HTTP-Security-Header')
-        worksheet.set_column('A:A', 45), worksheet.set_column('B:G', 3)
+        worksheet.set_column('A:A', 45), worksheet.set_column('B:H', 3)
 
         # Design
         bold_text = workbook.add_format({'bold': True})
