@@ -55,9 +55,6 @@ Array_SSH_Algorithms = [
     "umac-128-etm"]
 Array_TLS_Algorithms = ["SHA","MD5","RC2","RC4","IDEA","ADH","3DES","NULL","PSK","ANON","CBC","DHE","ECDHE"]
 
-# Dictionaries
-Dict_Proxies = {'http': '', 'https': ''}
-
 # Variables
 COLOR_Headline = "black"
 Switch_nmap, existing_nmap_file = False, ""
