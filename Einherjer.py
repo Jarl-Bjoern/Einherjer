@@ -124,7 +124,7 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
             for Target in array(Array_Targets):
                 Array_Thread_Args.append(Target), Array_Thread_Args.append(args.timeout), Array_Thread_Args.append(queue)
                 for _ in Array_Switch: Array_Thread_Args.append(_)
-                Array_Thread_Args.append(Screen_Dir), Array_Thread_Args.append(Switch_Internet_Connection)
+                Array_Thread_Args.append(Screen_Dir), Array_Thread_Args.append(Switch_Internet_Connection), Array_Thread_Args.append(args.screenshot_wait), Array_Thread_Args.append(args.webdriver_wait)
                 p = Process(target=Thread_Scanning_Start, args=Array_Thread_Args, daemon=True)
                 p.start()
                 Counter_Connections += 1
