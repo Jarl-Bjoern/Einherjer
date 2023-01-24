@@ -19,6 +19,8 @@ def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Temp = {}):
                         if ("SAMESITE=LAX" in Header_Values.upper() or "SAMESITE=STRICT" in Header_Values.upper()): Dict_Temp[Flag] = Flag
                         else: Dict_Temp[Flag] = "FEHLT"
                     else: Dict_Temp[Flag] = Flag
+    if ('SAMESITE' not in Dict_Temp and 'HTTPONLY' not in Dict_Temp and 'SECURITY' not in Dict_Temp):
+        Dict_Temp['SAMESITE'], Dict_Temp['HTTPONLY'], Dict_Temp['SECURITY'] = "FEHLT","FEHLT","FEHLT"
 
     # Cookie_Jar
 #    for cookie in dict(s.cookies): pass
