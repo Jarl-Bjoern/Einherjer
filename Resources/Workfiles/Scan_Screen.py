@@ -46,7 +46,7 @@ class Web:
                     if (countNonZero(b) == 0 and countNonZero(g) == 0 and countNonZero(r) == 0):
                         pass
 
-def Take_Screenshot(url, driver_options, Screen_Dir, switch_internet_connection):
+def Take_Screenshot(url, driver_options, Screen_Dir, switch_internet_connection, screenshot_wait, webdriver_timeout):
     if (switch_internet_connection == True):
         if (osname == 'nt'):
             Chrome_Path = ChromeDriverManager().install()
@@ -54,14 +54,14 @@ def Take_Screenshot(url, driver_options, Screen_Dir, switch_internet_connection)
         else:
             driver = Web.Driver_Specification(driver_options)
     else: driver = Web.Driver_Specification(driver_options)
-    driver.implicitly_wait(args.screenshot_wait), driver.set_window_size(1920,1080), driver.execute_script("document.body.style.zoom='250%'")
+    driver.implicitly_wait(webdriver_timeout), driver.set_window_size(1920,1080), driver.execute_script("document.body.style.zoom='250%'")
 
     if ("://" in url): Screen_Name = url.split('://')[1]
     else: Screen_Name = url
     try:
         Full_Screen_Name = join(Screen_Dir, f"{Date}_({Screen_Name}).png")
         driver.get(url)
-        sleep(5)
+        sleep(screenshot_wait)
         driver.save_screenshot(Full_Screen_Name)
         if (exists(Full_Screen_Name)): Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - '+Colors.CYAN+'A screenshot was successfully taken from the website.\n'+Colors.BLUE+'-----------------------------------------------------------------------------------------------------------\n')
         else: Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - '+Colors.CYAN+'It was not possible to take a screenshot. It could be that there is a WAF behind the page.\n'+Colors.BLUE+'-----------------------------------------------------------------------------------------------------------\n')
