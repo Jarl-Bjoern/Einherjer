@@ -75,7 +75,7 @@ elif (args.scan_all != False and args.scan_site_screenshot == False and args.sca
             from webdriver_manager.chrome import ChromeDriverManager
         from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
         from cryptography import x509
-        from cryptography.hazmat.backends import default_backend        
+        from cryptography.hazmat.backends import default_backend
         from requests import get, Session
         from socket import create_connection
         import asyncio
