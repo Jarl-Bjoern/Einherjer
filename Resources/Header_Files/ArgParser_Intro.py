@@ -55,4 +55,4 @@ def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Res
     target_arguments.add_argument('-t', '--target', type=str, nargs='*', help=Colors.GREEN+'Specify a single or multiple targets like in the following example:\n   - 127.0.0.1, http://127.0.0.1, https://127.0.0.1'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     del ArgumentParser, RawTextHelpFormatter, SUPPRESS
-    return parser.parse_args()
+    return parser.parse_args(), parser
