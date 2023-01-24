@@ -61,6 +61,7 @@ def Take_Screenshot(url, driver_options, Screen_Dir, switch_internet_connection)
     try:
         Full_Screen_Name = join(Screen_Dir, f"{Date}_({Screen_Name}).png")
         driver.get(url)
+        sleep(5)
         driver.save_screenshot(Full_Screen_Name)
         if (exists(Full_Screen_Name)): Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - '+Colors.CYAN+'A screenshot was successfully taken from the website.\n'+Colors.BLUE+'-----------------------------------------------------------------------------------------------------------\n')
         else: Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - '+Colors.CYAN+'It was not possible to take a screenshot. It could be that there is a WAF behind the page.\n'+Colors.BLUE+'-----------------------------------------------------------------------------------------------------------\n')
