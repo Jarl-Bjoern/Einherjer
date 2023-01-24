@@ -72,7 +72,7 @@ def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Res
     performance_arguments.add_argument('-ww', '--webdriver-wait', type=int, default=15, help=Colors.GREEN+'This parameter specifies the default waiting time between the screenshots.\n\nDefault: 15 Seconds'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     program_arguments.add_argument('-fM', '--filter-mode', type=bool, nargs='?', default=False, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
-    program_arguments.add_argument('-fM', '--scanning-mode', type=bool, nargs='?', default=True, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    program_arguments.add_argument('-sM', '--scanning-mode', type=bool, nargs='?', default=True, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     program_arguments.add_argument('-pC', '--program-cmd', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     program_arguments.add_argument('-pS', '--program-server', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
