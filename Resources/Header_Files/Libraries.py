@@ -96,7 +96,7 @@ elif (args.scan_all == False):
             from webbrowser import open as webbrowser_open
             with redirect_stdout(None):
                from webdriver_manager.chrome import ChromeDriverManager
-        if (args.scan_site_ssl != False):
+        if (args.scan_site_ssl != False or args.scan_site_certificate != False):
             from cryptography import x509
             from cryptography.hazmat.backends import default_backend
             from socket import create_connection
