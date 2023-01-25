@@ -2,6 +2,11 @@
 # -*- coding: utf-8 -*-
 # Rainer Christian Bjoern Herold
 
+# Libraries
+from Resources.Header_Files.Variables import *
+from Resources.Standard_Operations.Logs import Logs
+from Resources.Colors import Colors
+
 def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_context(), Counter_URL = 0, Dict_Temp = {}):
     if ('http://' in url): URL = url.split('http://')[1]
     elif ('https://' in url): URL = url.split('https://')[1]
