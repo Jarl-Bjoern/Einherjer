@@ -32,7 +32,7 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
                 Dict_Temp['Cert_Creation_Date'] = str(cert.not_valid_before)
                 Dict_Temp['Cert_EOL'] = str(cert.not_valid_after)
                 Date_Block = str(cert.not_valid_after).split(' ')[0].split('-')
-                Dict_Temp['Date_Difference'] = (Current_Date - datetime(int(Date_Block[0]), int(Date_Block[1]), int(Date_Block[2]))).days
+                Dict_Temp['Date_Difference'] = f'{(Current_Date - datetime(int(Date_Block[0]), int(Date_Block[1]), int(Date_Block[2]))).days} Days'
                 Dict_Temp['Current_Date'] = str(Current_Date)
         if (Host_Name != ""): Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - {Host_Name} - OK\n')
         else: Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - OK\n')
