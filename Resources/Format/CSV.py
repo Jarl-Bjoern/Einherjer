@@ -93,7 +93,7 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                 writer.writerow(Array_Temp)
     if (Dict_Result['Certificate'] != {}):
         Array_Files.append(join(location, f'result_certificate.csv'))
-        with open(join(location, f'result_security_flags.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
+        with open(join(location, f'result_certificate.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
             writer.writerow((['Host','DNS','Issuer','Signature_Algorithm','Signature_OID_Algorithm','Cert_Creation_Date','Cert_EOL','Date_Difference','Tested_Date'])
             for Target in Dict_Result['Certificate']:
