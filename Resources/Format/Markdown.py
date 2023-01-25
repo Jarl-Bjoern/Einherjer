@@ -62,6 +62,23 @@ def Markdown_Table(Dict_Result, location, Array_Files = []):
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Temp_Word += " - |"
                     else: Temp_Word += " X |"
                 md_file.write(f'{Temp_Word}\n')
+    if (Dict_Result['Certificate'] != {}):
+        Array_Files.append(join(location, 'result_certificate.md'))
+        with open(join(location, 'result_certificate.md'), 'w', encoding='UTF-8', newline='') as md_file:
+            md_file.write('| URL | DNS | ISSUER | SIGNATURE_ALGORITHM | SIGNATURE_OID_ALGORITHM | CERT_CREATION_DATE | CERT_EOL | DATE_DIFFERENCE | TESTED_DATE |\n')
+            md_file.write('| --- | --- | ------ | ------------------- | ----------------------- | ------------------ | -------- | --------------- | ----------- |\n')
+            for Target in Dict_Result['Certificate']:
+                Temp_Word = ""
+                Temp_Word += f"| {Target} |"
+                for Result_Left, Result_Right in Dict_Result['Certificate'][Target].items():
+                    if (Result_Left == "DNS" and Result_Right == ""):  Result_Right = "FEHLT"
+                    elif (Result_Left != "DNS" and Result_Right == ""): Result_Right = "FEHLT"
+
+                    if (Result_Left != "DNS" and Result_Right != "FEHLT"): Temp_Word += f' {Result_Right} |'
+                    elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Temp_Word += f' {Result_Right} |'
+                    elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Temp_Word += " - |"
+                    else: Temp_Word += " X |"
+                md_file.write(f'{Temp_Word}\n')
     if (Dict_Result['SSH'] != {}):
         pass
         
