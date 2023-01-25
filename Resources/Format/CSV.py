@@ -55,15 +55,13 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                 Array_Temp = []
                 Array_Temp.append(Target)
                 for Result_Left, Result_Right in Dict_Result['SSH'][Target].items():
-                    try:
-                        for i in range(0, len(Array_SSH_Header)):
-                            if (Result_Left == "DNS" and Result_Right == ""): 
-                                Result_Right = "FEHLT"
-                                break
-                            elif ((Result_Left == Array_SSH_Header[i] or Result_Left == Array_SSH_Header[i].isupper() or Result_Left == Array_SSH_Header[i].lower()) and Result_Right == ""):
-                                Result_Right = "FEHLT"
-                                break
-                    except IndexError: pass
+                    for i in range(0, len(Array_SSH_Header)-1):
+                        if (Result_Left == "DNS" and Result_Right == ""): 
+                            Result_Right = "FEHLT"
+                            break
+                        elif ((Result_Left == Array_SSH_Header[i] or Result_Left == Array_SSH_Header[i].isupper() or Result_Left == Array_SSH_Header[i].lower()) and Result_Right == ""):
+                            Result_Right = "FEHLT"
+                            break
 
                     # Umschreiben, da mehrere Arrays erzeugt werden in Ausgabe
                     if (Result_Left != "DNS" and Result_Right != "FEHLT"): Array_Temp.append("✓")
@@ -80,17 +78,32 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                 Array_Temp = []
                 Array_Temp.append(Target)
                 for Result_Left, Result_Right in Dict_Result['Security_Flag'][Target].items():
-                    try:
-                        for i in range(0, len(Array_Security_Flags)):
-                            if (Result_Left == "DNS" and Result_Right == ""): 
-                                Result_Right = "FEHLT"
-                                break
-                            elif (Result_Left == Array_Security_Flags[i] and Result_Right == ""):
-                                Result_Right = "FEHLT"
-                                break
-                    except IndexError: pass
+                    for i in range(0, len(Array_Security_Flags)-1):
+                        if (Result_Left == "DNS" and Result_Right == ""): 
+                            Result_Right = "FEHLT"
+                            break
+                        elif (Result_Left == Array_Security_Flags[i] and Result_Right == ""):
+                            Result_Right = "FEHLT"
+                            break
 
                     if (Result_Left != "DNS" and Result_Right != "FEHLT"): Array_Temp.append("✓")
+                    elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
+                    elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
+                    else: Array_Temp.append("X")
+                writer.writerow(Array_Temp)
+    if (Dict_Result['Certificate'] != {}):
+        Array_Files.append(join(location, f'result_certificate.csv'))
+        with open(join(location, f'result_security_flags.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
+            writer = csv.writer(csv_file)
+            writer.writerow((['Host','DNS','Issuer','Signature_Algorithm','Signature_OID_Algorithm','Cert_Creation_Date','Cert_EOL','Date_Difference','Tested_Date'])
+            for Target in Dict_Result['Certificate']:
+                Array_Temp = []
+                Array_Temp.append(Target)
+                for Result_Left, Result_Right in Dict_Result['Certificate'][Target].items():
+                    if (Result_Left == "DNS" and Result_Right == ""):  Result_Right = "FEHLT"
+                    elif (Result_Left != "DNS" and Result_Right == ""): Result_Right = "FEHLT"
+
+                    if (Result_Left != "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
                     elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
                     else: Array_Temp.append("X")
