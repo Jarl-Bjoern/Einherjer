@@ -128,24 +128,6 @@ def Get_Host_Name(url, Count_Double_Point = 0, Target = "", Temp = "", Word = ""
     elif (type(Temp) == str): Word = Temp
     return Word
 
-def Check_Site_Header(url, t_seconds, Host_Name, Dict_Temp_Header = {}, Dict_Temp_Information_Disclosure = {}):
-    try:
-        r = get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
-        if (Host_Name != ""): Dict_Temp_Header['DNS'], Dict_Temp_Information_Disclosure['DNS'] = Host_Name, Host_Name
-        else: Dict_Temp_Header['DNS'], Dict_Temp_Information_Disclosure['DNS'] = "",""
-
-        for Header in r.headers.items():
-            if (Header[0].upper() in Array_Header): Dict_Temp_Header[Header[0].upper()] = Header[1].upper()
-            elif (Header[0].upper() in Array_Information_Disclosure_Header): Dict_Temp_Information_Disclosure[Header[0].upper()] = Header[1]
-            else:
-                for Temp_Header in array(Array_Header):
-                    if (Temp_Header not in Dict_Temp_Header): Dict_Temp_Header[Temp_Header] = "FEHLT"
-        if (Host_Name != ""): Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - {Host_Name} - '+Colors.CYAN+f'{r}'+Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'+Colors.ORANGE+'\nOriginal Output'+Colors.RED+' -> '+Colors.RESET+f'{r.headers.items()}'+Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'+Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp_Header}\n')
-        else: Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - '+Colors.CYAN+f'{r}'+Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'+Colors.ORANGE+'\nOriginal Output'+Colors.RED+' -> '+Colors.RESET+f'{r.headers.items()}'+Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'+Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp_Header}\n')
-    except ReadTimeout: Logs.Write_Log(url, Host_Name)
-
-    return Dict_Temp_Header, Dict_Temp_Information_Disclosure
-
 def Check_Site_Paths(url, t_seconds, array_wordlists, Array_Temp = [], Array_Status_Code = ["200", "302", "405", "500"]):
     for Word in array_wordlists:
         URL = f'{url}/{Word}'
@@ -172,48 +154,6 @@ def Check_Website(url, t_seconds, Dict_Temp = {}, Array_Output = [], Temp_Array 
                                 for k in array(Temp_Array):
                                     if (len(k) > 1):
                                         if (f'{i} - {k}' not in Array_Output): Array_Output.append(f'{i} - {k}')
-
-    return Dict_Temp
-
-def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Temp = {}):
-    s = Session()
-    r = s.get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
-
-    if (Host_Name != ""): Dict_Temp['DNS'] = Host_Name
-    else: Dict_Temp['DNS'] = ""
-
-    # Normal_Cookie
-    for Header_Key, Header_Values in r.headers.items():
-        if ("COOKIE" in Header_Key.upper()):
-            for Flag in Array_Security_Flags:
-                if (Flag not in Header_Values.upper()): Dict_Temp[Flag] = "FEHLT"
-                else:
-                    if ("SAMESITE" in Header_Values.upper()):
-                        if ("SAMESITE=LAX" in Header_Values.upper() or "SAMESITE=STRICT" in Header_Values.upper()): Dict_Temp[Flag] = Flag
-                        else: Dict_Temp[Flag] = "FEHLT"
-                    else: Dict_Temp[Flag] = Flag
-    if ('SAMESITE' not in Dict_Temp and 'HTTPONLY' not in Dict_Temp and 'SECURITY' not in Dict_Temp):
-        Dict_Temp['SAMESITE'], Dict_Temp['HTTPONLY'], Dict_Temp['SECURITY'] = "FEHLT","FEHLT","FEHLT"
-
-    # Cookie_Jar
-#    for cookie in dict(s.cookies): pass
-#        for i,j in cookie.__dict__.items():
-#            if ('_rest' in i):
-#                print (f'{i} : {j}')
-
-#                        try:
-#                            Cookie = r.cookies.get_dict()
-#                            for head in Cookie:
-#                                if ('JSID' not in head):
-#
-#                                elif ('Test' not in head):
-#                        except: pass
-#
-#
-#                        Dict_Result['Security_Flag']
-
-    if (Host_Name != ""): Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - {Host_Name} - '+Colors.CYAN+f'{r}'+Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'+Colors.ORANGE+'\nOriginal Output'+Colors.RED+' -> '+Colors.RESET+f'{r.headers.items()}'+Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'+Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n')
-    else: Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - '+Colors.CYAN+f'{r}'+Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'+Colors.ORANGE+'\nOriginal Output'+Colors.RED+' -> '+Colors.RESET+f'{r.headers.items()}'+Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'+Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n')
 
     return Dict_Temp
 
