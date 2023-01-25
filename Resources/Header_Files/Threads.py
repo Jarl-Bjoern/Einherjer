@@ -11,7 +11,7 @@ from Resources.Workfiles.Scan_Header import Check_Site_Header
 from Resources.Workfiles.Scan_Screen import Take_Screenshot
 
 # Functions
-def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_header, scan_fuzzing, scan_ssh, scan_fuzzing_recurse, scan_security_flag, scan_site_certificate, screen_dir, switch_internet_connection, screenshot_wait, webdriver_timeout, Host_Name = "", Target = ""):
+def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_header, scan_fuzzing, scan_ssh, scan_fuzzing_recurse, scan_security_flag, scan_certificate, screen_dir, switch_internet_connection, screenshot_wait, webdriver_timeout, Host_Name = "", Target = ""):
     try:
         Dict_Result = queue.get()
         Host_Name = Get_Host_Name(url)
@@ -23,6 +23,8 @@ def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_
             Dict_Result['SSL'][url] = SSL_Vulns(url, t_seconds)
         if (scan_security_flag != False and '//' in url and 'http' in url):
             Dict_Result['Security_Flag'][url] = Check_Security_Flags(url, t_seconds, Host_Name)
+        if (scan_certificate != False and '//' in url and 'http' in url):
+            Dict_Result['Certificate'][url] = Check_Certificate(url, t_seconds, Host_Name)
         if (scan_fuzzing != False and '//' in url and 'http' in url):
             Dict_Result['Fuzzing'][url] = Check_Site_Paths(url, t_seconds)
         if (scan_fuzzing_recurse != False and '//' in url and 'http' in url):
