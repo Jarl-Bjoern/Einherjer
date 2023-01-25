@@ -2,6 +2,11 @@
 # -*- coding: utf-8 -*-
 # Rainer Christian Bjoern Herold
 
+# Libraries
+from Resources.Header_Files.Variables import *
+from Resources.Standard_Operations.Logs import Logs
+from Resources.Colors import Colors
+
 def Check_Site_Header(url, t_seconds, Host_Name, Dict_Temp_Header = {}, Dict_Temp_Information_Disclosure = {}):
     try:
         r = get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
