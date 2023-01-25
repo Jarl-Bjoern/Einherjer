@@ -11,7 +11,7 @@ from Resources.Workfiles.Scan_Header import Check_Site_Header
 from Resources.Workfiles.Scan_Screen import Take_Screenshot
 
 # Functions
-def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_header, scan_fuzzing, scan_ssh, scan_fuzzing_recurse, scan_security_flag, screen_dir, switch_internet_connection, screenshot_wait, webdriver_timeout, Host_Name = "", Target = ""):
+def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_header, scan_fuzzing, scan_ssh, scan_fuzzing_recurse, scan_security_flag, scan_site_certificate, screen_dir, switch_internet_connection, screenshot_wait, webdriver_timeout, Host_Name = "", Target = ""):
     try:
         Dict_Result = queue.get()
         Host_Name = Get_Host_Name(url)
