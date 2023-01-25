@@ -61,6 +61,7 @@ if (args.scan_all == False and args.scan_site_screenshot == False and args.scan_
     Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
 elif (args.scan_all != False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
     try:
+        from datetime import date
         from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
         from os import environ, rename
         from selenium import webdriver
@@ -97,6 +98,7 @@ elif (args.scan_all == False):
             with redirect_stdout(None):
                from webdriver_manager.chrome import ChromeDriverManager
         if (args.scan_site_ssl != False):
+            from datetime import date
             from cryptography import x509
             from cryptography.hazmat.backends import default_backend
             from socket import create_connection
