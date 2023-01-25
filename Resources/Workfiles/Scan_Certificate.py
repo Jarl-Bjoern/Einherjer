@@ -26,7 +26,7 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
                 cert = x509.load_der_x509_certificate(cert_der, default_backend())
 
                 Current_Date = datetime.now()
-                Dict_Temp['Issuer'] = cert.issuer
+                Dict_Temp['Issuer'] = str(cert.issuer)
                 Dict_Temp['Signature_Algorithm'] = str(cert.signature_hash_algorithm.name).upper()
                 Dict_Temp['Signature_OID_Algorithm'] = str(cert.signature_algorithm_oid).upper()
                 Dict_Temp['Cert_Creation_Date'] = str(cert.not_valid_before)
