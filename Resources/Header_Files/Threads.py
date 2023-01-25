@@ -5,6 +5,9 @@
 # Libraries
 from Resources.Header_Files.Variables import *
 from Resources.Standard_Operations.Logs import *
+from Resources.Workfiles.Scan_Cookie import Check_Security_Flags
+from Resources.Workfiles.Scan_Certificate import Check_Certificate
+from Resources.Workfiles.Scan_Header import Check_Site_Header
 from Resources.Workfiles.Scan_Screen import Take_Screenshot
 
 # Functions
