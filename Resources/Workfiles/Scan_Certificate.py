@@ -34,7 +34,8 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
                 Date_Block = str(cert.not_valid_after).split(' ')[0].split('-')
                 Dict_Temp['Date_Difference'] = (Current_Date - datetime(int(Date_Block[0]), int(Date_Block[1]), int(Date_Block[2]))).days
                 Dict_Temp['Current_Date'] = Current_Date
-
+            ssock.close()
+        sock.close()
         if (Host_Name != ""): Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - {Host_Name} - OK\n')
         else: Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - OK\n')
     except (ConnectionRefusedError, gaierror): Logs.Write_Log(url, Host_Name)
