@@ -156,7 +156,7 @@ def Check_Site_Paths(url, t_seconds, array_wordlists, Array_Temp = [], Array_Sta
 
     return Array_Temp
 
-def Check_Certificate(url, t_seconds, context = create_unverified_context(), Counter_URL = 0):
+def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_context(), Counter_URL = 0, Dict_Temp = {}):
     if ('http://' in url): URL = url.split('http://')[1]
     elif ('https://' in url): URL = url.split('https://')[1]
 
@@ -164,6 +164,9 @@ def Check_Certificate(url, t_seconds, context = create_unverified_context(), Cou
        if (_ == ':'): Counter_URL += 1
     if (Counter_URL > 1): Port = url.split(':')[2]
     else: Port = 443
+
+    if (Host_Name != ""): Dict_Temp['DNS'] = Host_Name
+    else: Dict_Temp['DNS'] = ""
 
     try:
         with create_connection((URL, int(Port)), timeout=t_seconds) as sock:
@@ -173,13 +176,18 @@ def Check_Certificate(url, t_seconds, context = create_unverified_context(), Cou
 
                 # Check_Certificate
                 Current_Date = datetime.now()
-                Cert_Creation_Date = cert.not_valid_before
-                Cert_EOL = cert.not_valid_after
-                Cert_Signature_Algorithm = cert.signature_hash_algorithm.name.upper()
-                Cert_Signature_OID_Algorithm = cert.signature_algorithm_oid.upper()
-                Cert_Issuer = cert.issuer
-                Date_Difference = (Current_Date - datetime()).total_seconds()/60/60
-    except (ConnectionRefusedError, gaierror): Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n')
+                Dict_Temp['Issuer'] = cert.issuer
+                Dict_Temp['Signature_Algorithm'] = cert.signature_hash_algorithm.name.upper()
+                Dict_Temp['Signature_OID_Algorithm'] = cert.signature_algorithm_oid.upper()
+                Dict_Temp['Cert_Creation_Date'] = cert.not_valid_before
+                Dict_Temp['Cert_EOL'] = cert.not_valid_after
+                Dict_Temp['Date_Difference'] = (Current_Date - datetime()).total_seconds()/60/60
+
+        if (Host_Name != ""): Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - {Host_Name} - OK\n')
+        else: Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - OK\n')
+    except (ConnectionRefusedError, gaierror): Logs.Write_Log(url, Host_Name)
+
+    return Dict_Temp
 
 def Check_Website(url, t_seconds, Dict_Temp = {}, Array_Output = [], Temp_Array = []):
     Array_Filter = ["Apache/", "Tomcat/", "Server Version:"]
