@@ -374,7 +374,7 @@ def SSL_Vulns(url, t_seconds, context = create_unverified_context(), Dict_SSL = 
                 Cert_Signature_OID_Algorithm = cert.signature_algorithm_oid.upper()
                 Cert_Issuer = cert.issuer
                 Date_Difference = (Current_Date - datetime()).total_seconds()/60/60
-                
+
                 # Check_Ciphers
                 for Ciphers in ssock.shared_ciphers():
                     for Algorithm in array(Array_TLS_Algorithms):
