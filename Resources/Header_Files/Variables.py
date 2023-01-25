@@ -179,9 +179,10 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
                 Dict_Temp['Issuer'] = cert.issuer
                 Dict_Temp['Signature_Algorithm'] = str(cert.signature_hash_algorithm.name).upper()
                 Dict_Temp['Signature_OID_Algorithm'] = str(cert.signature_algorithm_oid).upper()
-                Dict_Temp['Cert_Creation_Date'] = cert.not_valid_before
-                Dict_Temp['Cert_EOL'] = cert.not_valid_after
-                Dict_Temp['Date_Difference'] = (Current_Date - datetime()).total_seconds()/60/60
+                Dict_Temp['Cert_Creation_Date'] = str(cert.not_valid_before)
+                Dict_Temp['Cert_EOL'] = str(cert.not_valid_after)
+                Date_Block = str(cert.not_valid_after).split(' ')[0].split('-')
+                Dict_Temp['Date_Difference'] = (Current_Date - datetime(int(Date_Block[0]), int(Date_Block[1]), int(Date_Block[2]))).total_seconds()/60/60
 
         if (Host_Name != ""): Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - {Host_Name} - OK\n')
         else: Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - OK\n')
