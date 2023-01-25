@@ -177,8 +177,8 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
                 # Check_Certificate
                 Current_Date = datetime.now()
                 Dict_Temp['Issuer'] = cert.issuer
-                Dict_Temp['Signature_Algorithm'] = cert.signature_hash_algorithm.name.upper()
-                Dict_Temp['Signature_OID_Algorithm'] = cert.signature_algorithm_oid.upper()
+                Dict_Temp['Signature_Algorithm'] = str(cert.signature_hash_algorithm.name).upper()
+                Dict_Temp['Signature_OID_Algorithm'] = str(cert.signature_algorithm_oid).upper()
                 Dict_Temp['Cert_Creation_Date'] = cert.not_valid_before
                 Dict_Temp['Cert_EOL'] = cert.not_valid_after
                 Dict_Temp['Date_Difference'] = (Current_Date - datetime()).total_seconds()/60/60
