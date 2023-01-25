@@ -171,7 +171,7 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
             if ("csv" in args.format):
                 from Resources.Format.CSV import CSV_Table
                 Array_Output = CSV_Table(Dict_Result, Location)
-            elif ("docx" in args.format or "word" in args.format):
+            elif ("docx" in args.format):
                 from Resources.Format.Word import Word_Table
                 Array_Output = Word_Table(Dict_Result, Location)
             elif ("html" in args.format):
@@ -197,6 +197,9 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
             elif ("xml" in args.format):
                 from Resources.Format.XML import XML_Table
                 #Array_Output = XML_Table(Dict_Result, Location)
+            elif ("yaml" in args.format):
+                from Resources.Format.YAML import YAML_Table
+                #Array_Output = YAML_Table(Dict_Result, Location)
             else: Error_Message("Your Decision was not acceptable!")
 
             # Progress_End
