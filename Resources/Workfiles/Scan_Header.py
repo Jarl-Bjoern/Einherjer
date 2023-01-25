@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # Rainer Christian Bjoern Herold
 
-def Scan_Header(url, t_seconds, Host_Name, Dict_Temp_Header = {}, Dict_Temp_Information_Disclosure = {}):
+def Check_Site_Header(url, t_seconds, Host_Name, Dict_Temp_Header = {}, Dict_Temp_Information_Disclosure = {}):
     try:
         r = get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
         if (Host_Name != ""): Dict_Temp_Header['DNS'], Dict_Temp_Information_Disclosure['DNS'] = Host_Name, Host_Name
