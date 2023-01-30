@@ -69,7 +69,7 @@ class Standard:
                     else: break
                 Array_Out.append(f'{Target[:Position]}/{html_encode(Target[Position+1:])}')
             else: Array_Out.append(Target)
-         return Array_Out
+        return Array_Out
         
    # def Read_Template(template_file):
    #     if (exists(template_file)):
