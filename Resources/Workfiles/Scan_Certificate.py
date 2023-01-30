@@ -8,8 +8,7 @@ from Resources.Standard_Operations.Logs import Logs
 from Resources.Colors import Colors
 
 def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_context(), Dict_Temp = {'DNS': "", 'Issuer': "", 'Subject': "", 'Signature_Algorithm': "",'Cert_Creation_Date': "", 'Cert_EOL': "", 'Date_Difference': "", 'Current_Date': ""}):
-    if ('http://' in url): URL = url.split('http://')[1]
-    elif ('https://' in url): URL = url.split('https://')[1]
+    if ('https://' in url): URL = url.split('https://')[1]
 
     if (url.count(':') > 1): Port = url.split(':')[2]
     else: Port = 443
@@ -25,7 +24,7 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
 
                 Current_Date = datetime.now()
                 Dict_Temp['Issuer'] = str(cert.issuer)
-                Dict_Temo['Subject'] = str(cert.subject)
+                Dict_Temp['Subject'] = str(cert.subject)
                 Dict_Temp['Signature_Algorithm'] = str(cert.signature_hash_algorithm.name).upper()
                 Dict_Temp['Cert_Creation_Date'] = str(cert.not_valid_before)
                 Dict_Temp['Cert_EOL'] = str(cert.not_valid_after)
@@ -36,7 +35,12 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
         else: Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'Certificate-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - '+Colors.CYAN+'Certificate Information was successfully recorded.\n\n')
     except (ConnectionRefusedError, gaierror): Logs.Write_Log(url, Host_Name)
 
-    if (Dict_Temp['Issuer'] == ""):
-        Dict_Temp['Issuer'], Dict_Temp['Subject'], Dict_Temp['Signature_Algorithm'] = "FEHLT","FEHLT","FEHLT"
-        Dict_Temp['Cert_Creation_Date'], Dict_Temp['Cert_EOL'], Dict_Temp['Date_Difference'], Dict_Temp['Current_Date'] = "FEHLT","FEHLT","FEHLT","FEHLT"
+    if (Dict_Temp['Issuer'] == ""): Dict_Temp['Issuer'] = "FEHLT"
+    if (Dict_Temp['Subject'] == ""): Dict_Temp['Subject'] = "FEHLT"
+    if (Dict_Temp['Signature_Algorithm'] == ""): Dict_Temp['Signature_Algorithm'] = "FEHLT"
+    if (Dict_Temp['Cert_Creation_Date'] == ""): Dict_Temp['Cert_Creation_Date'] = "FEHLT"
+    if (Dict_Temp['Cert_EOL'] == ""): Dict_Temp['Cert_EOL'] = "FEHLT"
+    if (Dict_Temp['Date_Difference'] == ""): Dict_Temp['Date_Difference'] = "FEHLT"
+    if (Dict_Temp['Current_Date'] == ""): Dict_Temp['Current_Date'] = "FEHLT"
+
     return Dict_Temp
