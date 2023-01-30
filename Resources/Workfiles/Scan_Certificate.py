@@ -40,5 +40,5 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
 
     if (Dict_Temp['Issuer'] not in Dict_Temp):
         Dict_Temp['Issuer'], Dict_Temp['Signature_Algorithm'], Dict_Temp['Signature_OID_Algorithm'], Dict_Temp['Cert_Creation_Date'] = "FEHLT","FEHLT","FEHLT","FEHLT"
-        Dict_Temp['Cert_EOL'], Dict_Temp['Date_Difference'], Dict_Temp['Current_Date'] = "FEHLT", "FEHLT", "FEHLT"
+        Dict_Temp['Cert_EOL'], Dict_Temp['Date_Difference'], Dict_Temp['Current_Date'] = "FEHLT","FEHLT","FEHLT"
     return Dict_Temp
