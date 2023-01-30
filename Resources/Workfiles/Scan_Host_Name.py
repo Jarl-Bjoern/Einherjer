@@ -15,11 +15,9 @@ def Filter_Host_Name(Element, Target, Array_Temp, Word):
     elif (Element == Array_Temp[len(Array_Temp)-1] and Element != Target): Word += f"{Element}"
     return Word
 
-def Get_Host_Name(url, Count_Double_Point = 0, Target = "", Temp = "", Word = ""):
+def Get_Host_Name(url, Target = "", Temp = "", Word = ""):
     if ('//' in url):
-        for i in range(0, len(url)):
-            if (url[i] == ":"): Count_Double_Point += 1
-        if (Count_Double_Point == 2): Target = url.split('//')[1].split(':')[0]
+        if (url.count(':') == 2): Target = url.split('//')[1].split(':')[0]
         else: Target = url.split('//')[1]
     else: Target = url
 
