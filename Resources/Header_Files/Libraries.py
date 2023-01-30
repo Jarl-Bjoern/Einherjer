@@ -61,26 +61,27 @@ if (args.scan_all == False and args.scan_site_certificate == False and args.scan
     Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
 elif (args.scan_all != False and args.scan_site_certificate == False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
     try:
+        from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
+        from cryptography import x509
+        from cryptography.hazmat.backends import default_backend
         from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
         from os import environ, rename
+        from requests import get, Session
         from selenium import webdriver
         from selenium.webdriver.common.by import By
         from selenium.webdriver.common.keys import Keys
         from selenium.webdriver.chrome.options import Options
         from selenium.webdriver.chrome.service import Service
         from selenium.webdriver.remote.webdriver import WebDriver
+        from socket import create_connection
+        from urllib.parse import quote as html_encode
         from webbrowser import open as webbrowser_open
+        import asyncio
         with catch_warnings():
             simplefilter("ignore")
             from paramiko.transport import Transport
         with redirect_stdout(None):
             from webdriver_manager.chrome import ChromeDriverManager
-        from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
-        from cryptography import x509
-        from cryptography.hazmat.backends import default_backend
-        from requests import get, Session
-        from socket import create_connection
-        import asyncio
     except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
 elif (args.scan_all == False):
     try:
@@ -100,16 +101,20 @@ elif (args.scan_all == False):
             from cryptography import x509
             from cryptography.hazmat.backends import default_backend
             from socket import create_connection
+            from urllib.parse import quote as html_encode
         if (args.scan_site_header != False or args.scan_site_fuzzing != False):
             from requests import get
+            from urllib.parse import quote as html_encode
         if (args.scan_ssh != False):
             from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
+            from urllib.parse import quote as html_encode
+            import asyncio
             with catch_warnings():
                 simplefilter("ignore")
                 from paramiko.transport import Transport
-            import asyncio
         if (args.scan_security_flags != False):
             from requests import Session
+            from urllib.parse import quote as html_encode
     except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
 
 # Change_Permissions_For_Webdriver
