@@ -7,7 +7,7 @@ from Resources.Header_Files.Variables import *
 from Resources.Standard_Operations.Logs import Logs
 from Resources.Colors import Colors
 
-def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Temp = {}):
+def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Temp = {}, Switch_SameSite = False):
     s = Session()
     r = s.get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
 
@@ -17,11 +17,12 @@ def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Temp = {}):
     # Normal_Cookie
     for Header_Key, Header_Values in r.headers.items():
         if ("COOKIE" in Header_Key.upper()):
+            Target_Flags = Header_Values.upper()
             for Flag in Array_Security_Flags:
-                if (Flag not in Header_Values.upper()): Dict_Temp[Flag] = "FEHLT"
+                if (Flag not in Target_Flags): Dict_Temp[Flag] = "FEHLT"
                 else:
-                    if ("SAMESITE" in Header_Values.upper()):
-                        if ("SAMESITE=LAX" in Header_Values.upper() or "SAMESITE=STRICT" in Header_Values.upper()): Dict_Temp[Flag] = Flag
+                    if ("SAMESITE" in Target_Flags and Switch_SameSite != True):
+                        if ("SAMESITE=LAX" in Target_Flags or "SAMESITE=STRICT" in Target_Flags): Dict_Temp[Flag] = Flag
                         else: Dict_Temp[Flag] = "FEHLT"
                     else: Dict_Temp[Flag] = Flag
     if ('SAMESITE' not in Dict_Temp and 'HTTPONLY' not in Dict_Temp and 'SECURITY' not in Dict_Temp):
