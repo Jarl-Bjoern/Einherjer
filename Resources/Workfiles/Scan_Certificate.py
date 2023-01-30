@@ -38,4 +38,7 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
         else: Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'Certificate-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - '+Colors.CYAN+'Certificate Information was successfully recorded.\n\n')
     except (ConnectionRefusedError, gaierror): Logs.Write_Log(url, Host_Name)
 
+    if (Dict_Temp['Issuer'] not in Dict_Temp):
+        Dict_Temp['Issuer'], Dict_Temp['Signature_Algorithm'], Dict_Temp['Signature_OID_Algorithm'], Dict_Temp['Cert_Creation_Date'] = "FEHLT","FEHLT","FEHLT","FEHLT"
+        Dict_Temp['Cert_EOL'], Dict_Temp['Date_Difference'], Dict_Temp['Current_Date'] = "FEHLT", "FEHLT", "FEHLT"
     return Dict_Temp
