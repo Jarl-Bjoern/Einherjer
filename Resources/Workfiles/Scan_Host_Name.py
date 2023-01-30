@@ -28,7 +28,8 @@ def Get_Host_Name(url, Count_Double_Point = 0, Target = "", Temp = "", Word = ""
         try:
             Temp = gethostbyname(Target)
             if (Temp == Target): Temp = ""
-        except (gaierror, herror): pass
+        except (gaierror, herror, UnicodeError): pass
+    except UnicodeError: pass
 
     if (type(Temp) == tuple or type(Temp) == list):
         for _ in Temp:
