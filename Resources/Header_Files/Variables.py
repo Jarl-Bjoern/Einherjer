@@ -86,11 +86,9 @@ def Filter_Host_Name(Element, Target, Array_Temp, Word):
     elif (Element == Array_Temp[len(Array_Temp)-1] and Element != Target): Word += f"{Element}"
     return Word
 
-def Get_Host_Name(url, Count_Double_Point = 0, Target = "", Temp = "", Word = ""):
+def Get_Host_Name(url, Target = "", Temp = "", Word = ""):
     if ('//' in url):
-        for i in range(0, len(url)):
-            if (url[i] == ":"): Count_Double_Point += 1
-        if (Count_Double_Point == 2): Target = url.split('//')[1].split(':')[0]
+        if (url.count(':') == 2): Target = url.split('//')[1].split(':')[0]
         else: Target = url.split('//')[1]
     else: Target = url
 
@@ -245,7 +243,7 @@ def SSH_Vulns(Target, Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key
                     f.write(f';')
                 f.write('\n')
 
-def SSL_Vulns(url, t_seconds, context = create_unverified_context(), Dict_SSL = {'Ciphers': [], 'TLS': [], 'Certificate': {}}, Counter_URL = 0):
+def SSL_Vulns(url, t_seconds, context = create_unverified_context(), Dict_SSL = {'Ciphers': [], 'TLS': [], 'Certificate': {}}):
     def Check_SSL_Values(List_With_Keys, Temp_Key = ""):
         Array_Temp = []
         for i in List_With_Keys:
@@ -262,9 +260,7 @@ def SSL_Vulns(url, t_seconds, context = create_unverified_context(), Dict_SSL = 
     if ('http://' in url): URL = url.split('http://')[1]
     elif ('https://' in url): URL = url.split('https://')[1]
 
-    for _ in url:
-       if (_ == ':'): Counter_URL += 1
-    if (Counter_URL > 1): Port = url.split(':')[2]
+    if (url.count(':') > 1): Port = url.split(':')[2]
     else: Port = 443
 
     try:
