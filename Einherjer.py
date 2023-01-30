@@ -86,10 +86,10 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
     if (args.add_https_proxy != None): Dict_Proxies['https'] = args.add_https_proxy
 
     # Scanning_Options
-    if (args.scan_all == False and args.scan_site_screenshot == False and args.scan_site_certificate == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
+    if (args.scan_all == False and args.scan_site_screenshot == False and args.scan_site_http_methods == False and args.scan_site_certificate == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
         from Resources.Header_Files.ArgParser_Intro import Argument_Parser
         Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
-    elif (args.scan_all != False and args.scan_site_screenshot == False and args.scan_site_certificate == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
+    elif (args.scan_all != False and args.scan_site_screenshot == False and args.scan_site_http_methods == False and args.scan_site_certificate == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
         Array_Switch.append(driver_options),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True)
     elif (args.scan_all == False):
         try:
@@ -110,6 +110,8 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
             else: Array_Switch.append(False)
             if (args.scan_site_certificate != False): Array_Switch.append(True)
             else: Array_Switch.append(False)
+#            if (args.scan_site_http_methods != False): Array_Switch.append(True)
+#            else: Array_Switch.append(False)
         except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
 
     # Program_Start
