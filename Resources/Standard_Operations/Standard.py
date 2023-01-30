@@ -56,7 +56,22 @@ class Standard:
                 Temp = _.split(':')
                 if (Temp[0] not in Array_Temp_Zero): Array_Temp_Zero.append(Temp[0]), Array_Temp_One.append(Temp[1])
         return Array_Temp_Zero, Array_Temp_One
-
+    
+    def Read_Targets_v4(file_path, Array_Out = [])
+        Temp_Array = Standard.Read_File(file_path)
+        for Target in Temp_Array:
+            if (Target.count('/') > 2):
+                Counter, Position = 0, ''
+                for _ in range(0, len(Target)):
+                    if (Counter != 3):
+                        if (Target[_] == '/'):
+                            Position = _
+                            Counter += 1
+                    else: break
+                Array_Out.append(f'{Target[:Position]}/{html_encode(Target[Position+1:])}')
+            else: Array_Out.append(Target)
+         return Array_Out
+        
    # def Read_Template(template_file):
    #     if (exists(template_file)):
    #         return Standard.Read_File(template_file)
