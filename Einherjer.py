@@ -13,7 +13,7 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
     # Target_Options
     if (args.target == None and args.import_list == None): Logs.Error_Message('The program cannot be started without targets')
     elif (args.target == None and args.import_list != None):
-        try: Array_Targets = Standard.Read_File(args.import_list)
+        try: Array_Targets = Standard.Read_Targets_v4(args.import_list)
         except FileNotFoundError as e: Logs.Error_Message(f"Your targetlist can't be found!\n\n{args.import_list}")
     else:
         if (len(args.target) > 1):
