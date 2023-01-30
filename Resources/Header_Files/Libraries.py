@@ -56,15 +56,16 @@ from Resources.Header_Files.ArgParser import Argument_Parser
 args = Argument_Parser()
 
 # Scanning_Module_Filtering
-if (args.scan_all == False and args.scan_site_certificate == False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
+if (args.scan_all == False and args.scan_site_certificate == False and args.scan_site_http_methods == False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
     from Resources.Header_Files.ArgParser_Intro import Argument_Parser
     Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
-elif (args.scan_all != False and args.scan_site_certificate == False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
+elif (args.scan_all != False and args.scan_site_certificate == False and args.scan_site_http_methods == False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
     try:
         from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
         from cryptography import x509
         from cryptography.hazmat.backends import default_backend
         from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
+        from http.client import HTTPSConnection
         from os import environ, rename
         from requests import get, Session
         from selenium import webdriver
@@ -115,6 +116,8 @@ elif (args.scan_all == False):
         if (args.scan_security_flags != False):
             from requests import Session
             from urllib.parse import quote_plus as html_encode
+        if (args.scan_site_http_methods != False):
+            from http.client import HTTPSConnection
     except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
 
 # Change_Permissions_For_Webdriver
