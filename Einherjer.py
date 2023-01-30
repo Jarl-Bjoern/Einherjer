@@ -27,6 +27,7 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
                 for _ in Temp_Split:
                     if (_ != ''): Array_Targets.append(_)
             else: Array_Targets = [args.target[0]]
+    del html_encode
     if (args.random_order == True):
         try: from random import shuffle
         except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
