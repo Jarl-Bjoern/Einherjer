@@ -19,11 +19,11 @@ def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_
             Take_Screenshot(url, driver_options, screen_dir, switch_internet_connection, screenshot_wait, webdriver_timeout)
         if (scan_header != False and '//' in url and 'http' in url):
             Dict_Result['Header'][url], Dict_Result['Information'][url] = Check_Site_Header(url, t_seconds, Host_Name)
-        if (scan_ssl != False and '//' in url and 'http' in url):
+        if (scan_ssl != False and '//' in url and 'https' in url):
             Dict_Result['SSL'][url] = SSL_Vulns(url, t_seconds)
         if (scan_security_flag != False and '//' in url and 'http' in url):
             Dict_Result['Security_Flag'][url] = Check_Security_Flags(url, t_seconds, Host_Name)
-        if (scan_certificate != False and '//' in url and 'http' in url):
+        if (scan_certificate != False and '//' in url and 'https' in url):
             Dict_Result['Certificate'][url] = Check_Certificate(url, t_seconds, Host_Name)
         if (scan_fuzzing != False and '//' in url and 'http' in url):
             Dict_Result['Fuzzing'][url] = Check_Site_Paths(url, t_seconds)
