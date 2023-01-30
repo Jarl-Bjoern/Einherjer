@@ -7,7 +7,7 @@ from Resources.Header_Files.Variables import *
 from Resources.Standard_Operations.Logs import Logs
 from Resources.Colors import Colors
 
-def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_context(), Dict_Temp = {}):
+def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_context(), Dict_Temp = {'DNS': "", 'Issuer': "", 'Cert_Creation_Date': "", 'Cert_EOL': "", 'Date_Difference': "", 'Current_Date': ""}):
     if ('http://' in url): URL = url.split('http://')[1]
     elif ('https://' in url): URL = url.split('https://')[1]
 
@@ -26,7 +26,6 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
                 Current_Date = datetime.now()
                 Dict_Temp['Issuer'] = str(cert.issuer)
                 Dict_Temp['Signature_Algorithm'] = str(cert.signature_hash_algorithm.name).upper()
-                Dict_Temp['Signature_OID_Algorithm'] = str(cert.signature_algorithm_oid).upper()
                 Dict_Temp['Cert_Creation_Date'] = str(cert.not_valid_before)
                 Dict_Temp['Cert_EOL'] = str(cert.not_valid_after)
                 Date_Block = str(cert.not_valid_after).split(' ')[0].split('-')
@@ -36,7 +35,7 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
         else: Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'Certificate-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - '+Colors.CYAN+'Certificate Information was successfully recorded.\n\n')
     except (ConnectionRefusedError, gaierror): Logs.Write_Log(url, Host_Name)
 
-    if (Dict_Temp['Issuer'] not in Dict_Temp):
+    if (Dict_Temp['Issuer'] == ""):
         Dict_Temp['Issuer'], Dict_Temp['Signature_Algorithm'], Dict_Temp['Signature_OID_Algorithm'], Dict_Temp['Cert_Creation_Date'] = "FEHLT","FEHLT","FEHLT","FEHLT"
         Dict_Temp['Cert_EOL'], Dict_Temp['Date_Difference'], Dict_Temp['Current_Date'] = "FEHLT","FEHLT","FEHLT"
     return Dict_Temp
