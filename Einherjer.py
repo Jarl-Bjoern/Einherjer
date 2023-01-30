@@ -157,10 +157,11 @@ def main(Date, args, Dict_Result = {'Header': {}, 'Information': {}, 'SSH': {}, 
                 try:
                     for Thread_ID in Dict_Threads:
                         if (Thread_ID not in str(active_children())):
-                            Dict_Threads.pop(Thread_ID, None)
                             progress.update(task_Processes, advance=0.75)
+                            Dict_Threads.pop(Thread_ID, None)
                         else:
                             if ((time() - Dict_Threads[Thread_ID][1]) > 900):
+                                progress.update(task_Processes, advance=0.75)
                                 Dict_Threads[Thread_ID][0].terminate()
                                 Dict_Threads.pop(Thread_ID, None)
                 except RuntimeError: pass
