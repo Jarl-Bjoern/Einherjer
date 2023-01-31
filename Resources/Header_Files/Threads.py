@@ -18,24 +18,24 @@ def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_
         if (driver_options != None and '//' in url and 'http' in url):
             Take_Screenshot(url, driver_options, screen_dir, switch_internet_connection, screenshot_wait, webdriver_timeout)
         if (scan_header != False and '//' in url and 'http' in url):
-            Dict_Result['Header'][url], Dict_Result['Information'][url] = Check_Site_Header(url, t_seconds, Host_Name)
+            Dict_Result['Header'][html_decode(url)], Dict_Result['Information'][url] = Check_Site_Header(url, t_seconds, Host_Name)
         if (scan_ssl != False and '//' in url and 'https' in url):
-            Dict_Result['SSL'][url] = SSL_Vulns(url, t_seconds)
+            Dict_Result['SSL'][html_decode(url)] = SSL_Vulns(url, t_seconds)
         if (scan_security_flag != False and '//' in url and 'http' in url):
-            Dict_Result['Security_Flag'][url] = Check_Security_Flags(url, t_seconds, Host_Name)
+            Dict_Result['Security_Flag'][html_decode(url)] = Check_Security_Flags(url, t_seconds, Host_Name)
         if (scan_certificate != False and '//' in url and 'https' in url):
-            Dict_Result['Certificate'][url] = Check_Certificate(url, t_seconds, Host_Name)
+            Dict_Result['Certificate'][html_decode(url)] = Check_Certificate(url, t_seconds, Host_Name)
         if (scan_fuzzing != False and '//' in url and 'http' in url):
-            Dict_Result['Fuzzing'][url] = Check_Site_Paths(url, t_seconds)
+            Dict_Result['Fuzzing'][html_decode(url)] = Check_Site_Paths(url, t_seconds)
         if (scan_fuzzing_recurse != False and '//' in url and 'http' in url):
             pass
         if (scan_ssh != False and '//' in url and 'ssh' in url):
             try:
-                if (':' not in url): Dict_Result['SSH'][url] = SSH_Vulns((url, 22))
+                if (':' not in url): Dict_Result['SSH'][html_decode(url)] = SSH_Vulns((url, 22))
                 else:
                     Target = url.split(':')
-                    Dict_Result['SSH'][url] = SSH_Vulns((Target[0]), int(Target[1]))
-            except SSHException: Logs.Write_Log(url, Host_Name)
-    except (ConnectionError, gaierror, WebDriverException, RequestException): Logs.Write_Log(url, Host_Name)
+                    Dict_Result['SSH'][html_decode(url)] = SSH_Vulns((Target[0]), int(Target[1]))
+            except SSHException: Logs.Write_Log(html_decode(url), Host_Name)
+    except (ConnectionError, gaierror, WebDriverException, RequestException): Logs.Write_Log(html_decode(url), Host_Name)
     finally:
         queue.put(Dict_Result)
