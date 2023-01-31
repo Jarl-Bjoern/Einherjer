@@ -47,8 +47,15 @@ class Standard:
         with open(file_path, 'r') as f:
             return f.read().splitlines()
 
+    def Read_Template(template_file, Temp_Array = []):
+        if (exists(template_file)):
+            for _ in Standard.Read_File(template_file):
+                if ('#' not in _): Temp_Array.append(_)
+            return Temp_Array
+        else: Logs.Error_Message(f'The requested File {template_file} does not exist!')
+
     def Read_File_Special(file_path, Array_Temp_Zero = [], Array_Temp_One = []):
-        for _ in Standard.Read_File(file_path):
+        for _ in Standard.Read_Template(file_path):
             if ("=" in _):
                 Temp = _.split('=')
                 if (Temp[0] not in Array_Temp_Zero): Array_Temp_Zero.append(Temp[0]), Array_Temp_One.append(Temp[1])
@@ -70,11 +77,6 @@ class Standard:
                 Array_Out.append(f'{Target[:Position]}/{html_encode(Target[Position+1:])}')
             else: Array_Out.append(Target)
         return Array_Out
-        
-   # def Read_Template(template_file):
-   #     if (exists(template_file)):
-   #         return Standard.Read_File(template_file)
-   #     else: Logs.Error_Message(f'The requested File {template_file} does not exist!')
 
     def Try_Remove_File(x):
         while True:
