@@ -35,7 +35,9 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
                 Dict_Temp['Cert_Creation_Date'] = str(cert.not_valid_before)
                 Dict_Temp['Cert_EOL'] = str(cert.not_valid_after)
                 Date_Block = str(cert.not_valid_after).split(' ')[0].split('-')
-                Dict_Temp['Date_Difference'] = f'{(Current_Date - datetime(int(Date_Block[0]), int(Date_Block[1]), int(Date_Block[2]))).days} Days'
+                Date_Difference = (Current_Date - datetime(int(Date_Block[0]), int(Date_Block[1]), int(Date_Block[2]))).days
+                if (Date_Difference < 0): Dict_Temp['Date_Difference'] = f'{str(Date_Difference)[2:]} days before expire'
+                else: Dict_Temp['Date_Difference'] = f'expired since {Date_Difference} days'
                 Dict_Temp['Current_Date'] = str(Current_Date).split('.')[0]
         if (Host_Name != ""): Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'Certificate-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {html_decode(url)} - {Host_Name} - '+Colors.CYAN+'Certificate Information was succesfully recorded.\n\n')
         else: Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'Certificate-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {html_decode(url)} - '+Colors.CYAN+'Certificate Information was successfully recorded.\n\n')
