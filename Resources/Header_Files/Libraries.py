@@ -44,6 +44,7 @@ try:
     from traceback import print_exc
     from urllib3 import disable_warnings
     from urllib3.exceptions import *
+    from urllib.parse import quote_plus as html_encode, unquote_plus as html_decode
     from warnings import catch_warnings, simplefilter
     import stat
     with catch_warnings():
@@ -75,7 +76,6 @@ elif (args.scan_all != False and args.scan_site_certificate == False and args.sc
         from selenium.webdriver.chrome.service import Service
         from selenium.webdriver.remote.webdriver import WebDriver
         from socket import create_connection
-        from urllib.parse import quote_plus as html_encode
         from webbrowser import open as webbrowser_open
         import asyncio
         with catch_warnings():
@@ -102,20 +102,16 @@ elif (args.scan_all == False):
             from cryptography import x509
             from cryptography.hazmat.backends import default_backend
             from socket import create_connection
-            from urllib.parse import quote_plus as html_encode
         if (args.scan_site_header != False or args.scan_site_fuzzing != False):
             from requests import get
-            from urllib.parse import quote_plus as html_encode
         if (args.scan_ssh != False):
             from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
-            from urllib.parse import quote_plus as html_encode
             import asyncio
             with catch_warnings():
                 simplefilter("ignore")
                 from paramiko.transport import Transport
         if (args.scan_security_flags != False):
             from requests import Session
-            from urllib.parse import quote_plus as html_encode
         if (args.scan_site_http_methods != False):
             from http.client import HTTPSConnection
     except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
