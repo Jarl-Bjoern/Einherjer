@@ -7,7 +7,7 @@ from Resources.Header_Files.Variables import *
 from Resources.Standard_Operations.Logs import Logs
 from Resources.Colors import Colors
 
-def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Temp = {}, Switch_SameSite = False):
+def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Temp = {'DNS': "", 'SAMESITE': "", 'HTTPONLY': "", 'SECURE': ""}, Switch_SameSite = False):
     s = Session()
     r = s.get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
 
@@ -24,9 +24,11 @@ def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Temp = {}, Switch_SameS
                     if ("SAMESITE" in Target_Flags and Switch_SameSite != True):
                         if ("SAMESITE=LAX" in Target_Flags or "SAMESITE=STRICT" in Target_Flags): Dict_Temp[Flag] = Flag
                         else: Dict_Temp[Flag] = "FEHLT"
+                        Switch_SameSite = True
                     else: Dict_Temp[Flag] = Flag
-    if ('SAMESITE' not in Dict_Temp and 'HTTPONLY' not in Dict_Temp and 'SECURITY' not in Dict_Temp):
-        Dict_Temp['SAMESITE'], Dict_Temp['HTTPONLY'], Dict_Temp['SECURITY'] = "FEHLT","FEHLT","FEHLT"
+    if (Dict_Temp['SAMESITE'] == ""): Dict_Temp['SAMESITE'] = "FEHLT"
+    if (Dict_Temp['HTTPONLY'] == ""): Dict_Temp['HTTPONLY'] = "FEHLT"
+    if (Dict_Temp['SECURE'] == ""): Dict_Temp['SECURE'] = "FEHLT"
 
     # Cookie_Jar
 #    for cookie in dict(s.cookies): pass
