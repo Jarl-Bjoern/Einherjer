@@ -25,10 +25,7 @@ if (args.read_config_ssl_ciphers != None): Array_TLS_Algorithms = Standard.Read_
 else: Array_TLS_Algorithms = []
 
 # Arrays
-#Array_Header = ['X-FRAME-OPTIONS', 'X-XSS-PROTECTION', 'CONTENT-SECURITY-POLICY', 'STRICT-TRANSPORT-SECURITY', 'X-CONTENT-TYPE-OPTIONS', 'REFERRER-POLICY']
 Array_Paths, Array_SSL_Vulns, Array_Results = [],[],[]
-#Array_Information_Disclosure_Header = ["X-POWERED-BY", "SERVER"]
-#Array_Security_Flags = ['SAMESITE', 'HTTPONLY', 'SECURE']
 Array_SSH_Header = ['kex_algorithms', 'server_host_key_algorithms', 'encryption_algorithms', 'mac_algorithms']
 #Array_TLS_Algorithms = ["SHA","MD5","RC2","RC4","IDEA","ADH","3DES","NULL","PSK","ANON","CBC","DHE","ECDHE"]
 
