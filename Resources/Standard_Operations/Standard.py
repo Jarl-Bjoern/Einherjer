@@ -48,9 +48,9 @@ class Standard:
         with open(file_path, 'r') as f:
             return f.read().splitlines()
 
-    def Read_Template(template_file, Temp_Array = []):
+    def Read_Template(template_file):
         if (exists(template_file)):
-            Temp_Array.clear()
+            Temp_Array = []
             for _ in Standard.Read_File(template_file):
                 if ('#' not in _): Temp_Array.append(_)
             return Temp_Array
