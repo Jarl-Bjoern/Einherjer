@@ -8,52 +8,29 @@ from Resources.Header_Files.Libraries import *
 from Resources.Standard_Operations.Standard import *
 from Resources.Standard_Operations.Logs import *
 
+# Template_Filtering
+if (args.read_config_cookie_security_flags != None): Array_Security_Flags = Standard.Read_Template(join(dirname(realpath(__file__)), "Templates/http_cookie_security.txt"))
+else: Array_Security_Flags = []
+if (args.read_config_http_header != None): Array_Header, Array_HTTP_Filter = Standard.Read_File_Special(join(dirname(realpath(__file__)), "Templates/http_header.txt"))
+else: Array_Header, Array_HTTP_Filter = [], []
+if (args.read_config_http_header_api != None): Array_Header, Array_HTTP_Filter = Standard.Read_File_Special(join(dirname(realpath(__file__)), "Templates/http_header_api.txt"))
+else: Array_Header, Array_HTTP_Filter = [], []
+if (args.read_config_http_information_disclosure != None): Array_Information_Disclosure_Header = Standard.Read_Template(join(dirname(realpath(__file__)), "Templates/http_information_disclosure.txt"))
+else: Array_Information_Disclosure_Header = []
+if (args.read_config_http_methods != None): Array_HTTP_Methods = Standard.Read_Template(join(dirname(realpath(__file__)), "Templates/http_methods.txt"))
+else: Array_HTTP_Methods = []
+if (args.read_config_ssh_ciphers != None): Array_SSH_Algorithms = Standard.Read_Template(join(dirname(realpath(__file__)), "Templates/ssh_ciphers.txt"))
+else: Array_SSH_Algorithms = []
+if (args.read_config_ssl_ciphers != None): Array_TLS_Algorithms = Standard.Read_Template(join(dirname(realpath(__file__)), "Templates/ssl_ciphers.txt"))
+else: Array_TLS_Algorithms = []
+
 # Arrays
-Array_Header = ['X-FRAME-OPTIONS', 'X-XSS-PROTECTION', 'CONTENT-SECURITY-POLICY', 'STRICT-TRANSPORT-SECURITY', 'X-CONTENT-TYPE-OPTIONS', 'REFERRER-POLICY']
+#Array_Header = ['X-FRAME-OPTIONS', 'X-XSS-PROTECTION', 'CONTENT-SECURITY-POLICY', 'STRICT-TRANSPORT-SECURITY', 'X-CONTENT-TYPE-OPTIONS', 'REFERRER-POLICY']
 Array_Paths, Array_SSL_Vulns, Array_Results = [],[],[]
-Array_Information_Disclosure_Header = ["X-POWERED-BY", "SERVER"]
-Array_Security_Flags = ['SAMESITE', 'HTTPONLY', 'SECURE']
+#Array_Information_Disclosure_Header = ["X-POWERED-BY", "SERVER"]
+#Array_Security_Flags = ['SAMESITE', 'HTTPONLY', 'SECURE']
 Array_SSH_Header = ['kex_algorithms', 'server_host_key_algorithms', 'encryption_algorithms', 'mac_algorithms']
-Array_SSH_Algorithms = [
-    # Key Exchange Methods
-    "diffie-hellman-group-exchange-sha256",
-    "diffie-hellman-group14-sha256",
-    "diffie-hellman-group15-sha512",
-    "diffie-hellman-group16-sha512",
-    "rsa2048-sha256",
-    "ecdh-sha2-nistp256",
-    "ecdh-sha2-nistp384",
-    "ecdh-sha2-nistp521",
-    "curve25519-sha256",
-    "diffie-hellman-group18-sha512",
-    # Server_Host_Key_Algorithm OR Public_Key_Algorithm
-    "pgp-sign-dss",
-    "ecdsa-sha2-nistp256",
-    "ecdsa-sha2-nistp384",
-    "ecdsa-sha2-nistp521",
-    "x509v3-ecdsa-sha2-nistp256",
-    "x509v3-ecdsa-sha2-nistp384",
-    "x509v3-ecdsa-sha2-nistp521",
-    "rsa-sha2-256",
-    "rsa-sha2-512",
-    "ssh-ed25519",
-    # Encryption_Algorithm
-    "AEAD_AES_128_GCM",
-    "AEAD_AES_256_GCM",
-    "aes128-ctr",
-    "aes192-ctr",
-    "aes256-ctr",
-    "chacha20-poly1305",
-    "aes128-gcm",
-    "aes256-gcm",
-    # MAC
-    "hmac-sha2-256",
-    "hmac-sha2-512",
-    "hmac-sha2-256-etm",
-    "hmac-sha2-512-etm",
-    "umac-128",
-    "umac-128-etm"]
-Array_TLS_Algorithms = ["SHA","MD5","RC2","RC4","IDEA","ADH","3DES","NULL","PSK","ANON","CBC","DHE","ECDHE"]
+#Array_TLS_Algorithms = ["SHA","MD5","RC2","RC4","IDEA","ADH","3DES","NULL","PSK","ANON","CBC","DHE","ECDHE"]
 
 # Variables
 COLOR_Headline = "black"
