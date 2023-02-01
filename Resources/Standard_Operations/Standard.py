@@ -50,8 +50,8 @@ class Standard:
 
     def Read_Template(template_file, Temp_Array = []):
         if (exists(template_file)):
-            Array_Template = Standard.Read_File(template_file)
-            for _ in Array_Template:
+            Temp_Array.clear()
+            for _ in Array_Standard.Read_File(template_file):
                 if ('#' not in _): Temp_Array.append(_)
             return Temp_Array
         else: Logs.Error_Message(f'The requested File {template_file} does not exist!')
