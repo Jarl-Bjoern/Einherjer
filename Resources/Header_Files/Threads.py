@@ -18,7 +18,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_
         if (driver_options != None and '//' in url and 'http' in url):
             Take_Screenshot(url, driver_options, screen_dir, switch_internet_connection, screenshot_wait, webdriver_timeout)
         if (scan_header != False and '//' in url and 'http' in url):
-            Dict_Result['Header'][html_decode(url)], Dict_Result['Information'][url] = Check_Site_Header(url, t_seconds, Host_Name)
+            Dict_Result['Header'][html_decode(url)], Dict_Result['Information'][html_decode(url)] = Check_Site_Header(url, t_seconds, Host_Name)
         if (scan_ssl != False and '//' in url and 'https' in url):
             Dict_Result['SSL'][html_decode(url)] = SSL_Vulns(url, t_seconds)
         if (scan_security_flag != False and '//' in url and 'http' in url):
