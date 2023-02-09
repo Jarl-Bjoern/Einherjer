@@ -23,6 +23,8 @@ The current use is at your own risk.
 ```bash
 sudo git clone https://github.com/Jarl-Bjoern/einherjer/
 cd einherjer
+virtualenv env
+source env/bin/activate
 pip3 install -r Setup/requirements.txt
 sudo python3 Einherjer.py
 ```
