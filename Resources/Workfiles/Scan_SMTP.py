@@ -7,6 +7,6 @@ class Check_SMTP:
         pass
 
     def Check_Open_Relay(Target, sender, receivers, message):
-        Mail = smtplib.SMTP(Target,25)
+        Mail = SMTP(Target, 25)
         Mail.sendmail(sender, receivers, message)         
         Mail.quit()
