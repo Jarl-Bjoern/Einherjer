@@ -1,5 +1,6 @@
 asyncssh==2.12.0
 cryptography==38.0.4
+m2crypto
 numpy==1.23.3
 pandas==1.5.2
 paramiko==2.12.0
