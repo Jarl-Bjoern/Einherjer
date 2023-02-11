@@ -37,17 +37,23 @@ The current use is at your own risk.
 
 <a name="start_install"></a>
 ## Download and start the tool
+### Normal use
+```bash
+sudo git clone https://github.com/Jarl-Bjoern/einherjer/
+cd einherjer
+pip3 install -r Setup/requirements.txt
+sudo python3 Einherjer.py
+```
+
+### Virtual Environment
 ```bash
 sudo git clone https://github.com/Jarl-Bjoern/einherjer/
 cd einherjer
 virtualenv venv
 source venv/bin/activate
 pip3 install -r Setup/requirements.txt
-sudo python3 Einherjer.py
 deactivate
-```
 
-```bash
 sudo bash Einherjer.sh
 ```
 
