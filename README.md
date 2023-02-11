@@ -45,7 +45,7 @@ pip3 install -r Setup/requirements.txt
 sudo python3 Einherjer.py
 ```
 
-### ⚔ Virtual Environment
+### ⚔ Virtual Environment (UNDER CONSTRUCTION)
 #### Linux
 ```bash
 sudo git clone https://github.com/Jarl-Bjoern/einherjer/
