@@ -33,8 +33,6 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
                 #public_key = cert_key.get_pubkey()
                 #rsa_key = public_key.get_rsa()
                 #cipher = rsa_key.public_encrypt('plaintext', RSA.pkcs1_padding)
-                for i in str(cert.subject):
-                    print (i)
                 Dict_Temp['Issuer'] = str(cert.issuer)
                 Dict_Temp['Subject'] = str(cert.subject)
                 Dict_Temp['Signature_Algorithm'] = str(cert.signature_algorithm_oid).split('name=')[1][:-2].upper()
