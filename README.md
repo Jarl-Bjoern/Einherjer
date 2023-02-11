@@ -30,14 +30,14 @@ I spend a lot of time in this project until it is completely ready and bug free.
 
 The current use is at your own risk.
 
-# Table of Contents
+# 📖 Table of Contents
 - [How to download and install the tool](#download_install)
   - [Download and start the tool](#start_install)
   - [Using the help section to see which parameters do we have](#help_install)
 
 <a name="start_install"></a>
-## Download and start the tool
-### Normal use
+## ⚔ Download and start the tool
+### ⚔ Normal use
 ```bash
 sudo git clone https://github.com/Jarl-Bjoern/einherjer/
 cd einherjer
@@ -45,7 +45,7 @@ pip3 install -r Setup/requirements.txt
 sudo python3 Einherjer.py
 ```
 
-### Virtual Environment
+### ⚔ Virtual Environment
 ```bash
 sudo git clone https://github.com/Jarl-Bjoern/einherjer/
 cd einherjer
@@ -63,5 +63,5 @@ sudo bash Einherjer.sh
 UNDER CONSTRUCTION
 ```
 
-# Remark
+# ⚠️ Remark
 The Script is still under development
