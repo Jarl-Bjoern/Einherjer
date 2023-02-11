@@ -26,7 +26,7 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
         with create_connection((URL, int(Port)), timeout=t_seconds) as sock:
             with context.wrap_socket(sock, server_hostname=URL) as ssock:
                 cert_der = ssock.getpeercert(True)
-                cert = x509.load_der_x509_certificate(cert_der, default_backend())
+                cert = load_der_x509_certificate(cert_der, default_backend())
                 cert_key = X509.load_cert_string(cert_der, X509.FORMAT_DER)
 
                 Current_Date = datetime.now()
