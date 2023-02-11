@@ -31,7 +31,7 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
                 Current_Date = datetime.now()
                 Dict_Temp['Issuer'] = str(cert.issuer)
                 Dict_Temp['Subject'] = str(cert.subject)
-                Dict_Temp['Signature_Algorithm'] = str(cert.signature_hash_algorithm.name).upper()
+                Dict_Temp['Signature_Algorithm'] = str(cert.signature_hash_algorithm_oid).split('name=')[1][:-2].upper()
                 Dict_Temp['Cert_Creation_Date'] = str(cert.not_valid_before)
                 Dict_Temp['Cert_EOL'] = str(cert.not_valid_after)
                 Date_Block = str(cert.not_valid_after).split(' ')[0].split('-')
