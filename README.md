@@ -44,6 +44,11 @@ virtualenv venv
 source venv/bin/activate
 pip3 install -r Setup/requirements.txt
 sudo python3 Einherjer.py
+deactivate
+```
+
+```bash
+sudo bash Einherjer.sh
 ```
 
 <a name="help_install"></a>
