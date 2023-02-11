@@ -13,7 +13,7 @@ def main(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': 
     # Target_Options
     if (args.target == None and args.import_list == None):
         from Resources.Header_Files.ArgParser_Intro import Argument_Parser
-        Argument_Parser("\n\n\t\t\tThe program cannot be started without targets!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
+        Argument_Parser("\n\n\t\t\tThe program cannot be started without targets!\n\t\t\tFor more information use the parameter -h or --help.\n"), exit()
     elif (args.target == None and args.import_list != None):
         try: Array_Targets = Standard.Read_Targets_v4(args.import_list)
         except FileNotFoundError as e: Logs.Error_Message(f"Your targetlist can't be found!\n\n{args.import_list}")
