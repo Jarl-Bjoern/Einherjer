@@ -46,7 +46,19 @@ sudo python3 Einherjer.py
 ```
 
 ### ⚔ Virtual Environment
+`Linux`
 ```bash
+sudo git clone https://github.com/Jarl-Bjoern/einherjer/
+cd einherjer
+virtualenv venv
+source venv/bin/activate
+pip3 install -r Setup/requirements.txt
+deactivate
+
+sudo bash Einherjer.sh
+```
+`Windows`
+```PowerShell
 sudo git clone https://github.com/Jarl-Bjoern/einherjer/
 cd einherjer
 virtualenv venv
