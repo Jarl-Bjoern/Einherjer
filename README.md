@@ -46,8 +46,8 @@ sudo python3 Einherjer.py
 ```
 
 ### ⚔ Virtual Environment
-`Linux`
 ```bash
+# Linux
 sudo git clone https://github.com/Jarl-Bjoern/einherjer/
 cd einherjer
 virtualenv venv
@@ -57,8 +57,9 @@ deactivate
 
 sudo bash Einherjer.sh
 ```
-`Windows`
+
 ```PowerShell
+# Windows
 git clone https://github.com/Jarl-Bjoern/einherjer/
 cd einherjer
 virtualenv venv
