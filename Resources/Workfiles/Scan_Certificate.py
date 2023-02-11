@@ -27,11 +27,15 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
             with context.wrap_socket(sock, server_hostname=URL) as ssock:
                 cert_der = ssock.getpeercert(True)
                 cert = x509.load_der_x509_certificate(cert_der, default_backend())
-                cert_key = x509.load_pem_x509_certificate(cert_der, default_backend())
+                cert_key = X509.load_cert_string(cert_der, X509.FORMAT_DER)
 
                 Current_Date = datetime.now()
-                print (str(cert_key.public_key()))
-                print (str(cert_key.private_key()))
+                public_key = cert_key.get_pubkey()
+                rsa_key = public_key.get_rsa()
+                cipher = rsa_key.public_encrypt('plaintext', RSA.pkcs1_padding)
+                print (public_key)
+                print (rsa_key)
+                print (cipher)
                 Dict_Temp['Issuer'] = str(cert.issuer)
                 Dict_Temp['Subject'] = str(cert.subject)
                 Dict_Temp['Signature_Algorithm'] = str(cert.signature_algorithm_oid).split('name=')[1][:-2].upper()
