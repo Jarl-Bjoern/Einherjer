@@ -58,7 +58,7 @@ sudo bash Einherjer.sh
 ```
 
 <a name="help_install"></a>
-## Using the help section to see which parameters do we have
+## ⚔ Using the help section to see which parameters do we have
 ```python
 UNDER CONSTRUCTION
 ```
