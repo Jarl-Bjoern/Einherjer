@@ -57,10 +57,10 @@ from Resources.Header_Files.ArgParser import Argument_Parser
 args = Argument_Parser()
 
 # Scanning_Module_Filtering
-if (args.scan_all == False and args.scan_site_certificate == False and args.scan_site_http_methods == False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
+if (args.scan_all == False and args.scan_site_certificate == False and args.scan_smtp == False and args.scan_site_http_methods == False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
     from Resources.Header_Files.ArgParser_Intro import Argument_Parser
     Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
-elif (args.scan_all != False and args.scan_site_certificate == False and args.scan_site_http_methods == False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
+elif (args.scan_all != False and args.scan_site_certificate == False and args.scan_smtp == False and args.scan_site_http_methods == False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
     try:
         from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
         from cryptography.x509 import load_der_x509_certificate
@@ -75,6 +75,7 @@ elif (args.scan_all != False and args.scan_site_certificate == False and args.sc
         from selenium.webdriver.chrome.options import Options
         from selenium.webdriver.chrome.service import Service
         from selenium.webdriver.remote.webdriver import WebDriver
+        from smtplib import SMTP
         from socket import create_connection
         from webbrowser import open as webbrowser_open
         import asyncio
@@ -114,6 +115,8 @@ elif (args.scan_all == False):
             from requests import Session
         if (args.scan_site_http_methods != False):
             from http.client import HTTPSConnection
+        if (args.scan_smtp != False):
+            from smtplib import SMTP
     except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
 
 # Change_Permissions_For_Webdriver
