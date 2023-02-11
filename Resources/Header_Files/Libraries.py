@@ -50,18 +50,16 @@ try:
     with catch_warnings():
         simplefilter("ignore")
         from paramiko.ssh_exception import SSHException
-except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
 
-# Argument_Parser
-from Resources.Header_Files.ArgParser import Argument_Parser
-args = Argument_Parser()
+    # Argument_Parser
+    from Resources.Header_Files.ArgParser import Argument_Parser
+    args = Argument_Parser()
 
-# Scanning_Module_Filtering
-if (args.scan_all == False and args.scan_site_certificate == False and args.scan_smtp == False and args.scan_site_http_methods == False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
-    from Resources.Header_Files.ArgParser_Intro import Argument_Parser
-    Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
-elif (args.scan_all != False and args.scan_site_certificate == False and args.scan_smtp == False and args.scan_site_http_methods == False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
-    try:
+    # Scanning_Module_Filtering
+    if (args.scan_all == False and args.scan_site_certificate == False and args.scan_smtp == False and args.scan_site_http_methods == False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
+        from Resources.Header_Files.ArgParser_Intro import Argument_Parser
+        Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
+    elif (args.scan_all != False and args.scan_site_certificate == False and args.scan_smtp == False and args.scan_site_http_methods == False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
         from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
         from cryptography.x509 import load_der_x509_certificate
         from cryptography.hazmat.backends import default_backend
@@ -84,9 +82,7 @@ elif (args.scan_all != False and args.scan_site_certificate == False and args.sc
             from paramiko.transport import Transport
         with redirect_stdout(None):
             from webdriver_manager.chrome import ChromeDriverManager
-    except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
-elif (args.scan_all == False):
-    try:
+    elif (args.scan_all == False):
         if (args.scan_site_screenshot != False):
             from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
             from os import environ, rename
@@ -117,7 +113,7 @@ elif (args.scan_all == False):
             from http.client import HTTPSConnection
         if (args.scan_smtp != False):
             from smtplib import SMTP
-    except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
+except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
 
 # Change_Permissions_For_Webdriver
 for _ in listdir(dirname(realpath(__file__)).replace('Header_Files', 'Webdriver')):
