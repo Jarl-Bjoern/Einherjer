@@ -67,7 +67,6 @@ elif (args.scan_all != False and args.scan_site_certificate == False and args.sc
         from cryptography.hazmat.backends import default_backend
         from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
         from http.client import HTTPSConnection
-        from M2Crypto import RSA, X509
         from os import environ, rename
         from requests import get, Session
         from selenium import webdriver
@@ -102,7 +101,6 @@ elif (args.scan_all == False):
         if (args.scan_site_ssl != False or args.scan_site_certificate != False):
             from cryptography.x509 import load_der_x509_certificate
             from cryptography.hazmat.backends import default_backend
-            from M2Crypto import RSA, X509
             from socket import create_connection
         if (args.scan_site_header != False or args.scan_site_fuzzing != False):
             from requests import get
