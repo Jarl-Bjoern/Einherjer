@@ -55,6 +55,7 @@ source venv/bin/activate
 pip3 install -r Setup/requirements.txt
 deactivate
 
+sudo chmod +x Einherjer.sh
 sudo bash Einherjer.sh
 ```
 #### Windows
