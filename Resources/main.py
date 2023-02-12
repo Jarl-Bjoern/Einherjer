@@ -2,9 +2,11 @@
 # -*- coding: utf-8 -*-
 # Rainer Christian Bjoern Herold
 
-# Path
+# Append_Missing_Module_Paths
 from sys import path as SYSTEM_PATH
-SYSTEM_PATH.append('.')
+for _ in ['Filter','Format','Header_Files','Standard_Operations','Workfiles']:
+    SYSTEM_PATH.append('Header_Files')
+del SYSTEM_PATH
 
 # Libraries
 from Header_Files.Threads import *
