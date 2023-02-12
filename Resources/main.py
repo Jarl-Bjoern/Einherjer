@@ -2,6 +2,10 @@
 # -*- coding: utf-8 -*-
 # Rainer Christian Bjoern Herold
 
+# Path
+from sys import path as SYSTEM_PATH
+SYSTEM_PATH.append('.')
+
 # Libraries
 from Header_Files.Threads import *
 from Workfiles.Scan_Screen import Web
