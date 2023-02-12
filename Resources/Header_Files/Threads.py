@@ -3,12 +3,12 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-from Header_Files.Variables import *
-from Standard_Operations.Logs import *
-from Workfiles.Scan_Cookie import Check_Security_Flags
-from Workfiles.Scan_Certificate import Check_Certificate
-from Workfiles.Scan_Header import Check_Site_Header
-from Workfiles.Scan_Screen import Take_Screenshot
+from .Variables import *
+from ..Standard_Operations.Logs import *
+from ..Workfiles.Scan_Cookie import Check_Security_Flags
+from ..Workfiles.Scan_Certificate import Check_Certificate
+from ..Workfiles.Scan_Header import Check_Site_Header
+from ..Workfiles.Scan_Screen import Take_Screenshot
 
 # Functions
 def Thread_Scanning_Start(url, t_seconds, queue, driver_options, scan_ssl, scan_header, scan_fuzzing, scan_ssh, scan_fuzzing_recurse, scan_security_flag, scan_certificate, screen_dir, switch_internet_connection, screenshot_wait, webdriver_timeout, Host_Name = "", Target = ""):
