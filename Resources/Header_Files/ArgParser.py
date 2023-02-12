@@ -3,8 +3,8 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-from Standard_Operations.Colors import Colors
-from Header_Files.Libraries import dirname, join, realpath
+from ..Standard_Operations.Colors import Colors
+from .Libraries import dirname, join, realpath
 
 # Functions
 def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Resources/Header_Files', 'Templates')):
