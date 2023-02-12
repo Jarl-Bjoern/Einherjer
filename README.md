@@ -37,7 +37,7 @@ The current use is at your own risk.
 
 <a name="start_install"></a>
 ## ⚔ Download and start the tool
-### Preparations
+### ⚔ Preparations
 First of all, a `virtual environment` for Python must be created.
 ```bash
 sudo git clone https://github.com/Jarl-Bjoern/einherjer/
@@ -48,7 +48,7 @@ pip3 install -r Setup/requirements.txt
 deactivate
 ```
 
-### Starting the tool
+### ⚔ Starting the tool
 #### Linux
 ```bash
 sudo python3 Einherjer.py
