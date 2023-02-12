@@ -9,5 +9,5 @@ if [[ -d "$BASE_PATH/venv" ]]; then
         sudo python3 "$SCRIPT_PATH/main.py" "$@"
         deactivate
 else
-        echo "Please use a virtual environment!\n\nvirtualenv $BASE_PATH/venv\nsource $BASE_PATHvenv/bin/activate\npip3 install -r Setup/requirements.txt\ndeactivate"
+        echo -e "Please use a virtual environment!\n\nvirtualenv $BASE_PATH/venv\nsource $BASE_PATHvenv/bin/activate\npip3 install -r Setup/requirements.txt\ndeactivate"
 fi
