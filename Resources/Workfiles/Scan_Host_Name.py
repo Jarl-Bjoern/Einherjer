@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 # Rainer Christian Bjoern Herold
 
+# Libraries
+from ..Header_Files.Libraries import gairerror, gethostbyaddr, gethostbyname, herror
+
 def Host_Swap(Word, T_Switch = ""):
     T_Switch = Word[:-1]
     Word = T_Switch
