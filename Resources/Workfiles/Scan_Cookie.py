@@ -3,9 +3,9 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-from Resources.Header_Files.Variables import *
-from Resources.Standard_Operations.Logs import Logs
-from Resources.Standard_Operations.Colors import Colors
+from ..Header_Files.Variables import *
+from ..Standard_Operations.Logs import Logs
+from ..Standard_Operations.Colors import Colors
 
 def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Temp = {'DNS': "", 'SAMESITE': "", 'HTTPONLY': "", 'SECURE': ""}, Switch_SameSite = False):
     s = Session()
