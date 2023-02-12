@@ -16,15 +16,18 @@ def main(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': 
     global Switch_nmap
 
     Dict_Switch = {
-        'scan_screenshot': None,
-        'scan_http_methods': False,
         'scan_certificate': False,
-        'scan_ssl': False,
-        'scan_header': False,
+        'scan_dns': False,
         'scan_fuzzing': False,
-        'scan_ssh': False,
+        'scan_header': False,
+        'scan_http_methods': False,
         'scan_security_flags': False,
-        'scan_screenshot_recursive': False
+        'scan_screenshot': None,
+        'scan_screenshot_recursive': False,
+        'scan_snmp': False,
+        'scan_smtp': False,
+        'scan_ssh': False,
+        'scan_ssl': False
     }
 
     # Target_Options
@@ -103,27 +106,30 @@ def main(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': 
         Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
     elif (args.scan_all != False and args.scan_site_screenshot == False and args.scan_site_http_methods == False and args.scan_site_certificate == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
         Dict_Switch = {
-            'scan_screenshot': driver_options,
-            'scan_http_methods': True,
             'scan_certificate': True,
-            'scan_ssl': True,
-            'scan_header': True,
+            'scan_dns': True,
             'scan_fuzzing': True,
-            'scan_ssh': True,
+            'scan_header': True,
+            'scan_http_methods': True,
             'scan_security_flags': True,
-            'scan_screenshot_recursive': True
+            'scan_screenshot': driver_options,
+            'scan_screenshot_recursive': True,
+            'scan_snmp': True,
+            'scan_smtp': True,
+            'scan_ssh': True,
+            'scan_ssl': True
         }
     elif (args.scan_all == False):
-        if (args.scan_site_screenshot != False):            Dict_Switch['scan_screenshot'] = driver_options
-        if (args.scan_site_ssl != False):                   Dict_Switch['scan_ssl'] = True
-        if (args.scan_site_header != False):                Dict_Switch['scan_header'] = True
-        if (args.scan_site_fuzzing != False):               Dict_Switch['scan_fuzzing'] = True
-        if (args.scan_ssh != False):                        Dict_Switch['scan_ssh'] = True
         if (args.add_nmap_ssh_result != None):              Switch_nmap = True
-        if (args.scan_site_screenshot_recursive != False):  Dict_Switch['scan_screenshot_recursive'] = True
-        if (args.scan_security_flags != False):             Dict_Switch['scan_security_flags'] = True
         if (args.scan_site_certificate != False):           Dict_Switch['scan_certificate'] = True
+        if (args.scan_site_fuzzing != False):               Dict_Switch['scan_fuzzing'] = True
+        if (args.scan_site_header != False):                Dict_Switch['scan_header'] = True
         if (args.scan_site_http_methods != False):          Dict_Switch['scan_http_methods'] = True
+        if (args.scan_security_flags != False):             Dict_Switch['scan_security_flags'] = True
+        if (args.scan_site_screenshot != False):            Dict_Switch['scan_screenshot'] = driver_options
+        if (args.scan_site_screenshot_recursive != False):  Dict_Switch['scan_screenshot_recursive'] = True
+        if (args.scan_ssh != False):                        Dict_Switch['scan_ssh'] = True
+        if (args.scan_site_ssl != False):                   Dict_Switch['scan_ssl'] = True
 
     # Program_Start
     Standard.Initialien(args.debug)
