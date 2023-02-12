@@ -3,9 +3,10 @@
 # Rainer Christian Bjoern Herold
 
 # Append_Missing_Module_Paths
+from os.path import dirname, join, realpath
 from sys import path as SYSTEM_PATH
 for _ in ['Filter','Format','Header_Files','Standard_Operations','Workfiles']:
-    SYSTEM_PATH.append('Header_Files')
+    SYSTEM_PATH.append(join(dirname(realpath(__file__)), _))
 del SYSTEM_PATH
 
 # Libraries
