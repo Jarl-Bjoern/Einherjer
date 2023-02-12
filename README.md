@@ -51,11 +51,12 @@ deactivate
 ### Starting the tool
 #### Linux
 ```bash
-sudo bash Einherjer.sh
+sudo python3 Einherjer.py
 ```
+
 #### Windows
 ```PowerShell
-./Einherjer.ps1
+python Einherjer.py
 ```
 
 <a name="help_install"></a>
