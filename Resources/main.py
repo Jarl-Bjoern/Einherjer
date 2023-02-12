@@ -12,7 +12,7 @@ from Resources.Header_Files.Threads import *
 from Resources.Workfiles.Scan_Screen import Web
 
 # Main_Function
-def main(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': {}, 'Information': {}, 'Security_Flag': {}, 'SSH': {}, 'SSL': {}}, Dict_Proxies = {'http': '', 'https': ''}, Array_HTTP_Filter = [], Array_Switch = [], Array_Thread_Args = [], Dict_Switch = {}, Dict_Threads = {}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None):
+def main(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': {}, 'Information': {}, 'Security_Flag': {}, 'SSH': {}, 'SSL': {}}, Dict_Proxies = {'http': '', 'https': ''}, Array_HTTP_Filter = [], Array_Thread_Args = [], Dict_Threads = {}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None):
     global Switch_nmap
 
     Dict_Switch = {
