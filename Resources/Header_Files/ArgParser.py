@@ -5,6 +5,7 @@
 # Missing_Path_Appending
 from sys import path as SYSTEM_PATH
 SYSTEM_PATH.append("..")
+SYSTEM_PATH.append(".")
 
 # Libraries
 from ..Standard_Operations.Colors import Colors
