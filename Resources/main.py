@@ -11,11 +11,6 @@ SYSTEM_PATH.append(dirname(realpath(__file__)).split("Resources")[0])
 from Resources.Header_Files.Threads import *
 from Resources.Workfiles.Scan_Screen import Web
 
-# Parser_Fix
-from sys import argv
-from argparse import Namespace
-args = Namespace(argv[1:])
-
 # Main_Function
 def main(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': {}, 'Information': {}, 'Security_Flag': {}, 'SSH': {}, 'SSL': {}}, Dict_Proxies = {'http': '', 'https': ''}, Array_HTTP_Filter = [], Array_Switch = [], Array_Thread_Args = [], Dict_Switch = {}, Dict_Threads = {}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None):
     global Switch_nmap
