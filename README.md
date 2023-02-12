@@ -5,7 +5,7 @@
     <img alt="linux" src="https://svgshare.com/i/Zhy.svg" />
   </a>
   <a href="https://www.kali.org/">
-    <img alt="windows" src="https://img.shields.io/badge/OS%20Windows-1f425f.svg" />
+    <img alt="windows" src="https://img.shields.io/badge/OS%20-Windows-1f425f.svg" />
   </a>
   <a href="https://www.python.org/downloads/release/python-3100/">
     <img alt="python" src="https://img.shields.io/badge/python-3.10-blue.svg" />
