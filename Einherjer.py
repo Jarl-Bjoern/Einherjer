@@ -6,9 +6,9 @@
 from os import name as osname
 from os.path import dirname, join, realpath
 from sys import argv
-from subprocess import run
+from subprocess import Popen
 
 # Main
 if __name__ == '__main__':
-    if (osname == 'nt'): run(['powershell',f'{join(dirname(realpath(__file__)), "Resources/Start_Files/start.ps1")}',f'{argv[1:]}'])
-    else: run(['sudo','bash',f'{join(dirname(realpath(__file__)), "Resources/Start_Files/start.sh")}',argv], shell=True)
+    if (osname == 'nt'): Popen(['powershell',f'{join(dirname(realpath(__file__)), "Resources/Start_Files/start.ps1")}',f'{argv[1:]}'])
+    else: Popen(['sudo','bash',f'{join(dirname(realpath(__file__)), "Resources/Start_Files/start.sh")}',argv])
