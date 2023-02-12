@@ -58,7 +58,7 @@ try:
 
     # Argument_Parser
     from .ArgParser import Argument_Parser
-    args = Argument_Parser(argv[1:])
+    args = Argument_Parser()
 
     # Scanning_Module_Filtering
     if (args.scan_all == False and args.scan_site_certificate == False and args.scan_smtp == False and args.scan_site_http_methods == False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
