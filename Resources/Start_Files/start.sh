@@ -1,5 +1,5 @@
 #!/bin/bash
 # Rainer Christian Bjoern Herold
 source venv/bin/activate
-sudo python3 Einherjer.py "$@"
+sudo python3 ../main.py "$@"
 deactivate
