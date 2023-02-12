@@ -38,6 +38,7 @@ The current use is at your own risk.
 <a name="start_install"></a>
 ## ⚔ Download and start the tool
 ### Preparations
+First of all, a `virtual environment` for Python must be created.
 #### Linux
 ```bash
 sudo git clone https://github.com/Jarl-Bjoern/einherjer/
