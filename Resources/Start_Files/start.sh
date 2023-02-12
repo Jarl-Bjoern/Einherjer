@@ -1,3 +1,4 @@
+#
 #!/bin/sh
 # Rainer Christian Bjoern Herold
 
