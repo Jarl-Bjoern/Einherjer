@@ -8,6 +8,8 @@ from os.path import dirname, join, realpath
 from sys import argv
 from subprocess import Popen
 
+print (argv[1:])
+
 # Main
 if __name__ == '__main__':
     if (osname == 'nt'): Popen(['powershell',f'{join(dirname(realpath(__file__)), "Resources/Start_Files/start.ps1")}',f'{argv[1:]}'])
