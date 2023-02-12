@@ -3,9 +3,9 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-from Resources.Standard_Operations.Colors import Colors
-from Resources.Header_Files.Variables import *
-from Resources.Standard_Operations.Logs import *
+from .Colors import Colors
+from ..Header_Files.Variables import *
+from .Logs import *
 
 class Standard:
     def Stdout_Output(Text_Array, Output_Seconds):
