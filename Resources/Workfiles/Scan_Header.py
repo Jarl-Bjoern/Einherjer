@@ -5,7 +5,7 @@
 # Libraries
 from Resources.Header_Files.Variables import *
 from Resources.Standard_Operations.Logs import Logs
-from Resources.Colors import Colors
+from Resources.Standard_Operations.Colors import Colors
 
 def Check_Site_Header(url, t_seconds, Host_Name, Dict_Temp_Header = {}, Dict_Temp_Information_Disclosure = {}):
     try:
