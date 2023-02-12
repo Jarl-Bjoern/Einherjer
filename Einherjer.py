@@ -9,6 +9,14 @@ from Resources.Header_Files.Libraries import *
 from sys import argv
 from subprocess import call
 
+from argparse import Namespace
+print (args)
+T = args
+BB = vars(T)
+print (BB)
+Z = Namespace(BB)
+print (Z)
+
 # Main
 if __name__ == '__main__':
     if (osname == 'nt'): call(['powershell',f'{join(dirname(realpath(__file__)), "Resources/Start_Files/start.ps1")}',f'{vars(args)}'])
