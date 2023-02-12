@@ -5,7 +5,7 @@
 # Libraries
 from Resources.Header_Files.Variables import *
 from Resources.Standard_Operations.Logs import Logs
-from Resources.Colors import Colors
+from Resources.Standard_Operations.Colors import Colors
 
 class Web:
     def Driver_Specification(options, Chrome_Driver_Location = ""):
