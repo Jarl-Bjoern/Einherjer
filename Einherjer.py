@@ -10,10 +10,11 @@ from sys import argv
 from subprocess import call
 
 # Arguments
+Temp_Args = ""
 for _ in argv[1:]:
-    args += f'{_} '
+    Temp_Args += f'{_} '
 
 # Main
 if __name__ == '__main__':
-    if (osname == 'nt'): call(['powershell',f'{join(dirname(realpath(__file__)), "Resources/Start_Files/start.ps1")}',f'{args}'])
-    else: call(['sudo','bash',f'{join(dirname(realpath(__file__)), "Resources/Start_Files/start.sh")}',f'{args}'])
+    if (osname == 'nt'): call(['powershell',f'{join(dirname(realpath(__file__)), "Resources/Start_Files/start.ps1")}',f'{Temp_Args}'])
+    else: call(['sudo','bash',f'{join(dirname(realpath(__file__)), "Resources/Start_Files/start.sh")}',f'{Temp_Args}'])
