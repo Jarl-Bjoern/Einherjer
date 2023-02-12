@@ -25,7 +25,7 @@ def Module_Error(Text):
 # Define_Module_Path
 from os.path import dirname, realpath
 from sys import path as SYSTEM_PATH
-SYSTEM_PATH.append(dirname(realpath(__file__)).split('Header_Files')[0])
+SYSTEM_PATH.append(dirname(realpath(__file__)).split('Resources/Header_Files')[0])
 
 # Libraries
 try:
