@@ -5,7 +5,6 @@
 # Libraries
 from os import name as osname
 from os.path import dirname, join, realpath
-#from Resources.Header_Files.Libraries import *
 from sys import argv
 from subprocess import call
 
@@ -17,4 +16,4 @@ for _ in argv[1:]:
 # Main
 if __name__ == '__main__':
     if (osname == 'nt'): call(['powershell',f'{join(dirname(realpath(__file__)), "Resources/Start_Files/start.ps1")}',f'{Temp_Args}'])
-    else: call(f'sudo bash {join(dirname(realpath(__file__)), "Resources/Start_Files/start.sh")} {Temp_Args}', shell=True)
+    else: call(f'sudo bash {join(dirname(realpath(__file__)), "Resources/Start_Files/start.sh")} {Temp_Args}')
