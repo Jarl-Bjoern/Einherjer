@@ -2,6 +2,11 @@
 # -*- coding: utf-8 -*-
 # Rainer Christian Bjoern Herold
 
+# Define_Module_Path
+from os.path import dirname, join, realpath
+from sys import path as SYSTEM_PATH
+SYSTEM_PATH.append(dirname(realpath(__file__)).split("Resources")[0])
+
 # Libraries
 from Resources.Header_Files.Threads import *
 from Resources.Workfiles.Scan_Screen import Web
