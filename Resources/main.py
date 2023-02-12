@@ -15,6 +15,18 @@ from Resources.Workfiles.Scan_Screen import Web
 def main(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': {}, 'Information': {}, 'Security_Flag': {}, 'SSH': {}, 'SSL': {}}, Dict_Proxies = {'http': '', 'https': ''}, Array_HTTP_Filter = [], Array_Switch = [], Array_Thread_Args = [], Dict_Switch = {}, Dict_Threads = {}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None):
     global Switch_nmap
 
+    Dict_Switch = {
+        'scan_screenshot': None,
+        'scan_http_methods': False,
+        'scan_certificate': False,
+        'scan_ssl': False,
+        'scan_header': False,
+        'scan_fuzzing': False,
+        'scan_ssh': False,
+        'scan_security_flags': False,
+        'scan_screenshot_recursive': False
+    }
+
     # Target_Options
     if (args.target == None and args.import_list == None):
         from Resources.Header_Files.ArgParser_Intro import Argument_Parser
@@ -90,29 +102,28 @@ def main(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': 
         from Resources.Header_Files.ArgParser_Intro import Argument_Parser
         Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
     elif (args.scan_all != False and args.scan_site_screenshot == False and args.scan_site_http_methods == False and args.scan_site_certificate == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
-        Array_Switch.append(driver_options),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True),Array_Switch.append(True)
+        Dict_Switch = {
+            'scan_screenshot': driver_options,
+            'scan_http_methods': True,
+            'scan_certificate': True,
+            'scan_ssl': True,
+            'scan_header': True,
+            'scan_fuzzing': True,
+            'scan_ssh': True,
+            'scan_security_flags': True,
+            'scan_screenshot_recursive': True
+        }
     elif (args.scan_all == False):
-        try:
-            if (args.scan_site_screenshot != False): Array_Switch.append(driver_options)
-            else: Array_Switch.append(None)
-            if (args.scan_site_ssl != False): Array_Switch.append(True)
-            else: Array_Switch.append(False)
-            if (args.scan_site_header != False): Array_Switch.append(True)
-            else: Array_Switch.append(False)
-            if (args.scan_site_fuzzing != False): Array_Switch.append(True)
-            else: Array_Switch.append(False)
-            if (args.scan_ssh != False): Array_Switch.append(True)
-            else: Array_Switch.append(False)
-            if (args.add_nmap_ssh_result != None): Switch_nmap = True
-            if (args.scan_site_screenshot_recursive != False): Array_Switch.append(True)
-            else: Array_Switch.append(False)
-            if (args.scan_security_flags != False): Array_Switch.append(True)
-            else: Array_Switch.append(False)
-            if (args.scan_site_certificate != False): Array_Switch.append(True)
-            else: Array_Switch.append(False)
-#            if (args.scan_site_http_methods != False): Array_Switch.append(True)
-#            else: Array_Switch.append(False)
-        except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
+        if (args.scan_site_screenshot != False):            Dict_Switch['scan_screenshot'] = driver_options
+        if (args.scan_site_ssl != False):                   Dict_Switch['scan_ssl'] = True
+        if (args.scan_site_header != False):                Dict_Switch['scan_header'] = True
+        if (args.scan_site_fuzzing != False):               Dict_Switch['scan_fuzzing'] = True
+        if (args.scan_ssh != False):                        Dict_Switch['scan_ssh'] = True
+        if (args.add_nmap_ssh_result != None):              Switch_nmap = True
+        if (args.scan_site_screenshot_recursive != False):  Dict_Switch['scan_screenshot_recursive'] = True
+        if (args.scan_security_flags != False):             Dict_Switch['scan_security_flags'] = True
+        if (args.scan_site_certificate != False):           Dict_Switch['scan_certificate'] = True
+        if (args.scan_site_http_methods != False):          Dict_Switch['scan_http_methods'] = True
 
     # Program_Start
     Standard.Initialien(args.debug)
@@ -126,8 +137,7 @@ def main(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': 
             task_Processes = progress.add_task("[cyan]Waiting for the results...", total=1, start=False)
             task_Filter = progress.add_task("[cyan]Filtering the results...", total=100, start=False)
             for Target in array(Array_Targets):
-                Array_Thread_Args.append(Target), Array_Thread_Args.append(args.timeout), Array_Thread_Args.append(queue)
-                for _ in Array_Switch: Array_Thread_Args.append(_)
+                Array_Thread_Args.append(Target), Array_Thread_Args.append(args.timeout), Array_Thread_Args.append(queue), Array_Thread_Args.append(Dict_Switch)
                 Array_Thread_Args.append(Screen_Dir), Array_Thread_Args.append(Switch_Internet_Connection), Array_Thread_Args.append(args.screenshot_wait), Array_Thread_Args.append(args.webdriver_wait)
                 p = Process(target=Thread_Scanning_Start, args=Array_Thread_Args, daemon=True)
                 p.start()
