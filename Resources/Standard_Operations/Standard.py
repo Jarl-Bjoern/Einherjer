@@ -3,7 +3,7 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-from Resources.Colors import Colors
+from Resources.Standard_Operations.Colors import Colors
 from Resources.Header_Files.Variables import *
 from Resources.Standard_Operations.Logs import *
 
