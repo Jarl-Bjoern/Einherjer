@@ -27,8 +27,6 @@ from os.path import dirname, realpath
 from sys import argv, path as SYSTEM_PATH
 SYSTEM_PATH.append(dirname(realpath(__file__)).split('Resources/Header_Files')[0])
 
-print (argv)
-
 # Libraries
 try:
     from contextlib import redirect_stdout
@@ -60,7 +58,7 @@ try:
 
     # Argument_Parser
     from .ArgParser import Argument_Parser
-    args = Argument_Parser()
+    args = Argument_Parser(argv[1:])
 
     # Scanning_Module_Filtering
     if (args.scan_all == False and args.scan_site_certificate == False and args.scan_smtp == False and args.scan_site_http_methods == False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
