@@ -24,5 +24,5 @@ if [[ -d "$BASE_PATH/venv" ]]; then
         sudo python3 "$SCRIPT_PATH/main.py" "$@"
         deactivate
 else
-        echo -e "${CYAN}Please use a virtual environment!${NOCOLOR}\n\n${ORANGE}virtualenv $BASE_PATH/venv\nsource $BASE_PATH/venv/bin/activate\npip3 install -r Setup/requirements.txt\ndeactivate${NOCOLOR}"
+        echo -e "${RED}Please use a virtual python environment!${NOCOLOR}\n\nInstruction:\n${CYAN}----------------------------------\n${ORANGE}virtualenv $BASE_PATH/venv\nsource $BASE_PATH/venv/bin/activate\npip3 install -r Setup/requirements.txt\ndeactivate${NOCOLOR}"
 fi
