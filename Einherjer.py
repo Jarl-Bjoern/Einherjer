@@ -3,7 +3,10 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-from Resources.Header_Files.Threads import *
+from Resources.Header_Files.Libraries import args
+from os import name as osname
+from os.path import dirname, join, realpath
+from subprocess import run
 
 # Main
 if __name__ == '__main__':
