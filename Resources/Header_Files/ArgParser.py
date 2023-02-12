@@ -4,7 +4,7 @@
 
 from os.path import abspath
 from sys import path as SYSTEM_PATH
-SYSTEM_PATH.append(abspath("Resources"))
+SYSTEM_PATH.append(abspath("../Resources"))
 
 # Libraries
 from Resources.Standard_Operations.Colors import Colors
