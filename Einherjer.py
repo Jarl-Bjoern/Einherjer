@@ -2,8 +2,15 @@
 # -*- coding: utf-8 -*-
 # Rainer Christian Bjoern Herold
 
+# Append_Missing_Module_Paths
+from os.path import dirname, join, realpath
+from sys import path as SYSTEM_PATH
+for _ in ['Filter','Format','Header_Files','Standard_Operations','Workfiles']:
+    SYSTEM_PATH.append(join(dirname(realpath(__file__)), f'Resources/{_}'))
+del dirname, join, realpath, SYSTEM_PATH
+
 # Libraries
-from Resources.Header_Files.Threads import *
+from Header_Files.Threads import *
 
 # Main
 if __name__ == '__main__':
