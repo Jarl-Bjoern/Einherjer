@@ -3,10 +3,10 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-from Header_Files.Libraries import *
-from Standard_Operations.Colors import Colors
-from Standard_Operations.Standard import *
-from Standard_Operations.Logs import *
+from .Libraries import *
+from ..Standard_Operations.Colors import Colors
+from ..Standard_Operations.Standard import *
+from ..Standard_Operations.Logs import *
 
 # Template_Filtering
 if (args.read_config_cookie_security_flags != None): Array_Security_Flags = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_cookie_security.txt"))
