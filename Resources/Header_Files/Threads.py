@@ -17,7 +17,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         Dict_Result = queue.get()
         Host_Name = Get_Host_Name(url)
 
-        # Certificat
+        # Certificates
         if (dict_switch['scan_certificate'] != False and '//' in url and 'https' in url):
             Dict_Result['Certificate'][html_decode(url)] = Check_Certificate(url, t_seconds, Host_Name)
 
