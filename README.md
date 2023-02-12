@@ -37,15 +37,7 @@ The current use is at your own risk.
 
 <a name="start_install"></a>
 ## ⚔ Download and start the tool
-### ⚔ Normal use
-```bash
-sudo git clone https://github.com/Jarl-Bjoern/einherjer/
-cd einherjer
-pip3 install -r Setup/requirements.txt
-sudo python3 Einherjer.py
-```
-
-### ⚔ Virtual Environment (UNDER CONSTRUCTION)
+### Preparations
 #### Linux
 ```bash
 sudo git clone https://github.com/Jarl-Bjoern/einherjer/
@@ -54,8 +46,6 @@ virtualenv venv
 source venv/bin/activate
 pip3 install -r Setup/requirements.txt
 deactivate
-
-sudo bash Einherjer.sh
 ```
 #### Windows
 ```PowerShell
@@ -65,7 +55,14 @@ virtualenv venv
 source venv/bin/activate
 pip3 install -r Setup/requirements.txt
 deactivate
+```
 
+### Starting the tool
+```bash
+sudo bash Einherjer.sh
+```
+#### Windows
+```PowerShell
 ./Einherjer.ps1
 ```
 
