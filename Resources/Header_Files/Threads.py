@@ -8,6 +8,7 @@ from ..Standard_Operations.Logs import *
 from ..Workfiles.Scan_Cookie import Check_Security_Flags
 from ..Workfiles.Scan_Certificate import Check_Certificate
 from ..Workfiles.Scan_Header import Check_Site_Header
+from ..Workfiles.Scan_Host_Name import Get_Host_Name
 from ..Workfiles.Scan_Screen import Take_Screenshot
 
 # Functions
