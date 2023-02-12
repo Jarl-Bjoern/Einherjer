@@ -3,12 +3,13 @@
 # Rainer Christian Bjoern Herold
 
 # Missing_Path_Appending
+from os.path import abspath
 from sys import path as SYSTEM_PATH
-SYSTEM_PATH.append("..")
+SYSTEM_PATH.append(abspath("../Standard_Operations"))
 SYSTEM_PATH.append(".")
 
 # Libraries
-from ..Standard_Operations.Colors import Colors
+from Colors import Colors
 from .Libraries import dirname, join, realpath
 
 # Functions
