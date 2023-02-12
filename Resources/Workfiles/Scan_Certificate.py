@@ -5,7 +5,7 @@
 # Libraries
 from Resources.Header_Files.Variables import *
 from Resources.Standard_Operations.Logs import Logs
-from Resources.Colors import Colors
+from Resources.Standard_Operations.Colors import Colors
 
 def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_context(), Dict_Temp = {'DNS': "", 'Issuer': "", 'Subject': "", 'Signature_Algorithm': "", 'Cert_Creation_Date': "", 'Cert_EOL': "", 'Date_Difference': "", 'Current_Date': ""}):
     if ('https://' in url): URL = url.split('https://')[1]
