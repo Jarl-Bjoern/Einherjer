@@ -3,7 +3,7 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-from ..Header_Files.Libraries import gairerror, gethostbyaddr, gethostbyname, herror
+from ..Header_Files.Variables import *
 
 def Host_Swap(Word, T_Switch = ""):
     T_Switch = Word[:-1]
