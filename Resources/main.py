@@ -61,7 +61,7 @@ def main(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': 
             else: Location = Standard.Create_Location_Dir(join(getcwd(), f"{args.output_location}/{Date}"))
         elif ('.' not in args.output_location and '/' not in args.output_location): Location = Standard.Create_Location_Dir(join(getcwd(), f"{args.output_location}/{Date}"))
         elif ('/' in args.output_location and not '.' in args.output_location): Location = Standard.Create_Location_Dir(f"{args.output_location}/{Date}")
-    else: Location = Standard.Create_Location_Dir(join(dirname(realpath(__file__)), Date))
+    else: Location = Standard.Create_Location_Dir(join(dirname(realpath(__file__)).replace('/Resources','/'), Date))
 
     # Webdriver_Options
     if (args.scan_site_screenshot != False):
@@ -75,8 +75,8 @@ def main(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': 
         if (args.custom_chromium_path != None): driver_options.binary_location = args.custom_chromium_path
         else:
             if (osname != 'nt'): driver_options.binary_location = "/usr/bin/chromium"
-        if (osname == 'nt'): environ["CHROME_DRIVER_PATH"] = join(dirname(realpath(__file__)), "Resources/Webdriver/chromedriver.exe")
-        else: environ["CHROME_DRIVER_PATH"] = join(dirname(realpath(__file__)), "Resources/Webdriver/chromedriver")
+        if (osname == 'nt'): environ["CHROME_DRIVER_PATH"] = join(dirname(realpath(__file__)), "Webdriver/chromedriver.exe")
+        else: environ["CHROME_DRIVER_PATH"] = join(dirname(realpath(__file__)), "Webdriver/chromedriver")
         Screen_Dir = join(Location, 'Screenshots')
         try: makedirs(Screen_Dir)
         except FileExistsError: pass
