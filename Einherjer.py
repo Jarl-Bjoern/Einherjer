@@ -9,7 +9,11 @@ from os.path import dirname, join, realpath
 from sys import argv
 from subprocess import call
 
+# Arguments
+for _ in argv[1:]:
+    args += f'{_} '
+
 # Main
 if __name__ == '__main__':
-    if (osname == 'nt'): call(['powershell',f'{join(dirname(realpath(__file__)), "Resources/Start_Files/start.ps1")}',f'{argv[1:][0]}'])
-    else: call(['sudo','bash',f'{join(dirname(realpath(__file__)), "Resources/Start_Files/start.sh")}',f'{argv[1:][0]}'])
+    if (osname == 'nt'): call(['powershell',f'{join(dirname(realpath(__file__)), "Resources/Start_Files/start.ps1")}',f'{args}'])
+    else: call(['sudo','bash',f'{join(dirname(realpath(__file__)), "Resources/Start_Files/start.sh")}',f'{args}'])
