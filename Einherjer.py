@@ -11,4 +11,4 @@ from subprocess import Popen
 # Main
 if __name__ == '__main__':
     if (osname == 'nt'): Popen(['powershell',f'{join(dirname(realpath(__file__)), "Resources/Start_Files/start.ps1")}',f'{argv[1:]}'])
-    else: Popen(f'sudo bash {join(dirname(realpath(__file__)), "Resources/Start_Files/start.sh")} {argv[1:]}', shell=True)
+    else: Popen(['sudo','bash',f'{join(dirname(realpath(__file__)), "Resources/Start_Files/start.sh")}',f'{argv[1:]}'])
