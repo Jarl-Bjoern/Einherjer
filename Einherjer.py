@@ -13,6 +13,7 @@ from subprocess import call
 Temp_Args = ""
 for _ in argv[1:]:
     Temp_Args += f'{_} '
+print (Temp_Args)
 
 # Main
 if __name__ == '__main__':
