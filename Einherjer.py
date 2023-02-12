@@ -14,7 +14,7 @@ print (args)
 T = args
 BB = vars(T)
 print (BB)
-Z = Namespace(BB)
+Z = Namespace()
 print (Z)
 
 # Main
