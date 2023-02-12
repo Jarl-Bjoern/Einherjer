@@ -7,7 +7,7 @@ from Resources.Standard_Operations.Colors import Colors
 from .Libraries import dirname, join, realpath
 
 # Functions
-def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Resources/Header_Files', 'Templates')):
+def Argument_Parser(args, Template_Location = dirname(realpath(__file__)).replace('Resources/Header_Files', 'Templates')):
     from argparse import ArgumentParser, RawTextHelpFormatter, SUPPRESS
 
     Program_Description = """-------------------------------------------------------------------------------------
