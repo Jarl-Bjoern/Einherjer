@@ -3,7 +3,7 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-from .Standard_Operations.Colors import Colors
+from Resources.Standard_Operations.Colors import Colors
 from .Libraries import dirname, join, realpath
 
 # Functions
