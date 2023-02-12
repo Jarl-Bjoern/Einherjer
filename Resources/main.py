@@ -101,24 +101,42 @@ def main(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': 
     if (args.add_https_proxy != None): Dict_Proxies['https'] = args.add_https_proxy
 
     # Scanning_Options
-    if (args.scan_all == False and args.scan_site_screenshot == False and args.scan_site_http_methods == False and args.scan_site_certificate == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
-        from Resources.Header_Files.ArgParser_Intro import Argument_Parser
-        Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
-    elif (args.scan_all != False and args.scan_site_screenshot == False and args.scan_site_http_methods == False and args.scan_site_certificate == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
-        Dict_Switch = {
-            'scan_certificate': True,
-            'scan_dns': True,
-            'scan_fuzzing': True,
-            'scan_header': True,
-            'scan_http_methods': True,
-            'scan_security_flags': True,
-            'scan_screenshot': driver_options,
-            'scan_screenshot_recursive': True,
-            'scan_snmp': True,
-            'scan_smtp': True,
-            'scan_ssh': True,
-            'scan_ssl': True
-        }
+    if (args.scan_all == False and
+        args.scan_site_screenshot == False and
+        args.scan_site_http_methods == False and
+        args.scan_site_certificate == False and
+        args.scan_site_ssl == False and
+        args.scan_site_header == False and
+        args.scan_site_fuzzing == False and
+        args.scan_ssh == False and
+        args.scan_site_screenshot_recursive == False and
+        args.scan_security_flags == False):
+                from Resources.Header_Files.ArgParser_Intro import Argument_Parser
+                Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
+    elif (args.scan_all != False and
+          args.scan_site_screenshot == False and
+          args.scan_site_http_methods == False and
+          args.scan_site_certificate == False and
+          args.scan_site_ssl == False and
+          args.scan_site_header == False and
+          args.scan_site_fuzzing == False and
+          args.scan_ssh == False and
+          args.scan_site_screenshot_recursive == False and
+          args.scan_security_flags == False):
+                Dict_Switch = {
+                    'scan_certificate': True,
+                    'scan_dns': True,
+                    'scan_fuzzing': True,
+                    'scan_header': True,
+                    'scan_http_methods': True,
+                    'scan_security_flags': True,
+                    'scan_screenshot': driver_options,
+                    'scan_screenshot_recursive': True,
+                    'scan_snmp': True,
+                    'scan_smtp': True,
+                    'scan_ssh': True,
+                    'scan_ssl': True
+                }
     elif (args.scan_all == False):
         if (args.add_nmap_ssh_result != None):              Switch_nmap = True
         if (args.scan_site_certificate != False):           Dict_Switch['scan_certificate'] = True
