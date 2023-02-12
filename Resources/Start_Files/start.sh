@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # Rainer Christian Bjoern Herold
 
 source venv/bin/activate
