@@ -39,7 +39,6 @@ The current use is at your own risk.
 ## ⚔ Download and start the tool
 ### Preparations
 First of all, a `virtual environment` for Python must be created.
-#### Linux
 ```bash
 sudo git clone https://github.com/Jarl-Bjoern/einherjer/
 cd einherjer
@@ -48,17 +47,9 @@ source venv/bin/activate
 pip3 install -r Setup/requirements.txt
 deactivate
 ```
-#### Windows
-```PowerShell
-git clone https://github.com/Jarl-Bjoern/einherjer/
-cd einherjer
-virtualenv venv
-source venv/bin/activate
-pip3 install -r Setup/requirements.txt
-deactivate
-```
 
 ### Starting the tool
+#### Linux
 ```bash
 sudo bash Einherjer.sh
 ```
