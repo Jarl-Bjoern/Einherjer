@@ -9,7 +9,7 @@ SYSTEM_PATH.append(abspath("../Standard_Operations"))
 SYSTEM_PATH.append(".")
 
 # Libraries
-from Colors import Colors
+from ..Standard_Operations.Colors import Colors
 from .Libraries import dirname, join, realpath
 
 # Functions
