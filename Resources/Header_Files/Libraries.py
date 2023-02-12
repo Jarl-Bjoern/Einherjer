@@ -61,32 +61,54 @@ try:
     args = Argument_Parser()
 
     # Scanning_Module_Filtering
-    if (args.scan_all == False and args.scan_site_certificate == False and args.scan_smtp == False and args.scan_site_http_methods == False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
-        from .ArgParser_Intro import Argument_Parser
-        Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
-    elif (args.scan_all != False and args.scan_site_certificate == False and args.scan_smtp == False and args.scan_site_http_methods == False and args.scan_site_screenshot == False and args.scan_site_ssl == False and args.scan_site_header == False and args.scan_site_fuzzing == False and args.scan_ssh == False and args.scan_site_screenshot_recursive == False and args.scan_security_flags == False):
-        from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
-        from cryptography.x509 import load_der_x509_certificate
-        from cryptography.hazmat.backends import default_backend
-        from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
-        from http.client import HTTPSConnection
-        from os import environ, rename
-        from requests import get, Session
-        from selenium import webdriver
-        from selenium.webdriver.common.by import By
-        from selenium.webdriver.common.keys import Keys
-        from selenium.webdriver.chrome.options import Options
-        from selenium.webdriver.chrome.service import Service
-        from selenium.webdriver.remote.webdriver import WebDriver
-        from smtplib import SMTP
-        from socket import create_connection
-        from webbrowser import open as webbrowser_open
-        import asyncio
-        with catch_warnings():
-            simplefilter("ignore")
-            from paramiko.transport import Transport
-        with redirect_stdout(None):
-            from webdriver_manager.chrome import ChromeDriverManager
+    if (args.scan_all == False and
+        args.scan_site_certificate == False and
+        args.scan_site_dns_bruteforce == False and
+        args.scan_smtp == False and
+        args.scan_site_http_methods == False and
+        args.scan_site_screenshot == False and
+        args.scan_site_ssl == False and
+        args.scan_site_header == False and
+        args.scan_site_fuzzing == False and
+        args.scan_ssh == False and
+        args.scan_site_screenshot_recursive == False and
+        args.scan_security_flags == False):
+            from .ArgParser_Intro import Argument_Parser
+            Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
+    elif (args.scan_all != False and
+          args.scan_site_certificate == False and
+          args.scan_site_dns_bruteforce == False and
+          args.scan_smtp == False and
+          args.scan_site_http_methods == False and
+          args.scan_site_screenshot == False and
+          args.scan_site_ssl == False and
+          args.scan_site_header == False and
+          args.scan_site_fuzzing == False and
+          args.scan_ssh == False and
+          args.scan_site_screenshot_recursive == False and
+          args.scan_security_flags == False):
+            from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
+            from cryptography.x509 import load_der_x509_certificate
+            from cryptography.hazmat.backends import default_backend
+            from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
+            from http.client import HTTPSConnection
+            from os import environ, rename
+            from requests import get, Session
+            from selenium import webdriver
+            from selenium.webdriver.common.by import By
+            from selenium.webdriver.common.keys import Keys
+            from selenium.webdriver.chrome.options import Options
+            from selenium.webdriver.chrome.service import Service
+            from selenium.webdriver.remote.webdriver import WebDriver
+            from smtplib import SMTP
+            from socket import create_connection
+            from webbrowser import open as webbrowser_open
+            import asyncio
+            with catch_warnings():
+                simplefilter("ignore")
+                from paramiko.transport import Transport
+            with redirect_stdout(None):
+                from webdriver_manager.chrome import ChromeDriverManager
     elif (args.scan_all == False):
         if (args.scan_site_screenshot != False):
             from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
