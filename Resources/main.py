@@ -3,8 +3,8 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-from Header_Files.Threads import *
-from Workfiles.Scan_Screen import Web
+from Resources.Header_Files.Threads import *
+from Resources.Workfiles.Scan_Screen import Web
 
 # Main_Function
 def main(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': {}, 'Information': {}, 'Security_Flag': {}, 'SSH': {}, 'SSL': {}}, Dict_Proxies = {'http': '', 'https': ''}, Array_HTTP_Filter = [], Array_Switch = [], Array_Thread_Args = [], Dict_Switch = {}, Dict_Threads = {}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None):
@@ -12,7 +12,7 @@ def main(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': 
 
     # Target_Options
     if (args.target == None and args.import_list == None):
-        from Header_Files.ArgParser_Intro import Argument_Parser
+        from Resources.Header_Files.ArgParser_Intro import Argument_Parser
         Argument_Parser("\n\n\t\t\t   The program cannot be started without targets!\n\t\t\tFor more information use the parameter -h or --help.\n"), exit()
     elif (args.target == None and args.import_list != None):
         try: Array_Targets = Standard.Read_Targets_v4(args.import_list)
