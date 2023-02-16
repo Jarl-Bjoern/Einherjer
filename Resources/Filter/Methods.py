@@ -31,11 +31,11 @@ class Filter:
                                  Result += 1
                                  if ("server_host_key_algorithms" not in Report[Result] and "encryption_algorithms" not in Report[Result] and "mac_algorithms" not in Report[Result] and "compression_algorithms" not in Report[Result]):
                                      if (Report[Result][8:-1] not in Array_SSH_Algorithms):
-                                         if ('@' in Report[Result][8:-1]):
-                                             if (Report[Result][8:-1].split("@")[0] not in Array_SSH_Algorithms):
-                                                 Dict_SSH_Results[Target].append(Report[Result][8:-1])
+                                         if ('@' in Report[Result][8:]):
+                                             if (Report[Result][8:].split("@")[0] not in Array_SSH_Algorithms):
+                                                 Dict_SSH_Results[Target].append(Report[Result][8:])
                                          else:
-                                             Dict_SSH_Results[Target].append(Report[Result][8:-1])
+                                             Dict_SSH_Results[Target].append(Report[Result][8:])
                                  else: break
                  elif ("Supported authentication methods" in Report[Result][4:-1]):
                        Dict_System[f'{IP_Address}:{Port}'] = ""
