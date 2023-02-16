@@ -3,7 +3,7 @@
 # Rainer Christian Bjoern Herold
 
 class Filter:
-    def SSH_Nmap_New(nmap_file. location):
+    def SSH_Nmap_New(nmap_file. location, Dict_System = {}):
         with open(nmap_file, 'r') as f:
             Report = f.read().splitlines()
 
