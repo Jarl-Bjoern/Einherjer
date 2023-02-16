@@ -48,7 +48,7 @@ class Filter:
                                 "mac_algorithms" not in Report[Result] and
                                 "compression_algorithms" not in Report[Result]):
                                            if ("pubkey" not in Report[Result]):
-                                               Dict_SSH_Results['auth_methods'].append(Report[Result][8:-1])
+                                               Dict_SSH_Results['auth_methods'].append(Report[Result][6:])
                             else: break
                  elif ("compression_algorithms" in Report[Result]):
                        Dict_System[f'{IP_Address}:{Port}'] = Dict_SSH_Results
