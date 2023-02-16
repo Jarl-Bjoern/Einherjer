@@ -47,7 +47,7 @@ class Filter:
                                 "encryption_algorithms" not in Report[Result] and
                                 "mac_algorithms" not in Report[Result] and
                                 "compression_algorithms" not in Report[Result]):
-                                           if ("pubkey" not in Report[Result]):
+                                           if ("publickey" not in Report[Result]):
                                                Dict_SSH_Results['auth_methods'].append(Report[Result][6:])
                             else: break
                  elif ("compression_algorithms" in Report[Result]):
