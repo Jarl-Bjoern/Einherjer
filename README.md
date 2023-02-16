@@ -13,6 +13,8 @@
   <a href="https://visitor-badge.glitch.me/badge?page_id=jarl-bjoern/einherjer&left_color=grey&right_color=blue">
     <img alt="visitors" src="https://visitor-badge.glitch.me/badge?page_id=jarl-bjoern/einherjer&left_color=grey&right_color=blue" />
   </a>
+</div>
+<div align="center">
   <a href="https://GitHub.com/jarl-bjoern/einherjer/releases/">
     <img alt="releases" src="https://img.shields.io/github/downloads/Naereen/StrapDown.js/total.svg" />
   </a>
