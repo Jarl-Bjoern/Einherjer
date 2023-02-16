@@ -28,28 +28,28 @@ class Filter:
                             Dict_System[f'{IP_Address}:{Port}'] = ""
                             Target = Report[Result][4:-1].split(" ")[0][:-1]
                             while True:
-                               Result += 1
-                               if ("server_host_key_algorithms" not in Report[Result] and "encryption_algorithms" not in Report[Result] and "mac_algorithms" not in Report[Result] and "compression_algorithms" not in Report[Result]):
-                                   if (Report[Result][8:-1] not in Array_SSH_Algorithms):
-                                       if ('@' in Report[Result][8:-1]):
-                                           if (Report[Result][8:-1].split("@")[0] not in Array_SSH_Algorithms):
-                                               Dict_SSH_Results[Target].append(Report[Result][8:-1])
-                                       else:
-                                           Dict_SSH_Results[Target].append(Report[Result][8:-1])
-                               else: break
+                                 Result += 1
+                                 if ("server_host_key_algorithms" not in Report[Result] and "encryption_algorithms" not in Report[Result] and "mac_algorithms" not in Report[Result] and "compression_algorithms" not in Report[Result]):
+                                     if (Report[Result][8:-1] not in Array_SSH_Algorithms):
+                                         if ('@' in Report[Result][8:-1]):
+                                             if (Report[Result][8:-1].split("@")[0] not in Array_SSH_Algorithms):
+                                                 Dict_SSH_Results[Target].append(Report[Result][8:-1])
+                                         else:
+                                             Dict_SSH_Results[Target].append(Report[Result][8:-1])
+                                 else: break
                  elif ("Supported authentication methods" in Report[Result][4:-1]):
                        Dict_System[f'{IP_Address}:{Port}'] = ""
                        Target = Report[Result][4:-1].split(" ")[0][:-1]
                        while True:
-                             Result += 1
-                             if ("ssh2-enum-algos" not in Report[Result] and
-                                 "server_host_key_algorithms" not in Report[Result] and
-                                 "encryption_algorithms" not in Report[Result] and
-                                 "mac_algorithms" not in Report[Result] and
-                                 "compression_algorithms" not in Report[Result]):
-                                             if ("pubkey" not in Report[Result]):
-                                                 Dict_SSH_Results['auth_methods'].append(Report[Result][8:-1])
-                             else: break
+                            Result += 1
+                            if ("ssh2-enum-algos" not in Report[Result] and
+                                "server_host_key_algorithms" not in Report[Result] and
+                                "encryption_algorithms" not in Report[Result] and
+                                "mac_algorithms" not in Report[Result] and
+                                "compression_algorithms" not in Report[Result]):
+                                           if ("pubkey" not in Report[Result]):
+                                               Dict_SSH_Results['auth_methods'].append(Report[Result][8:-1])
+                           else: break
                  elif ("compression_algorithms" in Report[Result]):
                        Dict_System[f'{IP_Address}:{Port}'] = Dict_SSH_Results
                        Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': []}
