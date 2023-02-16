@@ -3,7 +3,7 @@
 # Rainer Christian Bjoern Herold
 
 class Filter:
-    def SSH_Nmap_New(nmap_file. location, Dict_System = {}):
+    def SSH_Nmap_New(nmap_file. location, Dict_System = {}, Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': []}):
         with open(nmap_file, 'r') as f:
             Report = f.read().splitlines()
 
