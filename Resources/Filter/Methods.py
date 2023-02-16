@@ -3,8 +3,8 @@
 # Rainer Christian Bjoern Herold
 
 class Filter:
-    def SSH_Nmap(nmap_file. location, Dict_System = {}, Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': [], 'auth_methods': []}):
-        with open(existing_nmap_file, 'r') as f:
+    def SSH_Nmap(nmap_file, location, Dict_System = {}, Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': [], 'auth_methods': []}):
+        with open(nmap_file, 'r') as f:
             Report = f.read().splitlines()
 
         for Result in range(1, len(Report)-1):
@@ -54,7 +54,7 @@ class Filter:
                        Dict_System[f'{IP_Address}:{Port}'] = Dict_SSH_Results
                        Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': []}
 
-        with open(join(location, 'Vulns.txt'), 'w') as f:
+        with open(join(location, 'ssh-vulns.txt'), 'w') as f:
              f.write("Host;kex_algorithms;server_host_key_algorithms;encryption_algorithms;mac_algorithms;auth_methods\n")
              for i in Dict_System:
                  f.write(f'{i};')
