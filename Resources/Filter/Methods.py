@@ -55,7 +55,7 @@ class Filter:
                       Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': []}
 
         with open(join(location, 'Vulns.txt'), 'w') as f:
-             f.write("Host;kex_algorithms;server_host_key_algorithms;encryption_algorithms;mac_algorithms\n")
+             f.write("Host;kex_algorithms;server_host_key_algorithms;encryption_algorithms;mac_algorithms;auth_methods\n")
              for i in Dict_System:
                  f.write(f'{i};')
                  for j in Dict_System[i]:
