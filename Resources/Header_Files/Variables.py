@@ -11,10 +11,10 @@ from ..Standard_Operations.Logs import *
 # Template_Filtering
 if (args.read_config_cookie_security_flags != None): Array_Security_Flags = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_cookie_security.txt"))
 else: Array_Security_Flags = []
-if (args.read_config_http_header != None): Array_Header, Array_HTTP_Filter = Standard.Read_File_Special(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_header.txt"))
+if (args.read_config_http_header == True and args.read_config_http_header_api == False): Array_Header, Array_HTTP_Filter = Standard.Read_File_Special(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_header.txt"))
+elif (args.read_config_http_header == False and args.read_config_http_header_api == True): Array_Header, Array_HTTP_Filter = Standard.Read_File_Special(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_header_api.txt"))
+elif (args.read_config_http_header == True and args.read_config_http_header_api == True): exit()
 else: Array_Header, Array_HTTP_Filter = [], []
-#if (args.read_config_http_header_api != None): Array_Header, Array_HTTP_Filter = Standard.Read_File_Special(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_header_api.txt"))
-#else: Array_Header, Array_HTTP_Filter = [], []
 if (args.read_config_http_information_disclosure != None): Array_Information_Disclosure_Header = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_information_disclosure.txt"))
 else: Array_Information_Disclosure_Header = []
 if (args.read_config_http_methods != None): Array_HTTP_Methods = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_methods.txt"))
