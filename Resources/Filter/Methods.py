@@ -40,7 +40,6 @@ class Filter:
                     f.write(f';')
                 f.write('\n')
 
-
     def SSH_Nmap():
         with open(existing_nmap_file, 'r') as f:
             Report = f.readlines()
