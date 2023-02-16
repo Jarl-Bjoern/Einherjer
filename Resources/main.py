@@ -216,7 +216,7 @@ def main(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': 
                 Array_Output = HTML_Table(Dict_Result, Location)
             elif ("json" in args.format):
                 from Resources.Format.JSON import JSON_Table
-                #Array_Output = JSON_Table(Dict_Result, Location)
+                Array_Output = JSON_Table(Dict_Result, Location)
             elif ("md" in args.format):
                 from Resources.Format.Markdown import Markdown_Table
                 Array_Output = Markdown_Table(Dict_Result, Location)
