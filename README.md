@@ -16,10 +16,10 @@
 </div>
 <div align="center">
   <a href="https://GitHub.com/jarl-bjoern/einherjer/releases/">
-    <img alt="repo size" src="https://img.shields.io/github/repo-size/jarl-bjoern/yggdrasil?logo=github&logoColor=cyan" />
+    <img alt="repo size" src="https://img.shields.io/github/repo-size/jarl-bjoern/einherjer?logo=github&logoColor=cyan" />
   </a>
   <a href="https://GitHub.com/jarl-bjoern/einherjer/releases/">
-    <img alt="releases" src="https://img.shields.io/github/downloads/jarl-bjoern/yggdrasil/total?color=blue&logo=github&logoColor=cyan" />
+    <img alt="releases" src="https://img.shields.io/github/downloads/jarl-bjoern/einherjer/total?color=blue&logo=github&logoColor=cyan" />
   </a>
   <a href="https://github.com/jarl-bjoern">
       <img title="Follower" src="https://img.shields.io/github/followers/jarl-bjoern?color=blue&label=follow&logo=github&logoColor=cyan&style=flat-square">
