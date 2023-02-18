@@ -55,7 +55,7 @@ class Filter:
                             else: break
                  elif ("compression_algorithms" in Report[Result]):
                        Dict_System[f'{IP_Address}:{Port}'] = Dict_SSH_Results
-                       Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': []}
+                       Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': [], 'auth_methods': []}
 
         with open(join(location, 'ssh-vulns.csv'), 'w') as f:
              f.write("Host;kex_algorithms;server_host_key_algorithms;encryption_algorithms;mac_algorithms;auth_methods\n")
