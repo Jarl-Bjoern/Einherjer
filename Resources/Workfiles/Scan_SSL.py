@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # Rainer Christian Bjoern Herold
 
-def Scan_SSL(Array_Result_Filter = ['http_headers', 'certificate_info','rejected_cipher_suites','rejected_curves'], Start_Scan = datetime.now()):
+def Scan_SSL(Dict_SSL_Ciphers = {}, Dict_SSL_Vulns = {'HEARTBLEED': "", 'CCS_INJECTION': "", 'ROBOT': "", 'CLIENT_RENEGOTIATION_DOS': "", 'SWEET32': "", 'LUCKY13': "", 'FALLBACK_SCSV': ""}, Array_Result_Filter = ['http_headers', 'certificate_info','rejected_cipher_suites','rejected_curves'], Start_Scan = datetime.now()):
     Array_Targets, Array_SSL_Targets = ["127.0.0.1:8834"], []
     TLS_Version, Supported_Version = "",""
 
