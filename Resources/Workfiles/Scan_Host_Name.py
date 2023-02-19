@@ -6,7 +6,7 @@
 from ..Header_Files.Variables import *
 
 def Host_Swap(Word, T_Switch = ""):
-    T_Switch = Word[:-1]
+    T_Switch = Word[:-2]
     Word = T_Switch
     return Word
 
@@ -40,16 +40,15 @@ def Get_Host_Name(url, Target = "", Temp = "", Word = ""):
                     Word = Filter_Host_Name(_, Target, Temp, Word)
                 else:
                     for j in _:
-#                        Word = Filter_Host_Name(j, Target, _, Word)
                         if (j != _[len(_)-1] and j != Target): Word += f"{j}, "
                         elif (j != _[len(_)-1] and j == Target): pass
                         elif (j == _[len(_)-1] and j == Target):
-                            if (Word[-1] == ","): Word = Host_Swap(Word)
+                            if (Word[-2:] == ", "): Word = Host_Swap(Word)
                         elif (j == _[len(_)-1] and j != Target):
                             if (_ != Temp[len(Temp)-1] and _ != Target): Word += f"{j}, "
                             elif (_ != Temp[len(Temp)-1] and _ == Target): pass
                             elif (_ == Temp[len(Temp)-1] and _ == Target):
-                                if (Word[-1] == ","): Word = Host_Swap(Word)
+                                if (Word[-2:] == ", "): Word = Host_Swap(Word)
                             elif (_ == Temp[len(Temp)-1] and _ != Target): Word += f"{j}"
     elif (type(Temp) == str): Word = Temp
 
