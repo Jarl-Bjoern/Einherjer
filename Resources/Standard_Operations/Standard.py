@@ -58,10 +58,7 @@ class Standard:
 
     def Read_File_Special(file_path, Array_Temp_Zero = [], Array_Temp_One = []):
         for _ in Standard.Read_Template(file_path):
-            if ("=" in _):
-                Temp = _.split('=')
-                if (Temp[0] not in Array_Temp_Zero): Array_Temp_Zero.append(Temp[0]), Array_Temp_One.append(Temp[1])
-            elif (":" in _):
+            if (":" in _):
                 Temp = _.split(':')
                 if (Temp[0] not in Array_Temp_Zero): Array_Temp_Zero.append(Temp[0]), Array_Temp_One.append(Temp[1])
         return Array_Temp_Zero, Array_Temp_One
