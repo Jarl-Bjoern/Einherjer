@@ -46,4 +46,4 @@ def Scan_SSL(Dict_SSL_Ciphers = {}, Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "",
                                     print (f'{k} : {Deep_Result[k]}')
                                 TLS_Version, Supported_Version = "",""
 
-    return Dict_SSL_Ciphers, Dict_SSL_Vulns
+    return Dict_SSL_Ciphers
