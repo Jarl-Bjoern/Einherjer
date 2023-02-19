@@ -38,8 +38,10 @@ def Scan_SSL(Dict_SSL_Ciphers = {}, Dict_SSL_Vulns = {'HEARTBLEED': "", 'CCS_INJ
                                     if (Deep_Result[k] != []):
                                         print (f'{k}')
                                     for z in Deep_Result[k]:
-                                        print (z['cipher_suite'])
-                                        print (z['ephemeral_key'])
+                                        for y in z['cipher_suite']:
+                                            print (f'{y} : {z["cipher_suite"][y]}')
+                                        for x in z['ephemeral_key']:
+                                            print (f'{x} : {z["ephemeral_key"][x]}')
                                 else:
                                     print (f'{k} : {Deep_Result[k]}')
                                 TLS_Version, Supported_Version = "",""
