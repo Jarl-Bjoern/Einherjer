@@ -35,8 +35,6 @@ def Scan_SSL(Dict_Full_SSL = {}, Dict_SSL_Ciphers = {}, Dict_SSL_Vulns = {'CRIME
                                 if (TLS_Version != "" and Supported_Version != ""):
                                     print (f'{TLS_Version} : {Supported_Version}')
                                 if (k == 'accepted_cipher_suites'):
-                                    if (Deep_Result[k] != []):
-                                        print (f'{k}')
                                     for z in Deep_Result[k]:
                                         for y in z['cipher_suite']:
                                             print (f'{y} : {z["cipher_suite"][y]}')
