@@ -6,12 +6,15 @@ def Scan_SSL(Dict_Full_SSL = {}, Dict_SSL_Ciphers = {}, Dict_SSL_Vulns = {'CRIME
     Array_Targets, Array_SSL_Targets = ["127.0.0.1:8834"], []
     TLS_Version, Supported_Version, Temp_Array_Ciphers, Temp_Array_Ephemeral = "","",[],[]
 
-    for i in Array_Targets:
-        if (':' in i):
-            Temp_Target = i.split(':')
-            try: Array_SSL_Targets.append(ServerScanRequest(server_location=ServerNetworkLocation(hostname=Temp_Target[0], port=Temp_Target[1])))
-            except ServerHostnameCouldNotBeResolved:
-                print ("Error resolving the supplied hostname")
+    if ('http://' in url): URL = url.split('http://')[1]
+    elif ('https://' in url): URL = url.split('https://')[1]
+
+    if (url.count(':') > 1): Port = url.split(':')[2]
+    else: Port = 443
+
+    try: Array_SSL_Targets.append(ServerScanRequest(server_location=ServerNetworkLocation(hostname=URL, port=Port)))
+    except ServerHostnameCouldNotBeResolved:
+        Logs.Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n')
 
     scanner = Scanner()
     scanner.queue_scans(Array_SSL_Targets)
