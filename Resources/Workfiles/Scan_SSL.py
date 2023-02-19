@@ -2,11 +2,9 @@
 # -*- coding: utf-8 -*-
 # Rainer Christian Bjoern Herold
 
-def Scan_SSL():
+def Scan_SSL(Array_Result_Filter = ['http_headers', 'certificate_info','rejected_cipher_suites','rejected_curves'], Start_Scan = datetime.now()):
     Array_Targets, Array_SSL_Targets = ["127.0.0.1:8834"], []
-    Array_Result_Filter = ['http_headers', 'certificate_info','rejected_cipher_suites','rejected_curves']
     TLS_Version, Supported_Version = "",""
-    Start_Scan = datetime.now()
 
     for i in Array_Targets:
         if (':' in i):
