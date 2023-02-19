@@ -101,6 +101,7 @@ try:
                 from selenium.webdriver.chrome.service import Service
                 from selenium.webdriver.remote.webdriver import WebDriver
                 from smtplib import SMTP
+                from sslyze import Scanner, ServerNetworkLocation, ServerScanRequest, ServerScanResultAsJson, ServerHostnameCouldNotBeResolved, SslyzeOutputAsJson
                 from socket import create_connection
                 from webbrowser import open as webbrowser_open
                 import asyncio
@@ -126,6 +127,7 @@ try:
             from cryptography.x509 import load_der_x509_certificate
             from cryptography.hazmat.backends import default_backend
             from socket import create_connection
+            from sslyze import Scanner, ServerNetworkLocation, ServerScanRequest, ServerScanResultAsJson, ServerHostnameCouldNotBeResolved, SslyzeOutputAsJson
         if (args.scan_site_header != False or args.scan_site_fuzzing != False or args.scan_site_dns_bruteforce != False):
             from requests import get
         if (args.scan_ssh != False):
