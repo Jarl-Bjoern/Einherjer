@@ -14,7 +14,7 @@ def Filter_Host_Name(Element, Target, Array_Temp, Word):
     if (Element != Array_Temp[len(Array_Temp)-1] and Element != Target): Word += f"{Element}, "
     elif (Element != Array_Temp[len(Array_Temp)-1] and Element == Target): pass
     elif (Element == Array_Temp[len(Array_Temp)-1] and Element == Target):
-        if (Word[-1] == ","): Word = Host_Swap(Word)
+        if (Word[-2:] == ", "): Word = Host_Swap(Word)
     elif (Element == Array_Temp[len(Array_Temp)-1] and Element != Target): Word += f"{Element}"
 
     return Word
