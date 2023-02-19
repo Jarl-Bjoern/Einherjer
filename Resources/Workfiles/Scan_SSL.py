@@ -43,3 +43,5 @@ def Scan_SSL(Dict_SSL_Ciphers = {}, Dict_SSL_Vulns = {'HEARTBLEED': "", 'CCS_INJ
                                 else:
                                     print (f'{k} : {Deep_Result[k]}')
                                 TLS_Version, Supported_Version = "",""
+
+    return Dict_SSL_Ciphers, Dict_SSL_Vulns
