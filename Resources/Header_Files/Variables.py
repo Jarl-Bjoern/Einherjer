@@ -9,19 +9,35 @@ from ..Standard_Operations.Standard import *
 from ..Standard_Operations.Logs import *
 
 # Template_Filtering
-if (args.read_config_cookie_security_flags != None): Array_Security_Flags = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_cookie_security.txt"))
+if (args.read_config_cookie_security_flags != False):
+    Array_Security_Flags = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_cookie_security.txt"))
 else: Array_Security_Flags = []
-if (args.read_config_http_header == True and args.read_config_http_header_api == False): Array_Header, Array_HTTP_Filter = Standard.Read_File_Special(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_header.txt"))
-elif (args.read_config_http_header == False and args.read_config_http_header_api == True): Array_Header, Array_HTTP_Filter = Standard.Read_File_Special(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_header_api.txt"))
-elif (args.read_config_http_header == True and args.read_config_http_header_api == True): exit()
+
+if (args.read_config_http_header == True and
+    args.read_config_http_header_api == False):
+        Array_Header, Array_HTTP_Filter = Standard.Read_File_Special(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_header.txt"))
+elif (args.read_config_http_header == False and
+      args.read_config_http_header_api == True):
+        Array_Header, Array_HTTP_Filter = Standard.Read_File_Special(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_header_api.txt"))
+elif (args.read_config_http_header == True and
+      args.read_config_http_header_api == True):
+        exit()
 else: Array_Header, Array_HTTP_Filter = [], []
-if (args.read_config_http_information_disclosure != None): Array_Information_Disclosure_Header = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_information_disclosure.txt"))
+
+if (args.read_config_http_information_disclosure != False):
+    Array_Information_Disclosure_Header = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_information_disclosure.txt"))
 else: Array_Information_Disclosure_Header = []
-if (args.read_config_http_methods != None): Array_HTTP_Methods = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_methods.txt"))
+
+if (args.read_config_http_methods != False):
+    Array_HTTP_Methods = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_methods.txt"))
 else: Array_HTTP_Methods = []
-if (args.read_config_ssh_ciphers != None): Array_SSH_Algorithms = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/ssh_ciphers.txt"))
+
+if (args.read_config_ssh_ciphers != False):
+    Array_SSH_Algorithms = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/ssh_ciphers.txt"))
 else: Array_SSH_Algorithms = []
-if (args.read_config_ssl_ciphers != None): Array_TLS_Algorithms = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/ssl_ciphers.txt"))
+
+if (args.read_config_ssl_ciphers != False):
+    Array_TLS_Algorithms = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/ssl_ciphers.txt"))
 else: Array_TLS_Algorithms = []
 
 # Arrays
