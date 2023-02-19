@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # Rainer Christian Bjoern Herold
 
-def Scan_SSL(Dict_Full_SSL = {}, Dict_SSL_Ciphers = {}, Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEARTBLEED': "", 'CCS_INJECTION': "", 'ROBOT': "", 'CLIENT_RENEGOTIATION_DOS': "", 'SWEET32': "", 'LUCKY13': "", 'FALLBACK_SCSV': ""}, Array_Result_Filter = ['http_headers', 'certificate_info','rejected_cipher_suites','rejected_curves'], Start_Scan = datetime.now()):
+def SSL_Vulns(Dict_Full_SSL = {}, Dict_SSL_Ciphers = {}, Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEARTBLEED': "", 'CCS_INJECTION': "", 'ROBOT': "", 'CLIENT_RENEGOTIATION_DOS': "", 'SWEET32': "", 'LUCKY13': "", 'FALLBACK_SCSV': ""}, Array_Result_Filter = ['http_headers', 'certificate_info','rejected_cipher_suites','rejected_curves'], Start_Scan = datetime.now()):
     Array_Targets, Array_SSL_Targets = ["127.0.0.1:8834"], []
     TLS_Version, Supported_Version, Temp_Array_Ciphers, Temp_Array_Ephemeral = "","",[],[]
 
@@ -54,7 +54,7 @@ def Scan_SSL(Dict_Full_SSL = {}, Dict_SSL_Ciphers = {}, Dict_SSL_Vulns = {'CRIME
     return Dict_Full_SSL
 
 
-#def SSL_Vulns(url, t_seconds, context = create_unverified_context(), Dict_SSL = {'Ciphers': [], 'TLS': [], 'Certificate': {}}):
+#def SSL_Vulns_OLD(url, t_seconds, context = create_unverified_context(), Dict_SSL = {'Ciphers': [], 'TLS': [], 'Certificate': {}}):
 #    def Check_SSL_Values(List_With_Keys, Temp_Key = ""):
 #        Array_Temp = []
 #        for i in List_With_Keys:
