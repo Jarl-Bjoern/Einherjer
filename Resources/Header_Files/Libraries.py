@@ -92,6 +92,7 @@ try:
                 from cryptography.hazmat.backends import default_backend
                 from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
                 from http.client import HTTPSConnection
+                from json import loads as json_loads
                 from os import environ, rename
                 from requests import get, Session
                 from selenium import webdriver
@@ -126,6 +127,7 @@ try:
         if (args.scan_site_ssl != False or args.scan_site_certificate != False):
             from cryptography.x509 import load_der_x509_certificate
             from cryptography.hazmat.backends import default_backend
+            from json import loads as json_loads
             from socket import create_connection
             from sslyze import Scanner, ServerNetworkLocation, ServerScanRequest, ServerScanResultAsJson, ServerHostnameCouldNotBeResolved, SslyzeOutputAsJson
         if (args.scan_site_header != False or args.scan_site_fuzzing != False or args.scan_site_dns_bruteforce != False):
