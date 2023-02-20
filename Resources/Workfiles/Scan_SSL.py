@@ -2,11 +2,9 @@
 # -*- coding: utf-8 -*-
 # Rainer Christian Bjoern Herold
 
-def SSL_Vulns(Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEARTBLEED': "", 'CCS_INJECTION': "", 'ROBOT': "", 'CLIENT_RENEGOTIATION_DOS': "", 'SWEET32': "", 'LUCKY13': "", 'FALLBACK_SCSV': ""}, Array_Result_Filter = ['http_headers', 'certificate_info','rejected_cipher_suites','rejected_curves'], Start_Scan = datetime.now()):
-    Array_Targets, Array_SSL_Targets = ["127.0.0.1:8834"], []
-    TLS_Version, Supported_Version = "",""
-    Dict_Ciphers, Dict_Temp_Ciphers = {'Protocol': "", 'Ciphers': []}, {'Anonymous': "", 'Key_Size': "", 'Name': "", 'Curve_Name': "", 'Type': "", 'Curve_Size': ""}
-    Dict_Full_SSL = {'Ciphers': [], 'SSL_Vulns': []}
+def SSL_Vulns(url, Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEARTBLEED': "", 'CCS_INJECTION': "", 'ROBOT': "", 'CLIENT_RENEGOTIATION_DOS': "", 'SWEET32': "", 'LUCKY13': "", 'FALLBACK_SCSV': ""}, Array_Result_Filter = ['http_headers', 'certificate_info','rejected_cipher_suites','rejected_curves'], Start_Scan = datetime.now()):
+    TLS_Version, Supported_Version, Array_SSL_Targets = "","", []
+    Dict_Ciphers, Dict_Temp_Ciphers, Dict_Full_SSL = {'Protocol': "", 'Ciphers': []}, {'Anonymous': "", 'Key_Size': "", 'Name': "", 'Curve_Name': "", 'Type': "", 'Curve_Size': ""}, {'Ciphers': [], 'SSL_Vulns': []}
 
     if ('http://' in url): URL = url.split('http://')[1]
     elif ('https://' in url): URL = url.split('https://')[1]
