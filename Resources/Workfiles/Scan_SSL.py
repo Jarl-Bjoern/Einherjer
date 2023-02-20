@@ -40,6 +40,16 @@ def SSL_Vulns(Dict_Full_SSL = {}, Dict_SSL_Ciphers = {}, Dict_SSL_Vulns = {'CRIM
                             TLS_Version = Deep_Result[k]
                         elif (k == 'is_tls_version_supported'):
                             Supported_Version = Deep_Result[k]
+                        elif (k == 'is_vulnerable_to_heartbleed'):
+                            Dict_SSL_Vulns['HEARTBLEED'] = Deep_Result[k]
+                        elif (k == 'is_vulnerable_to_ccs_injection'):
+                            Dict_SSL_Vulns['CCS_INJECTION'] = Deep_Result[k]
+                        elif (k == 'robot_result'):
+                            Dict_SSL_Vulns['ROBOT'] = Deep_Result[k]
+                        elif (k == 'is_vulnerable_to_client_renegotiation_dos'):
+                            Dict_SSL_Vulns['CLIENT_RENEGOTIATION_DOS'] = Deep_Result[k]
+                        elif (k == 'supports_secure_renegotiation'):
+                            pass
                         else:
                             print (f'{k} : {Deep_Result[k]}')
 
@@ -49,7 +59,6 @@ def SSL_Vulns(Dict_Full_SSL = {}, Dict_SSL_Ciphers = {}, Dict_SSL_Vulns = {'CRIM
                         elif (TLS_Version != "" and Supported_Version != "" and Temp_Array_Ciphers != []):
                             print (f'{TLS_Version} : {Supported_Version}\n\n{Temp_Array_Ciphers}\n\n{Temp_Array_Ephemeral}')
                             TLS_Version, Supported_Version, Temp_Array_Ciphers, Temp_Array_Ephemeral = "","",[],[]
-
 
     return Dict_Full_SSL
 
