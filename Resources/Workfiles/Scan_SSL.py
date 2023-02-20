@@ -48,7 +48,11 @@ def SSL_Vulns(Dict_Full_SSL = {}, Dict_SSL_Ciphers = {}, Dict_SSL_Vulns = {'CRIM
                             Dict_SSL_Vulns['ROBOT'] = Deep_Result[k]
                         elif (k == 'is_vulnerable_to_client_renegotiation_dos'):
                             Dict_SSL_Vulns['CLIENT_RENEGOTIATION_DOS'] = Deep_Result[k]
-                        elif (k == 'supports_secure_renegotiation'):
+                        elif (k == 'supports_compression'):
+                            Dict_SSL_Vulns['CRIME'] = Deep_Result[k]
+                        elif (k == 'supports_fallback_scsv'):
+                            Dict_SSL_Vulns['FALLBACK_SCSV'] = Deep_Result[k]
+                        elif (k == 'supports_secure_renegotiation' or k == 'supports_early_data'):
                             pass
                         else:
                             print (f'{k} : {Deep_Result[k]}')
