@@ -74,8 +74,8 @@ def SSL_Vulns(url, Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEARTBLEED': ""
                               k == 'tls_ticket_resumption_result' or
                               k == 'tls_ticket_successful_resumptions_count'):
                                 pass
-                        else:
-                            print (f'{k} : {Deep_Result[k]}')
+#                        else:
+#                            print (f'{k} : {Deep_Result[k]}')
 
                         if (TLS_Version != "" and Supported_Version != ""):
                             Dict_Ciphers['Protocol'] = f'{TLS_Version}'
