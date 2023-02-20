@@ -45,7 +45,10 @@ def SSL_Vulns(Dict_Full_SSL = {}, Dict_SSL_Ciphers = {}, Dict_SSL_Vulns = {'CRIM
                         elif (k == 'is_vulnerable_to_ccs_injection'):
                             Dict_SSL_Vulns['CCS_INJECTION'] = Deep_Result[k]
                         elif (k == 'robot_result'):
-                            Dict_SSL_Vulns['ROBOT'] = Deep_Result[k]
+                            if ('NOT_VULNERABLE' in Deep_Result[k]):
+                                Dict_SSL_Vulns['ROBOT'] = False
+                            else:
+                                Dict_SSL_Vulns['ROBOT'] = True
                         elif (k == 'is_vulnerable_to_client_renegotiation_dos'):
                             Dict_SSL_Vulns['CLIENT_RENEGOTIATION_DOS'] = Deep_Result[k]
                         elif (k == 'supports_compression'):
