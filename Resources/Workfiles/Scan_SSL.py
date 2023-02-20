@@ -37,9 +37,10 @@ def SSL_Vulns(Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEARTBLEED': "", 'CC
                                 Dict_Temp_Ciphers['Anonymous']  = z['cipher_suite']['is_anonymous']
                                 Dict_Temp_Ciphers['Key_Size']   = z['cipher_suite']['key_size']
                                 Dict_Temp_Ciphers['Name']       = z['cipher_suite']['name']
-                                Dict_Temp_Ciphers['Curve_Name'] = z['ephemeral_key']['curve_name']
-                                Dict_Temp_Ciphers['Type']       = z['ephemeral_key']['type_name']
-                                Dict_Temp_Ciphers['Curve_Size'] = z['ephemeral_key']['size']
+                                if (z['ephemeral_key'] != None):
+                                    Dict_Temp_Ciphers['Curve_Name'] = z['ephemeral_key']['curve_name']
+                                    Dict_Temp_Ciphers['Type']       = z['ephemeral_key']['type_name']
+                                    Dict_Temp_Ciphers['Curve_Size'] = z['ephemeral_key']['size']
                                 if (Dict_Temp_Ciphers not in Dict_Ciphers['Ciphers']):
                                     Dict_Ciphers['Ciphers'].append(Dict_Temp_Ciphers)
                                     Dict_Temp_Ciphers = {'Anonymous': "", 'Key_Size': "", 'Name': "", 'Curve_Name': "", 'Type': "", 'Curve_Size': ""}
