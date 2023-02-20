@@ -4,7 +4,7 @@
 
 def SSL_Vulns(url, Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEARTBLEED': "", 'CCS_INJECTION': "", 'ROBOT': "", 'CLIENT_RENEGOTIATION_DOS': "", 'SWEET32': "", 'LUCKY13': "", 'FALLBACK_SCSV': ""}, Array_Result_Filter = ['http_headers', 'certificate_info','rejected_cipher_suites','rejected_curves'], Start_Scan = datetime.now()):
     TLS_Version, Supported_Version, Array_SSL_Targets = "","", []
-    Dict_Ciphers, Dict_Temp_Ciphers, Dict_Full_SSL = {'Protocol': "", 'Ciphers': []}, {'Anonymous': "", 'Key_Size': "", 'Name': "", 'Curve_Name': "", 'Type': "", 'Curve_Size': ""}, {'Ciphers': [], 'SSL_Vulns': []}
+    Dict_Ciphers, Dict_Temp_Ciphers, Dict_Full_SSL = {'Protocol': "", 'Ciphers': []}, {'Anonymous': "", 'Key_Size': "", 'Name': "", 'Curve_Name': "", 'Type': "", 'Curve_Size': ""}, {'Ciphers': [], 'SSL_Vulns': {}, 'Curves': []}
 
     if ('http://' in url): URL = url.split('http://')[1]
     elif ('https://' in url): URL = url.split('https://')[1]
@@ -64,7 +64,8 @@ def SSL_Vulns(url, Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEARTBLEED': ""
                                 Dict_SSL_Vulns['FALLBACK_SCSV'] = Deep_Result[k]
                             elif (k == 'supported_curves'):
                                 for z in Deep_Result[k]:
-                                    print (z['name'])
+                                    if (z['name'] not in Dict_Full_SSL['Curves']):
+                                        Dict_Full_SSL['Curves'].append(z['name'])
                             elif (k == 'supports_ecdh_key_exchange'):
                                 pass
                             elif (k == 'supports_secure_renegotiation' or
@@ -84,7 +85,8 @@ def SSL_Vulns(url, Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEARTBLEED': ""
                                 Dict_Full_SSL['Ciphers'].append(Dict_Ciphers)
                                 TLS_Version, Supported_Version = "",""
                                 Dict_Ciphers = {'Protocol':"", 'Ciphers': []}
-
+            Dict_Full_SSL['SSL_Vulns'] = Dict_SSL_Vulns
         else:
             Logs.Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n')
+
     return Dict_Full_SSL
