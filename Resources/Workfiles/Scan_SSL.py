@@ -52,8 +52,15 @@ def SSL_Vulns(Dict_Full_SSL = {}, Dict_SSL_Ciphers = {}, Dict_SSL_Vulns = {'CRIM
                             Dict_SSL_Vulns['CRIME'] = Deep_Result[k]
                         elif (k == 'supports_fallback_scsv'):
                             Dict_SSL_Vulns['FALLBACK_SCSV'] = Deep_Result[k]
-                        elif (k == 'supports_secure_renegotiation' or k == 'supports_early_data'):
-                            pass
+                        elif (k == 'supports_secure_renegotiation' or
+                              k == 'supports_early_data' or
+                              k == 'session_id_attempted_resumptions_count' or
+                              k == 'session_id_resumption_result' or
+                              k == 'session_id_successful_resumptions_count' or
+                              k == 'tls_ticket_attempted_resumptions_count' or
+                              k == 'tls_ticket_resumption_result' or
+                              k == 'tls_ticket_successful_resumptions_count'):
+                                pass
                         else:
                             print (f'{k} : {Deep_Result[k]}')
 
