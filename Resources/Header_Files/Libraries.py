@@ -103,7 +103,7 @@ try:
                 from selenium.webdriver.remote.webdriver import WebDriver
                 from smtplib import SMTP
                 from sslyze import Scanner, ServerNetworkLocation, ServerScanRequest, ServerScanResultAsJson, ServerHostnameCouldNotBeResolved, SslyzeOutputAsJson
-                from socket import create_connection
+                from socket import AF_INET, create_connection, socket, SOCK_STREAM
                 from webbrowser import open as webbrowser_open
                 import asyncio
                 with catch_warnings():
