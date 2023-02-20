@@ -40,7 +40,9 @@ def SSL_Vulns(Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEARTBLEED': "", 'CC
                                 Dict_Temp_Ciphers['Curve_Name'] = z['ephemeral_key']['curve_name']
                                 Dict_Temp_Ciphers['Type']       = z['ephemeral_key']['type_name']
                                 Dict_Temp_Ciphers['Curve_Size'] = z['ephemeral_key']['size']
-                                Dict_Ciphers['Ciphers'].append(Dict_Temp_Ciphers)
+                                if (Dict_Temp_Ciphers not in Dict_Ciphers['Ciphers']):
+                                    Dict_Ciphers['Ciphers'].append(Dict_Temp_Ciphers)
+                                    Dict_Temp_Ciphers = {}
                         elif (k == 'tls_version_used'):
                             TLS_Version = Deep_Result[k]
                         elif (k == 'is_tls_version_supported'):
@@ -75,7 +77,7 @@ def SSL_Vulns(Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEARTBLEED': "", 'CC
                         if (TLS_Version != "" and Supported_Version != ""):
                             Dict_Ciphers['Protocol'] = f'{TLS_Version}'
                             Dict_Full_SSL['Ciphers'].append(Dict_Ciphers)
-                            Dict_Ciphers, Dict_Temp_Ciphers = {'Protocol': "", 'Ciphers': []}, {}
                             TLS_Version, Supported_Version = "",""
+                            Dict_Ciphers = {'Protocol':"", 'Ciphers': []}
 
     return Dict_Full_SSL
