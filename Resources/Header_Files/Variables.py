@@ -48,6 +48,7 @@ Array_SSH_Header = ['kex_algorithms', 'server_host_key_algorithms', 'encryption_
 # Variables
 COLOR_Headline = "black"
 Switch_nmap, existing_nmap_file = False, ""
+Chromedriver_Version = "107"
 
 # Design
 disable_warnings(InsecureRequestWarning)
