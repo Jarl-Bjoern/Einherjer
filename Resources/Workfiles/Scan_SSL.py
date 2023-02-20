@@ -61,6 +61,10 @@ def SSL_Vulns(url, Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEARTBLEED': ""
                             Dict_SSL_Vulns['CRIME'] = Deep_Result[k]
                         elif (k == 'supports_fallback_scsv'):
                             Dict_SSL_Vulns['FALLBACK_SCSV'] = Deep_Result[k]
+                        elif (k == 'supported_curves'):
+                            pass
+                        elif (k == 'supports_ecdh_key_exchange'):
+                            pass
                         elif (k == 'supports_secure_renegotiation' or
                               k == 'supports_early_data' or
                               k == 'session_id_attempted_resumptions_count' or
