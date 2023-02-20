@@ -5,7 +5,7 @@
 def SSL_Vulns(Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEARTBLEED': "", 'CCS_INJECTION': "", 'ROBOT': "", 'CLIENT_RENEGOTIATION_DOS': "", 'SWEET32': "", 'LUCKY13': "", 'FALLBACK_SCSV': ""}, Array_Result_Filter = ['http_headers', 'certificate_info','rejected_cipher_suites','rejected_curves'], Start_Scan = datetime.now()):
     Array_Targets, Array_SSL_Targets = ["127.0.0.1:8834"], []
     TLS_Version, Supported_Version = "",""
-    Dict_Ciphers, Dict_Temp_Ciphers = {'Protocol': "", 'Ciphers': []}, {}
+    Dict_Ciphers, Dict_Temp_Ciphers = {'Protocol': "", 'Ciphers': []}, {'Anonymous': "", 'Key_Size': "", 'Name': "", 'Curve_Name': "", 'Type': "", 'Curve_Size': ""}
     Dict_Full_SSL = {'Ciphers': [], 'SSL_Vulns': []}
 
     if ('http://' in url): URL = url.split('http://')[1]
@@ -42,7 +42,7 @@ def SSL_Vulns(Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEARTBLEED': "", 'CC
                                 Dict_Temp_Ciphers['Curve_Size'] = z['ephemeral_key']['size']
                                 if (Dict_Temp_Ciphers not in Dict_Ciphers['Ciphers']):
                                     Dict_Ciphers['Ciphers'].append(Dict_Temp_Ciphers)
-                                    Dict_Temp_Ciphers = {}
+                                    Dict_Temp_Ciphers = {'Anonymous': "", 'Key_Size': "", 'Name': "", 'Curve_Name': "", 'Type': "", 'Curve_Size': ""}
                         elif (k == 'tls_version_used'):
                             TLS_Version = Deep_Result[k]
                         elif (k == 'is_tls_version_supported'):
