@@ -91,6 +91,7 @@ try:
                 from cryptography.x509 import load_der_x509_certificate
                 from cryptography.hazmat.backends import default_backend
                 from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
+                from ftplib import FTP
                 from http.client import HTTPSConnection
                 from json import loads as json_loads
                 from os import environ, rename
@@ -105,7 +106,7 @@ try:
                 from sslyze import Scanner, ServerNetworkLocation, ServerScanRequest, ServerScanResultAsJson, ServerHostnameCouldNotBeResolved, SslyzeOutputAsJson
                 from socket import AF_INET, create_connection, socket, SOCK_STREAM
                 from webbrowser import open as webbrowser_open
-                import asyncio
+                import asyncio, pysnmp
                 with catch_warnings():
                     simplefilter("ignore")
                     from paramiko.transport import Transport
