@@ -43,7 +43,6 @@ else: Array_TLS_Algorithms = []
 # Arrays
 Array_Paths, Array_SSL_Vulns, Array_Results = [],[],[]
 Array_SSH_Header = ['kex_algorithms', 'server_host_key_algorithms', 'encryption_algorithms', 'mac_algorithms']
-#Array_TLS_Algorithms = ["SHA","MD5","RC2","RC4","IDEA","ADH","3DES","NULL","PSK","ANON","CBC","DHE","ECDHE"]
 
 # Variables
 COLOR_Headline = "black"
