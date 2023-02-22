@@ -33,16 +33,18 @@ def SSL_Vulns(url, Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEARTBLEED': ""
                         if (k not in Array_Result_Filter):
                             if (k == 'accepted_cipher_suites'):
                                 for z in Deep_Result[k]:
-                                    Dict_Temp_Ciphers['Anonymous']  = z['cipher_suite']['is_anonymous']
-                                    Dict_Temp_Ciphers['Key_Size']   = z['cipher_suite']['key_size']
-                                    Dict_Temp_Ciphers['Name']       = z['cipher_suite']['name']
-                                    if (z['ephemeral_key'] != None):
-                                        Dict_Temp_Ciphers['Curve_Name'] = z['ephemeral_key']['curve_name']
-                                        Dict_Temp_Ciphers['Type']       = z['ephemeral_key']['type_name']
-                                        Dict_Temp_Ciphers['Curve_Size'] = z['ephemeral_key']['size']
-                                    if (Dict_Temp_Ciphers not in Dict_Ciphers['Ciphers']):
-                                        Dict_Ciphers['Ciphers'].append(Dict_Temp_Ciphers)
-                                        Dict_Temp_Ciphers = {'Anonymous': "", 'Key_Size': "", 'Name': "", 'Curve_Name': "", 'Type': "", 'Curve_Size': ""}
+                                    Cipher_Filter = findall(rf'(?<!-)\b(?:(?:[^\W_]+_)+(?:RC4|MD5|CBC|NULL|RC2|3DES|PSK)(?:_[^\W_]+)+|(?:[^\W_]+_)+SHA)\b', z['cipher_suite']['name'])
+                                    if (Cipher_Filter != []):
+                                        Dict_Temp_Ciphers['Anonymous']  = z['cipher_suite']['is_anonymous']
+                                        Dict_Temp_Ciphers['Key_Size']   = z['cipher_suite']['key_size']
+                                        Dict_Temp_Ciphers['Name']       = z['cipher_suite']['name']
+                                        if (z['ephemeral_key'] != None):
+                                            Dict_Temp_Ciphers['Curve_Name'] = z['ephemeral_key']['curve_name']
+                                            Dict_Temp_Ciphers['Type']       = z['ephemeral_key']['type_name']
+                                            Dict_Temp_Ciphers['Curve_Size'] = z['ephemeral_key']['size']
+                                        if (Dict_Temp_Ciphers not in Dict_Ciphers['Ciphers']):
+                                            Dict_Ciphers['Ciphers'].append(Dict_Temp_Ciphers)
+                                            Dict_Temp_Ciphers = {'Anonymous': "", 'Key_Size': "", 'Name': "", 'Curve_Name': "", 'Type': "", 'Curve_Size': ""}
                             elif (k == 'tls_version_used'):
                                 TLS_Version = Deep_Result[k]
                             elif (k == 'is_tls_version_supported'):
