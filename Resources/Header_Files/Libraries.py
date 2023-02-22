@@ -37,7 +37,7 @@ try:
     from os.path import exists, join
     from pathlib import Path
     from requests.exceptions import *
-    from re import search, split as resplit
+    from re import findall, search, split as resplit
     from rich.progress import BarColumn, Progress, SpinnerColumn, TaskProgressColumn, TimeElapsedColumn, TimeRemainingColumn
     from selenium.common.exceptions import *
     from socket import gaierror, gethostbyaddr, gethostbyname, herror, setdefaulttimeout
