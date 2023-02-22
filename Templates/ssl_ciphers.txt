@@ -1,1 +1,1 @@
-SHA |MD5|RC2|RC4|IDEA|ADH|3DES|NULL|PSK|ANON|CBC|DHE|ECDHE
+(?<!-)\b(?:(?:[^\W_]+_)+(?:RC4|MD5|CBC|NULL|RC2|3DES|PSK)(?:_[^\W_]+)+|(?:[^\W_]+_)+SHA)\b
