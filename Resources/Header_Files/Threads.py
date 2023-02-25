@@ -54,6 +54,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         # SSL
         if (dict_switch['scan_ssl'] != False and '//' in url and ('https' in url or 'ssl://' in url)):
             Dict_Result['SSL'][html_decode(url)] = SSL_Vulns(url)
+            print (Dict_Result['SSL'])
 
     except (ConnectionError, gaierror, WebDriverException, RequestException): Logs.Write_Log(html_decode(url), Host_Name)
     finally:
