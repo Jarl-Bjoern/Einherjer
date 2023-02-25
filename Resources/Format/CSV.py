@@ -114,8 +114,8 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
             writer = csv.writer(csv_file)
             writer.writerow((['Host','DNS']))
             for Target in Dict_Result['SSL']:
-                 print (Target)
-#                Array_Temp = []
+                print (Target)
+                Array_Temp = []
 #                Array_Temp.append(Target)
 #                for Result_Left, Result_Right in Dict_Result['SSL'][Target].items():
 #                    for i in range(0, len(Array_Security_Flags)-1):
@@ -129,6 +129,6 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
 #                    if (Result_Left != "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
 #                    elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
 #                    elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
-                    else: Array_Temp.append("X")
+#                    else: Array_Temp.append("X")
                 writer.writerow(Array_Temp)
     return Array_Files
