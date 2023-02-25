@@ -117,10 +117,14 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                 Array_Temp = []
                 Array_Temp.append(Target)
                 for Result_Left, Result_Right in Dict_Result['SSL'][Target].items():
+                    if (Result_Left == "DNS" and Result_Right == ""):  Array_Temp.append("-")
+                    elif (Result_Left == "DNS" and Result_Right != ""): Array_Temp.append(Result_Right)
+
                     if (Result_Left == "Ciphers"):
                         for _ in Result_Right:
                             if (_['Protocol'] != "" and _['Ciphers'] != []):
                                 for Cipher in _['Ciphers']:
+
                                     print (Cipher)
                     elif (Result_Left == "SSL_Vulns"):
                         pass
