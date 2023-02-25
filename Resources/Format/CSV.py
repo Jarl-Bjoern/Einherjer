@@ -112,7 +112,7 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
         Array_Files.append(join(location, f'result_ssl_ciphers.csv'))
         with open(join(location, f'result_ssl_ciphers.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
-            writer.writerow((['Host','DNS','Protocol','Ciphers','Key_Size','Anonymous','Curve']))
+            writer.writerow((['Host','DNS','Protocol','Ciphers','Key_Size','Anonymous','Curve','Curve_Type','Curve_Size']))
             for Target in Dict_Result['SSL']:
                 Array_Temp = []
                 Array_Temp.append(Target)
@@ -124,8 +124,17 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                         for _ in Result_Right:
                             if (_['Protocol'] != "" and _['Ciphers'] != []):
                                 for Cipher in _['Ciphers']:
-
-                                    print (Cipher)
+                                    Temp_Arr = [_['Protocol'],Cipher['Ciphers'],Cipher['Key_Size'],Cipher['Anonymous']]
+                                    if (Cipher['Curve_Name'] != None and Cipher['Curve_Name'] != ''):
+                                        Temp_Arr.append('-')
+                                    else: Temp_Arr.append(Cipher['Curve_Name'])
+                                    if (Cipher['Type'] != ''):
+                                        Temp_Arr.append(Cipher['Type'])
+                                    else: Temp_Arr.append('-')
+                                    if (Cipher['Curve_Size'] != '' and Cipher['Curve_Size'] != None):
+                                        Temp_Arr.append(Cipher['Curve_Size'])
+                                    else: Temp_Arr.append('-')
+                                    writer.writerow(Array_Temp + Temp_Arr)
                     elif (Result_Left == "SSL_Vulns"):
                         pass
                     elif (Result_Left == "Curves"):
@@ -142,5 +151,5 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
 #                    elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
 #                    elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
 #                    else: Array_Temp.append("X")
-                writer.writerow(Array_Temp)
+                #writer.writerow(Array_Temp)
     return Array_Files
