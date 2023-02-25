@@ -45,7 +45,7 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
                 Dict_Temp['Current_Date'] = str(Current_Date).split('.')[0]
         if (Host_Name != ""): Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'Certificate-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {html_decode(url)} - {Host_Name} - '+Colors.CYAN+'Certificate Information was succesfully recorded.\n\n')
         else: Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'Certificate-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {html_decode(url)} - '+Colors.CYAN+'Certificate Information was successfully recorded.\n\n')
-    except (ConnectionRefusedError, gaierror): Logs.Write_Log(html_decode(url), Host_Name)
+    except (ConnectionRefusedError, gaierror, SSLError): Logs.Write_Log(html_decode(url), Host_Name)
 
     if (Dict_Temp['Issuer'] == ""): Dict_Temp['Issuer'] = "FEHLT"
     if (Dict_Temp['Subject'] == ""): Dict_Temp['Subject'] = "FEHLT"
