@@ -42,7 +42,7 @@ The current use is at your own risk.
 # 📖 Table of Contents
 - [How to download and install the tool](#download_install)
   - [Download and start the tool](#start_install)
-  - [Using the help section to see which parameters do we have](#help_install)
+  - [Usage](#help_install)
 
 <a name="start_install"></a>
 ## ⚔ Download and start the tool
