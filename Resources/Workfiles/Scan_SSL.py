@@ -55,9 +55,7 @@ def SSL_Vulns(url, Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEARTBLEED': ""
                             elif (k == 'is_tls_version_supported'):
                                 Supported_Version = Deep_Result[k]
                             elif (k == 'is_vulnerable_to_heartbleed'):
-                                try:
-                                    Dict_SSL_Vulns['HEARTBLEED'] = Deep_Result[k]
-                                except: pass
+                                Dict_SSL_Vulns['HEARTBLEED'] = str(Deep_Result[k])
                             elif (k == 'is_vulnerable_to_ccs_injection'):
                                 Dict_SSL_Vulns['CCS_INJECTION'] = Deep_Result[k]
                             elif (k == 'robot_result'):
