@@ -119,7 +119,8 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                 for Result_Left, Result_Right in Dict_Result['SSL'][Target].items():
                     if (Result_Left == "Ciphers"):
                         for _ in Result_Right:
-                            print (_)
+                            if (_['Protocol'] != "" and _['Ciphers'] != []):
+                                print (_)
                     elif (Result_Left == "SSL_Vulns"):
                         pass
                     elif (Result_Left == "Curves"):
