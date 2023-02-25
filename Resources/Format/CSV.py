@@ -126,8 +126,8 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                                 for Cipher in _['Ciphers']:
                                     Temp_Arr = [_['Protocol'],Cipher['Name'],Cipher['Key_Size'],Cipher['Anonymous']]
                                     if (Cipher['Curve_Name'] != None and Cipher['Curve_Name'] != ''):
-                                        Temp_Arr.append('-')
-                                    else: Temp_Arr.append(Cipher['Curve_Name'])
+                                        Temp_Arr.append(Cipher['Curve_Name'])
+                                    else: Temp_Arr.append('-')
                                     if (Cipher['Type'] != ''):
                                         Temp_Arr.append(Cipher['Type'])
                                     else: Temp_Arr.append('-')
