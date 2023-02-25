@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 # Rainer Christian Bjoern Herold
 
+# Libraries
+from ..Header_Files.Variables import *
+
 class Filter:
     def Screenshot_Frame(Screenshot_Location):
         for Picture in listdir(Screen_Dir):
