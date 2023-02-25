@@ -3,7 +3,7 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-from ..Header_Files.Variables import *
+#from ..Header_Files.Variables import *
 
 class Filter:
     def Screenshot_Frame(Screenshot_Location):
