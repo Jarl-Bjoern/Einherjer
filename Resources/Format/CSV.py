@@ -139,17 +139,4 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                         pass
                     elif (Result_Left == "Curves"):
                         pass
-#                    for i in range(0, len(Array_Security_Flags)-1):
-#                        if (Result_Left == "DNS" and Result_Right == ""): 
-#                            Result_Right = "FEHLT"
-#                            break
-#                        elif (Result_Left == Array_Security_Flags[i] and Result_Right == ""):
-#                            Result_Right = "FEHLT"
-#                            break
-
-#                    if (Result_Left != "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
-#                    elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
-#                    elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
-#                    else: Array_Temp.append("X")
-                #writer.writerow(Array_Temp)
     return Array_Files
