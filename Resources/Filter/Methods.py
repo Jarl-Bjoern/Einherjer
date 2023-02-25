@@ -3,6 +3,17 @@
 # Rainer Christian Bjoern Herold
 
 class Filter:
+    def Screenshot_Frame(Screenshot_Location):
+        for Picture in listdir(Screen_Dir):
+            raw_image = imread(join(Screen_Dir, Picture))
+            height = raw_image.shape[0]
+            width = raw_image.shape[1]
+            start_point, end_point = (0,0), (width, height)
+            color = (0,0,0)
+            thickness = 10
+            img = rectangle(raw_image, start_point, end_point, color, thickness)
+            imwrite(join(Screen_Dir, Picture), img)
+
     def SSH_Nmap(nmap_file, location, Dict_System = {}, Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': [], 'auth_methods': []}):
         with open(nmap_file, 'r') as f:
             Report = f.read().splitlines()
