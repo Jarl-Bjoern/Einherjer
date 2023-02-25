@@ -38,7 +38,6 @@ def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Res
     format_arguments = parser.add_argument_group(Colors.ORANGE+'format arguments'+Colors.RESET)
     optional = parser.add_argument_group(Colors.ORANGE+'optional arguments'+Colors.RESET)
     performance_arguments = parser.add_argument_group(Colors.ORANGE+'performance arguments'+Colors.RESET)
-    program_arguments = parser.add_argument_group(Colors.ORANGE+'program arguments'+Colors.RESET)
     scan_arguments = parser.add_argument_group(Colors.ORANGE+'scan arguments'+Colors.RESET)
     target_arguments = parser.add_argument_group(Colors.ORANGE+'target arguments'+Colors.RESET)
 
@@ -68,11 +67,6 @@ def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Res
     performance_arguments.add_argument('-tHo', '--thread-timeout', type=int, default=90, help=Colors.GREEN+'This parameter sets the max time to wait until a thread will be terminated.\n\nDefault: 90 Seconds'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     performance_arguments.add_argument('-to', '--timeout', type=int, default=30, help=Colors.GREEN+'Specify the connection http timeout in seconds.\n\nDefault: 30 seconds'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     performance_arguments.add_argument('-ww', '--webdriver-wait', type=int, default=15, help=Colors.GREEN+'This parameter specifies the default waiting time between the screenshots.\n\nDefault: 15 Seconds'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
-
-    program_arguments.add_argument('-fM', '--filter-mode', type=bool, nargs='?', default=False, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
-    program_arguments.add_argument('-sM', '--scanning-mode', type=bool, nargs='?', default=True, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
-    program_arguments.add_argument('-pC', '--program-cmd', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
-    program_arguments.add_argument('-pS', '--program-server', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     scan_arguments.add_argument('-sArg', '--scan-arguments', choices=['all','dns-fuzzing','http-credentials','http-cookie-security','http-fuzzing','http-header','http-header-api','http-screenshot','http-screenshot-recursive','http-ssl', 'ssh'], type=str, nargs='+', help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     scan_arguments.add_argument('-sA', '--scan-all', type=bool, nargs='?', const=True, help=Colors.GREEN+'With this it is possible to scan all functions.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET, default=False)
