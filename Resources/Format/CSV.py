@@ -109,10 +109,10 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                     else: Array_Temp.append("X")
                 writer.writerow(Array_Temp)
     if (Dict_Result['SSL'] != {}):
-        Array_Files.append(join(location, f'result_ssl.csv'))
-        with open(join(location, f'result_ssl.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
+        Array_Files.append(join(location, f'result_ssl_ciphers.csv'))
+        with open(join(location, f'result_ssl_ciphers.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
-            writer.writerow((['Host','DNS']))
+            writer.writerow((['Host','DNS','Protocol','Ciphers','Key_Size','Anonymous','Curve']))
             for Target in Dict_Result['SSL']:
                 Array_Temp = []
                 Array_Temp.append(Target)
@@ -120,7 +120,8 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                     if (Result_Left == "Ciphers"):
                         for _ in Result_Right:
                             if (_['Protocol'] != "" and _['Ciphers'] != []):
-                                print (_)
+                                for Cipher in _['Ciphers']:
+                                    print (Cipher)
                     elif (Result_Left == "SSL_Vulns"):
                         pass
                     elif (Result_Left == "Curves"):
