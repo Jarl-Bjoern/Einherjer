@@ -20,7 +20,7 @@ def SSL_Vulns(url, Host_Name, Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEAR
     if (url.count(':') > 1): Port = url.split(':')[2]
     else: Port = 443
 
-    try: Array_SSL_Targets.append(ServerScanRequest(server_location=ServerNetworkLocation(hostname=URL, port=Port)))
+    try: Array_SSL_Targets.append(ServerScanRequest(server_location=ServerNetworkLocation(hostname=URL, ip_address=URL, port=Port)))
     except ServerHostnameCouldNotBeResolved:
         Logs.Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n')
 
