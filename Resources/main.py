@@ -14,7 +14,7 @@ from Resources.Filter.Methods import Filter
 
 # Main_Function
 def main(Date, Program_Mode, args, Array_Output = []):
-    def Filter_Mode(Date, Output_location, args):
+    def Filter_Mode(Date, Output_location, args, Array_Output = []):
         # Program_Start
         Standard.Initialien(args.debug)
 
