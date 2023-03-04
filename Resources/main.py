@@ -20,6 +20,10 @@ def main(Date, Program_Mode, args, Array_Output = []):
         if (args.screenshot_location != None):
             pass
 
+        # Program_Start
+        Standard.Initialien(args.debug)
+        setdefaulttimeout(args.timeout)
+
         return Array_Output
 
     def Scanning_Mode(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': {}, 'Information': {}, 'Security_Flag': {}, 'SSH': {}, 'SSL': {}}, Dict_Proxies = {'http': '', 'https': ''}, Array_HTTP_Filter = [], Array_Thread_Args = [], Dict_Threads = {}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None):
