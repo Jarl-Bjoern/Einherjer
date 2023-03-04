@@ -14,15 +14,15 @@ from Resources.Filter.Methods import Filter
 
 # Main_Function
 def main(Date, Program_Mode, args, Array_Output = []):
-    def Filter_Mode(Date, args):
-        # Filtering_Options
-        if (args.nmap_files_location != None):
-            pass
-        if (args.screenshot_location != None):
-            pass
-
+    def Filter_Mode(Date, Output_location, args):
         # Program_Start
         Standard.Initialien(args.debug)
+
+        # Filtering_Options
+        if (args.nmap_files_location != None):
+            Array_Output = Filter.SSH_Nmap(args.nmap_files_location, Output_location)
+        if (args.screenshot_location != None):
+            Array_Output = Filter.Screenshot_Frame(args.screenshot_location)
 
         return Array_Output
 
@@ -269,7 +269,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
     if (Program_Mode == "Scanning_Mode"):
         Array_Output = Scanning_Mode(Date, args)
     elif (Program_Mode == "Filter_Mode"):
-        Array_Output = Filter_Mode(Date, args)
+        Array_Output = Filter_Mode(Date, Location, args)
 
     # Output_End
     if (Array_Output != []):
