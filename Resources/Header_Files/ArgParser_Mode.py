@@ -41,3 +41,5 @@ def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Res
 
     del ArgumentParser, RawTextHelpFormatter, SUPPRESS
     parser.print_help()
+
+    print (Colors.RED+Error_Text+Colors.RESET)
