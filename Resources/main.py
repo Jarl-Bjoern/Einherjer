@@ -24,9 +24,9 @@ def main(Date, Program_Mode, args, Array_Output = []):
             Standard.Initialien(args.debug)
 
             if (args.nmap_files_location != None):
-                Array_Output.append(Filter.SSH_Nmap(args.nmap_files_location, Output_location))
+                Array_Output = Filter.SSH_Nmap(args.nmap_files_location, Output_location)
             if (args.screenshot_location != None):
-                Array_Output.append(Filter.Screenshot_Frame(args.screenshot_location))
+                Array_Output = Filter.Screenshot_Frame(args.screenshot_location)
 
         return Array_Output
 
