@@ -33,7 +33,6 @@ def SSL_Vulns(url, Host_Name, Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEAR
 
     for _ in json_loads(temp_json_output)['server_scan_results']:
         Scan_Result = _['scan_result']
-        print (Scan_Result)
         if (Scan_Result != None):
             for i in Scan_Result:
                 if (i not in Array_Result_Filter):
