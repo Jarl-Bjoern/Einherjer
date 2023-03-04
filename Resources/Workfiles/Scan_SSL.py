@@ -102,4 +102,6 @@ def SSL_Vulns(url, Host_Name, Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEAR
         else:
             Logs.Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n')
 
+    print (Dict_Full_SSL)
+
     return Dict_Full_SSL
