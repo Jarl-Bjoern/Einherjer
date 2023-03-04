@@ -10,11 +10,15 @@ SYSTEM_PATH.append(dirname(realpath(__file__)).split("Resources")[0])
 # Libraries
 from Resources.Header_Files.Threads import *
 from Resources.Workfiles.Scan_Screen import Web
+from Resources.Filter.Methods import Filter
 
 # Main_Function
 def main(Date, Program_Mode, args, Array_Output = []):
     def Filter_Mode(args):
-        pass
+        if (args.nmap_files_location != None):
+            pass
+        if (args.screenshot_location != None):
+            pass
 
         return Array_Output
 
