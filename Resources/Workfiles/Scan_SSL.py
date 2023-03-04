@@ -17,7 +17,9 @@ def SSL_Vulns(url, Host_Name, Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEAR
     if ('http://' in url): URL = url.split('http://')[1]
     elif ('https://' in url): URL = url.split('https://')[1]
 
-    if (url.count(':') > 1): Port = url.split(':')[2]
+    if (url.count(':') > 1):
+        Temp, Port = url.split(':')[2]
+        URL = Temp
     else: Port = 443
 
     try: Array_SSL_Targets.append(ServerScanRequest(server_location=ServerNetworkLocation(hostname=URL, ip_address=URL, port=Port)))
