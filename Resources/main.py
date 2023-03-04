@@ -13,8 +13,6 @@ from Resources.Workfiles.Scan_Screen import Web
 
 # Main_Function
 def main(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': {}, 'Information': {}, 'Security_Flag': {}, 'SSH': {}, 'SSL': {}}, Dict_Proxies = {'http': '', 'https': ''}, Array_HTTP_Filter = [], Array_Thread_Args = [], Dict_Threads = {}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None):
-    global Switch_nmap
-
     Dict_Switch = {
         'scan_certificate': False,
         'scan_dns': False,
@@ -138,7 +136,6 @@ def main(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': 
                     'scan_ssl': True
                 }
     elif (args.scan_all == False):
-        if (args.add_nmap_ssh_result != None):              Switch_nmap = True
         if (args.scan_site_certificate != False):           Dict_Switch['scan_certificate'] = True
         if (args.scan_site_fuzzing != False):               Dict_Switch['scan_fuzzing'] = True
         if (args.scan_site_header != False):                Dict_Switch['scan_header'] = True
