@@ -40,4 +40,5 @@ def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Res
     program_arguments.add_argument('-pS', '--program-server', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     del ArgumentParser, RawTextHelpFormatter, SUPPRESS
-    return parser.parse_args()
+    parser.print_help()
+#    return parser.parse_args()
