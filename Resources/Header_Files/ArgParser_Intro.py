@@ -18,7 +18,7 @@ def Argument_Parser(Error_Text, Template_Location = dirname(realpath(__file__)).
 -------------------------------------------------------------------------------------
 """
 
-    parser = ArgumentParser(add_help=False, formatter_class=RawTextHelpFormatter, description=Colors.ORANGE+Program_Description+Colors.RESET, allow_abbrev=False)
+    parser = ArgumentParser(add_help=False, formatter_class=RawTextHelpFormatter, description=Colors.ORANGE+Program_Description+Colors.RESET, allow_abbrev=False, usage=SUPPRESS)
     scan_arguments = parser.add_argument_group(Colors.ORANGE+'scan arguments'+Colors.RESET)
     target_arguments = parser.add_argument_group(Colors.ORANGE+'target arguments'+Colors.RESET)
 
