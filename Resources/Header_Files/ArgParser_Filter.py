@@ -17,17 +17,6 @@ def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Res
 |  Please do not use the program for illegal activities.                            |
 |                                                                                   |
 |  If you got any problems don't hesitate to contact me so I can try to fix them.   |
-|                                                                                   |
-|  If you use the "Kali-Last-Snapshot" repository, you might install a slightly     |
-|  older driver of Chromium with the command "apt install -y chromium". If this     |
-|  is the case, then you should check after the installation with the command       |
-|  "apt-cache policy chromium" which version was installed and then download the    |
-|  appropriate Chrome Webdriver from the following page                             |
-|  "https://chromedriver.chromium.org/downloads" and replace it instead.            |
-|                                                                                   |
-|  In some cases it can happen that after an installation of Chromium, the program  |
-|  cannot create processes, because no environment variable for the Chromedriver    |
-|  can be accessed, therefore the system must be restarted once.                    |
 -------------------------------------------------------------------------------------
 """
 
