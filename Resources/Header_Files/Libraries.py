@@ -57,8 +57,6 @@ try:
         from paramiko.ssh_exception import SSHException
 
     # Argument_Parser
-    print (argv)
-
     try:
         if (argv[1] == "-fM" or argv[1] == "--filter-mode"):
             from .ArgParser_Filter import Argument_Parser
@@ -154,11 +152,11 @@ try:
                     from smtplib import SMTP
             elif (argv[1] == '-h'):
                 from .ArgParser_Mode import Argument_Parser
-                Argument_Parser("\n\n\t\t\t   The program cannot be started without targets!\n\t\t\tFor more information use the parameter -h or --help.\n"), exit()
+                Argument_Parser("\n\n\t\t\t   The program cannot be started without using the mode of the program!\n\t\t\tFor more information use one of the modes with the parameter -h or --help.\n"), exit()
                 args = Argument_Parser()
     except IndexError:
         from .ArgParser_Mode import Argument_Parser
-        Argument_Parser("\n\n\t\t\t   The program cannot be started without targets!\n\t\t\tFor more information use the parameter -h or --help.\n"), exit()
+        Argument_Parser("\n\n\t\t\t   The program cannot be started without using the mode of the program!\n\t\t\tFor more information use one of the modes with the parameter -h or --help.\n"), exit()
 except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
 
 # Change_Permissions_For_Webdriver
