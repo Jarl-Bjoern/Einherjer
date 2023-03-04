@@ -19,7 +19,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         Host_Name = Get_Host_Name(url)
 
         # Certificates
-        if (dict_switch['scan_certificate'] != False and '//' in url and 'https' in url):
+        if (dict_switch['scan_certificate'] != False and '//' in url and ('https' in url or 'ssl://' in url)):
             Dict_Result['Certificate'][html_decode(url)] = Check_Certificate(url, t_seconds, Host_Name)
 
         # Fuzzing
