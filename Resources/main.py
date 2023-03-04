@@ -12,242 +12,256 @@ from Resources.Header_Files.Threads import *
 from Resources.Workfiles.Scan_Screen import Web
 
 # Main_Function
-def main(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': {}, 'Information': {}, 'Security_Flag': {}, 'SSH': {}, 'SSL': {}}, Dict_Proxies = {'http': '', 'https': ''}, Array_HTTP_Filter = [], Array_Thread_Args = [], Dict_Threads = {}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None):
-    Dict_Switch = {
-        'scan_certificate': False,
-        'scan_dns': False,
-        'scan_fuzzing': False,
-        'scan_header': False,
-        'scan_http_methods': False,
-        'scan_security_flags': False,
-        'scan_screenshot': None,
-        'scan_screenshot_recursive': False,
-        'scan_snmp': False,
-        'scan_smtp': False,
-        'scan_ssh': False,
-        'scan_ssl': False
-    }
+def main(Date, Program_Mode, args, Array_Output = []):
+    def Filter_Mode(args):
+        pass
 
-    # Target_Options
-    if (args.target == None and args.import_list == None):
-        from Resources.Header_Files.ArgParser_Intro import Argument_Parser
-        Argument_Parser("\n\n\t\t\t   The program cannot be started without targets!\n\t\t\tFor more information use the parameter -h or --help.\n"), exit()
-    elif (args.target == None and args.import_list != None):
-        try: Array_Targets = Standard.Read_Targets_v4(args.import_list)
-        except FileNotFoundError as e: Logs.Error_Message(f"Your targetlist can't be found!\n\n{args.import_list}")
-    else:
-        if (len(args.target) > 1):
-            Array_Targets = []
-            for _ in args.target:
-                if (',' in _): Array_Targets.append(_[:-1])
-                else: Array_Targets.append(_)
+        return Array_Output
+
+    def Scanning_Mode(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': {}, 'Information': {}, 'Security_Flag': {}, 'SSH': {}, 'SSL': {}}, Dict_Proxies = {'http': '', 'https': ''}, Array_HTTP_Filter = [], Array_Thread_Args = [], Dict_Threads = {}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None):
+        Dict_Switch = {
+            'scan_certificate': False,
+            'scan_dns': False,
+            'scan_fuzzing': False,
+            'scan_header': False,
+            'scan_http_methods': False,
+            'scan_security_flags': False,
+            'scan_screenshot': None,
+            'scan_screenshot_recursive': False,
+            'scan_snmp': False,
+            'scan_smtp': False,
+            'scan_ssh': False,
+            'scan_ssl': False
+        }
+
+        # Target_Options
+        if (args.target == None and args.import_list == None):
+            from Resources.Header_Files.ArgParser_Intro import Argument_Parser
+            Argument_Parser("\n\n\t\t\t   The program cannot be started without targets!\n\t\t\tFor more information use the parameter -h or --help.\n"), exit()
+        elif (args.target == None and args.import_list != None):
+            try: Array_Targets = Standard.Read_Targets_v4(args.import_list)
+            except FileNotFoundError as e: Logs.Error_Message(f"Your targetlist can't be found!\n\n{args.import_list}")
         else:
-            if (',' in args.target[0]):
-                Temp_Split = args.target[0].split(',')
-                for _ in Temp_Split:
-                    if (_ != ''): Array_Targets.append(_)
-            else: Array_Targets = [args.target[0]]
-    if (args.random_order == True):
-        try: from random import shuffle
-        except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
-        shuffle(Array_Targets)
-        del shuffle
+            if (len(args.target) > 1):
+                Array_Targets = []
+                for _ in args.target:
+                    if (',' in _): Array_Targets.append(_[:-1])
+                    else: Array_Targets.append(_)
+            else:
+                if (',' in args.target[0]):
+                    Temp_Split = args.target[0].split(',')
+                    for _ in Temp_Split:
+                        if (_ != ''): Array_Targets.append(_)
+                else: Array_Targets = [args.target[0]]
+        if (args.random_order == True):
+            try: from random import shuffle
+            except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
+            shuffle(Array_Targets)
+            del shuffle
 
-    # Wordlist_Filtering
-    if (args.add_wordlist != None and args.add_multiple_wordlists == None):
-        Array_Wordlists = []
-        if (args.add_wordlist not in Array_Wordlists):
-            for word in Standard.Read_File(args.add_wordlist):
-                if (word not in Array_Wordlists): Array_Wordlists.append(word)
-    elif (args.add_wordlist == None and args.add_multiple_wordlists != None):
-        Array_Wordlists = []
-        for root,_,files in walk(args.add_multiple_wordlists):
-            for file in files:
-                for word in Standard.Read_File(join(root, file)):
-                    if (word not in Array_Wordlists):
-                        Array_Wordlists.append(word)
+        # Wordlist_Filtering
+        if (args.add_wordlist != None and args.add_multiple_wordlists == None):
+            Array_Wordlists = []
+            if (args.add_wordlist not in Array_Wordlists):
+                for word in Standard.Read_File(args.add_wordlist):
+                    if (word not in Array_Wordlists): Array_Wordlists.append(word)
+        elif (args.add_wordlist == None and args.add_multiple_wordlists != None):
+            Array_Wordlists = []
+            for root,_,files in walk(args.add_multiple_wordlists):
+                for file in files:
+                    for word in Standard.Read_File(join(root, file)):
+                        if (word not in Array_Wordlists):
+                            Array_Wordlists.append(word)
 
-    # Output_Location
-    if (args.output_location != None):
-        if ('.' in args.output_location or './' in args.output_location):
-            if ('./' in args.output_location): Location = Standard.Create_Location_Dir(join(getcwd(), f"{args.output_location[2:]}/{Date}"))
-            else: Location = Standard.Create_Location_Dir(join(getcwd(), f"{args.output_location}/{Date}"))
-        elif ('.' not in args.output_location and '/' not in args.output_location): Location = Standard.Create_Location_Dir(join(getcwd(), f"{args.output_location}/{Date}"))
-        elif ('/' in args.output_location and not '.' in args.output_location): Location = Standard.Create_Location_Dir(f"{args.output_location}/{Date}")
-    else: Location = Standard.Create_Location_Dir(join(dirname(realpath(__file__)).replace('/Resources','/'), Date))
+        # Output_Location
+        if (args.output_location != None):
+            if ('.' in args.output_location or './' in args.output_location):
+                if ('./' in args.output_location): Location = Standard.Create_Location_Dir(join(getcwd(), f"{args.output_location[2:]}/{Date}"))
+                else: Location = Standard.Create_Location_Dir(join(getcwd(), f"{args.output_location}/{Date}"))
+            elif ('.' not in args.output_location and '/' not in args.output_location): Location = Standard.Create_Location_Dir(join(getcwd(), f"{args.output_location}/{Date}"))
+            elif ('/' in args.output_location and not '.' in args.output_location): Location = Standard.Create_Location_Dir(f"{args.output_location}/{Date}")
+        else: Location = Standard.Create_Location_Dir(join(dirname(realpath(__file__)).replace('/Resources','/'), Date))
 
-    # Webdriver_Options
-    if (args.scan_site_screenshot != False):
-        Array_Selenium = ['--start_maximized','--no-sandbox','--remote-debugging-port=19222','--ignore-certificate-errors','--test-type','--log-level=3','--hide-scrollbars','--enable-javascript']
-        if (args.debug != True): Array_Selenium.append('--headless')
+        # Webdriver_Options
+        if (args.scan_site_screenshot != False):
+            Array_Selenium = ['--start_maximized','--no-sandbox','--remote-debugging-port=19222','--ignore-certificate-errors','--test-type','--log-level=3','--hide-scrollbars','--enable-javascript']
+            if (args.debug != True): Array_Selenium.append('--headless')
 
-        if ("ttl" in getoutput('ping -c 2 8.8.8.8')):
-            Switch_Internet_Connection = True
-        driver_options = Options()
-        for _ in Array_Selenium: driver_options.add_argument(_)
-        if (args.custom_chromium_path != None): driver_options.binary_location = args.custom_chromium_path
-        else:
-            if (osname != 'nt'): driver_options.binary_location = "/usr/bin/chromium"
-        if (osname == 'nt'): environ["CHROME_DRIVER_PATH"] = join(dirname(realpath(__file__)), "Webdriver/chromedriver.exe")
-        else: environ["CHROME_DRIVER_PATH"] = join(dirname(realpath(__file__)), "Webdriver/chromedriver")
-        Screen_Dir = join(Location, 'Screenshots')
-        try: makedirs(Screen_Dir)
-        except FileExistsError: pass
+            if ("ttl" in getoutput('ping -c 2 8.8.8.8')):
+                Switch_Internet_Connection = True
+            driver_options = Options()
+            for _ in Array_Selenium: driver_options.add_argument(_)
+            if (args.custom_chromium_path != None): driver_options.binary_location = args.custom_chromium_path
+            else:
+                if (osname != 'nt'): driver_options.binary_location = "/usr/bin/chromium"
+            if (osname == 'nt'): environ["CHROME_DRIVER_PATH"] = join(dirname(realpath(__file__)), "Webdriver/chromedriver.exe")
+            else: environ["CHROME_DRIVER_PATH"] = join(dirname(realpath(__file__)), "Webdriver/chromedriver")
+            Screen_Dir = join(Location, 'Screenshots')
+            try: makedirs(Screen_Dir)
+            except FileExistsError: pass
 
-    # Proxy_Settings
-    if (args.add_http_proxy != None): Dict_Proxies['http'] = args.add_http_proxy
-    if (args.add_https_proxy != None): Dict_Proxies['https'] = args.add_https_proxy
+        # Proxy_Settings
+        if (args.add_http_proxy != None): Dict_Proxies['http'] = args.add_http_proxy
+        if (args.add_https_proxy != None): Dict_Proxies['https'] = args.add_https_proxy
 
-    # Scanning_Options
-    if (args.scan_all == False and
-        args.scan_site_screenshot == False and
-        args.scan_site_http_methods == False and
-        args.scan_site_certificate == False and
-        args.scan_site_ssl == False and
-        args.scan_site_header == False and
-        args.scan_site_fuzzing == False and
-        args.scan_ssh == False and
-        args.scan_site_screenshot_recursive == False and
-        args.scan_security_flags == False):
-                from Resources.Header_Files.ArgParser_Intro import Argument_Parser
-                Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
-    elif (args.scan_all != False and
-          args.scan_site_screenshot == False and
-          args.scan_site_http_methods == False and
-          args.scan_site_certificate == False and
-          args.scan_site_ssl == False and
-          args.scan_site_header == False and
-          args.scan_site_fuzzing == False and
-          args.scan_ssh == False and
-          args.scan_site_screenshot_recursive == False and
-          args.scan_security_flags == False):
-                Dict_Switch = {
-                    'scan_certificate': True,
-                    'scan_dns': True,
-                    'scan_fuzzing': True,
-                    'scan_header': True,
-                    'scan_http_methods': True,
-                    'scan_security_flags': True,
-                    'scan_screenshot': driver_options,
-                    'scan_screenshot_recursive': True,
-                    'scan_snmp': True,
-                    'scan_smtp': True,
-                    'scan_ssh': True,
-                    'scan_ssl': True
-                }
-    elif (args.scan_all == False):
-        if (args.scan_site_certificate != False):           Dict_Switch['scan_certificate'] = True
-        if (args.scan_site_fuzzing != False):               Dict_Switch['scan_fuzzing'] = True
-        if (args.scan_site_header != False):                Dict_Switch['scan_header'] = True
-        if (args.scan_site_http_methods != False):          Dict_Switch['scan_http_methods'] = True
-        if (args.scan_security_flags != False):             Dict_Switch['scan_security_flags'] = True
-        if (args.scan_site_screenshot != False):            Dict_Switch['scan_screenshot'] = driver_options
-        if (args.scan_site_screenshot_recursive != False):  Dict_Switch['scan_screenshot_recursive'] = True
-        if (args.scan_ssh != False):                        Dict_Switch['scan_ssh'] = True
-        if (args.scan_site_ssl != False):                   Dict_Switch['scan_ssl'] = True
+        # Scanning_Options
+        if (args.scan_all == False and
+            args.scan_site_screenshot == False and
+            args.scan_site_http_methods == False and
+            args.scan_site_certificate == False and
+            args.scan_site_ssl == False and
+            args.scan_site_header == False and
+            args.scan_site_fuzzing == False and
+            args.scan_ssh == False and
+            args.scan_site_screenshot_recursive == False and
+            args.scan_security_flags == False):
+                    from Resources.Header_Files.ArgParser_Intro import Argument_Parser
+                    Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
+        elif (args.scan_all != False and
+              args.scan_site_screenshot == False and
+              args.scan_site_http_methods == False and
+              args.scan_site_certificate == False and
+              args.scan_site_ssl == False and
+              args.scan_site_header == False and
+              args.scan_site_fuzzing == False and
+              args.scan_ssh == False and
+              args.scan_site_screenshot_recursive == False and
+              args.scan_security_flags == False):
+                    Dict_Switch = {
+                        'scan_certificate': True,
+                        'scan_dns': True,
+                        'scan_fuzzing': True,
+                        'scan_header': True,
+                        'scan_http_methods': True,
+                        'scan_security_flags': True,
+                        'scan_screenshot': driver_options,
+                        'scan_screenshot_recursive': True,
+                        'scan_snmp': True,
+                        'scan_smtp': True,
+                        'scan_ssh': True,
+                        'scan_ssl': True
+                    }
+        elif (args.scan_all == False):
+            if (args.scan_site_certificate != False):           Dict_Switch['scan_certificate'] = True
+            if (args.scan_site_fuzzing != False):               Dict_Switch['scan_fuzzing'] = True
+            if (args.scan_site_header != False):                Dict_Switch['scan_header'] = True
+            if (args.scan_site_http_methods != False):          Dict_Switch['scan_http_methods'] = True
+            if (args.scan_security_flags != False):             Dict_Switch['scan_security_flags'] = True
+            if (args.scan_site_screenshot != False):            Dict_Switch['scan_screenshot'] = driver_options
+            if (args.scan_site_screenshot_recursive != False):  Dict_Switch['scan_screenshot_recursive'] = True
+            if (args.scan_ssh != False):                        Dict_Switch['scan_ssh'] = True
+            if (args.scan_site_ssl != False):                   Dict_Switch['scan_ssl'] = True
 
-    # Program_Start
-    Standard.Initialien(args.debug)
-    setdefaulttimeout(args.timeout)
-    Counter_Bar = float(100/len(Array_Targets))
-    if __name__ == '__main__':
-        with Progress(*progress_columns) as progress:
-            queue = Queue()
-            queue.put(Dict_Result)
-            task_Scan = progress.add_task("[cyan]Scanning for vulnerabilities...", total=len(Array_Targets))
-            task_Processes = progress.add_task("[cyan]Waiting for the results...", total=1, start=False)
-            task_Filter = progress.add_task("[cyan]Filtering the results...", total=100, start=False)
-            for Target in array(Array_Targets):
-                Array_Thread_Args.append(Target), Array_Thread_Args.append(args.timeout), Array_Thread_Args.append(queue), Array_Thread_Args.append(Dict_Switch)
-                Array_Thread_Args.append(Screen_Dir), Array_Thread_Args.append(Switch_Internet_Connection), Array_Thread_Args.append(args.screenshot_wait), Array_Thread_Args.append(args.webdriver_wait)
-                p = Process(target=Thread_Scanning_Start, args=Array_Thread_Args, daemon=True)
-                p.start()
-                Counter_Connections += 1
-                if (Counter_Connections == args.max_connections):
-                    while (len(Dict_Threads) > 0):
-                        try:
-                            for Thread_ID in Dict_Threads:
-                                if (Thread_ID not in str(active_children())):
-                                    Dict_Threads.pop(Thread_ID, None)
-                                    Counter_Connections -= 1
-                                else:
-                                    if ((time() - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
-                                        Dict_Threads[Thread_ID][0].terminate()
-                                        Logs.Write_Log(Target, "")
+        # Program_Start
+        Standard.Initialien(args.debug)
+        setdefaulttimeout(args.timeout)
+        Counter_Bar = float(100/len(Array_Targets))
+        if __name__ == '__main__':
+            with Progress(*progress_columns) as progress:
+                queue = Queue()
+                queue.put(Dict_Result)
+                task_Scan = progress.add_task("[cyan]Scanning for vulnerabilities...", total=len(Array_Targets))
+                task_Processes = progress.add_task("[cyan]Waiting for the results...", total=1, start=False)
+                task_Filter = progress.add_task("[cyan]Filtering the results...", total=100, start=False)
+                for Target in array(Array_Targets):
+                    Array_Thread_Args.append(Target), Array_Thread_Args.append(args.timeout), Array_Thread_Args.append(queue), Array_Thread_Args.append(Dict_Switch)
+                    Array_Thread_Args.append(Screen_Dir), Array_Thread_Args.append(Switch_Internet_Connection), Array_Thread_Args.append(args.screenshot_wait), Array_Thread_Args.append(args.webdriver_wait)
+                    p = Process(target=Thread_Scanning_Start, args=Array_Thread_Args, daemon=True)
+                    p.start()
+                    Counter_Connections += 1
+                    if (Counter_Connections == args.max_connections):
+                        while (len(Dict_Threads) > 0):
+                            try:
+                                for Thread_ID in Dict_Threads:
+                                    if (Thread_ID not in str(active_children())):
                                         Dict_Threads.pop(Thread_ID, None)
                                         Counter_Connections -= 1
-                        except RuntimeError: pass
-                        sleep(2.25)
-                else:
-                     if (p.name not in Dict_Threads):
-                            Dict_Threads[p.name] = [p, time(), Target]
-                            sleep(args.sleep)
-                progress.update(task_Scan, advance=Counter_Bar)
-                Array_Thread_Args.clear()
-            progress.start_task(task_Processes)
-            if (len(Dict_Threads) > 0): progress.update(task_Processes, total=len(Dict_Threads))
-            while (len(Dict_Threads) > 0):
-                try:
-                    for Thread_ID in Dict_Threads:
-                        if (Thread_ID not in str(active_children())):
-                            progress.update(task_Processes, advance=0.75)
-                            Dict_Threads.pop(Thread_ID, None)
-                        else:
-                            if ((time() - Dict_Threads[Thread_ID][1]) > 900):
+                                    else:
+                                        if ((time() - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
+                                            Dict_Threads[Thread_ID][0].terminate()
+                                            Logs.Write_Log(Target, "")
+                                            Dict_Threads.pop(Thread_ID, None)
+                                            Counter_Connections -= 1
+                            except RuntimeError: pass
+                            sleep(2.25)
+                    else:
+                         if (p.name not in Dict_Threads):
+                                Dict_Threads[p.name] = [p, time(), Target]
+                                sleep(args.sleep)
+                    progress.update(task_Scan, advance=Counter_Bar)
+                    Array_Thread_Args.clear()
+                progress.start_task(task_Processes)
+                if (len(Dict_Threads) > 0): progress.update(task_Processes, total=len(Dict_Threads))
+                while (len(Dict_Threads) > 0):
+                    try:
+                        for Thread_ID in Dict_Threads:
+                            if (Thread_ID not in str(active_children())):
                                 progress.update(task_Processes, advance=0.75)
-                                Dict_Threads[Thread_ID][0].terminate()
                                 Dict_Threads.pop(Thread_ID, None)
-                except RuntimeError: pass
-                sleep(0.75)
-            Dict_Result = queue.get()
+                            else:
+                                if ((time() - Dict_Threads[Thread_ID][1]) > 900):
+                                    progress.update(task_Processes, advance=0.75)
+                                    Dict_Threads[Thread_ID][0].terminate()
+                                    Dict_Threads.pop(Thread_ID, None)
+                    except RuntimeError: pass
+                    sleep(0.75)
+                Dict_Result = queue.get()
 
-            # Format_Filtering
-            if ("csv" in args.format):
-                from Resources.Format.CSV import CSV_Table
-                Array_Output = CSV_Table(Dict_Result, Location)
-            elif ("docx" in args.format):
-                from Resources.Format.Word import Word_Table
-                Array_Output = Word_Table(Dict_Result, Location)
-            elif ("html" in args.format):
-                from Resources.Format.HTML import HTML_Table
-                Array_Output = HTML_Table(Dict_Result, Location)
-            elif ("json" in args.format):
-                from Resources.Format.JSON import JSON_Table
-                Array_Output = JSON_Table(Dict_Result, Location)
-            elif ("md" in args.format):
-                from Resources.Format.Markdown import Markdown_Table
-                Array_Output = Markdown_Table(Dict_Result, Location)
-            elif ("pdf" in args.format):
-                from Resources.Format.PDF import Create_PDF
-                Array_Output = Word_Table(Dict_Result, Location)
-                if (osname == 'nt'): Create_PDF(Location)
-                else: print("At this point it's not be possible to convert a docx file into a pdf under linux.\nPlease try it under windows.\n")
-            elif ("tex" in args.format):
-                from Resources.Format.LaTeX import Latex_Table
-                Array_Output = Latex_Table(Dict_Result, Location)
-            elif ("xlsx" in args.format):
-                from Resources.Format.Excel import Excel_Table
-                Array_Output = Excel_Table(Dict_Result, Location)
-            elif ("xml" in args.format):
-                from Resources.Format.XML import XML_Table
-                #Array_Output = XML_Table(Dict_Result, Location)
-            elif ("yaml" in args.format):
-                from Resources.Format.YAML import YAML_Table
-                #Array_Output = YAML_Table(Dict_Result, Location)
-            else: Error_Message("Your Decision was not acceptable!")
+                # Format_Filtering
+                if ("csv" in args.format):
+                    from Resources.Format.CSV import CSV_Table
+                    Array_Output = CSV_Table(Dict_Result, Location)
+                elif ("docx" in args.format):
+                    from Resources.Format.Word import Word_Table
+                    Array_Output = Word_Table(Dict_Result, Location)
+                elif ("html" in args.format):
+                    from Resources.Format.HTML import HTML_Table
+                    Array_Output = HTML_Table(Dict_Result, Location)
+                elif ("json" in args.format):
+                    from Resources.Format.JSON import JSON_Table
+                    Array_Output = JSON_Table(Dict_Result, Location)
+                elif ("md" in args.format):
+                    from Resources.Format.Markdown import Markdown_Table
+                    Array_Output = Markdown_Table(Dict_Result, Location)
+                elif ("pdf" in args.format):
+                    from Resources.Format.PDF import Create_PDF
+                    Array_Output = Word_Table(Dict_Result, Location)
+                    if (osname == 'nt'): Create_PDF(Location)
+                    else: print("At this point it's not be possible to convert a docx file into a pdf under linux.\nPlease try it under windows.\n")
+                elif ("tex" in args.format):
+                    from Resources.Format.LaTeX import Latex_Table
+                    Array_Output = Latex_Table(Dict_Result, Location)
+                elif ("xlsx" in args.format):
+                    from Resources.Format.Excel import Excel_Table
+                    Array_Output = Excel_Table(Dict_Result, Location)
+                elif ("xml" in args.format):
+                    from Resources.Format.XML import XML_Table
+                    #Array_Output = XML_Table(Dict_Result, Location)
+                elif ("yaml" in args.format):
+                    from Resources.Format.YAML import YAML_Table
+                    #Array_Output = YAML_Table(Dict_Result, Location)
+                else: Error_Message("Your Decision was not acceptable!")
 
-            # Progress_End
-            progress.start_task(task_Filter)
-            while not progress.finished:
-                progress.update(task_Scan, advance=Counter_Bar)
-                progress.update(task_Processes, advance=0.75)
-                progress.update(task_Filter, advance=0.5)
-                sleep(0.01)
+                # Progress_End
+                progress.start_task(task_Filter)
+                while not progress.finished:
+                    progress.update(task_Scan, advance=Counter_Bar)
+                    progress.update(task_Processes, advance=0.75)
+                    progress.update(task_Filter, advance=0.5)
+                    sleep(0.01)
 
-    if (args.scan_site_screenshot != False):
-#        Web.Screenshot_Filter(Screen_Dir)
-        if (len(listdir(Screen_Dir)) > 0):
-            for _ in listdir(Screen_Dir): Array_Output.append(join(Screen_Dir, _))
+        if (args.scan_site_screenshot != False):
+    #        Web.Screenshot_Filter(Screen_Dir)
+            if (len(listdir(Screen_Dir)) > 0):
+                for _ in listdir(Screen_Dir): Array_Output.append(join(Screen_Dir, _))
+
+        return Array_Output
+
+    # Program_Mode
+    if (Program_Mode == "Scanning_Mode"):
+        Array_Output = Scanning_Mode(Date, args)
+    elif (Program_Mode == "Filter_Mode"):
+        Array_Output = Filter_Mode(Date, args)
 
     # Output_End
     if (Array_Output != []):
@@ -258,5 +272,5 @@ def main(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': 
 
 # Main
 if __name__ == '__main__':
-    try: main(Date, args)
+    try: main(Date, Program_Mode, args)
     except KeyboardInterrupt: exit()
