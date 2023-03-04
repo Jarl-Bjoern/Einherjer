@@ -18,7 +18,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
         # Filtering_Options
         if (args.nmap_files_location == None and args.screenshot_location == None):
             from Resources.Header_Files.ArgParser_Filter_Intro import Argument_Parser
-            Argument_Parser("\n\n\t\t\tThe program cannot be started without filter methods!\n\t\t\tFor more information use the parameter -h or --help.\n"), exit() 
+            Argument_Parser("\n\n\t\t\tThe program cannot be started without filter methods!\n\t\t\t For more information use the parameter -h or --help.\n"), exit() 
         else:
             # Program_Start
             Standard.Initialien(args.debug)
