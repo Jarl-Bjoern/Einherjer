@@ -57,6 +57,8 @@ try:
         from paramiko.ssh_exception import SSHException
 
     # Argument_Parser
+    print (argv)
+
     if (argv[1] == "-fM" or argv[1] == "--filter-mode"):
         from .ArgParser_Filter import Argument_Parser
         args = Argument_Parser()
