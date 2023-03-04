@@ -149,7 +149,7 @@ try:
                 from http.client import HTTPSConnection
             if (args.scan_smtp != False):
                 from smtplib import SMTP
-        else:
+        elif (argv[1] == '-h'):
             from .ArgParser_Mode import Argument_Parser
             args = Argument_Parser()
 except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
