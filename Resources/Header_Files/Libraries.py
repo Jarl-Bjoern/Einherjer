@@ -81,7 +81,7 @@ try:
                 args.scan_ssh == False and
                 args.scan_site_screenshot_recursive == False and
                 args.scan_security_flags == False):
-                        from .ArgParser_Intro import Argument_Parser
+                        from .ArgParser_Scan_Intro import Argument_Parser
                         Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
             elif (args.scan_all != False and
                   args.scan_site_certificate == False and
