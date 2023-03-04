@@ -3,6 +3,13 @@
 # Rainer Christian Bjoern Herold
 
 def Scan_DNS():
+    def AXFR_Scan(Target, Hostname):
+        Zones = from_xfr(xfr(Target, Hostname))
+        Names = Zones.nodes.keys()
+        Names.sort()
+        for Name in Names:
+            print(Zones[Name].to_text(Name))    
+
     def Test():
           try:
               Temp = gethostbyname(Target)
