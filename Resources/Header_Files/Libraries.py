@@ -59,9 +59,11 @@ try:
     # Argument_Parser
     try:
         if (argv[1] == "--filter-mode"):
+            argv.remove('--filter-mode')
             from .ArgParser_Filter import Argument_Parser
             args = Argument_Parser()
         elif (argv[1] == "--scanning-mode"):
+            argv.remove('--scanning-mode')
             from .ArgParser import Argument_Parser
             args = Argument_Parser()
 
