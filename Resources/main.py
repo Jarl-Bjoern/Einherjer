@@ -77,15 +77,6 @@ def main(Date, Program_Mode, args, Array_Output = []):
                         if (word not in Array_Wordlists):
                             Array_Wordlists.append(word)
 
-        # Output_Location
-        if (args.output_location != None):
-            if ('.' in args.output_location or './' in args.output_location):
-                if ('./' in args.output_location): Location = Standard.Create_Location_Dir(join(getcwd(), f"{args.output_location[2:]}/{Date}"))
-                else: Location = Standard.Create_Location_Dir(join(getcwd(), f"{args.output_location}/{Date}"))
-            elif ('.' not in args.output_location and '/' not in args.output_location): Location = Standard.Create_Location_Dir(join(getcwd(), f"{args.output_location}/{Date}"))
-            elif ('/' in args.output_location and not '.' in args.output_location): Location = Standard.Create_Location_Dir(f"{args.output_location}/{Date}")
-        else: Location = Standard.Create_Location_Dir(join(dirname(realpath(__file__)).replace('/Resources','/einherjer_output'), Date))
-
         # Webdriver_Options
         if (args.scan_site_screenshot != False):
             Array_Selenium = ['--start_maximized','--no-sandbox','--remote-debugging-port=19222','--ignore-certificate-errors','--test-type','--log-level=3','--hide-scrollbars','--enable-javascript']
@@ -260,6 +251,15 @@ def main(Date, Program_Mode, args, Array_Output = []):
                 for _ in listdir(Screen_Dir): Array_Output.append(join(Screen_Dir, _))
 
         return Array_Output
+
+    # Output_Location
+    if (args.output_location != None):
+        if ('.' in args.output_location or './' in args.output_location):
+            if ('./' in args.output_location): Location = Standard.Create_Location_Dir(join(getcwd(), f"{args.output_location[2:]}/{Date}"))
+            else: Location = Standard.Create_Location_Dir(join(getcwd(), f"{args.output_location}/{Date}"))
+        elif ('.' not in args.output_location and '/' not in args.output_location): Location = Standard.Create_Location_Dir(join(getcwd(), f"{args.output_location}/{Date}"))
+        elif ('/' in args.output_location and not '.' in args.output_location): Location = Standard.Create_Location_Dir(f"{args.output_location}/{Date}")
+    else: Location = Standard.Create_Location_Dir(join(dirname(realpath(__file__)).replace('/Resources','/einherjer_output'), Date))
 
     # Program_Mode
     if (Program_Mode == "Scanning_Mode"):
