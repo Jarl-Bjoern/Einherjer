@@ -56,7 +56,6 @@ class Filter:
                                  else: break
                  elif ("Supported authentication methods" in Report[Result][4:-1]):
                        Dict_System[f'{IP_Address}:{Port}'] = ""
-                       Target = Report[Result][4:-1].split(" ")[0][:-1]
                        while True:
                             Result += 1
                             if ("ssh2-enum-algos" not in Report[Result] and
