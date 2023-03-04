@@ -18,7 +18,7 @@ def SSL_Vulns(url, Host_Name, Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEAR
     elif ('https://' in url): URL = url.split('https://')[1]
 
     if (url.count(':') > 1):
-        Temp, Port = url.split(':')[0], url.split(':')[1]
+        Temp, Port = url.split(':')[0], int(url.split(':')[1])
         URL = Temp
     else: Port = 443
 
