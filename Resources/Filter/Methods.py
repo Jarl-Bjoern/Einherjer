@@ -63,13 +63,15 @@ class Filter:
                                 "server_host_key_algorithms" not in Report[Result] and
                                 "encryption_algorithms" not in Report[Result] and
                                 "mac_algorithms" not in Report[Result] and
-                                "compression_algorithms" not in Report[Result]):
+                                "compression_algorithms" not in Report[Result] and
+                                "MAC Address:" not in Report[Result] and
+                                "|" in Report[Result]):
                                            if ("publickey" not in Report[Result]):
                                                Dict_SSH_Results['auth_methods'].append(Report[Result][6:])
                             else: break
-                 elif ("compression_algorithms" in Report[Result]):
-                       Dict_System[f'{IP_Address}:{Port}'] = Dict_SSH_Results
-                       Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': [], 'auth_methods': []}
+            elif ("MAC Address:" in Report[Result]):
+                   Dict_System[f'{IP_Address}:{Port}'] = Dict_SSH_Results
+                   Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': [], 'auth_methods': []}
 
         with open(join(location, 'ssh-vulns.csv'), 'w') as f:
              f.write("Host;kex_algorithms;server_host_key_algorithms;encryption_algorithms;mac_algorithms;auth_methods\n")
