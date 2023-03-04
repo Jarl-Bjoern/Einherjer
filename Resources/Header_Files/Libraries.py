@@ -43,7 +43,7 @@ try:
     from socket import gaierror, gethostbyaddr, gethostbyname, herror, setdefaulttimeout
     from ssl import cert_time_to_seconds, create_default_context, _create_unverified_context as create_unverified_context, get_server_certificate, SSLError
     from subprocess import getoutput, run
-    from sys import stdout
+    from sys import argv, stdout
     from time import sleep, strftime, time
     from threading import Thread, enumerate as Th_enumerate
     from traceback import print_exc
