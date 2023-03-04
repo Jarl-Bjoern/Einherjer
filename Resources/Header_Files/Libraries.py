@@ -171,7 +171,7 @@ for _ in listdir(dirname(realpath(__file__)).replace('Header_Files', 'Webdriver'
     temp_file.chmod(temp_file.stat().st_mode | stat.S_IEXEC)
 
 # Delete_Unused_Functions
-del Argument_Parser, catch_warnings, chmod, Path, redirect_stdout, simplefilter, stat, temp_file
+del Argument_Parser, argv, catch_warnings, chmod, Path, redirect_stdout, simplefilter, stat, temp_file
 
 # Static_Date
 Date = strftime('%Y-%m-%d_%H-%M-%S')
