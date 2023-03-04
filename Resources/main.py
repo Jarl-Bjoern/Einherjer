@@ -84,7 +84,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
                 else: Location = Standard.Create_Location_Dir(join(getcwd(), f"{args.output_location}/{Date}"))
             elif ('.' not in args.output_location and '/' not in args.output_location): Location = Standard.Create_Location_Dir(join(getcwd(), f"{args.output_location}/{Date}"))
             elif ('/' in args.output_location and not '.' in args.output_location): Location = Standard.Create_Location_Dir(f"{args.output_location}/{Date}")
-        else: Location = Standard.Create_Location_Dir(join(dirname(realpath(__file__)).replace('/Resources','/output_test'), Date))
+        else: Location = Standard.Create_Location_Dir(join(dirname(realpath(__file__)).replace('/Resources','/einherjer_output'), Date))
 
         # Webdriver_Options
         if (args.scan_site_screenshot != False):
