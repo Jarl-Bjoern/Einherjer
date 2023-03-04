@@ -98,7 +98,8 @@ try:
                         from cryptography.x509 import load_der_x509_certificate
                         from cryptography.hazmat.backends import default_backend
                         from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
-                        from dns.resolver import query as DNS_Query
+                        from dns.query import xfr
+                        from dns.zone import from_xfr
                         from ftplib import FTP
                         from http.client import HTTPSConnection
                         from json import loads as json_loads
