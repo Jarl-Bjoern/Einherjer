@@ -59,101 +59,105 @@ try:
     # Argument_Parser
     print (argv)
 
-    if (argv[1] == "-fM" or argv[1] == "--filter-mode"):
-        from .ArgParser_Filter import Argument_Parser
-        args = Argument_Parser()
-    elif (argv[1] == "-sM" or argv[1] == "--scanning-mode"):
-        from .ArgParser import Argument_Parser
-        args = Argument_Parser()
+    try:
+        if (argv[1] == "-fM" or argv[1] == "--filter-mode"):
+            from .ArgParser_Filter import Argument_Parser
+            args = Argument_Parser()
+        elif (argv[1] == "-sM" or argv[1] == "--scanning-mode"):
+            from .ArgParser import Argument_Parser
+            args = Argument_Parser()
 
-        # Scanning_Module_Filtering
-        if (args.scan_all == False and
-            args.scan_site_certificate == False and
-            args.scan_site_dns_bruteforce == False and
-            args.scan_smtp == False and
-            args.scan_site_http_methods == False and
-            args.scan_site_screenshot == False and
-            args.scan_site_ssl == False and
-            args.scan_site_header == False and
-            args.scan_site_fuzzing == False and
-            args.scan_ssh == False and
-            args.scan_site_screenshot_recursive == False and
-            args.scan_security_flags == False):
-                    from .ArgParser_Intro import Argument_Parser
-                    Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
-        elif (args.scan_all != False and
-              args.scan_site_certificate == False and
-              args.scan_site_dns_bruteforce == False and
-              args.scan_smtp == False and
-              args.scan_site_http_methods == False and
-              args.scan_site_screenshot == False and
-              args.scan_site_ssl == False and
-              args.scan_site_header == False and
-              args.scan_site_fuzzing == False and
-              args.scan_ssh == False and
-              args.scan_site_screenshot_recursive == False and
-              args.scan_security_flags == False):
-                    from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
-                    from cryptography.x509 import load_der_x509_certificate
-                    from cryptography.hazmat.backends import default_backend
+            # Scanning_Module_Filtering
+            if (args.scan_all == False and
+                args.scan_site_certificate == False and
+                args.scan_site_dns_bruteforce == False and
+                args.scan_smtp == False and
+                args.scan_site_http_methods == False and
+                args.scan_site_screenshot == False and
+                args.scan_site_ssl == False and
+                args.scan_site_header == False and
+                args.scan_site_fuzzing == False and
+                args.scan_ssh == False and
+                args.scan_site_screenshot_recursive == False and
+                args.scan_security_flags == False):
+                        from .ArgParser_Intro import Argument_Parser
+                        Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
+            elif (args.scan_all != False and
+                  args.scan_site_certificate == False and
+                  args.scan_site_dns_bruteforce == False and
+                  args.scan_smtp == False and
+                  args.scan_site_http_methods == False and
+                  args.scan_site_screenshot == False and
+                  args.scan_site_ssl == False and
+                  args.scan_site_header == False and
+                  args.scan_site_fuzzing == False and
+                  args.scan_ssh == False and
+                  args.scan_site_screenshot_recursive == False and
+                  args.scan_security_flags == False):
+                        from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
+                        from cryptography.x509 import load_der_x509_certificate
+                        from cryptography.hazmat.backends import default_backend
+                        from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
+                        from ftplib import FTP
+                        from http.client import HTTPSConnection
+                        from json import loads as json_loads
+                        from os import environ, rename
+                        from requests import get, Session
+                        from selenium import webdriver
+                        from selenium.webdriver.common.by import By
+                        from selenium.webdriver.common.keys import Keys
+                        from selenium.webdriver.chrome.options import Options
+                        from selenium.webdriver.chrome.service import Service
+                        from selenium.webdriver.remote.webdriver import WebDriver
+                        from smtplib import SMTP
+                        from sslyze import Scanner, ServerNetworkLocation, ServerScanRequest, ServerScanResultAsJson, ServerHostnameCouldNotBeResolved, SslyzeOutputAsJson
+                        from socket import AF_INET, create_connection, socket, SOCK_STREAM
+                        from webbrowser import open as webbrowser_open
+                        import asyncio, pysnmp
+                        with catch_warnings():
+                            simplefilter("ignore")
+                            from paramiko.transport import Transport
+                        with redirect_stdout(None):
+                            from webdriver_manager.chrome import ChromeDriverManager
+            elif (args.scan_all == False):
+                if (args.scan_site_screenshot != False):
                     from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
-                    from ftplib import FTP
-                    from http.client import HTTPSConnection
-                    from json import loads as json_loads
                     from os import environ, rename
-                    from requests import get, Session
                     from selenium import webdriver
                     from selenium.webdriver.common.by import By
                     from selenium.webdriver.common.keys import Keys
                     from selenium.webdriver.chrome.options import Options
                     from selenium.webdriver.chrome.service import Service
                     from selenium.webdriver.remote.webdriver import WebDriver
-                    from smtplib import SMTP
-                    from sslyze import Scanner, ServerNetworkLocation, ServerScanRequest, ServerScanResultAsJson, ServerHostnameCouldNotBeResolved, SslyzeOutputAsJson
-                    from socket import AF_INET, create_connection, socket, SOCK_STREAM
                     from webbrowser import open as webbrowser_open
-                    import asyncio, pysnmp
+                    with redirect_stdout(None):
+                       from webdriver_manager.chrome import ChromeDriverManager
+                if (args.scan_site_ssl != False or args.scan_site_certificate != False):
+                    from cryptography.x509 import load_der_x509_certificate
+                    from cryptography.hazmat.backends import default_backend
+                    from json import loads as json_loads
+                    from socket import create_connection
+                    from sslyze import Scanner, ServerNetworkLocation, ServerScanRequest, ServerScanResultAsJson, ServerHostnameCouldNotBeResolved, SslyzeOutputAsJson
+                if (args.scan_site_header != False or args.scan_site_fuzzing != False or args.scan_site_dns_bruteforce != False):
+                    from requests import get
+                if (args.scan_ssh != False):
+                    from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
+                    import asyncio
                     with catch_warnings():
                         simplefilter("ignore")
                         from paramiko.transport import Transport
-                    with redirect_stdout(None):
-                        from webdriver_manager.chrome import ChromeDriverManager
-        elif (args.scan_all == False):
-            if (args.scan_site_screenshot != False):
-                from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
-                from os import environ, rename
-                from selenium import webdriver
-                from selenium.webdriver.common.by import By
-                from selenium.webdriver.common.keys import Keys
-                from selenium.webdriver.chrome.options import Options
-                from selenium.webdriver.chrome.service import Service
-                from selenium.webdriver.remote.webdriver import WebDriver
-                from webbrowser import open as webbrowser_open
-                with redirect_stdout(None):
-                   from webdriver_manager.chrome import ChromeDriverManager
-            if (args.scan_site_ssl != False or args.scan_site_certificate != False):
-                from cryptography.x509 import load_der_x509_certificate
-                from cryptography.hazmat.backends import default_backend
-                from json import loads as json_loads
-                from socket import create_connection
-                from sslyze import Scanner, ServerNetworkLocation, ServerScanRequest, ServerScanResultAsJson, ServerHostnameCouldNotBeResolved, SslyzeOutputAsJson
-            if (args.scan_site_header != False or args.scan_site_fuzzing != False or args.scan_site_dns_bruteforce != False):
-                from requests import get
-            if (args.scan_ssh != False):
-                from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
-                import asyncio
-                with catch_warnings():
-                    simplefilter("ignore")
-                    from paramiko.transport import Transport
-            if (args.scan_security_flags != False):
-                from requests import Session
-            if (args.scan_site_http_methods != False):
-                from http.client import HTTPSConnection
-            if (args.scan_smtp != False):
-                from smtplib import SMTP
-        elif (argv[1] == '-h'):
-            from .ArgParser_Mode import Argument_Parser
-            args = Argument_Parser()
+                if (args.scan_security_flags != False):
+                    from requests import Session
+                if (args.scan_site_http_methods != False):
+                    from http.client import HTTPSConnection
+                if (args.scan_smtp != False):
+                    from smtplib import SMTP
+            elif (argv[1] == '-h'):
+                from .ArgParser_Mode import Argument_Parser
+                args = Argument_Parser()
+    except IndexError:
+        from .ArgParser_Mode import Argument_Parser
+        args = Argument_Parser()
 except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
 
 # Change_Permissions_For_Webdriver
