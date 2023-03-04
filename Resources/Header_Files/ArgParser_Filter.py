@@ -31,7 +31,7 @@ def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Res
 -------------------------------------------------------------------------------------
 """
 
-    parser = ArgumentParser(add_help=False, formatter_class=RawTextHelpFormatter, description=Colors.ORANGE+Program_Description+Colors.RESET, allow_abbrev=False)
+    parser = ArgumentParser(add_help=False, formatter_class=RawTextHelpFormatter, description=Colors.ORANGE+Program_Description+Colors.RESET, allow_abbrev=False, usage=SUPPRESS)
     debug_arguments = parser.add_argument_group(Colors.ORANGE+'debug arguments'+Colors.RESET)
     format_arguments = parser.add_argument_group(Colors.ORANGE+'format arguments'+Colors.RESET)
     optional = parser.add_argument_group(Colors.ORANGE+'optional arguments'+Colors.RESET)
