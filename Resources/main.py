@@ -17,7 +17,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
     def Filter_Mode(Date, Output_location, args, Array_Output = []):
         # Filtering_Options
         if (args.nmap_files_location == None and args.screenshot_location == None):
-            from Resources.Header_Files.ArgParser_Filter import Argument_Parser
+            from Resources.Header_Files.ArgParser_Filter_Intro import Argument_Parser
             Argument_Parser("\n\n\t\t\t   The program cannot be started without filter methods!\n\t\t\tFor more information use the parameter -h or --help.\n"), exit() 
         else:
             # Program_Start
@@ -48,7 +48,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
 
         # Target_Options
         if (args.target == None and args.import_list == None):
-            from Resources.Header_Files.ArgParser_Intro import Argument_Parser
+            from Resources.Header_Files.ArgParser_Scan_Intro import Argument_Parser
             Argument_Parser("\n\n\t\t\t   The program cannot be started without targets!\n\t\t\tFor more information use the parameter -h or --help.\n"), exit()
         elif (args.target == None and args.import_list != None):
             try: Array_Targets = Standard.Read_Targets_v4(args.import_list)
