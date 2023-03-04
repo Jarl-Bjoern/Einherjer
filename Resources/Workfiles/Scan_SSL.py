@@ -33,6 +33,7 @@ def SSL_Vulns(url, Host_Name, Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEAR
 
     for _ in json_loads(temp_json_output)['server_scan_results']:
         Scan_Result = _['scan_result']
+        print (Scan_Result)
         if (Scan_Result != None):
             for i in Scan_Result:
                 if (i not in Array_Result_Filter):
@@ -42,7 +43,6 @@ def SSL_Vulns(url, Host_Name, Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEAR
                             if (k == 'accepted_cipher_suites'):
                                 for z in Deep_Result[k]:
                                     Cipher_Filter = findall(rf'(?<!-)\b(?:(?:[^\W_]+_)+(?:RC4|MD5|CBC|NULL|RC2|3DES|PSK)(?:_[^\W_]+)+|(?:[^\W_]+_)+SHA)\b', z['cipher_suite']['name'])
-                                    print (z)
                                     if (Cipher_Filter != []):
                                         Dict_Temp_Ciphers['Anonymous']  = z['cipher_suite']['is_anonymous']
                                         Dict_Temp_Ciphers['Key_Size']   = z['cipher_suite']['key_size']
