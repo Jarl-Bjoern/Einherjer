@@ -59,7 +59,8 @@ def Take_Screenshot(url, driver_options, Screen_Dir, switch_internet_connection,
     if ("://" in url): Screen_Name = url.split('://')[1]
     else: Screen_Name = url
     try:
-        Full_Screen_Name = join(Screen_Dir, f"{Date}_({Screen_Name}).png")
+        if (':' in Screen_Name): Full_Screen_Name = join(Screen_Dir, f"{Date}_({Screen_Name.replace(':', '_')}).png")
+        else: Full_Screen_Name = join(Screen_Dir, f"{Date}_({Screen_Name}).png")
         driver.get(url)
         sleep(screenshot_wait)
         driver.save_screenshot(Full_Screen_Name)
