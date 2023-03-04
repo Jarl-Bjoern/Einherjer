@@ -58,10 +58,10 @@ try:
 
     # Argument_Parser
     try:
-        if (argv[1] == "-fM" or argv[1] == "--filter-mode"):
+        if (argv[1] == "--filter-mode"):
             from .ArgParser_Filter import Argument_Parser
             args = Argument_Parser()
-        elif (argv[1] == "-sM" or argv[1] == "--scanning-mode"):
+        elif (argv[1] == "--scanning-mode"):
             from .ArgParser import Argument_Parser
             args = Argument_Parser()
 
