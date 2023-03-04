@@ -23,15 +23,15 @@ def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Res
     parser = ArgumentParser(add_help=False, formatter_class=RawTextHelpFormatter, description=Colors.ORANGE+Program_Description+Colors.RESET, allow_abbrev=False, usage=SUPPRESS)
     config_arguments = parser.add_argument_group(Colors.ORANGE+'config arguments'+Colors.RESET)
     debug_arguments = parser.add_argument_group(Colors.ORANGE+'debug arguments'+Colors.RESET)
-    format_arguments = parser.add_argument_group(Colors.ORANGE+'format arguments'+Colors.RESET)
+    filter_arguments = parser.add_argument_group(Colors.ORANGE+'format arguments'+Colors.RESET)
     optional = parser.add_argument_group(Colors.ORANGE+'optional arguments'+Colors.RESET)
 
     config_arguments.add_argument('-o', '--output-location', type=str, help=Colors.GREEN+'Specify the location where the result should be saved.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     debug_arguments.add_argument('-d', '--debug', type=bool, nargs='?', default=False, help=Colors.GREEN+'This Parameter deactivates the terminal clearing after starting the tool.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
-    format_arguments.add_argument('-nL', '--nmap-files-location', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
-    format_arguments.add_argument('-sL', '--screenshot-location', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    filter_arguments.add_argument('-nL', '--nmap-files-location', type=str, help=Colors.GREEN+'With this parameter you can include nmap files with SSH results, which are filtered and then output as a CSV file.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    filter_arguments.add_argument('-sL', '--screenshot-location', type=str, help=Colors.GREEN+'Using this parameter you can specify a folder with screenshots, which will be loaded into the filter mode and all screenshots in it will be decorated with a black frame.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     optional.add_argument('-h','--help', action='help', default=SUPPRESS, help=Colors.GREEN+'Show this help message and exit.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
