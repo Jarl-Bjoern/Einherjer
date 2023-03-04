@@ -19,10 +19,14 @@ def main(Date, Program_Mode, args, Array_Output = []):
         Standard.Initialien(args.debug)
 
         # Filtering_Options
-        if (args.nmap_files_location != None):
-            Array_Output = Filter.SSH_Nmap(args.nmap_files_location, Output_location)
-        if (args.screenshot_location != None):
-            Array_Output = Filter.Screenshot_Frame(args.screenshot_location)
+        if (args.nmap_files_location == None and args.screenshot_location == None):
+            from Resources.Header_Files.ArgParser_Filter import Argument_Parser
+            Argument_Parser("\n\n\t\t\t   The program cannot be started without filter methods!\n\t\t\tFor more information use the parameter -h or --help.\n"), exit() 
+        else:
+            if (args.nmap_files_location != None):
+                Array_Output = Filter.SSH_Nmap(args.nmap_files_location, Output_location)
+            if (args.screenshot_location != None):
+                Array_Output = Filter.Screenshot_Frame(args.screenshot_location)
 
         return Array_Output
 
