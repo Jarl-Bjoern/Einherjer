@@ -24,7 +24,6 @@ if (Program_Mode == "Scanning_Mode"):
 
     Array_Information_Disclosure_Header = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_information_disclosure.txt"))
     Array_HTTP_Methods = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_methods.txt"))
-    Array_SSH_Algorithms = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/ssh_ciphers.txt"))
     Array_TLS_Algorithms = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/ssl_ciphers.txt"))
 
     # Arrays
@@ -35,6 +34,8 @@ if (Program_Mode == "Scanning_Mode"):
     COLOR_Headline = "black"
     existing_nmap_file = ""
     Chromedriver_Version = "107"
+    
+Array_SSH_Algorithms = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/ssh_ciphers.txt"))
 
 # Design
 disable_warnings(InsecureRequestWarning)
