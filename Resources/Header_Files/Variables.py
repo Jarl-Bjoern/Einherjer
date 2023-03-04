@@ -9,32 +9,32 @@ from ..Standard_Operations.Standard import *
 from ..Standard_Operations.Logs import *
 
 # Template_Filtering
-Array_Security_Flags = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_cookie_security.txt"))
+if (Program_Mode == "Scanning_Mode"):
+    Array_Security_Flags = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_cookie_security.txt"))
+    if (args.read_config_http_header == True and
+        args.read_config_http_header_api == False):
+            Array_Header, Array_HTTP_Filter = Standard.Read_File_Special(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_header.txt"))
+    elif (args.read_config_http_header == False and
+          args.read_config_http_header_api == True):
+            Array_Header, Array_HTTP_Filter = Standard.Read_File_Special(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_header_api.txt"))
+    elif (args.read_config_http_header == True and
+          args.read_config_http_header_api == True):
+            exit()
+    else: Array_Header, Array_HTTP_Filter = [], []
 
-if (args.read_config_http_header == True and
-    args.read_config_http_header_api == False):
-        Array_Header, Array_HTTP_Filter = Standard.Read_File_Special(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_header.txt"))
-elif (args.read_config_http_header == False and
-      args.read_config_http_header_api == True):
-        Array_Header, Array_HTTP_Filter = Standard.Read_File_Special(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_header_api.txt"))
-elif (args.read_config_http_header == True and
-      args.read_config_http_header_api == True):
-        exit()
-else: Array_Header, Array_HTTP_Filter = [], []
+    Array_Information_Disclosure_Header = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_information_disclosure.txt"))
+    Array_HTTP_Methods = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_methods.txt"))
+    Array_SSH_Algorithms = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/ssh_ciphers.txt"))
+    Array_TLS_Algorithms = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/ssl_ciphers.txt"))
 
-Array_Information_Disclosure_Header = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_information_disclosure.txt"))
-Array_HTTP_Methods = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_methods.txt"))
-Array_SSH_Algorithms = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/ssh_ciphers.txt"))
-Array_TLS_Algorithms = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/ssl_ciphers.txt"))
+    # Arrays
+    Array_Paths, Array_SSL_Vulns, Array_Results = [],[],[]
+    Array_SSH_Header = ['kex_algorithms', 'server_host_key_algorithms', 'encryption_algorithms', 'mac_algorithms']
 
-# Arrays
-Array_Paths, Array_SSL_Vulns, Array_Results = [],[],[]
-Array_SSH_Header = ['kex_algorithms', 'server_host_key_algorithms', 'encryption_algorithms', 'mac_algorithms']
-
-# Variables
-COLOR_Headline = "black"
-existing_nmap_file = ""
-Chromedriver_Version = "107"
+    # Variables
+    COLOR_Headline = "black"
+    existing_nmap_file = ""
+    Chromedriver_Version = "107"
 
 # Design
 disable_warnings(InsecureRequestWarning)
