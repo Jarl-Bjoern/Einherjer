@@ -15,14 +15,14 @@ from Resources.Filter.Methods import Filter
 # Main_Function
 def main(Date, Program_Mode, args, Array_Output = []):
     def Filter_Mode(Date, Output_location, args, Array_Output = []):
-        # Program_Start
-        Standard.Initialien(args.debug)
-
         # Filtering_Options
         if (args.nmap_files_location == None and args.screenshot_location == None):
             from Resources.Header_Files.ArgParser_Filter import Argument_Parser
             Argument_Parser("\n\n\t\t\t   The program cannot be started without filter methods!\n\t\t\tFor more information use the parameter -h or --help.\n"), exit() 
         else:
+            # Program_Start
+            Standard.Initialien(args.debug)
+
             if (args.nmap_files_location != None):
                 Array_Output = Filter.SSH_Nmap(args.nmap_files_location, Output_location)
             if (args.screenshot_location != None):
