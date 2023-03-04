@@ -15,6 +15,7 @@ from Resources.Filter.Methods import Filter
 # Main_Function
 def main(Date, Program_Mode, args, Array_Output = []):
     def Filter_Mode(Date, args):
+        # Filtering_Options
         if (args.nmap_files_location != None):
             pass
         if (args.screenshot_location != None):
@@ -22,7 +23,6 @@ def main(Date, Program_Mode, args, Array_Output = []):
 
         # Program_Start
         Standard.Initialien(args.debug)
-        setdefaulttimeout(args.timeout)
 
         return Array_Output
 
