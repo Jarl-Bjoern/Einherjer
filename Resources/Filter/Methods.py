@@ -6,7 +6,7 @@
 #from ..Header_Files.Variables import *
 
 class Filter:
-    def Screenshot_Frame(Screenshot_Location):
+    def Screenshot_Frame(Screen_Dir):
         for Picture in listdir(Screen_Dir):
             raw_image = imread(join(Screen_Dir, Picture))
             height = raw_image.shape[0]
