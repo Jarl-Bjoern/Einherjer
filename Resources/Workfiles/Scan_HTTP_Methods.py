@@ -24,7 +24,7 @@ def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Temp = {'DNS': "", 'CONNE
     if (Host_Name != ""): Dict_Temp['DNS'] = Host_Name
     else: Dict_Temp['DNS'] = ""
 
-    if (Switch_URL = True):
+    if (Switch_URL == True):
         try: r = HTTPSConnection(URL, port=Port, timeout=15)
         except TimeoutError: pass
     else:
