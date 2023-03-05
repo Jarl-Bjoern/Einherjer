@@ -109,6 +109,7 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                     else: Array_Temp.append("X")
                 writer.writerow(Array_Temp)
     if (Dict_Result['HTTP_Methods'] != {}):
+        print (Dict_Result['HTTP_Methods'])
         Array_Files.append(join(location, f'result_http_methods.csv'))
         with open(join(location, f'result_http_methods.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
