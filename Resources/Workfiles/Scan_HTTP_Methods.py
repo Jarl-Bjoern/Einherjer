@@ -8,13 +8,12 @@ from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 
 def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Temp = {'DNS': "", 'CONNECT': "", 'DELETE': "", 'HEAD': "", 'OPTIONS': "", 'PATCH': "", 'POST': "", 'PUT': "", 'TRACE': ""}, Switch_URL = False):
-    print (url)
     for Method in Array_HTTP_Methods:
-        print (Method)
-        res = request(Method, url)
-        print (res)
-        if (res.status == "200" and res.reason == "OK"):
-            print(res.status, res.reason)
+        try:
+            res = request(Method, url)
+            if (res.status == "200" and res.reason == "OK"):
+                print(res.status, res.reason)
+        except (ConnectionError, ProtocolError, RemoteDisconnected): print ("Error")
         sleep(0.25)
 
 #
