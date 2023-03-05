@@ -36,7 +36,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             Dict_Result['Header'][html_decode(url)], Dict_Result['Information'][html_decode(url)] = Check_Site_Header(url, t_seconds, Host_Name)
 
         # HTTP_Methods
-        if (dict_switch['http_methods'] != False and '//' in url and 'http' in url):
+        if (dict_switch['scan_http_methods'] != False and '//' in url and 'http' in url):
             Dict_Result['HTTP_Methods'][html_decode(url)] = Check_HTTP_Methods(url, t_seconds, Host_Name)
 
         # Screenshot
