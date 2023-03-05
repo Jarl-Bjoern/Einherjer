@@ -16,9 +16,12 @@ from Resources.Filter.Methods import Filter
 def main(Date, Program_Mode, args, Array_Output = []):
     def Filter_Mode(Date, Output_location, args, Array_Output = []):
         # Filtering_Options
-        if (args.nmap_files_location == None and args.screenshot_location == None):
-            from Resources.Header_Files.ArgParser_Filter_Intro import Argument_Parser
-            Argument_Parser("\n\n\t\t\tThe program cannot be started without filter methods!\n\t\t\t For more information use the parameter -h or --help.\n"), exit() 
+        if (args.nmap_files_location == None and
+            args.screenshot_location == None and
+            args.hostname_template_file == None and
+            args.hostname_target_file == None):
+                from Resources.Header_Files.ArgParser_Filter_Intro import Argument_Parser
+                Argument_Parser("\n\n\t\t\tThe program cannot be started without filter methods!\n\t\t\t For more information use the parameter -h or --help.\n"), exit() 
         else:
             # Program_Start
             Standard.Initialien(args.debug)
@@ -27,6 +30,12 @@ def main(Date, Program_Mode, args, Array_Output = []):
                 Array_Output = Filter.SSH_Nmap(args.nmap_files_location, Output_location)
             if (args.screenshot_location != None):
                 Array_Output = Filter.Screenshot_Frame(args.screenshot_location)
+            if ((args.hostname_template_file != None and args.hostname_target_file == None) or
+                (args.hostname_template_file == None and args.hostname_target_file != None)):
+                    from Resources.Header_Files.ArgParser_Filter_Intro import Argument_Parser
+                    Argument_Parser("\n\n\t\t\tThe program cannot be started without filter methods!\n\t\t\t For more information use the parameter -h or --help.\n"), exit() 
+            elif (args.hostname_template_file != None and args.hostname_target_file != None):
+                Array_Output = Filter.Hostname_Filter(args.hostname_template_file, args.hostname_target_file, Output_Location)
 
         return Array_Output
 
