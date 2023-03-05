@@ -8,7 +8,7 @@ from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 
 def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Temp = {'DNS': "", 'CONNECT': "", 'DELETE': "", 'HEAD': "", 'OPTIONS': "", 'PATCH': "", 'POST': "", 'PUT': "", 'TRACE': ""}, Switch_URL = False):
-    async def main():
+    async def Check_Methods():
         async with ClientSession() as s:
             for Method in Array_HTTP_Methods:
                 try:
@@ -18,7 +18,7 @@ def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Temp = {'DNS': "", 'CONNE
                 except ServerDisconnectedError:
                     pass
 
-    asyncio.run(main())
+    asyncio.run(Check_Methods())
 
 #
 #
