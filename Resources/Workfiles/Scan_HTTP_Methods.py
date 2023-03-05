@@ -8,11 +8,17 @@ from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 
 def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Temp = {'DNS': "", 'CONNECT': "", 'DELETE': "", 'HEAD': "", 'OPTIONS': "", 'PATCH': "", 'POST': "", 'PUT': "", 'TRACE': ""}, Switch_URL = False):
+    from requests import Request, Session
+
+    s = Session()
     for Method in Array_HTTP_Methods:
         try:
-            r = request(Method, url)
-            if ("200" in str(r)):
-                print(r)
+            r = Request(Method, url)
+            prep_req = s.prepare_request(r)
+            resp = s.send(prep_req, verify=False, timeout=2.5)
+
+            if ("200" in str(resp)):
+                print(resp)
         except (ConnectionError, ProtocolError, RemoteDisconnected):
             print ("Error")
         sleep(0.25)
