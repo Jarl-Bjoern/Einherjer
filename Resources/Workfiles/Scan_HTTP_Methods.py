@@ -10,14 +10,18 @@ from ..Standard_Operations.Colors import Colors
 def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Temp = {'DNS': "", 'CONNECT': "", 'DELETE': "", 'HEAD': "", 'OPTIONS': "", 'PATCH': "", 'POST': "", 'PUT': "", 'TRACE': ""}, Switch_URL = False):
 #    from requests import Request, Session
     from aiohttp import ClientSession
+    from aiohttp.client_exceptions import *
     import asyncio
 
     async def main():
         async with ClientSession() as s:
             for Method in Array_HTTP_Methods:
-                async with s.request(Method, url) as r:
-                    Output = await r.json()
-                    print (Output)
+                try:
+                    async with s.request(Method, url) as r:
+                        Output = await r.json()
+                        print (Output)
+                except ServerDisconnectedError:
+                    pass
 
     asyncio.run(main())
 
