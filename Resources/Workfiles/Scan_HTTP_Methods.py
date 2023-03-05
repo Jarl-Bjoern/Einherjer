@@ -10,17 +10,8 @@ from ..Standard_Operations.Colors import Colors
 def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Temp = {'DNS': "", 'CONNECT': "", 'DELETE': "", 'HEAD': "", 'OPTIONS': "", 'PATCH': "", 'POST': "", 'PUT': "", 'TRACE': ""}, Switch_URL = False):
     import requests
 
-    for Method in Array_HTTP_Methods:
-        try:
-            req = requests.Request(Method, url)
-            r = req.prepare()
-            s = requests.Session()
-            s.send(r)
-            res = s.getresponse()
-            if (res.status == "200" and res.reason == "OK"):
-                print(res.status, res.reason)
-            sleep(0.25)
-        except TimeoutError: pass
+    response = requests.options(url)
+    print(response.headers['Allow'])
 
 #
 #
