@@ -13,7 +13,7 @@ def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Temp = {'DNS': "", 'CONNE
             for Method in Array_HTTP_Methods:
                 try:
                     async with s.request(Method, url) as r:
-                        Output = await r.status
+                        Output = await str(r.status)
                         print (Output)
                 except ServerDisconnectedError:
                     pass
