@@ -9,12 +9,11 @@ from ..Standard_Operations.Colors import Colors
 
 def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Temp = {'DNS': "", 'CONNECT': "", 'DELETE': "", 'HEAD': "", 'OPTIONS': "", 'PATCH': "", 'POST': "", 'PUT': "", 'TRACE': ""}, Switch_URL = False):
     for Method in Array_HTTP_Methods:
-        try:
-            res = request(Method, url)
-            if (res.status == "200" and res.reason == "OK"):
-                print(res.status, res.reason)
-            sleep(0.25)
-        except TimeoutError: pass
+        res = request(Method, url)
+        print (res)
+        if (res.status == "200" and res.reason == "OK"):
+            print(res.status, res.reason)
+        sleep(0.25)
 
 #
 #
