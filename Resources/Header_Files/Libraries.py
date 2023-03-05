@@ -31,6 +31,7 @@ SYSTEM_PATH.append(dirname(realpath(__file__)).split('Resources/Header_Files')[0
 try:
     from contextlib import redirect_stdout
     from datetime import datetime
+    from http.client import RemoteDisconnected
     from multiprocessing import active_children, Process, Queue
     from numpy import array
     from os import chmod, getcwd, listdir, makedirs, name as osname, remove, system, walk
