@@ -6,16 +6,23 @@
 from ..Header_Files.Variables import *
 
 class Filter:
-    def Hostname_Filter(Template_File, Input_File, Output_File, Template_Array = [], Target_Array = []):
+    def Hostname_Filter(Template_File, Input_File, Output_Location, Template_Array = [], Target_Array = [], Dict_DNS = {}):
         def Read_File_Template(File_Name):
             with open(File_Name) as f:
                 return f.read().splitlines()
 
-            
-            Template_Array = Read_File(Template_File)
-            Target_Array   = Read_File(Input_File)
+        Template_Array = Read_File(Template_File)
+        Target_Array   = Read_File(Input_File)
 
-            #for _ in 
+        for _ in Template_Array:
+            if (':' in _):   x = _.split(':')
+            elif ('=' in _): x = _.split('=')
+            Dict_DNS[str(x[0])] = str(x[1])
+
+        with open(join(Output_Location, 'hostnames.txt'), 'w') as f:
+            for _ in Target_Array:
+                if (_ in Dict_DNS): f.write(f'{Dict_DNS[Filter]}\n')
+                else: f.write('-\n')
 
     def Screenshot_Frame(Screen_Dir, Array_Temp = []):
         for Picture in listdir(Screen_Dir):
