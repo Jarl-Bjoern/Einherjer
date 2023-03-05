@@ -12,7 +12,7 @@ def Check_HTTP_Methods(url, Host_Name, Dict_Temp = {'DNS': "", 'CONNECT': "", 'D
     else: Dict_Temp['DNS'] = ""
 
     async def Check_Methods():
-        async with ClientSession() as s:
+        async with ClientSession(trust_env=True) as s:
             for Method in Array_HTTP_Methods:
                 try:
                     async with s.request(Method, url) as r:
