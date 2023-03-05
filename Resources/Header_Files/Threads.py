@@ -9,6 +9,7 @@ from ..Workfiles.Scan_Cookie import Check_Security_Flags
 from ..Workfiles.Scan_Certificate import Check_Certificate
 from ..Workfiles.Scan_Header import Check_Site_Header
 from ..Workfiles.Scan_Host_Name import Get_Host_Name
+from ..Workfiles.Scan_HTTP_Methods import Check_HTTP_Methods
 from ..Workfiles.Scan_Screen import Take_Screenshot
 from ..Workfiles.Scan_SSL import SSL_Vulns
 
@@ -33,6 +34,10 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         # Header
         if (dict_switch['scan_header'] != False and '//' in url and 'http' in url):
             Dict_Result['Header'][html_decode(url)], Dict_Result['Information'][html_decode(url)] = Check_Site_Header(url, t_seconds, Host_Name)
+
+        # HTTP_Methods
+        if (dict_switch['http_methods'] != False and '//' in url and 'http' in url):
+            Dict_Result['HTTP_Methods'][html_decode(url)] = Check_HTTP_Methods(url, t_seconds, Host_Name)
 
         # Screenshot
         if (dict_switch['scan_screenshot'] != None and '//' in url and 'http' in url):
