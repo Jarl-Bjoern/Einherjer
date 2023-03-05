@@ -29,6 +29,7 @@ SYSTEM_PATH.append(dirname(realpath(__file__)).split('Resources/Header_Files')[0
 
 # Libraries
 try:
+    from aiohttp.client_exceptions import *
     from contextlib import redirect_stdout
     from datetime import datetime
     from http.client import RemoteDisconnected
@@ -96,6 +97,7 @@ try:
                   args.scan_ssh == False and
                   args.scan_site_screenshot_recursive == False and
                   args.scan_security_flags == False):
+                        from aiohttp import ClientSession
                         from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
                         from cryptography.x509 import load_der_x509_certificate
                         from cryptography.hazmat.backends import default_backend
@@ -152,7 +154,8 @@ try:
                 if (args.scan_security_flags != False):
                     from requests import Session
                 if (args.scan_site_http_methods != False):
-                    from requests import request
+                    from aiohttp import ClientSession
+                    import asyncio
                 if (args.scan_smtp != False):
                     from smtplib import SMTP
         elif (argv[1] == '-h'):
