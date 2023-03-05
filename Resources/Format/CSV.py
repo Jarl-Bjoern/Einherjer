@@ -28,6 +28,7 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
                     else: Array_Temp.append("X")
                 writer.writerow(Array_Temp)
+
     if (Dict_Result['Information'] != {}):
         Array_Files.append(join(location, 'result_information_disclosure.csv'))
         with open(join(location, 'result_information_disclosure.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
@@ -46,6 +47,7 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
                     else: Array_Temp.append("X")
                 writer.writerow(Array_Temp)
+
     if (Dict_Result['SSH'] != {}):
         Array_Files.append(join(location, 'result_SSH-Vulns.csv'))
         with open(join(location, 'result_SSH-Vulns.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
@@ -69,6 +71,7 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
                     else: Array_Temp.append("X")
                 writer.writerow(Array_Temp)
+
     if (Dict_Result['Security_Flag'] != {}):
         Array_Files.append(join(location, f'result_security_flags.csv'))
         with open(join(location, f'result_security_flags.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
@@ -91,6 +94,7 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
                     else: Array_Temp.append("X")
                 writer.writerow(Array_Temp)
+
     if (Dict_Result['Certificate'] != {}):
         Array_Files.append(join(location, f'result_certificate.csv'))
         with open(join(location, f'result_certificate.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
@@ -108,6 +112,7 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
                     else: Array_Temp.append("X")
                 writer.writerow(Array_Temp)
+
     if (Dict_Result['HTTP_Methods'] != {}):
         print (Dict_Result['HTTP_Methods'])
         Array_Files.append(join(location, f'result_http_methods.csv'))
@@ -119,13 +124,14 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                 Array_Temp.append(Target)
                 for Result_Left, Result_Right in Dict_Result['HTTP_Methods'][Target].items():
                     if (Result_Left == "DNS" and Result_Right == ""):  Result_Right = "FEHLT"
-                    elif (Result_Left != "DNS" and Result_Right == "FALSE"): Result_Right = "FEHLT"
+                    elif (Result_Left != "DNS" and Result_Right == "FEHLT"): Result_Right = "FEHLT"
 
                     if (Result_Left != "DNS" and Result_Right != "FEHLT"): Array_Temp.append("✓")
                     elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
                     else: Array_Temp.append("X")
-                writer.writerow(Array_Temp)           
+                writer.writerow(Array_Temp)
+
     if (Dict_Result['SSL'] != {}):
         Array_Files.append(join(location, f'result_ssl_ciphers.csv'))
         with open(join(location, f'result_ssl_ciphers.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
