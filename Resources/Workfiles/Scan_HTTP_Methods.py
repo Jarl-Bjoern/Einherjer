@@ -15,7 +15,7 @@ def Check_HTTP_Methods(url, Host_Name, Dict_Temp = {'DNS': "", 'CONNECT': "", 'D
         async with ClientSession(trust_env=True) as s:
             for Method in Array_HTTP_Methods:
                 try:
-                    async with s.request(Method, url) as r:
+                    async with s.request(Method, url, ssl=False) as r:
                         if (str(r.status) == "200"):
                             Dict_Temp[Method] = "True"
                 except ServerDisconnectedError:
