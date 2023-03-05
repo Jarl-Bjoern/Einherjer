@@ -10,7 +10,7 @@ from ..Standard_Operations.Colors import Colors
 def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Temp = {'DNS': "", 'CONNECT': "", 'DELETE': "", 'HEAD': "", 'OPTIONS': "", 'PATCH': "", 'POST': "", 'PUT': "", 'TRACE': ""}, Switch_URL = False):
     for Method in Array_HTTP_Methods:
         try:
-            res = request(Method, url)
+            res = request(str(Method), str(url))
             if ("200" in str(res)):
                 print(res)
         except (ConnectionError, ProtocolError, RemoteDisconnected): print ("Error")
