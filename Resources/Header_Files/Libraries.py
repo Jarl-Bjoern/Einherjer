@@ -102,7 +102,7 @@ try:
                         from dns.query import xfr
                         from dns.zone import from_xfr
                         from ftplib import FTP
-                        from http.client import HTTPSConnection
+                        from http.client import HTTPConnection, HTTPSConnection
                         from json import loads as json_loads
                         from os import environ, rename
                         from requests import get, Session
@@ -152,7 +152,7 @@ try:
                 if (args.scan_security_flags != False):
                     from requests import Session
                 if (args.scan_site_http_methods != False):
-                    from http.client import HTTPSConnection
+                    from http.client import HTTPConnection, HTTPSConnection
                 if (args.scan_smtp != False):
                     from smtplib import SMTP
         elif (argv[1] == '-h'):
