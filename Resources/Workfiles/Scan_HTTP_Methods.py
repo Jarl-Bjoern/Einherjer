@@ -8,7 +8,7 @@ from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 
 def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Temp = {'DNS': "", 'CONNECT': "", 'DELETE': "", 'HEAD': "", 'OPTIONS': "", 'PATCH': "", 'POST': "", 'PUT': "", 'TRACE': ""}, Switch_URL = False):
-    from requests import request
+    print (Array_HTTP_Methods)
     for Method in Array_HTTP_Methods:
         try:
             r = request(Method, url, timeout=2.5)
