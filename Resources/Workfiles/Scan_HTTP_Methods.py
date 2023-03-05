@@ -8,20 +8,18 @@ from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 
 def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Temp = {'DNS': "", 'CONNECT': "", 'DELETE': "", 'HEAD': "", 'OPTIONS': "", 'PATCH': "", 'POST': "", 'PUT': "", 'TRACE': ""}, Switch_URL = False):
-    from requests import Request, Session
+#    from requests import Request, Session
+    from aiohttp import ClientSession
+    import asyncio
 
-    for Method in Array_HTTP_Methods:
-        try:
-            with Session() as s:
-                r = Request(Method, url)
-                prep_req = s.prepare_request(r)
-                resp = s.send(prep_req, verify=False, timeout=2.5)
+    async def main():
+        async with ClientSession() as s:
+            for Method in Array_HTTP_Methods:
+                async with s.request(Method, url) as r:
+                    Output = await r.json()
+                    print (Output)
 
-                if ("200" in str(resp)):
-                    print(resp)
-        except (ConnectionError, ProtocolError, RemoteDisconnected):
-            print ("Error")
-        sleep(0.25)
+    asyncio.run(main())
 
 #
 #
