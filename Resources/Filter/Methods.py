@@ -12,8 +12,8 @@ class Filter:
                 with open(File_Name) as f:
                     return f.read().splitlines()
 
-            Template_Array = Read_File(Template_File)
-            Target_Array   = Read_File(Input_File)
+            Template_Array = Read_File_Template(Template_File)
+            Target_Array   = Read_File_Template(Input_File)
 
             for _ in Template_Array:
                 if (':' in _):   x = _.split(':')
