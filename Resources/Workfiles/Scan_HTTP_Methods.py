@@ -20,9 +20,9 @@ def Check_HTTP_Methods(url, Host_Name, Dict_Temp = {'DNS': "", 'CONNECT': "", 'D
                         if (str(r.status) == "200"):
                             Dict_Temp[Method] = "True"
                         else:
-                            Dict_Temp[Method] = "False"
+                            Dict_Temp[Method] = "FEHLT"
                 except ServerDisconnectedError:
-                    Dict_Temp[Method] = "False"
+                    Dict_Temp[Method] = "FEHLT"
 
     asyncio.run(Check_Methods())
 
