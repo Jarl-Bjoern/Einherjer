@@ -12,7 +12,8 @@ def Check_HTTP_Methods(url, Host_Name, Dict_Temp = {'DNS': "", 'CONNECT': "", 'D
     else: Dict_Temp['DNS'] = ""
 
     async def Check_Methods():
-        async with ClientSession(trust_env=True) as s:
+        Limit = TCPConnector(limit_per_host=5)
+        async with ClientSession(connector=Limit, trust_env=True) as s:
             for Method in Array_HTTP_Methods:
                 try:
                     async with s.request(Method, url, ssl=False) as r:
