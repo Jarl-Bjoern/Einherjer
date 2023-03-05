@@ -18,6 +18,8 @@ def Check_HTTP_Methods(url, Host_Name, Dict_Temp = {'DNS': "", 'CONNECT': "", 'D
                     async with s.request(Method, url, ssl=False) as r:
                         if (str(r.status) == "200"):
                             Dict_Temp[Method] = "True"
+                        else:
+                            Dict_Temp[Method] = "False"
                 except ServerDisconnectedError:
                     Dict_Temp[Method] = "False"
 
