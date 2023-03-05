@@ -113,7 +113,7 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
         with open(join(location, f'result_http_methods.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
             writer.writerow((['Host','DNS'] + Array_HTTP_Methods))
-            for Target in Dict_Result['Certificate']:
+            for Target in Dict_Result['HTTP_Methods']:
                 Array_Temp = []
                 Array_Temp.append(Target)
                 for Result_Left, Result_Right in Dict_Result['HTTP_Methods'][Target].items():
