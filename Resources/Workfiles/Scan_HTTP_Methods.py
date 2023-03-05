@@ -12,10 +12,10 @@ def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Temp = {'DNS': "", 'CONNE
 
     for Method in Array_HTTP_Methods:
         try:
-            if __name__ == '__main__':
-                r = request(Method, url, timeout=2.5)
-                if ("200" in str(res)):
-                    print(res)
+            r = request(Method, url, timeout=2.5)
+            print (r)
+            if ("200" in str(r)):
+                print(r)
         except (ConnectionError, ProtocolError, RemoteDisconnected):
             print ("Error")
         sleep(0.25)
