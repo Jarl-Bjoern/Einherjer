@@ -6,15 +6,26 @@
 from ..Header_Files.Variables import *
 
 class Filter:
+    def Hostname_Filter(Template_File, Input_File, Output_File, Template_Array = [], Target_Array = []):
+        def Read_File_Template(File_Name):
+            with open(File_Name) as f:
+                return f.read().splitlines()
+
+            
+            Template_Array = Read_File(Template_File)
+            Target_Array   = Read_File(Input_File)
+
+            for _ in 
+
     def Screenshot_Frame(Screen_Dir, Array_Temp = []):
         for Picture in listdir(Screen_Dir):
             raw_image = imread(join(Screen_Dir, Picture))
-            height = raw_image.shape[0]
-            width = raw_image.shape[1]
+            height    = raw_image.shape[0]
+            width     = raw_image.shape[1]
             start_point, end_point = (0,0), (width, height)
-            color = (0,0,0)
+            color     = (0,0,0)
             thickness = 10
-            img = rectangle(raw_image, start_point, end_point, color, thickness)
+            img       = rectangle(raw_image, start_point, end_point, color, thickness)
             imwrite(join(Screen_Dir, Picture), img)
             Array_Temp.append(join(Screen_Dir, Picture))
 
