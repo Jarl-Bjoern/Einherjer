@@ -15,7 +15,7 @@ class Filter:
             Template_Array = Read_File(Template_File)
             Target_Array   = Read_File(Input_File)
 
-            for _ in 
+            #for _ in 
 
     def Screenshot_Frame(Screen_Dir, Array_Temp = []):
         for Picture in listdir(Screen_Dir):
