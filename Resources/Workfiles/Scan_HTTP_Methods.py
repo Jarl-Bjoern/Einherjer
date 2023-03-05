@@ -32,10 +32,12 @@ def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Temp = {'DNS': "", 'CONNE
         except TimeoutError: pass        
     
     for Method in Array_HTTP_Methods:
-        r.request(Method, "/")
-        res = r.getresponse()
-        if (res.status == "200" and res.reason == "OK"):
-            print(res.status, res.reason)
-        sleep(0.25)
+        try:
+            r.request(Method, "/")
+            res = r.getresponse()
+            if (res.status == "200" and res.reason == "OK"):
+                print(res.status, res.reason)
+            sleep(0.25)
+        except TimeoutError: pass
 
     return Dict_Temp
