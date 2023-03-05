@@ -19,6 +19,7 @@ class Filter:
                 if (':' in _):   x = _.split(':')
                 elif ('=' in _): x = _.split('=')
                 Dict_DNS[str(x[0])] = str(x[1])
+            print (Dict_DNS)
 
             with open(join(Output_Location, 'hostnames.txt'), 'w') as f:
                 for _ in Target_Array:
