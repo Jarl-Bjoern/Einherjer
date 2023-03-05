@@ -25,6 +25,7 @@ def Markdown_Table(Dict_Result, location, Array_Files = []):
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Temp_Word += " - |"
                     else: Temp_Word += " X |"
                 md_file.write(f'{Temp_Word}\n')
+
     if (Dict_Result['Information'] != {}):
         Array_Files.append(join(location, 'result_information_disclosure.md'))
         with open(join(location, 'result_information_disclosure.md'), 'w', encoding='UTF-8', newline='') as md_file:
@@ -43,6 +44,7 @@ def Markdown_Table(Dict_Result, location, Array_Files = []):
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Temp_Word += ' - |'
                     else: Temp_Word += ' X |'
                 md_file.write(f'{Temp_Word}\n')
+
     if (Dict_Result['Security_Flag'] != {}):
         Array_Files.append(join(location, 'result_security_flags.md'))
         with open(join(location, 'result_security_flags.md'), 'w', encoding='UTF-8', newline='') as md_file:
@@ -62,6 +64,7 @@ def Markdown_Table(Dict_Result, location, Array_Files = []):
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Temp_Word += " - |"
                     else: Temp_Word += " X |"
                 md_file.write(f'{Temp_Word}\n')
+
     if (Dict_Result['Certificate'] != {}):
         Array_Files.append(join(location, 'result_certificate.md'))
         with open(join(location, 'result_certificate.md'), 'w', encoding='UTF-8', newline='') as md_file:
@@ -79,6 +82,24 @@ def Markdown_Table(Dict_Result, location, Array_Files = []):
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Temp_Word += " - |"
                     else: Temp_Word += " X |"
                 md_file.write(f'{Temp_Word}\n')
+
+        Array_Files.append(join(location, f'result_http_methods.md'))
+        with open(join(location, f'result_http_methods.md'), 'w', encoding='UTF-8', newline='') as md_file:
+            md_file.write('| URL | DNS | CONNECT | DELETE | HEAD | OPTIONS | PATCH | POST | PUT | TRACE |\n')
+            md_file.write('| --- | --- | ------- | ------ | ---- | ------- | ----- | ---- | --- | ----- |\n')
+            for Target in Dict_Result['HTTP_Methods']:
+                Temp_Word = ""
+                Temp_Word += f"| {Target} |"
+                for Result_Left, Result_Right in Dict_Result['HTTP_Methods'][Target].items():
+                    if (Result_Left == "DNS" and Result_Right == ""):  Result_Right = "FEHLT"
+                    elif (Result_Left != "DNS" and Result_Right == "FEHLT"): Result_Right = "FEHLT"
+
+                    if (Result_Left != "DNS" and Result_Right != "FEHLT"): Temp_Word += ' ✓ |'
+                    elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Temp_Word += f' {Result_Right} |'
+                    elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Temp_Word += " - |"
+                    else: Temp_Word += " X |"
+                md_file.write(f'{Temp_Word}\n')
+
     if (Dict_Result['SSH'] != {}):
         pass
         
