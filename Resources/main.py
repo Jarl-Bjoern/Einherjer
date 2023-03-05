@@ -33,7 +33,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
             if ((args.hostname_template_file != None and args.hostname_target_file == None) or
                 (args.hostname_template_file == None and args.hostname_target_file != None)):
                     from Resources.Header_Files.ArgParser_Filter_Intro import Argument_Parser
-                    Argument_Parser("\n\n\t\t\tThe program cannot be started without filter methods!\n\t\t\t For more information use the parameter -h or --help.\n"), exit() 
+                    Argument_Parser("\n\n\t\t\tThe program cannot be started if only one hostname filtering parameter is specified.!\n\t\t\t For more information use the parameter -h or --help.\n"), exit() 
             elif (args.hostname_template_file != None and args.hostname_target_file != None):
                 Array_Output = Filter.Hostname_Filter(args.hostname_template_file, args.hostname_target_file, Output_Location)
 
