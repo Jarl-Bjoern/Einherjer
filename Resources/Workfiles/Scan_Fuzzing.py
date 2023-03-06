@@ -18,6 +18,9 @@ def Check_Site_Paths(url, t_seconds, array_wordlists, Array_Temp = [], Array_Sta
                         if (URL not in Array_Temp): Array_Temp.append(URL)
                     sleep(t_seconds)
 
-    asyncio.run(Check_Fuzz())
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(Check_Fuzz())
+    loop.run_until_complete(asyncio.sleep(0.250))
+    loop.close()
 
     return Array_Temp
