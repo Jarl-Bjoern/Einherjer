@@ -27,9 +27,9 @@ class Filter:
                                 f.write(f'{Dict_DNS[Target_DNS]}\n')
                                 af.write(f'{_} ({Dict_DNS[Target_DNS]})\n')
                                 break
-                        else:
-                            f.write('-\n')
-                            af.write(f'{_} (-)')
+                        #else:
+                        #    f.write('-\n')
+                        #    af.write(f'{_} (-)')
             Array_Temp.append(join(Output_Location, 'hostnames.txt')), Array_Temp.append(join(Output_Location, 'affected_systems.txt'))
         except FileNotFoundError:
             pass
