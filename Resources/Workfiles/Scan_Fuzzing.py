@@ -6,7 +6,7 @@ def Check_Site_Paths(url, t_seconds, array_wordlists, Array_Temp = [], Array_Sta
     async def Check_Fuzz():
         Limit = TCPConnector(limit_per_host=100)
         async with ClientSession(connector=Limit, trust_env=True) as s:
-            for Word in array_wordlists:
+            for Word in array(array_wordlists):
                 URL = f'{url}/{Word}'
                 async with s.get(url, ssl=False) as r:
                     if (str(r.status) in Array_Status_Code):
