@@ -29,21 +29,6 @@ class Filter:
                         else:
                             f.write('-\n')
                             af.write(f'{_} (-)')
-
-#                        if (_.count(':') > 1 and '//' in _):
-#                            Temp = _.split('//')[1].split(':')[0]
-#                        elif (_.count(':') > 1 and '//' not in _):
-#                            Temp = _.split(':')[0]
-#                        elif (_.count(':') == 0 and '//' not in _):
-#                            Temp = _
-#
-#                        print (Temp)
-#                        if (Temp in Dict_DNS):
-#                            f.write(f'{Dict_DNS[Temp]}\n')
-#                            af.write(f'{_} ({Dict_DNS[Temp]})\n')
-#                        else:
-#                            f.write('-\n')
-#                            af.write(f'{_} (-)')
             Array_Temp.append(join(Output_Location, 'hostnames.txt')), Array_Temp.append(join(Output_Location, 'affected_systems.txt'))
         except FileNotFoundError:
             pass
