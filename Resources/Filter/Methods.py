@@ -23,7 +23,7 @@ class Filter:
                     for _ in Target_Array:
                         for Target_DNS in Dict_DNS:
                             print (Target_DNS)
-                            if (Target_DNS in _ or Target_DNS == _):
+                            if (str(Target_DNS) == str(_) or str(Target_DNS) in str(_)):
                                 f.write(f'{Dict_DNS[Target_DNS]}\n')
                                 af.write(f'{_} ({Dict_DNS[Target_DNS]})\n')
                                 break
