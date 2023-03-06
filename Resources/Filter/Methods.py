@@ -28,6 +28,7 @@ class Filter:
                         elif (_.count(':') == 0 and '//' not in _):
                             Temp = _
 
+                        print (Temp)
                         if (Temp in Dict_DNS):
                             f.write(f'{Dict_DNS[Temp]}\n')
                             af.write(f'{_} ({Dict_DNS[Temp]})\n')
