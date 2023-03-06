@@ -29,8 +29,8 @@ class Filter:
                             Temp = _
 
                         if (Temp in Dict_DNS):
-                            f.write(f'{Dict_DNS[Target_DNS]}\n')
-                            af.write(f'{_} ({Dict_DNS[Target_DNS]})\n')
+                            f.write(f'{Dict_DNS[Temp]}\n')
+                            af.write(f'{_} ({Dict_DNS[Temp]})\n')
                         else:
                             f.write('-\n')
                             af.write(f'{_} (-)')
