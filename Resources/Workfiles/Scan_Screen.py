@@ -35,12 +35,12 @@ class Web:
         return driver
 
     def Screenshot_Filter(Path, Array_Temp = []):
-        for Pictures in listdir(Path):
-            Picture = imread(join(Path, Pictures))
+        for Picture in listdir(Path):
+            Original_Picture = imread(join(Path, Picture))
             for _ in listdir(Path):
-                if (_ != Pictures):
+                if (_ != Picture):
                     Duplicate = imread(join(Path, _))
-                    Difference = subtract(Picture, Duplicate)
+                    Difference = subtract(Original_Picture, Duplicate)
                     b,g,r = cvsplit(Difference)
 
                     if (countNonZero(b) == 0 and countNonZero(g) == 0 and countNonZero(r) == 0):
