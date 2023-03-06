@@ -1,6 +1,22 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Rainer Christian Bjoern Herold
+# Vers 0.1 30.05.2022
+# Vers 0.2 06.06.2022
+# Vers 0.3 09.06.2022
+# Vers 0.4 13.06.2022
+# Vers 0.5 02.08.2022
+# Vers 0.6 23.08.2022
+# Vers 0.7 20.09.2022
+
+# Author
+__author__ = "Rainer Christian Bjoern Herold"
+__copyright__ = "Copyright 2022-2023, Rainer Christian Bjoern Herold"
+__credits__ = "Rainer Christian Bjoern Herold"
+__license__ = "MIT license"
+__version__ = "0.8"
+__maintainer__ = "Rainer Christian Bjoern Herold"
+__status__ = "Production"
 
 # Libraries
 from os import name as osname
