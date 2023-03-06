@@ -41,6 +41,7 @@ def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Res
     scan_arguments = parser.add_argument_group(Colors.ORANGE+'scan arguments'+Colors.RESET)
     target_arguments = parser.add_argument_group(Colors.ORANGE+'target arguments'+Colors.RESET)
 
+    auth_arguments.add_argument('-aBa', '--add-basic-authentication', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     auth_arguments.add_argument('-aC', '--add-cert', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     auth_arguments.add_argument('-apC', '--add-pkcs12-cert', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     auth_arguments.add_argument('-aUL', '--add-user-list', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
