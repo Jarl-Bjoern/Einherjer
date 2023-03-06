@@ -32,14 +32,14 @@ def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Res
 """
 
     parser = ArgumentParser(add_help=False, formatter_class=RawTextHelpFormatter, description=Colors.ORANGE+Program_Description+Colors.RESET, allow_abbrev=False, usage=SUPPRESS)
-    auth_arguments = parser.add_argument_group(Colors.ORANGE+'authentication arguments'+Colors.RESET)
-    config_arguments = parser.add_argument_group(Colors.ORANGE+'config arguments'+Colors.RESET)
-    debug_arguments = parser.add_argument_group(Colors.ORANGE+'debug arguments'+Colors.RESET)
-    format_arguments = parser.add_argument_group(Colors.ORANGE+'format arguments'+Colors.RESET)
-    optional = parser.add_argument_group(Colors.ORANGE+'optional arguments'+Colors.RESET)
+    auth_arguments        = parser.add_argument_group(Colors.ORANGE+'authentication arguments'+Colors.RESET)
+    config_arguments      = parser.add_argument_group(Colors.ORANGE+'config arguments'+Colors.RESET)
+    debug_arguments       = parser.add_argument_group(Colors.ORANGE+'debug arguments'+Colors.RESET)
+    format_arguments      = parser.add_argument_group(Colors.ORANGE+'format arguments'+Colors.RESET)
+    optional              = parser.add_argument_group(Colors.ORANGE+'optional arguments'+Colors.RESET)
     performance_arguments = parser.add_argument_group(Colors.ORANGE+'performance arguments'+Colors.RESET)
-    scan_arguments = parser.add_argument_group(Colors.ORANGE+'scan arguments'+Colors.RESET)
-    target_arguments = parser.add_argument_group(Colors.ORANGE+'target arguments'+Colors.RESET)
+    scan_arguments        = parser.add_argument_group(Colors.ORANGE+'scan arguments'+Colors.RESET)
+    target_arguments      = parser.add_argument_group(Colors.ORANGE+'target arguments'+Colors.RESET)
 
     auth_arguments.add_argument('-aBa', '--add-basic-authentication', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     auth_arguments.add_argument('-aC', '--add-cert', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
