@@ -22,9 +22,9 @@ def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Res
 
     parser = ArgumentParser(add_help=False, formatter_class=RawTextHelpFormatter, description=Colors.ORANGE+Program_Description+Colors.RESET, allow_abbrev=False, usage=SUPPRESS)
     config_arguments = parser.add_argument_group(Colors.ORANGE+'config arguments'+Colors.RESET)
-    debug_arguments = parser.add_argument_group(Colors.ORANGE+'debug arguments'+Colors.RESET)
+    debug_arguments  = parser.add_argument_group(Colors.ORANGE+'debug arguments'+Colors.RESET)
     filter_arguments = parser.add_argument_group(Colors.ORANGE+'format arguments'+Colors.RESET)
-    optional = parser.add_argument_group(Colors.ORANGE+'optional arguments'+Colors.RESET)
+    optional         = parser.add_argument_group(Colors.ORANGE+'optional arguments'+Colors.RESET)
 
     config_arguments.add_argument('-o', '--output-location', type=str, help=Colors.GREEN+'Specify the location where the result should be saved.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
