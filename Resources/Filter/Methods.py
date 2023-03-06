@@ -12,10 +12,8 @@ class Filter:
                 with open(File_Name) as f:
                     return f.read().splitlines()
 
-            Template_Array = Read_File_Template(Template_File)
-            Target_Array   = Read_File_Template(Input_File)
-
-            for _ in Template_Array:
+            Target_Array = Read_File_Template(Input_File)
+            for _ in Read_File_Template(Template_File):
                 if (':' in _):   x = _.split(':')
                 elif ('=' in _): x = _.split('=')
                 Dict_DNS[str(x[0])] = str(x[1])
