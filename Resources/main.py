@@ -29,7 +29,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
             if (args.nmap_files_location != None):
                 Array_Output = Filter.SSH_Nmap(args.nmap_files_location, Output_location)
             if (args.screenshot_location != None):
-                Array_Output = Filter.Screenshot_Frame(args.screenshot_location)
+                Array_Output = Filter.Screenshot_Frame(args.screenshot_location, args.screenshot_frame_thickness)
             if ((args.hostname_template_file != None and args.hostname_target_file == None) or
                 (args.hostname_template_file == None and args.hostname_target_file != None)):
                     from Resources.Header_Files.ArgParser_Filter_Intro import Argument_Parser
