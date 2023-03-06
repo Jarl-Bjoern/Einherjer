@@ -108,6 +108,7 @@ try:
                         from json import loads as json_loads
                         from os import environ, rename
                         from requests import get, request, Session
+                        from requests_pkcs12 import get as pkcs_get, Pkcs12Adapter
                         from selenium import webdriver
                         from selenium.webdriver.common.by import By
                         from selenium.webdriver.common.keys import Keys
@@ -145,6 +146,7 @@ try:
                     from sslyze import Scanner, ServerNetworkLocation, ServerScanRequest, ServerScanResultAsJson, ServerHostnameCouldNotBeResolved, SslyzeOutputAsJson
                 if (args.scan_site_header != False or args.scan_site_fuzzing != False or args.scan_site_dns_bruteforce != False):
                     from requests import get
+                    from requests_pkcs12 import get as pkcs_get, Pkcs12Adapter
                 if (args.scan_ssh != False):
                     from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
                     import asyncio
@@ -153,6 +155,7 @@ try:
                         from paramiko.transport import Transport
                 if (args.scan_security_flags != False):
                     from requests import Session
+                    from requests_pkcs12 import get as pkcs_get, Pkcs12Adapter
                 if (args.scan_site_http_methods != False):
                     from aiohttp import ClientSession, TCPConnector
                     import asyncio
