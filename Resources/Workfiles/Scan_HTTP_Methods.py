@@ -24,7 +24,6 @@ def Check_HTTP_Methods(url, Host_Name, Dict_Temp = {'DNS': "", 'CONNECT': "", 'D
                 except ServerDisconnectedError:
                     Dict_Temp[Method] = "FEHLT"
 
-    #asyncio.run(Check_Methods())
     loop = asyncio.get_event_loop()
     loop.run_until_complete(Check_Methods())
     loop.run_until_complete(asyncio.sleep(0.250))
