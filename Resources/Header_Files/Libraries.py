@@ -101,7 +101,7 @@ try:
                         from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
                         from cryptography.x509 import load_der_x509_certificate
                         from cryptography.hazmat.backends import default_backend
-                        from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
+                        from cv2 import countNonZero, error as CVError, imread, imwrite, rectangle, split as cvsplit, subtract
                         from dns.query import xfr
                         from dns.zone import from_xfr
                         from ftplib import FTP
@@ -127,7 +127,7 @@ try:
                             from webdriver_manager.chrome import ChromeDriverManager
             elif (args.scan_all == False):
                 if (args.scan_site_screenshot != False):
-                    from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
+                    from cv2 import countNonZero, error as CVError, imread, imwrite, rectangle, split as cvsplit, subtract
                     from os import environ, rename
                     from selenium import webdriver
                     from selenium.webdriver.common.by import By
