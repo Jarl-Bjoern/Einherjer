@@ -28,10 +28,6 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         if (dict_switch['scan_fuzzing'] != False and '//' in url and 'http' in url):
             Dict_Result['Fuzzing'][html_decode(url)] = Check_Site_Paths(url, t_seconds)
 
-        # Recursive_Fuzzing
-#        if (scan_fuzzing_recurse != False and '//' in url and 'http' in url):
-#            pass
-
         # Header
         if (dict_switch['scan_header'] != False and '//' in url and 'http' in url):
             Dict_Result['Header'][html_decode(url)], Dict_Result['Information'][html_decode(url)] = Check_Site_Header(url, t_seconds, Host_Name)
@@ -39,6 +35,10 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         # HTTP_Methods
         if (dict_switch['scan_http_methods'] != False and '//' in url and 'http' in url):
             Dict_Result['HTTP_Methods'][html_decode(url)] = Check_HTTP_Methods(url, Host_Name)
+
+        # Recursive_Fuzzing_And_Screenshot
+        if (dict_switch['scan_screenshot_recursive'] != False and '//' in url and 'http' in url):
+            pass
 
         # Screenshot
         if (dict_switch['scan_screenshot'] != None and '//' in url and 'http' in url):
