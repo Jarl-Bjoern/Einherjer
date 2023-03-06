@@ -23,8 +23,12 @@ class Filter:
             with open(join(Output_Location, 'hostnames.txt'), 'w') as f:
                 with open(join(Output_Location, 'affected_systems.txt'), 'w') as af:
                     for _ in Target_Array:
-                        if (_ in Dict_DNS): f.write(f'{Dict_DNS[_]}\n')
-                        else: f.write('-\n')
+                        if (_ in Dict_DNS):
+                            f.write(f'{Dict_DNS[_]}\n')
+                            af.write(f'{_} ({Dict_DNS[_]})\n')
+                        else:
+                            f.write('-\n')
+                            af.write(f'{_} (-)')
             Array_Temp.append(join(Output_Location, 'hostnames.txt')), Array_Temp.append(join(Output_Location, 'affected_systems.txt'))
         except FileNotFoundError:
             pass
