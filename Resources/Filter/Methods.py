@@ -23,9 +23,11 @@ class Filter:
             with open(join(Output_Location, 'hostnames.txt'), 'w') as f:
                 with open(join(Output_Location, 'affected_systems.txt'), 'w') as af:
                     for _ in Target_Array:
-                        if (_ in Dict_DNS):
-                            f.write(f'{Dict_DNS[_]}\n')
-                            af.write(f'{_} ({Dict_DNS[_]})\n')
+                        for Target_DNS in Dict_DNS:
+                            if (Target_DNS in _):
+                                f.write(f'{Dict_DNS[Target_DNS]}\n')
+                                af.write(f'{_} ({Dict_DNS[Target_DNS]})\n')
+                                break
                         else:
                             f.write('-\n')
                             af.write(f'{_} (-)')
