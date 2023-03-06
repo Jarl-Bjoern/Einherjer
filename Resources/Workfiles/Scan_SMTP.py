@@ -7,6 +7,7 @@ class Check_SMTP:
         Mail = SMTP(Target, 25)
         Mail.ehlo()
         Mail.starttls()
+        Mail.ehlo()
         Mail.quit()
 
     def Test():
