@@ -34,7 +34,7 @@ class Web:
             else: Logs.Error_Message(f"\nChromium: {Chromium_Check}\n\nIt looks like that you do not have Chromedriver installed.\n\nPlease go to https://chromedriver.chromium.org/downloads and download the correct chromedriver and paste it into the Resources folder.\n")
         return driver
 
-    def Screenshot_Filter(Path, Location):
+    def Screenshot_Filter(Path, Location, Temp_Output_File = ""):
         for Picture in listdir(Path):
             Original_Picture = imread(join(Path, Picture))
             for _ in listdir(Path):
@@ -46,11 +46,12 @@ class Web:
 
                         if (countNonZero(b) == 0 and countNonZero(g) == 0 and countNonZero(r) == 0):
                             remove(join(Path, Picture))
-                            with open(join(Location, 'duplicates.txt'), 'a') as f:
+                            Temp_Output_File = join(Location, 'duplicates.txt')
+                            with open(Temp_Output_File, 'a') as f:
                                 f.write(f'{join(Path, Picture)}\n')
                     except CVError:
                         pass
-        return join(Location, 'duplicates.txt')
+        return Temp_Output_File
 
 def Take_Screenshot(url, driver_options, Screen_Dir, switch_internet_connection, screenshot_wait, webdriver_timeout):
     if (switch_internet_connection == True):
@@ -77,10 +78,10 @@ def Take_Screenshot(url, driver_options, Screen_Dir, switch_internet_connection,
 
     for Picture in listdir(Screen_Dir):
         raw_image = imread(join(Screen_Dir, Picture))
-        height = raw_image.shape[0]
-        width = raw_image.shape[1]
+        height    = raw_image.shape[0]
+        width     = raw_image.shape[1]
         start_point, end_point = (0,0), (width, height)
-        color = (0,0,0)
+        color     = (0,0,0)
         thickness = 10
         img = rectangle(raw_image, start_point, end_point, color, thickness)
         imwrite(join(Screen_Dir, Picture), img)
