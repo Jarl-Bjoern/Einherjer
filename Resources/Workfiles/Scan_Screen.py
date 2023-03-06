@@ -34,17 +34,23 @@ class Web:
             else: Logs.Error_Message(f"\nChromium: {Chromium_Check}\n\nIt looks like that you do not have Chromedriver installed.\n\nPlease go to https://chromedriver.chromium.org/downloads and download the correct chromedriver and paste it into the Resources folder.\n")
         return driver
 
-    def Screenshot_Filter(Path, Array_Temp = []):
+    def Screenshot_Filter(Path, Location):
         for Picture in listdir(Path):
             Original_Picture = imread(join(Path, Picture))
             for _ in listdir(Path):
                 if (_ != Picture):
-                    Duplicate = imread(join(Path, _))
-                    Difference = subtract(Original_Picture, Duplicate)
-                    b,g,r = cvsplit(Difference)
+                    try:
+                        Duplicate = imread(join(Path, _))
+                        Difference = subtract(Original_Picture, Duplicate)
+                        b,g,r = cvsplit(Difference)
 
-                    if (countNonZero(b) == 0 and countNonZero(g) == 0 and countNonZero(r) == 0):
+                        if (countNonZero(b) == 0 and countNonZero(g) == 0 and countNonZero(r) == 0):
+                            remove(join(Path, Picture))
+                            with open(join(Location, 'duplicates.txt'), 'a') as f:
+                                f.write(f'{join(Path, Picture)}\n')
+                    except CVError:
                         pass
+        return join(Location, 'duplicates.txt')
 
 def Take_Screenshot(url, driver_options, Screen_Dir, switch_internet_connection, screenshot_wait, webdriver_timeout):
     if (switch_internet_connection == True):
