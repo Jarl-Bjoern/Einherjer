@@ -38,7 +38,7 @@ class Web:
         for Pictures in listdir(Path):
             Picture = imread(join(Path, Pictures))
             for _ in listdir(Path):
-                if (_ != Picture):
+                if (_ != Pictures):
                     Duplicate = imread(join(Path, _))
                     Difference = subtract(Picture, Duplicate)
                     b,g,r = cvsplit(Difference)
