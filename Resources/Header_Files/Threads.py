@@ -7,11 +7,13 @@ from .Variables import *
 from ..Standard_Operations.Logs import *
 from ..Workfiles.Scan_Cookie import Check_Security_Flags
 from ..Workfiles.Scan_Certificate import Check_Certificate
+from ..Workfiles.Scan_FTP import Check_FTP
 from ..Workfiles.Scan_Fuzzing import Check_Site_Paths
 from ..Workfiles.Scan_Header import Check_Site_Header
 from ..Workfiles.Scan_Host_Name import Get_Host_Name
 from ..Workfiles.Scan_HTTP_Methods import Check_HTTP_Methods
 from ..Workfiles.Scan_Screen import Take_Screenshot
+from ..Workfiles.Scan_SMTP import Check_SMTP
 from ..Workfiles.Scan_SSL import SSL_Vulns
 
 # Functions
@@ -21,7 +23,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         Host_Name = Get_Host_Name(url)
 
         # Certificates
-        if (dict_switch['scan_certificate'] != False and '//' in url and ('https' in url or 'ssl://' in url)):
+        if (dict_switch['scan_certificate'] != False and ('https://' in url or 'ssl://' in url)):
             Dict_Result['Certificate'][html_decode(url)] = Check_Certificate(url, t_seconds, Host_Name)
 
         # Fuzzing
@@ -48,8 +50,12 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         if (dict_switch['scan_security_flags'] != False and '//' in url and 'http' in url):
             Dict_Result['Security_Flag'][html_decode(url)] = Check_Security_Flags(url, t_seconds, Host_Name)
 
+        # SMTP
+        if (dict_switch['scan_smtp'] != False and 'smtp://' in url):
+            #Dict_Result['SMTP'][html_decode(url)] = Check_SMTP.(url, t_seconds, Host_Name)
+
         # SSH
-        if (dict_switch['scan_ssh'] != False and '//' in url and 'ssh' in url):
+        if (dict_switch['scan_ssh'] != False and 'ssh://' in url):
             try:
                 if (':' not in url): Dict_Result['SSH'][html_decode(url)] = SSH_Vulns((url, 22))
                 else:
@@ -58,7 +64,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             except SSHException: Logs.Write_Log(html_decode(url), Host_Name)
 
         # SSL
-        if (dict_switch['scan_ssl'] != False and '//' in url and ('https' in url or 'ssl://' in url)):
+        if (dict_switch['scan_ssl'] != False and ('https://' in url or 'ssl://' in url)):
             Dict_Result['SSL'][html_decode(url)] = SSL_Vulns(url, Host_Name)
 
     except (ConnectionError, gaierror, WebDriverException, RequestException): Logs.Write_Log(html_decode(url), Host_Name)
