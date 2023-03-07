@@ -60,7 +60,7 @@ try:
             from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
         elif (argv[1] == "--brute-force-mode"):
             argv.remove('--brute-force-mode')
-            from .ArgParser_Filter import Argument_Parser
+            from .ArgParser_Brute import Argument_Parser
             args, Program_Mode = Argument_Parser(), "Brute_Force_Mode"
         elif (argv[1] == "--scanning-mode"):
             argv.remove('--scanning-mode')
