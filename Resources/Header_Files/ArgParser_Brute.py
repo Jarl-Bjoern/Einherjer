@@ -32,10 +32,19 @@ def Argument_Parser(Error_Text, Template_Location = dirname(realpath(__file__)).
 """
 
     parser = ArgumentParser(add_help=False, formatter_class=RawTextHelpFormatter, description=Colors.ORANGE+Program_Description+Colors.RESET, allow_abbrev=False, usage=SUPPRESS)
-    program_arguments = parser.add_argument_group(Colors.ORANGE+'program arguments'+Colors.RESET)
+    brute_arguemnts   = parser.add_argument_group(Colors.ORANGE+'brute-force arguments'+Colors.RESET)
+    config_arguments  = parser.add_argument_group(Colors.ORANGE+'config arguments'+Colors.RESET)
+    debug_arguments   = parser.add_argument_group(Colors.ORANGE+'debug arguments'+Colors.RESET)
+    filter_arguments  = parser.add_argument_group(Colors.ORANGE+'format arguments'+Colors.RESET)
+    optional          = parser.add_argument_group(Colors.ORANGE+'optional arguments'+Colors.RESET)
 
-#    program_arguments.add_argument('--filter-mode', type=bool, nargs='?', default=False, help=Colors.GREEN+'This parameter is used to use the filter mode.\n\nExample:\n  - python3 Einherjer.py --filter-mode.\n'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
-#    program_arguments.add_argument('--scanning-mode', type=bool, nargs='?', default=True, help=Colors.GREEN+'This parameter is used to use the scanning mode.\n\nExample:\n  - python3 Einherjer.py --scanning-mode.\n'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    brute_arguments.add_argument('-test', '--test', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+
+    config_arguments.add_argument('-o', '--output-location', type=str, help=Colors.GREEN+'Specify the location where the result should be saved.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+
+    debug_arguments.add_argument('-d', '--debug', type=bool, nargs='?', default=False, help=Colors.GREEN+'This Parameter deactivates the terminal clearing after starting the tool.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+
+    optional.add_argument('-h','--help', action='help', default=SUPPRESS, help=Colors.GREEN+'Show this help message and exit.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     del ArgumentParser, RawTextHelpFormatter, SUPPRESS
     parser.print_help()
