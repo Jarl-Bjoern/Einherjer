@@ -15,7 +15,6 @@ scapy==2.4.5
 selenium==4.7.2
 sslyze==5.1.1
 tqdm==4.64.1
-#urllib3==1.26.11
 webdriver-manager==3.8.5
 XlsxWriter==3.0.2
 
