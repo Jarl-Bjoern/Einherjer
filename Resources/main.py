@@ -15,8 +15,7 @@ from Resources.Filter.Methods import Filter
 # Main_Function
 def main(Date, Program_Mode, args, Array_Output = []):
     def Brute_Force_Mode(Date, Output_location, args, Array_Output = []):
-        Standard.Initialien(args.debug)
-
+        #Standard.Initialien(args.debug)
         from Resources.Header_Files.ArgParser_Brute_Intro import Argument_Parser
         Argument_Parser("\n\n\t\t\tThis section is UNDER CONSTRUCTION!\n\n"), exit() 
 
