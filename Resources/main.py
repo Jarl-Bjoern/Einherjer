@@ -285,6 +285,8 @@ def main(Date, Program_Mode, args, Array_Output = []):
         Array_Output = Scanning_Mode(Date, args)
     elif (Program_Mode == "Filter_Mode"):
         Array_Output = Filter_Mode(Date, Location, args)
+    elif (Program_Mode == "Brute_Force_Mode"):
+        pass
 
     # Output_End
     if (Array_Output != []):
