@@ -24,10 +24,13 @@ def SSL_Vulns(url, Host_Name, Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEAR
 
     try: Array_SSL_Targets.append(ServerScanRequest(server_location=ServerNetworkLocation(hostname=URL, ip_address=URL, port=Port)))
     except ServerHostnameCouldNotBeResolved:
-        Logs.Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n')
+        Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'SSL-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n')
 
-    scanner = Scanner()
-    scanner.queue_scans(Array_SSL_Targets)
+    try:
+        scanner = Scanner()
+        scanner.queue_scans(Array_SSL_Targets)
+    except ConnectionResetError:
+        Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'SSL-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n')
 
     for server_scan_result in scanner.get_results():
         json_output = SslyzeOutputAsJson(server_scan_results=[ServerScanResultAsJson.from_orm(server_scan_result)],date_scans_started=Start_Scan,date_scans_completed=datetime.now())
@@ -102,6 +105,6 @@ def SSL_Vulns(url, Host_Name, Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEAR
             if (Host_Name != ""): Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'SSL-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {html_decode(url)} - {Host_Name}'+Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'+Colors.ORANGE+'\nEinherjer Output'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Full_SSL}'+Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------\n\n'+Colors.RESET)
             else: Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'SSL-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {html_decode(url)}'+Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'+Colors.ORANGE+'\nEinherjer Output'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Full_SSL}'+Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------\n\n'+Colors.RESET)
         else:
-            Logs.Log_File(f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n')
+            Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'SSL-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n')
 
     return Dict_Full_SSL
