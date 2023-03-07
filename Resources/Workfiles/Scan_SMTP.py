@@ -21,5 +21,7 @@ class Check_SMTP:
         if ('starttls' in str(Output[1]) or 'STARTTLS' in str(Output[1])):
             TLS_Output = Mail.docmd('starttls')
             if ('Ready to start TLS' in str(TLS_Output[1])):
-                print ("Passt")
+                print ("OK")
+            else:
+                print ("Unencrypted!")
         Mail.quit()
