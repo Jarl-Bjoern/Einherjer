@@ -7,8 +7,8 @@ class Check_SMTP:
         Mail = SMTP(Target, 25)
         Mail.ehlo()
         try:
-                Mail.starttls()
-                Mail.ehlo()
+            Mail.starttls()
+            Mail.ehlo()
         except SSLZeroReturnError:
             print ("Unencrypted")
         finally:
