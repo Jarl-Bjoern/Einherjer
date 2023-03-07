@@ -112,7 +112,7 @@ try:
                         from selenium.webdriver.chrome.options import Options
                         from selenium.webdriver.chrome.service import Service
                         from selenium.webdriver.remote.webdriver import WebDriver
-                        from smtplib import SMTP
+                        from smtplib import SMTP, SMTPServerDisconnected
                         from sslyze import Scanner, ServerNetworkLocation, ServerScanRequest, ServerScanResultAsJson, ServerHostnameCouldNotBeResolved, SslyzeOutputAsJson
                         from socket import AF_INET, create_connection, socket, SOCK_STREAM
                         from webbrowser import open as webbrowser_open
@@ -157,7 +157,7 @@ try:
                     from aiohttp import ClientSession, TCPConnector
                     import asyncio
                 if (args.scan_smtp != False):
-                    from smtplib import SMTP
+                    from smtplib import SMTP, SMTPServerDisconnected
         elif (argv[1] == '-h'):
             from .ArgParser_Mode import Argument_Parser
             Argument_Parser(""), exit()
