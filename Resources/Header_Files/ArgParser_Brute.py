@@ -7,7 +7,7 @@ from Resources.Standard_Operations.Colors import Colors
 from .Libraries import dirname, join, realpath
 
 # Functions
-def Argument_Parser(Error_Text, Template_Location = dirname(realpath(__file__)).replace('Resources/Header_Files', 'Templates')):
+def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Resources/Header_Files', 'Templates')):
     from argparse import ArgumentParser, RawTextHelpFormatter, SUPPRESS
 
     Program_Description = """-------------------------------------------------------------------------------------
@@ -47,6 +47,4 @@ def Argument_Parser(Error_Text, Template_Location = dirname(realpath(__file__)).
     optional.add_argument('-h','--help', action='help', default=SUPPRESS, help=Colors.GREEN+'Show this help message and exit.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     del ArgumentParser, RawTextHelpFormatter, SUPPRESS
-    parser.print_help()
-
-    print (Colors.RED+Error_Text+Colors.RESET)
+    return parser.parse_args()
