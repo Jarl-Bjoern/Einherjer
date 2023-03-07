@@ -2,6 +2,11 @@
 # -*- coding: utf-8 -*-
 # Rainer Christian Bjoern Herold
 
+# Libraries
+from ..Header_Files.Variables import *
+from ..Standard_Operations.Logs import Logs
+from ..Standard_Operations.Colors import Colors
+
 def SSH_Vulns(Target, Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': []}):
     def Check_SSH_Values(List_With_Keys, Temp_Key = ""):
         Array_Temp = []
