@@ -291,7 +291,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
     elif (Program_Mode == "Filter_Mode"):
         Array_Output = Filter_Mode(Date, Location, args)
     elif (Program_Mode == "Brute_Force_Mode"):
-        pass
+        Array_Output = Brute_Force_Mode(Date, Location, args)
 
     # Output_End
     if (Array_Output != []):
