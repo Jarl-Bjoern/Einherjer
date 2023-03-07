@@ -36,7 +36,7 @@ try:
     from rich.progress import BarColumn, Progress, SpinnerColumn, TaskProgressColumn, TimeElapsedColumn, TimeRemainingColumn
     from selenium.common.exceptions import *
     from socket import gaierror, gethostbyaddr, gethostbyname, herror, setdefaulttimeout
-    from ssl import cert_time_to_seconds, create_default_context, _create_unverified_context as create_unverified_context, get_server_certificate, SSLError
+    from ssl import cert_time_to_seconds, create_default_context, _create_unverified_context as create_unverified_context, get_server_certificate, SSLError, SSLZeroReturnError
     from subprocess import getoutput, run
     from sys import argv, stdout
     from time import sleep, strftime, time
