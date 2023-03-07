@@ -2,6 +2,11 @@
 # -*- coding: utf-8 -*-
 # Rainer Christian Bjoern Herold
 
+# Libraries
+from ..Header_Files.Variables import *
+from ..Standard_Operations.Logs import Logs
+from ..Standard_Operations.Colors import Colors
+
 class Check_FTP:
     def FTP_Anonymous_Check(url, Dict_Temp = {'DNS': "", 'Anonymous_Login': ""]):
         if ('ftp://' in url): URL = url.split('ftp://')[1]
