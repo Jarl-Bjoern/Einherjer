@@ -32,7 +32,7 @@ def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Res
 """
 
     parser = ArgumentParser(add_help=False, formatter_class=RawTextHelpFormatter, description=Colors.ORANGE+Program_Description+Colors.RESET, allow_abbrev=False, usage=SUPPRESS)
-    brute_arguemnts   = parser.add_argument_group(Colors.ORANGE+'brute-force arguments'+Colors.RESET)
+    brute_arguments   = parser.add_argument_group(Colors.ORANGE+'brute-force arguments'+Colors.RESET)
     config_arguments  = parser.add_argument_group(Colors.ORANGE+'config arguments'+Colors.RESET)
     debug_arguments   = parser.add_argument_group(Colors.ORANGE+'debug arguments'+Colors.RESET)
     filter_arguments  = parser.add_argument_group(Colors.ORANGE+'format arguments'+Colors.RESET)
