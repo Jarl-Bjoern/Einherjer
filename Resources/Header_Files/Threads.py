@@ -52,6 +52,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
         # SMTP
         if (dict_switch['scan_smtp'] != False and 'smtp://' in url):
+            pass
             #Dict_Result['SMTP'][html_decode(url)] = Check_SMTP.(url, t_seconds, Host_Name)
 
         # SSH
