@@ -7,7 +7,7 @@ from ..Header_Files.Variables import *
 from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 
-def SSL_Vulns(url, Host_Name, Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEARTBLEED': "", 'CCS_INJECTION': "", 'ROBOT': "", 'CLIENT_RENEGOTIATION_DOS': "", 'SWEET32': "", 'LUCKY13': "", 'FALLBACK_SCSV': ""}, Array_Result_Filter = ['http_headers', 'certificate_info','rejected_cipher_suites','rejected_curves'], Start_Scan = datetime.now(), Temp = ""):
+def SSL_Vulns(url, ssl_timeout, Host_Name, Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEARTBLEED': "", 'CCS_INJECTION': "", 'ROBOT': "", 'CLIENT_RENEGOTIATION_DOS': "", 'SWEET32': "", 'LUCKY13': "", 'FALLBACK_SCSV': ""}, Array_Result_Filter = ['http_headers', 'certificate_info','rejected_cipher_suites','rejected_curves'], Start_Scan = datetime.now(), Temp = ""):
     TLS_Version, Supported_Version, Array_SSL_Targets = "","", []
     Dict_Ciphers, Dict_Temp_Ciphers, Dict_Full_SSL = {'Protocol': "", 'Ciphers': []}, {'Anonymous': "", 'Key_Size': "", 'Name': "", 'Curve_Name': "", 'Type': "", 'Curve_Size': ""}, {'DNS': "", 'Ciphers': [], 'SSL_Vulns': {}, 'Curves': []}
 
@@ -23,7 +23,7 @@ def SSL_Vulns(url, Host_Name, Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEAR
     else: Port = 443
 
     try:
-        Array_SSL_Targets.append(ServerScanRequest(server_location=ServerNetworkLocation(hostname=URL, ip_address=URL, port=Port, network_timeout=15, network_max_retries=3)))
+        Array_SSL_Targets.append(ServerScanRequest(server_location=ServerNetworkLocation(hostname=URL, ip_address=URL, port=Port, network_timeout=ssl_timeout, network_max_retries=3)))
         scanner = Scanner()
         scanner.queue_scans(Array_SSL_Targets)
 
