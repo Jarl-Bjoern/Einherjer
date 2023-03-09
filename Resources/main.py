@@ -301,9 +301,9 @@ def main(Date, Program_Mode, args, Array_Output = []):
             if (args.scan_site_screenshot != False or args.scan_site_screenshot_recursive != False):
                 if (len(listdir(join(Location, 'Screenshots'))) == 0):
                     if (osname != 'nt'):
-                        Standard.Stdout_Output(Colors.ORANGE+f"\n\n\t\tIt was not possible to use the current chromium and webdriver version\n\nChromium: {getoutput('apt-cache policy chromium').splitlines()[1][1:].split(':')[1][1:]})\nChromedriver Version: {Chromedriver_Version}"+Colors.RESET, 0.01)
+                        Standard.Stdout_Output(Colors.ORANGE+f"\n\n\t\t\tIt was not possible to use the current chromium and webdriver version.\n\nChromium: {getoutput('apt-cache policy chromium').splitlines()[1][1:].split(':')[1][1:]})\nChromedriver Version: {Chromedriver_Version}"+Colors.RESET, 0.01)
                     else:
-                        Standard.Stdout_Output(Colors.ORANGE+f"\n\n\t\tIt was not possible to use the current chromium and webdriver version\n\nChromedriver Version: {Chromedriver_Version}"+Colors.RESET, 0.01)
+                        Standard.Stdout_Output(Colors.ORANGE+f"\n\n\t\t\tIt was not possible to use the current chromium and webdriver version.\n\nChromedriver Version: {Chromedriver_Version}"+Colors.RESET, 0.01)
         elif (Program_Mode == "Filter_Mode"):
             Standard.Stdout_Output(Colors.CYAN+"\n\nThe filter process was successful and the result will be found at the following location:\n"+Colors.RESET, 0.01)
         for _ in Array_Output:
@@ -313,9 +313,9 @@ def main(Date, Program_Mode, args, Array_Output = []):
             Standard.Stdout_Output(Colors.ORANGE+f'\n\t\t\t\tIt was not possible to collect any kind of data!\n\n\t\t\t     Check your connection or target file and try it again.'+Colors.RESET, 0.01)
             if (len(listdir(join(Location, 'Screenshots'))) == 0):
                 if (osname != 'nt'):
-                    Standard.Stdout_Output(Colors.ORANGE+"\n\n\t\tIt was not possible to use the current chromium and webdriver version\n\nChromium: "+Colors.RED+f"{getoutput('apt-cache policy chromium').splitlines()[1][1:].split(':')[1][1:]})\nChromedriver Version: {Chromedriver_Version}"+Colors.RESET, 0.01)
+                    Standard.Stdout_Output(Colors.ORANGE+"\n\n\t\t\tIt was not possible to use the current chromium and webdriver version.\n\nChromium: "+Colors.RED+f"{getoutput('apt-cache policy chromium').splitlines()[1][1:].split(':')[1][1:]})\nChromedriver Version: {Chromedriver_Version}"+Colors.RESET, 0.01)
                 else:
-                    Standard.Stdout_Output(Colors.ORANGE+"\n\n\t\tIt was not possible to use the current chromium and webdriver version\n\nChromedriver Version: "+Colors.RED+f"{Chromedriver_Version}"+Colors.RESET, 0.01)
+                    Standard.Stdout_Output(Colors.ORANGE+"\n\n\t\t\tIt was not possible to use the current chromium and webdriver version.\n\nChromedriver Version: "+Colors.RED+f"{Chromedriver_Version}"+Colors.RESET, 0.01)
         elif (Program_Mode == "Filter_Mode"):
             Standard.Stdout_Output(Colors.ORANGE+f'\n\t\t\t\tIt was not possible to collect any kind of data!\n\n\t\t\t     Check your locations or target files and try it again.'+Colors.RESET, 0.01)
 
