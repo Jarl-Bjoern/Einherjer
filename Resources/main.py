@@ -298,6 +298,8 @@ def main(Date, Program_Mode, args, Array_Output = []):
     if (Array_Output != []):
         if (Program_Mode == "Scanning_Mode"):
             Standard.Stdout_Output(Colors.CYAN+"\n\nYour Scan was successful and the result will be found at the following location:\n"+Colors.RESET, 0.01)
+            if (Dict_Switch['scan_screenshot'] != None):
+                Standard.Stdout_Output(Colors.CYAN+"\n\nIt was not possible to use the current chromium and webdriver version\n"+Colors.RESET, 0.01)
         elif (Program_Mode == "Filter_Mode"):
             Standard.Stdout_Output(Colors.CYAN+"\n\nThe filter process was successful and the result will be found at the following location:\n"+Colors.RESET, 0.01)
         for _ in Array_Output:
