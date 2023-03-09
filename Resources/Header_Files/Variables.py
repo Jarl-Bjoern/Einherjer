@@ -2,6 +2,11 @@
 # -*- coding: utf-8 -*-
 # Rainer Christian Bjoern Herold
 
+# Define_Module_Path
+from os.path import dirname, realpath
+from sys import path as SYSTEM_PATH
+SYSTEM_PATH.append(dirname(realpath(__file__)).split('Resources/Header_Files')[0])
+
 # Libraries
 from .Libraries import *
 from ..Standard_Operations.Colors import Colors
