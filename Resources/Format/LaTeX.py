@@ -3,7 +3,7 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-from Header_Files.Variables import *
+from ..Header_Files.Variables import *
 
 def Latex_Table(Dict_Result, location, Table_Body = ""):
     Define_Color = r"""\input{libs/packages.tex}
