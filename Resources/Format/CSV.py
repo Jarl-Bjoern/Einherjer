@@ -134,7 +134,7 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
         Array_Files.append(join(location, f'result_ssl_ciphers.csv'))
         with open(join(location, f'result_ssl_ciphers.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
-            writer.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Anonymous','Curve','Curve_Type','Curve_Size']))
+            writer.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Anonymous','Encryption','Key_Exchange']))
             for Target in Dict_Result['SSL']:
                 Array_Temp = []
                 Array_Temp.append(Target)
@@ -150,11 +150,8 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                                     if (Cipher['Curve_Name'] != None and Cipher['Curve_Name'] != ''):
                                         Temp_Arr.append(Cipher['Curve_Name'])
                                     else: Temp_Arr.append('-')
-                                    if (Cipher['Type'] != ''):
-                                        Temp_Arr.append(Cipher['Type'])
-                                    else: Temp_Arr.append('-')
-                                    if (Cipher['Curve_Size'] != '' and Cipher['Curve_Size'] != None):
-                                        Temp_Arr.append(Cipher['Curve_Size'])
+                                    if (Cipher['Type'] != '' and Cipher['Curve_Size'] != '' and Cipher['Curve_Size'] != None):
+                                        Temp_Arr.append(f"{Cipher['Type']}_Cipher['Curve_Size']")
                                     else: Temp_Arr.append('-')
                                     writer.writerow(Array_Temp + Temp_Arr)
                     elif (Result_Left == "SSL_Vulns"):
