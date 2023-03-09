@@ -17,7 +17,7 @@ from ..Workfiles.Scan_SMTP import Check_SMTP
 from ..Workfiles.Scan_SSL import SSL_Vulns
 
 # Functions
-def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch_internet_connection, screenshot_wait, webdriver_timeout, Host_Name = "", Target = ""):
+def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch_internet_connection, screenshot_wait, webdriver_timeout, ssl_timeout, Host_Name = "", Target = ""):
     try:
         Dict_Result = queue.get()
         Host_Name = Get_Host_Name(url)
@@ -66,7 +66,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
         # SSL
         if (dict_switch['scan_ssl'] != False and ('https://' in url or 'ssl://' in url)):
-            Dict_Result['SSL'][html_decode(url)] = SSL_Vulns(url, Host_Name)
+            Dict_Result['SSL'][html_decode(url)] = SSL_Vulns(url, ssl_timeout, Host_Name)
 
     except (ConnectionError, gaierror, WebDriverException, RequestException): Logs.Write_Log(html_decode(url), Host_Name)
     finally:
