@@ -33,7 +33,7 @@ if (Program_Mode == "Scanning_Mode"):
     # Variables
     COLOR_Headline = "black"
     existing_nmap_file = ""
-    Chromedriver_Version = "107"
+    Chromedriver_Version = "110.0.5481.77"
     
 Array_SSH_Algorithms = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/ssh_ciphers.txt"))
 
