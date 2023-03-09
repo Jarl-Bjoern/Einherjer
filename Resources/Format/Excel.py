@@ -3,7 +3,7 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-from Header_Files.Variables import *
+from ..Header_Files.Variables import *
 
 def Excel_Table(Dict_Result, location, Array_Header_Letter = ['A','B','C','D','E','F','G','H'], Array_Information_Letter = ['A','B','C','D'], Array_Flag_Letter = ['A','B','C','D','E'], Array_Files = []):
     try:
