@@ -300,7 +300,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
             Standard.Stdout_Output(Colors.CYAN+"\n\nYour Scan was successful and the result will be found at the following location:\n"+Colors.RESET, 0.01)
             if (args.scan_site_screenshot != False or args.scan_site_screenshot_recursive != False):
                 if (osname != 'nt' and listdir(join(Location, 'Screenshots')) == []):
-                    Standard.Stdout_Output(Colors.CYAN+f"\n\nIt was not possible to use the current chromium and webdriver version\n\nChromium: {getoutput("apt-cache policy chromium").splitlines()[1][1:].split(":")[1][1:]})\nChromedriver Version: {Chromedriver_Version}"+Colors.RESET, 0.01)
+                    Standard.Stdout_Output(Colors.CYAN+f"\n\nIt was not possible to use the current chromium and webdriver version\n\nChromium: {getoutput('apt-cache policy chromium').splitlines()[1][1:].split(':')[1][1:]})\nChromedriver Version: {Chromedriver_Version}"+Colors.RESET, 0.01)
                 else:
                     Standard.Stdout_Output(Colors.CYAN+f"\n\nIt was not possible to use the current chromium and webdriver version\n\nChromedriver Version: {Chromedriver_Version}"+Colors.RESET, 0.01)
         elif (Program_Mode == "Filter_Mode"):
