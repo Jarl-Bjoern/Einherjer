@@ -21,9 +21,9 @@ def main(Date, Program_Mode, args, Array_Output = []):
                 if (Chromedriver_Version in Chromium_Version):
                     Standard.Stdout_Output(Colors.ORANGE+"\n\n\t\tUnfortunately, it was not possible to establish a connection via the webdriver, possibly the target system has a WAF in use, as the versions of the Chromedriver and Chromium match."+Colors.RESET, 0.01)
                 else:
-                    Standard.Stdout_Output(Colors.ORANGE+"\n\n\t\t    It was not possible to use the current chromium and webdriver version.\n\n\t\t\tChromium:             "+Colors.RED+f"{Chromium_Version}\n"+Colors.ORANGE+"Chromedriver Version: "+Colors.RED+f"{Chromedriver_Version}"+Colors.RESET, 0.01)
+                    Standard.Stdout_Output(Colors.ORANGE+"\n\n\t\t    It was not possible to use the current chromium and webdriver version.\n\n\t\t\t\tChromium:             "+Colors.RED+f"{Chromium_Version}\n\t\t\t\t"+Colors.ORANGE+"Chromedriver Version: "+Colors.RED+f"{Chromedriver_Version}"+Colors.RESET, 0.01)
             else:
-                Standard.Stdout_Output(Colors.ORANGE+"\n\n\t\t    It was not possible to use the current chromium and webdriver version.\n\n\t\tChromedriver Version: "+Colors.RED+f"{Chromedriver_Version}"+Colors.RESET, 0.01)
+                Standard.Stdout_Output(Colors.ORANGE+"\n\n\t\t    It was not possible to use the current chromium and webdriver version.\n\n\t\t\t\tChromedriver Version: "+Colors.RED+f"{Chromedriver_Version}"+Colors.RESET, 0.01)
 
     def Brute_Force_Mode(Date, Output_location, args, Array_Output = []):
         #Standard.Initialien(args.debug)
