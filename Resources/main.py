@@ -192,7 +192,8 @@ def main(Date, Program_Mode, args, Array_Output = []):
                         Switch_Internet_Connection,
                         args.screenshot_wait,
                         args.webdriver_wait,
-                        args.async_ssl_timeout
+                        args.async_ssl_timeout,
+                        Dict_Proxies
                     ]
                     p = Process(target=Thread_Scanning_Start, args=Array_Thread_Args, daemon=True)
                     p.start()
