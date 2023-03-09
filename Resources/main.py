@@ -15,7 +15,7 @@ from Resources.Filter.Methods import Filter
 # Main_Function
 def main(Date, Program_Mode, args, Array_Output = []):
     def Message_Chromium(Check_Dir):
-        if (len(listdir(Check_Dir) == 0):
+        if (len(listdir(Check_Dir)) == 0):
             Chromium_Version = getoutput('apt-cache policy chromium').splitlines()[1][1:].split(':')[1][1:]
             if (osname != 'nt'):
                 if (Chromedriver_Version in Chromium_Version):
