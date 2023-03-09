@@ -121,7 +121,7 @@ def Markdown_Table(Dict_Result, location, Array_Files = []):
                                         Temp_Word += f"| {Cipher['Curve_Name']} |"
                                     else: Temp_Word += "| - |"
                                     if (Cipher['Type'] != ''):
-                                        Temp_Word += f"| {(Cipher['Type']} |"
+                                        Temp_Word += f"| {Cipher['Type']} |"
                                     else: Temp_Word += "| - |"
                                     if (Cipher['Curve_Size'] != '' and Cipher['Curve_Size'] != None):
                                         Temp_Word += f"| {Cipher['Curve_Size']} |"
