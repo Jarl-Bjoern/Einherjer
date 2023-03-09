@@ -1,4 +1,5 @@
 SERVER
+X-Aspnet-Version
 X-FEServer
 X-POWERED-BY
 X-OWA-Version
