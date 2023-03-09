@@ -183,7 +183,17 @@ def main(Date, Program_Mode, args, Array_Output = []):
                 task_Processes = progress.add_task("[cyan]Waiting for the results...", total=1, start=False)
                 task_Filter = progress.add_task("[cyan]Filtering the results...", total=100, start=False)
                 for Target in array(Array_Targets):
-                    Array_Thread_Args = [Target, args.timeout, queue, Dict_Switch, Screen_Dir, Switch_Internet_Connection, args.screenshot_wait, args.webdriver_wait]
+                    Array_Thread_Args = [
+                        Target,
+                        args.timeout,
+                        queue,
+                        Dict_Switch,
+                        Screen_Dir,
+                        Switch_Internet_Connection,
+                        args.screenshot_wait,
+                        args.webdriver_wait,
+                        args.async_ssl_timeout
+                    ]
                     p = Process(target=Thread_Scanning_Start, args=Array_Thread_Args, daemon=True)
                     p.start()
                     Counter_Connections += 1
