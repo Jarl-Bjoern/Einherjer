@@ -113,7 +113,7 @@ try:
                         from selenium.webdriver.chrome.service import Service
                         from selenium.webdriver.remote.webdriver import WebDriver
                         from smtplib import SMTP, SMTPServerDisconnected
-                        from sslyze import Scanner, ServerNetworkLocation, ServerScanRequest, ServerScanResultAsJson, ServerHostnameCouldNotBeResolved, SslyzeOutputAsJson
+                        from sslyze import Scanner, ServerNetworkLocation, ServerNetworkConfiguration, ServerScanRequest, ServerScanResultAsJson, ServerHostnameCouldNotBeResolved, SslyzeOutputAsJson
                         from socket import AF_INET, create_connection, socket, SOCK_STREAM
                         from webbrowser import open as webbrowser_open
                         import asyncio, pysnmp
@@ -140,7 +140,7 @@ try:
                     from cryptography.hazmat.backends import default_backend
                     from json import loads as json_loads
                     from socket import create_connection
-                    from sslyze import Scanner, ServerNetworkLocation, ServerScanRequest, ServerScanResultAsJson, ServerHostnameCouldNotBeResolved, SslyzeOutputAsJson
+                    from sslyze import Scanner, ServerNetworkLocation, ServerNetworkConfiguration, ServerScanRequest, ServerScanResultAsJson, ServerHostnameCouldNotBeResolved, SslyzeOutputAsJson
                 if (args.scan_site_header != False or args.scan_site_fuzzing != False or args.scan_site_dns_bruteforce != False):
                     from requests import get
                     from requests_pkcs12 import get as pkcs_get, Pkcs12Adapter
