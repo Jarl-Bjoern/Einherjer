@@ -53,7 +53,6 @@ try:
 
     # Argument_Parser
     try:
-        print (argv)
         if (argv[1] == "--filter-mode"):
             argv.remove('--filter-mode')
             from .ArgParser_Filter import Argument_Parser
@@ -65,8 +64,6 @@ try:
             args, Program_Mode = Argument_Parser(), "Brute_Force_Mode"
         elif (argv[1] == "--scanning-mode"):
             argv.remove('--scanning-mode')
-            print (argv)
-            exit()
             from .ArgParser_Scan import Argument_Parser
             args, Program_Mode = Argument_Parser(), "Scanning_Mode"
 
