@@ -322,15 +322,6 @@ def main(Date, Program_Mode, args, Array_Output = []):
             Standard.Stdout_Output(Colors.CYAN+"\n\nYour Scan was successful and the result will be found at the following location:\n"+Colors.RESET, 0.01)
             if (args.scan_site_screenshot != False or args.scan_site_screenshot_recursive != False):
                 Message_Chromium(join(Location, 'Screenshots'))
-#                if (len(listdir(join(Location, 'Screenshots'))) == 0):
-#                    Chromium_Version = getoutput('apt-cache policy chromium').splitlines()[1][1:].split(':')[1][1:]
-#                    if (osname != 'nt'):
-#                        if (Chromedriver_Version in Chromium_Version):
-#                            Standard.Stdout_Output(Colors.ORANGE+"\n\n\t\tUnfortunately, it was not possible to establish a connection via the webdriver, possibly the target system has a WAF in use, as the versions of the Chromedriver and Chromium match."+Colors.RESET, 0.01)
-#                        else:
-#                            Standard.Stdout_Output(Colors.ORANGE+"\n\n\t\t    It was not possible to use the current chromium and webdriver version.\n\nChromium: "+Colors.RED+f"{Chromium_Version}\n"+Colors.ORANGE+"Chromedriver Version: "+Colors.RED+f"{Chromedriver_Version}"+Colors.RESET, 0.01)
-#                    else:
-#                        Standard.Stdout_Output(Colors.ORANGE+"\n\n\t\t    It was not possible to use the current chromium and webdriver version.\n\nChromedriver Version: "+Colors.RED+f"{Chromedriver_Version}"+Colors.RESET, 0.01)
         elif (Program_Mode == "Filter_Mode"):
             Standard.Stdout_Output(Colors.CYAN+"\n\nThe filter process was successful and the result will be found at the following location:\n"+Colors.RESET, 0.01)
         for _ in Array_Output:
@@ -340,15 +331,6 @@ def main(Date, Program_Mode, args, Array_Output = []):
             Standard.Stdout_Output(Colors.ORANGE+f'\n\t\t\t\tIt was not possible to collect any kind of data!\n\n\t\t\t     Check your connection or target file and try it again.'+Colors.RESET, 0.01)
             if (args.scan_site_screenshot != False or args.scan_site_screenshot_recursive != False):
                 Message_Chromium(join(Location, 'Screenshots'))
-#                if (len(listdir(join(Location, 'Screenshots'))) == 0):
-#                    Chromium_Version = getoutput('apt-cache policy chromium').splitlines()[1][1:].split(':')[1][1:]
-#                    if (osname != 'nt'):
-#                        if (Chromedriver_Version in Chromium_Version):
-#                            Standard.Stdout_Output(Colors.ORANGE+"\n\n\t\tUnfortunately, it was not possible to establish a connection via the webdriver, possibly the target system has a WAF in use, as the versions of the Chromedriver and Chromium match."+Colors.RESET, 0.01)
-#                        else:
-#                            Standard.Stdout_Output(Colors.ORANGE+"\n\n\t\t    It was not possible to use the current chromium and webdriver version.\n\nChromium: "+Colors.RED+f"{Chromium_Version}\n"+Colors.ORANGE+"Chromedriver Version: "+Colors.RED+f"{Chromedriver_Version}"+Colors.RESET, 0.01)
-#                    else:
-#                        Standard.Stdout_Output(Colors.ORANGE+"\n\n\t\t    It was not possible to use the current chromium and webdriver version.\n\nChromedriver Version: "+Colors.RED+f"{Chromedriver_Version}"+Colors.RESET, 0.01)
         elif (Program_Mode == "Filter_Mode"):
             Standard.Stdout_Output(Colors.ORANGE+f'\n\t\t\t\tIt was not possible to collect any kind of data!\n\n\t\t\t     Check your locations or target files and try it again.'+Colors.RESET, 0.01)
 
