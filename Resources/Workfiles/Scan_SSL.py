@@ -24,7 +24,7 @@ def SSL_Vulns(url, ssl_timeout, Host_Name, Dict_SSL_Vulns = {'CRIME': "", 'LOGJA
 
     try:
         scanner = Scanner()
-        scanner.queue_scans([ServerScanRequest(server_location=ServerNetworkLocation(hostname=URL, ip_address=URL, port=Port), network_configuration=ServerNetworkConfiguration(network_timeout=ssl_timeout, network_max_retries=3))])
+        scanner.queue_scans([ServerScanRequest(server_location=ServerNetworkLocation(hostname=URL, ip_address=URL, port=Port), network_configuration=ServerNetworkConfiguration(URL, network_timeout=ssl_timeout, network_max_retries=3))])
 
         for server_scan_result in scanner.get_results():
             json_output = SslyzeOutputAsJson(server_scan_results=[ServerScanResultAsJson.from_orm(server_scan_result)],date_scans_started=Start_Scan,date_scans_completed=datetime.now())
