@@ -311,6 +311,11 @@ def main(Date, Program_Mode, args, Array_Output = []):
     else:
         if (Program_Mode == "Scanning_Mode"):
             Standard.Stdout_Output(Colors.ORANGE+f'\n\t\t\t\tIt was not possible to collect any kind of data!\n\n\t\t\t     Check your connection or target file and try it again.'+Colors.RESET, 0.01)
+            if (len(listdir(join(Location, 'Screenshots'))) == 0):
+                if (osname != 'nt'):
+                    Standard.Stdout_Output(Colors.CYAN+f"\n\nIt was not possible to use the current chromium and webdriver version\n\nChromium: {getoutput('apt-cache policy chromium').splitlines()[1][1:].split(':')[1][1:]})\nChromedriver Version: {Chromedriver_Version}"+Colors.RESET, 0.01)
+                else:
+                    Standard.Stdout_Output(Colors.CYAN+f"\n\nIt was not possible to use the current chromium and webdriver version\n\nChromedriver Version: {Chromedriver_Version}"+Colors.RESET, 0.01)
         elif (Program_Mode == "Filter_Mode"):
             Standard.Stdout_Output(Colors.ORANGE+f'\n\t\t\t\tIt was not possible to collect any kind of data!\n\n\t\t\t     Check your locations or target files and try it again.'+Colors.RESET, 0.01)
 
