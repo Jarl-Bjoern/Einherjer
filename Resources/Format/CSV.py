@@ -65,7 +65,6 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                             Result_Right = "FEHLT"
                             break
 
-                    # Umschreiben, da mehrere Arrays erzeugt werden in Ausgabe
                     if (Result_Left != "DNS" and Result_Right != "FEHLT"): Array_Temp.append("✓")
                     elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
