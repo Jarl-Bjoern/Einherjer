@@ -109,23 +109,23 @@ def Markdown_Table(Dict_Result, location, Array_Files = []):
                 Temp_Word = ""
                 Temp_Word += f"| {Target} |"
                 for Result_Left, Result_Right in Dict_Result['SSL'][Target].items():
-                    if (Result_Left == "DNS" and Result_Right == ""):  Temp_Word += "| - |"
-                    elif (Result_Left == "DNS" and Result_Right != ""): Temp_Word += f"| {Result_Right} |"
+                    if (Result_Left == "DNS" and Result_Right == ""):  Temp_Word += " - |"
+                    elif (Result_Left == "DNS" and Result_Right != ""): Temp_Word += f" {Result_Right} |"
 
                     if (Result_Left == "Ciphers"):
                         for _ in Result_Right:
                             if (_['Protocol'] != "" and _['Ciphers'] != []):
                                 for Cipher in _['Ciphers']:
-                                    Temp_Word  += f"| {_['Protocol']} | {Cipher['Key_Size']} | {Cipher['Name']} | {Cipher['Anonymous']} |"
+                                    Temp_Word  += f" {_['Protocol']} | {Cipher['Key_Size']} | {Cipher['Name']} | {Cipher['Anonymous']} |"
                                     if (Cipher['Curve_Name'] != None and Cipher['Curve_Name'] != ''):
-                                        Temp_Word += f"| {Cipher['Curve_Name']} |"
-                                    else: Temp_Word += "| - |"
+                                        Temp_Word += f" {Cipher['Curve_Name']} |"
+                                    else: Temp_Word += " - |"
                                     if (Cipher['Type'] != ''):
-                                        Temp_Word += f"| {Cipher['Type']} |"
-                                    else: Temp_Word += "| - |"
+                                        Temp_Word += f" {Cipher['Type']} |"
+                                    else: Temp_Word += " - |"
                                     if (Cipher['Curve_Size'] != '' and Cipher['Curve_Size'] != None):
-                                        Temp_Word += f"| {Cipher['Curve_Size']} |"
-                                    else: Temp_Word += "| - |"
+                                        Temp_Word += f" {Cipher['Curve_Size']} |"
+                                    else: Temp_Word += " - |"
                                     md_file.write(f'{Temp_Word}\n')
                     elif (Result_Left == "SSL_Vulns"):
                         pass
