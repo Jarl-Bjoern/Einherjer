@@ -110,7 +110,7 @@ def Markdown_Table(Dict_Result, location, Array_Files = []):
                 Temp_Word += f"| {Target} |"
                 for Result_Left, Result_Right in Dict_Result['SSL'][Target].items():
                     if (Result_Left == "DNS" and Result_Right == ""):  Temp_Word += "| - |"
-                    elif (Result_Left == "DNS" and Result_Right != ""): Temp_Word += f"| {Result_Right} |
+                    elif (Result_Left == "DNS" and Result_Right != ""): Temp_Word += f"| {Result_Right} |"
 
                     if (Result_Left == "Ciphers"):
                         for _ in Result_Right:
