@@ -151,7 +151,7 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                                         Temp_Arr.append(Cipher['Curve_Name'])
                                     else: Temp_Arr.append('-')
                                     if (Cipher['Type'] != '' and Cipher['Curve_Size'] != '' and Cipher['Curve_Size'] != None):
-                                        Temp_Arr.append(f"{Cipher['Type']}_Cipher['Curve_Size']")
+                                        Temp_Arr.append(f"{Cipher['Type']}_{Cipher['Curve_Size']}")
                                     else: Temp_Arr.append('-')
                                     writer.writerow(Array_Temp + Temp_Arr)
                     elif (Result_Left == "SSL_Vulns"):
