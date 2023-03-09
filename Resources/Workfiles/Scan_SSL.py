@@ -23,7 +23,7 @@ def SSL_Vulns(url, Host_Name, Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEAR
     else: Port = 443
 
     try:
-        Array_SSL_Targets.append(ServerScanRequest(server_location=ServerNetworkLocation(hostname=URL, ip_address=URL, port=Port)))
+        Array_SSL_Targets.append(ServerScanRequest(server_location=ServerNetworkLocation(hostname=URL, ip_address=URL, port=Port, network_timeout=8, network_max_retries=3)))
         scanner = Scanner()
         scanner.queue_scans(Array_SSL_Targets)
 
