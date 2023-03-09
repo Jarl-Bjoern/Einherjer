@@ -103,8 +103,8 @@ def Markdown_Table(Dict_Result, location, Array_Files = []):
     if (Dict_Result['SSL'] != {}):
         Array_Files.append(join(location, f'result_ssl_ciphers.md'))
         with open(join(location, f'result_ssl_ciphers.md'), 'w', encoding='UTF-8', newline='') as md_file:
-            md_file.write('| Host | DNS | Protocol | Key_Size | Ciphers | Anonymous | Curve | Curve_Type | Curve_Size |\n')
-            md_file.write('| ---- | --- | -------- | -------- | ------- | --------- | ----- | ---------- | ---------- |\n')
+            md_file.write('| Host | DNS | Protocol | Key_Size | Ciphers | Anonymous | Encryption | Key_Exchange |\n')
+            md_file.write('| ---- | --- | -------- | -------- | ------- | --------- | ---------- | ------------ |\n')
             for Target in Dict_Result['SSL']:
                 Temp_Word = ""
                 Temp_Word += f"| {Target} |"
@@ -120,11 +120,8 @@ def Markdown_Table(Dict_Result, location, Array_Files = []):
                                     if (Cipher['Curve_Name'] != None and Cipher['Curve_Name'] != ''):
                                         Temp_Word += f" {Cipher['Curve_Name']} |"
                                     else: Temp_Word += " - |"
-                                    if (Cipher['Type'] != ''):
-                                        Temp_Word += f" {Cipher['Type']} |"
-                                    else: Temp_Word += " - |"
-                                    if (Cipher['Curve_Size'] != '' and Cipher['Curve_Size'] != None):
-                                        Temp_Word += f" {Cipher['Curve_Size']} |"
+                                    if (Cipher['Type'] != '' and Cipher['Curve_Size'] != '' and Cipher['Curve_Size'] != None):
+                                        Temp_Word += f" {Cipher['Type']}_{Cipher['Curve_Size']} |"
                                     else: Temp_Word += " - |"
                                     md_file.write(f'{Temp_Word}\n')
                     elif (Result_Left == "SSL_Vulns"):
