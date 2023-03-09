@@ -167,7 +167,7 @@ try:
 #            Argument_Parser("\n\n\t\t\t   The program cannot be started without using the mode of the program!\n\t\t\tFor more information use one of the modes with the parameter -h or --help.\n"), exit()
 
         # Delete_Unused_Functions
-        del Argument_Parser, argv, catch_warnings, chmod, Path, redirect_stdout, simplefilter, stat
+        del Argument_Parser, argv
     except IndexError:
         from .ArgParser_Mode import Argument_Parser
         Argument_Parser("\n\n\t\t\t   The program cannot be started without using the mode of the program!\n\t\t\tFor more information use one of the modes with the parameter -h or --help.\n"), exit()
@@ -178,7 +178,7 @@ for _ in listdir(dirname(realpath(__file__)).replace('Header_Files', 'Webdriver'
     temp_file = Path(join(dirname(realpath(__file__)).replace('Header_Files', 'Webdriver'), _))
     temp_file.chmod(temp_file.stat().st_mode | stat.S_IEXEC)
 
-del temp_file
+del catch_warnings, chmod, Path, redirect_stdout, simplefilter, stat, temp_file
 
 # Static_Date
 Date = strftime('%Y-%m-%d_%H-%M-%S')
