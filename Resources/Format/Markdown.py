@@ -80,7 +80,7 @@ def Markdown_Table(Dict_Result, location, Array_Files = []):
                     if (Result_Left != "DNS" and Result_Right != "FEHLT"): Temp_Word += f' {Result_Right} |'
                     elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Temp_Word += f' {Result_Right} |'
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Temp_Word += " - |"
-                    else: Temp_Word += " X |"
+                    else: Temp_Word += " - |"
                 md_file.write(f'{Temp_Word}\n')
 
         Array_Files.append(join(location, f'result_http_methods.md'))
