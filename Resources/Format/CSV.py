@@ -109,7 +109,7 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                     if (Result_Left != "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
                     elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
-                    else: Array_Temp.append("X")
+                    else: Array_Temp.append("-")
                 writer.writerow(Array_Temp)
 
     if (Dict_Result['HTTP_Methods'] != {}):
