@@ -162,7 +162,6 @@ try:
             from .ArgParser_Mode import Argument_Parser
             Argument_Parser(""), exit()
         else:
-#            pass
             from .ArgParser_Mode import Argument_Parser
             Argument_Parser("\n\n\t\t\t   The program cannot be started without using the mode of the program!\n\t\t\tFor more information use one of the modes with the parameter -h or --help.\n"), exit()
 
