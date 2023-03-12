@@ -12,22 +12,22 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
     elif ('http://' in url): URL = url.split('http://')[1]
     else: URL = url
 
+    # Remove_Directories
     if ('/' in URL):
         Temp = URL.split('/')[0]
         URL = Temp
 
-    if (url.count(':') > 1): Port = url.split(':')[2]
+    # Port_Filter
+    if (url.count(':') > 1): Port = URL.split(':')[2]
     else: Port = 443
+
+    # Get_Only_Target
+    if (':' in URL): Target = URL.split(':')[0]
+    else: Target = URL
 
     # Get_Host_Name
     if (Host_Name != ""): Dict_Temp['DNS'] = Host_Name
     else: Dict_Temp['DNS'] = ""
-
-    # Get_Only_Target
-    if (':' in URL):
-        Target = URL.split(':')[0]
-    else:
-        Target = URL
 
     try:
         with create_connection((Target, int(Port)), timeout=t_seconds) as sock:
