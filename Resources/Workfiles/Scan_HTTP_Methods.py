@@ -15,18 +15,33 @@ def Check_HTTP_Methods(url, Host_Name, Dict_Proxies, Dict_Auth, Dict_Temp = {'DN
         Limit = TCPConnector(limit_per_host=5)
 
         if (Dict_Auth['user'] != ''):
-            proxy_auth = BasicAuth(Dict_Auth['user'], Dict_Auth['password'])
+            proxy_auth = 
 
         async with ClientSession(connector=Limit, trust_env=True) as s:
             for Method in Array_HTTP_Methods:
                 try:
                     if (Dict_Proxies['http'] != '' and Dict_Auth['user'] != ''):
-                        async with s.request(Method, url, ssl=False) as r:
+                        async with s.request(Method, url, ssl=False, auth=BasicAuth(Dict_Auth['user'], Dict_Auth['password']), proxy=Dict_Proxies['http']) as r:
                             if (str(r.status) == "200"):
                                 Dict_Temp[Method] = "True"
                             else:
                                 Dict_Temp[Method] = "FEHLT"
+
                     elif (Dict_Proxies['http'] == '' and Dict_Auth['user'] != ''):
+                        async with s.request(Method, url, ssl=False, auth=BasicAuth(Dict_Auth['user'], Dict_Auth['password'])) as r:
+                            if (str(r.status) == "200"):
+                                Dict_Temp[Method] = "True"
+                            else:
+                                Dict_Temp[Method] = "FEHLT"
+
+                    elif (Dict_Proxies['http'] != '' and Dict_Auth['user'] == ''):
+                          async with s.request(Method, url, ssl=False, proxy=Dict_Proxies['http']) as r:
+                            if (str(r.status) == "200"):
+                                Dict_Temp[Method] = "True"
+                            else:
+                                Dict_Temp[Method] = "FEHLT"
+
+                    elif (Dict_Proxies['http'] == '' and Dict_Auth['user'] == ''):
                         async with s.request(Method, url, ssl=False) as r:
                             if (str(r.status) == "200"):
                                 Dict_Temp[Method] = "True"
