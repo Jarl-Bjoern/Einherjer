@@ -14,9 +14,6 @@ def Check_HTTP_Methods(url, Host_Name, Dict_Proxies, Dict_Auth, Dict_Temp = {'DN
     async def Check_Methods():
         Limit = TCPConnector(limit_per_host=5)
 
-        if (Dict_Auth['user'] != ''):
-            proxy_auth = 
-
         async with ClientSession(connector=Limit, trust_env=True) as s:
             for Method in Array_HTTP_Methods:
                 try:
