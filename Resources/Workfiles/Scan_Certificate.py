@@ -25,7 +25,7 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
 
     try:
         with create_connection((URL, int(Port)), timeout=t_seconds) as sock:
-            with context.wrap_socket(sock, server_hostname=URL, do_handshake_on_connect=False) as ssock:
+            with context.wrap_socket(sock, server_hostname=URL) as ssock:
                 # Cert_Connect_And_Collect
                 cert_der = ssock.getpeercert(binary_form=False)
                 cert = load_der_x509_certificate(cert_der, default_backend())
@@ -54,8 +54,7 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
         # Logging
         if (Host_Name != ""): Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'Certificate-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {html_decode(url)} - {Host_Name} - '+Colors.CYAN+'Certificate Information was succesfully recorded.\n\n')
         else: Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'Certificate-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {html_decode(url)} - '+Colors.CYAN+'Certificate Information was successfully recorded.\n\n')
-    except (ConnectionRefusedError, gaierror, SSLError) as e:
-        print (e)
-        #Logs.Write_Log(html_decode(url), Host_Name)
+    except (ConnectionRefusedError, gaierror, SSLError):
+        Logs.Write_Log(html_decode(url), Host_Name)
 
     return Dict_Temp
