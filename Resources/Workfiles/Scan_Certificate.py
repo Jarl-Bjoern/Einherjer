@@ -19,7 +19,9 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
 
     # Port_Filter
     print (url)
-    if (url.count(':') > 1): Port = URL.split(':')[2]
+    if (url.count(':') > 1):
+        print (URL.split(':'))
+        Port = URL.split(':')[2]
     else: Port = 443
 
     # Get_Only_Target
