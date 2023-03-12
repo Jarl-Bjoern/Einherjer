@@ -7,20 +7,31 @@ from ..Header_Files.Variables import *
 from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 
-def Check_HTTP_Methods(url, Host_Name, Dict_Temp = {'DNS': "", 'CONNECT': "", 'DELETE': "", 'HEAD': "", 'OPTIONS': "", 'PATCH': "", 'POST': "", 'PUT': "", 'TRACE': ""}, Switch_URL = False):
+def Check_HTTP_Methods(url, Host_Name, Dict_Proxies, Dict_Auth, Dict_Temp = {'DNS': "", 'CONNECT': "", 'DELETE': "", 'HEAD': "", 'OPTIONS': "", 'PATCH': "", 'POST': "", 'PUT': "", 'TRACE': ""}, Switch_URL = False):
     if (Host_Name != ""): Dict_Temp['DNS'] = Host_Name
     else: Dict_Temp['DNS'] = ""
 
     async def Check_Methods():
         Limit = TCPConnector(limit_per_host=5)
+
+        if (Dict_Auth['user'] != ''):
+            proxy_auth = BasicAuth(Dict_Auth['user'], Dict_Auth['password'])
+
         async with ClientSession(connector=Limit, trust_env=True) as s:
             for Method in Array_HTTP_Methods:
                 try:
-                    async with s.request(Method, url, ssl=False) as r:
-                        if (str(r.status) == "200"):
-                            Dict_Temp[Method] = "True"
-                        else:
-                            Dict_Temp[Method] = "FEHLT"
+                    if (Dict_Proxies['http'] != '' and Dict_Auth['user'] != ''):
+                        async with s.request(Method, url, ssl=False) as r:
+                            if (str(r.status) == "200"):
+                                Dict_Temp[Method] = "True"
+                            else:
+                                Dict_Temp[Method] = "FEHLT"
+                    elif (Dict_Proxies['http'] == '' and Dict_Auth['user'] != ''):
+                        async with s.request(Method, url, ssl=False) as r:
+                            if (str(r.status) == "200"):
+                                Dict_Temp[Method] = "True"
+                            else:
+                                Dict_Temp[Method] = "FEHLT"
                 except ServerDisconnectedError:
                     Dict_Temp[Method] = "FEHLT"
 
