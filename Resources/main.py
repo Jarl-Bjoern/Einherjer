@@ -57,7 +57,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
 
         return Array_Output
 
-    def Scanning_Mode(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': {}, 'HTTP_Methods': {}, 'Information': {}, 'Security_Flag': {}, 'SSH': {}, 'SSL': {}}, Dict_Proxies = {'http': '', 'https': ''}, Dict_Auth = {'user': '', 'password': ''}, Array_HTTP_Filter = [], Array_Thread_Args = [], Dict_Threads = {}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None):
+    def Scanning_Mode(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': {}, 'HTTP_Methods': {}, 'Information': {}, 'Security_Flag': {}, 'SSH': {}, 'SSL': {}}, Dict_Proxies = {'http': '', 'https': ''}, Dict_Auth = {'user': '', 'password': '', 'pkcs12_cert': '', 'pkcs12_password': ''}, Array_HTTP_Filter = [], Array_Thread_Args = [], Dict_Threads = {}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None):
         Dict_Switch = {
             'scan_certificate': False,
             'scan_dns': False,
@@ -114,7 +114,17 @@ def main(Date, Program_Mode, args, Array_Output = []):
 
         # Webdriver_Options
         if (args.scan_site_screenshot != False):
-            Array_Selenium = ['--start_maximized','--no-sandbox','--remote-debugging-port=19222','--ignore-certificate-errors','--test-type','--log-level=3','--hide-scrollbars','--enable-javascript']
+            Array_Selenium = [
+                '--start_maximized',
+                '--no-sandbox',
+                '--remote-debugging-port=19222',
+                '--ignore-certificate-errors',
+                '--test-type',
+                '--log-level=3',
+                '--hide-scrollbars',
+                '--enable-javascript'
+            ]
+
             if (args.debug != True): Array_Selenium.append('--headless')
 
             if ("ttl" in getoutput('ping -c 2 8.8.8.8')):
@@ -131,12 +141,14 @@ def main(Date, Program_Mode, args, Array_Output = []):
             except FileExistsError: pass
 
         # Proxy_Settings
-        if (args.add_http_proxy != None): Dict_Proxies['http'] = args.add_http_proxy
-        if (args.add_https_proxy != None): Dict_Proxies['https'] = args.add_https_proxy
+        if (args.add_http_proxy != None):                    Dict_Proxies['http']         = args.add_http_proxy
+        if (args.add_https_proxy != None):                   Dict_Proxies['https']        = args.add_https_proxy
 
         # Auth_Settings
-        if (args.add_basic_authentication_user != None): Dict_Auth['user'] = args.add_basic_authentication_user
-        if (args.add_basic_authentication_password != None): Dict_Auth['password'] = args.add_basic_authentication_password
+        if (args.add_basic_authentication_user != None):     Dict_Auth['user']            = args.add_basic_authentication_user
+        if (args.add_basic_authentication_password != None): Dict_Auth['password']        = args.add_basic_authentication_password
+        if (args.add_pkcs12_cert != None):                   Dict_Auth['pkcs12_cert']     = args.add_pkcs12_cert
+        if (args.add_pkcs12_cert_password != None):          Dict_Auth['pkcs12_password'] = args.add_pkcs12_cert_password
 
         # Scanning_Options
         if (args.scan_all == False and
