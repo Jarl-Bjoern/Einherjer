@@ -36,7 +36,7 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
                 cert_der = ssock.getpeercert(binary_form=True)
                 cert = load_der_x509_certificate(cert_der, default_backend())
 
-                public_key = cert_key.get_pubkey()
+                public_key = cert.get_pubkey()
                 rsa_key = public_key.get_rsa()
                 print (public_key)
                 print (rsa_key)
