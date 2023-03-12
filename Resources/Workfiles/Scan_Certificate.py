@@ -23,6 +23,8 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
     if (Host_Name != ""): Dict_Temp['DNS'] = Host_Name
     else: Dict_Temp['DNS'] = ""
 
+    print (url)
+
     try:
         with create_connection((URL, int(Port)), timeout=t_seconds) as sock:
             with context.wrap_socket(sock, server_hostname=URL) as ssock:
