@@ -94,7 +94,7 @@ try:
                   args.scan_ssh == False and
                   args.scan_site_screenshot_recursive == False and
                   args.scan_security_flags == False):
-                        from aiohttp import ClientSession, TCPConnector
+                        from aiohttp import BasicAuth, ClientSession, TCPConnector
                         from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
                         from cryptography.x509 import load_der_x509_certificate
                         from cryptography.hazmat.backends import default_backend
@@ -154,7 +154,7 @@ try:
                     from requests import Session
                     from requests_pkcs12 import get as pkcs_get, Pkcs12Adapter
                 if (args.scan_site_http_methods != False):
-                    from aiohttp import ClientSession, TCPConnector
+                    from aiohttp import BasicAuth, ClientSession, TCPConnector
                     import asyncio
                 if (args.scan_smtp != False):
                     from smtplib import SMTP, SMTPServerDisconnected
