@@ -7,9 +7,12 @@ from ..Header_Files.Variables import *
 from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 
-def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Temp = {'DNS': "", 'SAMESITE': "", 'HTTPONLY': "", 'SECURE': ""}, Switch_SameSite = False):
+def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Proxies, Dict_Temp = {'DNS': "", 'SAMESITE': "", 'HTTPONLY': "", 'SECURE': ""}, Switch_SameSite = False):
     s = Session()
-    r = s.get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
+    if (Dict_Proxies['http'] != '' or Dict_Proxies['https'] != ''):
+        r = s.get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True, proxies=Dict_Proxies)
+    else:
+        r = s.get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
 
     if (Host_Name != ""): Dict_Temp['DNS'] = Host_Name
     else: Dict_Temp['DNS'] = ""
