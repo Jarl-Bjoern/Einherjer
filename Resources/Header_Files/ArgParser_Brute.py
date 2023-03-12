@@ -39,12 +39,14 @@ def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Res
     filter_arguments  = parser.add_argument_group(Colors.ORANGE+'format arguments'+Colors.RESET)
     optional          = parser.add_argument_group(Colors.ORANGE+'optional arguments'+Colors.RESET)
 
-    auth_arguments.add_argument('-aBa', '--add-basic-authentication', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
-    auth_arguments.add_argument('-aC', '--add-cert', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
-    auth_arguments.add_argument('-apC', '--add-pkcs12-cert', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    auth_arguments.add_argument('-aBaU', '--add-basic-authentication-user', type=str, help=Colors.GREEN+'This parameter defines the user for basic authentication.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    auth_arguments.add_argument('-aBaP', '--add-basic-authentication-password', type=str, help=Colors.GREEN+'This parameter defines the password for basic authentication.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    auth_arguments.add_argument('-aC', '--add-cert', type=str, help=Colors.GREEN+'This parameter defines the cert file for authentication.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    auth_arguments.add_argument('-aCkf', '--add-cert-key-file', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    auth_arguments.add_argument('-apC', '--add-pkcs12-cert', type=str, help=Colors.GREEN+'This parameter defines the cert file for pkcs12 authentication.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     auth_arguments.add_argument('-aUL', '--add-user-list', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     auth_arguments.add_argument('-aCPw', '--add-cert-password', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
-    auth_arguments.add_argument('-apCPw', '--add-pkcs12-cert-password', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    auth_arguments.add_argument('-apCPw', '--add-pkcs12-cert-password', type=str, help=Colors.GREEN+'This parameter defines the password for pkcs12 authentication.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     brute_arguments.add_argument('-bDNS', '--brute-dns', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     brute_arguments.add_argument('-bF', '--brute-fuzz', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
@@ -53,6 +55,7 @@ def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Res
 
     config_arguments.add_argument('-aHP', '--add-http-proxy', type=str, help=Colors.GREEN+'Specify your HTTP-Proxy.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     config_arguments.add_argument('-aHSP', '--add-https-proxy', type=str, help=Colors.GREEN+'Specify your HTTPS-Proxy.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    config_arguments.add_argument('-aSP', '--add-socks-proxy', type=str, help=Colors.GREEN+'Specify your Socks-Proxy.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     config_arguments.add_argument('-o', '--output-location', type=str, help=Colors.GREEN+'Specify the location where the result should be saved.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     debug_arguments.add_argument('-d', '--debug', type=bool, nargs='?', default=False, help=Colors.GREEN+'This Parameter deactivates the terminal clearing after starting the tool.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
