@@ -17,6 +17,7 @@ def Check_HTTP_Methods(url, Host_Name, Dict_Proxies, Dict_Auth, Dict_Temp = {'DN
         async with ClientSession(connector=Limit, trust_env=True) as s:
             for Method in Array_HTTP_Methods:
                 try:
+                    # Basic_Auth_With_Proxy
                     if (Dict_Proxies['http'] != '' and Dict_Auth['user'] != ''):
                         async with s.request(Method, url, ssl=False, auth=BasicAuth(Dict_Auth['user'], Dict_Auth['password']), proxy=Dict_Proxies['http']) as r:
                             if (str(r.status) == "200"):
@@ -24,6 +25,7 @@ def Check_HTTP_Methods(url, Host_Name, Dict_Proxies, Dict_Auth, Dict_Temp = {'DN
                             else:
                                 Dict_Temp[Method] = "FEHLT"
 
+                    # Basic_Auth
                     elif (Dict_Proxies['http'] == '' and Dict_Auth['user'] != ''):
                         async with s.request(Method, url, ssl=False, auth=BasicAuth(Dict_Auth['user'], Dict_Auth['password'])) as r:
                             if (str(r.status) == "200"):
@@ -31,6 +33,7 @@ def Check_HTTP_Methods(url, Host_Name, Dict_Proxies, Dict_Auth, Dict_Temp = {'DN
                             else:
                                 Dict_Temp[Method] = "FEHLT"
 
+                    # Proxy
                     elif (Dict_Proxies['http'] != '' and Dict_Auth['user'] == ''):
                           async with s.request(Method, url, ssl=False, proxy=Dict_Proxies['http']) as r:
                             if (str(r.status) == "200"):
@@ -38,6 +41,7 @@ def Check_HTTP_Methods(url, Host_Name, Dict_Proxies, Dict_Auth, Dict_Temp = {'DN
                             else:
                                 Dict_Temp[Method] = "FEHLT"
 
+                    # Nothing
                     elif (Dict_Proxies['http'] == '' and Dict_Auth['user'] == ''):
                         async with s.request(Method, url, ssl=False) as r:
                             if (str(r.status) == "200"):
