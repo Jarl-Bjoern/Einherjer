@@ -57,7 +57,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
 
         return Array_Output
 
-    def Scanning_Mode(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': {}, 'HTTP_Methods': {}, 'Information': {}, 'Security_Flag': {}, 'SSH': {}, 'SSL': {}}, Dict_Proxies = {'http': '', 'https': ''}, Array_HTTP_Filter = [], Array_Thread_Args = [], Dict_Threads = {}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None):
+    def Scanning_Mode(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': {}, 'HTTP_Methods': {}, 'Information': {}, 'Security_Flag': {}, 'SSH': {}, 'SSL': {}}, Dict_Proxies = {'http': '', 'https': ''}, Dict_Auth = {'user': '', 'password': ''}, Array_HTTP_Filter = [], Array_Thread_Args = [], Dict_Threads = {}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None):
         Dict_Switch = {
             'scan_certificate': False,
             'scan_dns': False,
@@ -204,7 +204,8 @@ def main(Date, Program_Mode, args, Array_Output = []):
                         args.screenshot_wait,
                         args.webdriver_wait,
                         args.async_ssl_timeout,
-                        Dict_Proxies
+                        Dict_Proxies,
+                        Dict_Auth
                     ]
                     p = Process(target=Thread_Scanning_Start, args=Array_Thread_Args, daemon=True)
                     p.start()
