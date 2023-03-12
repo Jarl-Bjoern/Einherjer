@@ -23,13 +23,13 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
     else: Dict_Temp['DNS'] = ""
 
     try:
+        Current_Date = datetime.now()
         with create_connection((URL, int(Port)), timeout=t_seconds) as sock:
             with context.wrap_socket(sock, server_hostname=URL) as ssock:
                 cert_der = ssock.getpeercert(True)
                 cert = load_der_x509_certificate(cert_der, default_backend())
                 #cert_key = X509.load_cert_string(cert_der, X509.FORMAT_DER)
 
-                Current_Date = datetime.now()
                 #public_key = cert_key.get_pubkey()
                 #rsa_key = public_key.get_rsa()
                 #cipher = rsa_key.public_encrypt('plaintext', RSA.pkcs1_padding)
