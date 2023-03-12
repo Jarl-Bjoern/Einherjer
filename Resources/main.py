@@ -134,6 +134,10 @@ def main(Date, Program_Mode, args, Array_Output = []):
         if (args.add_http_proxy != None): Dict_Proxies['http'] = args.add_http_proxy
         if (args.add_https_proxy != None): Dict_Proxies['https'] = args.add_https_proxy
 
+        # Auth_Settings
+        if (args.add_basic_authentication_user != None): Dict_Auth['user'] = args.add_basic_authentication_user
+        if (args.add_basic_authentication_password != None): Dict_Auth['password'] = args.add_basic_authentication_password
+
         # Scanning_Options
         if (args.scan_all == False and
             args.scan_site_screenshot == False and
