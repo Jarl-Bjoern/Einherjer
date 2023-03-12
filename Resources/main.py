@@ -57,7 +57,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
 
         return Array_Output
 
-    def Scanning_Mode(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': {}, 'HTTP_Methods': {}, 'Information': {}, 'Security_Flag': {}, 'SSH': {}, 'SSL': {}}, Dict_Proxies = {'http': '', 'https': ''}, Dict_Auth = {'user': '', 'password': '', 'pkcs12_cert': '', 'pkcs12_password': ''}, Array_HTTP_Filter = [], Array_Thread_Args = [], Dict_Threads = {}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None):
+    def Scanning_Mode(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': {}, 'HTTP_Methods': {}, 'Information': {}, 'Security_Flag': {}, 'SSH': {}, 'SSL': {}}, Dict_Proxies = {'http': '', 'https': '', 'socks': ''}, Dict_Auth = {'user': '', 'password': '', 'pkcs12_cert': '', 'pkcs12_password': ''}, Array_HTTP_Filter = [], Array_Thread_Args = [], Dict_Threads = {}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None):
         Dict_Switch = {
             'scan_certificate': False,
             'scan_dns': False,
@@ -140,8 +140,11 @@ def main(Date, Program_Mode, args, Array_Output = []):
             # Driver_Settings
             driver_options = Options()
             for _ in Array_Selenium:                driver_options.add_argument(_)
+
+            # Proxy_Settings
             if (Dict_Proxies['http'] != ''):        driver_options.add_argument(f'--proxy-server=http://{Dict_Proxies["http"]}')
-            if (Dict_Proxies['https'] != ''):       driver_options..add_argument(f'--proxy-server=https://{Dict_Proxies["https"]}')
+            if (Dict_Proxies['https'] != ''):       driver_options.add_argument(f'--proxy-server=https://{Dict_Proxies["https"]}')
+            if (Dict_Proxies['socks'] != ''):       driver_options.add_argument(f'--proxy-server=socks5://{Dict_Proxies["socks"]}')
 
             # Custom_Chromium
             if (args.custom_chromium_path != None): driver_options.binary_location = args.custom_chromium_path
