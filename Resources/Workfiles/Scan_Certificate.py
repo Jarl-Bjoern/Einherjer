@@ -43,10 +43,11 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
                 # Get_Cert_Information
                 Current_Date = datetime.now()
 
-                from cryptography.hazmat.primitives.serialization import load_der_public_key
-                key = load_der_public_key(cert.public_key(), default_backend())
-                print (key)
+#                from cryptography.hazmat.primitives.serialization import load_der_public_key
+#                key = load_der_public_key(cert.public_key(), default_backend())
+#                print (key)
 #                print (str(cert.public_key()))
+
                 Dict_Temp['Issuer'] = str(cert.issuer)[6:-2]
                 Dict_Temp['Subject'] = str(cert.subject)[6:-2]
                 Dict_Temp['Signature_Algorithm'] = str(cert.signature_algorithm_oid).split('name=')[1][:-2].upper()
