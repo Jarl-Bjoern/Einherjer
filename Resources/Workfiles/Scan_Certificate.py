@@ -19,6 +19,9 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
     if (url.count(':') > 1): Port = url.split(':')[2]
     else: Port = 443
 
+    if (Host_Name != ""): Dict_Temp['DNS'] = Host_Name
+    else: Dict_Temp['DNS'] = ""
+
     try:
         with create_connection((URL, int(Port)), timeout=t_seconds) as sock:
             with context.wrap_socket(sock, server_hostname=URL) as ssock:
@@ -35,24 +38,19 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
                 Dict_Temp['Signature_Algorithm'] = str(cert.signature_algorithm_oid).split('name=')[1][:-2].upper()
                 Dict_Temp['Cert_Creation_Date'] = str(cert.not_valid_before)
                 Dict_Temp['Cert_EOL'] = str(cert.not_valid_after)
+
+                # Cert_Expire_Filter
                 Date_Block = str(cert.not_valid_after).split(' ')[0].split('-')
                 Date_Difference = (Current_Date - datetime(int(Date_Block[0]), int(Date_Block[1]), int(Date_Block[2]))).days
                 if (Date_Difference < 0): Dict_Temp['Date_Difference'] = f'{str(Date_Difference)[1:]} days before expires'
                 else: Dict_Temp['Date_Difference'] = f'expired since {Date_Difference} days'
-                Dict_Temp['Current_Date'] = str(Current_Date).split('.')[0]
+
+        # Logging
         if (Host_Name != ""): Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'Certificate-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {html_decode(url)} - {Host_Name} - '+Colors.CYAN+'Certificate Information was succesfully recorded.\n\n')
         else: Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'Certificate-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {html_decode(url)} - '+Colors.CYAN+'Certificate Information was successfully recorded.\n\n')
-
-        if (Host_Name != ""): Dict_Temp['DNS'] = Host_Name
-        else: Dict_Temp['DNS'] = ""
-
-        #if (Dict_Temp['Issuer'] == ""): Dict_Temp['Issuer'] = "FEHLT"
-        #if (Dict_Temp['Subject'] == ""): Dict_Temp['Subject'] = "FEHLT"
-        #if (Dict_Temp['Signature_Algorithm'] == ""): Dict_Temp['Signature_Algorithm'] = "FEHLT"
-        #if (Dict_Temp['Cert_Creation_Date'] == ""): Dict_Temp['Cert_Creation_Date'] = "FEHLT"
-        #if (Dict_Temp['Cert_EOL'] == ""): Dict_Temp['Cert_EOL'] = "FEHLT"
-        #if (Dict_Temp['Date_Difference'] == ""): Dict_Temp['Date_Difference'] = "FEHLT"
-        #if (Dict_Temp['Current_Date'] == ""): Dict_Temp['Current_Date'] = "FEHLT"
     except (ConnectionRefusedError, gaierror, SSLError): Logs.Write_Log(html_decode(url), Host_Name)
+
+    # Add_Scan_Date
+    Dict_Temp['Current_Date'] = str(Current_Date).split('.')[0]
 
     return Dict_Temp
