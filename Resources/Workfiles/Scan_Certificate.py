@@ -33,13 +33,11 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
         with create_connection((Target, int(Port)), timeout=t_seconds) as sock:
             with context.wrap_socket(sock, server_hostname=Target) as ssock:
                 # Cert_Connect_And_Collect
-                cert_der = ssock.getpeercert(binary_form=True)
+                cert_der = ssock.getpeercert(binary_form=False)
                 cert = load_der_x509_certificate(cert_der, default_backend())
 
-                public_key = cert.get_pubkey()
-                rsa_key = public_key.get_rsa()
-                print (public_key)
-                print (rsa_key)
+                #public_key = cert.get_pubkey()
+                #rsa_key = public_key.get_rsa()
                 #cipher = rsa_key.public_encrypt('plaintext', RSA.pkcs1_padding)
 
                 # Get_Cert_Information
