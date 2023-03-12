@@ -19,19 +19,24 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
     if (url.count(':') > 1): Port = url.split(':')[2]
     else: Port = 443
 
+    # Get_Host_Name
+    if (Host_Name != ""): Dict_Temp['DNS'] = Host_Name
+    else: Dict_Temp['DNS'] = ""
+
     try:
         with create_connection((URL, int(Port)), timeout=t_seconds) as sock:
             with context.wrap_socket(sock, server_hostname=URL) as ssock:
+                # Cert_Connect_And_Collect
                 cert_der = ssock.getpeercert(True)
-                cert = load_der_x509_certificate(cert_der, default_backend())
-                #cert_key = X509.load_cert_string(cert_der, X509.FORMAT_DER)
 
-                if (Host_Name != ""): Dict_Temp['DNS'] = Host_Name
-                else: Dict_Temp['DNS'] = ""
+                print (type(cert_der))
+                cert = load_der_x509_certificate(cert_der, default_backend())
 
                 #public_key = cert_key.get_pubkey()
                 #rsa_key = public_key.get_rsa()
                 #cipher = rsa_key.public_encrypt('plaintext', RSA.pkcs1_padding)
+
+                # Get_Cert_Information
                 Current_Date = datetime.now()
                 Dict_Temp['Issuer'] = str(cert.issuer)
                 Dict_Temp['Subject'] = str(cert.subject)
