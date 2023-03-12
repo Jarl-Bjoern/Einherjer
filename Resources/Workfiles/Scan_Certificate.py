@@ -40,12 +40,9 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
                     cert_der = ssock.getpeercert(binary_form=False)
                     cert = load_der_x509_certificate(cert_der, default_backend())
 
-                #public_key = cert.get_pubkey()
-                #rsa_key = public_key.get_rsa()
-                #cipher = rsa_key.public_encrypt('plaintext', RSA.pkcs1_padding)
-
                 # Get_Cert_Information
                 Current_Date = datetime.now()
+                print str(cert.signature)
                 Dict_Temp['Issuer'] = str(cert.issuer)[6:-2]
                 Dict_Temp['Subject'] = str(cert.subject)[6:-2]
                 Dict_Temp['Signature_Algorithm'] = str(cert.signature_algorithm_oid).split('name=')[1][:-2].upper()
