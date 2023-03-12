@@ -26,6 +26,14 @@ def main(Date, Program_Mode, args, Array_Output = []):
                 Standard.Stdout_Output(Colors.ORANGE+"\n\n\t\t    It was not possible to use the current chromium and webdriver version.\n\n\t\t\t\t    Chromedriver Version: "+Colors.RED+f"{Chromedriver_Version}"+Colors.RESET, 0.01)
 
     def Brute_Force_Mode(Date, Output_location, args, Array_Output = []):
+        Dict_Switch = {
+            'brute_dns': False,
+            'brute_fuzzing': False,
+            'brute_screenshot_recursive': False,
+            'brute_snmp': False,
+            'brute_smtp': False
+        }
+
         #Standard.Initialien(args.debug)
         from Resources.Header_Files.ArgParser_Brute_Intro import Argument_Parser
         Argument_Parser("\n\n\t\t\tThis section is UNDER CONSTRUCTION!\n\n"), exit()
@@ -59,18 +67,18 @@ def main(Date, Program_Mode, args, Array_Output = []):
 
     def Scanning_Mode(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': {}, 'HTTP_Methods': {}, 'Information': {}, 'Security_Flag': {}, 'SSH': {}, 'SSL': {}}, Dict_Proxies = {'http': '', 'https': ''}, Dict_Auth = {'user': '', 'password': '', 'pkcs12_cert': '', 'pkcs12_password': ''}, Array_HTTP_Filter = [], Array_Thread_Args = [], Dict_Threads = {}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None):
         Dict_Switch = {
-            'scan_certificate': False,
-            'scan_dns': False,
-            'scan_fuzzing': False,
-            'scan_header': False,
-            'scan_http_methods': False,
-            'scan_security_flags': False,
-            'scan_screenshot': None,
+            'scan_certificate':          False,
+            'scan_dns':                  False,
+            'scan_fuzzing':              False,
+            'scan_header':               False,
+            'scan_http_methods':         False,
+            'scan_security_flags':       False,
+            'scan_screenshot':           None,
             'scan_screenshot_recursive': False,
-            'scan_snmp': False,
-            'scan_smtp': False,
-            'scan_ssh': False,
-            'scan_ssl': False
+            'scan_snmp':                 False,
+            'scan_smtp':                 False,
+            'scan_ssh':                  False,
+            'scan_ssl':                  False
         }
 
         # Target_Options
@@ -190,18 +198,18 @@ def main(Date, Program_Mode, args, Array_Output = []):
               args.scan_site_screenshot_recursive == False and
               args.scan_security_flags == False):
                     Dict_Switch = {
-                        'scan_certificate': True,
-                        'scan_dns': True,
-                        'scan_fuzzing': True,
-                        'scan_header': True,
-                        'scan_http_methods': True,
-                        'scan_security_flags': True,
-                        'scan_screenshot': driver_options,
-                        'scan_screenshot_recursive': True,
-                        'scan_snmp': True,
-                        'scan_smtp': True,
-                        'scan_ssh': True,
-                        'scan_ssl': True
+                        'scan_certificate':           True,
+                        'scan_dns':                   True,
+                        'scan_fuzzing':               True,
+                        'scan_header':                True,
+                        'scan_http_methods':          True,
+                        'scan_security_flags':        True,
+                        'scan_screenshot':            driver_options,
+                        'scan_screenshot_recursive':  True,
+                        'scan_snmp':                  True,
+                        'scan_smtp':                  True,
+                        'scan_ssh':                   True,
+                        'scan_ssl':                   True
                     }
         elif (args.scan_all == False):
             if (args.scan_site_certificate != False):           Dict_Switch['scan_certificate']          = True
