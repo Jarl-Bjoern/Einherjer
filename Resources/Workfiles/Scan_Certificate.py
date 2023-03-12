@@ -42,7 +42,7 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
 
                 # Get_Cert_Information
                 Current_Date = datetime.now()
-                print str(cert.signature)
+                print (str(cert.signature))
                 Dict_Temp['Issuer'] = str(cert.issuer)[6:-2]
                 Dict_Temp['Subject'] = str(cert.subject)[6:-2]
                 Dict_Temp['Signature_Algorithm'] = str(cert.signature_algorithm_oid).split('name=')[1][:-2].upper()
