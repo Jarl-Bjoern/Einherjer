@@ -32,12 +32,13 @@ def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Res
 """
 
     parser = ArgumentParser(add_help=False, formatter_class=RawTextHelpFormatter, description=Colors.ORANGE+Program_Description+Colors.RESET, allow_abbrev=False, usage=SUPPRESS)
-    auth_arguments    = parser.add_argument_group(Colors.ORANGE+'authentication arguments'+Colors.RESET)
-    brute_arguments   = parser.add_argument_group(Colors.ORANGE+'brute-force arguments'+Colors.RESET)
-    config_arguments  = parser.add_argument_group(Colors.ORANGE+'config arguments'+Colors.RESET)
-    debug_arguments   = parser.add_argument_group(Colors.ORANGE+'debug arguments'+Colors.RESET)
-    filter_arguments  = parser.add_argument_group(Colors.ORANGE+'format arguments'+Colors.RESET)
-    optional          = parser.add_argument_group(Colors.ORANGE+'optional arguments'+Colors.RESET)
+    auth_arguments        = parser.add_argument_group(Colors.ORANGE+'authentication arguments'+Colors.RESET)
+    brute_arguments       = parser.add_argument_group(Colors.ORANGE+'brute-force arguments'+Colors.RESET)
+    config_arguments      = parser.add_argument_group(Colors.ORANGE+'config arguments'+Colors.RESET)
+    debug_arguments       = parser.add_argument_group(Colors.ORANGE+'debug arguments'+Colors.RESET)
+    filter_arguments      = parser.add_argument_group(Colors.ORANGE+'format arguments'+Colors.RESET)
+    optional              = parser.add_argument_group(Colors.ORANGE+'optional arguments'+Colors.RESET)
+    performance_arguments = parser.add_argument_group(Colors.ORANGE+'performance arguments'+Colors.RESET)
 
     auth_arguments.add_argument('-aBaU', '--add-basic-authentication-user', type=str, help=Colors.GREEN+'This parameter defines the user for basic authentication.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     auth_arguments.add_argument('-aBaP', '--add-basic-authentication-password', type=str, help=Colors.GREEN+'This parameter defines the password for basic authentication.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
@@ -61,6 +62,16 @@ def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Res
     debug_arguments.add_argument('-d', '--debug', type=bool, nargs='?', default=False, help=Colors.GREEN+'This Parameter deactivates the terminal clearing after starting the tool.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     optional.add_argument('-h','--help', action='help', default=SUPPRESS, help=Colors.GREEN+'Show this help message and exit.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+
+    performance_arguments.add_argument('-aSt', '--async-ssl-timeout', type=int, default=15, help=Colors.GREEN+'Specify the connection timeout inside the ssl ciphers scan in seconds.\n\nDefault: 15 seconds'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    performance_arguments.add_argument('-fw', '--fuzzing-wait', type=int, default=0.85, help=Colors.GREEN+'This parameter specifies the default sleep between the fuzzing.\n\nDefault: 0.85 Seconds'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    performance_arguments.add_argument('-mx', '--max-connections', type=int, default=5, help=Colors.GREEN+'Defines the max connections for threads and processes.\n\nDefault: 5 Threads'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    performance_arguments.add_argument('-r', '--random-order', type=bool, nargs='?', default=False, help=Colors.GREEN+'This parameter randomize your targets.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    performance_arguments.add_argument('-s', '--sleep', type=float, default=360, help=Colors.GREEN+'Set the pauses between the scans to do not DDoS the target.\n\nDefault: 360 Seconds'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    performance_arguments.add_argument('-sw', '--screenshot-wait', type=int, default=10, help=Colors.GREEN+'This parameter specifies the default waiting time to connect to the target page.\n\nDefault: 10 Seconds'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    performance_arguments.add_argument('-tHo', '--thread-timeout', type=int, default=3600, help=Colors.GREEN+'This parameter sets the max time to wait until a thread will be terminated.\n\nDefault: 90 Seconds'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    performance_arguments.add_argument('-to', '--timeout', type=int, default=30, help=Colors.GREEN+'Specify the connection http timeout in seconds.\n\nDefault: 30 seconds'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    performance_arguments.add_argument('-ww', '--webdriver-wait', type=int, default=15, help=Colors.GREEN+'This parameter specifies the default waiting time between the screenshots.\n\nDefault: 15 Seconds'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     del ArgumentParser, RawTextHelpFormatter, SUPPRESS
     return parser.parse_args()
