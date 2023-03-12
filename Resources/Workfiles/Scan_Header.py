@@ -7,9 +7,13 @@ from ..Header_Files.Variables import *
 from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 
-def Check_Site_Header(url, t_seconds, Host_Name, Dict_Temp_Header = {}, Dict_Temp_Information_Disclosure = {}):
+def Check_Site_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Temp_Header = {}, Dict_Temp_Information_Disclosure = {}):
     try:
-        r = get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
+        if (Dict_Proxies['http'] != '' or Dict_Proxies['https'] != ''):
+            r = get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True, proxies=Dict_Proxies)
+        else:
+            r = get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
+
         if (Host_Name != ""): Dict_Temp_Header['DNS'], Dict_Temp_Information_Disclosure['DNS'] = Host_Name, Host_Name
         else: Dict_Temp_Header['DNS'], Dict_Temp_Information_Disclosure['DNS'] = "",""
 
