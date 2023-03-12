@@ -46,6 +46,7 @@ try:
     from urllib3.exceptions import *
     from urllib.parse import quote_plus as html_encode, unquote_plus as html_decode
     from warnings import catch_warnings, simplefilter
+    from zipfile import ZipFile
     import stat
     with catch_warnings():
         simplefilter("ignore")
