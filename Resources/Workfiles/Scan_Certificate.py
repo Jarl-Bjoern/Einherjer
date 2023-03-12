@@ -34,7 +34,11 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
             with context.wrap_socket(sock, server_hostname=Target) as ssock:
                 # Cert_Connect_And_Collect
                 cert_der = ssock.getpeercert(binary_form=False)
-                cert = load_der_x509_certificate(cert_der, default_backend())
+                try:
+                    cert = load_der_x509_certificate(cert_der, default_backend())
+                except TypeError:
+                    cert_der = ssock.getpeercert(binary_form=True)
+                    cert = load_der_x509_certificate(cert_der, default_backend())
 
                 #public_key = cert.get_pubkey()
                 #rsa_key = public_key.get_rsa()
