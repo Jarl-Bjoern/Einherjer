@@ -112,8 +112,13 @@ def main(Date, Program_Mode, args, Array_Output = []):
                         if (word not in Array_Wordlists):
                             Array_Wordlists.append(word)
 
+        # Proxy_Settings
+        if (args.add_http_proxy != None):                    Dict_Proxies['http']         = args.add_http_proxy
+        if (args.add_https_proxy != None):                   Dict_Proxies['https']        = args.add_https_proxy
+
         # Webdriver_Options
         if (args.scan_site_screenshot != False):
+            # Pre_Settings
             Array_Selenium = [
                 '--start_maximized',
                 '--no-sandbox',
@@ -125,24 +130,32 @@ def main(Date, Program_Mode, args, Array_Output = []):
                 '--enable-javascript'
             ]
 
+            # Debugging_Options
             if (args.debug != True): Array_Selenium.append('--headless')
 
+            # Internet_Connection
             if ("ttl" in getoutput('ping -c 2 8.8.8.8')):
                 Switch_Internet_Connection = True
+
+            # Driver_Settings
             driver_options = Options()
-            for _ in Array_Selenium: driver_options.add_argument(_)
+            for _ in Array_Selenium:                driver_options.add_argument(_)
+            if (Dict_Proxies['http'] != ''):        driver_options.add_argument(f'--proxy-server=http://{Dict_Proxies["http"]}')
+            if (Dict_Proxies['https'] != ''):       driver_options..add_argument(f'--proxy-server=https://{Dict_Proxies["https"]}')
+
+            # Custom_Chromium
             if (args.custom_chromium_path != None): driver_options.binary_location = args.custom_chromium_path
             else:
                 if (osname != 'nt'): driver_options.binary_location = "/usr/bin/chromium"
+
+            # Chromedriver_Settings
             if (osname == 'nt'): environ["CHROME_DRIVER_PATH"] = join(dirname(realpath(__file__)), "Webdriver/chromedriver.exe")
             else: environ["CHROME_DRIVER_PATH"] = join(dirname(realpath(__file__)), "Webdriver/chromedriver")
+
+            # Screenshot_Path
             Screen_Dir = join(Location, 'Screenshots')
             try: makedirs(Screen_Dir)
             except FileExistsError: pass
-
-        # Proxy_Settings
-        if (args.add_http_proxy != None):                    Dict_Proxies['http']         = args.add_http_proxy
-        if (args.add_https_proxy != None):                   Dict_Proxies['https']        = args.add_https_proxy
 
         # Auth_Settings
         if (args.add_basic_authentication_user != None):     Dict_Auth['user']            = args.add_basic_authentication_user
