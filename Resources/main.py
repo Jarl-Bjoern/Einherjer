@@ -188,15 +188,15 @@ def main(Date, Program_Mode, args, Array_Output = []):
                         'scan_ssl': True
                     }
         elif (args.scan_all == False):
-            if (args.scan_site_certificate != False):           Dict_Switch['scan_certificate'] = True
-            if (args.scan_site_fuzzing != False):               Dict_Switch['scan_fuzzing'] = True
-            if (args.scan_site_header != False):                Dict_Switch['scan_header'] = True
-            if (args.scan_site_http_methods != False):          Dict_Switch['scan_http_methods'] = True
-            if (args.scan_security_flags != False):             Dict_Switch['scan_security_flags'] = True
-            if (args.scan_site_screenshot != False):            Dict_Switch['scan_screenshot'] = driver_options
+            if (args.scan_site_certificate != False):           Dict_Switch['scan_certificate']          = True
+            if (args.scan_site_fuzzing != False):               Dict_Switch['scan_fuzzing']              = True
+            if (args.scan_site_header != False):                Dict_Switch['scan_header']               = True
+            if (args.scan_site_http_methods != False):          Dict_Switch['scan_http_methods']         = True
+            if (args.scan_security_flags != False):             Dict_Switch['scan_security_flags']       = True
+            if (args.scan_site_screenshot != False):            Dict_Switch['scan_screenshot']           = driver_options
             if (args.scan_site_screenshot_recursive != False):  Dict_Switch['scan_screenshot_recursive'] = True
-            if (args.scan_ssh != False):                        Dict_Switch['scan_ssh'] = True
-            if (args.scan_site_ssl != False):                   Dict_Switch['scan_ssl'] = True
+            if (args.scan_ssh != False):                        Dict_Switch['scan_ssh']                  = True
+            if (args.scan_site_ssl != False):                   Dict_Switch['scan_ssl']                  = True
 
         # Program_Start
         Standard.Initialien(args.debug)
