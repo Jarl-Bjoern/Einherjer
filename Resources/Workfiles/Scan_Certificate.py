@@ -46,13 +46,13 @@ def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_con
         if (Host_Name != ""): Dict_Temp['DNS'] = Host_Name
         else: Dict_Temp['DNS'] = ""
 
-        if (Dict_Temp['Issuer'] == ""): Dict_Temp['Issuer'] = "FEHLT"
-        if (Dict_Temp['Subject'] == ""): Dict_Temp['Subject'] = "FEHLT"
-        if (Dict_Temp['Signature_Algorithm'] == ""): Dict_Temp['Signature_Algorithm'] = "FEHLT"
-        if (Dict_Temp['Cert_Creation_Date'] == ""): Dict_Temp['Cert_Creation_Date'] = "FEHLT"
-        if (Dict_Temp['Cert_EOL'] == ""): Dict_Temp['Cert_EOL'] = "FEHLT"
-        if (Dict_Temp['Date_Difference'] == ""): Dict_Temp['Date_Difference'] = "FEHLT"
-        if (Dict_Temp['Current_Date'] == ""): Dict_Temp['Current_Date'] = "FEHLT"
+        #if (Dict_Temp['Issuer'] == ""): Dict_Temp['Issuer'] = "FEHLT"
+        #if (Dict_Temp['Subject'] == ""): Dict_Temp['Subject'] = "FEHLT"
+        #if (Dict_Temp['Signature_Algorithm'] == ""): Dict_Temp['Signature_Algorithm'] = "FEHLT"
+        #if (Dict_Temp['Cert_Creation_Date'] == ""): Dict_Temp['Cert_Creation_Date'] = "FEHLT"
+        #if (Dict_Temp['Cert_EOL'] == ""): Dict_Temp['Cert_EOL'] = "FEHLT"
+        #if (Dict_Temp['Date_Difference'] == ""): Dict_Temp['Date_Difference'] = "FEHLT"
+        #if (Dict_Temp['Current_Date'] == ""): Dict_Temp['Current_Date'] = "FEHLT"
     except (ConnectionRefusedError, gaierror, SSLError): Logs.Write_Log(html_decode(url), Host_Name)
 
     return Dict_Temp
