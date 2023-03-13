@@ -10,7 +10,6 @@ from ..Standard_Operations.Colors import Colors
 def Check_Certificate(url, t_seconds, Host_Name, context = create_unverified_context(), Dict_Temp = {}):
     if ('https://' in url): URL = url.split('https://')[1]
     elif ('ssl://' in url): URL = url.split('ssl://')[1]
-    else: URL = url
 
     # Remove_Directories
     if ('/' in URL):
