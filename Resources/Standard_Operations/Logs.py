@@ -13,9 +13,9 @@ class Logs:
     def Write_Log(url, host, Log_Path = dirname(realpath(__file__)).replace('Resources/Standard_Operations', 'Logs')):
         if (not exists(Log_Path)): makedirs(Log_Path)
         with open(join(Log_Path, f'{Date}_failed-url.txt'), 'a') as f:
-            f.write(f'{html_decode(url)}\n')
-        if (host != ""): Logs.Log_File(Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {html_decode(url)} - '+Colors.RED+'FAILED\n'+Colors.RESET)
-        else: Logs.Log_File(Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {html_decode(url)} - '+Colors.RED+'FAILED\n'+Colors.RESET)
+            f.write(f'{url}\n')
+        if (host != ""): Logs.Log_File(Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - '+Colors.RED+'FAILED\n'+Colors.RESET)
+        else: Logs.Log_File(Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - '+Colors.RED+'FAILED\n'+Colors.RESET)
 
     def Log_File(Text, Log_Path = dirname(realpath(__file__)).replace('Resources/Standard_Operations', 'Logs')):
         if (not exists(Log_Path)): makedirs(Log_Path)
