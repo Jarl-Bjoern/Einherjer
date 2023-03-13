@@ -8,20 +8,44 @@ from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 
 def SSL_Vulns(url, ssl_timeout, Host_Name, Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEARTBLEED': "", 'CCS_INJECTION': "", 'ROBOT': "", 'CLIENT_RENEGOTIATION_DOS': "", 'SWEET32': "", 'LUCKY13': "", 'FALLBACK_SCSV': ""}, Array_Result_Filter = ['http_headers', 'certificate_info','rejected_cipher_suites','rejected_curves'], Start_Scan = datetime.now(), Temp = ""):
+    # Variables
     TLS_Version, Supported_Version, Array_SSL_Targets = "","", []
-    Dict_Ciphers, Dict_Temp_Ciphers, Dict_Full_SSL = {'Protocol': "", 'Ciphers': []}, {'Anonymous': "", 'Key_Size': "", 'Name': "", 'Curve_Name': "", 'Type': "", 'Curve_Size': ""}, {'DNS': "", 'Ciphers': [], 'SSL_Vulns': {}, 'Curves': []}
 
+    # Dictionaries
+    Dict_Ciphers = {
+        'Protocol': "",
+        'Ciphers': []
+    }
+    Dict_Temp_Ciphers =  {
+        'Anonymous': "",
+        'Key_Size': "",
+        'Name': "",
+        'Curve_Name': "",
+        'Type': "",
+        'Curve_Size': ""
+    }
+    Dict_Full_SSL = {
+        'DNS': "",
+        'Ciphers': [],
+        'SSL_Vulns': {},
+        'Curves': []
+    }
+
+    # Get_Host_Name
     if (Host_Name != ""): Dict_Full_SSL['DNS'] = Host_Name
     else: Dict_Full_SSL['DNS'] = ""
 
+    # Target_Filter
     if ('ssl://' in url): URL = url.split('ssl://')[1]
     elif ('https://' in url): URL = url.split('https://')[1]
 
+    # Port_Filter
     if (url.count(':') > 1):
         Temp, Port = URL.split(':')
         URL = Temp
     else: Port = 443
 
+    # Scanning_Process
     try:
         scanner = Scanner()
         scanner.queue_scans([ServerScanRequest(server_location=ServerNetworkLocation(hostname=URL, ip_address=URL, port=Port), network_configuration=ServerNetworkConfiguration(URL, network_timeout=ssl_timeout, network_max_retries=3))])
