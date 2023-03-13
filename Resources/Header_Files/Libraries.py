@@ -25,6 +25,7 @@ try:
     from aiohttp.client_exceptions import *
     from contextlib import redirect_stdout
     from datetime import datetime
+    from getpass import getpass
     from http.client import RemoteDisconnected
     from multiprocessing import active_children, Process, Queue
     from numpy import array
