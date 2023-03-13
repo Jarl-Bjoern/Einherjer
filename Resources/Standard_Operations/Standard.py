@@ -65,8 +65,7 @@ class Standard:
     
     def Read_Targets_v4(file_path, Array_Out = []):
         for Target in Standard.Read_File(file_path):
-            if (Target.count('/') > 1):
-                print (Target)
+            if (Target.count('/') > 2):
                 Counter, Position = 0, ''
                 for _ in range(0, len(Target)):
                     if (Counter != 3):
@@ -76,7 +75,6 @@ class Standard:
                     else: break
                 Array_Out.append(f'{Target[:Position]}/{html_encode(Target[Position+1:])}')
             else: Array_Out.append(Target)
-        print (Array_Out)
         return Array_Out
 
     def Try_Remove_File(x):
