@@ -65,6 +65,7 @@ class Standard:
     
     def Read_Targets_v4(file_path, Array_Out = []):
         for Target in Standard.Read_File(file_path):
+            print (Target)
             if (Target.count('/') > 2):
                 print (Target)
                 Counter, Position = 0, ''
