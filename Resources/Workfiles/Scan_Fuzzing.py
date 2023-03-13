@@ -13,10 +13,10 @@ def Check_Site_Paths(url, t_seconds, array_wordlists, Dict_Result = {"200": [], 
         async with ClientSession(connector=Limit, trust_env=True) as s:
             for Word in array(array_wordlists):
                 URL = f'{url}/{Word}'
-                async with s.get(url, ssl=False) as r:
+                async with s.get(html_encode(URL), ssl=False) as r:
                     if (str(r.status) in Array_Status_Code):
                         if (URL not in Array_Temp):
-                            Array_Temp.append(URL)
+                            Array_Temp.append(html_encode(URL))
                             Dict_Result[str(r.status)].append(URL)
                     await asyncio.sleep(t_seconds)
 
