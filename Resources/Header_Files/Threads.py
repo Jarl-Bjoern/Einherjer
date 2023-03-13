@@ -59,11 +59,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
         # SSH
         if (dict_switch['scan_ssh'] != False and 'ssh://' in url):
-            try:
-                if (':' not in url): Dict_Result['SSH'][url] = SSH_Vulns((url, 22))
-                else:
-                    Target = url.split(':')
-                    Dict_Result['SSH'][url] = SSH_Vulns((Target[0]), int(Target[1]))
+            try: Dict_Result['SSH'][url] = SSH_Vulns(url)
             except SSHException: Logs.Write_Log(url, Host_Name)
 
         # SSL
