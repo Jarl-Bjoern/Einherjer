@@ -14,7 +14,7 @@ def SSL_Vulns(url, ssl_timeout, Host_Name, Dict_SSL_Vulns = {'CRIME': "", 'LOGJA
     if (Host_Name != ""): Dict_Full_SSL['DNS'] = Host_Name
     else: Dict_Full_SSL['DNS'] = ""
 
-    if ('http://' in url): URL = url.split('http://')[1]
+    if ('ssl://' in url): URL = url.split('ssl://')[1]
     elif ('https://' in url): URL = url.split('https://')[1]
 
     if (url.count(':') > 1):
