@@ -26,19 +26,19 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
         # Certificates
         if (dict_switch['scan_certificate'] != False and ('https://' in url or 'ssl://' in url)):
-            Dict_Result['Certificate'][html_decode(url)] = Check_Certificate(url, t_seconds, Host_Name)
+            Dict_Result['Certificate'][url] = Check_Certificate(url, t_seconds, Host_Name)
 
         # Fuzzing
         if (dict_switch['scan_fuzzing'] != False and '//' in url and 'http' in url):
-            Dict_Result['Fuzzing'][html_decode(url)] = Check_Site_Paths(url, t_seconds)
+            Dict_Result['Fuzzing'][url] = Check_Site_Paths(url, t_seconds)
 
         # Header
         if (dict_switch['scan_header'] != False and '//' in url and 'http' in url):
-            Dict_Result['Header'][html_decode(url)], Dict_Result['Information'][html_decode(url)] = Check_Site_Header(url, t_seconds, Host_Name, dict_proxies, dict_auth)
+            Dict_Result['Header'][url], Dict_Result['Information'][html_decode(url)] = Check_Site_Header(url, t_seconds, Host_Name, dict_proxies, dict_auth)
 
         # HTTP_Methods
         if (dict_switch['scan_http_methods'] != False and '//' in url and 'http' in url):
-            Dict_Result['HTTP_Methods'][html_decode(url)] = Check_HTTP_Methods(url, Host_Name, dict_proxies, dict_auth)
+            Dict_Result['HTTP_Methods'][url] = Check_HTTP_Methods(url, Host_Name, dict_proxies, dict_auth)
 
         # Recursive_Fuzzing_And_Screenshot
         if (dict_switch['scan_screenshot_recursive'] != False and '//' in url and 'http' in url):
@@ -50,26 +50,26 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
         # Security_Flags
         if (dict_switch['scan_security_flags'] != False and '//' in url and 'http' in url):
-            Dict_Result['Security_Flag'][html_decode(url)] = Check_Security_Flags(url, t_seconds, Host_Name, dict_proxies, dict_auth)
+            Dict_Result['Security_Flag'][url] = Check_Security_Flags(url, t_seconds, Host_Name, dict_proxies, dict_auth)
 
         # SMTP
         if (dict_switch['scan_smtp'] != False and 'smtp://' in url):
             pass
-            #Dict_Result['SMTP'][html_decode(url)] = Check_SMTP.(url, t_seconds, Host_Name)
+            #Dict_Result['SMTP'][url] = Check_SMTP.(url, t_seconds, Host_Name)
 
         # SSH
         if (dict_switch['scan_ssh'] != False and 'ssh://' in url):
             try:
-                if (':' not in url): Dict_Result['SSH'][html_decode(url)] = SSH_Vulns((url, 22))
+                if (':' not in url): Dict_Result['SSH'][url] = SSH_Vulns((url, 22))
                 else:
                     Target = url.split(':')
-                    Dict_Result['SSH'][html_decode(url)] = SSH_Vulns((Target[0]), int(Target[1]))
-            except SSHException: Logs.Write_Log(html_decode(url), Host_Name)
+                    Dict_Result['SSH'][url] = SSH_Vulns((Target[0]), int(Target[1]))
+            except SSHException: Logs.Write_Log(url, Host_Name)
 
         # SSL
         if (dict_switch['scan_ssl'] != False and ('https://' in url or 'ssl://' in url)):
-            Dict_Result['SSL'][html_decode(url)] = SSL_Vulns(url, ssl_timeout, Host_Name)
+            Dict_Result['SSL'][url] = SSL_Vulns(url, ssl_timeout, Host_Name)
 
-    except (ConnectionError, gaierror, WebDriverException, RequestException): Logs.Write_Log(html_decode(url), Host_Name)
+    except (ConnectionError, gaierror, WebDriverException, RequestException): Logs.Write_Log(url, Host_Name)
     finally:
         queue.put(Dict_Result)
