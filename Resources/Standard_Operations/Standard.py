@@ -73,7 +73,7 @@ class Standard:
                             Position = _
                             Counter += 1
                     else: break
-                Array_Out.append(f'{Target[:Position]}/{html_encode(Target[Position+1:])}')
+                Array_Out.append(f'{Target[:Position]}/{Target[Position+1:]}')
             else: Array_Out.append(Target)
         return Array_Out
 
