@@ -79,6 +79,12 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Result_Filter = ['http_heade
         scanner.queue_scans(Array_Attack)
 
         for server_scan_result in scanner.get_results():
+            if (server_scan_result.scan_status == ServerScanStatusEnum.ERROR_NO_CONNECTIVITY):
+                print(
+                    f"\nError: Could not connect to {server_scan_result.server_location.hostname}:"
+                    f" {server_scan_result.connectivity_error_trace}"
+                )
+
             json_output = SslyzeOutputAsJson(
                 server_scan_results=[
                     ServerScanResultAsJson.from_orm(server_scan_result)
