@@ -56,7 +56,20 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Result_Filter = ['http_heade
         else: Port = 443
 
         try:
-            Array_Attack.append(ServerScanRequest(server_location=ServerNetworkLocation(hostname=URL, ip_address=URL, port=Port), network_configuration=ServerNetworkConfiguration(URL, network_timeout=ssl_timeout, network_max_retries=3)))
+            Array_Attack.append(
+                ServerScanRequest(
+                    server_location=ServerNetworkLocation(
+                        hostname=URL,
+                        ip_address=URL,
+                        port=Port
+                    ), 
+                    network_configuration=ServerNetworkConfiguration(
+                        URL,
+                        network_timeout=ssl_timeout,
+                        network_max_retries=3
+                    )
+                )
+            )
         except (ConnectionResetError, ServerHostnameCouldNotBeResolved):
             Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'SSL-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n')
 
