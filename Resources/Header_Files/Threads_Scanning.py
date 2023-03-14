@@ -14,7 +14,6 @@ from ..Workfiles.Scan_Host_Name import Get_Host_Name
 from ..Workfiles.Scan_HTTP_Methods import Check_HTTP_Methods
 from ..Workfiles.Scan_Screen import Take_Screenshot
 from ..Workfiles.Scan_SMTP import Check_SMTP
-from ..Workfiles.Scan_SSL import SSL_Vulns
 
 # Functions
 def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch_internet_connection, screenshot_wait, webdriver_timeout, ssl_timeout, dict_proxies, dict_auth, Host_Name = ""):
@@ -61,10 +60,6 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         if (dict_switch['scan_ssh'] != False and 'ssh://' in url):
             try: Dict_Result['SSH'][url] = SSH_Vulns(url)
             except SSHException: Logs.Write_Log(url, Host_Name)
-
-        # SSL
-        if (dict_switch['scan_ssl'] != False and ('https://' in url or 'ssl://' in url)):
-            Dict_Result['SSL'][url] = SSL_Vulns(url, ssl_timeout, Host_Name)
 
     except (ConnectionError, gaierror, WebDriverException, RequestException): Logs.Write_Log(url, Host_Name)
     finally:
