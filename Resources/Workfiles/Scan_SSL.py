@@ -58,9 +58,10 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Attack = [], Dict_SSL_Vulns 
             json_output = SslyzeOutputAsJson(server_scan_results=[ServerScanResultAsJson.from_orm(server_scan_result)],date_scans_started=Start_Scan,date_scans_completed=datetime.now())
             temp_json_output = json_output.json(sort_keys=True, indent=4, ensure_ascii=True)
 
+        print(json_loads(temp_json_output))
         for _ in json_loads(temp_json_output)['server_scan_results']:
             Scan_Result = _['scan_result']
-            print (_['network_configuration']['tls_server_name_indication'])
+            #print (_['network_configuration']['tls_server_name_indication'])
             if (Scan_Result != None):
                 for i in Scan_Result:
                     if (i not in Array_Result_Filter):
