@@ -60,6 +60,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Dict_SSL_Vulns = {'CRIME': "", 'LO
 
         for _ in json_loads(temp_json_output)['server_scan_results']:
             Scan_Result = _['scan_result']
+            print (Scan_Result)
             if (Scan_Result != None):
                 for i in Scan_Result:
                     if (i not in Array_Result_Filter):
