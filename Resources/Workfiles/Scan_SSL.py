@@ -8,9 +8,9 @@ from ..Workfiles.Scan_Host_Name import Get_Host_Name
 from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 
-def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Attack = [], Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEARTBLEED': "", 'CCS_INJECTION': "", 'ROBOT': "", 'CLIENT_RENEGOTIATION_DOS': "", 'SWEET32': "", 'LUCKY13': "", 'FALLBACK_SCSV': ""}, Array_Result_Filter = ['http_headers', 'certificate_info','rejected_cipher_suites','rejected_curves'], Start_Scan = datetime.now(), Temp = ""):
+def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Result_Filter = ['http_headers', 'certificate_info','rejected_cipher_suites','rejected_curves'], Start_Scan = datetime.now(), Temp = ""):
     # Variables
-    TLS_Version, Supported_Version, Array_SSL_Targets = "","", []
+    TLS_Version, Supported_Version, Array_Attack = "","",[]
 
     # Dictionaries
     Dict_Ciphers = {
@@ -31,11 +31,20 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Attack = [], Dict_SSL_Vulns 
         'SSL_Vulns': {},
         'Curves': []
     }
+    Dict_SSL_Vulns = {
+        'CRIME': "",
+        'LOGJAM': "",
+        'HEARTBLEED': "",
+        'CCS_INJECTION': "",
+        'ROBOT': "",
+        'CLIENT_RENEGOTIATION_DOS': "",
+        'SWEET32': "",
+        'LUCKY13': "",
+        'FALLBACK_SCSV': ""
+    }
 
+    # Target_Preparation
     for url in array_ssl_targets:
-        # Get_Host_Name
-        Dict_Full_SSL['DNS'] = Get_Host_Name(url)
-
         # Target_Filter
         if ('ssl://' in url): URL = url.split('ssl://')[1]
         elif ('https://' in url): URL = url.split('https://')[1]
@@ -46,7 +55,6 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Attack = [], Dict_SSL_Vulns 
             URL = Temp
         else: Port = 443
 
-        # Prepare_Targets
         try:
             Array_Attack.append(ServerScanRequest(server_location=ServerNetworkLocation(hostname=URL, ip_address=URL, port=Port), network_configuration=ServerNetworkConfiguration(URL, network_timeout=ssl_timeout, network_max_retries=3)))
         except (ConnectionResetError, ServerHostnameCouldNotBeResolved):
