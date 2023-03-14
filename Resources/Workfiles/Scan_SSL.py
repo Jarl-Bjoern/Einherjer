@@ -10,40 +10,7 @@ from ..Standard_Operations.Colors import Colors
 
 def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Result_Filter = ['http_headers', 'certificate_info','rejected_cipher_suites','rejected_curves'], Start_Scan = datetime.now(), Temp = ""):
     # Variables
-    TLS_Version, Supported_Version, Array_Attack = "","",[]
-
-    # Dictionaries
-    Dict_Full_Output = {}
-
-    Dict_Ciphers = {
-        'Protocol': "",
-        'Ciphers':  []
-    }
-    Dict_Temp_Ciphers =  {
-        'Anonymous':  "",
-        'Key_Size':   "",
-        'Name':       "",
-        'Curve_Name': "",
-        'Type':       "",
-        'Curve_Size': ""
-    }
-    Dict_Full_SSL = {
-        'DNS':       "",
-        'Ciphers':   [],
-        'SSL_Vulns': {},
-        'Curves':    []
-    }
-    Dict_SSL_Vulns = {
-        'CRIME':                    "",
-        'LOGJAM':                   "",
-        'HEARTBLEED':               "",
-        'CCS_INJECTION':            "",
-        'ROBOT':                    "",
-        'CLIENT_RENEGOTIATION_DOS': "",
-        'SWEET32':                  "",
-        'LUCKY13':                  "",
-        'FALLBACK_SCSV':            ""
-    }
+    TLS_Version, Supported_Version, Array_Attack, Dict_Full_Output = "","",[],{}
 
     # Target_Preparation
     for url in array_ssl_targets:
@@ -89,6 +56,37 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Result_Filter = ['http_heade
         scanner.queue_scans(Array_Attack)
 
         for server_scan_result in scanner.get_results():
+            # Dictionaries
+            Dict_Ciphers = {
+                'Protocol': "",
+                'Ciphers':  []
+            }
+            Dict_Temp_Ciphers =  {
+                'Anonymous':  "",
+                'Key_Size':   "",
+                'Name':       "",
+                'Curve_Name': "",
+                'Type':       "",
+                'Curve_Size': ""
+            }
+            Dict_Full_SSL = {
+                'DNS':       "",
+                'Ciphers':   [],
+                'SSL_Vulns': {},
+                'Curves':    []
+            }
+            Dict_SSL_Vulns = {
+                'CRIME':                    "",
+                'LOGJAM':                   "",
+                'HEARTBLEED':               "",
+                'CCS_INJECTION':            "",
+                'ROBOT':                    "",
+                'CLIENT_RENEGOTIATION_DOS': "",
+                'SWEET32':                  "",
+                'LUCKY13':                  "",
+                'FALLBACK_SCSV':            ""
+            }
+
             if (server_scan_result.scan_status == ServerScanStatusEnum.ERROR_NO_CONNECTIVITY):
                 Logs.Log_File(
                     Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
