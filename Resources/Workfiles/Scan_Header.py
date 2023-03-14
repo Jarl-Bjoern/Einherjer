@@ -75,11 +75,14 @@ def Check_Site_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Dict_T
 
         # Scanning_Process
         for Header in r.headers.items():
-            if (Header[0].upper() in Array_Header): Dict_Temp_Header[Header[0].upper()] = Header[1].upper()
-            elif (Header[0].upper() in Array_Information_Disclosure_Header): Dict_Temp_Information_Disclosure[Header[0].upper()] = Header[1]
+            if (Header[0].upper() in Array_Header):
+                Dict_Temp_Header[Header[0].upper()] = Header[1].upper()
+            elif (Header[0].upper() in Array_Information_Disclosure_Header):
+                Dict_Temp_Information_Disclosure[Header[0].upper()] = Header[1]
             else:
                 for Temp_Header in array(Array_Header):
-                    if (Temp_Header not in Dict_Temp_Header): Dict_Temp_Header[Temp_Header] = "FEHLT"
+                    if (Temp_Header not in Dict_Temp_Header):
+                        Dict_Temp_Header[Temp_Header] = "FEHLT"
 
         # Logging
         if (Host_Name != ""):
