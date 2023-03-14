@@ -8,7 +8,7 @@ from ..Standard_Operations.Logs import *
 from ..Workfiles.Scan_SSL import SSL_Vulns
 
 # Functions
-def Thread_Scanning_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict_proxies, dict_auth, Target = ""):
+def Thread_Scanning_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict_proxies, dict_auth):
     try:
         Dict_Result = queue.get()
 
