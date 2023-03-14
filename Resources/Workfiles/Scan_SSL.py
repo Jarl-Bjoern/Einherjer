@@ -13,6 +13,8 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Result_Filter = ['http_heade
     TLS_Version, Supported_Version, Array_Attack = "","",[]
 
     # Dictionaries
+    Dict_Full_Output = {}
+
     Dict_Ciphers = {
         'Protocol': "",
         'Ciphers':  []
@@ -105,7 +107,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Result_Filter = ['http_heade
                 temp_json_output = json_output.json(sort_keys=True, indent=4, ensure_ascii=True)
 
                 for _ in json_loads(temp_json_output)['server_scan_results']:
-                    Dict_SSL_Vulns['Target'] = f"{_['server_location']['ip_address']}:{_['server_location']['port']}"
+                    Dict_Full_Output[f"{_['server_location']['ip_address']}:{_['server_location']['port']}"] = {}
                     Scan_Result = _['scan_result']
                     if (Scan_Result != None):
                         for i in Scan_Result:
@@ -187,6 +189,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Result_Filter = ['http_heade
                                     )
 
                         Dict_Full_SSL['SSL_Vulns'] = Dict_SSL_Vulns
+                        Dict_Full_Output[f"{_['server_location']['ip_address']}:{_['server_location']['port']}"] = Dict_Full_SSL
 
                         Logs.Log_File(
                             Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
@@ -206,4 +209,4 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Result_Filter = ['http_heade
             +f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the target\n'
         )
 
-    return Dict_Full_SSL
+    return Dict_Full_Output
