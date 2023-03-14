@@ -75,11 +75,17 @@ class Standard:
                     else: break
                 if ('ssl://' in Target):
                     Array_SSL_Out.append(f'{Target[:Position]}/{Target[Position+1:]}')
+                elif ('https://' in Target):
+                    Array_SSL_Out.append(f'{Target[:Position]}/{Target[Position+1:]}')
+                    Array_Out.append(f'{Target[:Position]}/{Target[Position+1:]}')
                 else:
                     Array_Out.append(f'{Target[:Position]}/{Target[Position+1:]}')
             else:
                 if ('ssl://' in Target):
                     Array_SSL_Out.append(Target)
+                elif ('https://' in Target):
+                    Array_SSL_Out.append(Target)
+                    Array_Out.append(Target)
                 else:
                     Array_Out.append(Target)
         return Array_Out, Array_SSL_Out
