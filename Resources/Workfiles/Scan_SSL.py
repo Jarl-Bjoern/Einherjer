@@ -71,7 +71,12 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Result_Filter = ['http_heade
                 )
             )
         except (ConnectionResetError, ServerHostnameCouldNotBeResolved):
-            Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'SSL-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n')
+            Logs.Log_File(
+                Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                +Colors.BLUE+'SSL-Check\n'
+                +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                +f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n'
+            )
 
     # Scanning_Process
     try:
@@ -162,11 +167,37 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Result_Filter = ['http_heade
                     Dict_SSL_Vulns['Target'], Dict_Full_SSL['DNS'] = f"{_['server_location']['ip_address']}:{_['server_location']['port']}"
                     Dict_Full_SSL['SSL_Vulns'] = Dict_SSL_Vulns
 
-                    if (Host_Name != ""): Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'SSL-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {_["server_location"]["ip_address"]}:{_["server_location"]["port"]} - {Host_Name}'+Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'+Colors.ORANGE+'\nEinherjer Output'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Full_SSL}'+Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------\n\n'+Colors.RESET)
-                    else: Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'SSL-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {_["server_location"]["ip_address"]}:{_["server_location"]["port"]}'+Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'+Colors.ORANGE+'\nEinherjer Output'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Full_SSL}'+Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------\n\n'+Colors.RESET)
+                    if (Host_Name != ""):
+                        Logs.Log_File(
+                            Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                            +Colors.BLUE+'SSL-Check\n'
+                            +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                            +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'
+                            +Colors.RESET+f' - {_["server_location"]["ip_address"]}:{_["server_location"]["port"]} - {Host_Name}'
+                            +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
+                            +Colors.ORANGE+'\nEinherjer Output'
+                            +Colors.RED+' -> '+Colors.RESET+f'{Dict_Full_SSL}'+Colors.BLUE
+                            +'\n-----------------------------------------------------------------------------------------------------------\n\n'+Colors.RESET
+                        )
+                    else:
+                        Logs.Log_File(
+                            Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                            +Colors.BLUE+'SSL-Check\n'
+                            +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                            +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {_["server_location"]["ip_address"]}:{_["server_location"]["port"]}'
+                            +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
+                            +Colors.ORANGE+'\nEinherjer Output'
+                            +Colors.RED+' -> '+Colors.RESET+f'{Dict_Full_SSL}'+Colors.BLUE
+                            +'\n-----------------------------------------------------------------------------------------------------------\n\n'+Colors.RESET
+                        )
                 #else:
             #    Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'SSL-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n')
     except (ConnectionResetError):
-        Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'SSL-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n')
+        Logs.Log_File(
+            Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+            +Colors.BLUE+'SSL-Check\n'+Colors.YELLOW
+            +'-----------------------------------------------------------------------------------------------------------\n'
+            +f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n'
+        )
 
     return Dict_Full_SSL
