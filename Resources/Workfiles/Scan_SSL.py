@@ -4,10 +4,11 @@
 
 # Libraries
 from ..Header_Files.Variables import *
+from ..Workfiles.Scan_Host_Name import Get_Host_Name
 from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 
-def SSL_Vulns(url, ssl_timeout, Host_Name, Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEARTBLEED': "", 'CCS_INJECTION': "", 'ROBOT': "", 'CLIENT_RENEGOTIATION_DOS': "", 'SWEET32': "", 'LUCKY13': "", 'FALLBACK_SCSV': ""}, Array_Result_Filter = ['http_headers', 'certificate_info','rejected_cipher_suites','rejected_curves'], Start_Scan = datetime.now(), Temp = ""):
+def SSL_Vulns(array_ssl_targets, ssl_timeout, Host_Name, Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEARTBLEED': "", 'CCS_INJECTION': "", 'ROBOT': "", 'CLIENT_RENEGOTIATION_DOS': "", 'SWEET32': "", 'LUCKY13': "", 'FALLBACK_SCSV': ""}, Array_Result_Filter = ['http_headers', 'certificate_info','rejected_cipher_suites','rejected_curves'], Start_Scan = datetime.now(), Temp = ""):
     # Variables
     TLS_Version, Supported_Version, Array_SSL_Targets = "","", []
 
@@ -31,24 +32,27 @@ def SSL_Vulns(url, ssl_timeout, Host_Name, Dict_SSL_Vulns = {'CRIME': "", 'LOGJA
         'Curves': []
     }
 
-    # Get_Host_Name
-    if (Host_Name != ""): Dict_Full_SSL['DNS'] = Host_Name
-    else: Dict_Full_SSL['DNS'] = ""
+    for url in array_ssl_targets:
+        # Get_Host_Name
+        Dict_Full_SSL['DNS'] = Host_Name
 
-    # Target_Filter
-    if ('ssl://' in url): URL = url.split('ssl://')[1]
-    elif ('https://' in url): URL = url.split('https://')[1]
+        # Target_Filter
+        if ('ssl://' in url): URL = url.split('ssl://')[1]
+        elif ('https://' in url): URL = url.split('https://')[1]
 
-    # Port_Filter
-    if (url.count(':') > 1):
-        Temp, Port = URL.split(':')
-        URL = Temp
-    else: Port = 443
+        # Port_Filter
+        if (url.count(':') > 1):
+            Temp, Port = URL.split(':')
+            URL = Temp
+        else: Port = 443
+
+        # Prepare_Targets
+        Array_Attack.append(ServerScanRequest(server_location=ServerNetworkLocation(hostname=URL, ip_address=URL, port=Port), network_configuration=ServerNetworkConfiguration(URL, network_timeout=ssl_timeout, network_max_retries=3)))
 
     # Scanning_Process
     try:
         scanner = Scanner()
-        scanner.queue_scans([ServerScanRequest(server_location=ServerNetworkLocation(hostname=URL, ip_address=URL, port=Port), network_configuration=ServerNetworkConfiguration(URL, network_timeout=ssl_timeout, network_max_retries=3))])
+        scanner.queue_scans(Array_Attack)
 
         for server_scan_result in scanner.get_results():
             json_output = SslyzeOutputAsJson(server_scan_results=[ServerScanResultAsJson.from_orm(server_scan_result)],date_scans_started=Start_Scan,date_scans_completed=datetime.now())
