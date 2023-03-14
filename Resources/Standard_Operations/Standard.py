@@ -63,7 +63,7 @@ class Standard:
                 if (Temp[0] not in Array_Temp_Zero): Array_Temp_Zero.append(Temp[0]), Array_Temp_One.append(Temp[1])
         return Array_Temp_Zero, Array_Temp_One
     
-    def Read_Targets_v4(file_path, Array_Out = []):
+    def Read_Targets_v4(file_path, Array_Out = [], Array_SSL_Out = []):
         for Target in Standard.Read_File(file_path):
             if (Target.count('/') > 2):
                 Counter, Position = 0, ''
@@ -73,9 +73,16 @@ class Standard:
                             Position = _
                             Counter += 1
                     else: break
-                Array_Out.append(f'{Target[:Position]}/{Target[Position+1:]}')
-            else: Array_Out.append(Target)
-        return Array_Out
+                if ('ssl://' in Target):
+                    Array_SSL_Out.append(f'{Target[:Position]}/{Target[Position+1:]}')
+                else:
+                    Array_Out.append(f'{Target[:Position]}/{Target[Position+1:]}')
+            else:
+                if ('ssl://' in Target):
+                    Array_SSL_Out.append(Target)
+                else:
+                    Array_Out.append(Target)
+        return Array_Out, Array_SSL_Out
 
     def Try_Remove_File(x):
         while True:
