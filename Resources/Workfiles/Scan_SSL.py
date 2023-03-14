@@ -79,7 +79,13 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Result_Filter = ['http_heade
         scanner.queue_scans(Array_Attack)
 
         for server_scan_result in scanner.get_results():
-            json_output = SslyzeOutputAsJson(server_scan_results=[ServerScanResultAsJson.from_orm(server_scan_result)],date_scans_started=Start_Scan,date_scans_completed=datetime.now())
+            json_output = SslyzeOutputAsJson(
+                server_scan_results=[
+                    ServerScanResultAsJson.from_orm(server_scan_result)
+                ],
+                date_scans_started=Start_Scan,
+                date_scans_completed=datetime.now()
+            )
             temp_json_output = json_output.json(sort_keys=True, indent=4, ensure_ascii=True)
 
             for _ in json_loads(temp_json_output)['server_scan_results']:
