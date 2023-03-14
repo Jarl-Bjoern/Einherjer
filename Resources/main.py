@@ -278,48 +278,49 @@ def main(Date, Program_Mode, args, Array_Output = []):
                     Array_Thread_Args.clear()
 
                 # SSL_Targets
-                Temp_SSL_Array, Counter_SSL_Targets, Max_Len_SSL_Targets = [], 0, len(Array_SSL_Targets)
-                for Target in array(Array_SSL_Targets):
-                    if (Counter_SSL_Targets != 10 and Counter_SSL_Targets != Max_Len_SSL_Targets):
-                        Temp_SSL_Array.append(Target)
-                        Counter_SSL_Targets += 1
+                if (Dict_Switch['scan_ssl'] == True):
+                    Temp_SSL_Array, Counter_SSL_Targets, Max_Len_SSL_Targets = [], 0, len(Array_SSL_Targets)
+                    for Target in array(Array_SSL_Targets):
+                        if (Counter_SSL_Targets != 10 and Counter_SSL_Targets != Max_Len_SSL_Targets):
+                            Temp_SSL_Array.append(Target)
+                            Counter_SSL_Targets += 1
 
-                    if (Counter_SSL_Targets == 10 or Counter_SSL_Targets == Max_Len_SSL_Targets):
-                        Array_Thread_Args = [
-                            Temp_SSL_Array,
-                            args.timeout,
-                            queue,
-                            Dict_Switch,
-                            args.async_ssl_timeout,
-                            Dict_Proxies,
-                            Dict_Auth
-                        ]
-                        p = Process(target=Thread_SSL_Start, args=Array_Thread_Args, daemon=True)
-                        p.start()
-                        Counter_Connections += 1
-                        if (Counter_Connections == args.max_connections):
-                            while (len(Dict_Threads) > 0):
-                                try:
-                                    for Thread_ID in Dict_Threads:
-                                        if (Thread_ID not in str(active_children())):
-                                            Dict_Threads.pop(Thread_ID, None)
-                                            Counter_Connections -= 1
-                                        else:
-                                            if ((time() - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
-                                                Dict_Threads[Thread_ID][0].terminate()
-                                                Logs.Write_Log(Target, "")
+                        if (Counter_SSL_Targets == 10 or Counter_SSL_Targets == Max_Len_SSL_Targets):
+                            Array_Thread_Args = [
+                                Temp_SSL_Array,
+                                args.timeout,
+                                queue,
+                                Dict_Switch,
+                                args.async_ssl_timeout,
+                                Dict_Proxies,
+                                Dict_Auth
+                            ]
+                            p = Process(target=Thread_SSL_Start, args=Array_Thread_Args, daemon=True)
+                            p.start()
+                            Counter_Connections += 1
+                            if (Counter_Connections == args.max_connections):
+                                while (len(Dict_Threads) > 0):
+                                    try:
+                                        for Thread_ID in Dict_Threads:
+                                            if (Thread_ID not in str(active_children())):
                                                 Dict_Threads.pop(Thread_ID, None)
                                                 Counter_Connections -= 1
-                                except RuntimeError: pass
-                                sleep(2.25)
-                        else:
-                             if (p.name not in Dict_Threads):
-                                    Dict_Threads[p.name] = [p, time(), Target]
-                                    sleep(args.sleep)
-                        progress.update(task_Scan, advance=Counter_Bar)
-                        Array_Thread_Args.clear()
-                        Max_Len_SSL_Targets =- Counter_SSL_Targets
-                        Temp_SSL_Array,Counter_SSL_Targets = [], 0                        
+                                            else:
+                                                if ((time() - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
+                                                    Dict_Threads[Thread_ID][0].terminate()
+                                                    Logs.Write_Log(Target, "")
+                                                    Dict_Threads.pop(Thread_ID, None)
+                                                    Counter_Connections -= 1
+                                    except RuntimeError: pass
+                                    sleep(2.25)
+                            else:
+                                 if (p.name not in Dict_Threads):
+                                        Dict_Threads[p.name] = [p, time(), Target]
+                                        sleep(args.sleep)
+                            progress.update(task_Scan, advance=Counter_Bar)
+                            Array_Thread_Args.clear()
+                            Max_Len_SSL_Targets =- Counter_SSL_Targets
+                            Temp_SSL_Array,Counter_SSL_Targets = [], 0                        
 
                 # Terminate_Timeout_Processes
                 progress.start_task(task_Processes)
