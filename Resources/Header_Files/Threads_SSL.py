@@ -14,7 +14,9 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
 
         # SSL
         if (dict_switch['scan_ssl'] != False):
-            Dict_Result['SSL'][url] = SSL_Vulns(array_ssl, ssl_timeout)
+            #Dict_Result['SSL'][url] = 
+            print ("TestScan")
+            SSL_Vulns(array_ssl, ssl_timeout)
 
     except (ConnectionError, gaierror, RequestException):
         Logs.Write_Log(url)
