@@ -68,7 +68,7 @@ def Take_Screenshot(url, driver_options, Screen_Dir, switch_internet_connection,
     try:
         if (':' in Screen_Name): Full_Screen_Name = join(Screen_Dir, f"{Date}_({Screen_Name.replace(':', '_')}).png")
         else: Full_Screen_Name = join(Screen_Dir, f"{Date}_({Screen_Name}).png")
-        driver.get(html_encode(url))
+        driver.get(url)
         sleep(screenshot_wait)
         driver.save_screenshot(Full_Screen_Name)
         if (exists(Full_Screen_Name)): Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'Screenshot-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - '+Colors.CYAN+'A screenshot was successfully taken from the website.\n'+Colors.BLUE+'-----------------------------------------------------------------------------------------------------------\n\n')
