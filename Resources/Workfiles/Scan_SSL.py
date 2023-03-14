@@ -60,8 +60,8 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Attack = [], Dict_SSL_Vulns 
 
             for _ in json_loads(temp_json_output)['server_scan_results']:
                 Scan_Result = _['scan_result']
-                print (_)
-                print (_['network_configuration']['tls_server_name_indication'])
+                print (_['server_location'])
+#                print (_['network_configuration']['tls_server_name_indication'])
                 if (Scan_Result != None):
                     for i in Scan_Result:
                         if (i not in Array_Result_Filter):
