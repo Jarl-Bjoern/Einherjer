@@ -278,12 +278,13 @@ def main(Date, Program_Mode, args, Array_Output = []):
                     Array_Thread_Args.clear()
 
                 # SSL_Targets
-                Temp_SSL_Array = []
+                Temp_SSL_Array, Counter_SSL_Targets, Max_Len_SSL_Targets = [], 0, len(Array_SSL_Targets)
                 for Target in array(Array_SSL_Targets):
-                    if (len(Temp_SSL_Array) != 10):
+                    if (Counter_SSL_Targets != 10 and Counter_SSL_Targets != Max_Len_SSL_Targets):
                         Temp_SSL_Array.append(Target)
+                        Counter_SSL_Targets += 1
 
-                    elif (len(Temp_SSL_Array) == 10):
+                    elif (Counter_SSL_Targets == 10 or Counter_SSL_Targets == Max_Len_SSL_Targets):
                         Array_Thread_Args = [
                             Temp_SSL_Array,
                             args.timeout,
@@ -317,7 +318,8 @@ def main(Date, Program_Mode, args, Array_Output = []):
                                     sleep(args.sleep)
                         progress.update(task_Scan, advance=Counter_Bar)
                         Array_Thread_Args.clear()
-                        Temp_SSL_Array = []
+                        Max_Len_SSL_Targets =- Counter_SSL_Targets
+                        Temp_SSL_Array,Counter_SSL_Targets = [], 0                        
 
                 # Terminate_Timeout_Processes
                 progress.start_task(task_Processes)
