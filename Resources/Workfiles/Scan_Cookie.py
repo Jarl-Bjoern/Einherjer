@@ -10,6 +10,7 @@ from ..Standard_Operations.Colors import Colors
 def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Dict_Temp = {'DNS': "", 'SAMESITE': "", 'HTTPONLY': "", 'SECURE': ""}, Switch_SameSite = False):
     # Session_Creation
     with Session() as s:
+
         # Auth_Configuration
         if (Dict_Auth['pkcs12_cert'] != ''):
             s.mount(url, Pkcs12Adapter(pkcs12_filename=Dict_Auth['pkcs12_cert'], pkcs12_password=Dict_Auth['pkcs12_password']))
