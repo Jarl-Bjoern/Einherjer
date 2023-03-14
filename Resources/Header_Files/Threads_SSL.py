@@ -5,16 +5,12 @@
 # Libraries
 from .Variables import *
 from ..Standard_Operations.Logs import *
-from ..Workfiles.Scan_Host_Name import Get_Host_Name
 from ..Workfiles.Scan_SSL import SSL_Vulns
 
 # Functions
-def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, ssl_timeout, dict_proxies, dict_auth, Host_Name = "", Target = ""):
+def Thread_Scanning_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict_proxies, dict_auth, Target = ""):
     try:
         Dict_Result = queue.get()
-
-        # Get_Host_Name
-        Host_Name = Get_Host_Name(url)
 
         # SSL
         if (dict_switch['scan_ssl'] != False):
