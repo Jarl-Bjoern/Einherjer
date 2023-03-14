@@ -88,9 +88,11 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Result_Filter = ['http_heade
 
         for server_scan_result in scanner.get_results():
             if (server_scan_result.scan_status == ServerScanStatusEnum.ERROR_NO_CONNECTIVITY):
-                print(
-                    f"\nError: Could not connect to {server_scan_result.server_location.hostname}:"
-                    f" {server_scan_result.connectivity_error_trace}"
+                Logs.Log_File(
+                    Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                    +Colors.BLUE+'SSL-Check\n'+Colors.YELLOW
+                    +'-----------------------------------------------------------------------------------------------------------\n'
+                    +f'{strftime("%Y-%m-%d_%H:%M:%S")} - {server_scan_result.server_location.hostname} - It was not possible to connect to the target\n'
                 )
             elif (server_scan_result.scan_status == ServerScanStatusEnum.COMPLETED):
                 json_output = SslyzeOutputAsJson(
@@ -174,8 +176,8 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Result_Filter = ['http_heade
                                         Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
                                         +Colors.BLUE+'SSL-Check\n'+Colors.YELLOW
                                         +'-----------------------------------------------------------------------------------------------------------\n'
-                                        +f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the target\n'
-                                    )                                
+                                        +f'{strftime("%Y-%m-%d_%H:%M:%S")} - {_["server_location"]["ip_address"]}:{_["server_location"]["port"]} - It was not possible to connect to the target\n'
+                                    )
 
                         Dict_Full_SSL['SSL_Vulns'] = Dict_SSL_Vulns
 
