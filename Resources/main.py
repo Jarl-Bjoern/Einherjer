@@ -285,7 +285,6 @@ def main(Date, Program_Mode, args, Array_Output = []):
                         Counter_SSL_Targets += 1
 
                     if (Counter_SSL_Targets == 10 or Counter_SSL_Targets == Max_Len_SSL_Targets):
-                        print (Temp_SSL_Array)
                         Array_Thread_Args = [
                             Temp_SSL_Array,
                             args.timeout,
