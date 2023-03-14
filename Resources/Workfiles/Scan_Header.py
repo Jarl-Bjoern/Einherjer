@@ -65,6 +65,6 @@ def Check_Site_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Dict_T
                 +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp_Header}\n\n'
             )
     except ReadTimeout:
-        Logs.Write_Log(html_decode(url), Host_Name)
+        Logs.Write_Log(url, Host_Name)
 
     return Dict_Temp_Header, Dict_Temp_Information_Disclosure
