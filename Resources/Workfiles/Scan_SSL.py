@@ -84,6 +84,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Result_Filter = ['http_heade
         scanner.queue_scans(Array_Attack)
 
         for server_scan_result in scanner.get_results():
+            print (server_scan_result.scan_status)
             if (server_scan_result.scan_status == ServerScanStatusEnum.ERROR_NO_CONNECTIVITY):
                 print(
                     f"\nError: Could not connect to {server_scan_result.server_location.hostname}:"
