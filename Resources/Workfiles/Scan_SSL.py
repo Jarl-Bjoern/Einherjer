@@ -178,7 +178,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Result_Filter = ['http_heade
                                                 TLS_Version, Supported_Version = "",""
                                                 Dict_Ciphers = {'Protocol':"", 'Ciphers': []}
 
-                                except TypeError as SKIP_Error:
+                                except TypeError:
                                     Logs.Log_File(
                                         Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
                                         +Colors.BLUE+'SSL-Check\n'+Colors.YELLOW
