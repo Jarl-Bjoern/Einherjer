@@ -10,7 +10,7 @@ from ..Standard_Operations.Colors import Colors
 
 def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Result_Filter = ['http_headers', 'certificate_info','rejected_cipher_suites','rejected_curves'], Start_Scan = datetime.now(), Temp = ""):
     # Variables
-    TLS_Version, Supported_Version, Array_Attack, ERROR_SKIP = "","",[],None
+    TLS_Version, Supported_Version, Array_Attack, SKIP_Error = "","",[],""
 
     # Dictionaries
     Dict_Ciphers = {
@@ -169,7 +169,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Result_Filter = ['http_heade
                                                 TLS_Version, Supported_Version = "",""
                                                 Dict_Ciphers = {'Protocol':"", 'Ciphers': []}
 
-                                except TypeError as ERROR_SKIP:
+                                except TypeError as SKIP_Error:
                                     Logs.Log_File(
                                         Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
                                         +Colors.BLUE+'SSL-Check\n'+Colors.YELLOW
@@ -179,7 +179,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Result_Filter = ['http_heade
 
                         Dict_Full_SSL['SSL_Vulns'] = Dict_SSL_Vulns
 
-                        if (ERROR_SKIP == None):
+                        if (SKIP_Error == ""):
                             Logs.Log_File(
                                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
                                 +Colors.BLUE+'SSL-Check\n'
@@ -190,6 +190,8 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Result_Filter = ['http_heade
                                 +Colors.RED+' -> '+Colors.RESET+f'{Dict_Full_SSL}'+Colors.BLUE
                                 +'\n-----------------------------------------------------------------------------------------------------------\n\n'+Colors.RESET
                             )
+                        else:
+                            SKIP_Error = ""
                 #else:
             #    Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'SSL-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n')
     except (ConnectionResetError):
