@@ -38,14 +38,18 @@ class Filter:
     def Screenshot_Frame(Screen_Dir, Screenshot_Thickness, Array_Temp = []):
         try:
             for Picture in listdir(Screen_Dir):
-                raw_image = imread(join(Screen_Dir, Picture))
-                height    = raw_image.shape[0]
-                width     = raw_image.shape[1]
-                start_point, end_point = (0,0), (width, height)
-                color     = (0,0,0)
-                img       = rectangle(raw_image, start_point, end_point, color, int(Screenshot_Thickness))
-                imwrite(join(Screen_Dir, Picture), img)
-                Array_Temp.append(join(Screen_Dir, Picture))
+                if (Picture.endswith('.jpg') or
+                    Picture.endswith('.jpeg') or
+                    Picture.endswith('.bmp') or
+                    Picture('.png')):
+                        raw_image              = imread(join(Screen_Dir, Picture))
+                        height                 = raw_image.shape[0]
+                        width                  = raw_image.shape[1]
+                        start_point, end_point = (0,0), (width, height)
+                        color                  = (0,0,0)
+                        img                    = rectangle(raw_image, start_point, end_point, color, int(Screenshot_Thickness))
+                        imwrite(join(Screen_Dir, Picture), img)
+                        Array_Temp.append(join(Screen_Dir, Picture))
         except FileNotFoundError:
             pass
 
