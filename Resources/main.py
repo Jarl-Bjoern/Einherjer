@@ -8,7 +8,7 @@ from sys import path as SYSTEM_PATH
 SYSTEM_PATH.append(dirname(realpath(__file__)).split("Resources")[0])
 
 # Libraries
-from Resources.Header_Files.Threads import *
+from Resources.Header_Files.Threads_Scanning import *
 from Resources.Header_Files.Threads_SSL import *
 from Resources.Workfiles.Scan_Screen import Web
 from Resources.Filter.Methods import Filter
