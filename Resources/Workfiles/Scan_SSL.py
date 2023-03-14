@@ -80,7 +80,10 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Result_Filter = ['http_heade
 
     # Scanning_Process
     try:
-        scanner = Scanner()
+        scanner = Scanner(
+            per_server_concurrent_connections_limit=25,
+            concurrent_server_scans_limit=100
+        )
         scanner.queue_scans(Array_Attack)
 
         for server_scan_result in scanner.get_results():
