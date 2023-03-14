@@ -278,6 +278,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
                     Array_Thread_Args.clear()
 
                 # SSL_Targets
+                print (Array_SSL_Targets)
                 Temp_SSL_Array, Counter_SSL_Targets, Max_Len_SSL_Targets = [], 0, len(Array_SSL_Targets)
                 for Target in array(Array_SSL_Targets):
                     print (Target)
