@@ -12,22 +12,22 @@ def Check_Site_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Dict_T
         # Auth_Configuration
         if (Dict_Auth['pkcs12_cert'] != ''):
             if (Dict_Proxies['http'] != '' or Dict_Proxies['https'] != ''):
-                r = pkcs_get(html_encode(url), timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True, proxies=Dict_Proxies, pkcs12_filename=Dict_Auth['pkcs12_cert'], pkcs12_password=Dict_Auth['pkcs12_password'])
+                r = pkcs_get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True, proxies=Dict_Proxies, pkcs12_filename=Dict_Auth['pkcs12_cert'], pkcs12_password=Dict_Auth['pkcs12_password'])
 
             elif (Dict_Proxies['http'] == '' and Dict_Proxies['https'] == ''):
-                r = pkcs_get(html_encode(url), timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True, pkcs12_filename=Dict_Auth['pkcs12_cert'], pkcs12_password=Dict_Auth['pkcs12_password'])
+                r = pkcs_get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True, pkcs12_filename=Dict_Auth['pkcs12_cert'], pkcs12_password=Dict_Auth['pkcs12_password'])
         else:
             if (Dict_Auth['user'] != '' and (Dict_Proxies['http'] != '' or Dict_Proxies['https'] != '')):
-                r = get(html_encode(url), timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True, proxies=Dict_Proxies, auth=(Dict_Auth['user'], Dict_Auth['password']))
+                r = get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True, proxies=Dict_Proxies, auth=(Dict_Auth['user'], Dict_Auth['password']))
 
             elif (Dict_Auth['user'] != '' and (Dict_Proxies['http'] == '' and Dict_Proxies['https'] == '')):
-                r = get(html_encode(url), timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True, auth=(Dict_Auth['user'], Dict_Auth['password']))
+                r = get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True, auth=(Dict_Auth['user'], Dict_Auth['password']))
 
             elif (Dict_Auth['user'] == '' and (Dict_Proxies['http'] != '' or Dict_Proxies['https'] != '')):
-                r = get(html_encode(url), timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True, proxies=Dict_Proxies)
+                r = get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True, proxies=Dict_Proxies)
 
             elif (Dict_Auth['user'] == '' and (Dict_Proxies['http'] == '' and Dict_Proxies['https'] == '')):
-                r = get(html_encode(url), timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
+                r = get(url, timeout=(t_seconds, t_seconds), verify=False, allow_redirects=True)
 
         # Get_Host_Name
         if (Host_Name != ""): Dict_Temp_Header['DNS'], Dict_Temp_Information_Disclosure['DNS'] = Host_Name, Host_Name
