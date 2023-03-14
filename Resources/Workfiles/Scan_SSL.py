@@ -70,9 +70,9 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Host_Name, Dict_SSL_Vulns = {'CRIM
                                     for z in Deep_Result[k]:
                                         Cipher_Filter = findall(rf'{Array_TLS_Algorithms[0]}', z['cipher_suite']['name'])
                                         if (Cipher_Filter != []):
-                                            Dict_Temp_Ciphers['Anonymous']  = z['cipher_suite']['is_anonymous']
-                                            Dict_Temp_Ciphers['Key_Size']   = z['cipher_suite']['key_size']
-                                            Dict_Temp_Ciphers['Name']       = z['cipher_suite']['name']
+                                            Dict_Temp_Ciphers['Anonymous']      = z['cipher_suite']['is_anonymous']
+                                            Dict_Temp_Ciphers['Key_Size']       = z['cipher_suite']['key_size']
+                                            Dict_Temp_Ciphers['Name']           = z['cipher_suite']['name']
                                             if (z['ephemeral_key'] != None):
                                                 Dict_Temp_Ciphers['Curve_Name'] = z['ephemeral_key']['curve_name']
                                                 Dict_Temp_Ciphers['Type']       = z['ephemeral_key']['type_name']
