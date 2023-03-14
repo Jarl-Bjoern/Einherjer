@@ -9,6 +9,7 @@ SYSTEM_PATH.append(dirname(realpath(__file__)).split("Resources")[0])
 
 # Libraries
 from Resources.Header_Files.Threads import *
+from Resources.Header_Files.Threads_SSL import *
 from Resources.Workfiles.Scan_Screen import Web
 from Resources.Filter.Methods import Filter
 
@@ -232,9 +233,11 @@ def main(Date, Program_Mode, args, Array_Output = []):
             with Progress(*progress_columns) as progress:
                 queue = Queue()
                 queue.put(Dict_Result)
-                task_Scan = progress.add_task("[cyan]Scanning for vulnerabilities...", total=len(Array_Targets))
+                task_Scan = progress.add_task("[cyan]Scanning for vulnerabilities...", total=(len(Array_Targets)+len(Array_SSL_Targets)))
                 task_Processes = progress.add_task("[cyan]Waiting for the results...", total=1, start=False)
                 task_Filter = progress.add_task("[cyan]Filtering the results...", total=100, start=False)
+
+                # Normal_Targets
                 for Target in array(Array_Targets):
                     Array_Thread_Args = [
                         Target,
@@ -273,6 +276,50 @@ def main(Date, Program_Mode, args, Array_Output = []):
                                 sleep(args.sleep)
                     progress.update(task_Scan, advance=Counter_Bar)
                     Array_Thread_Args.clear()
+
+                # SSL_Targets
+                Temp_SSL_Array = []
+                for Target in array(Array_SSL_Targets):
+                    if (len(Temp_SSL_Array) != 10):
+                        Temp_SSL_Array.append(Target)
+
+                    elif (len(Temp_SSL_Array) == 10):
+                        Array_Thread_Args = [
+                            Temp_SSL_Array,
+                            args.timeout,
+                            queue,
+                            Dict_Switch,
+                            args.async_ssl_timeout,
+                            Dict_Proxies,
+                            Dict_Auth
+                        ]
+                        p = Process(target=Thread_SSL_Start, args=Array_Thread_Args, daemon=True)
+                        p.start()
+                        Counter_Connections += 1
+                        if (Counter_Connections == args.max_connections):
+                            while (len(Dict_Threads) > 0):
+                                try:
+                                    for Thread_ID in Dict_Threads:
+                                        if (Thread_ID not in str(active_children())):
+                                            Dict_Threads.pop(Thread_ID, None)
+                                            Counter_Connections -= 1
+                                        else:
+                                            if ((time() - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
+                                                Dict_Threads[Thread_ID][0].terminate()
+                                                Logs.Write_Log(Target, "")
+                                                Dict_Threads.pop(Thread_ID, None)
+                                                Counter_Connections -= 1
+                                except RuntimeError: pass
+                                sleep(2.25)
+                        else:
+                             if (p.name not in Dict_Threads):
+                                    Dict_Threads[p.name] = [p, time(), Target]
+                                    sleep(args.sleep)
+                        progress.update(task_Scan, advance=Counter_Bar)
+                        Array_Thread_Args.clear()
+                        Temp_SSL_Array = []
+
+                # Terminate_Timeout_Processes
                 progress.start_task(task_Processes)
                 if (len(Dict_Threads) > 0): progress.update(task_Processes, total=len(Dict_Threads))
                 while (len(Dict_Threads) > 0):
