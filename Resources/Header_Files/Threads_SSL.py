@@ -9,7 +9,7 @@ from ..Workfiles.Scan_Host_Name import Get_Host_Name
 from ..Workfiles.Scan_SSL import SSL_Vulns
 
 # Functions
-def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch_internet_connection, screenshot_wait, webdriver_timeout, ssl_timeout, dict_proxies, dict_auth, Host_Name = "", Target = ""):
+def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, ssl_timeout, dict_proxies, dict_auth, Host_Name = "", Target = ""):
     try:
         Dict_Result = queue.get()
 
