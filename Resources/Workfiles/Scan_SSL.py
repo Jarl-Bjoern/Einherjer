@@ -103,7 +103,6 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Result_Filter = ['http_heade
                 temp_json_output = json_output.json(sort_keys=True, indent=4, ensure_ascii=True)
 
                 for _ in json_loads(temp_json_output)['server_scan_results']:
-                    SKIP_Error = ""
                     Dict_SSL_Vulns['Target'] = f"{_['server_location']['ip_address']}:{_['server_location']['port']}"
                     Scan_Result = _['scan_result']
                     if (Scan_Result != None):
@@ -180,19 +179,16 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Result_Filter = ['http_heade
 
                         Dict_Full_SSL['SSL_Vulns'] = Dict_SSL_Vulns
 
-                        if (SKIP_Error == ""):
-                            Logs.Log_File(
-                                Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                                +Colors.BLUE+'SSL-Check\n'
-                                +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                                +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {_["server_location"]["ip_address"]}:{_["server_location"]["port"]}'
-                                +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
-                                +Colors.ORANGE+'\nEinherjer Output'
-                                +Colors.RED+' -> '+Colors.RESET+f'{Dict_Full_SSL}'+Colors.BLUE
-                                +'\n-----------------------------------------------------------------------------------------------------------\n\n'+Colors.RESET
-                            )
-                #else:
-            #    Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'SSL-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n')
+                        Logs.Log_File(
+                            Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                            +Colors.BLUE+'SSL-Check\n'
+                            +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                            +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {_["server_location"]["ip_address"]}:{_["server_location"]["port"]}'
+                            +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
+                            +Colors.ORANGE+'\nEinherjer Output'
+                            +Colors.RED+' -> '+Colors.RESET+f'{Dict_Full_SSL}'+Colors.BLUE
+                            +'\n-----------------------------------------------------------------------------------------------------------\n\n'+Colors.RESET
+                        )
     except (ConnectionResetError):
         Logs.Log_File(
             Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
