@@ -280,11 +280,14 @@ def main(Date, Program_Mode, args, Array_Output = []):
                 # SSL_Targets
                 Temp_SSL_Array, Counter_SSL_Targets, Max_Len_SSL_Targets = [], 0, len(Array_SSL_Targets)
                 for Target in array(Array_SSL_Targets):
+                    print (Target)
                     if (Counter_SSL_Targets != 10 and Counter_SSL_Targets != Max_Len_SSL_Targets):
                         Temp_SSL_Array.append(Target)
                         Counter_SSL_Targets += 1
+                        print (Temp_SSL_Array)
 
                     elif (Counter_SSL_Targets == 10 or Counter_SSL_Targets == Max_Len_SSL_Targets):
+                        print (Temp_SSL_Array)
                         Array_Thread_Args = [
                             Temp_SSL_Array,
                             args.timeout,
