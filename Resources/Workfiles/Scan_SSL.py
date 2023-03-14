@@ -15,32 +15,32 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Result_Filter = ['http_heade
     # Dictionaries
     Dict_Ciphers = {
         'Protocol': "",
-        'Ciphers': []
+        'Ciphers':  []
     }
     Dict_Temp_Ciphers =  {
-        'Anonymous': "",
-        'Key_Size': "",
-        'Name': "",
+        'Anonymous':  "",
+        'Key_Size':   "",
+        'Name':       "",
         'Curve_Name': "",
-        'Type': "",
+        'Type':       "",
         'Curve_Size': ""
     }
     Dict_Full_SSL = {
-        'DNS': "",
-        'Ciphers': [],
+        'DNS':       "",
+        'Ciphers':   [],
         'SSL_Vulns': {},
-        'Curves': []
+        'Curves':    []
     }
     Dict_SSL_Vulns = {
-        'CRIME': "",
-        'LOGJAM': "",
-        'HEARTBLEED': "",
-        'CCS_INJECTION': "",
-        'ROBOT': "",
+        'CRIME':                    "",
+        'LOGJAM':                   "",
+        'HEARTBLEED':               "",
+        'CCS_INJECTION':            "",
+        'ROBOT':                    "",
         'CLIENT_RENEGOTIATION_DOS': "",
-        'SWEET32': "",
-        'LUCKY13': "",
-        'FALLBACK_SCSV': ""
+        'SWEET32':                  "",
+        'LUCKY13':                  "",
+        'FALLBACK_SCSV':            ""
     }
 
     # Target_Preparation
@@ -127,7 +127,14 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Result_Filter = ['http_heade
                                                             Dict_Temp_Ciphers['Curve_Size'] = z['ephemeral_key']['size']
                                                         if (Dict_Temp_Ciphers not in Dict_Ciphers['Ciphers']):
                                                             Dict_Ciphers['Ciphers'].append(Dict_Temp_Ciphers)
-                                                            Dict_Temp_Ciphers = {'Anonymous': "", 'Key_Size': "", 'Name': "", 'Curve_Name': "", 'Type': "", 'Curve_Size': ""}
+                                                            Dict_Temp_Ciphers = {
+                                                                'Anonymous':  "",
+                                                                'Key_Size':   "",
+                                                                'Name':       "",
+                                                                'Curve_Name': "",
+                                                                'Type':       "",
+                                                                'Curve_Size': ""
+                                                            }
                                             elif (k == 'tls_version_used'):
                                                 TLS_Version = Deep_Result[k]
                                             elif (k == 'is_tls_version_supported'):
