@@ -77,11 +77,11 @@ def Take_Screenshot(url, driver_options, Screen_Dir, switch_internet_connection,
     finally: driver.quit()
 
     for Picture in listdir(Screen_Dir):
-        raw_image = imread(join(Screen_Dir, Picture))
-        height    = raw_image.shape[0]
-        width     = raw_image.shape[1]
+        raw_image              = imread(join(Screen_Dir, Picture))
+        height                 = raw_image.shape[0]
+        width                  = raw_image.shape[1]
         start_point, end_point = (0,0), (width, height)
-        color     = (0,0,0)
-        thickness = 10
+        color                  = (0,0,0)
+        thickness              = 10
         img = rectangle(raw_image, start_point, end_point, color, thickness)
         imwrite(join(Screen_Dir, Picture), img)
