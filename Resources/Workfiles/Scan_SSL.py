@@ -34,7 +34,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Dict_SSL_Vulns = {'CRIME': "", 'LO
 
     for url in array_ssl_targets:
         # Get_Host_Name
-        Dict_Full_SSL['DNS'] = Host_Name
+        Dict_Full_SSL['DNS'] = Get_Host_Name
 
         # Target_Filter
         if ('ssl://' in url): URL = url.split('ssl://')[1]
