@@ -101,8 +101,9 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Result_Filter = ['http_heade
             temp_json_output = json_output.json(sort_keys=True, indent=4, ensure_ascii=True)
 
             for _ in json_loads(temp_json_output)['server_scan_results']:
-                Host_Name = Get_Host_Name(_['server_location']['ip_address'])
-                Dict_SSL_Vulns['Target'], Dict_Full_SSL['DNS'] = f"{_['server_location']['ip_address']}:{_['server_location']['port']}", Host_Name
+                #Host_Name = Get_Host_Name(_['server_location']['ip_address'])
+                Dict_SSL_Vulns['Target'] = f"{_['server_location']['ip_address']}:{_['server_location']['port']}"
+                #, Host_Name
                 Scan_Result = _['scan_result']
                 if (Scan_Result != None):
                     for i in Scan_Result:
