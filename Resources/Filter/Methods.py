@@ -41,7 +41,7 @@ class Filter:
                 if (Picture.endswith('.jpg') or
                     Picture.endswith('.jpeg') or
                     Picture.endswith('.bmp') or
-                    Picture('.png')):
+                    Picture.endswith('.png')):
                         raw_image              = imread(join(Screen_Dir, Picture))
                         height                 = raw_image.shape[0]
                         width                  = raw_image.shape[1]
