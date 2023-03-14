@@ -8,7 +8,7 @@ from ..Workfiles.Scan_Host_Name import Get_Host_Name
 from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 
-def SSL_Vulns(array_ssl_targets, ssl_timeout, Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEARTBLEED': "", 'CCS_INJECTION': "", 'ROBOT': "", 'CLIENT_RENEGOTIATION_DOS': "", 'SWEET32': "", 'LUCKY13': "", 'FALLBACK_SCSV': ""}, Array_Result_Filter = ['http_headers', 'certificate_info','rejected_cipher_suites','rejected_curves'], Start_Scan = datetime.now(), Temp = ""):
+def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Attack = [], Dict_SSL_Vulns = {'CRIME': "", 'LOGJAM': "", 'HEARTBLEED': "", 'CCS_INJECTION': "", 'ROBOT': "", 'CLIENT_RENEGOTIATION_DOS': "", 'SWEET32': "", 'LUCKY13': "", 'FALLBACK_SCSV': ""}, Array_Result_Filter = ['http_headers', 'certificate_info','rejected_cipher_suites','rejected_curves'], Start_Scan = datetime.now(), Temp = ""):
     # Variables
     TLS_Version, Supported_Version, Array_SSL_Targets = "","", []
 
@@ -34,7 +34,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Dict_SSL_Vulns = {'CRIME': "", 'LO
 
     for url in array_ssl_targets:
         # Get_Host_Name
-        Dict_Full_SSL['DNS'] = Get_Host_Name
+        Dict_Full_SSL['DNS'] = Get_Host_Name(url)
 
         # Target_Filter
         if ('ssl://' in url): URL = url.split('ssl://')[1]
