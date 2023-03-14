@@ -47,7 +47,10 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Attack = [], Dict_SSL_Vulns 
         else: Port = 443
 
         # Prepare_Targets
-        Array_Attack.append(ServerScanRequest(server_location=ServerNetworkLocation(hostname=URL, ip_address=URL, port=Port), network_configuration=ServerNetworkConfiguration(URL, network_timeout=ssl_timeout, network_max_retries=3)))
+        try:
+            Array_Attack.append(ServerScanRequest(server_location=ServerNetworkLocation(hostname=URL, ip_address=URL, port=Port), network_configuration=ServerNetworkConfiguration(URL, network_timeout=ssl_timeout, network_max_retries=3)))
+        except (ConnectionResetError, ServerHostnameCouldNotBeResolved):
+            Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'SSL-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n')
 
     # Scanning_Process
     try:
@@ -60,8 +63,6 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Attack = [], Dict_SSL_Vulns 
 
             for _ in json_loads(temp_json_output)['server_scan_results']:
                 Scan_Result = _['scan_result']
-                print (_['server_location'])
-#                print (_['network_configuration']['tls_server_name_indication'])
                 if (Scan_Result != None):
                     for i in Scan_Result:
                         if (i not in Array_Result_Filter):
@@ -124,13 +125,15 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Attack = [], Dict_SSL_Vulns 
                                         Dict_Full_SSL['Ciphers'].append(Dict_Ciphers)
                                         TLS_Version, Supported_Version = "",""
                                         Dict_Ciphers = {'Protocol':"", 'Ciphers': []}
+                    Host_Name = Get_Host_Name({_['server_location']['ip_address']})
+                    Dict_SSL_Vulns['Target'], Dict_Full_SSL['DNS'] = f"{_['server_location']['ip_address']}:{_['server_location']['port']}"
                     Dict_Full_SSL['SSL_Vulns'] = Dict_SSL_Vulns
 
-                    #if (Host_Name != ""): Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'SSL-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - {Host_Name}'+Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'+Colors.ORANGE+'\nEinherjer Output'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Full_SSL}'+Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------\n\n'+Colors.RESET)
-                    #else: Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'SSL-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url}'+Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'+Colors.ORANGE+'\nEinherjer Output'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Full_SSL}'+Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------\n\n'+Colors.RESET)
+                    if (Host_Name != ""): Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'SSL-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {_["server_location"]["ip_address"]}:{_["server_location"]["port"]} - {Host_Name}'+Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'+Colors.ORANGE+'\nEinherjer Output'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Full_SSL}'+Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------\n\n'+Colors.RESET)
+                    else: Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'SSL-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {_["server_location"]["ip_address"]}:{_["server_location"]["port"]}'+Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'+Colors.ORANGE+'\nEinherjer Output'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Full_SSL}'+Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------\n\n'+Colors.RESET)
                 #else:
             #    Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'SSL-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n')
-    except (ConnectionResetError, ServerHostnameCouldNotBeResolved):
+    except (ConnectionResetError):
         Logs.Log_File(Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+Colors.BLUE+'SSL-Check\n'+Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'+f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the website\n')
 
     return Dict_Full_SSL
