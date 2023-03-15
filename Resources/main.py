@@ -320,7 +320,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
                             progress.update(task_Scan, advance=Counter_Bar)
                             Array_Thread_Args.clear()
                             Max_Len_SSL_Targets =- Counter_SSL_Targets
-                            Temp_SSL_Array,Counter_SSL_Targets = [], 0                        
+                            Temp_SSL_Array,Counter_SSL_Targets = [], 0
 
                 # Terminate_Timeout_Processes
                 progress.start_task(task_Processes)
