@@ -20,6 +20,9 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
     try:
         Dict_Result = queue.get()
 
+        # Socket_Timeout
+        setdefaulttimeout(args.timeout)
+
         # Get_Host_Name
         Host_Name = Get_Host_Name(url)
 
@@ -61,6 +64,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             try: Dict_Result['SSH'][url] = SSH_Vulns(url)
             except SSHException: Logs.Write_Log(url, Host_Name)
 
-    except (ConnectionError, gaierror, WebDriverException, RequestException): Logs.Write_Log(url, Host_Name)
+    except (ConnectionError, gaierror, WebDriverException, RequestException):
+        Logs.Write_Log(url, Host_Name)
     finally:
         queue.put(Dict_Result)
