@@ -58,7 +58,7 @@ def Check_HTTP_Methods(url, Host_Name, Dict_Proxies, Dict_Auth, Dict_Temp = {'DN
             Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
             +Colors.BLUE+'HTTP-Methods-Check\n'
             +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-            +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {html_decode(url)} - {Host_Name}'
+            +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - {Host_Name}'
             +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
             +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n'
         )
@@ -67,7 +67,7 @@ def Check_HTTP_Methods(url, Host_Name, Dict_Proxies, Dict_Auth, Dict_Temp = {'DN
             Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
             +Colors.BLUE+'HTTP-Methods-Check\n'
             +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-            +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {html_decode(url)}'
+            +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url}'
             +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
             +Colors.ORANGE+Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n'
         )
