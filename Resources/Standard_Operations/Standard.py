@@ -63,7 +63,7 @@ class Standard:
                 if (Temp[0] not in Array_Temp_Zero): Array_Temp_Zero.append(Temp[0]), Array_Temp_One.append(Temp[1])
         return Array_Temp_Zero, Array_Temp_One
 
-    def Read_Targets_XML(file_path, Array_Out = [], Array_SSL_Out = [])
+    def Read_Targets_XML(file_path, Array_Out = [], Array_SSL_Out = []):
         Protocol, Address, Port, Skip_Attributes = "","","",False
         for event, elem in ET.iterparse(file_path, events=("end",)):
             if (event == "end"):
