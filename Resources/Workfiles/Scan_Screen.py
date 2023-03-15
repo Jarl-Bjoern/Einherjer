@@ -49,7 +49,7 @@ class Web:
                             Temp_Output_File = join(Location, 'duplicates.txt')
                             with open(Temp_Output_File, 'a') as f:
                                 f.write(f'{join(Path, Picture)}\n')
-                    except CVError:
+                    except (CVError, FileNotFoundError):
                         pass
         return Temp_Output_File
 
