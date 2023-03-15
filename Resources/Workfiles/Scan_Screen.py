@@ -45,10 +45,10 @@ class Web:
                         b,g,r = cvsplit(Difference)
 
                         if (countNonZero(b) == 0 and countNonZero(g) == 0 and countNonZero(r) == 0):
-                            remove(join(Path, Picture))
+                            remove(join(Path, _))
                             Temp_Output_File = join(Location, 'duplicates.txt')
                             with open(Temp_Output_File, 'a') as f:
-                                f.write(f'{join(Path, Picture)}\n')
+                                f.write(f'{Original_Picture} : {join(Path, _)}\n')
                     except (CVError, FileNotFoundError):
                         pass
         return Temp_Output_File
