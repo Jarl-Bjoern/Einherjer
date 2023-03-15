@@ -12,6 +12,9 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
     try:
         Dict_Result = queue.get()
 
+        # Socket_Timeout
+        setdefaulttimeout(t_seconds)
+
         # SSL
         if (dict_switch['scan_ssl'] != False):
             Dict_Result['SSL'].update(SSL_Vulns(array_ssl, ssl_timeout))
