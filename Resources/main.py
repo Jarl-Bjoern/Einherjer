@@ -233,9 +233,9 @@ def main(Date, Program_Mode, args, Array_Output = []):
             with Progress(*progress_columns) as progress:
                 queue = Queue()
                 queue.put(Dict_Result)
-                task_Scan = progress.add_task("[cyan]Scanning for vulnerabilities...", total=(len(Array_Targets)+len(Array_SSL_Targets)))
+                task_Scan      = progress.add_task("[cyan]Scanning for vulnerabilities...", total=(len(Array_Targets)+len(Array_SSL_Targets)))
                 task_Processes = progress.add_task("[cyan]Waiting for the results...", total=1, start=False)
-                task_Filter = progress.add_task("[cyan]Filtering the results...", total=100, start=False)
+                task_Filter    = progress.add_task("[cyan]Filtering the results...", total=100, start=False)
 
                 # Normal_Targets
                 for Target in array(Array_Targets):
