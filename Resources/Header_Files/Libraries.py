@@ -48,7 +48,7 @@ try:
     from urllib.parse import quote_plus as html_encode, unquote_plus as html_decode
     from warnings import catch_warnings, simplefilter
     from zipfile import ZipFile
-    import stat
+    import stat, xml.etree.ElementTree as ET
     with catch_warnings():
         simplefilter("ignore")
         from paramiko.ssh_exception import SSHException
