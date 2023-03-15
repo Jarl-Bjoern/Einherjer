@@ -83,7 +83,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
         }
 
         # Target_Options
-        if (args.target == None and args.import_list == None):
+        if (args.target == None and args.import_list == None and args.add_nmap_xml_result == None):
             from Resources.Header_Files.ArgParser_Scan_Intro import Argument_Parser
             Argument_Parser("\n\n\t\t\t   The program cannot be started without targets!\n\t\t\tFor more information use the parameter -h or --help.\n"), exit()
         elif (args.target == None and args.import_list != None):
