@@ -27,6 +27,7 @@ try:
     from datetime import datetime
     from getpass import getpass
     from http.client import RemoteDisconnected
+    from ipaddress import IPv4Network
     from multiprocessing import active_children, Process, Queue
     from numpy import array
     from os import chmod, getcwd, listdir, makedirs, name as osname, remove, system, walk
