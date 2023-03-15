@@ -116,8 +116,20 @@ def main(Date, Program_Mode, args, Array_Output = []):
             if (len(args.target) > 1):
                 Array_Targets, Array_SSL_Targets = [], []
                 for _ in args.target:
-                    if (',' in _): Array_Targets.append(_[:-1])
-                    else: Array_Targets.append(_)
+                    if (',' in _):
+                        if ('/' in _[:-1]):
+                            for IP in IPv4Network(_):
+                                if (IP not in Array_Targets):
+                                    Array_Targets.append(IP)
+                        else:
+                            Array_Targets.append(_[:-1])
+                    else:
+                        if ('/' in _):
+                            for IP in IPv4Network(_):
+                                if (IP not in Array_Targets):
+                                    Array_Targets.append(IP)
+                        else:
+                            Array_Targets.append(_)
             else:
                 if (',' in args.target[0]):
                     Temp_Split = args.target[0].split(',')
