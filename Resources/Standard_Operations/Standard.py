@@ -86,6 +86,9 @@ class Standard:
                         if ('ssl://' in Full_Target):
                             if (Full_Target not in Array_SSL_Out):
                                 Array_SSL_Out.append(Full_Target)
+                        elif ('https://' in Full_Target):
+                            if (Full_Target not in Array_SSL_Out):
+                                Array_SSL_Out.append(Full_Target)
                                 Array_Out.append(Full_Target)
                         else:
                             if (Full_Target not in Array_Out):
