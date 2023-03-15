@@ -87,10 +87,11 @@ def main(Date, Program_Mode, args, Array_Output = []):
             from Resources.Header_Files.ArgParser_Scan_Intro import Argument_Parser
             Argument_Parser("\n\n\t\t\t   The program cannot be started without targets!\n\t\t\tFor more information use the parameter -h or --help.\n"), exit()
         elif (args.target == None and (args.import_list != None or args.add_nmap_xml_result != None)):
-            try:
-                Array_Targets, Array_SSL_Targets = Standard.Read_Targets_v4(args.import_list)
-            except FileNotFoundError as e:
-                Logs.Error_Message(f"Your targetlist can't be found!\n\n{args.import_list}")
+            if (args.import_list != None):
+                try:
+                    Array_Targets, Array_SSL_Targets = Standard.Read_Targets_v4(args.import_list)
+                except FileNotFoundError as e:
+                    Logs.Error_Message(f"Your targetlist can't be found!\n\n{args.import_list}")
 
             if (args.add_nmap_xml_result != None):
                 try:
