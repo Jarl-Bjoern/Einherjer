@@ -129,6 +129,10 @@ def Check_Site_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Dict_T
                     +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
                     +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp_Information_Disclosure}\n\n'
                 )
+
+        # Terminate_Session
+        r.close()
+
     except ReadTimeout:
         Logs.Write_Log(url, Host_Name)
 
