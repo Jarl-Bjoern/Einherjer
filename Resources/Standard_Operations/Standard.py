@@ -62,7 +62,40 @@ class Standard:
                 Temp = _.split(':')
                 if (Temp[0] not in Array_Temp_Zero): Array_Temp_Zero.append(Temp[0]), Array_Temp_One.append(Temp[1])
         return Array_Temp_Zero, Array_Temp_One
-    
+
+    def Read_Targets_XML(file_path, Array_Out = [], Array_SSL_Out = [])
+        Protocol, Address, Port, Skip_Attributes = "","","",False
+        for event, elem in ET.iterparse(file_path, events=("end",)):
+            if (event == "end"):
+                if (elem.tag == 'address'):
+                    if (Skip_Attributes != True):
+                        Address = elem.attrib['addr']
+                elif (elem.tag == 'state'):
+                    if (elem.attrib['state'] != "open"):
+                        Skip_Attributes = True
+                elif (elem.tag == 'service'):
+                    if (Skip_Attributes != True):
+                        Protocol = elem.attrib['name']
+                elif (elem.tag == 'port'):
+                    if (Skip_Attributes != True):
+                        Port = elem.attrib['portid']
+                    if (Protocol != "" and Address != "" and Port != ""):
+                        Full_Target = f'{Protocol}://{Address}:{Port}'
+                        Protocol, Address, Port = "","",""
+
+                        if ('ssl://' in Full_Target):
+                            if (Full_Target not in Array_SSL_Out):
+                                Array_SSL_Out.append(Full_Target)
+                                Array_Out.append(Full_Target)
+                        else:
+                            if (Full_Target not in Array_Out):
+                                Array_Out.append(Full_Target)
+                        Full_Target = ""
+
+                    Skip_Attributes = False
+
+        return Array_Out, Array_SSL_Out
+
     def Read_Targets_v4(file_path, Array_Out = [], Array_SSL_Out = []):
         for Target in Standard.Read_File(file_path):
             if (Target.count('/') > 2):
