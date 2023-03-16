@@ -86,11 +86,14 @@ class Filter:
                               "Scanned" not in Report[Result] and
                               "PORT" not in Report[Result] and
                               "MAC Address" not in Report[Result] and
-                              not "syn-ack" in Report[Result] and
-                              not "|" in Report[Result] and
-                              not "#" in Report[Result] and
-                              not "Read data" in Report[Result] and
-                              not "" in Report[Result]):
+                              "syn-ack" not in Report[Result] and
+                              "|" not in Report[Result] and
+                              "#" not in Report[Result] and
+                              "Read data" not in Report[Result] and
+                              "filtered" not in Report[Result] and
+                              "closed" not in Report[Result] and
+                              "unknown" not in Report[Result] and
+                              "" not in Report[Result]):
                                     pass
                         elif ("tcp" in Report[Result]): Port = Report[Result].split('/')[0]
                         elif ("|" in Report[Result]):
@@ -109,6 +112,7 @@ class Filter:
                                                  "filtered" not in Report[Result] and
                                                  "closed" not in Report[Result] and
                                                  "unknown" not in Report[Result]):
+                                                      print (Report[Result])
                                                       if ('@' in Report[Result][8:]):
                                                            if (Report[Result][8:].split("@")[0] not in Array_SSH_Algorithms):
                                                                Dict_SSH_Results[Target].append(Report[Result][8:])
@@ -131,6 +135,7 @@ class Filter:
                                             "unknown" not in Report[Result] and
                                             "|" in Report[Result]):
                                                        if ("publickey" not in Report[Result]):
+                                                           print (Report[Result])
                                                            Dict_SSH_Results['auth_methods'].append(Report[Result][6:])
                                         else: break
                         elif ("MAC Address:" in Report[Result]):
