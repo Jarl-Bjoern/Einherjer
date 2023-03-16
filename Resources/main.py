@@ -372,6 +372,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
                                         Dict_Threads[Thread_ID][0].terminate()
                                         Dict_Threads.pop(Thread_ID, None)
                         except RuntimeError: pass
+                        End_Kill = int(time())
                         sleep(0.75)
                     else:
                         break
