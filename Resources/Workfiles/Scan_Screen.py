@@ -48,7 +48,7 @@ class Web:
                             remove(join(Path, _))
                             Temp_Output_File = join(Location, 'duplicates.txt')
                             with open(Temp_Output_File, 'a') as f:
-                                f.write(f'{Original_Picture} : {join(Path, _)}\n')
+                                f.write(f'{join(Path, Picture)} : {join(Path, _)}\n')
                     except (CVError, FileNotFoundError):
                         pass
         return Temp_Output_File
