@@ -81,7 +81,9 @@ class Filter:
                         Report = f.read().splitlines()
 
                     for Result in range(1, len(Report)-1):
-                        if ("Nmap scan report" in Report[Result]): IP_Address = Report[Result].split(" ")[4]
+                        if ("Nmap scan report" in Report[Result]):
+                            print (Report[Result])
+                            IP_Address = Report[Result].split(" ")[4]
                         elif ("Host is" not in Report[Result] and
                               "Scanned" not in Report[Result] and
                               "PORT" not in Report[Result] and
@@ -99,6 +101,7 @@ class Filter:
                              "filtered" not in Report[Result] and
                              "unknown" not in Report[Result] and
                              "closed" not in Report[Result]):
+                                    print (Report[Result])
                                     Port = Report[Result].split('/')[0]
                         elif ("|" in Report[Result]):
                              if ("kex_algorithms" in Report[Result][4:-1] or
