@@ -112,7 +112,6 @@ class Filter:
                                                  "filtered" not in Report[Result] and
                                                  "closed" not in Report[Result] and
                                                  "unknown" not in Report[Result]):
-                                                      print (Report[Result])
                                                       if ('@' in Report[Result][8:]):
                                                            if (Report[Result][8:].split("@")[0] not in Array_SSH_Algorithms):
                                                                Dict_SSH_Results[Target].append(Report[Result][8:])
@@ -135,10 +134,10 @@ class Filter:
                                             "unknown" not in Report[Result] and
                                             "|" in Report[Result]):
                                                        if ("publickey" not in Report[Result]):
-                                                           print (Report[Result])
                                                            Dict_SSH_Results['auth_methods'].append(Report[Result][6:])
                                         else: break
                         elif ("MAC Address:" in Report[Result]):
+                               print (Report[Result])
                                Dict_System[f'{IP_Address}:{Port}'] = Dict_SSH_Results
                                Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': [], 'auth_methods': []}
 
