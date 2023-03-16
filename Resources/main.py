@@ -296,7 +296,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
                                         Dict_Threads.pop(Thread_ID, None)
                                         Counter_Connections -= 1
                                     else:
-                                        if ((time() - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
+                                        if ((int(time()) - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
                                             Dict_Threads[Thread_ID][0].terminate()
                                             Logs.Write_Log(Target, "")
                                             Dict_Threads.pop(Thread_ID, None)
@@ -305,7 +305,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
                             sleep(2.25)
                     else:
                          if (p.name not in Dict_Threads):
-                                Dict_Threads[p.name] = [p, time(), Target]
+                                Dict_Threads[p.name] = [p, int(time()), Target]
                                 sleep(args.sleep)
                     progress.update(task_Scan, advance=Counter_Bar)
                     Array_Thread_Args.clear()
@@ -339,7 +339,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
                                                 Dict_Threads.pop(Thread_ID, None)
                                                 Counter_Connections -= 1
                                             else:
-                                                if ((time() - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
+                                                if ((int(time()) - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
                                                     Dict_Threads[Thread_ID][0].terminate()
                                                     Logs.Write_Log(Target, "")
                                                     Dict_Threads.pop(Thread_ID, None)
@@ -348,7 +348,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
                                     sleep(2.25)
                             else:
                                  if (p.name not in Dict_Threads):
-                                        Dict_Threads[p.name] = [p, time(), Target]
+                                        Dict_Threads[p.name] = [p, int(time()), Target]
                                         sleep(args.sleep)
                             progress.update(task_Scan, advance=Counter_Bar)
                             Array_Thread_Args.clear()
