@@ -95,7 +95,11 @@ class Filter:
                               "unknown" not in Report[Result] and
                               "" not in Report[Result]):
                                     pass
-                        elif ("tcp" in Report[Result]): Port = Report[Result].split('/')[0]
+                        elif ("tcp" in Report[Result] and
+                             "filtered" not in Report[Result] and
+                             "unknown" not in Report[Result] and
+                             "closed" not in Report[Result]):
+                                    Port = Report[Result].split('/')[0]
                         elif ("|" in Report[Result]):
                              if ("kex_algorithms" in Report[Result][4:-1] or
                                  "server_host_key_algorithms" in Report[Result][4:-1] or
@@ -137,7 +141,6 @@ class Filter:
                                                            Dict_SSH_Results['auth_methods'].append(Report[Result][6:])
                                         else: break
                         elif ("MAC Address:" in Report[Result]):
-                               print (Report[Result])
                                Dict_System[f'{IP_Address}:{Port}'] = Dict_SSH_Results
                                Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': [], 'auth_methods': []}
 
