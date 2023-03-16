@@ -358,19 +358,33 @@ def main(Date, Program_Mode, args, Array_Output = []):
                 # Terminate_Timeout_Processes
                 progress.start_task(task_Processes)
                 if (len(Dict_Threads) > 0): progress.update(task_Processes, total=len(Dict_Threads))
-                while (len(Dict_Threads) > 0):
-                    try:
-                        for Thread_ID in Dict_Threads:
-                            if (Thread_ID not in str(active_children())):
-                                progress.update(task_Processes, advance=0.75)
-                                Dict_Threads.pop(Thread_ID, None)
-                            else:
-                                if ((time() - Dict_Threads[Thread_ID][1]) > 900):
+                Start_Kill, End_Kill = int(time()), int(time())
+                while (End_Kill - Start_Kill < 3600):
+                    while (len(Dict_Threads) > 0):
+                        try:
+                            for Thread_ID in Dict_Threads:
+                                if (Thread_ID not in str(active_children())):
                                     progress.update(task_Processes, advance=0.75)
+                                    Dict_Threads.pop(Thread_ID, None)
+                                else:
+                                    if ((time() - Dict_Threads[Thread_ID][1]) > 900):
+                                        progress.update(task_Processes, advance=0.75)
+                                        Dict_Threads[Thread_ID][0].terminate()
+                                        Dict_Threads.pop(Thread_ID, None)
+                        except RuntimeError: pass
+                        sleep(0.75)
+                    else:
+                        break
+                else:
+                    while (len(Dict_Threads) > 0):
+                        try:
+                            for Thread_ID in Dict_Threads:
+                                if (Thread_ID in str(active_children())):
                                     Dict_Threads[Thread_ID][0].terminate()
                                     Dict_Threads.pop(Thread_ID, None)
-                    except RuntimeError: pass
-                    sleep(0.75)
+                        except RuntimeError: pass
+                        sleep(0.25)
+                                   
                 Dict_Result = queue.get()
 
                 # Format_Filtering
