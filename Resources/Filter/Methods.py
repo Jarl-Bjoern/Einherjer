@@ -55,6 +55,24 @@ class Filter:
 
         return Array_Temp
 
+    def Target_Split(input_file, output_location, Array_Output):
+        try:
+            with open(input_file, 'r') as f:
+                Temp_Array = f.read().splitlines()
+        except FileNotFoundError:
+            pass
+
+        with open(f'{output_location}/Targets_A.txt', 'w') as Target_File_A:
+            with open(f'{output_location}/Targets_B.txt', 'w') as Target_File_B:
+                Number_Split = int(len(Temp_Array)/2)
+                for i in range(0, len(Temp_Array)):
+                    if (i == Number_Split):
+                        for _ in range(Number_Split, len(Temp_Array)):
+                            Target_File_B.write(f'{Temp_Array[_]}\n')
+                        break
+                    else:
+                        Target_File_A.write(f'{Temp_Array[i]}\n')
+
     def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': [], 'auth_methods': []}, Array_Temp = []):
         try:
             for nmap_file in listdir(nmap_files_location):
