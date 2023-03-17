@@ -285,9 +285,6 @@ def main(Date, Program_Mode, args, Array_Output = []):
                         Dict_Proxies,
                         Dict_Auth
                     ]
-                    p = Process(target=Thread_Scanning_Start, args=Array_Thread_Args, daemon=True)
-                    p.start()
-                    Counter_Connections += 1
                     if (Counter_Connections == args.max_connections):
                         while (len(Dict_Threads) > 0):
                             try:
@@ -304,9 +301,12 @@ def main(Date, Program_Mode, args, Array_Output = []):
                             except RuntimeError: pass
                             sleep(2.25)
                     else:
+                        p = Process(target=Thread_Scanning_Start, args=Array_Thread_Args, daemon=True)
+                        p.start()
+                        Counter_Connections += 1
                          if (p.name not in Dict_Threads):
-                                Dict_Threads[p.name] = [p, int(time()), Target]
-                                sleep(args.sleep)
+                             Dict_Threads[p.name] = [p, int(time()), Target]
+                             sleep(args.sleep)
                     progress.update(task_Scan, advance=Counter_Bar)
                     Array_Thread_Args.clear()
 
@@ -328,9 +328,6 @@ def main(Date, Program_Mode, args, Array_Output = []):
                                 Dict_Proxies,
                                 Dict_Auth
                             ]
-                            p = Process(target=Thread_SSL_Start, args=Array_Thread_Args, daemon=True)
-                            p.start()
-                            Counter_Connections += 1
                             if (Counter_Connections == args.max_connections):
                                 while (len(Dict_Threads) > 0):
                                     try:
@@ -347,9 +344,12 @@ def main(Date, Program_Mode, args, Array_Output = []):
                                     except RuntimeError: pass
                                     sleep(2.25)
                             else:
-                                 if (p.name not in Dict_Threads):
-                                        Dict_Threads[p.name] = [p, int(time()), Target]
-                                        sleep(args.sleep)
+                                p = Process(target=Thread_SSL_Start, args=Array_Thread_Args, daemon=True)
+                                p.start()
+                                Counter_Connections += 1
+                                if (p.name not in Dict_Threads):
+                                    Dict_Threads[p.name] = [p, int(time()), Target]
+                                    sleep(args.sleep)
                             progress.update(task_Scan, advance=Counter_Bar)
                             Array_Thread_Args.clear()
                             Max_Len_SSL_Targets =- Counter_SSL_Targets
@@ -364,14 +364,13 @@ def main(Date, Program_Mode, args, Array_Output = []):
                         try:
                             for Thread_ID in Dict_Threads:
                                 if (Thread_ID not in str(active_children())):
-                                    progress.update(task_Processes, advance=0.75)
                                     Dict_Threads.pop(Thread_ID, None)
                                 else:
-                                    if ((int(time()) - Dict_Threads[Thread_ID][1]) > 900):
-                                        progress.update(task_Processes, advance=0.75)
+                                    if ((int(time()) - Dict_Threads[Thread_ID][1]) > 900):                                        
                                         Dict_Threads[Thread_ID][0].terminate()
                                         Dict_Threads.pop(Thread_ID, None)
-                        except RuntimeError: pass
+                        except RuntimeError:
+                            progress.update(task_Processes, advance=0.75)
                         End_Kill = int(time())
                         sleep(0.75)
                     else:
@@ -381,13 +380,12 @@ def main(Date, Program_Mode, args, Array_Output = []):
                         try:
                             for Thread_ID in Dict_Threads:
                                 if (Thread_ID in str(active_children())):
-                                    progress.update(task_Processes, advance=0.75)
                                     Dict_Threads[Thread_ID][0].terminate()
                                     Dict_Threads.pop(Thread_ID, None)
                                 else:
-                                    progress.update(task_Processes, advance=0.75)
                                     Dict_Threads.pop(Thread_ID, None)
-                        except RuntimeError: pass
+                        except RuntimeError:
+                            progress.update(task_Processes, advance=0.75)
                         sleep(0.25)
 
                 Dict_Result = queue.get()
