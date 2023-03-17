@@ -38,6 +38,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Host_Name - '+Colors.GREEN+'OK'+Colors.RESET,
         )
 
+
         # Certificates
         if (dict_switch['scan_certificate'] != False and ('https://' in url or 'ssl://' in url)):
             # Trace_Start
@@ -54,42 +55,90 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
                 Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Certificate - '+Colors.GREEN+'OK'+Colors.RESET,
             )
 
+
         # Fuzzing
         if (dict_switch['scan_fuzzing'] != False and '//' in url and 'http' in url):
             Dict_Result['Fuzzing'][url] = Check_Site_Paths(url, t_seconds)
 
+
         # Header
         if (dict_switch['scan_header'] != False and '//' in url and 'http' in url):
-            Trace_File(f"{url} --> Header", url, Host_Name)
+            # Trace_Start
+            Trace_File(
+                Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Header',
+            )
+
+            # Scan_Header
             Dict_Result['Header'][url], Dict_Result['Information'][url] = Check_Site_Header(url, t_seconds, Host_Name, dict_proxies, dict_auth)
-            Trace_File(f"{url} <-- Header - OK", url, Host_Name)
+
+            # Trace_End
+            Trace_File(
+                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Header - '+Colors.GREEN+'OK'+Colors.RESET,
+            )
+
 
         # HTTP_Methods
         if (dict_switch['scan_http_methods'] != False and '//' in url and 'http' in url):
-            Trace_File(f"{url} --> HTTP-Methods", url, Host_Name)
+            # Trace_Start
+            Trace_File(
+                Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'HTTP-Methods',
+            )
+
+            # Scan_HTTP_Methods
             Dict_Result['HTTP_Methods'][url] = Check_HTTP_Methods(url, Host_Name, dict_proxies, dict_auth)
-            Trace_File(f"{url} <-- HTTP-Methods - OK", url, Host_Name)
+
+            # Trace_End
+            Trace_File(
+                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'HTTP-Methods - '+Colors.GREEN+'OK'+Colors.RESET,
+            )
+
 
         # Recursive_Fuzzing_And_Screenshot
         if (dict_switch['scan_screenshot_recursive'] != False and '//' in url and 'http' in url):
             pass
 
+
         # Screenshot
         if (dict_switch['scan_screenshot'] != None and '//' in url and 'http' in url):
-            Trace_File(f"{url} --> Screenshot", url, Host_Name)
+            # Trace_Start
+            Trace_File(
+                Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Screenshot',
+            )
+
+            # Take_Screenshot
             Take_Screenshot(url, dict_switch['scan_screenshot'], screen_dir, switch_internet_connection, screenshot_wait, webdriver_timeout)
-            Trace_File(f"{url} <-- Screenshot - OK", url, Host_Name)
+
+            # Trace_End
+            Trace_File(
+                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Screenshot - '+Colors.GREEN+'OK'+Colors.RESET,
+            )
+
 
         # Security_Flags
         if (dict_switch['scan_security_flags'] != False and '//' in url and 'http' in url):
-            Trace_File(f"{url} --> Cookie-Flags", url, Host_Name)
+            # Trace_Start
+            Trace_File(
+                Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Cookie-Flags',
+            )
+
+            # Scan_Security_Flags
             Dict_Result['Security_Flag'][url] = Check_Security_Flags(url, t_seconds, Host_Name, dict_proxies, dict_auth)
-            Trace_File(f"{url} <-- Cookie-Flags - OK", url, Host_Name)
+
+            # Trace_End
+            Trace_File(
+                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Cookie-Flags - '+Colors.GREEN+'OK'+Colors.RESET,
+            )
+
 
         # SMTP
         if (dict_switch['scan_smtp'] != False and 'smtp://' in url):
             pass
             #Dict_Result['SMTP'][url] = Check_SMTP.(url, t_seconds, Host_Name)
+
 
         # SSH
         if (dict_switch['scan_ssh'] != False and 'ssh://' in url):
