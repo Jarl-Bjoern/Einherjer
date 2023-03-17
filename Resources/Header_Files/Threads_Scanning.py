@@ -5,6 +5,7 @@
 # Libraries
 from .Variables import *
 from ..Standard_Operations.Logs import *
+from ..Standard_Operations.Colors import Colors
 from ..Workfiles.Scan_Cookie import Check_Security_Flags
 from ..Workfiles.Scan_Certificate import Check_Certificate
 from ..Workfiles.Scan_FTP import Check_FTP
@@ -24,15 +25,29 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         setdefaulttimeout(t_seconds)
 
         # Get_Host_Name
-        Trace_File(f"{url} --> Host_Name", url, Host_Name)
+        Trace_File(
+            Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+            +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Host_Name',
+        )
+
         Host_Name = Get_Host_Name(url)
-        Trace_File(f"{url} <-- Host_Name - OK", url, Host_Name)
+
+        Trace_File(
+            Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Host_Name - '+Colors.GREEN+'OK'+Colors.RESET,
+        )
 
         # Certificates
         if (dict_switch['scan_certificate'] != False and ('https://' in url or 'ssl://' in url)):
-            Trace_File(f"{url} --> Certificate", url, Host_Name)
+            Trace_File(
+                Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Certificate',
+            )
+
             Dict_Result['Certificate'][url] = Check_Certificate(url, t_seconds, Host_Name)
-            Trace_File(f"{url} <-- Certificate - OK", url, Host_Name)
+
+            Trace_File(
+                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Certificate - '+Colors.GREEN+'OK'+Colors.RESET,
+            )
 
         # Fuzzing
         if (dict_switch['scan_fuzzing'] != False and '//' in url and 'http' in url):
