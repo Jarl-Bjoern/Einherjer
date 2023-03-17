@@ -24,7 +24,9 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         setdefaulttimeout(t_seconds)
 
         # Get_Host_Name
+        Trace_File(f"{url} --> Host_Name", url, Host_Name)
         Host_Name = Get_Host_Name(url)
+        Trace_File(f"{url} <-- Host_Name - OK", url, Host_Name)
 
         # Certificates
         if (dict_switch['scan_certificate'] != False and ('https://' in url or 'ssl://' in url)):
