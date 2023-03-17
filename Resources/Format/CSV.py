@@ -58,7 +58,7 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                 Array_Temp.append(Target)
                 for Result_Left, Result_Right in Dict_Result['SSH'][Target].items():
                     for i in range(0, len(Array_SSH_Header)-1):
-                        if (Result_Left == "DNS" and Result_Right == ""): 
+                        if (Result_Left == "DNS" and Result_Right == ""):
                             Result_Right = "FEHLT"
                             break
                         elif ((Result_Left == Array_SSH_Header[i] or Result_Left == Array_SSH_Header[i].isupper() or Result_Left == Array_SSH_Header[i].lower()) and Result_Right == ""):
@@ -81,7 +81,7 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                 Array_Temp.append(Target)
                 for Result_Left, Result_Right in Dict_Result['Security_Flag'][Target].items():
                     for i in range(0, len(Array_Security_Flags)-1):
-                        if (Result_Left == "DNS" and Result_Right == ""): 
+                        if (Result_Left == "DNS" and Result_Right == ""):
                             Result_Right = "FEHLT"
                             break
                         elif (Result_Left == Array_Security_Flags[i] and Result_Right == ""):
