@@ -62,7 +62,9 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
         # Security_Flags
         if (dict_switch['scan_security_flags'] != False and '//' in url and 'http' in url):
+            Trace_File(f"{url} --> Cookie-Flags", url, Host_Name)
             Dict_Result['Security_Flag'][url] = Check_Security_Flags(url, t_seconds, Host_Name, dict_proxies, dict_auth)
+            Trace_File(f"{url} <-- Cookie-Flags - OK", url, Host_Name)
 
         # SMTP
         if (dict_switch['scan_smtp'] != False and 'smtp://' in url):
