@@ -10,6 +10,9 @@ class Logs:
     def Error_Message(x):
         print(x), sleep(2), exit()
 
+    def Trace_File(url, host, Log_Path = dirname(realpath(__file__)).replace('Resources/Standard_Operations', 'Logs')):
+        pass
+
     def Write_Log(url, host, Log_Path = dirname(realpath(__file__)).replace('Resources/Standard_Operations', 'Logs')):
         if (not exists(Log_Path)): makedirs(Log_Path)
         with open(join(Log_Path, f'{Date}_failed-url.txt'), 'a') as f:
