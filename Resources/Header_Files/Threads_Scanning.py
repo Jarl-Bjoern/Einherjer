@@ -25,7 +25,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         setdefaulttimeout(t_seconds)
 
         # Trace_Start
-        Trace_File(
+        Logs.Trace_File(
             Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
             +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Host_Name'
         )
@@ -34,7 +34,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         Host_Name = Get_Host_Name(url)
 
         # Trace_End
-        Trace_File(
+        Logs.Trace_File(
             Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Host_Name - '+Colors.GREEN+'OK'+Colors.RESET
         )
 
@@ -42,7 +42,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         # Certificates
         if (dict_switch['scan_certificate'] != False and ('https://' in url or 'ssl://' in url)):
             # Trace_Start
-            Trace_File(
+            Logs.Trace_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
                 +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Certificate'
             )
@@ -51,7 +51,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             Dict_Result['Certificate'][url] = Check_Certificate(url, t_seconds, Host_Name)
 
             # Trace_End
-            Trace_File(
+            Logs.Trace_File(
                 Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Certificate - '+Colors.GREEN+'OK'+Colors.RESET
             )
 
@@ -64,7 +64,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         # Header
         if (dict_switch['scan_header'] != False and '//' in url and 'http' in url):
             # Trace_Start
-            Trace_File(
+            Logs.Trace_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
                 +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Header'
             )
@@ -73,7 +73,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             Dict_Result['Header'][url], Dict_Result['Information'][url] = Check_Site_Header(url, t_seconds, Host_Name, dict_proxies, dict_auth)
 
             # Trace_End
-            Trace_File(
+            Logs.Trace_File(
                 Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Header - '+Colors.GREEN+'OK'+Colors.RESET
             )
 
@@ -81,7 +81,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         # HTTP_Methods
         if (dict_switch['scan_http_methods'] != False and '//' in url and 'http' in url):
             # Trace_Start
-            Trace_File(
+            Logs.Trace_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
                 +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'HTTP-Methods'
             )
@@ -90,7 +90,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             Dict_Result['HTTP_Methods'][url] = Check_HTTP_Methods(url, Host_Name, dict_proxies, dict_auth)
 
             # Trace_End
-            Trace_File(
+            Logs.Trace_File(
                 Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'HTTP-Methods - '+Colors.GREEN+'OK'+Colors.RESET
             )
 
@@ -103,7 +103,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         # Screenshot
         if (dict_switch['scan_screenshot'] != None and '//' in url and 'http' in url):
             # Trace_Start
-            Trace_File(
+            Logs.Trace_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
                 +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Screenshot'
             )
@@ -112,7 +112,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             Take_Screenshot(url, dict_switch['scan_screenshot'], screen_dir, switch_internet_connection, screenshot_wait, webdriver_timeout)
 
             # Trace_End
-            Trace_File(
+            Logs.Trace_File(
                 Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Screenshot - '+Colors.GREEN+'OK'+Colors.RESET
             )
 
@@ -120,7 +120,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         # Security_Flags
         if (dict_switch['scan_security_flags'] != False and '//' in url and 'http' in url):
             # Trace_Start
-            Trace_File(
+            Logs.Trace_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
                 +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Cookie-Flags'
             )
@@ -129,7 +129,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             Dict_Result['Security_Flag'][url] = Check_Security_Flags(url, t_seconds, Host_Name, dict_proxies, dict_auth)
 
             # Trace_End
-            Trace_File(
+            Logs.Trace_File(
                 Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Cookie-Flags - '+Colors.GREEN+'OK'+Colors.RESET
             )
 
