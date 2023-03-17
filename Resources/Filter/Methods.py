@@ -22,13 +22,23 @@ class Filter:
                 with open(join(Output_Location, 'affected_systems.txt'), 'w') as af:
                     for _ in Target_Array:
                         for Temp in Dict_DNS:
-                            if (Temp in _):
+                            if (_ in Temp):
+                                if (':' in _):
+                                    Target, Port = _.split(':')
+                                else:
+                                    Target = _
+
                                 f.write(f'{Dict_DNS[Temp]}\n')
-                                af.write(f'{_} ({Dict_DNS[Temp]})\n')
+                                af.write(f'{Target} ({Dict_DNS[Temp]})\n')
                                 break
                         else:
+                            if (':' in _):
+                                Target, Port = _.split(':')
+                            else:
+                                Target = _
+
                             f.write('-\n')
-                            af.write(f'{_} (-)')
+                            af.write(f'{Target} (-)\n')
             Array_Temp.append(join(Output_Location, 'hostnames.txt')), Array_Temp.append(join(Output_Location, 'affected_systems.txt'))
         except FileNotFoundError:
             pass
