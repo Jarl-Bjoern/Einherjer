@@ -304,9 +304,9 @@ def main(Date, Program_Mode, args, Array_Output = []):
                         p = Process(target=Thread_Scanning_Start, args=Array_Thread_Args, daemon=True)
                         p.start()
                         Counter_Connections += 1
-                         if (p.name not in Dict_Threads):
-                             Dict_Threads[p.name] = [p, int(time()), Target]
-                             sleep(args.sleep)
+                        if (p.name not in Dict_Threads):
+                            Dict_Threads[p.name] = [p, int(time()), Target]
+                            sleep(args.sleep)
                     progress.update(task_Scan, advance=Counter_Bar)
                     Array_Thread_Args.clear()
 
