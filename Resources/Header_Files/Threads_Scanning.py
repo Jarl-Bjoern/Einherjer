@@ -24,27 +24,32 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         # Socket_Timeout
         setdefaulttimeout(t_seconds)
 
-        # Get_Host_Name
+        # Trace_Start
         Trace_File(
             Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
             +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Host_Name',
         )
 
+        # Get_Host_Name        
         Host_Name = Get_Host_Name(url)
 
+        # Trace_End
         Trace_File(
             Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Host_Name - '+Colors.GREEN+'OK'+Colors.RESET,
         )
 
         # Certificates
         if (dict_switch['scan_certificate'] != False and ('https://' in url or 'ssl://' in url)):
+            # Trace_Start
             Trace_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
                 +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Certificate',
             )
 
+            # Scan_Certificate
             Dict_Result['Certificate'][url] = Check_Certificate(url, t_seconds, Host_Name)
 
+            # Trace_End
             Trace_File(
                 Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Certificate - '+Colors.GREEN+'OK'+Colors.RESET,
             )
