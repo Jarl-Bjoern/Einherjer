@@ -26,7 +26,8 @@ def Check_Site_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Dict_T
                 r = pkcs_get(
                     url,
                     timeout=(t_seconds, t_seconds),
-                    verify=False, allow_redirects=True,
+                    verify=False,
+                    allow_redirects=True,
                     pkcs12_filename=Dict_Auth['pkcs12_cert'],
                     pkcs12_password=Dict_Auth['pkcs12_password']
                 )
