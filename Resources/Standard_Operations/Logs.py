@@ -10,7 +10,7 @@ class Logs:
     def Error_Message(x):
         print(x), sleep(2), exit()
 
-    def Trace_File(Text, url, Log_Path = dirname(realpath(__file__)).replace('Resources/Standard_Operations', 'Logs')):
+    def Trace_File(Text, Log_Path = dirname(realpath(__file__)).replace('Resources/Standard_Operations', 'Logs')):
         if (not exists(Log_Path)): makedirs(Log_Path)
         with open(join(Log_Path, f'{Date}_tracefile.txt'), 'a') as f:
             f.write(f'{Text}\n')
