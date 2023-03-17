@@ -28,7 +28,9 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
         # Certificates
         if (dict_switch['scan_certificate'] != False and ('https://' in url or 'ssl://' in url)):
+            Trace_File(f"{url} --> Certificate", url, Host_Name)
             Dict_Result['Certificate'][url] = Check_Certificate(url, t_seconds, Host_Name)
+            Trace_File(f"{url} <-- Certificate - OK", url, Host_Name)
 
         # Fuzzing
         if (dict_switch['scan_fuzzing'] != False and '//' in url and 'http' in url):
@@ -36,11 +38,15 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
         # Header
         if (dict_switch['scan_header'] != False and '//' in url and 'http' in url):
+            Trace_File(f"{url} --> Header", url, Host_Name)
             Dict_Result['Header'][url], Dict_Result['Information'][url] = Check_Site_Header(url, t_seconds, Host_Name, dict_proxies, dict_auth)
+            Trace_File(f"{url} <-- Header - OK", url, Host_Name)
 
         # HTTP_Methods
         if (dict_switch['scan_http_methods'] != False and '//' in url and 'http' in url):
+            Trace_File(f"{url} --> HTTP-Methods", url, Host_Name)
             Dict_Result['HTTP_Methods'][url] = Check_HTTP_Methods(url, Host_Name, dict_proxies, dict_auth)
+            Trace_File(f"{url} <-- HTTP-Methods - OK", url, Host_Name)
 
         # Recursive_Fuzzing_And_Screenshot
         if (dict_switch['scan_screenshot_recursive'] != False and '//' in url and 'http' in url):
@@ -48,7 +54,9 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
         # Screenshot
         if (dict_switch['scan_screenshot'] != None and '//' in url and 'http' in url):
+            Trace_File(f"{url} --> Screenshot", url, Host_Name)
             Take_Screenshot(url, dict_switch['scan_screenshot'], screen_dir, switch_internet_connection, screenshot_wait, webdriver_timeout)
+            Trace_File(f"{url} <-- Screenshot - OK", url, Host_Name)
 
         # Security_Flags
         if (dict_switch['scan_security_flags'] != False and '//' in url and 'http' in url):
