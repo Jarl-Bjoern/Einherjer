@@ -309,7 +309,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
                         Dict_Threads[p.name] = [p, int(time()), Target]
                         sleep(args.sleep)
                     progress.update(task_Scan, advance=Counter_Bar)
-                    Array_Thread_Args.clear()
+                    #Array_Thread_Args.clear()
 
                 # SSL_Targets
                 if (Dict_Switch['scan_ssl'] == True):
@@ -353,7 +353,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
                                 Dict_Threads[p.name] = [p, int(time()), Target]
                                 sleep(args.sleep)
                             progress.update(task_Scan, advance=Counter_Bar)
-                            Array_Thread_Args.clear()
+                            #Array_Thread_Args.clear()
                             Max_Len_SSL_Targets =- Counter_SSL_Targets
                             Temp_SSL_Array,Counter_SSL_Targets = [], 0
 
