@@ -27,7 +27,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         # Trace_Start
         Trace_File(
             Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-            +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Host_Name',
+            +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Host_Name'
         )
 
         # Get_Host_Name        
@@ -35,7 +35,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
         # Trace_End
         Trace_File(
-            Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Host_Name - '+Colors.GREEN+'OK'+Colors.RESET,
+            Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Host_Name - '+Colors.GREEN+'OK'+Colors.RESET
         )
 
 
@@ -44,7 +44,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             # Trace_Start
             Trace_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Certificate',
+                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Certificate'
             )
 
             # Scan_Certificate
@@ -52,7 +52,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
             # Trace_End
             Trace_File(
-                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Certificate - '+Colors.GREEN+'OK'+Colors.RESET,
+                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Certificate - '+Colors.GREEN+'OK'+Colors.RESET
             )
 
 
@@ -66,7 +66,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             # Trace_Start
             Trace_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Header',
+                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Header'
             )
 
             # Scan_Header
@@ -74,7 +74,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
             # Trace_End
             Trace_File(
-                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Header - '+Colors.GREEN+'OK'+Colors.RESET,
+                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Header - '+Colors.GREEN+'OK'+Colors.RESET
             )
 
 
@@ -83,7 +83,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             # Trace_Start
             Trace_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'HTTP-Methods',
+                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'HTTP-Methods'
             )
 
             # Scan_HTTP_Methods
@@ -91,7 +91,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
             # Trace_End
             Trace_File(
-                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'HTTP-Methods - '+Colors.GREEN+'OK'+Colors.RESET,
+                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'HTTP-Methods - '+Colors.GREEN+'OK'+Colors.RESET
             )
 
 
@@ -105,7 +105,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             # Trace_Start
             Trace_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Screenshot',
+                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Screenshot'
             )
 
             # Take_Screenshot
@@ -113,7 +113,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
             # Trace_End
             Trace_File(
-                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Screenshot - '+Colors.GREEN+'OK'+Colors.RESET,
+                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Screenshot - '+Colors.GREEN+'OK'+Colors.RESET
             )
 
 
@@ -122,7 +122,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             # Trace_Start
             Trace_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Cookie-Flags',
+                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Cookie-Flags'
             )
 
             # Scan_Security_Flags
@@ -130,7 +130,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
             # Trace_End
             Trace_File(
-                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Cookie-Flags - '+Colors.GREEN+'OK'+Colors.RESET,
+                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Cookie-Flags - '+Colors.GREEN+'OK'+Colors.RESET
             )
 
 
