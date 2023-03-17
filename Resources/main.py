@@ -367,7 +367,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
                                     progress.update(task_Processes, advance=0.75)
                                     Dict_Threads.pop(Thread_ID, None)
                                 else:
-                                    if ((time() - Dict_Threads[Thread_ID][1]) > 900):
+                                    if ((int(time()) - Dict_Threads[Thread_ID][1]) > 900):
                                         progress.update(task_Processes, advance=0.75)
                                         Dict_Threads[Thread_ID][0].terminate()
                                         Dict_Threads.pop(Thread_ID, None)
@@ -381,11 +381,15 @@ def main(Date, Program_Mode, args, Array_Output = []):
                         try:
                             for Thread_ID in Dict_Threads:
                                 if (Thread_ID in str(active_children())):
+                                    progress.update(task_Processes, advance=0.75)
                                     Dict_Threads[Thread_ID][0].terminate()
+                                    Dict_Threads.pop(Thread_ID, None)
+                                else:
+                                    progress.update(task_Processes, advance=0.75)
                                     Dict_Threads.pop(Thread_ID, None)
                         except RuntimeError: pass
                         sleep(0.25)
-                                   
+
                 Dict_Result = queue.get()
 
                 # Format_Filtering
