@@ -14,15 +14,13 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
         with open(join(location, 'result_header.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
             writer.writerow((['URL','DNS'] + Array_Header))
-            print (Dict_Result['Header'])
             for Target in Dict_Result['Header']:
                 Array_Temp = []
                 Array_Temp.append(Target)
                 for Result_Left, Result_Right in Dict_Result['Header'][Target].items():
-                    if (Result_Left == "DNS" and Result_Right == ""):   Result_Right = "FEHLT"
-                    #elif (Result_Left == "DNS" and Result_Right == ""): Result_Right = "FEHLT"
+                    if (Result_Left == "DNS" and Result_Right == ""):        Result_Right = "FEHLT"
 
-                    if (Result_Left != "DNS" and Result_Right != "FEHLT"): Array_Temp.append("✓")
+                    if (Result_Left != "DNS" and Result_Right != "FEHLT"):   Array_Temp.append("✓")
                     elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
                     else: Array_Temp.append("X")
