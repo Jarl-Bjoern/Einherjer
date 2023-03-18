@@ -14,7 +14,6 @@ if (Program_Mode == "Scanning_Mode"):
     if (args.read_config_http_header == True and
         args.read_config_http_header_api == False):
             Array_Header, Array_HTTP_Filter = Standard.Read_File_Special(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_header.txt"))
-            print (Array_HTTP_Filter)
     elif (args.read_config_http_header == False and
           args.read_config_http_header_api == True):
             Array_Header, Array_HTTP_Filter = Standard.Read_File_Special(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_header_api.txt"))
