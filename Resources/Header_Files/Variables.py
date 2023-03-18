@@ -13,14 +13,14 @@ if (Program_Mode == "Scanning_Mode"):
     Array_Security_Flags = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_cookie_security.txt"))
     if (args.read_config_http_header == True and
         args.read_config_http_header_api == False):
-            Array_Header, Array_HTTP_Filter = Standard.Read_File_Special(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_header.txt"))
+            Dict_Header = Standard.Read_File_Special(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_header.txt"))
     elif (args.read_config_http_header == False and
           args.read_config_http_header_api == True):
-            Array_Header, Array_HTTP_Filter = Standard.Read_File_Special(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_header_api.txt"))
+            Dict_Header = Standard.Read_File_Special(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_header_api.txt"))
     elif (args.read_config_http_header == True and
           args.read_config_http_header_api == True):
             exit()
-    else: Array_Header, Array_HTTP_Filter = [], []
+    else: Dict_Header = {}
 
     Array_Information_Disclosure_Header = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_information_disclosure.txt"))
     Array_HTTP_Methods = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_methods.txt"))
