@@ -288,18 +288,16 @@ def main(Date, Program_Mode, args, Array_Output = []):
 
                     if (Counter_Connections == args.max_connections):
                         while (len(Dict_Threads) > 0):
-                            try:
-                                for Thread_ID in Dict_Threads:
-                                    if (Thread_ID not in str(active_children())):
+                            for Thread_ID in array(list(Dict_Threads)):
+                                if (Thread_ID not in str(active_children())):
+                                    Dict_Threads.pop(Thread_ID, None)
+                                    Counter_Connections -= 1
+                                else:
+                                    if ((int(time()) - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
+                                        Dict_Threads[Thread_ID][0].terminate()
+                                        Logs.Write_Log(Target, "")
                                         Dict_Threads.pop(Thread_ID, None)
                                         Counter_Connections -= 1
-                                    else:
-                                        if ((int(time()) - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
-                                            Dict_Threads[Thread_ID][0].terminate()
-                                            Logs.Write_Log(Target, "")
-                                            Dict_Threads.pop(Thread_ID, None)
-                                            Counter_Connections -= 1
-                            except RuntimeError: pass
                             sleep(2.25)
 
                     p = Process(target=Thread_Scanning_Start, args=Array_Thread_Args, daemon=True)
@@ -331,18 +329,16 @@ def main(Date, Program_Mode, args, Array_Output = []):
 
                             if (Counter_Connections == args.max_connections):
                                 while (len(Dict_Threads) > 0):
-                                    try:
-                                        for Thread_ID in Dict_Threads:
-                                            if (Thread_ID not in str(active_children())):
+                                    for Thread_ID in array(list(Dict_Threads)):
+                                        if (Thread_ID not in str(active_children())):
+                                            Dict_Threads.pop(Thread_ID, None)
+                                            Counter_Connections -= 1
+                                        else:
+                                            if ((int(time()) - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
+                                                Dict_Threads[Thread_ID][0].terminate()
+                                                Logs.Write_Log(Target, "")
                                                 Dict_Threads.pop(Thread_ID, None)
                                                 Counter_Connections -= 1
-                                            else:
-                                                if ((int(time()) - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
-                                                    Dict_Threads[Thread_ID][0].terminate()
-                                                    Logs.Write_Log(Target, "")
-                                                    Dict_Threads.pop(Thread_ID, None)
-                                                    Counter_Connections -= 1
-                                    except RuntimeError: pass
                                     sleep(2.25)
 
                             p = Process(target=Thread_SSL_Start, args=Array_Thread_Args, daemon=True)
@@ -361,33 +357,32 @@ def main(Date, Program_Mode, args, Array_Output = []):
                 Start_Kill, End_Kill = int(time()), int(time())
                 while ((End_Kill - Start_Kill) < 3600):
                     while (len(Dict_Threads) > 0):
-                        try:
-                            for Thread_ID in Dict_Threads:
-                                if (Thread_ID not in str(active_children())):
+                        for Thread_ID in array(list(Dict_Threads)):
+                            if (Thread_ID not in str(active_children())):
+                                progress.update(task_Processes, advance=0.75)
+                                Dict_Threads.pop(Thread_ID, None)
+                            else:
+                                if ((int(time()) - Dict_Threads[Thread_ID][1]) > 900):
+                                    progress.update(task_Processes, advance=0.75)
+                                    Dict_Threads[Thread_ID][0].terminate()
                                     Dict_Threads.pop(Thread_ID, None)
-                                else:
-                                    if ((int(time()) - Dict_Threads[Thread_ID][1]) > 900):                                        
-                                        Dict_Threads[Thread_ID][0].terminate()
-                                        Dict_Threads.pop(Thread_ID, None)
-                        except RuntimeError:
-                            progress.update(task_Processes, advance=0.75)
                         End_Kill = int(time())
                         sleep(0.75)
                     else:
                         break
                 else:
                     while (len(Dict_Threads) > 0):
-                        try:
-                            for Thread_ID in Dict_Threads:
-                                if (Thread_ID in str(active_children())):
-                                    Dict_Threads[Thread_ID][0].terminate()
-                                    Dict_Threads.pop(Thread_ID, None)
-                                else:
-                                    Dict_Threads.pop(Thread_ID, None)
-                        except RuntimeError:
-                            progress.update(task_Processes, advance=0.75)
+                        for Thread_ID in array(list(Dict_Threads)):
+                            if (Thread_ID in str(active_children())):
+                                progress.update(task_Processes, advance=0.75)
+                                Dict_Threads[Thread_ID][0].terminate()
+                                Dict_Threads.pop(Thread_ID, None)
+                            else:
+                                progress.update(task_Processes, advance=0.75)
+                                Dict_Threads.pop(Thread_ID, None)
                         sleep(0.25)
 
+                # Get_Results
                 Dict_Result = queue.get()
 
                 # Format_Filtering
