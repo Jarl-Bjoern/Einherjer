@@ -18,9 +18,7 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                 Array_Temp = []
                 Array_Temp.append(Target)
                 for Result_Left, Result_Right in Dict_Result['Header'][Target].items():
-                    if (Result_Left != "DNS" and Result_Right not in Array_HTTP_Filter):
-                        print (f'{Result_Left} : {Result_Right}')
-                        Result_Right = "FEHLT"
+                    if (Result_Left != "DNS" and Result_Right == ""):   Result_Right = "FEHLT"
                     elif (Result_Left == "DNS" and Result_Right == ""): Result_Right = "FEHLT"
 
                     if (Result_Left != "DNS" and Result_Right != "FEHLT"): Array_Temp.append("✓")
