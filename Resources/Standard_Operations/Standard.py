@@ -56,7 +56,7 @@ class Standard:
             return Temp_Array
         else: Logs.Error_Message(f'The requested File {template_file} does not exist!')
 
-    def Read_File_Special(file_path, Array_Temp_Zero = [], Array_Temp_One = []):
+    def Read_File_Special(file_path, Dict_Temp = {}, Array_Temp_Zero = [], Array_Temp_One = []):
         for _ in Standard.Read_Template(file_path):
             if (":" in _):
                 Temp = _.split(':')
@@ -64,22 +64,27 @@ class Standard:
                     if (';' in Temp[1]):
                         Array_Value_Temp = Temp[1].split(';')
                         if (Temp[0] not in Array_Temp_Zero):
+                            Dict_Temp[Temp[0]] = Temp[1].split(';')
                             Array_Temp_Zero.append(Temp[0])
                             Array_Temp_One += Array_Value_Temp
                     elif (',' in Temp[1]):
                         Array_Value_Temp = Temp[1].split(',')
                         if (Temp[0] not in Array_Temp_Zero):
+                            Dict_Temp[Temp[0]] = Temp[1].split(',')
                             Array_Temp_Zero.append(Temp[0])
                             Array_Temp_One += Array_Value_Temp                       
                     else:
                         if (Temp[0] not in Array_Temp_Zero):
+                            Dict_Temp[Temp[0]] = Temp[1]
                             Array_Temp_Zero.append(Temp[0])
                             Array_Temp_One.append(Temp[1])
                 except IndexError:
                     if (Temp[0] not in Array_Temp_Zero):
+                        Dict_Temp[Temp[0]] = Temp[1]
                         Array_Temp_Zero.append(Temp[0])
                         Array_Temp_One.append(Temp[1])
 
+        print (Dict_Temp), exit()
         return Array_Temp_Zero, Array_Temp_One
 
     def Read_Targets_XML(file_path, Array_Out = [], Array_SSL_Out = []):
