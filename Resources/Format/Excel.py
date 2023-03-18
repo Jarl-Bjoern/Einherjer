@@ -57,7 +57,7 @@ def Excel_Table(Dict_Result, location, Array_Header_Letter = ['A','B','C','D','E
         m = 1
         worksheet.write(f'A1', 'URL', bold_text)
         worksheet.write(f'B1', 'DNS', bold_text)
-        for Header in Array_Header:
+        for Header in list(Dict_Header):
             worksheet.write(f'{Array_Header_Letter[m]}1', Header, rotate_text)
             m += 1
 
