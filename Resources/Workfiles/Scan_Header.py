@@ -79,8 +79,9 @@ def Check_Site_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Dict_T
             # Check_Header
             if (Header[0].upper() in Dict_Header):
                 Temp_Head = Header[0].upper()
-                print (type(Dict_Header[Temp_Head]))
                 if (type(Dict_Header[Temp_Head]) == str):
+                    print (Header[1].upper())
+                    print (Dict_Header[Temp_Head])
                     if (Header[1].upper() in Dict_Header[Temp_Head]):
                         Dict_Temp_Header[Temp_Head] = Header[1].upper()
 
