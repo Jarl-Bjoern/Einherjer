@@ -66,6 +66,11 @@ class Standard:
                         if (Temp[0] not in Array_Temp_Zero):
                             Array_Temp_Zero.append(Temp[0])
                             Array_Temp_One += Array_Value_Temp
+                    elif (',' in Temp[1]):
+                        Array_Value_Temp = Temp[1].split(',')
+                        if (Temp[0] not in Array_Temp_Zero):
+                            Array_Temp_Zero.append(Temp[0])
+                            Array_Temp_One += Array_Value_Temp                       
                     else:
                         if (Temp[0] not in Array_Temp_Zero):
                             Array_Temp_Zero.append(Temp[0])
