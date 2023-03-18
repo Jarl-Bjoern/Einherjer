@@ -30,7 +30,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Host_Name'
         )
 
-        # Get_Host_Name        
+        # Get_Host_Name
         Host_Name = Get_Host_Name(url)
 
         # Trace_End
