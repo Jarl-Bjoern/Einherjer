@@ -77,7 +77,6 @@ def Check_Site_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Dict_T
         # Scanning_Process
         for Header in r.headers.items():
             if (Header[0].upper() in Array_Header):
-                print (f'{Header[0].upper()} : {Header[1].upper()}')
                 Dict_Temp_Header[Header[0].upper()] = Header[1].upper()
             elif (Header[0].upper() in Array_Information_Disclosure_Header):
                 Dict_Temp_Information_Disclosure[Header[0].upper()] = Header[1]
