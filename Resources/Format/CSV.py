@@ -13,7 +13,7 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
         Array_Files.append(join(location, 'result_header.csv'))
         with open(join(location, 'result_header.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
-            writer.writerow((['URL','DNS'] + Array_Header))
+            writer.writerow((['URL','DNS'] + list(Dict_Header)))
             for Target in Dict_Result['Header']:
                 Array_Temp = []
                 Array_Temp.append(Target)
