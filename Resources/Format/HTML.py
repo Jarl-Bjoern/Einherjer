@@ -19,7 +19,7 @@ def HTML_Table(Dict_Result, location, Body_HTML = ""):
 """
     Head_HTML += "<th>URL</th>"
     Head_HTML += "<th>DNS</th>"
-    for Head in Array_Header:
+    for Head in list(Dict_Header):
         Head_HTML += f"<th>{Head}</th>"
     Head_HTML += "</tr>"
     Footer_HTML = """</table>
