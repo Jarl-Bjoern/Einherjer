@@ -359,7 +359,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
                 progress.start_task(task_Processes)
                 if (len(Dict_Threads) > 0): progress.update(task_Processes, total=len(Dict_Threads))
                 Start_Kill, End_Kill = int(time()), int(time())
-                while (End_Kill - Start_Kill < 3600):
+                while ((End_Kill - Start_Kill) < 3600):
                     while (len(Dict_Threads) > 0):
                         try:
                             for Thread_ID in Dict_Threads:
