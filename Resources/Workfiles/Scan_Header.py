@@ -91,8 +91,10 @@ def Check_Site_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Dict_T
 
                     if (Check_Counter == len(Dict_Header[Temp_Header])):
                         Dict_Temp_Header[Temp_Head] = Header[1].upper()
-                    elif (Dict_Header[Temp_Header] != "CONTENT-SECURITY-POLICY" and Check_Counter > 0):
-                        Dict_Temp_Header[Temp_Head] = Header[1].upper()
+                    elif (Dict_Header[Temp_Header] != "CONTENT-SECURITY-POLICY" and
+                          Dict_Header[Temp_Header] != "STRICT-TRANSPORT-SECURITY" and
+                          Check_Counter > 0):
+                                Dict_Temp_Header[Temp_Head] = Header[1].upper()
                     else:
                         Dict_Temp_Header[Temp_Head] = "FEHLT"
 
