@@ -19,8 +19,8 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                 Array_Temp = []
                 Array_Temp.append(Target)
                 for Result_Left, Result_Right in Dict_Result['Header'][Target].items():
-                    if (Result_Left != "DNS" and Result_Right == ""):   Result_Right = "FEHLT"
-                    elif (Result_Left == "DNS" and Result_Right == ""): Result_Right = "FEHLT"
+                    if (Result_Left == "DNS" and Result_Right == ""):   Result_Right = "FEHLT"
+                    #elif (Result_Left == "DNS" and Result_Right == ""): Result_Right = "FEHLT"
 
                     if (Result_Left != "DNS" and Result_Right != "FEHLT"): Array_Temp.append("✓")
                     elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
