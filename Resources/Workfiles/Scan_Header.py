@@ -76,12 +76,31 @@ def Check_Site_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Dict_T
 
         # Scanning_Process
         for Header in r.headers.items():
-            if (Header[0].upper() in Array_Header):
-                Dict_Temp_Header[Header[0].upper()] = Header[1].upper()
+            # Check_Header
+            if (Header[0].upper() in Dict_Header):
+                Temp_Head = Header[0].upper()
+                if (type(Dict_Header[Temp_Head]) == str):
+                    if (Header[1].upper() == Dict_Header[Temp_Head]):
+                        Dict_Temp_Header[Temp_Head] = Header[1].upper()
+
+                elif (type(Dict_Header[Temp_Head]) == list):
+                    Check_Counter = 0
+                    for _ in Dict_Header[Temp_Header]:
+                        if (_ in Header[1].upper()):
+                            Check_Counter += 1
+
+                    if (Check_Counter == len(Dict_Header[Temp_Header])):
+                        Dict_Temp_Header[Temp_Head] = Header[1].upper()
+                    else:
+                        Dict_Temp_Header[Temp_Head] = "FEHLT"
+
+            # Check_HTTP_Information_Header
             elif (Header[0].upper() in Array_Information_Disclosure_Header):
                 Dict_Temp_Information_Disclosure[Header[0].upper()] = Header[1]
+
+            # Check_For_Missing_Header
             else:
-                for Temp_Header in array(Array_Header):
+                for Temp_Header in array(list(Dict_Header)):
                     if (Temp_Header not in Dict_Temp_Header):
                         Dict_Temp_Header[Temp_Header] = "FEHLT"
 
