@@ -37,7 +37,6 @@ def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Res
     config_arguments      = parser.add_argument_group(Colors.ORANGE+'config arguments'+Colors.RESET)
     debug_arguments       = parser.add_argument_group(Colors.ORANGE+'debug arguments'+Colors.RESET)
     format_arguments      = parser.add_argument_group(Colors.ORANGE+'format arguments'+Colors.RESET)
-    filter_arguments      = parser.add_argument_group(Colors.ORANGE+'format arguments'+Colors.RESET)
     optional              = parser.add_argument_group(Colors.ORANGE+'optional arguments'+Colors.RESET)
     performance_arguments = parser.add_argument_group(Colors.ORANGE+'performance arguments'+Colors.RESET)
     target_arguments      = parser.add_argument_group(Colors.ORANGE+'target arguments'+Colors.RESET)
