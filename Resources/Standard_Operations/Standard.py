@@ -44,6 +44,10 @@ class Standard:
             print (f"Your location can't be found or was not allowed!\n\nYour new location was set to {join(dirname(realpath(__file__)), output_location_dir)}")
             return join(dirname(realpath(__file__)), output_location_dir)
 
+    def List_Directory_Recursive(file_path):
+        for root, _, files in walk(file_path, topdown=False):
+            return files
+
     def Read_File(file_path):
         with open(file_path, 'r') as f:
             return f.read().splitlines()
