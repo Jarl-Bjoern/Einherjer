@@ -6,11 +6,6 @@
 from ..Header_Files.Variables import *
 
 def Create_PDF():
-    try:
-        if (osname == 'nt'): from docx2pdf import convert
-        else: import aspose.words as aw
-    except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
-
     while True:
         try:
             if (osname == 'nt'): convert(join(Location, f'{File_Name}.docx'), join(Location, f'{File_Name}.pdf'))
