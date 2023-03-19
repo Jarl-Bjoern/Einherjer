@@ -39,6 +39,20 @@ def main(Date, Program_Mode, args, Array_Output = []):
         from Resources.Header_Files.ArgParser_Brute_Intro import Argument_Parser
         Argument_Parser("\n\n\t\t\tThis section is UNDER CONSTRUCTION!\n\n"), exit()
 
+        # Wordlist_Filtering
+        if (args.add_wordlist != None and args.add_multiple_wordlists == None):
+            Array_Wordlists = []
+            if (args.add_wordlist not in Array_Wordlists):
+                for word in Standard.Read_File(args.add_wordlist):
+                    if (word not in Array_Wordlists): Array_Wordlists.append(word)
+        elif (args.add_wordlist == None and args.add_multiple_wordlists != None):
+            Array_Wordlists = []
+            for root,_,files in walk(args.add_multiple_wordlists):
+                for file in files:
+                    for word in Standard.Read_File(join(root, file)):
+                        if (word not in Array_Wordlists):
+                            Array_Wordlists.append(word)
+
         return Array_Output
 
     def Filter_Mode(Date, Output_location, args, Array_Output = []):
@@ -158,20 +172,6 @@ def main(Date, Program_Mode, args, Array_Output = []):
             except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
             shuffle(Array_Targets)
             del shuffle
-
-        # Wordlist_Filtering
-        if (args.add_wordlist != None and args.add_multiple_wordlists == None):
-            Array_Wordlists = []
-            if (args.add_wordlist not in Array_Wordlists):
-                for word in Standard.Read_File(args.add_wordlist):
-                    if (word not in Array_Wordlists): Array_Wordlists.append(word)
-        elif (args.add_wordlist == None and args.add_multiple_wordlists != None):
-            Array_Wordlists = []
-            for root,_,files in walk(args.add_multiple_wordlists):
-                for file in files:
-                    for word in Standard.Read_File(join(root, file)):
-                        if (word not in Array_Wordlists):
-                            Array_Wordlists.append(word)
 
         # Proxy_Settings
         if (args.add_http_proxy != None):                    Dict_Proxies['http']         = args.add_http_proxy
