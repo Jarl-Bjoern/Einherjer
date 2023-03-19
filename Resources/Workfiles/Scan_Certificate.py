@@ -69,7 +69,8 @@ def Check_Certificate(url, t_seconds, Host_Name, file_format, Location, context 
                 +Colors.BLUE+'Certificate-Check\n'
                 +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
                 +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - {Host_Name} - '+Colors.CYAN
-                +'Certificate Information was succesfully recorded.\n\n'
+                +'Certificate Information was succesfully recorded.\n\n',
+                join(Location, 'Logs')
             )
         else:
             Logs.Log_File(
@@ -77,7 +78,8 @@ def Check_Certificate(url, t_seconds, Host_Name, file_format, Location, context 
                 +Colors.BLUE+'Certificate-Check\n'
                 +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
                 +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - '
-                +Colors.CYAN+'Certificate Information was successfully recorded.\n\n'
+                +Colors.CYAN+'Certificate Information was successfully recorded.\n\n',
+                join(Location, 'Logs')
             )
 
     except (ConnectionRefusedError, gaierror, SSLError):
