@@ -6,9 +6,6 @@
 from ..Header_Files.Variables import *
 
 def JSON_Table(Dict_Result, location):
-    try: import json
-    except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
-
     def Write_JSON(keyword, location, result_file):
         with open(join(location, result_file), 'w', encoding='UTF-8') as f:
             json.dump(Dict_Result[keyword], f)
