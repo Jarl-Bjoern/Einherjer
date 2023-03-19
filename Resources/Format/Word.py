@@ -6,16 +6,6 @@
 from ..Header_Files.Variables import *
 
 def Word_Table(Dict_Result, location):
-    try:
-        from docx import Document
-        from docx.enum.style import WD_STYLE_TYPE
-        from docx.enum.table import WD_ALIGN_VERTICAL
-        from docx.enum.text import WD_ALIGN_PARAGRAPH
-        from docx.oxml.shared import OxmlElement
-        from docx.oxml.ns import qn
-        from docx.shared import Inches, Pt, RGBColor
-    except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
-
     document = Document()
 
     def Text_Format(Format, Size):
