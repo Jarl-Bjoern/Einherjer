@@ -391,9 +391,10 @@ def main(Date, Program_Mode, args, Array_Output = []):
 
                 # Get_All_Files
                 progress.start_task(task_Filter)
-                if (len(Standard.List_Directory_Recursive(Location)) > 0):
-                    Counter_Bar_Filter = 100/len(Standard.List_Directory_Recursive(Location))
-                    progress.update(task_Filter, total=len(Standard.List_Directory_Recursive(Location)))
+                Temp_Path_Length = len(Standard.List_Directory_Recursive(Location))
+                if (Temp_Path_Length > 0):
+                    Counter_Bar_Filter = 100/Temp_Path_Length
+                    progress.update(task_Filter, total=Temp_Path_Length)
                     for root, _, files in walk(Location, topdown=False):
                         for file in files:
                             if (join(root, file) not in Array_Output):
