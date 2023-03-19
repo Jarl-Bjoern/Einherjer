@@ -38,7 +38,8 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         # Trace_Start
         Logs.Trace_File(
             Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-            +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Host_Name'
+            +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Host_Name',
+            join(Location, 'Logs')
         )
 
         # Get_Host_Name
@@ -46,7 +47,8 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
         # Trace_End
         Logs.Trace_File(
-            Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Host_Name - '+Colors.GREEN+'OK'+Colors.RESET
+            Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Host_Name - '+Colors.GREEN+'OK'+Colors.RESET,
+            join(Location, 'Logs')
         )
 
 
@@ -55,7 +57,8 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             # Trace_Start
             Logs.Trace_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Certificate'
+                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Certificate',
+                join(Location, 'Logs')
             )
 
             # Scan_Certificate
@@ -64,7 +67,8 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
             # Trace_End
             Logs.Trace_File(
-                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Certificate - '+Colors.GREEN+'OK'+Colors.RESET
+                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Certificate - '+Colors.GREEN+'OK'+Colors.RESET,
+                join(Location, 'Logs')
             )
 
 
@@ -78,7 +82,8 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             # Trace_Start
             Logs.Trace_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Header'
+                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Header',
+                join(Location, 'Logs')
             )
 
             # Scan_Header
@@ -87,7 +92,8 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
             # Trace_End
             Logs.Trace_File(
-                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Header - '+Colors.GREEN+'OK'+Colors.RESET
+                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Header - '+Colors.GREEN+'OK'+Colors.RESET,
+                join(Location, 'Logs')
             )
 
 
@@ -96,7 +102,8 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             # Trace_Start
             Logs.Trace_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'HTTP-Methods'
+                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'HTTP-Methods',
+                join(Location, 'Logs')
             )
 
             # Scan_HTTP_Methods
@@ -105,7 +112,8 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
             # Trace_End
             Logs.Trace_File(
-                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'HTTP-Methods - '+Colors.GREEN+'OK'+Colors.RESET
+                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'HTTP-Methods - '+Colors.GREEN+'OK'+Colors.RESET,
+                join(Location, 'Logs')
             )
 
 
@@ -119,7 +127,8 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             # Trace_Start
             Logs.Trace_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Screenshot'
+                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Screenshot',
+                join(Location, 'Logs')
             )
 
             # Take_Screenshot
@@ -127,7 +136,8 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
             # Trace_End
             Logs.Trace_File(
-                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Screenshot - '+Colors.GREEN+'OK'+Colors.RESET
+                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Screenshot - '+Colors.GREEN+'OK'+Colors.RESET,
+                join(Location, 'Logs')
             )
 
 
@@ -136,7 +146,8 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             # Trace_Start
             Logs.Trace_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Cookie-Flags'
+                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Cookie-Flags',
+                join(Location, 'Logs')
             )
 
             # Scan_Security_Flags
@@ -145,7 +156,8 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
             # Trace_End
             Logs.Trace_File(
-                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Cookie-Flags - '+Colors.GREEN+'OK'+Colors.RESET
+                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Cookie-Flags - '+Colors.GREEN+'OK'+Colors.RESET,
+                join(Location, 'Logs')
             )
 
 
@@ -158,7 +170,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         # SSH
         if (dict_switch['scan_ssh'] != False and 'ssh://' in url):
             try: Dict_Result['SSH'][url] = SSH_Vulns(url)
-            except SSHException: Logs.Write_Log(url, Host_Name)
+            except SSHException: Logs.Write_Log(url, Host_Name, join(Location, 'Logs'))
 
         # Format_Filtering
         if ("csv" in file_format):
