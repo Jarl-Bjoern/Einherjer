@@ -5,7 +5,7 @@
 # Libraries
 from ..Header_Files.Variables import *
 
-def JSON_Table(Dict_Result, location, Array_Files = []):
+def JSON_Table(Dict_Result, location):
     try: import json
     except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
 
@@ -28,5 +28,3 @@ def JSON_Table(Dict_Result, location, Array_Files = []):
     if (Dict_Header['Certificate'] != {}):
         Array_Files.append(join(location, 'result_certificate.json'))
         Write_JSON('Header', location, 'result_certificate.json')
-
-    return Array_Files
