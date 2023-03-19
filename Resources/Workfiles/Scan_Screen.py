@@ -78,7 +78,7 @@ def Take_Screenshot(url, driver_options, Screen_Dir, switch_internet_connection,
                 +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
                 +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - '+Colors.CYAN+'A screenshot was successfully taken from the website.\n'
                 +Colors.BLUE+'-----------------------------------------------------------------------------------------------------------\n\n',
-                join(Location, 'Logs')
+                Screen_Dir.replace('Screenshots', 'Logs')
             )
         else:
             Logs.Log_File(
@@ -88,7 +88,7 @@ def Take_Screenshot(url, driver_options, Screen_Dir, switch_internet_connection,
                 +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - '
                 +Colors.CYAN+'It was not possible to take a screenshot. It could be that there is a WAF behind the page.\n'
                 +Colors.BLUE+'-----------------------------------------------------------------------------------------------------------\n\n',
-                join(Location, 'Logs')
+                Screen_Dir.replace('Screenshots', 'Logs')
             )
     except MaxRetryError:
         Logs.Log_File(
@@ -98,7 +98,7 @@ def Take_Screenshot(url, driver_options, Screen_Dir, switch_internet_connection,
             +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - '
             +Colors.CYAN+'It was not possible to connect to the website to take a screenshot\n'
             +Colors.BLUE+'-----------------------------------------------------------------------------------------------------------\n\n',
-            join(Location, 'Logs')
+            Screen_Dir.replace('Screenshots', 'Logs')
         )
     finally:
         driver.quit()
