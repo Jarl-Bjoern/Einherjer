@@ -200,39 +200,6 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, file_format, Location, Array_Resul
                             +'\n-----------------------------------------------------------------------------------------------------------\n\n'+Colors.RESET
                         )
 
-        # Format_Filtering
-        #if ("csv" in file_format):
-        #    from ..Format.CSV import CSV_Table
-        #    Array_Output = CSV_Table(Dict_Full_Output, Location)
-        #elif ("docx" in file_format):
-        #    from ..Format.Word import Word_Table
-        #    Array_Output = Word_Table(Dict_Full_Output, Location)
-        #elif ("html" in file_format):
-        #    from ..Format.HTML import HTML_Table
-        #    Array_Output = HTML_Table(Dict_Full_Output, Location)
-        #elif ("json" in file_format):
-        #    from ..Format.JSON import JSON_Table
-        #    Array_Output = JSON_Table(Dict_Full_Output, Location)
-        #elif ("md" in file_format):
-        #    from ..Format.Markdown import Markdown_Table
-        #    Array_Output = Markdown_Table(Dict_Full_Output, Location)
-        #elif ("pdf" in file_format):
-        #    from ..Format.PDF import Create_PDF
-        #    Array_Output = Word_Table(Dict_Full_Output, Location)
-        #    if (osname == 'nt'): Create_PDF(Location)
-        #    else: print("At this point it's not be possible to convert a docx file into a pdf under linux.\nPlease try it under windows.\n")
-        #elif ("tex" in file_format):
-        #    from ..Format.LaTeX import Latex_Table
-        #    Array_Output = Latex_Table(Dict_Full_Output, Location)
-        #elif ("xlsx" in file_format):
-        #    from ..Format.Excel import Excel_Table
-        #    Array_Output = Excel_Table(Dict_Full_Output, Location)
-        #elif ("xml" in file_format):
-        #    from ..Format.XML import XML_Table
-        #    #Array_Output = XML_Table(Dict_Full_Output, Location)
-        #elif ("yaml" in file_format):
-        #    from ..Format.YAML import YAML_Table
-        #    #Array_Output = YAML_Table(Dict_Full_Output, Location)
     except (ConnectionResetError):
         Logs.Log_File(
             Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
