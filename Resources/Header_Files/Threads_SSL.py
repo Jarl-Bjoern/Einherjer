@@ -10,14 +10,14 @@ from ..Workfiles.Scan_SSL import SSL_Vulns
 # Functions
 def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict_proxies, dict_auth, file_format, Location):
     Dict_Temp = {
-        'Certificate': {},
-        'Fuzzing': {},
-        'Header': {},
-        'HTTP_Methods': {},
-        'Information': {},
+        'Certificate':   {},
+        'Fuzzing':       {},
+        'Header':        {},
+        'HTTP_Methods':  {},
+        'Information':   {},
         'Security_Flag': {},
-        'SSH': {},
-        'SSL': {}
+        'SSH':           {},
+        'SSL':           {}
     }
 
     try:
