@@ -83,45 +83,45 @@ def Check_Cookie_And_HTTP_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_A
             Dict_Temp_Information_Disclosure['DNS'] = ""
 
         # Scanning_Process_Header
-        for Header in r.headers.items():
+        for Header_Key, Header_Values in r.headers.items():
             # Check_Header
-            if (Header[0].upper() in Dict_Header):
-                Temp_Head = Header[0].upper()
+            if (Header_Key.upper() in Dict_Header):
+                Temp_Head = Header_Key.upper()
                 if (type(Dict_Header[Temp_Head]) == str):
-                    if (Header[1].upper() == Dict_Header[Temp_Head]):
-                        Dict_Temp_Header[Temp_Head] = Header[1].upper()
+                    if (Header_Values.upper() == Dict_Header[Temp_Head]):
+                        Dict_Temp_Header[Temp_Head] = Header_Values.upper()
 
                 elif (type(Dict_Header[Temp_Head]) == list):
                     Check_Counter = 0
                     for _ in Dict_Header[Temp_Head]:
-                        if (_ in Header[1].upper()):
+                        if (_ in Header_Values.upper()):
                             Check_Counter += 1
 
                     if (Check_Counter == len(Dict_Header[Temp_Head])):
-                        Dict_Temp_Header[Temp_Head] = Header[1].upper()
+                        Dict_Temp_Header[Temp_Head] = Header_Values.upper()
                     elif (Dict_Header[Temp_Head] != "CONTENT-SECURITY-POLICY" and
                           Dict_Header[Temp_Head] != "STRICT-TRANSPORT-SECURITY" and
                           Check_Counter > 0):
-                                Dict_Temp_Header[Temp_Head] = Header[1].upper()
+                                Dict_Temp_Header[Temp_Head] = Header_Values.upper()
                     else:
                         Dict_Temp_Header[Temp_Head] = "FEHLT"
 
-        # Scanning_Cookie
-        for Header_Key, Header_Values in r.headers.items():
-            if ("COOKIE" in Header_Key.upper()):
-                Target_Flags = Header_Values.upper()
-                for Flag in Array_Security_Flags:
-                    if (Flag not in Target_Flags): Dict_Temp[Flag] = "FEHLT"
-                    else:
-                        if ("SAMESITE" in Target_Flags and Switch_SameSite != True):
-                            if ("SAMESITE=LAX" in Target_Flags or "SAMESITE=STRICT" in Target_Flags): Dict_Temp[Flag] = Flag
-                            else: Dict_Temp[Flag] = "FEHLT"
-                            Switch_SameSite = True
-                        else: Dict_Temp[Flag] = Flag
+            # Check_Cookie
+            elif ("COOKIE" in Header_Key.upper()):
+                if ("COOKIE" in Header_Key.upper()):
+                    Target_Flags = Header_Values.upper()
+                    for Flag in Array_Security_Flags:
+                        if (Flag not in Target_Flags): Dict_Temp[Flag] = "FEHLT"
+                        else:
+                            if ("SAMESITE" in Target_Flags and Switch_SameSite != True):
+                                if ("SAMESITE=LAX" in Target_Flags or "SAMESITE=STRICT" in Target_Flags): Dict_Temp[Flag] = Flag
+                                else: Dict_Temp[Flag] = "FEHLT"
+                                Switch_SameSite = True
+                            else: Dict_Temp[Flag] = Flag
 
             # Check_HTTP_Information_Header
-            elif (Header[0].upper() in Array_Information_Disclosure_Header):
-                Dict_Temp_Information_Disclosure[Header[0].upper()] = Header[1]
+            elif (Header_Key.upper() in Array_Information_Disclosure_Header):
+                Dict_Temp_Information_Disclosure[Header_Key.upper()] = Header_Values
 
             # Check_For_Missing_Header
             else:
