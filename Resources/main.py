@@ -461,7 +461,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
                 Message_Chromium(join(Location, 'Screenshots'))
             Standard.Stdout_Output(Colors.ORANGE+f'\n\t\t\t\tIt was not possible to collect any kind of data!\n\n\t\t\t     Check your connection or target file and try it again.'+Colors.RESET, 0.01)
         elif (Program_Mode == "Brute_Force_Mode"):
-             if (args.brute_screenshot_recursive != False):
+            if (args.brute_screenshot_recursive != False):
                 Message_Chromium(join(Location, 'Screenshots'))
             Standard.Stdout_Output(Colors.ORANGE+f'\n\t\t\t\tIt was not possible to collect any kind of data!\n\n\t\t\t     Check your connection or target file and try it again.'+Colors.RESET, 0.01)
         elif (Program_Mode == "Filter_Mode"):
