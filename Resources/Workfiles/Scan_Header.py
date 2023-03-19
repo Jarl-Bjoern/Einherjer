@@ -7,7 +7,7 @@ from ..Header_Files.Variables import *
 from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 
-def Check_Site_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, file_format, Location, Dict_Temp_Header = {}, Dict_Temp_Information_Disclosure = {}):
+def Check_Site_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Location, Dict_Temp_Header = {}, Dict_Temp_Information_Disclosure = {}):
     try:
         # Auth_Configuration
         if (Dict_Auth['pkcs12_cert'] != ''):
