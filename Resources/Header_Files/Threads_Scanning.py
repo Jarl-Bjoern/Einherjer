@@ -147,6 +147,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
 
         # Format_Filtering
+        print (Dict_Result)
         if ("csv" in file_format):
             from Resources.Format.CSV import CSV_Table
             Array_Output = CSV_Table(Dict_Result, Location)
