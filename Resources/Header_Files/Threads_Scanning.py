@@ -48,7 +48,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             )
 
             # Scan_Certificate
-            Dict_Result['Certificate'][url] = Check_Certificate(url, t_seconds, Host_Name)
+            Dict_Result['Certificate'][url] = Check_Certificate(url, t_seconds, Host_Name, file_format, Location)
 
             # Trace_End
             Logs.Trace_File(
@@ -70,7 +70,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             )
 
             # Scan_Header
-            Dict_Result['Header'][url], Dict_Result['Information'][url] = Check_Site_Header(url, t_seconds, Host_Name, dict_proxies, dict_auth)
+            Dict_Result['Header'][url], Dict_Result['Information'][url] = Check_Site_Header(url, t_seconds, Host_Name, dict_proxies, dict_auth, file_format, Location)
 
             # Trace_End
             Logs.Trace_File(
@@ -87,7 +87,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             )
 
             # Scan_HTTP_Methods
-            Dict_Result['HTTP_Methods'][url] = Check_HTTP_Methods(url, Host_Name, dict_proxies, dict_auth)
+            Dict_Result['HTTP_Methods'][url] = Check_HTTP_Methods(url, Host_Name, dict_proxies, dict_auth, file_format, Location)
 
             # Trace_End
             Logs.Trace_File(
@@ -126,7 +126,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             )
 
             # Scan_Security_Flags
-            Dict_Result['Security_Flag'][url] = Check_Security_Flags(url, t_seconds, Host_Name, dict_proxies, dict_auth)
+            Dict_Result['Security_Flag'][url] = Check_Security_Flags(url, t_seconds, Host_Name, dict_proxies, dict_auth, file_format, Location)
 
             # Trace_End
             Logs.Trace_File(
