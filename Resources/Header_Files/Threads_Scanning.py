@@ -62,7 +62,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             )
 
             # Scan_Certificate
-            Dict_Result['Certificate'][url] = Check_Certificate(url, t_seconds, Host_Name, file_format, Location)
+            Dict_Result['Certificate'][url] = Check_Certificate(url, t_seconds, Host_Name, Location)
             Dict_Temp['Certificate'][url]   = Dict_Result['Certificate'][url]
 
             # Trace_End
@@ -87,7 +87,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             )
 
             # Scan_Header
-            Dict_Result['Header'][url], Dict_Result['Information'][url] = Check_Site_Header(url, t_seconds, Host_Name, dict_proxies, dict_auth, file_format, Location)
+            Dict_Result['Header'][url], Dict_Result['Information'][url] = Check_Site_Header(url, t_seconds, Host_Name, dict_proxies, dict_auth, Location)
             Dict_Temp['Header'][url], Dict_Temp['Information'][url]     = Dict_Result['Header'][url], Dict_Result['Information'][url]
 
             # Trace_End
@@ -107,7 +107,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             )
 
             # Scan_HTTP_Methods
-            Dict_Result['HTTP_Methods'][url] = Check_HTTP_Methods(url, Host_Name, dict_proxies, dict_auth, file_format, Location)
+            Dict_Result['HTTP_Methods'][url] = Check_HTTP_Methods(url, Host_Name, dict_proxies, dict_auth, Location)
             Dict_Temp['HTTP_Methods'][url]   = Dict_Result['HTTP_Methods'][url]
 
             # Trace_End
@@ -151,7 +151,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             )
 
             # Scan_Security_Flags
-            Dict_Result['Security_Flag'][url] = Check_Security_Flags(url, t_seconds, Host_Name, dict_proxies, dict_auth, file_format, Location)
+            Dict_Result['Security_Flag'][url] = Check_Security_Flags(url, t_seconds, Host_Name, dict_proxies, dict_auth, Location)
             Dict_Temp['Security_Flag'][url]   = Dict_Result['Security_Flag'][url]
 
             # Trace_End
