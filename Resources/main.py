@@ -409,8 +409,6 @@ def main(Date, Program_Mode, args, Array_Output = []):
 
         if (args.scan_site_screenshot != False):
             Filter_Output_File = Web.Screenshot_Filter(Screen_Dir, Location)
-            if (len(listdir(Screen_Dir)) > 0):
-                for _ in listdir(Screen_Dir): Array_Output.append(join(Screen_Dir, _))
             if (Filter_Output_File != ""):
                 Array_Output.append(Filter_Output_File)
 
