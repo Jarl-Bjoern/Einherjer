@@ -31,7 +31,7 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
             # Trace_Start
             Logs.Trace_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Scan_SSL - '+Colors.BLUE+'Trying to connect'+Colors.RESET,
+                +Colors.ORANGE+f'{array_ssl}'+Colors.RED+' -> '+Colors.RESET+'Scan_SSL - '+Colors.BLUE+'Trying to connect'+Colors.RESET,
                 join(Location, 'Logs')
             )
 
@@ -41,7 +41,7 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
 
             # Trace_End
             Logs.Trace_File(
-                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Scan_SSL - '+Colors.GREEN+'OK'+Colors.RESET,
+                Colors.ORANGE+f'{array_ssl}'+Colors.RED+' <- '+Colors.RESET+'Scan_SSL - '+Colors.GREEN+'OK'+Colors.RESET,
                 join(Location, 'Logs')
             )
 
