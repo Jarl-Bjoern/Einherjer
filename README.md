@@ -7,8 +7,8 @@
   <a href="https://www.microsoft.com/">
     <img alt="windows" src="https://img.shields.io/badge/%20-Windows-1f425f.svg?logo=windows&logoColor=cyan" />
   </a>
-  <a href="https://www.python.org/downloads/release/python-3100/">
-    <img alt="python" src="https://img.shields.io/badge/python-3.10-blue.svg?logo=python&logoColor=cyan" />
+  <a href="https://www.python.org/downloads/release/python-3110/">
+    <img alt="python" src="https://img.shields.io/badge/python-3.11-blue.svg?logo=python&logoColor=cyan" />
   </a>
   <a href="https://visitor-badge.glitch.me/badge?page_id=jarl-bjoern/einherjer&left_color=grey&right_color=blue">
     <img alt="visitors" src="https://visitor-badge.glitch.me/badge?page_id=jarl-bjoern/einherjer&left_color=grey&right_color=blue" />
