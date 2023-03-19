@@ -160,7 +160,6 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             try: Dict_Result['SSH'][url] = SSH_Vulns(url)
             except SSHException: Logs.Write_Log(url, Host_Name)
 
-        Dict_Temp = Dict_Result
         # Format_Filtering
         if ("csv" in file_format):
             from ..Format.CSV import CSV_Table
