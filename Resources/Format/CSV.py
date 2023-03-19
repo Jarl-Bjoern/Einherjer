@@ -5,13 +5,11 @@
 # Libraries
 from ..Header_Files.Variables import *
 
-def CSV_Table(Dict_Result, location, Array_Files = [], Write_Mode = ""):
+def CSV_Table(Dict_Result, location, Write_Mode = ""):
     try: import csv
     except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
 
     if (Dict_Result['Header'] != {}):
-        Array_Files.append(join(location, 'result_header.csv'))
-
         # Check_For_Existing_File
         if (exists(join(location, 'result_header.csv'))):  Write_Mode = 'a'
         else:                                              Write_Mode = 'w'
@@ -35,8 +33,6 @@ def CSV_Table(Dict_Result, location, Array_Files = [], Write_Mode = ""):
                 writer.writerow(Array_Temp)
 
     if (Dict_Result['Information'] != {}):
-        Array_Files.append(join(location, 'result_information_disclosure.csv'))
-
         # Check_For_Existing_File
         if (exists(join(location, 'result_information_disclosure.csv'))):  Write_Mode = 'a'
         else:                                                              Write_Mode = 'w'
@@ -61,8 +57,6 @@ def CSV_Table(Dict_Result, location, Array_Files = [], Write_Mode = ""):
                 writer.writerow(Array_Temp)
 
     if (Dict_Result['SSH'] != {}):
-        Array_Files.append(join(location, 'result_ssh_vulns.csv'))
-
         # Check_For_Existing_File
         if (exists(join(location, 'result_ssh_vulns.csv'))):  Write_Mode = 'a'
         else:                                                 Write_Mode = 'w'
@@ -92,8 +86,6 @@ def CSV_Table(Dict_Result, location, Array_Files = [], Write_Mode = ""):
                 writer.writerow(Array_Temp)
 
     if (Dict_Result['Security_Flag'] != {}):
-        Array_Files.append(join(location, f'result_security_flags.csv'))
-
         # Check_For_Existing_File
         if (exists(join(location, 'result_security_flags.csv'))):  Write_Mode = 'a'
         else:                                                      Write_Mode = 'w'
@@ -122,8 +114,6 @@ def CSV_Table(Dict_Result, location, Array_Files = [], Write_Mode = ""):
                 writer.writerow(Array_Temp)
 
     if (Dict_Result['Certificate'] != {}):
-        Array_Files.append(join(location, f'result_certificate.csv'))
-
         # Check_For_Existing_File
         if (exists(join(location, 'result_certificate.csv'))):  Write_Mode = 'a'
         else:                                                   Write_Mode = 'w'
@@ -148,8 +138,6 @@ def CSV_Table(Dict_Result, location, Array_Files = [], Write_Mode = ""):
                 writer.writerow(Array_Temp)
 
     if (Dict_Result['HTTP_Methods'] != {}):
-        Array_Files.append(join(location, f'result_http_methods.csv'))
-
         # Check_For_Existing_File
         if (exists(join(location, 'result_http_methods.csv'))):  Write_Mode = 'a'
         else:                                                    Write_Mode = 'w'
@@ -174,8 +162,6 @@ def CSV_Table(Dict_Result, location, Array_Files = [], Write_Mode = ""):
                 writer.writerow(Array_Temp)
 
     if (Dict_Result['SSL'] != {}):
-        Array_Files.append(join(location, f'result_ssl_ciphers.csv'))
-
         # Check_For_Existing_File
         if (exists(join(location, 'result_ssl_ciphers.csv'))):  Write_Mode = 'a'
         else:                                                   Write_Mode = 'w'
@@ -209,4 +195,3 @@ def CSV_Table(Dict_Result, location, Array_Files = [], Write_Mode = ""):
                         pass
                     elif (Result_Left == "Curves"):
                         pass
-    return Array_Files
