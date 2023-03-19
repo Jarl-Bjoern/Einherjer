@@ -398,7 +398,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
                         for file in files:
                             if (join(root, file) not in Array_Output):
                                 Array_Output.append(join(root, file))
-                            progress.update(Task_Filter, advance=Counter_Bar_Filter)
+                            progress.update(task_Filter, advance=Counter_Bar_Filter)
 
                 # Progress_End
                 while not progress.finished:
