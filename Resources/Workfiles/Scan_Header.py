@@ -85,14 +85,14 @@ def Check_Site_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locati
 
                 elif (type(Dict_Header[Temp_Head]) == list):
                     Check_Counter = 0
-                    for _ in Dict_Header[Temp_Header]:
+                    for _ in Dict_Header[Temp_Head]:
                         if (_ in Header[1].upper()):
                             Check_Counter += 1
 
-                    if (Check_Counter == len(Dict_Header[Temp_Header])):
+                    if (Check_Counter == len(Dict_Header[Temp_Head])):
                         Dict_Temp_Header[Temp_Head] = Header[1].upper()
-                    elif (Dict_Header[Temp_Header] != "CONTENT-SECURITY-POLICY" and
-                          Dict_Header[Temp_Header] != "STRICT-TRANSPORT-SECURITY" and
+                    elif (Dict_Header[Temp_Head] != "CONTENT-SECURITY-POLICY" and
+                          Dict_Header[Temp_Head] != "STRICT-TRANSPORT-SECURITY" and
                           Check_Counter > 0):
                                 Dict_Temp_Header[Temp_Head] = Header[1].upper()
                     else:
