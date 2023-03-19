@@ -5,10 +5,8 @@
 # Libraries
 from ..Header_Files.Variables import *
 
-def Markdown_Table(Dict_Result, location, Array_Files = []):
+def Markdown_Table(Dict_Result, location):
     if (Dict_Result['Header'] != {}):
-        Array_Files.append(join(location, 'result_header.md'))
-
         # Check_For_Existing_File
         if (exists(join(location, 'result_header.md'))):  Write_Mode = 'a'
         else:                                             Write_Mode = 'w'
@@ -32,8 +30,6 @@ def Markdown_Table(Dict_Result, location, Array_Files = []):
                 md_file.write(f'{Temp_Word}\n')
 
     if (Dict_Result['Information'] != {}):
-        Array_Files.append(join(location, 'result_information_disclosure.md'))
-
         # Check_For_Existing_File
         if (exists(join(location, 'result_information_disclosure.md'))):  Write_Mode = 'a'
         else:                                                             Write_Mode = 'w'
@@ -58,8 +54,6 @@ def Markdown_Table(Dict_Result, location, Array_Files = []):
                 md_file.write(f'{Temp_Word}\n')
 
     if (Dict_Result['Security_Flag'] != {}):
-        Array_Files.append(join(location, 'result_security_flags.md'))
-
         # Check_For_Existing_File
         if (exists(join(location, 'result_security_flags.md'))):  Write_Mode = 'a'
         else:                                                     Write_Mode = 'w'
@@ -86,8 +80,6 @@ def Markdown_Table(Dict_Result, location, Array_Files = []):
                 md_file.write(f'{Temp_Word}\n')
 
     if (Dict_Result['Certificate'] != {}):
-        Array_Files.append(join(location, 'result_certificate.md'))
-
         # Check_For_Existing_File
         if (exists(join(location, 'result_certificate.md'))):  Write_Mode = 'a'
         else:                                                  Write_Mode = 'w'
@@ -112,8 +104,6 @@ def Markdown_Table(Dict_Result, location, Array_Files = []):
                 md_file.write(f'{Temp_Word}\n')
 
     if (Dict_Result['HTTP_Methods'] != {}):
-        Array_Files.append(join(location, f'result_http_methods.md'))
-
         # Check_For_Existing_File
         if (exists(join(location, 'result_http_methods.md'))):  Write_Mode = 'a'
         else:                                                   Write_Mode = 'w'
@@ -138,8 +128,6 @@ def Markdown_Table(Dict_Result, location, Array_Files = []):
                 md_file.write(f'{Temp_Word}\n')
 
     if (Dict_Result['SSL'] != {}):
-        Array_Files.append(join(location, f'result_ssl_ciphers.md'))
-
         # Check_For_Existing_File
         if (exists(join(location, 'result_ssl_ciphers.md'))):  Write_Mode = 'a'
         else:                                                  Write_Mode = 'w'
@@ -176,5 +164,3 @@ def Markdown_Table(Dict_Result, location, Array_Files = []):
 
     if (Dict_Result['SSH'] != {}):
         pass
-        
-    return Array_Files
