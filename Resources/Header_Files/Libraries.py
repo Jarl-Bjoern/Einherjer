@@ -70,6 +70,28 @@ try:
             from .ArgParser_Scan import Argument_Parser
             args, Program_Mode = Argument_Parser(), "Scanning_Mode"
 
+            # Format_Import
+            if ("csv" in file_format):
+                import csv
+            elif ("docx" in file_format):
+                from docx import Document
+                from docx.enum.style import WD_STYLE_TYPE
+                from docx.enum.table import WD_ALIGN_VERTICAL
+                from docx.enum.text import WD_ALIGN_PARAGRAPH
+                from docx.oxml.shared import OxmlElement
+                from docx.oxml.ns import qn
+                from docx.shared import Inches, Pt, RGBColor
+            elif ("json" in file_format):
+                import json
+            elif ("pdf" in file_format):
+                if (osname == 'nt'):
+                    from docx2pdf import convert
+                else:
+                    print("At this point it's not be possible to convert a docx file into a pdf under linux.\nPlease try it under windows.\n")
+            elif ("xlsx" in file_format):
+                from xlsxwriter import Workbook
+                from pandas import ExcelFile, DataFrame, read_excel
+
             # Scanning_Module_Filtering
             if (args.scan_all == False and
                 args.scan_site_certificate == False and
