@@ -162,7 +162,7 @@ def Check_Cookie_And_HTTP_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_A
                 +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
                 +Colors.ORANGE+'\nOriginal Output'+Colors.RED+' -> '+Colors.RESET+f'{r.headers.items()}'
                 +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
-                +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n',
+                +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp_Cookie}\n\n',
                 join(Location, 'Logs')
             )
         else:
@@ -197,7 +197,7 @@ def Check_Cookie_And_HTTP_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_A
                 +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
                 +Colors.ORANGE+'\nOriginal Output'+Colors.RED+' -> '+Colors.RESET+f'{r.headers.items()}'
                 +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
-                +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n',
+                +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp_Cookie}\n\n',
                 join(Location, 'Logs')
             )
 
