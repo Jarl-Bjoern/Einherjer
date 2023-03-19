@@ -75,32 +75,32 @@ def Check_Site_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locati
             Dict_Temp_Header['DNS'], Dict_Temp_Information_Disclosure['DNS'] = "",""
 
         # Scanning_Process
-        for Header in r.headers.items():
+        for Header_Key, Header_Values in r.headers.items():
             # Check_Header
-            if (Header[0].upper() in Dict_Header):
-                Temp_Head = Header[0].upper()
+            if (Header_Key.upper() in Dict_Header):
+                Temp_Head = Header_Key.upper()
                 if (type(Dict_Header[Temp_Head]) == str):
-                    if (Header[1].upper() == Dict_Header[Temp_Head]):
-                        Dict_Temp_Header[Temp_Head] = Header[1].upper()
+                    if (Header_Values.upper() == Dict_Header[Temp_Head]):
+                        Dict_Temp_Header[Temp_Head] = Header_Values.upper()
 
                 elif (type(Dict_Header[Temp_Head]) == list):
                     Check_Counter = 0
                     for _ in Dict_Header[Temp_Head]:
-                        if (_ in Header[1].upper()):
+                        if (_ in Header_Values.upper()):
                             Check_Counter += 1
 
                     if (Check_Counter == len(Dict_Header[Temp_Head])):
-                        Dict_Temp_Header[Temp_Head] = Header[1].upper()
+                        Dict_Temp_Header[Temp_Head] = Header_Values.upper()
                     elif (Dict_Header[Temp_Head] != "CONTENT-SECURITY-POLICY" and
                           Dict_Header[Temp_Head] != "STRICT-TRANSPORT-SECURITY" and
                           Check_Counter > 0):
-                                Dict_Temp_Header[Temp_Head] = Header[1].upper()
+                                Dict_Temp_Header[Temp_Head] = Header_Values.upper()
                     else:
                         Dict_Temp_Header[Temp_Head] = "FEHLT"
 
             # Check_HTTP_Information_Header
-            elif (Header[0].upper() in Array_Information_Disclosure_Header):
-                Dict_Temp_Information_Disclosure[Header[0].upper()] = Header[1]
+            elif (Header_Key.upper() in Array_Information_Disclosure_Header):
+                Dict_Temp_Information_Disclosure[Header_Key.upper()] = Header_Values
 
             # Check_For_Missing_Header
             else:
