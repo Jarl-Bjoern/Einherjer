@@ -56,30 +56,6 @@ try:
 
     # Argument_Parser
     try:
-        if (argv[1] == '--brute-force-mode' or
-            argv[1] == '--scanning-mode'):
-                # Format_Import
-                if ("csv" in args.format):
-                    import csv
-                elif ("docx" in args.format):
-                    from docx import Document
-                    from docx.enum.style import WD_STYLE_TYPE
-                    from docx.enum.table import WD_ALIGN_VERTICAL
-                    from docx.enum.text import WD_ALIGN_PARAGRAPH
-                    from docx.oxml.shared import OxmlElement
-                    from docx.oxml.ns import qn
-                    from docx.shared import Inches, Pt, RGBColor
-                elif ("json" in args.format):
-                    import json
-                elif ("pdf" in args.format):
-                    if (osname == 'nt'):
-                        from docx2pdf import convert
-                    else:
-                        print("At this point it's not be possible to convert a docx file into a pdf under linux.\nPlease try it under windows.\n")
-                elif ("xlsx" in args.format):
-                    from xlsxwriter import Workbook
-                    from pandas import ExcelFile, DataFrame, read_excel
-
         if (argv[1] == "--filter-mode"):
             argv.remove('--filter-mode')
             from .ArgParser_Filter import Argument_Parser
@@ -248,6 +224,30 @@ try:
         else:
             from .ArgParser_Mode import Argument_Parser
             Argument_Parser("\n\n\t\t\t   The program cannot be started without using the mode of the program!\n\t\t\tFor more information use one of the modes with the parameter -h or --help.\n"), exit()
+
+        if (argv[1] == '--brute-force-mode' or
+            argv[1] == '--scanning-mode'):
+                # Format_Import
+                if ("csv" in args.format):
+                    import csv
+                elif ("docx" in args.format):
+                    from docx import Document
+                    from docx.enum.style import WD_STYLE_TYPE
+                    from docx.enum.table import WD_ALIGN_VERTICAL
+                    from docx.enum.text import WD_ALIGN_PARAGRAPH
+                    from docx.oxml.shared import OxmlElement
+                    from docx.oxml.ns import qn
+                    from docx.shared import Inches, Pt, RGBColor
+                elif ("json" in args.format):
+                    import json
+                elif ("pdf" in args.format):
+                    if (osname == 'nt'):
+                        from docx2pdf import convert
+                    else:
+                        print("At this point it's not be possible to convert a docx file into a pdf under linux.\nPlease try it under windows.\n")
+                elif ("xlsx" in args.format):
+                    from xlsxwriter import Workbook
+                    from pandas import ExcelFile, DataFrame, read_excel
 
         try:
             del Argument_Parser, argv
