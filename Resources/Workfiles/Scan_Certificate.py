@@ -17,7 +17,7 @@ def Check_Certificate(url, t_seconds, Host_Name, Location, context = create_unve
         URL = Temp
 
     # Port_Filter
-    if (url.count(':') > 0): Port = URL.split(':')[1]
+    if (url.count(':') > 1): Port = URL.split(':')[1]
     else: Port = 443
 
     # Get_Only_Target
