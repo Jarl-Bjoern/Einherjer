@@ -13,7 +13,6 @@ from ..Workfiles.Scan_SMTP import Check_SMTP
 def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch_internet_connection, screenshot_wait, webdriver_timeout, ssl_timeout, dict_proxies, dict_auth, file_format, Location, Host_Name = ""):
     Dict_Temp = {
         'Certificate': {},
-        'Fuzzing': {},
         'Header': {},
         'HTTP_Methods': {},
         'Information': {},
@@ -69,14 +68,6 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
                 Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Certificate - '+Colors.GREEN+'OK'+Colors.RESET,
                 join(Location, 'Logs')
             )
-
-
-        # Fuzzing
-        if (dict_switch['scan_fuzzing'] != False and '//' in url and 'http' in url):
-            # Library_Import
-            from ..Workfiles.Scan_Fuzzing import Check_Site_Paths
-
-            Dict_Result['Fuzzing'][url] = Check_Site_Paths(url, t_seconds)
 
 
         # Cookie_Security_Flags
@@ -176,11 +167,6 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
                 Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'HTTP-Methods - '+Colors.GREEN+'OK'+Colors.RESET,
                 join(Location, 'Logs')
             )
-
-
-        # Recursive_Fuzzing_And_Screenshot
-        if (dict_switch['scan_screenshot_recursive'] != False and '//' in url and 'http' in url):
-            pass
 
 
         # Screenshot
