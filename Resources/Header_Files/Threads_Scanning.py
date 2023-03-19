@@ -195,6 +195,6 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             #YAML_Table(Dict_Temp, Location)
 
     except (ConnectionError, gaierror, WebDriverException, RequestException):
-        Logs.Write_Log(url, Host_Name)
+        Logs.Write_Log(url, Host_Name, join(Location, 'Logs'))
     finally:
         queue.put(Dict_Result)
