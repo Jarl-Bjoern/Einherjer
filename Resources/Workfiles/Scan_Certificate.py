@@ -42,11 +42,10 @@ def Check_Certificate(url, t_seconds, Host_Name, Location, context = create_unve
                 # Get_Cert_Information
                 Current_Date = datetime.now()
 
-                print (resplit('<| ', str(cert.public_key()))[1].split('.')[::-1][0])
-
                 Dict_Temp['Issuer']              = str(cert.issuer)[6:-2]
                 Dict_Temp['Subject']             = str(cert.subject)[6:-2]
                 Dict_Temp['Signature_Algorithm'] = str(cert.signature_algorithm_oid).split('name=')[1][:-2].upper()
+                Dict_Temp['Public_Key']          = resplit('<| ', str(cert.public_key()))[1].split('.')[::-1][0]
                 Dict_Temp['Cert_Creation_Date']  = str(cert.not_valid_before)
                 Dict_Temp['Cert_EOL']            = str(cert.not_valid_after)
 
