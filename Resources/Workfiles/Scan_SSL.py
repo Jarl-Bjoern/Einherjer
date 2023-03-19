@@ -44,7 +44,8 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, file_format, Location, Array_Resul
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
                 +Colors.BLUE+'SSL-Check\n'
                 +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                +f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the target\n'
+                +f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the target\n',
+                join(Location, 'Logs')
             )
 
     # Scanning_Process
@@ -92,7 +93,8 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, file_format, Location, Array_Resul
                     Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
                     +Colors.BLUE+'SSL-Check\n'+Colors.YELLOW
                     +'-----------------------------------------------------------------------------------------------------------\n'
-                    +f'{strftime("%Y-%m-%d_%H:%M:%S")} - {server_scan_result.server_location.hostname} - It was not possible to connect to the target\n'
+                    +f'{strftime("%Y-%m-%d_%H:%M:%S")} - {server_scan_result.server_location.hostname} - It was not possible to connect to the target\n',
+                    join(Location, 'Logs')
                 )
             elif (server_scan_result.scan_status == ServerScanStatusEnum.COMPLETED):
                 json_output = SslyzeOutputAsJson(
@@ -183,7 +185,8 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, file_format, Location, Array_Resul
                                         Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
                                         +Colors.BLUE+'SSL-Check\n'+Colors.YELLOW
                                         +'-----------------------------------------------------------------------------------------------------------\n'
-                                        +f'{strftime("%Y-%m-%d_%H:%M:%S")} - {_["server_location"]["ip_address"]}:{_["server_location"]["port"]} - It was not possible to connect to the target\n'
+                                        +f'{strftime("%Y-%m-%d_%H:%M:%S")} - {_["server_location"]["ip_address"]}:{_["server_location"]["port"]} - It was not possible to connect to the target\n',
+                                        join(Location, 'Logs')
                                     )
 
                         Dict_Full_SSL['SSL_Vulns'] = Dict_SSL_Vulns
@@ -197,7 +200,8 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, file_format, Location, Array_Resul
                             +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
                             +Colors.ORANGE+'\nEinherjer Output'
                             +Colors.RED+' -> '+Colors.RESET+f'{Dict_Full_SSL}'+Colors.BLUE
-                            +'\n-----------------------------------------------------------------------------------------------------------\n\n'+Colors.RESET
+                            +'\n-----------------------------------------------------------------------------------------------------------\n\n'+Colors.RESET,
+                            join(Location, 'Logs')
                         )
 
     except (ConnectionResetError):
@@ -205,7 +209,8 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, file_format, Location, Array_Resul
             Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
             +Colors.BLUE+'SSL-Check\n'+Colors.YELLOW
             +'-----------------------------------------------------------------------------------------------------------\n'
-            +f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the target\n'
+            +f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the target\n',
+            join(Location, 'Logs')
         )
 
     return Dict_Full_Output
