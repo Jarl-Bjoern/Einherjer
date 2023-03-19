@@ -98,7 +98,8 @@ def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, fil
                 +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
                 +Colors.ORANGE+'\nOriginal Output'+Colors.RED+' -> '+Colors.RESET+f'{r.headers.items()}'
                 +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
-                +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n'
+                +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n',
+                join(Location, 'Logs')
             )
         else:
             Logs.Log_File(
@@ -109,7 +110,8 @@ def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, fil
                 +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
                 +Colors.ORANGE+'\nOriginal Output'+Colors.RED+' -> '+Colors.RESET+f'{r.headers.items()}'
                 +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
-                +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n'
+                +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n',
+                join(Location, 'Logs')
             )
 
         # Terminate_Session
