@@ -12,7 +12,7 @@ class Logs:
 
     def Trace_File(Text, Log_Path):
         if (not exists(Log_Path)): makedirs(Log_Path)
-        with open(join(Log_Path, f'{Date}_tracefile.txt'), 'a') as f:
+        with open(join(Log_Path, f'{Date}_tracefile.log'), 'a') as f:
             f.write(f'{Text}\n')
 
     def Write_Log(url, host, Log_Path):
