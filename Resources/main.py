@@ -66,16 +66,33 @@ def main(Date, Program_Mode, args, Array_Output = []):
 
         return Array_Output
 
-    def Scanning_Mode(Date, args, Dict_Result = {'Certificate': {}, 'Fuzzing': {}, 'Header': {}, 'HTTP_Methods': {}, 'Information': {}, 'Security_Flag': {}, 'SSH': {}, 'SSL': {}}, Dict_Proxies = {'http': '', 'https': ''}, Dict_Auth = {'user': '', 'password': '', 'pkcs12_cert': '', 'pkcs12_password': ''}, Array_Thread_Args = [], Dict_Threads = {}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None, Array_Targets = [], Array_SSL_Targets = []):
+    def Scanning_Mode(Date, args, Array_Thread_Args = [], Dict_Threads = {}, Dict_Proxies = {'http': "",'https': ""}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None, Array_Targets = [], Array_SSL_Targets = []):
+        # Dict_Declaration
+        Dict_Result = {
+            'Certificate':               {},
+            'DNS':                       {},
+            'Header':                    {},
+            'HTTP_Methods':              {},
+            'Information':               {},
+            'Security_Flag':             {},
+            'SSH':                       {},
+            'SSL':                       {}
+        }
+
+        Dict_Auth = {
+            'user':                      '',
+            'password':                  '',
+            'pkcs12_cert':               '',
+            'pkcs12_password':           ''
+        }
+
         Dict_Switch = {
             'scan_certificate':          False,
             'scan_dns':                  False,
-            'scan_fuzzing':              False,
             'scan_header':               False,
             'scan_http_methods':         False,
             'scan_security_flags':       False,
             'scan_screenshot':           None,
-            'scan_screenshot_recursive': False,
             'scan_snmp':                 False,
             'scan_smtp':                 False,
             'scan_ssh':                  False,
