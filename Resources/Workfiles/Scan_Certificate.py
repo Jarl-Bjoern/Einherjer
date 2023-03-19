@@ -7,7 +7,7 @@ from ..Header_Files.Variables import *
 from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 
-def Check_Certificate(url, t_seconds, Host_Name, file_format, Location, context = create_unverified_context(), Dict_Temp = {}):
+def Check_Certificate(url, t_seconds, Host_Name, Location, context = create_unverified_context(), Dict_Temp = {}):
     if ('https://' in url): URL = url.split('https://')[1]
     elif ('ssl://' in url): URL = url.split('ssl://')[1]
 
