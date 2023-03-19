@@ -297,7 +297,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
                                 else:
                                     if ((int(time()) - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
                                         Dict_Threads[Thread_ID][0].terminate()
-                                        Logs.Write_Log(Target, "")
+                                        Logs.Write_Log(Target, "", join(Location, 'Logs'))
                                         Dict_Threads.pop(Thread_ID, None)
                                         Counter_Connections -= 1
                             sleep(2.25)
@@ -340,7 +340,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
                                         else:
                                             if ((int(time()) - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
                                                 Dict_Threads[Thread_ID][0].terminate()
-                                                Logs.Write_Log(Target, "")
+                                                Logs.Write_Log(Target, "", join(Location, 'Logs'))
                                                 Dict_Threads.pop(Thread_ID, None)
                                                 Counter_Connections -= 1
                                     sleep(2.25)
