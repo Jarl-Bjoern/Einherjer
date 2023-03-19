@@ -36,6 +36,7 @@ def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Res
     brute_arguments       = parser.add_argument_group(Colors.ORANGE+'brute-force arguments'+Colors.RESET)
     config_arguments      = parser.add_argument_group(Colors.ORANGE+'config arguments'+Colors.RESET)
     debug_arguments       = parser.add_argument_group(Colors.ORANGE+'debug arguments'+Colors.RESET)
+    format_arguments      = parser.add_argument_group(Colors.ORANGE+'format arguments'+Colors.RESET)
     filter_arguments      = parser.add_argument_group(Colors.ORANGE+'format arguments'+Colors.RESET)
     optional              = parser.add_argument_group(Colors.ORANGE+'optional arguments'+Colors.RESET)
     performance_arguments = parser.add_argument_group(Colors.ORANGE+'performance arguments'+Colors.RESET)
@@ -68,6 +69,8 @@ def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Res
     config_arguments.add_argument('-o', '--output-location', type=str, help=Colors.GREEN+'Specify the location where the result should be saved.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     debug_arguments.add_argument('-d', '--debug', type=bool, nargs='?', default=False, help=Colors.GREEN+'This Parameter deactivates the terminal clearing after starting the tool.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+
+    format_arguments.add_argument('-f', '--format', choices=['csv','docx','html','json','md','pdf','tex','xlsx','xml','yaml'], type=str, default='csv', help=Colors.GREEN+'Specify your used format like xlsx (Excel), Docx (MS Word), LaTeX or PDF.'+Colors.RESET+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     optional.add_argument('-c', '--custom-chromium-path', type=str, help=Colors.GREEN+'Specify the location of your custom chromium.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     optional.add_argument('-h','--help', action='help', default=SUPPRESS, help=Colors.GREEN+'Show this help message and exit.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
