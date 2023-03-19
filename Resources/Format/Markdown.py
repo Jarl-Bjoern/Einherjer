@@ -87,8 +87,8 @@ def Markdown_Table(Dict_Result, location):
         # Filter_Mode
         with open(join(location, 'result_certificate.md'), Write_Mode, encoding='UTF-8', newline='') as md_file:
             if (Write_Mode == 'w'):
-                md_file.write('| URL | DNS | ISSUER | SUBJECT | SIGNATURE_ALGORITHM | CERT_CREATION_DATE | CERT_EOL | DATE_DIFFERENCE | TESTED_DATE |\n')
-                md_file.write('| --- | --- | ------ | ------- | ------------------- | ------------------ | -------- | --------------- | ----------- |\n')
+                md_file.write('| URL | DNS | ISSUER | SUBJECT | SIGNATURE_ALGORITHM | PUBLIC_KEY | CERT_CREATION_DATE | CERT_EOL | DATE_DIFFERENCE | TESTED_DATE |\n')
+                md_file.write('| --- | --- | ------ | ------- | ------------------- | ---------- | ------------------ | -------- | --------------- | ----------- |\n')
 
             for Target in Dict_Result['Certificate']:
                 Temp_Word = ""
