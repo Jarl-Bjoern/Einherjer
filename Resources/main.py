@@ -268,6 +268,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
                 queue.put(Dict_Result)
                 task_Scan      = progress.add_task("[cyan]Scanning for vulnerabilities...", total=(len(Array_Targets)+len(Array_SSL_Targets)))
                 task_Processes = progress.add_task("[cyan]Waiting for the results...", total=1, start=False)
+                task_Filter    = progress.add_task("[cyan]Filtering the results...", total=1, start=False)
 
                 # Normal_Targets
                 for Target in array(Array_Targets):
@@ -389,15 +390,21 @@ def main(Date, Program_Mode, args, Array_Output = []):
                 Dict_Result = queue.get()
 
                 # Get_All_Files
+                progress.start_task(task_Filter)
                 if (len(listdir(Location)) > 0):
-                    for _ in listdir(Location):
-                        if (join(Location, _) not in Array_Output):
-                            Array_Output.append(join(Location, _))
+                    Counter_Bar_Filter = 100/len(Location)
+                    progress.update(task_Filter, total=len(Location))
+                    for root, _, files in walk(Location, topdown=False):
+                        for file in files:
+                            if (join(root, file) not in Array_Output):
+                                Array_Output.append(join(root, file))
+                            progress.update(Task_Filter, advance=Counter_Bar_Filter)
 
                 # Progress_End
                 while not progress.finished:
                     progress.update(task_Scan, advance=Counter_Bar)
                     progress.update(task_Processes, advance=0.75)
+                    progress.update(task_Filter, advance=Counter_Bar_Filter)
                     sleep(0.01)
 
         if (args.scan_site_screenshot != False):
