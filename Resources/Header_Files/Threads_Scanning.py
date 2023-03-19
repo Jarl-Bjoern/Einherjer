@@ -17,7 +17,7 @@ from ..Workfiles.Scan_Screen import Take_Screenshot
 from ..Workfiles.Scan_SMTP import Check_SMTP
 
 # Functions
-def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch_internet_connection, screenshot_wait, webdriver_timeout, ssl_timeout, dict_proxies, dict_auth, Host_Name = ""):
+def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch_internet_connection, screenshot_wait, webdriver_timeout, ssl_timeout, dict_proxies, dict_auth, file_format, Location, Host_Name = ""):
     try:
         Dict_Result = queue.get()
 
@@ -144,6 +144,41 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         if (dict_switch['scan_ssh'] != False and 'ssh://' in url):
             try: Dict_Result['SSH'][url] = SSH_Vulns(url)
             except SSHException: Logs.Write_Log(url, Host_Name)
+
+
+        # Format_Filtering
+        if ("csv" in file_format):
+            from Resources.Format.CSV import CSV_Table
+            Array_Output = CSV_Table(Dict_Result, Location)
+        elif ("docx" in file_format):
+            from Resources.Format.Word import Word_Table
+            Array_Output = Word_Table(Dict_Result, Location)
+        elif ("html" in file_format):
+            from Resources.Format.HTML import HTML_Table
+            Array_Output = HTML_Table(Dict_Result, Location)
+        elif ("json" in file_format):
+            from Resources.Format.JSON import JSON_Table
+            Array_Output = JSON_Table(Dict_Result, Location)
+        elif ("md" in file_format):
+            from Resources.Format.Markdown import Markdown_Table
+            Array_Output = Markdown_Table(Dict_Result, Location)
+        elif ("pdf" in file_format):
+            from Resources.Format.PDF import Create_PDF
+            Array_Output = Word_Table(Dict_Result, Location)
+            if (osname == 'nt'): Create_PDF(Location)
+            else: print("At this point it's not be possible to convert a docx file into a pdf under linux.\nPlease try it under windows.\n")
+        elif ("tex" in file_format):
+            from Resources.Format.LaTeX import Latex_Table
+            Array_Output = Latex_Table(Dict_Result, Location)
+        elif ("xlsx" in file_format):
+            from Resources.Format.Excel import Excel_Table
+            Array_Output = Excel_Table(Dict_Result, Location)
+        elif ("xml" in file_format):
+            from Resources.Format.XML import XML_Table
+            #Array_Output = XML_Table(Dict_Result, Location)
+        elif ("yaml" in file_format):
+            from Resources.Format.YAML import YAML_Table
+            #Array_Output = YAML_Table(Dict_Result, Location)
 
     except (ConnectionError, gaierror, WebDriverException, RequestException):
         Logs.Write_Log(url, Host_Name)
