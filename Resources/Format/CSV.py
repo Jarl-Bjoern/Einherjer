@@ -5,15 +5,23 @@
 # Libraries
 from ..Header_Files.Variables import *
 
-def CSV_Table(Dict_Result, location, Array_Files = []):
+def CSV_Table(Dict_Result, location, Array_Files = [], Write_Mode = ""):
     try: import csv
     except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
 
     if (Dict_Result['Header'] != {}):
         Array_Files.append(join(location, 'result_header.csv'))
-        with open(join(location, 'result_header.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
+
+        # Check_For_Existing_File
+        if (exists(join(location, 'result_header.csv'))):  Write_Mode = 'a'
+        else:                                              Write_Mode = 'w'
+
+        # Filter_Mode
+        with open(join(location, 'result_header.csv'), Write_Mode, encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
-            writer.writerow((['URL','DNS'] + list(Dict_Header)))
+            if (Write_Mode == 'w'):
+                writer.writerow((['URL','DNS'] + list(Dict_Header)))
+
             for Target in Dict_Result['Header']:
                 Array_Temp = []
                 Array_Temp.append(Target)
@@ -28,9 +36,17 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
 
     if (Dict_Result['Information'] != {}):
         Array_Files.append(join(location, 'result_information_disclosure.csv'))
-        with open(join(location, 'result_information_disclosure.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
+
+        # Check_For_Existing_File
+        if (exists(join(location, 'result_information_disclosure.csv'))):  Write_Mode = 'a'
+        else:                                                              Write_Mode = 'w'
+
+        # Filter_Mode
+        with open(join(location, 'result_information_disclosure.csv'), Write_Mode, encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
-            writer.writerow((['URL','DNS'] + Array_Information_Disclosure_Header))
+            if (Write_Mode == 'w'):
+                writer.writerow((['URL','DNS'] + Array_Information_Disclosure_Header))
+
             for Target in Dict_Result['Header']:
                 Array_Temp = []
                 Array_Temp.append(Target)
@@ -45,10 +61,18 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
                 writer.writerow(Array_Temp)
 
     if (Dict_Result['SSH'] != {}):
-        Array_Files.append(join(location, 'result_SSH-Vulns.csv'))
-        with open(join(location, 'result_SSH-Vulns.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
+        Array_Files.append(join(location, 'result_ssh_vulns.csv'))
+
+        # Check_For_Existing_File
+        if (exists(join(location, 'result_ssh_vulns.csv'))):  Write_Mode = 'a'
+        else:                                                 Write_Mode = 'w'
+
+        # Filter_Mode
+        with open(join(location, 'result_ssh_vulns.csv'), Write_Mode, encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
-            writer.writerow((['Host','DNS'] + Array_SSH_Header))
+            if (Write_Mode == 'w'):
+                writer.writerow((['Host','DNS'] + Array_SSH_Header))
+
             for Target in Dict_Result['SSH']:
                 Array_Temp = []
                 Array_Temp.append(Target)
@@ -69,9 +93,16 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
 
     if (Dict_Result['Security_Flag'] != {}):
         Array_Files.append(join(location, f'result_security_flags.csv'))
-        with open(join(location, f'result_security_flags.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
+
+        # Check_For_Existing_File
+        if (exists(join(location, 'result_security_flags.csv'))):  Write_Mode = 'a'
+        else:                                                      Write_Mode = 'w'
+
+        with open(join(location, f'result_security_flags.csv'), Write_Mode, encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
-            writer.writerow((['Host','DNS'] + Array_Security_Flags))
+            if (Write_Mode == 'w'):
+                writer.writerow((['Host','DNS'] + Array_Security_Flags))
+
             for Target in Dict_Result['Security_Flag']:
                 Array_Temp = []
                 Array_Temp.append(Target)
@@ -92,9 +123,17 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
 
     if (Dict_Result['Certificate'] != {}):
         Array_Files.append(join(location, f'result_certificate.csv'))
-        with open(join(location, f'result_certificate.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
+
+        # Check_For_Existing_File
+        if (exists(join(location, 'result_certificate.csv'))):  Write_Mode = 'a'
+        else:                                                   Write_Mode = 'w'
+
+        # Filter_Mode
+        with open(join(location, f'result_certificate.csv'), Write_Mode, encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
-            writer.writerow(['Host','DNS','Issuer','Subject','Signature_Algorithm','Cert_Creation_Date','Cert_EOL','Date_Difference','Tested_Date'])
+            if (Write_Mode == 'w'):
+                writer.writerow(['Host','DNS','Issuer','Subject','Signature_Algorithm','Cert_Creation_Date','Cert_EOL','Date_Difference','Tested_Date'])
+
             for Target in Dict_Result['Certificate']:
                 Array_Temp = []
                 Array_Temp.append(Target)
@@ -110,9 +149,17 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
 
     if (Dict_Result['HTTP_Methods'] != {}):
         Array_Files.append(join(location, f'result_http_methods.csv'))
-        with open(join(location, f'result_http_methods.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
+
+        # Check_For_Existing_File
+        if (exists(join(location, 'result_http_methods.csv'))):  Write_Mode = 'a'
+        else:                                                    Write_Mode = 'w'
+
+        # Filter_Mode
+        with open(join(location, f'result_http_methods.csv'), Write_Mode, encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
-            writer.writerow((['Host','DNS'] + Array_HTTP_Methods))
+            if (Write_Mode == 'w'):
+                writer.writerow((['Host','DNS'] + Array_HTTP_Methods))
+
             for Target in Dict_Result['HTTP_Methods']:
                 Array_Temp = []
                 Array_Temp.append(Target)
@@ -128,9 +175,17 @@ def CSV_Table(Dict_Result, location, Array_Files = []):
 
     if (Dict_Result['SSL'] != {}):
         Array_Files.append(join(location, f'result_ssl_ciphers.csv'))
-        with open(join(location, f'result_ssl_ciphers.csv'), 'w', encoding='UTF-8', newline='') as csv_file:
+
+        # Check_For_Existing_File
+        if (exists(join(location, 'result_ssl_ciphers.csv'))):  Write_Mode = 'a'
+        else:                                                   Write_Mode = 'w'
+
+        # Filter_Mode
+        with open(join(location, f'result_ssl_ciphers.csv'), Write_Mode, encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
-            writer.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Anonymous','Encryption','Key_Exchange']))
+            if (Write_Mode == 'w'):
+                writer.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Anonymous','Encryption','Key_Exchange']))
+
             for Target in Dict_Result['SSL']:
                 Array_Temp = []
                 Array_Temp.append(Target)
