@@ -8,7 +8,7 @@ from ..Workfiles.Scan_Host_Name import Get_Host_Name
 from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 
-def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Result_Filter = ['http_headers', 'certificate_info','rejected_cipher_suites','rejected_curves'], Start_Scan = datetime.now(), Temp = ""):
+def SSL_Vulns(array_ssl_targets, ssl_timeout, file_format, Location, Array_Result_Filter = ['http_headers', 'certificate_info','rejected_cipher_suites','rejected_curves'], Start_Scan = datetime.now(), Temp = ""):
     # Variables
     TLS_Version, Supported_Version, Array_Attack, Dict_Full_Output = "","",[],{}
 
@@ -199,6 +199,40 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Array_Result_Filter = ['http_heade
                             +Colors.RED+' -> '+Colors.RESET+f'{Dict_Full_SSL}'+Colors.BLUE
                             +'\n-----------------------------------------------------------------------------------------------------------\n\n'+Colors.RESET
                         )
+
+        # Format_Filtering
+        if ("csv" in file_format):
+            from ..Format.CSV import CSV_Table
+            Array_Output = CSV_Table(Dict_Full_Output, Location)
+        elif ("docx" in file_format):
+            from ..Format.Word import Word_Table
+            Array_Output = Word_Table(Dict_Full_Output, Location)
+        elif ("html" in file_format):
+            from ..Format.HTML import HTML_Table
+            Array_Output = HTML_Table(Dict_Full_Output, Location)
+        elif ("json" in file_format):
+            from ..Format.JSON import JSON_Table
+            Array_Output = JSON_Table(Dict_Full_Output, Location)
+        elif ("md" in file_format):
+            from ..Format.Markdown import Markdown_Table
+            Array_Output = Markdown_Table(Dict_Full_Output, Location)
+        elif ("pdf" in file_format):
+            from ..Format.PDF import Create_PDF
+            Array_Output = Word_Table(Dict_Full_Output, Location)
+            if (osname == 'nt'): Create_PDF(Location)
+            else: print("At this point it's not be possible to convert a docx file into a pdf under linux.\nPlease try it under windows.\n")
+        elif ("tex" in file_format):
+            from ..Format.LaTeX import Latex_Table
+            Array_Output = Latex_Table(Dict_Full_Output, Location)
+        elif ("xlsx" in file_format):
+            from ..Format.Excel import Excel_Table
+            Array_Output = Excel_Table(Dict_Full_Output, Location)
+        elif ("xml" in file_format):
+            from ..Format.XML import XML_Table
+            #Array_Output = XML_Table(Dict_Full_Output, Location)
+        elif ("yaml" in file_format):
+            from ..Format.YAML import YAML_Table
+            #Array_Output = YAML_Table(Dict_Full_Output, Location)
     except (ConnectionResetError):
         Logs.Log_File(
             Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
