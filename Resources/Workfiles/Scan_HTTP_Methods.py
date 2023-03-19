@@ -7,7 +7,7 @@ from ..Header_Files.Variables import *
 from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 
-def Check_HTTP_Methods(url, Host_Name, Dict_Proxies, Dict_Auth, file_format, Location, Dict_Temp = {'DNS': "", 'CONNECT': "", 'DELETE': "", 'HEAD': "", 'OPTIONS': "", 'PATCH': "", 'POST': "", 'PUT': "", 'TRACE': ""}, Switch_URL = False):
+def Check_HTTP_Methods(url, Host_Name, Dict_Proxies, Dict_Auth, Location, Dict_Temp = {'DNS': "", 'CONNECT': "", 'DELETE': "", 'HEAD': "", 'OPTIONS': "", 'PATCH': "", 'POST': "", 'PUT': "", 'TRACE': ""}, Switch_URL = False):
     if (Host_Name != ""): Dict_Temp['DNS'] = Host_Name
     else: Dict_Temp['DNS'] = ""
 
