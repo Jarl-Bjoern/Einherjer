@@ -225,8 +225,8 @@ try:
             from .ArgParser_Mode import Argument_Parser
             Argument_Parser("\n\n\t\t\t   The program cannot be started without using the mode of the program!\n\t\t\tFor more information use one of the modes with the parameter -h or --help.\n"), exit()
 
-        if (argv[1] == '--brute-force-mode' or
-            argv[1] == '--scanning-mode'):
+        if (Program_Mode == 'Brute_Force_Mode' or
+            Program_Mode == 'Scanning_Mode'):
                 # Format_Import
                 if ("csv" in args.format):
                     import csv
