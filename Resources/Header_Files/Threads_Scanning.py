@@ -38,7 +38,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         # Trace_Start
         Logs.Trace_File(
             Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-            +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Host_Name - '+Colors.BLUE+'Try to connect'+Colors.RESET,
+            +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Host_Name - '+Colors.BLUE+'Trying to connect'+Colors.RESET,
             join(Location, 'Logs')
         )
 
@@ -57,7 +57,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             # Trace_Start
             Logs.Trace_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Certificate - '+Colors.BLUE+'Try to connect'+Colors.RESET,
+                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Certificate - '+Colors.BLUE+'Trying to connect'+Colors.RESET,
                 join(Location, 'Logs')
             )
 
@@ -82,7 +82,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             # Trace_Start
             Logs.Trace_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Header - '+Colors.BLUE+'Try to connect'+Colors.RESET,
+                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Header - '+Colors.BLUE+'Trying to connect'+Colors.RESET,
                 join(Location, 'Logs')
             )
 
@@ -102,7 +102,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             # Trace_Start
             Logs.Trace_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'HTTP-Methods - '+Colors.BLUE+'Try to connect'+Colors.RESET,
+                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'HTTP-Methods - '+Colors.BLUE+'Trying to connect'+Colors.RESET,
                 join(Location, 'Logs')
             )
 
@@ -127,7 +127,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             # Trace_Start
             Logs.Trace_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Screenshot - '+Colors.BLUE+'Try to connect'+Colors.RESET,
+                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Screenshot - '+Colors.BLUE+'Trying to connect'+Colors.RESET,
                 join(Location, 'Logs')
             )
 
@@ -146,7 +146,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             # Trace_Start
             Logs.Trace_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Cookie-Flags - '+Colors.BLUE+'Try to connect'+Colors.RESET,
+                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Cookie-Flags - '+Colors.BLUE+'Trying to connect'+Colors.RESET,
                 join(Location, 'Logs')
             )
 
