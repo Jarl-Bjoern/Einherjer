@@ -31,7 +31,7 @@ try:
     from multiprocessing import active_children, Process, Queue
     from numpy import array
     from os import chmod, getcwd, listdir, makedirs, name as osname, remove, system, walk
-    from os.path import exists, join
+    from os.path import exists, isdir, isfile, join
     from pathlib import Path
     from requests.exceptions import *
     from re import findall, search, split as resplit
