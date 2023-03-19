@@ -7,6 +7,7 @@ from .Variables import *
 from ..Standard_Operations.Logs import *
 from ..Standard_Operations.Colors import Colors
 from ..Workfiles.Scan_Cookie import Check_Security_Flags
+from ..Workfiles.Scan_Cookie_And_Header import Check_Cookie_And_Header
 from ..Workfiles.Scan_Certificate import Check_Certificate
 from ..Workfiles.Scan_FTP import Check_FTP
 from ..Workfiles.Scan_Fuzzing import Check_Site_Paths
@@ -77,25 +78,72 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             Dict_Result['Fuzzing'][url] = Check_Site_Paths(url, t_seconds)
 
 
+        # Cookie_Security_Flags
+        if (dict_switch['scan_header'] == False and
+              dict_switch['scan_security_flags'] != False and
+              '//' in url and
+              'http' in url):
+                    # Trace_Start
+                    Logs.Trace_File(
+                        Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                        +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Cookie-Flags - '+Colors.BLUE+'Trying to connect'+Colors.RESET,
+                        join(Location, 'Logs')
+                    )
+
+                    # Scan_Security_Flags
+                    Dict_Result['Security_Flag'][url] = Check_Security_Flags(url, t_seconds, Host_Name, dict_proxies, dict_auth, Location)
+                    Dict_Temp['Security_Flag'][url]   = Dict_Result['Security_Flag'][url]
+
+                    # Trace_End
+                    Logs.Trace_File(
+                        Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Cookie-Flags - '+Colors.GREEN+'OK'+Colors.RESET,
+                        join(Location, 'Logs')
+                    )
+
         # Header
-        if (dict_switch['scan_header'] != False and '//' in url and 'http' in url):
-            # Trace_Start
-            Logs.Trace_File(
-                Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Header - '+Colors.BLUE+'Trying to connect'+Colors.RESET,
-                join(Location, 'Logs')
-            )
+        elif (dict_switch['scan_header'] != False and
+              dict_switch['scan_security_flags'] == False and
+              '//' in url and
+              'http' in url):
+                    # Trace_Start
+                    Logs.Trace_File(
+                        Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                        +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Header - '+Colors.BLUE+'Trying to connect'+Colors.RESET,
+                        join(Location, 'Logs')
+                    )
 
-            # Scan_Header
-            Dict_Result['Header'][url], Dict_Result['Information'][url] = Check_Site_Header(url, t_seconds, Host_Name, dict_proxies, dict_auth, Location)
-            Dict_Temp['Header'][url], Dict_Temp['Information'][url]     = Dict_Result['Header'][url], Dict_Result['Information'][url]
+                    # Scan_Header
+                    Dict_Result['Header'][url], Dict_Result['Information'][url] = Check_Site_Header(url, t_seconds, Host_Name, dict_proxies, dict_auth, Location)
+                    Dict_Temp['Header'][url], Dict_Temp['Information'][url]     = Dict_Result['Header'][url], Dict_Result['Information'][url]
 
-            # Trace_End
-            Logs.Trace_File(
-                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Header - '+Colors.GREEN+'OK'+Colors.RESET,
-                join(Location, 'Logs')
-            )
+                    # Trace_End
+                    Logs.Trace_File(
+                        Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Header - '+Colors.GREEN+'OK'+Colors.RESET,
+                        join(Location, 'Logs')
+                    )
 
+
+        # Cookie_Security_Flags_And_Header
+        elif (dict_switch['scan_header'] != False and
+              dict_switch['scan_security_flags'] == False and
+              '//' in url and
+              'http' in url):
+                    # Trace_Start
+                    Logs.Trace_File(
+                        Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                        +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Header - '+Colors.BLUE+'Trying to connect'+Colors.RESET,
+                        join(Location, 'Logs')
+                    )
+
+                    # Scan_Header
+                    Dict_Result['Header'][url], Dict_Result['Information'][url] = Check_Site_Header(url, t_seconds, Host_Name, dict_proxies, dict_auth, Location)
+                    Dict_Temp['Header'][url], Dict_Temp['Information'][url]     = Dict_Result['Header'][url], Dict_Result['Information'][url]
+
+                    # Trace_End
+                    Logs.Trace_File(
+                        Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Header - '+Colors.GREEN+'OK'+Colors.RESET,
+                        join(Location, 'Logs')
+                    )
 
         # HTTP_Methods
         if (dict_switch['scan_http_methods'] != False and '//' in url and 'http' in url):
@@ -137,26 +185,6 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             # Trace_End
             Logs.Trace_File(
                 Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Screenshot - '+Colors.GREEN+'OK'+Colors.RESET,
-                join(Location, 'Logs')
-            )
-
-
-        # Security_Flags
-        if (dict_switch['scan_security_flags'] != False and '//' in url and 'http' in url):
-            # Trace_Start
-            Logs.Trace_File(
-                Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Cookie-Flags - '+Colors.BLUE+'Trying to connect'+Colors.RESET,
-                join(Location, 'Logs')
-            )
-
-            # Scan_Security_Flags
-            Dict_Result['Security_Flag'][url] = Check_Security_Flags(url, t_seconds, Host_Name, dict_proxies, dict_auth, Location)
-            Dict_Temp['Security_Flag'][url]   = Dict_Result['Security_Flag'][url]
-
-            # Trace_End
-            Logs.Trace_File(
-                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Cookie-Flags - '+Colors.GREEN+'OK'+Colors.RESET,
                 join(Location, 'Logs')
             )
 
