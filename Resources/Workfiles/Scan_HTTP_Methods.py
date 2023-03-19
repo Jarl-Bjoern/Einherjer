@@ -60,7 +60,8 @@ def Check_HTTP_Methods(url, Host_Name, Dict_Proxies, Dict_Auth, file_format, Loc
             +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
             +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - {Host_Name}'
             +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
-            +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n'
+            +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n',
+            join(Location, 'Logs')
         )
     else:
         Logs.Log_File(
@@ -69,7 +70,8 @@ def Check_HTTP_Methods(url, Host_Name, Dict_Proxies, Dict_Auth, file_format, Loc
             +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
             +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url}'
             +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
-            +Colors.ORANGE+Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n'
+            +Colors.ORANGE+Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n',
+            join(Location, 'Logs')
         )
 
     return Dict_Temp
