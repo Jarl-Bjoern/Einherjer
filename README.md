@@ -15,7 +15,9 @@
   </a>
 </div>
 <div align="center">
-
+  <a href="https://GitHub.com/jarl-bjoern/einherjer/releases/">
+    <img alt="repo size" src="https://img.shields.io/github/repo-size/jarl-bjoern/einherjer?logo=github&logoColor=cyan" />
+  </a>
   <a href="https://GitHub.com/jarl-bjoern/einherjer/releases/">
     <img alt="releases" src="https://img.shields.io/github/downloads/jarl-bjoern/einherjer/total?color=blue&logo=github&logoColor=cyan" />
   </a>
