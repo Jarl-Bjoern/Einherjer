@@ -8,7 +8,7 @@ from ..Workfiles.Scan_Host_Name import Get_Host_Name
 from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 
-def SSL_Vulns(array_ssl_targets, ssl_timeout, file_format, Location, Array_Result_Filter = ['http_headers', 'certificate_info','rejected_cipher_suites','rejected_curves'], Start_Scan = datetime.now(), Temp = ""):
+def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['http_headers', 'certificate_info','rejected_cipher_suites','rejected_curves'], Start_Scan = datetime.now(), Temp = ""):
     # Variables
     TLS_Version, Supported_Version, Array_Attack, Dict_Full_Output = "","",[],{}
 
