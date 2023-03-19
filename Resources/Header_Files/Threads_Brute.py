@@ -40,6 +40,12 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
                 join(Location, 'Logs')
             )
 
+
+        # Recursive_Fuzzing_And_Screenshot
+        if (dict_switch['scan_screenshot_recursive'] != False and '//' in url and 'http' in url):
+            pass
+
+
         # Format_Filtering
         if ("csv" in file_format):
             from ..Format.CSV import CSV_Table
