@@ -6,11 +6,6 @@
 from ..Header_Files.Variables import *
 
 def Excel_Table(Dict_Result, location, Array_Header_Letter = ['A','B','C','D','E','F','G','H'], Array_Information_Letter = ['A','B','C','D'], Array_Flag_Letter = ['A','B','C','D','E']):
-    try:
-        from xlsxwriter import Workbook
-        from pandas import ExcelFile, DataFrame, read_excel
-    except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
-
     def Excel_Analysis(Dict_DNS = {}):
         x1 = ExcelFile(join(location, 'Findings.xlsx'))
 
