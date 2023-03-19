@@ -119,7 +119,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = ""):
         with open(join(location, f'result_certificate.csv'), Write_Mode, encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
             if (Write_Mode == 'w'):
-                writer.writerow(['Host','DNS','Issuer','Subject','Signature_Algorithm','Cert_Creation_Date','Cert_EOL','Date_Difference','Tested_Date'])
+                writer.writerow(['Host','DNS','Issuer','Subject','Signature_Algorithm','Public_Key','Cert_Creation_Date','Cert_EOL','Date_Difference','Tested_Date'])
 
             for Target in Dict_Result['Certificate']:
                 Array_Temp = []
