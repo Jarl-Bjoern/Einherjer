@@ -135,7 +135,6 @@ try:
                 args.scan_site_screenshot     == False and
                 args.scan_site_ssl            == False and
                 args.scan_site_header         == False and
-                args.scan_site_fuzzing        == False and
                 args.scan_ssh                 == False and
                 args.scan_security_flags      == False):
                         from .ArgParser_Scan_Intro import Argument_Parser
@@ -148,7 +147,6 @@ try:
                   args.scan_site_screenshot   == False and
                   args.scan_site_ssl          == False and
                   args.scan_site_header       == False and
-                  args.scan_site_fuzzing      == False and
                   args.scan_ssh               == False and
                   args.scan_security_flags    == False):
                         from aiohttp import BasicAuth, ClientSession, TCPConnector
