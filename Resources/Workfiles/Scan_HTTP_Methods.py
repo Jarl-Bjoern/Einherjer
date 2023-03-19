@@ -7,7 +7,7 @@ from ..Header_Files.Variables import *
 from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 
-def Check_HTTP_Methods(url, Host_Name, Dict_Proxies, Dict_Auth, Dict_Temp = {'DNS': "", 'CONNECT': "", 'DELETE': "", 'HEAD': "", 'OPTIONS': "", 'PATCH': "", 'POST': "", 'PUT': "", 'TRACE': ""}, Switch_URL = False):
+def Check_HTTP_Methods(url, Host_Name, Dict_Proxies, Dict_Auth, file_format, Location, Dict_Temp = {'DNS': "", 'CONNECT': "", 'DELETE': "", 'HEAD': "", 'OPTIONS': "", 'PATCH': "", 'POST': "", 'PUT': "", 'TRACE': ""}, Switch_URL = False):
     if (Host_Name != ""): Dict_Temp['DNS'] = Host_Name
     else: Dict_Temp['DNS'] = ""
 
@@ -71,5 +71,39 @@ def Check_HTTP_Methods(url, Host_Name, Dict_Proxies, Dict_Auth, Dict_Temp = {'DN
             +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
             +Colors.ORANGE+Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n'
         )
+
+    # Format_Filtering
+    if ("csv" in file_format):
+        from ..Format.CSV import CSV_Table
+        Array_Output = CSV_Table(Dict_Temp, Location)
+    elif ("docx" in file_format):
+        from ..Format.Word import Word_Table
+        Array_Output = Word_Table(Dict_Temp, Location)
+    elif ("html" in file_format):
+        from ..Format.HTML import HTML_Table
+        Array_Output = HTML_Table(Dict_Temp, Location)
+    elif ("json" in file_format):
+        from ..Format.JSON import JSON_Table
+        Array_Output = JSON_Table(Dict_Temp, Location)
+    elif ("md" in file_format):
+        from ..Format.Markdown import Markdown_Table
+        Array_Output = Markdown_Table(Dict_Temp, Location)
+    elif ("pdf" in file_format):
+        from ..Format.PDF import Create_PDF
+        Array_Output = Word_Table(Dict_Temp, Location)
+        if (osname == 'nt'): Create_PDF(Location)
+        else: print("At this point it's not be possible to convert a docx file into a pdf under linux.\nPlease try it under windows.\n")
+    elif ("tex" in file_format):
+        from ..Format.LaTeX import Latex_Table
+        Array_Output = Latex_Table(Dict_Temp, Location)
+    elif ("xlsx" in file_format):
+        from ..Format.Excel import Excel_Table
+        Array_Output = Excel_Table(Dict_Temp, Location)
+    elif ("xml" in file_format):
+        from ..Format.XML import XML_Table
+        #Array_Output = XML_Table(Dict_Temp, Location)
+    elif ("yaml" in file_format):
+        from ..Format.YAML import YAML_Table
+        #Array_Output = YAML_Table(Dict_Temp, Location)
 
     return Dict_Temp
