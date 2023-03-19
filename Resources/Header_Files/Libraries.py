@@ -92,18 +92,22 @@ try:
             args, Program_Mode = Argument_Parser(), "Brute_Force_Mode"
 
             # Brute_Force_Module_Filtering
-            if (args.brute_all == False and
-                args.brute_site_dns_bruteforce == False and
-                args.brute_smtp == False and
-                args.brute_site_fuzzing == False and
-                args.brute_site_screenshot_recursive == False):
+            if (args.brute_all                    == False and
+                args.brute_dns                    == False and
+                args.brute_smtp                   == False and
+                args.brute_fuzzing                == False and
+                args.brute_snmp                   == False and
+                args.brute_ftp                    == False and
+                args.brute_screenshot_recursive   == False):
                         from .ArgParser_Scan_Intro import Argument_Parser
                         Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
-            elif (args.brute_all != False and
-                  args.brute_site_dns_bruteforce == False and
-                  args.brute_site_fuzzing == False and
-                  args.brute_smtp == False and
-                  args.brute_site_screenshot_recursive == False):
+            elif (args.brute_all                  != False and
+                  args.brute_dns                  == False and
+                  args.brute_smtp                 == False and
+                  args.brute_fuzzing              == False and
+                  args.brute_snmp                 == False and
+                  args.brute_ftp                  == False and
+                  args.brute_screenshot_recursive == False):
                         from aiohttp import BasicAuth, ClientSession, TCPConnector
                         from cv2 import countNonZero, error as CVError, imread, imwrite, rectangle, split as cvsplit, subtract
                         from ftplib import FTP
@@ -122,10 +126,10 @@ try:
                         with redirect_stdout(None):
                             from webdriver_manager.chrome import ChromeDriverManager
             elif (args.brute_all == False):
-                if (args.brute_site_fuzzing != False):
+                if (args.brute_fuzzing != False):
                     from aiohttp import BasicAuth, ClientSession, TCPConnector
                     import asyncio
-                if (args.brute_site_screenshot_recursive != False):
+                if (args.brute_screenshot_recursive != False):
                     from cv2 import countNonZero, error as CVError, imread, imwrite, rectangle, split as cvsplit, subtract
                     from os import environ, rename
                     from selenium import webdriver
@@ -137,7 +141,7 @@ try:
                     from webbrowser import open as webbrowser_open
                     with redirect_stdout(None):
                        from webdriver_manager.chrome import ChromeDriverManager
-                if (args.brute_site_fuzzing != False or args.brute_site_dns_bruteforce != False):
+                if (args.brute_fuzzing != False or args.brute_dns != False):
                     from requests import get
                     from requests_pkcs12 import get as pkcs_get, Pkcs12Adapter
 
@@ -147,30 +151,30 @@ try:
             args, Program_Mode = Argument_Parser(), "Scanning_Mode"
 
             # Scanning_Module_Filtering
-            if (args.scan_all == False and
-                args.scan_site_certificate == False and
-                args.scan_dns == False and
-                args.scan_smtp == False and
-                args.scan_site_http_methods == False and
-                args.scan_site_screenshot == False and
-                args.scan_site_ssl == False and
-                args.scan_site_header == False and
-                args.scan_site_fuzzing == False and
-                args.scan_ssh == False and
-                args.scan_security_flags == False):
+            if (args.scan_all                 == False and
+                args.scan_site_certificate    == False and
+                args.scan_dns                 == False and
+                args.scan_smtp                == False and
+                args.scan_site_http_methods   == False and
+                args.scan_site_screenshot     == False and
+                args.scan_site_ssl            == False and
+                args.scan_site_header         == False and
+                args.scan_site_fuzzing        == False and
+                args.scan_ssh                 == False and
+                args.scan_security_flags      == False):
                         from .ArgParser_Scan_Intro import Argument_Parser
                         Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
-            elif (args.scan_all != False and
-                  args.scan_site_certificate == False and
-                  args.scan_dns == False and
-                  args.scan_smtp == False and
+            elif (args.scan_all               != False and
+                  args.scan_site_certificate  == False and
+                  args.scan_dns               == False and
+                  args.scan_smtp              == False and
                   args.scan_site_http_methods == False and
-                  args.scan_site_screenshot == False and
-                  args.scan_site_ssl == False and
-                  args.scan_site_header == False and
-                  args.scan_site_fuzzing == False and
-                  args.scan_ssh == False and
-                  args.scan_security_flags == False):
+                  args.scan_site_screenshot   == False and
+                  args.scan_site_ssl          == False and
+                  args.scan_site_header       == False and
+                  args.scan_site_fuzzing      == False and
+                  args.scan_ssh               == False and
+                  args.scan_security_flags    == False):
                         from aiohttp import BasicAuth, ClientSession, TCPConnector
                         from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
                         from cryptography.x509 import load_der_x509_certificate
