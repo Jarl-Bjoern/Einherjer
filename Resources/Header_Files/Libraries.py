@@ -56,46 +56,100 @@ try:
 
     # Argument_Parser
     try:
+        if (argv[1] == '--brute-force-mode' or
+            argv[1] == '--scanning-mode'):
+                # Format_Import
+                if ("csv" in args.format):
+                    import csv
+                elif ("docx" in args.format):
+                    from docx import Document
+                    from docx.enum.style import WD_STYLE_TYPE
+                    from docx.enum.table import WD_ALIGN_VERTICAL
+                    from docx.enum.text import WD_ALIGN_PARAGRAPH
+                    from docx.oxml.shared import OxmlElement
+                    from docx.oxml.ns import qn
+                    from docx.shared import Inches, Pt, RGBColor
+                elif ("json" in args.format):
+                    import json
+                elif ("pdf" in args.format):
+                    if (osname == 'nt'):
+                        from docx2pdf import convert
+                    else:
+                        print("At this point it's not be possible to convert a docx file into a pdf under linux.\nPlease try it under windows.\n")
+                elif ("xlsx" in args.format):
+                    from xlsxwriter import Workbook
+                    from pandas import ExcelFile, DataFrame, read_excel
+
         if (argv[1] == "--filter-mode"):
             argv.remove('--filter-mode')
             from .ArgParser_Filter import Argument_Parser
             args, Program_Mode = Argument_Parser(), "Filter_Mode"
             from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
+
         elif (argv[1] == "--brute-force-mode"):
             argv.remove('--brute-force-mode')
             from .ArgParser_Brute import Argument_Parser
             args, Program_Mode = Argument_Parser(), "Brute_Force_Mode"
+
+            # Brute_Force_Module_Filtering
+            if (args.brute_all == False and
+                args.brute_site_dns_bruteforce == False and
+                args.brute_smtp == False and
+                args.brute_site_fuzzing == False and
+                args.brute_site_screenshot_recursive == False):
+                        from .ArgParser_Scan_Intro import Argument_Parser
+                        Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
+            elif (args.brute_all != False and
+                  args.brute_site_dns_bruteforce == False and
+                  args.brute_site_fuzzing == False and
+                  args.brute_smtp == False and
+                  args.brute_site_screenshot_recursive == False):
+                        from aiohttp import BasicAuth, ClientSession, TCPConnector
+                        from cv2 import countNonZero, error as CVError, imread, imwrite, rectangle, split as cvsplit, subtract
+                        from ftplib import FTP
+                        from json import loads as json_loads
+                        from os import environ, rename
+                        from requests import get, request, Session
+                        from requests_pkcs12 import get as pkcs_get, Pkcs12Adapter
+                        from selenium import webdriver
+                        from selenium.webdriver.common.by import By
+                        from selenium.webdriver.common.keys import Keys
+                        from selenium.webdriver.chrome.options import Options
+                        from selenium.webdriver.chrome.service import Service
+                        from selenium.webdriver.remote.webdriver import WebDriver
+                        from webbrowser import open as webbrowser_open
+                        import asyncio, pysnmp
+                        with redirect_stdout(None):
+                            from webdriver_manager.chrome import ChromeDriverManager
+            elif (args.brute_all == False):
+                if (args.brute_site_fuzzing != False):
+                    from aiohttp import BasicAuth, ClientSession, TCPConnector
+                    import asyncio
+                if (args.brute_site_screenshot_recursive != False):
+                    from cv2 import countNonZero, error as CVError, imread, imwrite, rectangle, split as cvsplit, subtract
+                    from os import environ, rename
+                    from selenium import webdriver
+                    from selenium.webdriver.common.by import By
+                    from selenium.webdriver.common.keys import Keys
+                    from selenium.webdriver.chrome.options import Options
+                    from selenium.webdriver.chrome.service import Service
+                    from selenium.webdriver.remote.webdriver import WebDriver
+                    from webbrowser import open as webbrowser_open
+                    with redirect_stdout(None):
+                       from webdriver_manager.chrome import ChromeDriverManager
+                if (args.brute_site_fuzzing != False or args.brute_site_dns_bruteforce != False):
+                    from requests import get
+                    from requests_pkcs12 import get as pkcs_get, Pkcs12Adapter
+
         elif (argv[1] == "--scanning-mode"):
             argv.remove('--scanning-mode')
             from .ArgParser_Scan import Argument_Parser
             args, Program_Mode = Argument_Parser(), "Scanning_Mode"
 
-            # Format_Import
-            if ("csv" in args.format):
-                import csv
-            elif ("docx" in args.format):
-                from docx import Document
-                from docx.enum.style import WD_STYLE_TYPE
-                from docx.enum.table import WD_ALIGN_VERTICAL
-                from docx.enum.text import WD_ALIGN_PARAGRAPH
-                from docx.oxml.shared import OxmlElement
-                from docx.oxml.ns import qn
-                from docx.shared import Inches, Pt, RGBColor
-            elif ("json" in args.format):
-                import json
-            elif ("pdf" in args.format):
-                if (osname == 'nt'):
-                    from docx2pdf import convert
-                else:
-                    print("At this point it's not be possible to convert a docx file into a pdf under linux.\nPlease try it under windows.\n")
-            elif ("xlsx" in args.format):
-                from xlsxwriter import Workbook
-                from pandas import ExcelFile, DataFrame, read_excel
-
             # Scanning_Module_Filtering
             if (args.scan_all == False and
                 args.scan_site_certificate == False and
-                args.scan_site_dns_bruteforce == False and
+                args.scan_dns == False and
                 args.scan_smtp == False and
                 args.scan_site_http_methods == False and
                 args.scan_site_screenshot == False and
@@ -103,13 +157,12 @@ try:
                 args.scan_site_header == False and
                 args.scan_site_fuzzing == False and
                 args.scan_ssh == False and
-                args.scan_site_screenshot_recursive == False and
                 args.scan_security_flags == False):
                         from .ArgParser_Scan_Intro import Argument_Parser
                         Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
             elif (args.scan_all != False and
                   args.scan_site_certificate == False and
-                  args.scan_site_dns_bruteforce == False and
+                  args.scan_dns == False and
                   args.scan_smtp == False and
                   args.scan_site_http_methods == False and
                   args.scan_site_screenshot == False and
@@ -117,7 +170,6 @@ try:
                   args.scan_site_header == False and
                   args.scan_site_fuzzing == False and
                   args.scan_ssh == False and
-                  args.scan_site_screenshot_recursive == False and
                   args.scan_security_flags == False):
                         from aiohttp import BasicAuth, ClientSession, TCPConnector
                         from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
@@ -166,7 +218,10 @@ try:
                     from json import loads as json_loads
                     from socket import create_connection
                     from sslyze import Scanner, ServerNetworkLocation, ServerScanStatusEnum, ServerNetworkConfiguration, ServerScanRequest, ServerScanResultAsJson, ServerHostnameCouldNotBeResolved, SslyzeOutputAsJson
-                if (args.scan_site_header != False or args.scan_site_fuzzing != False or args.scan_site_dns_bruteforce != False):
+                if (args.scan_dns != False):
+                    from dns.query import xfr
+                    from dns.zone import from_xfr                    
+                if (args.scan_site_header != False):
                     from requests import get
                     from requests_pkcs12 import get as pkcs_get, Pkcs12Adapter
                 if (args.scan_ssh != False):
