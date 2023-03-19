@@ -8,9 +8,17 @@ from ..Header_Files.Variables import *
 def Markdown_Table(Dict_Result, location, Array_Files = []):
     if (Dict_Result['Header'] != {}):
         Array_Files.append(join(location, 'result_header.md'))
-        with open(join(location, 'result_header.md'), 'w', encoding='UTF-8', newline='') as md_file:
-            md_file.write('| URL | DNS | X-FRAME-OPTIONS | X-XSS-PROTECTION | CONTENT-SECURITY-POLICY | STRICT-TRANSPORT-SECURITY | X-CONTENT-TYPE-OPTIONS | REFERRER-POLICY |\n')
-            md_file.write('| --- | --- | --------------- | ---------------- | ----------------------- | ------------------------- | ---------------------- | --------------- |\n')
+
+        # Check_For_Existing_File
+        if (exists(join(location, 'result_header.md'))):  Write_Mode = 'a'
+        else:                                             Write_Mode = 'w'
+
+        # Filter_Mode
+        with open(join(location, 'result_header.md'), Write_Mode, encoding='UTF-8', newline='') as md_file:
+            if (Write_Mode == 'w'):
+                md_file.write('| URL | DNS | X-FRAME-OPTIONS | X-XSS-PROTECTION | CONTENT-SECURITY-POLICY | STRICT-TRANSPORT-SECURITY | X-CONTENT-TYPE-OPTIONS | REFERRER-POLICY |\n')
+                md_file.write('| --- | --- | --------------- | ---------------- | ----------------------- | ------------------------- | ---------------------- | --------------- |\n')
+
             for Target in Dict_Result['Header']:
                 Temp_Word = ""
                 Temp_Word += f"| {Target} |"
@@ -25,9 +33,17 @@ def Markdown_Table(Dict_Result, location, Array_Files = []):
 
     if (Dict_Result['Information'] != {}):
         Array_Files.append(join(location, 'result_information_disclosure.md'))
-        with open(join(location, 'result_information_disclosure.md'), 'w', encoding='UTF-8', newline='') as md_file:
-            md_file.write('| URL | DNS | X-POWERED-BY | SERVER |\n')
-            md_file.write('| --- | --- | ------------ | ------ |\n')
+
+        # Check_For_Existing_File
+        if (exists(join(location, 'result_information_disclosure.md'))):  Write_Mode = 'a'
+        else:                                                             Write_Mode = 'w'
+
+        # Filter_Mode
+        with open(join(location, 'result_information_disclosure.md'), Write_Mode, encoding='UTF-8', newline='') as md_file:
+            if (Write_Mode == 'w'):
+                md_file.write('| URL | DNS | X-POWERED-BY | SERVER |\n')
+                md_file.write('| --- | --- | ------------ | ------ |\n')
+
             for Target in Dict_Result['Header']:
                 Temp_Word = ""
                 Temp_Word += f"| {Target} |"
@@ -43,9 +59,17 @@ def Markdown_Table(Dict_Result, location, Array_Files = []):
 
     if (Dict_Result['Security_Flag'] != {}):
         Array_Files.append(join(location, 'result_security_flags.md'))
-        with open(join(location, 'result_security_flags.md'), 'w', encoding='UTF-8', newline='') as md_file:
-            md_file.write('| URL | DNS | HTTPONLY | SAMESITE | SECURITY |\n')
-            md_file.write('| --- | --- | -------- | -------- | -------- |\n')
+
+        # Check_For_Existing_File
+        if (exists(join(location, 'result_security_flags.md'))):  Write_Mode = 'a'
+        else:                                                     Write_Mode = 'w'
+
+        # Filter_Mode
+        with open(join(location, 'result_security_flags.md'), Write_Mode, encoding='UTF-8', newline='') as md_file:
+            if (Write_Mode == 'w'):
+                md_file.write('| URL | DNS | HTTPONLY | SAMESITE | SECURITY |\n')
+                md_file.write('| --- | --- | -------- | -------- | -------- |\n')
+
             for Target in Dict_Result['Security_Flag']:
                 Temp_Word = ""
                 Temp_Word += f"| {Target} |"
@@ -63,9 +87,17 @@ def Markdown_Table(Dict_Result, location, Array_Files = []):
 
     if (Dict_Result['Certificate'] != {}):
         Array_Files.append(join(location, 'result_certificate.md'))
-        with open(join(location, 'result_certificate.md'), 'w', encoding='UTF-8', newline='') as md_file:
-            md_file.write('| URL | DNS | ISSUER | SUBJECT | SIGNATURE_ALGORITHM | CERT_CREATION_DATE | CERT_EOL | DATE_DIFFERENCE | TESTED_DATE |\n')
-            md_file.write('| --- | --- | ------ | ------- | ------------------- | ------------------ | -------- | --------------- | ----------- |\n')
+
+        # Check_For_Existing_File
+        if (exists(join(location, 'result_certificate.md'))):  Write_Mode = 'a'
+        else:                                                  Write_Mode = 'w'
+
+        # Filter_Mode
+        with open(join(location, 'result_certificate.md'), Write_Mode, encoding='UTF-8', newline='') as md_file:
+            if (Write_Mode == 'w'):
+                md_file.write('| URL | DNS | ISSUER | SUBJECT | SIGNATURE_ALGORITHM | CERT_CREATION_DATE | CERT_EOL | DATE_DIFFERENCE | TESTED_DATE |\n')
+                md_file.write('| --- | --- | ------ | ------- | ------------------- | ------------------ | -------- | --------------- | ----------- |\n')
+
             for Target in Dict_Result['Certificate']:
                 Temp_Word = ""
                 Temp_Word += f"| {Target} |"
@@ -79,10 +111,19 @@ def Markdown_Table(Dict_Result, location, Array_Files = []):
                     else: Temp_Word += " - |"
                 md_file.write(f'{Temp_Word}\n')
 
+    if (Dict_Result['HTTP_Methods'] != {}):
         Array_Files.append(join(location, f'result_http_methods.md'))
+
+        # Check_For_Existing_File
+        if (exists(join(location, 'result_http_methods.md'))):  Write_Mode = 'a'
+        else:                                                   Write_Mode = 'w'
+
+        # Filter_Mode
         with open(join(location, f'result_http_methods.md'), 'w', encoding='UTF-8', newline='') as md_file:
-            md_file.write('| URL | DNS | CONNECT | DELETE | HEAD | OPTIONS | PATCH | POST | PUT | TRACE |\n')
-            md_file.write('| --- | --- | ------- | ------ | ---- | ------- | ----- | ---- | --- | ----- |\n')
+            if (Write_Mode == 'w'):
+                md_file.write('| URL | DNS | CONNECT | DELETE | HEAD | OPTIONS | PATCH | POST | PUT | TRACE |\n')
+                md_file.write('| --- | --- | ------- | ------ | ---- | ------- | ----- | ---- | --- | ----- |\n')
+
             for Target in Dict_Result['HTTP_Methods']:
                 Temp_Word = ""
                 Temp_Word += f"| {Target} |"
@@ -98,9 +139,17 @@ def Markdown_Table(Dict_Result, location, Array_Files = []):
 
     if (Dict_Result['SSL'] != {}):
         Array_Files.append(join(location, f'result_ssl_ciphers.md'))
-        with open(join(location, f'result_ssl_ciphers.md'), 'w', encoding='UTF-8', newline='') as md_file:
-            md_file.write('| Host | DNS | Protocol | Key_Size | Ciphers | Anonymous | Encryption | Key_Exchange |\n')
-            md_file.write('| ---- | --- | -------- | -------- | ------- | --------- | ---------- | ------------ |\n')
+
+        # Check_For_Existing_File
+        if (exists(join(location, 'result_ssl_ciphers.md'))):  Write_Mode = 'a'
+        else:                                                  Write_Mode = 'w'
+
+        # Filter_Mode
+        with open(join(location, f'result_ssl_ciphers.md'), Write_Mode, encoding='UTF-8', newline='') as md_file:
+            if (Write_Mode == 'w'):
+                md_file.write('| Host | DNS | Protocol | Key_Size | Ciphers | Anonymous | Encryption | Key_Exchange |\n')
+                md_file.write('| ---- | --- | -------- | -------- | ------- | --------- | ---------- | ------------ |\n')
+
             for Target in Dict_Result['SSL']:
                 Temp_Word = ""
                 Temp_Word += f"| {Target} |"
