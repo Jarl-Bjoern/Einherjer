@@ -7,7 +7,7 @@ from ..Header_Files.Variables import *
 from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 
-def Check_Cookie_And_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Location, Dict_Temp_Header = {}, Dict_Temp_Information_Disclosure = {}, Dict_Temp_Cookie = {'DNS': "", 'SAMESITE': "", 'HTTPONLY': "", 'SECURE': ""}, Switch_SameSite = False):
+def Check_Cookie_And_HTTP_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Location, Dict_Temp_Header = {}, Dict_Temp_Information_Disclosure = {}, Dict_Temp_Cookie = {'DNS': "", 'SAMESITE': "", 'HTTPONLY': "", 'SECURE': ""}, Switch_SameSite = False):
     try:
         # Session_Creation
         with Session() as s:
