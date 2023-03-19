@@ -118,7 +118,8 @@ def Check_Site_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, file_f
                 +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
                 +Colors.ORANGE+'\nOriginal Output'+Colors.RED+' -> '+Colors.RESET+f'{r.headers.items()}'
                 +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
-                +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp_Header}\n\n'
+                +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp_Header}\n\n',
+                join(Location, 'Logs')
             )
             if (len(Dict_Temp_Information_Disclosure) > 1):
                 Logs.Log_File(
@@ -129,7 +130,8 @@ def Check_Site_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, file_f
                     +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
                     +Colors.ORANGE+'\nOriginal Output'+Colors.RED+' -> '+Colors.RESET+f'{r.headers.items()}'
                     +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
-                    +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp_Information_Disclosure}\n\n'
+                    +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp_Information_Disclosure}\n\n',
+                    join(Location, 'Logs')
                 )
         else:
             Logs.Log_File(
@@ -140,7 +142,8 @@ def Check_Site_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, file_f
                 +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
                 +Colors.ORANGE+'\nOriginal Output'+Colors.RED+' -> '+Colors.RESET+f'{r.headers.items()}'
                 +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
-                +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp_Header}\n\n'
+                +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp_Header}\n\n',
+                join(Location, 'Logs')
             )
             if (len(Dict_Temp_Information_Disclosure) > 1):
                 Logs.Log_File(
@@ -151,13 +154,14 @@ def Check_Site_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, file_f
                     +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
                     +Colors.ORANGE+'\nOriginal Output'+Colors.RED+' -> '+Colors.RESET+f'{r.headers.items()}'
                     +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
-                    +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp_Information_Disclosure}\n\n'
+                    +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp_Information_Disclosure}\n\n',
+                    join(Location, 'Logs')
                 )
 
         # Terminate_Session
         r.close()
 
     except ReadTimeout:
-        Logs.Write_Log(url, Host_Name)
+        Logs.Write_Log(url, Host_Name, join(Location, 'Logs'))
 
     return Dict_Temp_Header, Dict_Temp_Information_Disclosure
