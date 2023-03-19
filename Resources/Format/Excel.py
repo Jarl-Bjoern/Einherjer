@@ -5,7 +5,7 @@
 # Libraries
 from ..Header_Files.Variables import *
 
-def Excel_Table(Dict_Result, location, Array_Header_Letter = ['A','B','C','D','E','F','G','H'], Array_Information_Letter = ['A','B','C','D'], Array_Flag_Letter = ['A','B','C','D','E'], Array_Files = []):
+def Excel_Table(Dict_Result, location, Array_Header_Letter = ['A','B','C','D','E','F','G','H'], Array_Information_Letter = ['A','B','C','D'], Array_Flag_Letter = ['A','B','C','D','E']):
     try:
         from xlsxwriter import Workbook
         from pandas import ExcelFile, DataFrame, read_excel
@@ -79,7 +79,6 @@ def Excel_Table(Dict_Result, location, Array_Header_Letter = ['A','B','C','D','E
             m += 1
         workbook.close()
 
-    Array_Files.append(join(location, 'Findings.xlsx'))
     if (not exists(join(location, 'Findings.xlsx'))): Generate_Excel(join(location, 'Findings.xlsx'))
     else:
         Question = input(f"The file already exists\n\n{e}\n\nDo you want to override it? (Y/N)")
@@ -92,5 +91,3 @@ def Excel_Table(Dict_Result, location, Array_Header_Letter = ['A','B','C','D','E
                     if (file.endswith('.xlsx') and 'Findings' in file): n += 1
             Generate_Excel(join(location, f'Findings_{n}.xlsx'))
         else: Error_Message("Your decision is not acceptable.","")
-
-    return Array_Files
