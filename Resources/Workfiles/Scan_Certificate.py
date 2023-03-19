@@ -81,6 +81,6 @@ def Check_Certificate(url, t_seconds, Host_Name, file_format, Location, context 
             )
 
     except (ConnectionRefusedError, gaierror, SSLError):
-        Logs.Write_Log(url, Host_Name)
+        Logs.Write_Log(url, Host_Name, join(Location, 'Logs'))
 
     return Dict_Temp
