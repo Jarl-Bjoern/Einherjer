@@ -6,15 +6,7 @@
 from .Variables import *
 from ..Standard_Operations.Logs import *
 from ..Standard_Operations.Colors import Colors
-from ..Workfiles.Scan_Cookie import Check_Security_Flags
-from ..Workfiles.Scan_Cookie_And_Header import Check_Cookie_And_Header
-from ..Workfiles.Scan_Certificate import Check_Certificate
 from ..Workfiles.Scan_FTP import Check_FTP
-from ..Workfiles.Scan_Fuzzing import Check_Site_Paths
-from ..Workfiles.Scan_Header import Check_Site_Header
-from ..Workfiles.Scan_Host_Name import Get_Host_Name
-from ..Workfiles.Scan_HTTP_Methods import Check_HTTP_Methods
-from ..Workfiles.Scan_Screen import Take_Screenshot
 from ..Workfiles.Scan_SMTP import Check_SMTP
 
 # Functions
@@ -36,6 +28,9 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         # Socket_Timeout
         setdefaulttimeout(t_seconds)
 
+        # Library_Import
+        from ..Workfiles.Scan_Host_Name import Get_Host_Name
+
         # Trace_Start
         Logs.Trace_File(
             Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
@@ -55,6 +50,9 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
         # Certificates
         if (dict_switch['scan_certificate'] != False and ('https://' in url or 'ssl://' in url)):
+            # Library_Import
+            from ..Workfiles.Scan_Certificate import Check_Certificate
+
             # Trace_Start
             Logs.Trace_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
@@ -75,6 +73,9 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
         # Fuzzing
         if (dict_switch['scan_fuzzing'] != False and '//' in url and 'http' in url):
+            # Library_Import
+            from ..Workfiles.Scan_Fuzzing import Check_Site_Paths
+
             Dict_Result['Fuzzing'][url] = Check_Site_Paths(url, t_seconds)
 
 
@@ -83,6 +84,9 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
               dict_switch['scan_security_flags'] != False and
               '//' in url and
               'http' in url):
+                    # Library_Import
+                    from ..Workfiles.Scan_Cookie import Check_Security_Flags
+
                     # Trace_Start
                     Logs.Trace_File(
                         Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
@@ -105,6 +109,9 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
               dict_switch['scan_security_flags'] == False and
               '//' in url and
               'http' in url):
+                    # Library_Import
+                    from ..Workfiles.Scan_Header import Check_Site_Header
+
                     # Trace_Start
                     Logs.Trace_File(
                         Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
@@ -125,28 +132,34 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
         # Cookie_Security_Flags_And_Header
         elif (dict_switch['scan_header'] != False and
-              dict_switch['scan_security_flags'] == False and
+              dict_switch['scan_security_flags'] != False and
               '//' in url and
               'http' in url):
+                    # Library_Import
+                    from ..Workfiles.Scan_Cookie_And_HTTP_Header import Check_Cookie_And_HTTP_Header
+
                     # Trace_Start
                     Logs.Trace_File(
                         Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                        +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Header - '+Colors.BLUE+'Trying to connect'+Colors.RESET,
+                        +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Cookie_And_HTTP_Header - '+Colors.BLUE+'Trying to connect'+Colors.RESET,
                         join(Location, 'Logs')
                     )
 
                     # Scan_Header
-                    Dict_Result['Header'][url], Dict_Result['Information'][url] = Check_Site_Header(url, t_seconds, Host_Name, dict_proxies, dict_auth, Location)
-                    Dict_Temp['Header'][url], Dict_Temp['Information'][url]     = Dict_Result['Header'][url], Dict_Result['Information'][url]
+                    Dict_Result['Security_Flag'][url], Dict_Result['Header'][url], Dict_Result['Information'][url] = Check_Cookie_And_HTTP_Header(url, t_seconds, Host_Name, dict_proxies, dict_auth, Location)
+                    Dict_Temp['Security_Flag'][url],   Dict_Temp['Header'][url],   Dict_Temp['Information'][url]   = Dict_Result['Security_Flag'][url], Dict_Result['Header'][url], Dict_Result['Information'][url]
 
                     # Trace_End
                     Logs.Trace_File(
-                        Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Header - '+Colors.GREEN+'OK'+Colors.RESET,
+                        Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Cookie_And_HTTP_Header - '+Colors.GREEN+'OK'+Colors.RESET,
                         join(Location, 'Logs')
                     )
 
         # HTTP_Methods
         if (dict_switch['scan_http_methods'] != False and '//' in url and 'http' in url):
+            # Library_Import
+            from ..Workfiles.Scan_HTTP_Methods import Check_HTTP_Methods
+
             # Trace_Start
             Logs.Trace_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
@@ -172,6 +185,9 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
         # Screenshot
         if (dict_switch['scan_screenshot'] != None and '//' in url and 'http' in url):
+            # Library_Import
+            from ..Workfiles.Scan_Screen import Take_Screenshot
+
             # Trace_Start
             Logs.Trace_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
