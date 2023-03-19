@@ -6,9 +6,6 @@
 from ..Header_Files.Variables import *
 
 def CSV_Table(Dict_Result, location, Write_Mode = ""):
-    try: import csv
-    except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
-
     if (Dict_Result['Header'] != {}):
         # Check_For_Existing_File
         if (exists(join(location, 'result_header.csv'))):  Write_Mode = 'a'
