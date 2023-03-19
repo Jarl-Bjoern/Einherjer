@@ -283,7 +283,8 @@ def main(Date, Program_Mode, args, Array_Output = []):
                         args.webdriver_wait,
                         args.async_ssl_timeout,
                         Dict_Proxies,
-                        Dict_Auth
+                        Dict_Auth,
+                        args.format
                     ]
 
                     if (Counter_Connections == args.max_connections):
@@ -324,7 +325,8 @@ def main(Date, Program_Mode, args, Array_Output = []):
                                 Dict_Switch,
                                 args.async_ssl_timeout,
                                 Dict_Proxies,
-                                Dict_Auth
+                                Dict_Auth,
+                                args.format
                             ]
 
                             if (Counter_Connections == args.max_connections):
