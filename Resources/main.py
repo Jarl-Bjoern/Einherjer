@@ -388,6 +388,12 @@ def main(Date, Program_Mode, args, Array_Output = []):
                 # Get_Results
                 Dict_Result = queue.get()
 
+                # Get_All_Files
+                if (len(listdir(Location)) > 0):
+                    for _ in listdir(Location):
+                        if (join(Location, _) not in Array_Output):
+                            Array_Output.append(join(Location, _))
+
                 # Progress_End
                 while not progress.finished:
                     progress.update(task_Scan, advance=Counter_Bar)
