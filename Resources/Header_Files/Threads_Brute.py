@@ -5,7 +5,6 @@
 # Libraries
 from .Variables import *
 from ..Standard_Operations.Logs import *
-from ..Workfiles.Scan_SSL import SSL_Vulns
 
 # Functions
 def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict_proxies, dict_auth, file_format, Location):
@@ -19,8 +18,11 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
         # Socket_Timeout
         setdefaulttimeout(t_seconds)
 
-        # SSL
-        if (dict_switch['scan_ssl'] != False):
+        # Fuzzing
+        if (dict_switch['scan_fuzzing'] != False and '//' in url and 'http' in url):
+            # Library_Import
+            from ..Workfiles.Scan_Fuzzing import Check_Site_Paths
+
             # Trace_Start
             Logs.Trace_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
@@ -29,8 +31,8 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
             )
 
             # Scan_SSL
-            Dict_Temp['SSL'] = SSL_Vulns(array_ssl, ssl_timeout, Location)
-            Dict_Result['SSL'].update(Dict_Temp['SSL'])
+            Dict_Temp['Fuzzing'][url] = Check_Site_Paths(url, t_seconds)
+            Dict_Result['Fuzzing'].update(Dict_Temp['Fuzzing'])
 
             # Trace_End
             Logs.Trace_File(
