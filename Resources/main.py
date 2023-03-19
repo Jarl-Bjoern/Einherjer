@@ -28,11 +28,11 @@ def main(Date, Program_Mode, args, Array_Output = []):
 
     def Brute_Force_Mode(Date, Output_location, args, Array_Output = []):
         Dict_Switch = {
-            'brute_dns': False,
-            'brute_fuzzing': False,
+            'brute_dns':                  False,
+            'brute_fuzzing':              False,
             'brute_screenshot_recursive': False,
-            'brute_snmp': False,
-            'brute_smtp': False
+            'brute_snmp':                 False,
+            'brute_smtp':                 False
         }
 
         #Standard.Initialien(args.debug)
