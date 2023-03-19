@@ -284,7 +284,8 @@ def main(Date, Program_Mode, args, Array_Output = []):
                         args.async_ssl_timeout,
                         Dict_Proxies,
                         Dict_Auth,
-                        args.format
+                        args.format,
+                        Location
                     ]
 
                     if (Counter_Connections == args.max_connections):
@@ -326,7 +327,8 @@ def main(Date, Program_Mode, args, Array_Output = []):
                                 args.async_ssl_timeout,
                                 Dict_Proxies,
                                 Dict_Auth,
-                                args.format
+                                args.format,
+                                Location
                             ]
 
                             if (Counter_Connections == args.max_connections):
@@ -387,40 +389,40 @@ def main(Date, Program_Mode, args, Array_Output = []):
                 # Get_Results
                 Dict_Result = queue.get()
 
-                # Format_Filtering
-                if ("csv" in args.format):
-                    from Resources.Format.CSV import CSV_Table
-                    Array_Output = CSV_Table(Dict_Result, Location)
-                elif ("docx" in args.format):
-                    from Resources.Format.Word import Word_Table
-                    Array_Output = Word_Table(Dict_Result, Location)
-                elif ("html" in args.format):
-                    from Resources.Format.HTML import HTML_Table
-                    Array_Output = HTML_Table(Dict_Result, Location)
-                elif ("json" in args.format):
-                    from Resources.Format.JSON import JSON_Table
-                    Array_Output = JSON_Table(Dict_Result, Location)
-                elif ("md" in args.format):
-                    from Resources.Format.Markdown import Markdown_Table
-                    Array_Output = Markdown_Table(Dict_Result, Location)
-                elif ("pdf" in args.format):
-                    from Resources.Format.PDF import Create_PDF
-                    Array_Output = Word_Table(Dict_Result, Location)
-                    if (osname == 'nt'): Create_PDF(Location)
-                    else: print("At this point it's not be possible to convert a docx file into a pdf under linux.\nPlease try it under windows.\n")
-                elif ("tex" in args.format):
-                    from Resources.Format.LaTeX import Latex_Table
-                    Array_Output = Latex_Table(Dict_Result, Location)
-                elif ("xlsx" in args.format):
-                    from Resources.Format.Excel import Excel_Table
-                    Array_Output = Excel_Table(Dict_Result, Location)
-                elif ("xml" in args.format):
-                    from Resources.Format.XML import XML_Table
-                    #Array_Output = XML_Table(Dict_Result, Location)
-                elif ("yaml" in args.format):
-                    from Resources.Format.YAML import YAML_Table
-                    #Array_Output = YAML_Table(Dict_Result, Location)
-                else: Error_Message("Your Decision was not acceptable!")
+                ## Format_Filtering
+                #if ("csv" in args.format):
+                #    from Resources.Format.CSV import CSV_Table
+                #    Array_Output = CSV_Table(Dict_Result, Location)
+                #elif ("docx" in args.format):
+                #    from Resources.Format.Word import Word_Table
+                #    Array_Output = Word_Table(Dict_Result, Location)
+                #elif ("html" in args.format):
+                #    from Resources.Format.HTML import HTML_Table
+                #    Array_Output = HTML_Table(Dict_Result, Location)
+                #elif ("json" in args.format):
+                #    from Resources.Format.JSON import JSON_Table
+                #    Array_Output = JSON_Table(Dict_Result, Location)
+                #elif ("md" in args.format):
+                #    from Resources.Format.Markdown import Markdown_Table
+                #    Array_Output = Markdown_Table(Dict_Result, Location)
+                #elif ("pdf" in args.format):
+                #    from Resources.Format.PDF import Create_PDF
+                #    Array_Output = Word_Table(Dict_Result, Location)
+                #    if (osname == 'nt'): Create_PDF(Location)
+                #    else: print("At this point it's not be possible to convert a docx file into a pdf under linux.\nPlease try it under windows.\n")
+                #elif ("tex" in args.format):
+                #    from Resources.Format.LaTeX import Latex_Table
+                #    Array_Output = Latex_Table(Dict_Result, Location)
+                #elif ("xlsx" in args.format):
+                #    from Resources.Format.Excel import Excel_Table
+                #    Array_Output = Excel_Table(Dict_Result, Location)
+                #elif ("xml" in args.format):
+                #    from Resources.Format.XML import XML_Table
+                #    #Array_Output = XML_Table(Dict_Result, Location)
+                #elif ("yaml" in args.format):
+                #    from Resources.Format.YAML import YAML_Table
+                #    #Array_Output = YAML_Table(Dict_Result, Location)
+                #else: Error_Message("Your Decision was not acceptable!")
 
                 # Progress_End
                 progress.start_task(task_Filter)
