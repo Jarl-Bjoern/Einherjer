@@ -7,7 +7,7 @@ from ..Header_Files.Variables import *
 from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 
-def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Location, Dict_Temp = {'DNS': "", 'SAMESITE': "", 'HTTPONLY': "", 'SECURE': ""}, Switch_SameSite = False):
+def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Location, Allow_Redirects, Dict_Temp = {'DNS': "", 'SAMESITE': "", 'HTTPONLY': "", 'SECURE': ""}, Switch_SameSite = False):
     # Session_Creation
     with Session() as s:
 
@@ -19,7 +19,7 @@ def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Loc
                     url,
                     timeout=(t_seconds, t_seconds),
                     verify=False,
-                    allow_redirects=True,
+                    allow_redirects=Allow_Redirects,
                     proxies=Dict_Proxies,
                     pkcs12_filename=Dict_Auth['pkcs12_cert'],
                     pkcs12_password=Dict_Auth['pkcs12_password']
@@ -30,7 +30,7 @@ def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Loc
                     url,
                     timeout=(t_seconds, t_seconds),
                     verify=False,
-                    allow_redirects=True,
+                    allow_redirects=Allow_Redirects,
                     pkcs12_filename=Dict_Auth['pkcs12_cert'],
                     pkcs12_password=Dict_Auth['pkcs12_password']
                 )
@@ -40,7 +40,7 @@ def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Loc
                     url,
                     timeout=(t_seconds, t_seconds),
                     verify=False,
-                    allow_redirects=True,
+                    allow_redirects=Allow_Redirects,
                     proxies=Dict_Proxies,
                     auth=(Dict_Auth['user'], Dict_Auth['password'])
                 )
@@ -50,7 +50,7 @@ def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Loc
                     url,
                     timeout=(t_seconds, t_seconds),
                     verify=False,
-                    allow_redirects=True,
+                    allow_redirects=Allow_Redirects,
                     auth=(Dict_Auth['user'], Dict_Auth['password'])
                 )
 
@@ -59,7 +59,7 @@ def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Loc
                     url,
                     timeout=(t_seconds, t_seconds),
                     verify=False,
-                    allow_redirects=True,
+                    allow_redirects=Allow_Redirects,
                     proxies=Dict_Proxies
                 )
 
@@ -68,7 +68,7 @@ def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Loc
                     url,
                     timeout=(t_seconds, t_seconds),
                     verify=False,
-                    allow_redirects=True
+                    allow_redirects=Allow_Redirects,
                 )
 
         # Get_Host_Name
