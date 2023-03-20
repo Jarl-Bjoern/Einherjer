@@ -27,24 +27,26 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         # Socket_Timeout
         setdefaulttimeout(t_seconds)
 
-        # Library_Import
-        from ..Workfiles.Scan_Host_Name import Get_Host_Name
-
-        # Trace_Start
-        Logs.Trace_File(
-            Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-            +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Host_Name - '+Colors.BLUE+'Trying to connect'+Colors.RESET,
-            join(Location, 'Logs')
-        )
-
         # Get_Host_Name
-        Host_Name = Get_Host_Name(url)
+        if (dict_switch['scan_host_name'] != False):
+            # Library_Import
+            from ..Workfiles.Scan_Host_Name import Get_Host_Name
 
-        # Trace_End
-        Logs.Trace_File(
-            Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Host_Name - '+Colors.GREEN+'OK'+Colors.RESET,
-            join(Location, 'Logs')
-        )
+            # Trace_Start
+            Logs.Trace_File(
+                Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Host_Name - '+Colors.BLUE+'Trying to connect'+Colors.RESET,
+                join(Location, 'Logs')
+            )
+
+            # Get_Host_Name
+            Host_Name = Get_Host_Name(url)
+
+            # Trace_End
+            Logs.Trace_File(
+                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Host_Name - '+Colors.GREEN+'OK'+Colors.RESET,
+                join(Location, 'Logs')
+            )
 
 
         # Certificates
