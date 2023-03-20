@@ -491,7 +491,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             Standard.Stdout_Output(Colors.ORANGE+f'   - {_}\n'+Colors.RESET, 0.01)
         if (exists(join(Location, 'Einherjer_Output.zip')) and args.zip_file_password == False):
             Standard.Stdout_Output(Colors.CYAN+"\n\nA random password was created for your ZipFile, please copy it out!\n"+Colors.RESET, 0.01)
-            Standard.Stdout_Output(f'\nPassword: '+Colors.RED+'{Password_Input}'+Colors.RESET, 0.01)
+            Standard.Stdout_Output('\nPassword: '+Colors.RED+f'{Password_Input}'+Colors.RESET, 0.01)
     else:
         if (Program_Mode == "Scanning_Mode"):
             if ((args.scan_site_screenshot != False or args.scan_site_screenshot_recursive != False) and Switch_Screenshots == False):
