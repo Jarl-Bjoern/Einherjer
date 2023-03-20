@@ -430,7 +430,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Password_Input = ""):
                                     Array_Output.append(join(Location, 'Einherjer_Output.zip'))
 
                                 #if (args.zip_file_password != False):
-                                with AESZipFile('new_test.zip', 'a', compression=ZIP_LZMA, encryption=WZ_AES) as zF:
+                                with AESZipFile(join(Location, 'Einherjer_Output.zip'), 'a', compression=ZIP_LZMA, encryption=WZ_AES) as zF:
                                     zF.setpassword(bytes(Password_Input))
                                     zF.write(join(root, file))
 
