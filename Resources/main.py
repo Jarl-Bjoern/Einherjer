@@ -14,9 +14,10 @@ from Resources.Workfiles.Scan_Screen import Web
 from Resources.Filter.Methods import Filter
 
 # Main_Function
-def main(Date, Program_Mode, args, Array_Output = [], Passwort_Input = ""):
+def main(Date, Program_Mode, args, Array_Output = []):
     # Get_Password
     if (args.zip_file != False):
+        Passwort_Input = ""
         if (args.zip_file_password != False):
             print (Colors.ORANGE+'\nPlease specify your ZipFile Password.'+Colors.RESET)
             Password_Input = getpass('\n\nPassword: ')
