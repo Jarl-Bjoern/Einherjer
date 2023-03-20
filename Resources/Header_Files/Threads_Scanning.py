@@ -42,7 +42,13 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
             # Get_Host_Name
             Host_Name = Get_Host_Name(url)
-            Standard.Write_Output_File('DNS_Template.txt', f'{url}:{Host_Name}', Location)
+            if (url.count(':') > 1):
+                Temp_Target = url.split(':')[1]
+                if ('//' in Temp_Target):
+                    Temp_Target = Temp_Target.split('//')[0]
+            else:
+                Temp_Target = url
+            Standard.Write_Output_File('DNS_Template.txt', f'{Temp_Target}:{Host_Name}', Location)
 
             # Trace_End
             Logs.Trace_File(
