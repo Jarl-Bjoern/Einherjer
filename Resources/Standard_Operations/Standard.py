@@ -168,5 +168,9 @@ class Standard:
         else:
             Write_Mode = 'w'
 
+        with open(join(Location, Output_File_Name), 'r') as f:
+            Array_Check = f.read().splitlines()
+
         with open(join(Location, Output_File_Name), Write_Mode) as f:
-            f.write(f'{Text}\n')
+            if (Text not in Array_Check):
+                f.write(f'{Text}\n')
