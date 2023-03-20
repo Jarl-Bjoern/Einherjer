@@ -32,6 +32,7 @@ try:
     from os import chmod, getcwd, listdir, makedirs, name as osname, remove, system, walk
     from os.path import exists, isdir, isfile, join
     from pathlib import Path
+    from pyzipper import AESZipFile
     from requests.exceptions import *
     from re import findall, search, split as resplit
     from rich.progress import BarColumn, Progress, SpinnerColumn, TaskProgressColumn, TimeElapsedColumn, TimeRemainingColumn
