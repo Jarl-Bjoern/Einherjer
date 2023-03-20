@@ -447,6 +447,9 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                             else:
                                 if (join(root, file) not in Array_Output):
                                     Array_Output.append(join(root, file))
+                        if (args.zip_file != False):
+                            for Directory_Name in _:
+                                rmdir(join(root, Directory_Name))
                             progress.update(task_Filter, advance=Counter_Bar_Filter)
 
                 # Progress_End
