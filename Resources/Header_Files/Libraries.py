@@ -25,7 +25,6 @@ try:
     from aiohttp.client_exceptions import *
     from contextlib import redirect_stdout
     from datetime import datetime
-    from getpass import getpass
     from http.client import RemoteDisconnected
     from ipaddress import IPv4Network
     from multiprocessing import active_children, Process, Queue
@@ -40,6 +39,7 @@ try:
     from socket import gaierror, gethostbyaddr, gethostbyname, herror, setdefaulttimeout
     from ssl import cert_time_to_seconds, create_default_context, _create_unverified_context as create_unverified_context, get_server_certificate, SSLError, SSLZeroReturnError
     from subprocess import getoutput, run
+    from stdiomask import getpass
     from sys import argv, stdout
     from time import sleep, strftime, time
     from threading import Thread, enumerate as Th_enumerate
