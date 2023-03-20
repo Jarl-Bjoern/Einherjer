@@ -164,7 +164,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
                     else:
                         Standard.Write_Output_File('affected_header_targets.txt', f'{url} ({Host_Name})', Location)
                         Standard.Write_Output_File('affected_security_flags_targets.txt', f'{url} ({Host_Name})', Location)
-                        Standard.Write_Output_File('affected_http_information_disclosure_targets.txt', f'{url} (-)', Location)
+                        Standard.Write_Output_File('affected_http_information_disclosure_targets.txt', f'{url} ({Host_Name})', Location)
 
                     # Trace_End
                     Logs.Trace_File(
