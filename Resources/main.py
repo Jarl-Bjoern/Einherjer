@@ -413,8 +413,17 @@ def main(Date, Program_Mode, args, Array_Output = []):
                     progress.update(task_Filter, total=Temp_Path_Length)
                     for root, _, files in walk(Location, topdown=False):
                         for file in files:
-                            if (join(root, file) not in Array_Output):
-                                Array_Output.append(join(root, file))
+                            if (args.zip_file != False):
+                                if (args.zip_file_password != False):
+                                    with open(join(Location, 'Einherjer_Output.zip'), mode='a', pwd=Password_Input) as zF:
+                                        zF.write(join(root, file))
+                                else:
+                                    with open(join(Location, 'Einherjer_Output.zip'), 'a') as zF:
+                                        zF.write(join(root, file))
+                                remove(join(root, file))
+                            else:
+                                if (join(root, file) not in Array_Output):
+                                    Array_Output.append(join(root, file))
                             progress.update(task_Filter, advance=Counter_Bar_Filter)
 
                 # Progress_End
