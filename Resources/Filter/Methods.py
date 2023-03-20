@@ -21,24 +21,33 @@ class Filter:
             with open(join(Output_Location, 'hostnames.txt'), 'w') as f:
                 with open(join(Output_Location, 'affected_systems.txt'), 'w') as af:
                     for _ in Target_Array:
-                        for Temp in Dict_DNS:
-                            if (_ in Temp):
-                                if (':' in _):
-                                    Target, Port = _.split(':')
-                                else:
-                                    Target = _
-
-                                f.write(f'{Dict_DNS[Temp]}\n')
-                                af.write(f'{Target} ({Dict_DNS[Temp]})\n')
-                                break
+                        # Split_Port
+                        if (':' in _):
+                            Target, Port = _.split(':')
                         else:
-                            if (':' in _):
-                                Target, Port = _.split(':')
-                            else:
-                                Target = _
+                            Target = _
 
+                        # Split_Whitespace
+                        if (' ' in Target):
+                            for Space in Target.split(' '):
+                                if (len(Space) > 0):
+                                    Target = Space
+
+                        if (Target in Dict_DNS):
+                            for Temp in Dict_DNS:
+                                if (Target in Temp or Target == Temp):
+                                    f.write(f'{Dict_DNS[Temp]}\n')
+                                    if (Port != '' and Port != ' '):
+                                        af.write(f'{Target}:{Port} ({Dict_DNS[Temp]})\n')
+                                    else:
+                                        af.write(f'{Target} ({Dict_DNS[Temp]})\n')
+                                    break
+                        else:
                             f.write('-\n')
-                            af.write(f'{Target} (-)\n')
+                            if (Port != '' and Port != ' '):
+                                af.write(f'{Target}:{Port} (-)\n')
+                            else:
+                                af.write(f'{Target} (-)\n')
             Array_Temp.append(join(Output_Location, 'hostnames.txt')), Array_Temp.append(join(Output_Location, 'affected_systems.txt'))
         except FileNotFoundError:
             pass
