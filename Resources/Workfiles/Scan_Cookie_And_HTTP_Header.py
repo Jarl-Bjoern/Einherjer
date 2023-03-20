@@ -69,7 +69,7 @@ def Check_Cookie_And_HTTP_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_A
                         url,
                         timeout=(t_seconds, t_seconds),
                         verify=False,
-                        allow_redirects=Allow_Redirects,
+                        allow_redirects=Allow_Redirects
                     )
 
         # Get_Host_Name
