@@ -294,7 +294,8 @@ def main(Date, Program_Mode, args, Array_Output = []):
                         Dict_Proxies,
                         Dict_Auth,
                         args.format,
-                        Location
+                        Location,
+                        args.allow_redirects
                     ]
 
                     if (Counter_Connections == args.max_connections):
@@ -337,7 +338,8 @@ def main(Date, Program_Mode, args, Array_Output = []):
                                 Dict_Proxies,
                                 Dict_Auth,
                                 args.format,
-                                Location
+                                Location,
+                                args.allow_redirects
                             ]
 
                             if (Counter_Connections == args.max_connections):
