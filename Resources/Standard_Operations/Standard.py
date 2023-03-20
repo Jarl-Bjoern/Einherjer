@@ -161,3 +161,12 @@ class Standard:
                 break
             except PermissionError: Logs.Error_Message(f"The file {x} is already open!\nPlease close it and wait five seconds.")
             sleep(5)
+
+    def Write_Output_File(Output_File_Name, Text, Location):
+        if (exists(join(Location, Output_File_Name))):
+            Write_Mode = 'a'
+        else:
+            Write_Mode = 'w'
+
+        with open(join(Location, Output_File_Name), Write_Mode) as f:
+            f.write(f'{Text}\n')
