@@ -274,7 +274,9 @@ def main(Date, Program_Mode, args, Array_Output = [], Password_Input = ""):
 
         # Get_Password
         if (args.zip_file_password != False):
-            Password_Input = getpass('Please specify your ZipFile Password:')
+            Password_Input = getpass('Please specify your ZipFile Password: ')
+            if (len(Password_Input) < 16):
+                exit(Colors.RED+"\n\nPlease use a minimum password length of 16 digits!"+Colors.RESET)
 
         # Program_Start
         Standard.Initialien(args.debug)
