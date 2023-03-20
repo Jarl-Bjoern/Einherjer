@@ -486,6 +486,9 @@ def main(Date, Program_Mode, args, Array_Output = []):
             Standard.Stdout_Output(Colors.CYAN+"\n\nThe filter process was successful and the result will be found at the following location:\n"+Colors.RESET, 0.01)
         for _ in Array_Output:
             Standard.Stdout_Output(Colors.ORANGE+f'   - {_}\n'+Colors.RESET, 0.01)
+        if (exists(join(Location, 'Einherjer_Output.zip')) and args.zip_file_password == False):
+            Standard.Stdout_Output(Colors.CYAN+"\n\nA random password was created for your ZipFile, please copy it out!\n"+Colors.RESET, 0.01)
+            Standard.Stdout_Output(Colors.RED+f'\nPassword: {Password_Input}'+Colors.RESET, 0.01)
     else:
         if (Program_Mode == "Scanning_Mode"):
             if (args.scan_site_screenshot != False or args.scan_site_screenshot_recursive != False):
