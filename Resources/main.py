@@ -437,7 +437,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                                     if ('Screenshots' in root):
                                         zF.write(join('Screenshots' file))
                                     elif ('Logs' in root):
-                                        zF.write(join('Logs'), file))
+                                        zF.write(join('Logs', file))
                                     else:
                                         zF.write(file)
 
