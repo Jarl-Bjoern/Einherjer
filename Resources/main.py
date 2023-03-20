@@ -57,10 +57,10 @@ def main(Date, Program_Mode, args, Array_Output = []):
 
     def Filter_Mode(Date, Output_location, args, Array_Output = []):
         # Filtering_Options
-        if (args.nmap_files_location == None and
-            args.screenshot_location == None and
+        if (args.nmap_files_location    == None and
+            args.screenshot_location    == None and
             args.hostname_template_file == None and
-            args.hostname_target_file == None):
+            args.hostname_target_file   == None):
                 from Resources.Header_Files.ArgParser_Filter_Intro import Argument_Parser
                 Argument_Parser("\n\n\t\t\tThe program cannot be started without filter methods!\n\t\t\t For more information use the parameter -h or --help.\n"), exit() 
         else:
@@ -104,6 +104,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
             'scan_certificate':          False,
             'scan_dns':                  False,
             'scan_header':               False,
+            'scan_host_name':            False,
             'scan_http_methods':         False,
             'scan_security_flags':       False,
             'scan_screenshot':           None,
@@ -174,7 +175,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
             del shuffle
 
         # Proxy_Settings
-        if (args.add_http_proxy != None):                    Dict_Proxies['http']         = args.add_http_proxy
+        if (args.add_http_proxy  != None):                   Dict_Proxies['http']         = args.add_http_proxy
         if (args.add_https_proxy != None):                   Dict_Proxies['https']        = args.add_https_proxy
 
         # Webdriver_Options
@@ -222,34 +223,37 @@ def main(Date, Program_Mode, args, Array_Output = []):
             except FileExistsError: pass
 
         # Auth_Settings
-        if (args.add_basic_authentication_user != None):     Dict_Auth['user']            = args.add_basic_authentication_user
-        if (args.add_basic_authentication_password != None): Dict_Auth['password']        = args.add_basic_authentication_password
-        if (args.add_pkcs12_cert != None):                   Dict_Auth['pkcs12_cert']     = args.add_pkcs12_cert
-        if (args.add_pkcs12_cert_password != None):          Dict_Auth['pkcs12_password'] = args.add_pkcs12_cert_password
+        if (args.add_basic_authentication_user     != None):       Dict_Auth['user']            = args.add_basic_authentication_user
+        if (args.add_basic_authentication_password != None):       Dict_Auth['password']        = args.add_basic_authentication_password
+        if (args.add_pkcs12_cert                   != None):       Dict_Auth['pkcs12_cert']     = args.add_pkcs12_cert
+        if (args.add_pkcs12_cert_password          != None):       Dict_Auth['pkcs12_password'] = args.add_pkcs12_cert_password
 
         # Scanning_Options
-        if (args.scan_all == False and
-            args.scan_site_screenshot == False and
-            args.scan_site_http_methods == False and
-            args.scan_site_certificate == False and
-            args.scan_site_ssl == False and
-            args.scan_site_header == False and
-            args.scan_ssh == False and
-            args.scan_security_flags == False):
+        if (args.scan_all                 == False and
+            args.scan_site_screenshot     == False and
+            args.scan_site_http_methods   == False and
+            args.scan_host_name           == False and
+            args.scan_site_certificate    == False and
+            args.scan_site_ssl            == False and
+            args.scan_site_header         == False and
+            args.scan_ssh                 == False and
+            args.scan_security_flags      == False):
                     from Resources.Header_Files.ArgParser_Intro import Argument_Parser
                     Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
-        elif (args.scan_all != False and
-              args.scan_site_screenshot == False and
+        elif (args.scan_all               != False and
+              args.scan_site_certificate  == False and
               args.scan_site_http_methods == False and
-              args.scan_site_certificate == False and
-              args.scan_site_ssl == False and
-              args.scan_site_header == False and
-              args.scan_ssh == False and
-              args.scan_security_flags == False):
+              args.scan_host_name         == False and
+              args.scan_site_header       == False and
+              args.scan_ssh               == False and
+              args.scan_site_screenshot   == False and
+              args.scan_site_ssl          == False and
+              args.scan_security_flags    == False):
                     Dict_Switch = {
                         'scan_certificate':           True,
                         'scan_dns':                   True,
                         'scan_header':                True,
+                        'scan_host_name':             True,
                         'scan_http_methods':          True,
                         'scan_security_flags':        True,
                         'scan_screenshot':            driver_options,
@@ -259,13 +263,14 @@ def main(Date, Program_Mode, args, Array_Output = []):
                         'scan_ssl':                   True
                     }
         elif (args.scan_all == False):
-            if (args.scan_site_certificate != False):           Dict_Switch['scan_certificate']          = True
-            if (args.scan_site_header != False):                Dict_Switch['scan_header']               = True
+            if (args.scan_site_certificate  != False):          Dict_Switch['scan_certificate']          = True
+            if (args.scan_site_header       != False):          Dict_Switch['scan_header']               = True
+            if (args.scan_host_name         != False):          Dict_Switch['scan_host_name']            = True
             if (args.scan_site_http_methods != False):          Dict_Switch['scan_http_methods']         = True
-            if (args.scan_security_flags != False):             Dict_Switch['scan_security_flags']       = True
-            if (args.scan_site_screenshot != False):            Dict_Switch['scan_screenshot']           = driver_options
-            if (args.scan_ssh != False):                        Dict_Switch['scan_ssh']                  = True
-            if (args.scan_site_ssl != False):                   Dict_Switch['scan_ssl']                  = True
+            if (args.scan_security_flags    != False):          Dict_Switch['scan_security_flags']       = True
+            if (args.scan_site_screenshot   != False):          Dict_Switch['scan_screenshot']           = driver_options
+            if (args.scan_ssh               != False):          Dict_Switch['scan_ssh']                  = True
+            if (args.scan_site_ssl          != False):          Dict_Switch['scan_ssl']                  = True
 
         # Program_Start
         Standard.Initialien(args.debug)
