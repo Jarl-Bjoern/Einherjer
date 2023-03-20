@@ -108,16 +108,19 @@ def Check_Cookie_And_HTTP_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_A
 
             # Check_Cookie
             elif ("COOKIE" in Header_Key.upper()):
-                if ("COOKIE" in Header_Key.upper()):
-                    Target_Flags = Header_Values.upper()
-                    for Flag in Array_Security_Flags:
-                        if (Flag not in Target_Flags): Dict_Temp[Flag] = "FEHLT"
+                Target_Flags = Header_Values.upper()
+                for Flag in Array_Security_Flags:
+                    if (Flag not in Target_Flags):
+                        Dict_Temp_Cookie[Flag] = "FEHLT"
+                    else:
+                        if ("SAMESITE" in Target_Flags and Switch_SameSite != True):
+                            if ("SAMESITE=LAX" in Target_Flags or "SAMESITE=STRICT" in Target_Flags):
+                                Dict_Temp_Cookie[Flag] = Flag
+                            else:
+                                Dict_Temp_Cookie[Flag] = "FEHLT"
+                            Switch_SameSite = True
                         else:
-                            if ("SAMESITE" in Target_Flags and Switch_SameSite != True):
-                                if ("SAMESITE=LAX" in Target_Flags or "SAMESITE=STRICT" in Target_Flags): Dict_Temp[Flag] = Flag
-                                else: Dict_Temp[Flag] = "FEHLT"
-                                Switch_SameSite = True
-                            else: Dict_Temp[Flag] = Flag
+                            Dict_Temp_Cookie[Flag] = Flag
 
             # Check_HTTP_Information_Header
             elif (Header_Key.upper() in Array_Information_Disclosure_Header):
