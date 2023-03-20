@@ -273,11 +273,16 @@ def main(Date, Program_Mode, args, Array_Output = [], Password_Input = ""):
             if (args.scan_site_ssl          != False):          Dict_Switch['scan_ssl']                  = True
 
         # Get_Password
-        #if (args.zip_file_password != False):
-        #    print (Colors.ORANGE+'\nPlease specify your ZipFile Password.'+Colors.RESET)
-        #    Password_Input = getpass('\n\nPassword: ')
-        #    if (len(Password_Input) < 16):
-        #        exit(Colors.RED+"\n\nPlease use a minimum password length of 16 digits!"+Colors.RESET)
+        if (args.zip_file != False):
+            if (args.zip_file_password != False):
+                print (Colors.ORANGE+'\nPlease specify your ZipFile Password.'+Colors.RESET)
+                Password_Input = getpass('\n\nPassword: ')
+                if (len(Password_Input) < 16):
+                    exit(Colors.RED+"\n\nPlease use a minimum password length of 16 digits!"+Colors.RESET)
+            else:
+                Password_Creator = SystemRandom()
+                for _ in range(0, 33):
+                    Password_Input += chr(Password_Creator.randrange(33,126))
 
         # Program_Start
         Standard.Initialien(args.debug)
