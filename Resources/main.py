@@ -272,6 +272,10 @@ def main(Date, Program_Mode, args, Array_Output = [], Password_Input = ""):
             if (args.scan_ssh               != False):          Dict_Switch['scan_ssh']                  = True
             if (args.scan_site_ssl          != False):          Dict_Switch['scan_ssl']                  = True
 
+        # Get_Password
+        if (args.zip_file_password != False):
+            Password_Input = getpass('Please specify your ZipFile Password:')
+
         # Program_Start
         Standard.Initialien(args.debug)
         setdefaulttimeout(args.timeout)
