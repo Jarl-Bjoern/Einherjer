@@ -431,16 +431,9 @@ def main(Date, Program_Mode, args, Array_Output = [], Passwort_Input = ""):
                                 if (join(Location, 'Einherjer_Output.zip') not in Array_Output):
                                     Array_Output.append(join(Location, 'Einherjer_Output.zip'))
 
-                                #if (args.zip_file_password != False):
                                 with AESZipFile(join(Location, 'Einherjer_Output.zip'), 'a', compression=ZIP_LZMA, encryption=WZ_AES) as zF:
-                                    zF.setpassword(bytes(Password_Input))
+                                    zF.setpassword(bytes(Password_Input, encoding='utf-8'))
                                     zF.write(join(root, file))
-
-                                #    with open(join(Location, 'Einherjer_Output.zip'), mode='a', allowZip64=True) as zF:
-                                #        zF.write(join(root, file))
-                                #else:
-                                #    with open(join(Location, 'Einherjer_Output.zip'), 'a', allowZip64=True) as zF:
-                                #        zF.write(join(root, file))
                                 remove(join(root, file))
                             else:
                                 if (join(root, file) not in Array_Output):
