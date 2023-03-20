@@ -14,7 +14,7 @@ from Resources.Workfiles.Scan_Screen import Web
 from Resources.Filter.Methods import Filter
 
 # Main_Function
-def main(Date, Program_Mode, args, Array_Output = []):
+def main(Date, Program_Mode, args, Array_Output = [], Password_Input = ""):
     def Message_Chromium(Check_Dir):
         if (len(listdir(Check_Dir)) == 0):
             Chromium_Version = getoutput('apt-cache policy chromium').splitlines()[1][1:].split(':')[1][1:]
