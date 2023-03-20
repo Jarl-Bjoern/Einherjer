@@ -17,7 +17,6 @@ from Resources.Filter.Methods import Filter
 def main(Date, Program_Mode, args, Array_Output = []):
     # Get_Password
     if (args.zip_file != False):
-        Passwort_Input = ""
         if (args.zip_file_password != False):
             print (Colors.ORANGE+'\nPlease specify your ZipFile Password.'+Colors.RESET)
             Password_Input = getpass('\n\nPassword: ')
@@ -25,6 +24,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
                 exit(Colors.RED+"\n\nPlease use a minimum password length of 16 digits!"+Colors.RESET)
         else:
             Password_Creator = SystemRandom()
+            Password_Input = ""
             for _ in range(0, 33):
                 Password_Input += chr(Password_Creator.randrange(33,126))
             del Password_Creator
