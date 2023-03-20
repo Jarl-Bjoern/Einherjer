@@ -14,7 +14,7 @@ from Resources.Workfiles.Scan_Screen import Web
 from Resources.Filter.Methods import Filter
 
 # Main_Function
-def main(Date, Program_Mode, args, Array_Output = []):
+def main(Date, Program_Mode, args, Array_Output = [], Passwort_Input = ""):
     # Get_Password
     if (args.zip_file != False):
         if (args.zip_file_password != False):
@@ -24,9 +24,9 @@ def main(Date, Program_Mode, args, Array_Output = []):
                 exit(Colors.RED+"\n\nPlease use a minimum password length of 16 digits!"+Colors.RESET)
         else:
             Password_Creator = SystemRandom()
-            Password_Input = ""
             for _ in range(0, 33):
                 Password_Input += chr(Password_Creator.randrange(33,126))
+            del Password_Creator
 
     # Functions
     def Message_Chromium(Check_Dir):
