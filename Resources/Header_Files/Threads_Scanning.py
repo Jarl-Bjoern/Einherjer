@@ -10,7 +10,7 @@ from ..Workfiles.Scan_FTP import Check_FTP
 from ..Workfiles.Scan_SMTP import Check_SMTP
 
 # Functions
-def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch_internet_connection, screenshot_wait, webdriver_timeout, ssl_timeout, dict_proxies, dict_auth, file_format, Location, Host_Name = ""):
+def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch_internet_connection, screenshot_wait, webdriver_timeout, ssl_timeout, dict_proxies, dict_auth, file_format, Location, allow_redirects, Host_Name = ""):
     Dict_Temp = {
         'Certificate': {},
         'Header': {},
@@ -86,7 +86,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
                     )
 
                     # Scan_Security_Flags
-                    Dict_Result['Security_Flag'][url] = Check_Security_Flags(url, t_seconds, Host_Name, dict_proxies, dict_auth, Location)
+                    Dict_Result['Security_Flag'][url] = Check_Security_Flags(url, t_seconds, Host_Name, dict_proxies, dict_auth, Location, allow_redirects)
                     Dict_Temp['Security_Flag'][url]   = Dict_Result['Security_Flag'][url]
 
                     # Trace_End
@@ -111,7 +111,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
                     )
 
                     # Scan_Header
-                    Dict_Result['Header'][url], Dict_Result['Information'][url] = Check_Site_Header(url, t_seconds, Host_Name, dict_proxies, dict_auth, Location)
+                    Dict_Result['Header'][url], Dict_Result['Information'][url] = Check_Site_Header(url, t_seconds, Host_Name, dict_proxies, dict_auth, Location, allow_redirects)
                     Dict_Temp['Header'][url], Dict_Temp['Information'][url]     = Dict_Result['Header'][url], Dict_Result['Information'][url]
 
                     # Trace_End
@@ -137,7 +137,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
                     )
 
                     # Scan_Header
-                    Dict_Result['Security_Flag'][url], Dict_Result['Header'][url], Dict_Result['Information'][url] = Check_Cookie_And_HTTP_Header(url, t_seconds, Host_Name, dict_proxies, dict_auth, Location)
+                    Dict_Result['Security_Flag'][url], Dict_Result['Header'][url], Dict_Result['Information'][url] = Check_Cookie_And_HTTP_Header(url, t_seconds, Host_Name, dict_proxies, dict_auth, Location, allow_redirects)
                     Dict_Temp['Security_Flag'][url],   Dict_Temp['Header'][url],   Dict_Temp['Information'][url]   = Dict_Result['Security_Flag'][url], Dict_Result['Header'][url], Dict_Result['Information'][url]
 
                     # Trace_End
