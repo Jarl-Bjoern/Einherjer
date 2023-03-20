@@ -421,6 +421,9 @@ def main(Date, Program_Mode, args, Array_Output = [], Password_Input = ""):
                     for root, _, files in walk(Location, topdown=False):
                         for file in files:
                             if (args.zip_file != False):
+                                if (join(Location, 'Einherjer_Output.zip') not in Array_Output):
+                                    Array_Output.append(join(Location, 'Einherjer_Output.zip'))
+
                                 if (args.zip_file_password != False):
                                     with open(join(Location, 'Einherjer_Output.zip'), mode='a', pwd=Password_Input) as zF:
                                         zF.write(join(root, file))
