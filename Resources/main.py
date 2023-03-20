@@ -435,7 +435,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                                 with AESZipFile(join(Location, 'Einherjer_Output.zip'), 'a', compression=ZIP_LZMA, encryption=WZ_AES) as zF:
                                     zF.setpassword(bytes(Password_Input, encoding='utf-8'))
                                     if ('Screenshots' in root):
-                                        zF.write(join('Screenshots' file))
+                                        zF.write(join('Screenshots', file))
                                     elif ('Logs' in root):
                                         zF.write(join('Logs', file))
                                     else:
