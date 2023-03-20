@@ -14,7 +14,7 @@ from Resources.Workfiles.Scan_Screen import Web
 from Resources.Filter.Methods import Filter
 
 # Main_Function
-def main(Date, Program_Mode, args, Array_Output = []):
+def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False):
     # Get_Password
     if (args.zip_file != False):
         if (args.zip_file_password != False):
@@ -41,7 +41,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
             else:
                 Standard.Stdout_Output(Colors.ORANGE+"\n\n\t\t    It was not possible to use the current chromium and webdriver version.\n\n\t\t\t\t    Chromedriver Version: "+Colors.RED+f"{Chromedriver_Version}\n"+Colors.RESET, 0.01)
 
-    def Brute_Force_Mode(Date, Output_location, args, Array_Output = []):
+    def Brute_Force_Mode(Date, Output_location, args, Array_Output = [], Switch_Screenshots = False):
         Dict_Switch = {
             'brute_dns':                  False,
             'brute_fuzzing':              False,
@@ -68,7 +68,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
                         if (word not in Array_Wordlists):
                             Array_Wordlists.append(word)
 
-        return Array_Output
+        return Array_Output, Switch_Screenshots
 
     def Filter_Mode(Date, Output_location, args, Array_Output = []):
         # Filtering_Options
@@ -95,7 +95,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
 
         return Array_Output
 
-    def Scanning_Mode(Date, args, Array_Thread_Args = [], Dict_Threads = {}, Dict_Proxies = {'http': "",'https': ""}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None, Array_Targets = [], Array_SSL_Targets = []):
+    def Scanning_Mode(Date, args, Array_Thread_Args = [], Dict_Threads = {}, Dict_Proxies = {'http': "",'https': ""}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None, Switch_Screenshots = False, Array_Targets = [], Array_SSL_Targets = []):
         # Dict_Declaration
         Dict_Result = {
             'Certificate':               {},
@@ -435,6 +435,9 @@ def main(Date, Program_Mode, args, Array_Output = []):
                                 with AESZipFile(join(Location, 'Einherjer_Output.zip'), 'a', compression=ZIP_LZMA, encryption=WZ_AES) as zF:
                                     zF.setpassword(bytes(Password_Input, encoding='utf-8'))
                                     zF.write(join(root, file))
+
+                                if ('Screenshots' in root):
+                                    Switch_Screenshots = True
                                 remove(join(root, file))
                             else:
                                 if (join(root, file) not in Array_Output):
@@ -453,7 +456,7 @@ def main(Date, Program_Mode, args, Array_Output = []):
             if (Filter_Output_File != ""):
                 Array_Output.append(Filter_Output_File)
 
-        return Array_Output
+        return Array_Output, Switch_Screenshots
 
     # Output_Location
     if (args.output_location != None):
@@ -466,20 +469,20 @@ def main(Date, Program_Mode, args, Array_Output = []):
 
     # Program_Mode
     if (Program_Mode == "Scanning_Mode"):
-        Array_Output = Scanning_Mode(Date, args)
+        Array_Output, Switch_Screenshots = Scanning_Mode(Date, args)
     elif (Program_Mode == "Filter_Mode"):
-        Array_Output = Filter_Mode(Date, Location, args)
+        Array_Output, Switch_Screenshots = Filter_Mode(Date, Location, args)
     elif (Program_Mode == "Brute_Force_Mode"):
-        Array_Output = Brute_Force_Mode(Date, Location, args)
+        Array_Output, Switch_Screenshots = Brute_Force_Mode(Date, Location, args)
 
     # Output_End
     if (Array_Output != []):
         if (Program_Mode == "Scanning_Mode"):
-            if (args.scan_site_screenshot != False):
+            if (args.scan_site_screenshot != False and Switch_Screenshots == False):
                 Message_Chromium(join(Location, 'Screenshots'))
             Standard.Stdout_Output(Colors.CYAN+"\n\nYour Scan was successful and the result will be found at the following location:\n"+Colors.RESET, 0.01)
         elif (Program_Mode == "Brute_Force_Mode"):
-            if (args.brute_screenshot_recursive != False):
+            if (args.brute_screenshot_recursive != False and Switch_Screenshots == False):
                 Message_Chromium(join(Location, 'Screenshots'))
             Standard.Stdout_Output(Colors.CYAN+"\n\nYour Scan was successful and the result will be found at the following location:\n"+Colors.RESET, 0.01)
         elif (Program_Mode == "Filter_Mode"):
@@ -488,14 +491,14 @@ def main(Date, Program_Mode, args, Array_Output = []):
             Standard.Stdout_Output(Colors.ORANGE+f'   - {_}\n'+Colors.RESET, 0.01)
         if (exists(join(Location, 'Einherjer_Output.zip')) and args.zip_file_password == False):
             Standard.Stdout_Output(Colors.CYAN+"\n\nA random password was created for your ZipFile, please copy it out!\n"+Colors.RESET, 0.01)
-            Standard.Stdout_Output(Colors.RED+f'\nPassword: {Password_Input}'+Colors.RESET, 0.01)
+            Standard.Stdout_Output(f'\nPassword: '+Colors.RED+'{Password_Input}'+Colors.RESET, 0.01)
     else:
         if (Program_Mode == "Scanning_Mode"):
-            if (args.scan_site_screenshot != False or args.scan_site_screenshot_recursive != False):
+            if ((args.scan_site_screenshot != False or args.scan_site_screenshot_recursive != False) and Switch_Screenshots == False):
                 Message_Chromium(join(Location, 'Screenshots'))
             Standard.Stdout_Output(Colors.ORANGE+f'\n\t\t\t\tIt was not possible to collect any kind of data!\n\n\t\t\t     Check your connection or target file and try it again.'+Colors.RESET, 0.01)
         elif (Program_Mode == "Brute_Force_Mode"):
-            if (args.brute_screenshot_recursive != False):
+            if (args.brute_screenshot_recursive != False and Switch_Screenshots == False):
                 Message_Chromium(join(Location, 'Screenshots'))
             Standard.Stdout_Output(Colors.ORANGE+f'\n\t\t\t\tIt was not possible to collect any kind of data!\n\n\t\t\t     Check your connection or target file and try it again.'+Colors.RESET, 0.01)
         elif (Program_Mode == "Filter_Mode"):
