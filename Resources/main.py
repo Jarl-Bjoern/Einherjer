@@ -462,9 +462,9 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                 Array_Output.append(Filter_Output_File)
 
         if (args.zip_file != False):
-            for Directory_Name in listdir(Location):
-                if (isdir(join(Location, Directoryname))):
-                    rmdir(join(Location, Directory_Name))
+            for _ in listdir(Location):
+                if (isdir(join(Location, _))):
+                    rmdir(join(Location, _))
 
         return Array_Output, Switch_Screenshots
 
