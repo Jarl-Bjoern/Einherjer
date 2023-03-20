@@ -79,7 +79,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
 
         # Cookie_Security_Flags
-        if (dict_switch['scan_header'] == False and
+        if (dict_switch['scan_header']           == False and
               dict_switch['scan_security_flags'] != False and
               '//' in url and
               'http' in url):
@@ -108,7 +108,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
                     )
 
         # Header
-        elif (dict_switch['scan_header'] != False and
+        elif (dict_switch['scan_header']         != False and
               dict_switch['scan_security_flags'] == False and
               '//' in url and
               'http' in url):
@@ -140,7 +140,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
 
         # Cookie_Security_Flags_And_Header
-        elif (dict_switch['scan_header'] != False and
+        elif (dict_switch['scan_header']         != False and
               dict_switch['scan_security_flags'] != False and
               '//' in url and
               'http' in url):
