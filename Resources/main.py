@@ -463,7 +463,8 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
         if (args.zip_file != False):
             for Directory_Name in listdir(Location):
-                rmdir(join(Location, Directory_Name))
+                if (isdir(join(Location, Directoryname))):
+                    rmdir(join(Location, Directory_Name))
 
         return Array_Output, Switch_Screenshots
 
