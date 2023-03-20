@@ -14,7 +14,21 @@ from Resources.Workfiles.Scan_Screen import Web
 from Resources.Filter.Methods import Filter
 
 # Main_Function
-def main(Date, Program_Mode, args, Array_Output = [], Password_Input = ""):
+def main(Date, Program_Mode, args, Array_Output = []):
+    # Get_Password
+    if (args.zip_file != False):
+        if (args.zip_file_password != False):
+            print (Colors.ORANGE+'\nPlease specify your ZipFile Password.'+Colors.RESET)
+            Password_Input = getpass('\n\nPassword: ')
+            if (len(Password_Input) < 16):
+                exit(Colors.RED+"\n\nPlease use a minimum password length of 16 digits!"+Colors.RESET)
+        else:
+            Password_Creator = SystemRandom()
+            Password_Input = ""
+            for _ in range(0, 33):
+                Password_Input += chr(Password_Creator.randrange(33,126))
+
+    # Functions
     def Message_Chromium(Check_Dir):
         if (len(listdir(Check_Dir)) == 0):
             Chromium_Version = getoutput('apt-cache policy chromium').splitlines()[1][1:].split(':')[1][1:]
@@ -271,18 +285,6 @@ def main(Date, Program_Mode, args, Array_Output = [], Password_Input = ""):
             if (args.scan_site_screenshot   != False):          Dict_Switch['scan_screenshot']           = driver_options
             if (args.scan_ssh               != False):          Dict_Switch['scan_ssh']                  = True
             if (args.scan_site_ssl          != False):          Dict_Switch['scan_ssl']                  = True
-
-        # Get_Password
-        if (args.zip_file != False):
-            if (args.zip_file_password != False):
-                print (Colors.ORANGE+'\nPlease specify your ZipFile Password.'+Colors.RESET)
-                Password_Input = getpass('\n\nPassword: ')
-                if (len(Password_Input) < 16):
-                    exit(Colors.RED+"\n\nPlease use a minimum password length of 16 digits!"+Colors.RESET)
-            else:
-                Password_Creator = SystemRandom()
-                for _ in range(0, 33):
-                    Password_Input += chr(Password_Creator.randrange(33,126))
 
         # Program_Start
         Standard.Initialien(args.debug)
