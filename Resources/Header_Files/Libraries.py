@@ -29,7 +29,7 @@ try:
     from ipaddress import IPv4Network
     from multiprocessing import active_children, Process, Queue
     from numpy import array
-    from os import chmod, getcwd, listdir, makedirs, name as osname, remove, system, walk
+    from os import chmod, getcwd, listdir, makedirs, name as osname, remove, rmdir, system, walk
     from os.path import exists, isdir, isfile, join
     from pathlib import Path
     from pyzipper import AESZipFile, WZ_AES, ZIP_LZMA
