@@ -162,13 +162,13 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                         Dict_Full_SSL['Curves'].append(z['name'])
                                             elif (k == 'supports_ecdh_key_exchange'):
                                                 pass
-                                            elif (k == 'supports_secure_renegotiation' or
-                                                  k == 'supports_early_data' or
-                                                  k == 'session_id_attempted_resumptions_count' or
-                                                  k == 'session_id_resumption_result' or
+                                            elif (k == 'supports_secure_renegotiation'           or
+                                                  k == 'supports_early_data'                     or
+                                                  k == 'session_id_attempted_resumptions_count'  or
+                                                  k == 'session_id_resumption_result'            or
                                                   k == 'session_id_successful_resumptions_count' or
-                                                  k == 'tls_ticket_attempted_resumptions_count' or
-                                                  k == 'tls_ticket_resumption_result' or
+                                                  k == 'tls_ticket_attempted_resumptions_count'  or
+                                                  k == 'tls_ticket_resumption_result'            or
                                                   k == 'tls_ticket_successful_resumptions_count'):
                                                     pass
                     #                        else:
