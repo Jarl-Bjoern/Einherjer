@@ -72,10 +72,6 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             # Scan_Certificate
             Dict_Result['Certificate'][url] = Check_Certificate(url, t_seconds, Host_Name, Location)
             Dict_Temp['Certificate'][url]   = Dict_Result['Certificate'][url]
-            if (Host_Name == ""):
-                Standard.Write_Output_File('affected_certificate_targets.txt', f'{url} (-)', Location)
-            else:
-                Standard.Write_Output_File('affected_certificate_targets.txt', f'{url} ({Host_Name})', Location)
 
             # Trace_End
             Logs.Trace_File(
@@ -102,10 +98,6 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
                     # Scan_Security_Flags
                     Dict_Result['Security_Flag'][url] = Check_Security_Flags(url, t_seconds, Host_Name, dict_proxies, dict_auth, Location, allow_redirects)
                     Dict_Temp['Security_Flag'][url]   = Dict_Result['Security_Flag'][url]
-                    if (Host_Name == ""):
-                        Standard.Write_Output_File('affected_security_flags_targets.txt', f'{url} (-)', Location)
-                    else:
-                        Standard.Write_Output_File('affected_security_flags_targets.txt', f'{url} ({Host_Name})', Location)
 
                     # Trace_End
                     Logs.Trace_File(
@@ -131,12 +123,6 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
                     # Scan_Header
                     Dict_Result['Header'][url], Dict_Result['Information'][url] = Check_Site_Header(url, t_seconds, Host_Name, dict_proxies, dict_auth, Location, allow_redirects)
                     Dict_Temp['Header'][url], Dict_Temp['Information'][url]     = Dict_Result['Header'][url], Dict_Result['Information'][url]
-                    if (Host_Name == ""):
-                        Standard.Write_Output_File('affected_header_targets.txt', f'{url} (-)', Location)
-                        Standard.Write_Output_File('affected_http_information_disclosure_targets.txt', f'{url} (-)', Location)
-                    else:
-                        Standard.Write_Output_File('affected_header_targets.txt', f'{url} ({Host_Name})', Location)
-                        Standard.Write_Output_File('affected_http_information_disclosure_targets.txt', f'{url} ({Host_Name})', Location)
 
                     # Trace_End
                     Logs.Trace_File(
@@ -163,14 +149,6 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
                     # Scan_Header
                     Dict_Result['Security_Flag'][url], Dict_Result['Header'][url], Dict_Result['Information'][url] = Check_Cookie_And_HTTP_Header(url, t_seconds, Host_Name, dict_proxies, dict_auth, Location, allow_redirects)
                     Dict_Temp['Security_Flag'][url],   Dict_Temp['Header'][url],   Dict_Temp['Information'][url]   = Dict_Result['Security_Flag'][url], Dict_Result['Header'][url], Dict_Result['Information'][url]
-                    if (Host_Name == ""):
-                        Standard.Write_Output_File('affected_header_targets.txt', f'{url} (-)', Location)
-                        Standard.Write_Output_File('affected_security_flags_targets.txt', f'{url} (-)', Location)
-                        Standard.Write_Output_File('affected_http_information_disclosure_targets.txt', f'{url} (-)', Location)
-                    else:
-                        Standard.Write_Output_File('affected_header_targets.txt', f'{url} ({Host_Name})', Location)
-                        Standard.Write_Output_File('affected_security_flags_targets.txt', f'{url} ({Host_Name})', Location)
-                        Standard.Write_Output_File('affected_http_information_disclosure_targets.txt', f'{url} ({Host_Name})', Location)
 
                     # Trace_End
                     Logs.Trace_File(
@@ -193,10 +171,6 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             # Scan_HTTP_Methods
             Dict_Result['HTTP_Methods'][url] = Check_HTTP_Methods(url, Host_Name, dict_proxies, dict_auth, Location)
             Dict_Temp['HTTP_Methods'][url]   = Dict_Result['HTTP_Methods'][url]
-            if (Host_Name == ""):
-                Standard.Write_Output_File('affected_http_methods_targets.txt', f'{url} (-)', Location)
-            else:
-                Standard.Write_Output_File('affected_http_methods_targets.txt', f'{url} ({Host_Name})', Location)
 
             # Trace_End
             Logs.Trace_File(
