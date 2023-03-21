@@ -57,6 +57,12 @@ pip3 install -r Setup/requirements.txt
 deactivate
 ```
 
+Since the latest release of Kali, certain global packages still need to be installed, so it is recommended to use the command below.
+```bash
+cd einherjer
+pip3 install -r Setup/requirements.txt
+```
+
 ### ⚔ Starting the tool
 #### Linux
 ```bash
