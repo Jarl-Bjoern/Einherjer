@@ -424,6 +424,13 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                 # Get_All_Files
                 progress.start_task(task_Filter)
                 Temp_Path_Length = len(Standard.List_Directory_Recursive(Location))
+
+                if (args.zip_file != False):
+                    kp = create_database (join(Location, 'zip.kdbx'), password='Einherjer', keyfile=None, transformed_key=None)
+                    group = kp.add_group(kp.root_group, 'ZipFile')
+                    entry = kp.add_entry(group, 'ZipFile', '-', Password_Input)
+                    kp.save()
+
                 if (Temp_Path_Length > 0):
                     Counter_Bar_Filter = 100/Temp_Path_Length
                     progress.update(task_Filter, total=Temp_Path_Length)
@@ -500,9 +507,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             Standard.Stdout_Output(Colors.CYAN+"\n\nThe filter process was successful and the result will be found at the following location:\n"+Colors.RESET, 0.01)
         for _ in Array_Output:
             Standard.Stdout_Output(Colors.ORANGE+f'   - {_}\n'+Colors.RESET, 0.01)
-        if (exists(join(Location, 'Einherjer_Output.zip')) and args.zip_file_password == False):
-            Standard.Stdout_Output(Colors.CYAN+"\n\nA random password was created for your ZipFile, please copy it out!\n"+Colors.RESET, 0.01)
-            Standard.Stdout_Output('\nPassword: '+Colors.RED+f'{Password_Input}'+Colors.RESET, 0.01)
+
     else:
         if (Program_Mode == "Scanning_Mode"):
             if ((args.scan_site_screenshot != False or args.scan_site_screenshot_recursive != False) and Switch_Screenshots == False):
