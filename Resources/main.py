@@ -425,12 +425,6 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                 progress.start_task(task_Filter)
                 Temp_Path_Length = len(Standard.List_Directory_Recursive(Location))
 
-                if (args.zip_file != False):
-                    kp = create_database (join(Location, 'zip.kdbx'), password='Einherjer', keyfile=None, transformed_key=None)
-                    group = kp.add_group(kp.root_group, 'ZipFile')
-                    entry = kp.add_entry(group, 'ZipFile', '-', Password_Input)
-                    kp.save()
-
                 if (Temp_Path_Length > 0):
                     Counter_Bar_Filter = 100/Temp_Path_Length
                     progress.update(task_Filter, total=Temp_Path_Length)
@@ -456,6 +450,12 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                                 if (join(root, file) not in Array_Output):
                                     Array_Output.append(join(root, file))
                             progress.update(task_Filter, advance=Counter_Bar_Filter)
+
+                    if (args.zip_file != False):
+                        kp = create_database (join(Location, 'zip.kdbx'), password='Einherjer', keyfile=None, transformed_key=None)
+                        group = kp.add_group(kp.root_group, 'ZipFile')
+                        entry = kp.add_entry(group, 'ZipFile', '-', Password_Input)
+                        kp.save()
 
                 # Progress_End
                 while not progress.finished:
