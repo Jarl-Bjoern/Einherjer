@@ -8,20 +8,29 @@ from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 
 class Check_SMTP:
-    def Check_Arguments(Target):
-        Mail = SMTP(Target, 25)
+    def Check_Arguments(url):
+        Target, Port = url.split('smtp://')[1].split(':')
+        Mail = SMTP(Target, int(Port))
         Output = Mail.docmd('ehlo all')
         print (str(Output[1]).split(r'\n'))
         Mail.quit()
 
-    def Check_Open_Relay(Target, sender, receivers, message):
-        Mail = SMTP(Target, 25)
-        Mail.ehlo()
-        Mail.sendmail(sender, receivers, message)
+    def Check_Open_Relay(url, sender, receiver, message):
+        Target, Port = url.split('smtp://')[1].split(':')
+        Mail = SMTP(Target, int(Port))
+        Mail.docmd('ehlo all')
+        Output = Mail.docmd(f'mail from:{sender}')
+        if ('ok' in Output):
+            Output = Mail.docmd(f'rcpt to:{receiver}')
+            if ('ok' in Output):
+                Output = Mail.docmd(message)
+            elif('not permitted' in Output):
+                print ("FAIL")
         Mail.quit()
 
-    def Check_TLS(Target):
-        Mail = SMTP(Target, 25)
+    def Check_TLS(url):
+        Target, Port = url.split('smtp://')[1].split(':')
+        Mail = SMTP(Target, int(Port))
         Output = Mail.docmd('ehlo all')
         if ('starttls' in str(Output[1]) or 'STARTTLS' in str(Output[1])):
             TLS_Output = Mail.docmd('starttls')
