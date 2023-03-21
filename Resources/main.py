@@ -452,7 +452,12 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                             progress.update(task_Filter, advance=Counter_Bar_Filter)
 
                     if (args.zip_file != False):
-                        kp = create_database (join(Location, 'zip.kdbx'), password='Einherjer', keyfile=None, transformed_key=None)
+                        kp    = create_database(
+                            join(Location, 'zip.kdbx'),
+                            password='Einherjer',
+                            keyfile=None,
+                            transformed_key=None
+                        )
                         group = kp.add_group(kp.root_group, 'ZipFile')
                         entry = kp.add_entry(group, 'ZipFile', '-', Password_Input)
                         kp.save()
