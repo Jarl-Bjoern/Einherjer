@@ -510,8 +510,12 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             Standard.Stdout_Output(Colors.CYAN+"\n\nYour Scan was successful and the result will be found at the following location:\n"+Colors.RESET, 0.01)
         elif (Program_Mode == "Filter_Mode"):
             Standard.Stdout_Output(Colors.CYAN+"\n\nThe filter process was successful and the result will be found at the following location:\n"+Colors.RESET, 0.01)
-        for _ in Array_Output:
-            Standard.Stdout_Output(Colors.ORANGE+f'   - {_}\n'+Colors.RESET, 0.01)
+
+        if (type(Array_Output) == list):
+            for _ in Array_Output:
+                Standard.Stdout_Output(Colors.ORANGE+f'   - {_}\n'+Colors.RESET, 0.01)
+        elif (type(Array_Output) == str):
+            Standard.Stdout_Output(Colors.ORANGE+f'   - {Array_Output}\n'+Colors.RESET, 0.01)
 
     else:
         if (Program_Mode == "Scanning_Mode"):
