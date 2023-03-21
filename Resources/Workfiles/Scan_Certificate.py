@@ -78,7 +78,7 @@ def Check_Certificate(url, t_seconds, Host_Name, Location, context = create_unve
                 join(Location, 'Logs')
             )
 
-    except (ConnectionRefusedError, gaierror, SSLError, SSLZeroReturnError):
+    except (ConnectionRefusedError, gaierror, SSLError, SSLZeroReturnError TimeoutError):
         Logs.Write_Log(url, Host_Name, join(Location, 'Logs'))
 
     return Dict_Temp
