@@ -9,9 +9,11 @@ from ..Standard_Operations.Colors import Colors
 from ..Standard_Operations.Standard import Standard
 
 def Check_HTTP_Methods(url, Host_Name, Dict_Proxies, Dict_Auth, Location, Dict_Temp = {'DNS': "", 'CONNECT': "", 'DELETE': "", 'HEAD': "", 'OPTIONS': "", 'PATCH': "", 'POST': "", 'PUT': "", 'TRACE': ""}, Switch_URL = False):
+    # Get_Host_Name
     if (Host_Name != ""): Dict_Temp['DNS'] = Host_Name
     else:                 Dict_Temp['DNS'] = ""
 
+    # Function
     async def Check_Methods():
         Limit = TCPConnector(limit_per_host=5)
 
@@ -52,8 +54,10 @@ def Check_HTTP_Methods(url, Host_Name, Dict_Proxies, Dict_Auth, Location, Dict_T
                 except ServerDisconnectedError:
                     Dict_Temp[Method] = "FEHLT"
 
+    # Start_Scan
     asyncio.run(Check_Methods())
 
+    # Logging
     if (Host_Name != ""):
         Logs.Log_File(
             Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
