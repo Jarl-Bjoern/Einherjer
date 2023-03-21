@@ -11,13 +11,13 @@ from ..Standard_Operations.Logs import *
 # Template_Filtering
 if (Program_Mode == "Scanning_Mode"):
     Array_Security_Flags = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_cookie_security.txt"))
-    if (args.read_config_http_header == True and
-        args.read_config_http_header_api == False):
+    if (args.read_config_http_header       == True and
+        args.read_config_http_header_api   == False):
             Dict_Header = Standard.Read_File_Special(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_header.txt"))
-    elif (args.read_config_http_header == False and
+    elif (args.read_config_http_header     == False and
           args.read_config_http_header_api == True):
             Dict_Header = Standard.Read_File_Special(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_header_api.txt"))
-    elif (args.read_config_http_header == True and
+    elif (args.read_config_http_header     == True and
           args.read_config_http_header_api == True):
             exit()
     else: Dict_Header = {}
@@ -35,7 +35,8 @@ if (Program_Mode == "Scanning_Mode"):
     existing_nmap_file = ""
     Chromedriver_Version = "110.0.5481.77"
 
-Array_SSH_Algorithms = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/ssh_ciphers.txt"))
+if (Program_Mode == "Scanning_Mode" or Program_Mode == "Filter_Mode"):
+    Array_SSH_Algorithms = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/ssh_ciphers.txt"))
 
 # Design
 disable_warnings(InsecureRequestWarning)
