@@ -6,6 +6,7 @@
 from ..Header_Files.Variables import *
 from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
+from ..Standard_Operations.Standard import Standard
 
 def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Location, Allow_Redirects, Dict_Temp = {'DNS': "", 'SAMESITE': "", 'HTTPONLY': "", 'SECURE': ""}, Switch_SameSite = False):
     # Session_Creation
@@ -113,6 +114,12 @@ def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Loc
                 +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n',
                 join(Location, 'Logs')
             )
+
+        # Write_Output
+        if (Host_Name == ""):
+            Standard.Write_Output_File('affected_security_flags_targets.txt', f'{url} (-)', Location)
+        else:
+            Standard.Write_Output_File('affected_security_flags_targets.txt', f'{url} ({Host_Name})', Location)
 
         # Terminate_Session
         r.close()
