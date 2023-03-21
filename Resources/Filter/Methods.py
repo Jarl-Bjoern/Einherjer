@@ -25,7 +25,7 @@ class Filter:
                         if (':' in _):
                             Target, Port = _.split(':')
                         else:
-                            Target = _
+                            Target, Port = _, ""
 
                         # Split_Whitespace
                         if (' ' in Target):
