@@ -6,6 +6,7 @@
 from ..Header_Files.Variables import *
 from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
+from ..Standard_Operations.Standard import Standard
 
 def Check_Cookie_And_HTTP_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Location, Allow_Redirects, Dict_Temp_Header = {}, Dict_Temp_Information_Disclosure = {}, Dict_Temp_Cookie = {'DNS': "", 'SAMESITE': "", 'HTTPONLY': "", 'SECURE': ""}, Switch_SameSite = False):
     try:
@@ -206,6 +207,12 @@ def Check_Cookie_And_HTTP_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_A
 
         # Terminate_Session
         r.close()
+
+        # Write_Output
+        if (Host_Name == ""):
+            Standard.Write_Output_File('affected_security_flags_targets.txt', f'{url} (-)', Location)
+        else:
+            Standard.Write_Output_File('affected_security_flags_targets.txt', f'{url} ({Host_Name})', Location)
 
     except ReadTimeout:
         Logs.Write_Log(url, Host_Name, join(Location, 'Logs'))
