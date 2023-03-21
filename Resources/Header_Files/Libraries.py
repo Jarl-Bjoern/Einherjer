@@ -23,35 +23,82 @@ SYSTEM_PATH.append(dirname(realpath(__file__)).split('Resources/Header_Files')[0
 # Libraries
 try:
     from aiohttp.client_exceptions import *
-    from contextlib import redirect_stdout
-    from datetime import datetime
+    from contextlib  import redirect_stdout
+    from datetime    import datetime
     from http.client import RemoteDisconnected
-    from ipaddress import IPv4Network
-    from multiprocessing import active_children, Process, Queue
+    from ipaddress   import IPv4Network
+    from multiprocessing import (
+        active_children,
+        Process,
+        Queue
+    )
     from numpy import array
-    from os import chmod, getcwd, listdir, makedirs, name as osname, remove, rmdir, system, walk
-    from os.path import exists, isdir, isfile, join
-    from pathlib import Path
+    from os import (
+        chmod,
+        getcwd,
+        listdir,
+        makedirs,
+        name as osname,
+        remove,
+        rmdir,
+        system,
+        walk
+    )
+    from os.path import (
+        exists,
+        isdir,
+        isfile,
+        join
+    )
+    from pathlib   import Path
     from pykeepass import create_database
-    from pyzipper import AESZipFile, WZ_AES, ZIP_LZMA
+    from pyzipper  import (
+        AESZipFile,
+        WZ_AES,
+        ZIP_LZMA
+    )
     from requests.exceptions import *
-    from re import findall, search, split as resplit
-    from rich.progress import BarColumn, Progress, SpinnerColumn, TaskProgressColumn, TimeElapsedColumn, TimeRemainingColumn
+    from re import (
+        findall,
+        search,
+        split as resplit
+    )
+    from rich.progress import (
+        BarColumn,
+        Progress,
+        SpinnerColumn,
+        TaskProgressColumn,
+        TimeElapsedColumn,
+        TimeRemainingColumn
+    )
     from selenium.common.exceptions import *
-    from socket import gaierror, gethostbyaddr, gethostbyname, herror, setdefaulttimeout
-    from ssl import cert_time_to_seconds, create_default_context, _create_unverified_context as create_unverified_context, get_server_certificate, SSLError, SSLZeroReturnError
-    from subprocess import getoutput, run
-    from stdiomask import getpass
-    from secrets import SystemRandom
-    from sys import argv, stdout
-    from time import sleep, strftime, time
-    from threading import Thread, enumerate as Th_enumerate
-    from traceback import print_exc
-    from urllib3 import disable_warnings
+    from socket import (
+        gaierror,
+        gethostbyaddr,
+        gethostbyname,
+        herror,
+        setdefaulttimeout
+    )
+    from ssl import (
+        cert_time_to_seconds,
+        create_default_context,
+        _create_unverified_context as create_unverified_context,
+        get_server_certificate,
+        SSLError,
+        SSLZeroReturnError
+    )
+    from subprocess   import getoutput, run
+    from stdiomask    import getpass
+    from secrets      import SystemRandom
+    from sys          import argv, stdout
+    from time         import sleep, strftime, time
+    from threading    import Thread, enumerate as Th_enumerate
+    from traceback    import print_exc
+    from urllib3      import disable_warnings
     from urllib3.exceptions import *
     from urllib.parse import quote_plus as html_encode, unquote_plus as html_decode
-    from warnings import catch_warnings, simplefilter
-    from zipfile import ZipFile
+    from warnings     import catch_warnings, simplefilter
+    from zipfile      import ZipFile
     import stat, xml.etree.ElementTree as ET
     with catch_warnings():
         simplefilter("ignore")
@@ -87,18 +134,18 @@ try:
                   args.brute_snmp                 == False and
                   args.brute_ftp                  == False and
                   args.brute_screenshot_recursive == False):
-                        from aiohttp import BasicAuth, ClientSession, TCPConnector
-                        from cv2 import countNonZero, error as CVError, imread, imwrite, rectangle, split as cvsplit, subtract
-                        from ftplib import FTP
-                        from json import loads as json_loads
-                        from os import environ, rename
+                        from aiohttp  import BasicAuth, ClientSession, TCPConnector
+                        from cv2      import countNonZero, error as CVError, imread, imwrite, rectangle, split as cvsplit, subtract
+                        from ftplib   import FTP
+                        from json     import loads as json_loads
+                        from os       import environ, rename
                         from requests import get, request, Session
                         from requests_pkcs12 import get as pkcs_get, Pkcs12Adapter
                         from selenium import webdriver
-                        from selenium.webdriver.common.by import By
-                        from selenium.webdriver.common.keys import Keys
-                        from selenium.webdriver.chrome.options import Options
-                        from selenium.webdriver.chrome.service import Service
+                        from selenium.webdriver.common.by        import By
+                        from selenium.webdriver.common.keys      import Keys
+                        from selenium.webdriver.chrome.options   import Options
+                        from selenium.webdriver.chrome.service   import Service
                         from selenium.webdriver.remote.webdriver import WebDriver
                         from webbrowser import open as webbrowser_open
                         import asyncio, pysnmp
@@ -106,22 +153,22 @@ try:
                             from webdriver_manager.chrome import ChromeDriverManager
             elif (args.brute_all == False):
                 if (args.brute_fuzzing != False):
-                    from aiohttp import BasicAuth, ClientSession, TCPConnector
+                    from aiohttp  import BasicAuth, ClientSession, TCPConnector
                     import asyncio
                 if (args.brute_screenshot_recursive != False):
-                    from cv2 import countNonZero, error as CVError, imread, imwrite, rectangle, split as cvsplit, subtract
-                    from os import environ, rename
+                    from cv2      import countNonZero, error as CVError, imread, imwrite, rectangle, split as cvsplit, subtract
+                    from os       import environ, rename
                     from selenium import webdriver
-                    from selenium.webdriver.common.by import By
-                    from selenium.webdriver.common.keys import Keys
-                    from selenium.webdriver.chrome.options import Options
-                    from selenium.webdriver.chrome.service import Service
+                    from selenium.webdriver.common.by        import By
+                    from selenium.webdriver.common.keys      import Keys
+                    from selenium.webdriver.chrome.options   import Options
+                    from selenium.webdriver.chrome.service   import Service
                     from selenium.webdriver.remote.webdriver import WebDriver
                     from webbrowser import open as webbrowser_open
                     with redirect_stdout(None):
                        from webdriver_manager.chrome import ChromeDriverManager
                 if (args.brute_fuzzing != False or args.brute_dns != False):
-                    from requests import get
+                    from requests        import get
                     from requests_pkcs12 import get as pkcs_get, Pkcs12Adapter
 
         elif (argv[1] == "--scanning-mode"):
@@ -152,43 +199,60 @@ try:
                   args.scan_site_header       == False and
                   args.scan_ssh               == False and
                   args.scan_security_flags    == False):
-                        from aiohttp import BasicAuth, ClientSession, TCPConnector
-                        from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
-                        from cryptography.x509 import load_der_x509_certificate
+                        from aiohttp                      import BasicAuth, ClientSession, TCPConnector
+                        from asyncssh                     import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
+                        from cryptography.x509            import load_der_x509_certificate
                         from cryptography.hazmat.backends import default_backend
-                        from cv2 import countNonZero, error as CVError, imread, imwrite, rectangle, split as cvsplit, subtract
+                        from cv2 import (
+                            countNonZero,
+                            error as CVError,
+                            imread,
+                            imwrite,
+                            rectangle,
+                            split as cvsplit,
+                            subtract
+                        )
                         from dns.query import xfr
-                        from dns.zone import from_xfr
-                        from ftplib import FTP
-                        from json import loads as json_loads
-                        from os import environ, rename
-                        from requests import get, request, Session
+                        from dns.zone  import from_xfr
+                        from ftplib    import FTP
+                        from json      import loads as json_loads
+                        from os        import environ, rename
+                        from requests  import get, request, Session
                         from requests_pkcs12 import get as pkcs_get, Pkcs12Adapter
-                        from selenium import webdriver
-                        from selenium.webdriver.common.by import By
-                        from selenium.webdriver.common.keys import Keys
-                        from selenium.webdriver.chrome.options import Options
-                        from selenium.webdriver.chrome.service import Service
+                        from selenium  import webdriver
+                        from selenium.webdriver.common.by        import By
+                        from selenium.webdriver.common.keys      import Keys
+                        from selenium.webdriver.chrome.options   import Options
+                        from selenium.webdriver.chrome.service   import Service
                         from selenium.webdriver.remote.webdriver import WebDriver
                         from smtplib import SMTP, SMTPServerDisconnected
-                        from sslyze import Scanner, ServerNetworkLocation, ServerNetworkConfiguration, ServerScanRequest, ServerScanResultAsJson, ServerHostnameCouldNotBeResolved, SslyzeOutputAsJson, ServerScanStatusEnum
-                        from socket import AF_INET, create_connection, socket, SOCK_STREAM
+                        from sslyze  import (
+                            Scanner,
+                            ServerNetworkLocation,
+                            ServerNetworkConfiguration,
+                            ServerScanRequest,
+                            ServerScanResultAsJson,
+                            ServerHostnameCouldNotBeResolved,
+                            SslyzeOutputAsJson,
+                            ServerScanStatusEnum
+                        )
+                        from socket     import AF_INET, create_connection, socket, SOCK_STREAM
                         from webbrowser import open as webbrowser_open
                         import asyncio, pysnmp
                         with catch_warnings():
                             simplefilter("ignore")
-                            from paramiko.transport import Transport
+                            from paramiko.transport       import Transport
                         with redirect_stdout(None):
                             from webdriver_manager.chrome import ChromeDriverManager
             elif (args.scan_all == False):
                 if (args.scan_site_screenshot != False):
-                    from cv2 import countNonZero, error as CVError, imread, imwrite, rectangle, split as cvsplit, subtract
-                    from os import environ, rename
+                    from cv2      import countNonZero, error as CVError, imread, imwrite, rectangle, split as cvsplit, subtract
+                    from os       import environ, rename
                     from selenium import webdriver
-                    from selenium.webdriver.common.by import By
-                    from selenium.webdriver.common.keys import Keys
-                    from selenium.webdriver.chrome.options import Options
-                    from selenium.webdriver.chrome.service import Service
+                    from selenium.webdriver.common.by        import By
+                    from selenium.webdriver.common.keys      import Keys
+                    from selenium.webdriver.chrome.options   import Options
+                    from selenium.webdriver.chrome.service   import Service
                     from selenium.webdriver.remote.webdriver import WebDriver
                     from webbrowser import open as webbrowser_open
                     with redirect_stdout(None):
@@ -196,23 +260,32 @@ try:
                 if (args.scan_site_ssl != False or args.scan_site_certificate != False):
                     from cryptography.x509 import load_der_x509_certificate
                     from cryptography.hazmat.backends import default_backend
-                    from json import loads as json_loads
+                    from json   import loads as json_loads
                     from socket import create_connection
-                    from sslyze import Scanner, ServerNetworkLocation, ServerScanStatusEnum, ServerNetworkConfiguration, ServerScanRequest, ServerScanResultAsJson, ServerHostnameCouldNotBeResolved, SslyzeOutputAsJson
+                    from sslyze import (
+                        Scanner,
+                        ServerNetworkLocation,
+                        ServerScanStatusEnum,
+                        ServerNetworkConfiguration,
+                        ServerScanRequest,
+                        ServerScanResultAsJson,
+                        ServerHostnameCouldNotBeResolved,
+                        SslyzeOutputAsJson
+                    )
                 if (args.scan_dns != False):
-                    from dns.query import xfr
-                    from dns.zone import from_xfr                    
+                    from dns.query       import xfr
+                    from dns.zone        import from_xfr                    
                 if (args.scan_site_header != False):
-                    from requests import get
+                    from requests        import get
                     from requests_pkcs12 import get as pkcs_get, Pkcs12Adapter
                 if (args.scan_ssh != False):
-                    from asyncssh import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
+                    from asyncssh        import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
                     import asyncio
                     with catch_warnings():
                         simplefilter("ignore")
                         from paramiko.transport import Transport
                 if (args.scan_security_flags != False):
-                    from requests import Session
+                    from requests        import Session
                     from requests_pkcs12 import get as pkcs_get, Pkcs12Adapter
                 if (args.scan_site_http_methods != False):
                     from aiohttp import BasicAuth, ClientSession, TCPConnector
@@ -232,23 +305,23 @@ try:
                 if ("csv" in args.format):
                     import csv
                 elif ("docx" in args.format):
-                    from docx import Document
-                    from docx.enum.style import WD_STYLE_TYPE
-                    from docx.enum.table import WD_ALIGN_VERTICAL
-                    from docx.enum.text import WD_ALIGN_PARAGRAPH
+                    from docx             import Document
+                    from docx.enum.style  import WD_STYLE_TYPE
+                    from docx.enum.table  import WD_ALIGN_VERTICAL
+                    from docx.enum.text   import WD_ALIGN_PARAGRAPH
                     from docx.oxml.shared import OxmlElement
-                    from docx.oxml.ns import qn
-                    from docx.shared import Inches, Pt, RGBColor
+                    from docx.oxml.ns     import qn
+                    from docx.shared      import Inches, Pt, RGBColor
                 elif ("json" in args.format):
                     import json
                 elif ("pdf" in args.format):
                     if (osname == 'nt'):
-                        from docx2pdf import convert
+                        from docx2pdf     import convert
                     else:
                         print("At this point it's not be possible to convert a docx file into a pdf under linux.\nPlease try it under windows.\n")
                 elif ("xlsx" in args.format):
-                    from xlsxwriter import Workbook
-                    from pandas import ExcelFile, DataFrame, read_excel
+                    from xlsxwriter       import Workbook
+                    from pandas           import ExcelFile, DataFrame, read_excel
 
         try:
             del Argument_Parser, argv
