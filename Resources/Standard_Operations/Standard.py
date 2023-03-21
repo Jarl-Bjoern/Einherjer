@@ -162,14 +162,15 @@ class Standard:
             except PermissionError: Logs.Error_Message(f"The file {x} is already open!\nPlease close it and wait five seconds.")
             sleep(5)
 
-    def Write_Output_File(Output_File_Name, Text, Location):
+    def Write_Output_File(Output_File_Name, Text, Location, Array_Check = []):
         if (exists(join(Location, Output_File_Name))):
             Write_Mode = 'a'
         else:
             Write_Mode = 'w'
 
-        with open(join(Location, Output_File_Name), 'r') as f:
-            Array_Check = f.read().splitlines()
+        if (exists(join(Location, Output_File_Name))):
+            with open(join(Location, Output_File_Name), 'r') as f:
+                Array_Check = f.read().splitlines()
 
         with open(join(Location, Output_File_Name), Write_Mode) as f:
             if (Text not in Array_Check):
