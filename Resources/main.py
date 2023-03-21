@@ -461,6 +461,8 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                         group = kp.add_group(kp.root_group, 'ZipFile')
                         entry = kp.add_entry(group, 'ZipFile', '-', Password_Input)
                         kp.save()
+                else:
+                    Counter_Bar_Filter = 0.75
 
                 # Progress_End
                 while not progress.finished:
