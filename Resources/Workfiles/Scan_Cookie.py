@@ -115,14 +115,14 @@ def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Loc
                 join(Location, 'Logs')
             )
 
+        # Terminate_Session
+        r.close()
+
         # Write_Output
         if (Host_Name == ""):
             Standard.Write_Output_File('affected_security_flags_targets.txt', f'{url} (-)', Location)
         else:
             Standard.Write_Output_File('affected_security_flags_targets.txt', f'{url} ({Host_Name})', Location)
-
-        # Terminate_Session
-        r.close()
 
     # Cookie_Jar
 #    for cookie in dict(s.cookies): pass
