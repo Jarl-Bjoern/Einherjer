@@ -6,6 +6,7 @@
 from ..Header_Files.Variables import *
 from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
+from ..Standard_Operations.Standard import Standard
 
 def Check_Certificate(url, t_seconds, Host_Name, Location, context = create_unverified_context(), Dict_Temp = {}):
     if ('https://' in url): URL = url.split('https://')[1]
@@ -77,6 +78,12 @@ def Check_Certificate(url, t_seconds, Host_Name, Location, context = create_unve
                 +Colors.CYAN+'Certificate Information was successfully recorded.\n\n',
                 join(Location, 'Logs')
             )
+
+        # Write_Output
+        if (Host_Name == ""):
+            Standard.Write_Output_File('affected_certificate_targets.txt', f'{url} (-)', Location)
+        else:
+            Standard.Write_Output_File('affected_certificate_targets.txt', f'{url} ({Host_Name})', Location)
 
     except (ConnectionRefusedError, gaierror, SSLError, SSLZeroReturnError TimeoutError):
         Logs.Write_Log(url, Host_Name, join(Location, 'Logs'))
