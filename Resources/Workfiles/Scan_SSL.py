@@ -15,7 +15,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
     # Target_Preparation
     for url in array_ssl_targets:
         # Target_Filter
-        if ('ssl://' in url): URL = url.split('ssl://')[1]
+        if ('ssl://' in url):     URL = url.split('ssl://')[1]
         elif ('https://' in url): URL = url.split('https://')[1]
 
         # Port_Filter
@@ -59,22 +59,22 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
         for server_scan_result in scanner.get_results():
             # Dictionaries
             Dict_Ciphers = {
-                'Protocol': "",
-                'Ciphers':  []
+                'Protocol':                 "",
+                'Ciphers':                  []
             }
             Dict_Temp_Ciphers =  {
-                'Anonymous':  "",
-                'Key_Size':   "",
-                'Name':       "",
-                'Curve_Name': "",
-                'Type':       "",
-                'Curve_Size': ""
+                'Anonymous':                "",
+                'Key_Size':                 "",
+                'Name':                     "",
+                'Curve_Name':               "",
+                'Type':                     "",
+                'Curve_Size':               ""
             }
             Dict_Full_SSL = {
-                'DNS':       "",
-                'Ciphers':   [],
-                'SSL_Vulns': {},
-                'Curves':    []
+                'DNS':                      "",
+                'Ciphers':                  [],
+                'SSL_Vulns':                {},
+                'Curves':                   []
             }
             Dict_SSL_Vulns = {
                 'CRIME':                    "",
