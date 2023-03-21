@@ -494,7 +494,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
     if (Program_Mode == "Scanning_Mode"):
         Array_Output, Switch_Screenshots = Scanning_Mode(Date, args)
     elif (Program_Mode == "Filter_Mode"):
-        Array_Output, Switch_Screenshots = Filter_Mode(Date, Location, args)
+        Array_Output = Filter_Mode(Date, Location, args)
     elif (Program_Mode == "Brute_Force_Mode"):
         Array_Output, Switch_Screenshots = Brute_Force_Mode(Date, Location, args)
 
