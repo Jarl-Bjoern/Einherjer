@@ -74,7 +74,7 @@ def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Loc
 
         # Get_Host_Name
         if (Host_Name != ""): Dict_Temp['DNS'] = Host_Name
-        else: Dict_Temp['DNS'] = ""
+        else:                 Dict_Temp['DNS'] = ""
 
         # Normal_Cookie
         for Header_Key, Header_Values in r.headers.items():
@@ -144,6 +144,6 @@ def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Loc
     # Empty_Filter
     if (Dict_Temp['SAMESITE'] == ""): Dict_Temp['SAMESITE'] = "FEHLT"
     if (Dict_Temp['HTTPONLY'] == ""): Dict_Temp['HTTPONLY'] = "FEHLT"
-    if (Dict_Temp['SECURE'] == ""): Dict_Temp['SECURE'] = "FEHLT"
+    if (Dict_Temp['SECURE'] == ""):   Dict_Temp['SECURE'] = "FEHLT"
 
     return Dict_Temp
