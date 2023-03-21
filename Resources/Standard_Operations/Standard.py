@@ -72,7 +72,7 @@ class Standard:
                     elif (',' in Temp[1]):
                         Array_Value_Temp = Temp[1].split(',')
                         if (Temp[0] not in Dict_Temp):
-                            Dict_Temp[Temp[0]] = Temp[1].split(',')                   
+                            Dict_Temp[Temp[0]] = Temp[1].split(',')
                     else:
                         if (Temp[0] not in Dict_Temp):
                             Dict_Temp[Temp[0]] = Temp[1]
