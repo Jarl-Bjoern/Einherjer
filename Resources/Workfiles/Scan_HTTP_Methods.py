@@ -10,7 +10,7 @@ from ..Standard_Operations.Standard import Standard
 
 def Check_HTTP_Methods(url, Host_Name, Dict_Proxies, Dict_Auth, Location, Dict_Temp = {'DNS': "", 'CONNECT': "", 'DELETE': "", 'HEAD': "", 'OPTIONS': "", 'PATCH': "", 'POST': "", 'PUT': "", 'TRACE': ""}, Switch_URL = False):
     if (Host_Name != ""): Dict_Temp['DNS'] = Host_Name
-    else: Dict_Temp['DNS'] = ""
+    else:                 Dict_Temp['DNS'] = ""
 
     async def Check_Methods():
         Limit = TCPConnector(limit_per_host=5)
