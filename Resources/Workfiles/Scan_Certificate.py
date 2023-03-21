@@ -9,8 +9,8 @@ from ..Standard_Operations.Colors import Colors
 from ..Standard_Operations.Standard import Standard
 
 def Check_Certificate(url, t_seconds, Host_Name, Location, context = create_unverified_context(), Dict_Temp = {}):
-    if ('https://' in url): URL = url.split('https://')[1]
-    elif ('ssl://' in url): URL = url.split('ssl://')[1]
+    if ('https://' in url):   URL = url.split('https://')[1]
+    elif ('ssl://' in url):   URL = url.split('ssl://')[1]
 
     # Remove_Directories
     if ('/' in URL):
@@ -19,15 +19,15 @@ def Check_Certificate(url, t_seconds, Host_Name, Location, context = create_unve
 
     # Port_Filter
     if (url.count(':') > 1): Port = URL.split(':')[1]
-    else: Port = 443
+    else:                    Port = 443
 
     # Get_Only_Target
-    if (':' in URL): Target = URL.split(':')[0]
-    else: Target = URL
+    if (':' in URL):         Target = URL.split(':')[0]
+    else:                    Target = URL
 
     # Get_Host_Name
-    if (Host_Name != ""): Dict_Temp['DNS'] = Host_Name
-    else: Dict_Temp['DNS'] = ""
+    if (Host_Name != ""):    Dict_Temp['DNS'] = Host_Name
+    else:                    Dict_Temp['DNS'] = ""
 
     try:
         with create_connection((Target, int(Port)), timeout=t_seconds) as sock:
