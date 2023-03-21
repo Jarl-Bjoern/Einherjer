@@ -6,6 +6,7 @@
 from ..Header_Files.Variables import *
 from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
+from ..Standard_Operations.Standard import Standard
 
 def Check_HTTP_Methods(url, Host_Name, Dict_Proxies, Dict_Auth, Location, Dict_Temp = {'DNS': "", 'CONNECT': "", 'DELETE': "", 'HEAD': "", 'OPTIONS': "", 'PATCH': "", 'POST': "", 'PUT': "", 'TRACE': ""}, Switch_URL = False):
     if (Host_Name != ""): Dict_Temp['DNS'] = Host_Name
@@ -73,5 +74,11 @@ def Check_HTTP_Methods(url, Host_Name, Dict_Proxies, Dict_Auth, Location, Dict_T
             +Colors.ORANGE+Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n',
             join(Location, 'Logs')
         )
+
+    # Write_Output
+    if (Host_Name == ""):
+        Standard.Write_Output_File('affected_http_methods_targets.txt', f'{url} (-)', Location)
+    else:
+        Standard.Write_Output_File('affected_http_methods_targets.txt', f'{url} ({Host_Name})', Location)
 
     return Dict_Temp
