@@ -21,4 +21,3 @@ stdiomask==0.0.4
 tqdm==4.64.1
 webdriver-manager==3.8.5
 XlsxWriter==3.0.2
-
