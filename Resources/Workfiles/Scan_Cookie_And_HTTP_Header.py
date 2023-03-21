@@ -210,9 +210,13 @@ def Check_Cookie_And_HTTP_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_A
 
         # Write_Output
         if (Host_Name == ""):
+            Standard.Write_Output_File('affected_header_targets.txt', f'{url} (-)', Location)
             Standard.Write_Output_File('affected_security_flags_targets.txt', f'{url} (-)', Location)
+            Standard.Write_Output_File('affected_http_information_disclosure_targets.txt', f'{url} (-)', Location)
         else:
+            Standard.Write_Output_File('affected_header_targets.txt', f'{url} ({Host_Name})', Location)
             Standard.Write_Output_File('affected_security_flags_targets.txt', f'{url} ({Host_Name})', Location)
+            Standard.Write_Output_File('affected_http_information_disclosure_targets.txt', f'{url} ({Host_Name})', Location)
 
     except ReadTimeout:
         Logs.Write_Log(url, Host_Name, join(Location, 'Logs'))
