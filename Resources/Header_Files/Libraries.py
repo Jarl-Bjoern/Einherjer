@@ -23,70 +23,23 @@ SYSTEM_PATH.append(dirname(realpath(__file__)).split('Resources/Header_Files')[0
 # Libraries
 try:
     from aiohttp.client_exceptions import *
-    from contextlib  import redirect_stdout
-    from datetime    import datetime
-    from http.client import RemoteDisconnected
-    from ipaddress   import IPv4Network
-    from multiprocessing import (
-        active_children,
-        Process,
-        Queue
-    )
-    from numpy import array
-    from os import (
-        chmod,
-        getcwd,
-        listdir,
-        makedirs,
-        name as osname,
-        remove,
-        rmdir,
-        system,
-        walk
-    )
-    from os.path import (
-        exists,
-        isdir,
-        isfile,
-        join
-    )
-    from pathlib   import Path
-    from pykeepass import create_database
-    from pyzipper  import (
-        AESZipFile,
-        WZ_AES,
-        ZIP_LZMA
-    )
+    from contextlib          import redirect_stdout
+    from datetime            import datetime
+    from http.client         import RemoteDisconnected
+    from ipaddress           import IPv4Network
+    from multiprocessing     import active_children, Process, Queue
+    from numpy               import array
+    from os                  import chmod, getcwd, listdir, makedirs, name as osname, remove, rmdir, system, walk
+    from os.path             import exists, isdir, isfile, join
+    from pathlib             import Path
+    from pykeepass           import create_database
+    from pyzipper            import AESZipFile, WZ_AES, ZIP_LZMA
     from requests.exceptions import *
-    from re import (
-        findall,
-        search,
-        split as resplit
-    )
-    from rich.progress import (
-        BarColumn,
-        Progress,
-        SpinnerColumn,
-        TaskProgressColumn,
-        TimeElapsedColumn,
-        TimeRemainingColumn
-    )
+    from re                  import findall, search, split as resplit
+    from rich.progress       import BarColumn, Progress, SpinnerColumn, TaskProgressColumn, TimeElapsedColumn, TimeRemainingColumn
     from selenium.common.exceptions import *
-    from socket import (
-        gaierror,
-        gethostbyaddr,
-        gethostbyname,
-        herror,
-        setdefaulttimeout
-    )
-    from ssl import (
-        cert_time_to_seconds,
-        create_default_context,
-        _create_unverified_context as create_unverified_context,
-        get_server_certificate,
-        SSLError,
-        SSLZeroReturnError
-    )
+    from socket              import gaierror, gethostbyaddr, gethostbyname, herror, setdefaulttimeout
+    from ssl          import cert_time_to_seconds, create_default_context, _create_unverified_context as create_unverified_context, get_server_certificate, SSLError, SSLZeroReturnError
     from subprocess   import getoutput, run
     from stdiomask    import getpass
     from secrets      import SystemRandom
@@ -203,15 +156,7 @@ try:
                         from asyncssh                     import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
                         from cryptography.x509            import load_der_x509_certificate
                         from cryptography.hazmat.backends import default_backend
-                        from cv2 import (
-                            countNonZero,
-                            error as CVError,
-                            imread,
-                            imwrite,
-                            rectangle,
-                            split as cvsplit,
-                            subtract
-                        )
+                        from cv2       import countNonZero, error as CVError, imread, imwrite, rectangle, split as cvsplit, subtract
                         from dns.query import xfr
                         from dns.zone  import from_xfr
                         from ftplib    import FTP
