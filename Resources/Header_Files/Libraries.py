@@ -3,13 +3,13 @@
 # Rainer Christian Bjoern Herold
 
 # Author
-__author__ = "Rainer Christian Bjoern Herold"
-__copyright__ = "Copyright 2022-2023, Rainer Christian Bjoern Herold"
-__credits__ = "Rainer Christian Bjoern Herold"
-__license__ = "MIT license"
-__version__ = "0.8"
+__author__     = "Rainer Christian Bjoern Herold"
+__copyright__  = "Copyright 2022-2023, Rainer Christian Bjoern Herold"
+__credits__    = "Rainer Christian Bjoern Herold"
+__license__    = "MIT license"
+__version__    = "0.8"
 __maintainer__ = "Rainer Christian Bjoern Herold"
-__status__ = "Production"
+__status__     = "Production"
 
 # Base_Function
 def Module_Error(Text):
