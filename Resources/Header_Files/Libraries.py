@@ -32,6 +32,7 @@ try:
     from os import chmod, getcwd, listdir, makedirs, name as osname, remove, rmdir, system, walk
     from os.path import exists, isdir, isfile, join
     from pathlib import Path
+    from pykeepass import create_database, PyKeePass
     from pyzipper import AESZipFile, WZ_AES, ZIP_LZMA
     from requests.exceptions import *
     from re import findall, search, split as resplit
