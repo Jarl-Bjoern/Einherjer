@@ -23,10 +23,10 @@ class Filter:
                     for _ in Target_Array:
                         # Split_Port
                         if (':' in _):
-                            if (count(':') > 1):
+                            if (count(':') == 2):
                                 Temp = _.split('//')[1]
                                 Target, Port = Temp.split(':')
-                            else:
+                            elif (count(':') == 1):
                                 Target, Port = _.split(':')
                         else:
                             Target, Port = _, ""
