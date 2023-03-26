@@ -26,7 +26,9 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
         setdefaulttimeout(t_seconds)
 
         # SSL
+        print ("hello world")
         if (dict_switch['scan_ssl'] != False):
+            print ("test")
             # Trace_Start
             Logs.Trace_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
