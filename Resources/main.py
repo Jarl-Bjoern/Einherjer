@@ -15,12 +15,12 @@ from Resources.Filter.Methods import Filter
 
 # Main_Function
 def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False):
-    # Get_Password
+    # Set_Password
     if (Program_Mode == "Scanning_Mode"):
         if (args.zip_file != False):
             if (args.zip_file_password != False):
                 print (Colors.ORANGE+'\nPlease specify your ZipFile Password.'+Colors.RESET)
-                Password_Input = getpass('\n\nPassword: ')
+                Password_Input = getpass('\n\nZipFile-Password: ')
                 if (len(Password_Input) < 16):
                     exit(Colors.RED+"\n\nPlease use a minimum password length of 16 digits!"+Colors.RESET)
             else:
@@ -29,6 +29,14 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                 for _ in range(0, 33):
                     Password_Input += chr(Password_Creator.randrange(33,126))
                 del Password_Creator
+
+            if (args.database_password != False):
+                print (Colors.ORANGE+'\nPlease specify your Database Password.'+Colors.RESET)
+                Database_Password = getpass('\n\nDatabase-Password: ')
+                if (len(Database_Password) < 8):
+                    exit(Colors.RED+"\n\nPlease use a minimum password length of 8 digits!"+Colors.RESET)
+            else:
+                Database_Password = "Einherjer"
 
     # Functions
     def Message_Chromium(Check_Dir):
@@ -96,7 +104,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
         return Array_Output
 
-    def Scanning_Mode(Date, args, Array_Thread_Args = [], Dict_Threads = {}, Dict_Proxies = {'http': "",'https': ""}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None, Switch_Screenshots = False, Array_Targets = [], Array_SSL_Targets = []):
+    def Scanning_Mode(Date, args, Database_Password, Array_Thread_Args = [], Dict_Threads = {}, Dict_Proxies = {'http': "",'https': ""}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None, Switch_Screenshots = False, Array_Targets = [], Array_SSL_Targets = []):
         # Dict_Declaration
         Dict_Result = {
             'Certificate':               {},
@@ -511,7 +519,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                     if (args.zip_file != False):
                         kp    = create_database(
                             join(Location, 'zip.kdbx'),
-                            password='Einherjer',
+                            password=Database_Password,
                             keyfile=None,
                             transformed_key=None
                         )
@@ -551,7 +559,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
     # Program_Mode
     if (Program_Mode == "Scanning_Mode"):
-        Array_Output, Switch_Screenshots = Scanning_Mode(Date, args)
+        Array_Output, Switch_Screenshots = Scanning_Mode(Date, args, Database_Password)
     elif (Program_Mode == "Filter_Mode"):
         Array_Output = Filter_Mode(Date, Location, args)
     elif (Program_Mode == "Brute_Force_Mode"):
