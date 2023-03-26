@@ -26,7 +26,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         Dict_Result = queue.get()
 
         # Socket_Timeout
-        setdefaulttimeout(t_seconds)
+        socket_defaulttimeout(t_seconds)
 
         # Get_Host_Name
         if (dict_switch['scan_host_name'] != False):
