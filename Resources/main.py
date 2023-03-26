@@ -358,7 +358,6 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
                 # SSL_Targets
                 if (Dict_Switch['scan_ssl'] == True):
-                    print (Array_SSL_Targets)
                     Temp_SSL_Array, Counter_SSL_Targets, Max_Len_SSL_Targets = [], 0, len(Array_SSL_Targets)
                     for Target in array(Array_SSL_Targets):
                         if (Counter_SSL_Targets != args.max_ssl_targets and Counter_SSL_Targets != Max_Len_SSL_Targets):
@@ -376,7 +375,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                                 Dict_Auth,
                                 args.format,
                                 Location,
-                                args.allow_redirects
+#                                args.allow_redirects
                             ]
 
                             if (Counter_Connections == args.max_connections):
