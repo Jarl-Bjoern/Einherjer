@@ -296,7 +296,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
         # Program_Start
         Standard.Initialien(args.debug)
-        setdefaulttimeout(args.timeout)
+        socket_defaulttimeout(args.timeout)
         Counter_Bar = float(100/(len(Array_Targets)+len(Array_SSL_Targets)))
         if __name__ == '__main__':
             with Progress(*progress_columns) as progress:
