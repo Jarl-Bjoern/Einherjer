@@ -343,6 +343,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
                 # SSL_Targets
                 if (Dict_Switch['scan_ssl'] == True):
+                    print ("Test")
                     Temp_SSL_Array, Counter_SSL_Targets, Max_Len_SSL_Targets = [], 0, len(Array_SSL_Targets)
                     for Target in array(Array_SSL_Targets):
                         if (Counter_SSL_Targets != args.max_ssl_targets and Counter_SSL_Targets != Max_Len_SSL_Targets):
