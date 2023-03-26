@@ -8,7 +8,7 @@ from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 
 class Check_FTP:
-    def FTP_Anonymous_Check(url, Dict_Temp = {'DNS': "", 'Anonymous_Login': ""}):
+    def FTP_Anonymous_Check(url, Host_Name, Dict_Temp = {'DNS': "", 'Anonymous_Login': ""}):
         if ('ftp://' in url):    URL = url.split('ftp://')[1]
         else:                    URL = url
 
