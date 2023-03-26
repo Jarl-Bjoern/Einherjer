@@ -7,19 +7,20 @@ from .Variables import *
 from ..Standard_Operations.Logs import *
 from ..Standard_Operations.Colors import Colors
 from ..Standard_Operations.Standard import Standard
-from ..Workfiles.Scan_FTP import Check_FTP
-from ..Workfiles.Scan_SMTP import Check_SMTP
 
 # Functions
 def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch_internet_connection, screenshot_wait, webdriver_timeout, ssl_timeout, dict_proxies, dict_auth, file_format, Location, allow_redirects, Host_Name = ""):
     Dict_Temp = {
-        'Certificate': {},
-        'Header': {},
-        'HTTP_Methods': {},
-        'Information': {},
+        'Certificate':   {},
+        'DNS':           {},
+        'FTP':           {},
+        'Header':        {},
+        'HTTP_Methods':  {},
+        'Information':   {},
         'Security_Flag': {},
-        'SSH': {},
-        'SSL': {}
+        'SMTP':          {},
+        'SSH':           {},
+        'SSL':           {}
     }
 
     try:
@@ -104,6 +105,10 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
                         Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Cookie-Flags - '+Colors.GREEN+'OK'+Colors.RESET,
                         join(Location, 'Logs')
                     )
+
+        # FTP
+        if (dict_switch['scan_ftp'] != False and 'ftp://' in url):
+            from ..Workfiles.Scan_FTP import Check_FTP
 
         # Header
         elif (dict_switch['scan_header']         != False and
@@ -203,7 +208,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
         # SMTP
         if (dict_switch['scan_smtp'] != False and 'smtp://' in url):
-            pass
+            from ..Workfiles.Scan_SMTP import Check_SMTP
             #Dict_Result['SMTP'][url] = Check_SMTP.(url, t_seconds, Host_Name)
 
 
