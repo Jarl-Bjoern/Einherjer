@@ -10,18 +10,18 @@
 # Vers 0.7 20.09.2022
 
 # Author
-__author__ = "Rainer Christian Bjoern Herold"
-__copyright__ = "Copyright 2022-2023, Rainer Christian Bjoern Herold"
-__credits__ = "Rainer Christian Bjoern Herold"
-__license__ = "MIT license"
-__version__ = "0.8"
+__author__     = "Rainer Christian Bjoern Herold"
+__copyright__  = "Copyright 2022-2023, Rainer Christian Bjoern Herold"
+__credits__    = "Rainer Christian Bjoern Herold"
+__license__    = "MIT license"
+__version__    = "0.8"
 __maintainer__ = "Rainer Christian Bjoern Herold"
-__status__ = "Production"
+__status__     = "Production"
 
 # Libraries
-from os import name as osname
-from os.path import dirname, join, realpath
-from sys import argv
+from os         import name as osname
+from os.path    import dirname, join, realpath
+from sys        import argv
 from subprocess import call
 
 # Arguments
@@ -32,4 +32,4 @@ for _ in argv[1:]:
 # Main
 if __name__ == '__main__':
     if (osname == 'nt'): call(f'powershell {join(dirname(realpath(__file__)), "Resources/Start_Files/start.ps1")} {Temp_Args}', shell=True)
-    else: call(f'sudo bash {join(dirname(realpath(__file__)), "Resources/Start_Files/start.sh")} {Temp_Args}', shell=True)
+    else:                call(f'sudo bash {join(dirname(realpath(__file__)), "Resources/Start_Files/start.sh")} {Temp_Args}', shell=True)
