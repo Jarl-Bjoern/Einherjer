@@ -119,6 +119,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
         Dict_Switch = {
             'scan_certificate':          False,
             'scan_dns':                  False,
+            'scan_ftp':                  False,
             'scan_header':               False,
             'scan_host_name':            False,
             'scan_http_methods':         False,
@@ -274,6 +275,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                     Dict_Switch = {
                         'scan_certificate':           True,
                         'scan_dns':                   True,
+                        'scan_ftp':                   True,
                         'scan_header':                True,
                         'scan_host_name':             True,
                         'scan_http_methods':          True,
