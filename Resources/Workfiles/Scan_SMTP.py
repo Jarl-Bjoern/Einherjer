@@ -9,8 +9,8 @@ from ..Standard_Operations.Colors import Colors
 
 class Check_SMTP:
     def Check_Arguments(url):
-        if   (count(':') == 2):  Target, Port = url.split('smtp://')[1].split(':')
-        elif (count(':') == 1):  Target, Port = url.split('smtp://')[1], 25
+        if   (url.count(':') == 2):  Target, Port = url.split('smtp://')[1].split(':')
+        elif (url.count(':') == 1):  Target, Port = url.split('smtp://')[1], 25
 
         Mail   = SMTP(Target, int(Port))
         Output = Mail.docmd('ehlo all')
@@ -18,8 +18,8 @@ class Check_SMTP:
         Mail.quit()
 
     def Check_Open_Relay(url, sender, receiver, message):
-        if   (count(':') == 2):  Target, Port = url.split('smtp://')[1].split(':')
-        elif (count(':') == 1):  Target, Port = url.split('smtp://')[1], 25
+        if   (url.count(':') == 2):  Target, Port = url.split('smtp://')[1].split(':')
+        elif (url.count(':') == 1):  Target, Port = url.split('smtp://')[1], 25
 
         Mail = SMTP(Target, int(Port))
         Mail.docmd('ehlo all')
@@ -33,8 +33,8 @@ class Check_SMTP:
         Mail.quit()
 
     def Check_TLS(url):
-        if   (count(':') == 2):  Target, Port = url.split('smtp://')[1].split(':')
-        elif (count(':') == 1):  Target, Port = url.split('smtp://')[1], 25
+        if   (url.count(':') == 2):  Target, Port = url.split('smtp://')[1].split(':')
+        elif (url.count(':') == 1):  Target, Port = url.split('smtp://')[1], 25
 
         Mail   = SMTP(Target, int(Port))
         Output = Mail.docmd('ehlo all')
