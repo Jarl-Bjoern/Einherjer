@@ -300,6 +300,8 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                 task_Processes = progress.add_task("[cyan]Waiting for the results...", total=1, start=False)
                 task_Filter    = progress.add_task("[cyan]Filtering the results...", total=1, start=False)
 
+                print (args.scan_site_ssl)
+                print (Dict_Switch)
                 # Normal_Targets
                 if (Dict_Switch['scan_dns']            != False or
                     Dict_Switch['scan_certificate']    != False or
