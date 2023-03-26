@@ -16,7 +16,7 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
         Dict_Result = queue.get()
 
         # Socket_Timeout
-        setdefaulttimeout(t_seconds)
+        socket_defaulttimeout(t_seconds)
 
         # Fuzzing
         if (dict_switch['scan_fuzzing'] != False and '//' in url and 'http' in url):
