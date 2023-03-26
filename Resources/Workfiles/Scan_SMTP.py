@@ -29,12 +29,13 @@ class Check_SMTP:
         Mail = SMTP(Target, int(Port))
         Mail.docmd('ehlo all')
         Output = Mail.docmd(f'mail from:{sender}')
-        if ('ok' in Output):
+        if ('ok' in str(Output[1]).lower()):
             Output = Mail.docmd(f'rcpt to:{receiver}')
-            if ('ok' in Output):
+            if ('ok' in str(Output[1]).lower()):
                 Output = Mail.docmd(message)
-            elif('not permitted' in Output):
-                print ("FAIL")
+            elif('not permitted' in str(Output[1]).lower() or
+                 'access denied' in str(Output[1]).lower()):
+                    print ("FAIL")
         Mail.quit()
 
     def Check_TLS(url):
