@@ -109,10 +109,12 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
         Dict_Result = {
             'Certificate':               {},
             'DNS':                       {},
+            'FTP':                       {},
             'Header':                    {},
             'HTTP_Methods':              {},
             'Information':               {},
             'Security_Flag':             {},
+            'SMTP':                      {},
             'SSH':                       {},
             'SSL':                       {}
         }
