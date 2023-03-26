@@ -301,45 +301,54 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                 task_Filter    = progress.add_task("[cyan]Filtering the results...", total=1, start=False)
 
                 # Normal_Targets
-                for Target in array(Array_Targets):
-                    Array_Thread_Args = [
-                        Target,
-                        args.timeout,
-                        queue,
-                        Dict_Switch,
-                        Screen_Dir,
-                        Switch_Internet_Connection,
-                        args.screenshot_wait,
-                        args.webdriver_wait,
-                        args.async_ssl_timeout,
-                        Dict_Proxies,
-                        Dict_Auth,
-                        args.format,
-                        Location,
-                        args.allow_redirects
-                    ]
+                if (Dict_Switch['scan_dns']            != False or
+                    Dict_Switch['scan_certificate']    != False or
+                    Dict_Switch['scan_host_name']      != False or
+                    Dict_Switch['scan_header']         != False or
+                    Dict_Switch['scan_http_methods']   != False or
+                    Dict_Switch['scan_screenshot']     != None or
+                    Dict_Switch['scan_snmp']           != False or
+                    Dict_Switch['scan_smtp']           != False or
+                    Dict_Switch['scan_security_flags'] != False):
+                        for Target in array(Array_Targets):
+                            Array_Thread_Args = [
+                                Target,
+                                args.timeout,
+                                queue,
+                                Dict_Switch,
+                                Screen_Dir,
+                                Switch_Internet_Connection,
+                                args.screenshot_wait,
+                                args.webdriver_wait,
+                                args.async_ssl_timeout,
+                                Dict_Proxies,
+                                Dict_Auth,
+                                args.format,
+                                Location,
+                                args.allow_redirects
+                            ]
 
-                    if (Counter_Connections == args.max_connections):
-                        while (len(Dict_Threads) > 0):
-                            for Thread_ID in array(list(Dict_Threads)):
-                                if (Thread_ID not in str(active_children())):
-                                    Dict_Threads.pop(Thread_ID, None)
-                                    Counter_Connections -= 1
-                                else:
-                                    if ((int(time()) - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
-                                        Dict_Threads[Thread_ID][0].terminate()
-                                        Logs.Write_Log(Target, "", join(Location, 'Logs'))
-                                        Dict_Threads.pop(Thread_ID, None)
-                                        Counter_Connections -= 1
-                            sleep(2.25)
+                            if (Counter_Connections == args.max_connections):
+                                while (len(Dict_Threads) > 0):
+                                    for Thread_ID in array(list(Dict_Threads)):
+                                        if (Thread_ID not in str(active_children())):
+                                            Dict_Threads.pop(Thread_ID, None)
+                                            Counter_Connections -= 1
+                                        else:
+                                            if ((int(time()) - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
+                                                Dict_Threads[Thread_ID][0].terminate()
+                                                Logs.Write_Log(Target, "", join(Location, 'Logs'))
+                                                Dict_Threads.pop(Thread_ID, None)
+                                                Counter_Connections -= 1
+                                    sleep(2.25)
 
-                    p = Process(target=Thread_Scanning_Start, args=Array_Thread_Args, daemon=True)
-                    p.start()
-                    Counter_Connections += 1
-                    if (p.name not in Dict_Threads):
-                        Dict_Threads[p.name] = [p, int(time()), Target]
-                        sleep(args.sleep)
-                    progress.update(task_Scan, advance=Counter_Bar)
+                            p = Process(target=Thread_Scanning_Start, args=Array_Thread_Args, daemon=True)
+                            p.start()
+                            Counter_Connections += 1
+                            if (p.name not in Dict_Threads):
+                                Dict_Threads[p.name] = [p, int(time()), Target]
+                                sleep(args.sleep)
+                            progress.update(task_Scan, advance=Counter_Bar)
 
                 # SSL_Targets
                 if (Dict_Switch['scan_ssl'] == True):
