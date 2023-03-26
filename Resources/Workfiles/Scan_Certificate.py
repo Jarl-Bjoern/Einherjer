@@ -85,7 +85,7 @@ def Check_Certificate(url, t_seconds, Host_Name, Location, context = create_unve
         else:
             Standard.Write_Output_File('affected_certificate_targets.txt', f'{url} ({Host_Name})', Location)
 
-    except (ConnectionRefusedError, gaierror, SSLError, SSLZeroReturnError TimeoutError):
+    except (ConnectionRefusedError, gaierror, SSLError, SSLZeroReturnError, TimeoutError):
         Logs.Write_Log(url, Host_Name, join(Location, 'Logs'))
 
     return Dict_Temp
