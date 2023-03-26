@@ -252,25 +252,25 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
         # Scanning_Options
         if (args.scan_all                 == False and
-            args.scan_site_screenshot     == False and
-            args.scan_site_http_methods   == False and
             args.scan_host_name           == False and
+            args.scan_security_flags      == False and
             args.scan_site_certificate    == False and
-            args.scan_site_ssl            == False and
             args.scan_site_header         == False and
-            args.scan_ssh                 == False and
-            args.scan_security_flags      == False):
+            args.scan_site_http_methods   == False and
+            args.scan_site_screenshot     == False and
+            args.scan_site_ssl            == False and
+            args.scan_ssh                 == False):
                     from Resources.Header_Files.ArgParser_Intro import Argument_Parser
                     Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
         elif (args.scan_all               != False and
-              args.scan_site_certificate  == False and
-              args.scan_site_http_methods == False and
-              args.scan_host_name         == False and
-              args.scan_site_header       == False and
-              args.scan_ssh               == False and
-              args.scan_site_screenshot   == False and
-              args.scan_site_ssl          == False and
-              args.scan_security_flags    == False):
+            args.scan_host_name           == False and
+            args.scan_security_flags      == False and
+            args.scan_site_certificate    == False and
+            args.scan_site_header         == False and
+            args.scan_site_http_methods   == False and
+            args.scan_site_screenshot     == False and
+            args.scan_site_ssl            == False and
+            args.scan_ssh                 == False):
                     Dict_Switch = {
                         'scan_certificate':           True,
                         'scan_dns':                   True,
@@ -285,14 +285,14 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                         'scan_ssl':                   True
                     }
         elif (args.scan_all == False):
+            if (args.scan_host_name         != False):          Dict_Switch['scan_host_name']            = True
+            if (args.scan_security_flags    != False):          Dict_Switch['scan_security_flags']       = True
             if (args.scan_site_certificate  != False):          Dict_Switch['scan_certificate']          = True
             if (args.scan_site_header       != False):          Dict_Switch['scan_header']               = True
-            if (args.scan_host_name         != False):          Dict_Switch['scan_host_name']            = True
             if (args.scan_site_http_methods != False):          Dict_Switch['scan_http_methods']         = True
-            if (args.scan_security_flags    != False):          Dict_Switch['scan_security_flags']       = True
             if (args.scan_site_screenshot   != False):          Dict_Switch['scan_screenshot']           = driver_options
-            if (args.scan_ssh               != False):          Dict_Switch['scan_ssh']                  = True
             if (args.scan_site_ssl          != False):          Dict_Switch['scan_ssl']                  = True
+            if (args.scan_ssh               != False):          Dict_Switch['scan_ssh']                  = True
 
         # Program_Start
         Standard.Initialien(args.debug)
