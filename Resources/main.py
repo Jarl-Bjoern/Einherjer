@@ -177,6 +177,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                 for _ in args.target:
                     print (type(args.target))
                     print (args.target)
+                    exit()
                     if (',' in _):
                         if ('/' in _[:-1] and not '//' in _[:-1]):
                             for IP in IPv4Network(_):
