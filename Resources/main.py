@@ -30,13 +30,13 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                     Password_Input += chr(Password_Creator.randrange(33,126))
                 del Password_Creator
 
-            if (args.database_password != False):
-                print (Colors.ORANGE+'\nPlease specify your Database Password.'+Colors.RESET)
-                Database_Password = getpass('\n\nDatabase-Password: ')
-                if (len(Database_Password) < 8):
-                    exit(Colors.RED+"\n\nPlease use a minimum password length of 8 digits!"+Colors.RESET)
-            else:
-                Database_Password = "Einherjer"
+        if (args.database_password != False):
+            print (Colors.ORANGE+'\nPlease specify your Database Password.'+Colors.RESET)
+            Database_Password = getpass('\n\nDatabase-Password: ')
+            if (len(Database_Password) < 8):
+                exit(Colors.RED+"\n\nPlease use a minimum password length of 8 digits!"+Colors.RESET)
+        else:
+            Database_Password = "Einherjer"
 
     # Functions
     def Message_Chromium(Check_Dir):
