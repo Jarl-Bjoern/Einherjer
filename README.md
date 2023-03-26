@@ -80,5 +80,10 @@ python Einherjer.py
 UNDER CONSTRUCTION
 ```
 
+<a name="special_thanks"></a>
+# 🏆 Special thanks
+
+<br />
+
 # ⚠️ Remark
 The Script is still under development
