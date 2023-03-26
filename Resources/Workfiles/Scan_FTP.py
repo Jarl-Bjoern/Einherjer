@@ -24,7 +24,7 @@ class Check_FTP:
             msg    = ftp.login()
             Banner = ftp.getwelcome()
             if (str(Banner) != ""):
-                Dict_Temp['Banner']          = str(Banner).split('220')[1][2:-1]
+                Dict_Temp['Banner'] = str(Banner).split('220')[1][2:-1]
 
             if ("Login successful." in msg):
                 Dict_Temp['Anonymous_Login'] = "True"
