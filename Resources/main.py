@@ -187,7 +187,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                                 Array_SSL_Targets.append(_)
                             Array_Targets.append(_)
                 else:
-                    if ('https://' in Temp_Split or 'ssl://' in Temp_Split):
+                    if ('https://' in args.target[0] or 'ssl://' in args.target[0]):
                         Array_SSL_Targets = [args.target[0]]                    
                     Array_Targets = [args.target[0]]
         if (args.random_order == True):
