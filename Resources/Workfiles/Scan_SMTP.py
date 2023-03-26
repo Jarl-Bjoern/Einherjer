@@ -44,12 +44,12 @@ class Check_SMTP:
         if   (url.count(':') == 2):  Target, Port = url.split('smtp://')[1].split(':')
         elif (url.count(':') == 1):  Target, Port = url.split('smtp://')[1], 25
 
-        Mail   = SMTP(Target, int(Port))
-        Output = Mail.docmd('ehlo all')
-        if ('starttls' in str(Output[1]).lower()):
-            TLS_Output = Mail.docmd('starttls')
-            if ('Ready to start TLS' in str(TLS_Output[1])):
-                print ("OK")
-            else:
-                print ("Unencrypted!")
-        Mail.quit()
+        setdefaulttimeout(3)
+        with SMTP(Target, int(Port)) as Mail:
+            Output = Mail.docmd('ehlo all')
+            if ('starttls' in str(Output[1]).lower()):
+                TLS_Output = Mail.docmd('starttls')
+                if ('Ready to start TLS' in str(TLS_Output[1])):
+                    print ("OK")
+                else:
+                    print ("Unencrypted!")
