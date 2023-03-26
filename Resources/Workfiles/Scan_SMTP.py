@@ -12,13 +12,12 @@ class Check_SMTP:
         if   (url.count(':') == 2):  Target, Port = url.split('smtp://')[1].split(':')
         elif (url.count(':') == 1):  Target, Port = url.split('smtp://')[1], 25
 
-        Mail   = SMTP(Target, int(Port))
-        Output = Mail.docmd('ehlo all')
-        for _ in str(Output[1]).split(r'\n'):
-            if   ("b'" in _):   Array_Temp.append(_[2:])
-            elif ("'"  in _):   Array_Temp.append(_[:-1])
-            else:               Array_Temp.append(_)
-        Mail.quit()
+        with SMTP(Target, int(Port)) as Mail:
+            Output = Mail.docmd('ehlo all')
+            for _ in str(Output[1]).split(r'\n'):
+                if   ("b'" in _):   Array_Temp.append(_[2:])
+                elif ("'"  in _):   Array_Temp.append(_[:-1])
+                else:               Array_Temp.append(_)
 
         return Array_Temp
 
