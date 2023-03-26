@@ -8,7 +8,7 @@ from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 
 class Check_SMTP:
-    def Check_Arguments(url, Host_Name, Array_Temp = []):
+    def Check_Arguments(url, Host_Name, Array_Temp = [], Dict_Temp = {}):
         if (Host_Name != ""):        Dict_Temp['DNS'] = Host_Name
         else:                        Dict_Temp['DNS'] = ""
 
@@ -22,7 +22,9 @@ class Check_SMTP:
                 elif ("'"  in _):   Array_Temp.append(_[:-1])
                 else:               Array_Temp.append(_)
 
-        return Array_Temp
+        Dict_Temp['Arguments'] = Array_Temp
+
+        return Dict_Temp
 
     def Check_Open_Relay(url, sender, receiver, message):
         if   (url.count(':') == 2):  Target, Port = url.split('smtp://')[1].split(':')
@@ -42,7 +44,10 @@ class Check_SMTP:
                     print ("FAIL")
         Mail.quit()
 
-    def Check_TLS(url):
+    def Check_TLS(url, Dict_Temp = {}):
+        if (Host_Name != ""):        Dict_Temp['DNS'] = Host_Name
+        else:                        Dict_Temp['DNS'] = ""
+
         if   (url.count(':') == 2):  Target, Port = url.split('smtp://')[1].split(':')
         elif (url.count(':') == 1):  Target, Port = url.split('smtp://')[1], 25
 
