@@ -33,6 +33,8 @@ class Check_SMTP:
             Output = Mail.docmd(f'rcpt to:{receiver}')
             if ('ok' in str(Output[1]).lower()):
                 Output = Mail.docmd(message)
+                if ('queued' in str(Output[1]).lower()):
+                    print ("OPEN RELAY")
             elif('not permitted' in str(Output[1]).lower() or
                  'access denied' in str(Output[1]).lower()):
                     print ("FAIL")
