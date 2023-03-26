@@ -175,9 +175,6 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             if (len(args.target) > 1):
                 Array_Targets, Array_SSL_Targets = [], []
                 for _ in args.target:
-                    print (type(args.target))
-                    print (args.target)
-                    exit()
                     if (',' in _):
                         if ('/' in _[:-1] and not '//' in _[:-1]):
                             for IP in IPv4Network(_):
@@ -194,7 +191,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                                     Array_Targets.append(IP)
                         else:
                             if ('https://' in _ or 'ssl://' in _):
-                                Array_SSL_Targets.append(_[:-1])
+                                Array_SSL_Targets.append(_)
                             Array_Targets.append(_)
             else:
                 if (',' in args.target[0]):
