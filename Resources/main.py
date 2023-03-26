@@ -300,12 +300,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             if (args.scan_site_ssl          != False):          Dict_Switch['scan_ssl']                  = True
             if (args.scan_ssh               != False):          Dict_Switch['scan_ssh']                  = True
 
-        # Program_Start
-        Standard.Initialien(args.debug)
-        socket_defaulttimeout(args.timeout)
-        Counter_Bar = float(100/(len(Array_Targets)+len(Array_SSL_Targets)))
-
-        # Format_Filtering
+        # Setup_Output_Format
         if ("csv" in args.format):
             from Resources.Format.CSV import CSV_Table
             Output_Write = CSV_Table
@@ -339,6 +334,11 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
         elif ("yaml" in args.format):
             from Resources.Format.YAML import YAML_Table
             #Output_Write = YAML_Table
+
+        # Program_Start
+        Standard.Initialien(args.debug)
+        socket_defaulttimeout(args.timeout)
+        Counter_Bar = float(100/(len(Array_Targets)+len(Array_SSL_Targets)))
 
         if __name__ == '__main__':
             with Progress(*progress_columns) as progress:
