@@ -8,7 +8,10 @@ from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 
 class Check_SMTP:
-    def Check_Arguments(url, Array_Temp = []):
+    def Check_Arguments(url, Host_Name, Array_Temp = []):
+        if (Host_Name != ""):        Dict_Temp['DNS'] = Host_Name
+        else:                        Dict_Temp['DNS'] = ""
+
         if   (url.count(':') == 2):  Target, Port = url.split('smtp://')[1].split(':')
         elif (url.count(':') == 1):  Target, Port = url.split('smtp://')[1], 25
 
