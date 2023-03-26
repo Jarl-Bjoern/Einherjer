@@ -521,7 +521,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
     else:
         if (Program_Mode == "Scanning_Mode"):
-            if ((args.scan_site_screenshot != False or args.scan_site_screenshot_recursive != False) and Switch_Screenshots == False):
+            if (args.scan_site_screenshot != False and Switch_Screenshots == False):
                 Message_Chromium(join(Location, 'Screenshots'))
             Standard.Stdout_Output(Colors.ORANGE+f'\n\t\t\t\tIt was not possible to collect any kind of data!\n\n\t\t\t     Check your connection or target file and try it again.'+Colors.RESET, 0.01)
         elif (Program_Mode == "Brute_Force_Mode"):
