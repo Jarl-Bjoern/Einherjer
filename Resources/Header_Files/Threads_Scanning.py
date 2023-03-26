@@ -106,10 +106,6 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
                         join(Location, 'Logs')
                     )
 
-        # FTP
-        if (dict_switch['scan_ftp'] != False and 'ftp://' in url):
-            from ..Workfiles.Scan_FTP import Check_FTP
-
         # Header
         elif (dict_switch['scan_header']         != False and
               dict_switch['scan_security_flags'] == False and
@@ -161,6 +157,27 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
                         join(Location, 'Logs')
                     )
 
+        # FTP
+        if (dict_switch['scan_ftp'] != False and 'ftp://' in url):
+            # Library_Import
+            from ..Workfiles.Scan_FTP import Check_FTP
+
+            # Trace_Start
+            Logs.Trace_File(
+                Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Scan_FTP - '+Colors.BLUE+'Trying to connect'+Colors.RESET,
+                join(Location, 'Logs')
+            )
+
+            # Scanning_Process
+            pass
+
+            # Trace_End
+            Logs.Trace_File(
+                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Scan_FTP - '+Colors.GREEN+'OK'+Colors.RESET,
+                join(Location, 'Logs')
+            )
+
         # HTTP_Methods
         if (dict_switch['scan_http_methods'] != False and '//' in url and 'http' in url):
             # Library_Import
@@ -208,9 +225,25 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
         # SMTP
         if (dict_switch['scan_smtp'] != False and 'smtp://' in url):
+            # Library_Import
             from ..Workfiles.Scan_SMTP import Check_SMTP
+
+            # Trace_Start
+            Logs.Trace_File(
+                Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.RESET+'Scan_SMTP - '+Colors.BLUE+'Trying to connect'+Colors.RESET,
+                join(Location, 'Logs')
+            )
+
+            # Scanning_Process
+            pass
             #Dict_Result['SMTP'][url] = Check_SMTP.(url, t_seconds, Host_Name)
 
+            # Trace_End
+            Logs.Trace_File(
+                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Scan_SMTP - '+Colors.GREEN+'OK'+Colors.RESET,
+                join(Location, 'Logs')
+            )
 
         # SSH
         if (dict_switch['scan_ssh'] != False and 'ssh://' in url):
