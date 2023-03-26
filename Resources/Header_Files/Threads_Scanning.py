@@ -250,39 +250,8 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             try: Dict_Result['SSH'][url] = SSH_Vulns(url)
             except SSHException: Logs.Write_Log(url, Host_Name, join(Location, 'Logs'))
 
-        # Format_Filtering
-        if ("csv" in file_format):
-            from ..Format.CSV import CSV_Table
-            CSV_Table(Dict_Temp, Location)
-        elif ("docx" in file_format):
-            from ..Format.Word import Word_Table
-            Word_Table(Dict_Temp, Location)
-        elif ("html" in file_format):
-            from ..Format.HTML import HTML_Table
-            HTML_Table(Dict_Temp, Location)
-        elif ("json" in file_format):
-            from ..Format.JSON import JSON_Table
-            JSON_Table(Dict_Temp, Location)
-        elif ("md" in file_format):
-            from ..Format.Markdown import Markdown_Table
-            Markdown_Table(Dict_Temp, Location)
-        elif ("pdf" in file_format):
-            from ..Format.PDF import Create_PDF
-            Word_Table(Dict_Temp, Location)
-            if (osname == 'nt'): Create_PDF(Location)
-            else: print("At this point it's not be possible to convert a docx file into a pdf under linux.\nPlease try it under windows.\n")
-        elif ("tex" in file_format):
-            from ..Format.LaTeX import Latex_Table
-            Latex_Table(Dict_Temp, Location)
-        elif ("xlsx" in file_format):
-            from ..Format.Excel import Excel_Table
-            Excel_Table(Dict_Temp, Location)
-        elif ("xml" in file_format):
-            from ..Format.XML import XML_Table
-            #XML_Table(Dict_Temp, Location)
-        elif ("yaml" in file_format):
-            from ..Format.YAML import YAML_Table
-            #YAML_Table(Dict_Temp, Location)
+        # Write_File_Format
+        file_format(Dict_Temp, Location)
 
     except (ConnectionError, gaierror, WebDriverException, RequestException):
         Logs.Write_Log(url, Host_Name, join(Location, 'Logs'))
