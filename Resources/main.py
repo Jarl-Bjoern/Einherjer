@@ -424,8 +424,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                                 Dict_Proxies,
                                 Dict_Auth,
                                 Output_Write,
-                                Location,
-#                                args.allow_redirects
+                                Location
                             ]
 
                             if (Counter_Connections == args.max_connections):
