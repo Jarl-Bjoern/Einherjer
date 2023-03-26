@@ -182,8 +182,14 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                 if (',' in args.target[0]):
                     Temp_Split = args.target[0].split(',')
                     for _ in Temp_Split:
-                        if (_ != ''): Array_Targets.append(_)
-                else: Array_Targets = [args.target[0]]
+                        if (_ != ''):
+                            if ('https://' in Temp_Split or 'ssl://' in Temp_Split):
+                                Array_SSL_Targets.append(_)
+                            Array_Targets.append(_)
+                else:
+                    if ('https://' in Temp_Split or 'ssl://' in Temp_Split):
+                        Array_SSL_Targets = [args.target[0]]                    
+                    Array_Targets = [args.target[0]]
         if (args.random_order == True):
             try: from random import shuffle
             except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
