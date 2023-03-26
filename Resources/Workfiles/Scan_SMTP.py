@@ -8,14 +8,19 @@ from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 
 class Check_SMTP:
-    def Check_Arguments(url):
+    def Check_Arguments(url, Array_Temp = []):
         if   (url.count(':') == 2):  Target, Port = url.split('smtp://')[1].split(':')
         elif (url.count(':') == 1):  Target, Port = url.split('smtp://')[1], 25
 
         Mail   = SMTP(Target, int(Port))
         Output = Mail.docmd('ehlo all')
-        print (str(Output[1]).split(r'\n'))
+        for _ in str(Output[1]).split(r'\n'):
+            if   ("b'" in _):   Array_Temp.append(_[2:])
+            elif ("'"  in _):   Array_Temp.append(_[:-1])
+            else:               Array_Temp.append(_)
         Mail.quit()
+
+        return Array_Temp
 
     def Check_Open_Relay(url, sender, receiver, message):
         if   (url.count(':') == 2):  Target, Port = url.split('smtp://')[1].split(':')
