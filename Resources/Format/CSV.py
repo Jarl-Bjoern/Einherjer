@@ -169,7 +169,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                 if (Write_Mode == 'w'):
                     writer.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Encryption','Key_Exchange']))
                 if (Write_Second_Mode == 'w'):
-                    writer.writerow((['Host','DNS','Vulnerabilities']))
+                    writer_Sec.writerow((['Host','DNS','Vulnerabilities']))
 
                 for Target in Dict_Result['SSL']:
                     Array_Temp = []
@@ -192,7 +192,28 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                                         writer.writerow(Array_Temp + Temp_Arr)
                         elif (Result_Left == "SSL_Vulns"):
                             for _ in Result_Right:
-                                if (Result_Right[_] != ""):
-                                    print (f'{_} : {Result_Right[_]}')
+                                if (_ == "POODLE" and Result_Right[_] != "False"):
+                                    Temp_Arr = ['']
+                                elif (_ == "CRIME" and Result_Right[_] != "False"):
+                                    Temp_Arr = ['']
+                                elif (_ == "HEARTBLEED" and Result_Right[_] != "False"):
+                                    Temp_Arr = ['']
+                                elif (_ == "CCS_INJECTION" and Result_Right[_] != "False"):
+                                    Temp_Arr = ['']
+                                elif (_ == "ROBOT" and Result_Right[_] != "False"):
+                                    Temp_Arr = ['']
+                                elif (_ == "CLIENT_RENEGOTIATION_DOS" and Result_Right[_] != "False"):
+                                    Temp_Arr = ['']
+                                elif (_ == "FALLBACK_SCSV" and Result_Right[_] != "False"):
+                                    Temp_Arr = ['']
+                                elif (_ == "BREACH" and Result_Right[_] != "False"):
+                                    Temp_Arr = ['']
+                                elif (_ == "LOGJAM" and Result_Right[_] != "False"):
+                                    Temp_Arr = ['']
+                                elif (_ == "BEAST" and Result_Right[_] != "False"):
+                                    Temp_Arr = ['']
+                                elif (_ == "LUCKY13" and Result_Right[_] != "False"):
+                                    Temp_Arr = ['']
+                                writer_Sec.writerow(Array_Temp + Temp_Arr)
                         elif (Result_Left == "Curves"):
                             pass
