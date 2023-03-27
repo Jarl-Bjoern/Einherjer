@@ -190,6 +190,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = ""):
                                     writer.writerow(Array_Temp + Temp_Arr)
                     elif (Result_Left == "SSL_Vulns"):
                         for _ in Result_Right:
-                            print (_)
+                            if (Result_Right[_] != ""):
+                                print (Result_Right[_])
                     elif (Result_Left == "Curves"):
                         pass
