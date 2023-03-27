@@ -62,10 +62,7 @@ def Excel_Table(Dict_Result, location, Array_Header_Letter = ['A','B','C','D','E
             worksheet.write(f'{Array_Header_Letter[Letter]}{m}', Target)
             for Result_Left, Result_Right in Dict_Result['Header'][Target].items():
                 Letter += 1
-                if ((Result_Left == "X-XSS-PROTECTION") and (Result_Right == "1" or (Result_Right == "1; MODE=BLOCK"))): Result_Right = "FEHLT"
-                elif (Result_Left == "X-CONTENT-TYPE-OPTIONS" and Result_Right != "NOSNIFF"): Result_Right = "FEHLT"
-                elif (Result_Left == "X-FRAME-OPTIONS" and Result_Right != "DENY"): Result_Right = "FEHLT"
-                elif (Result_Left == "DNS" and Result_Right == ""): Result_Right = "FEHLT"
+                if (Result_Left == "DNS" and Result_Right == ""):        Result_Right = "FEHLT"
 
                 if (Result_Left != "DNS" and Result_Right != "FEHLT"): worksheet.write(f'{Array_Header_Letter[Letter]}{m}', "✓", center_text)
                 elif (Result_Left == "DNS" and Result_Right != "FEHLT"): worksheet.write(f'{Array_Header_Letter[Letter]}{m}', f"{Result_Right}", center_text)
