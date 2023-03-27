@@ -13,7 +13,7 @@ def HTML_Table(Dict_Result, location, Body_HTML = ""):
     Scan - Result
 </title>
 <body>
-<h1>{File_Name}</h1>
+<h1>HTTP_Header</h1>
 <table style="width:100%">
 <tr>
 """
