@@ -195,25 +195,25 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                                 Temp_Arr = []
                                 if (_ == "POODLE" and Result_Right[_] != "False"):
                                     Temp_Arr = ['The system is vulnerable for POODLE (CVE-2014-3566)']
-                                elif (_ == "CRIME" and Result_Right[_] != "False"):
+                                elif (_ == "CRIME" and Result_Right[_] != False):
                                     Temp_Arr = ['The system is vulnerable for CRIME (CVE-2012-4929)']
-                                elif (_ == "HEARTBLEED" and Result_Right[_] != "False"):
+                                elif (_ == "HEARTBLEED" and Result_Right[_] != False):
                                     Temp_Arr = ['The system is vulnerable for HEARTBLEED (CVE-2014-0160)']
-                                elif (_ == "CCS_INJECTION" and Result_Right[_] != "False"):
+                                elif (_ == "CCS_INJECTION" and Result_Right[_] != False):
                                     Temp_Arr = ['The system is vulnerable for CCS_INJECTION (CVE-2014-0224)']
-                                elif (_ == "ROBOT" and Result_Right[_] != "False"):
+                                elif (_ == "ROBOT" and Result_Right[_] != False):
                                     Temp_Arr = ['The system is vulnerable for ROBOT ()']
-                                elif (_ == "CLIENT_RENEGOTIATION_DOS" and Result_Right[_] != "False"):
+                                elif (_ == "CLIENT_RENEGOTIATION_DOS" and Result_Right[_] != False):
                                     Temp_Arr = ['The system is vulnerable for CLIENT_RENEGOTIATION_DOS ()']
-                                elif (_ == "FALLBACK_SCSV" and Result_Right[_] != "False"):
+                                elif (_ == "FALLBACK_SCSV" and Result_Right[_] != False):
                                     Temp_Arr = ['The system is vulnerable for FALLBACK_SCSV ()']
                                 elif (_ == "BREACH" and Result_Right[_] != "False"):
                                     Temp_Arr = ['The system is vulnerable for BREACH (CVE-2013-3587)']
-                                elif (_ == "LOGJAM" and Result_Right[_] != "False"):
+                                elif (_ == "LOGJAM" and Result_Right[_] != False):
                                     Temp_Arr = ['The system is vulnerable for LOGJAM (CVE-2015-4000)']
-                                elif (_ == "BEAST" and Result_Right[_] != "False"):
+                                elif (_ == "BEAST" and Result_Right[_] != False):
                                     Temp_Arr = ['The system is vulnerable for BEAST ()']
-                                elif (_ == "LUCKY13" and Result_Right[_] != "False"):
+                                elif (_ == "LUCKY13" and Result_Right[_] != False):
                                     Temp_Arr = ['The system is vulnerable for LUCKY13 ()']
 
                                 if (Temp_Arr != []):
