@@ -26,7 +26,7 @@ def HTML_Table(Dict_Result, location, Body_HTML = ""):
 </body>
 </html>"""
 
-    for Target in Dict_Result:
+    for Target in Dict_Result['Header']:
         Body_HTML += rf"""<tr>
     <td>{Target}</td>"""
         for Result_Left, Result_Right in Dict_Result['Header'].items():
