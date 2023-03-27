@@ -5,11 +5,14 @@
 # Libraries
 from ..Header_Files.Variables import *
 
-def Markdown_Table(Dict_Result, location):
+def Markdown_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
+    def Write_Extend(File_Name):
+        if (exists(File_Name)):  return 'a'
+        else:                    return 'w'
+
     if (Dict_Result['Header'] != {}):
         # Check_For_Existing_File
-        if (exists(join(location, 'result_header.md'))):  Write_Mode = 'a'
-        else:                                             Write_Mode = 'w'
+        Write_Mode = Write_Extend(join(location, 'result_header.md'))
 
         # Filter_Mode
         with open(join(location, 'result_header.md'), Write_Mode, encoding='UTF-8', newline='') as md_file:
@@ -31,8 +34,7 @@ def Markdown_Table(Dict_Result, location):
 
     if (Dict_Result['Information'] != {}):
         # Check_For_Existing_File
-        if (exists(join(location, 'result_information_disclosure.md'))):  Write_Mode = 'a'
-        else:                                                             Write_Mode = 'w'
+        Write_Mode = Write_Extend(join(location, 'result_information_disclosure.md'))
 
         # Filter_Mode
         with open(join(location, 'result_information_disclosure.md'), Write_Mode, encoding='UTF-8', newline='') as md_file:
@@ -55,8 +57,7 @@ def Markdown_Table(Dict_Result, location):
 
     if (Dict_Result['Security_Flag'] != {}):
         # Check_For_Existing_File
-        if (exists(join(location, 'result_security_flags.md'))):  Write_Mode = 'a'
-        else:                                                     Write_Mode = 'w'
+        Write_Mode = Write_Extend(join(location, 'result_security_flags.md'))
 
         # Filter_Mode
         with open(join(location, 'result_security_flags.md'), Write_Mode, encoding='UTF-8', newline='') as md_file:
@@ -81,8 +82,7 @@ def Markdown_Table(Dict_Result, location):
 
     if (Dict_Result['Certificate'] != {}):
         # Check_For_Existing_File
-        if (exists(join(location, 'result_certificate.md'))):  Write_Mode = 'a'
-        else:                                                  Write_Mode = 'w'
+        Write_Mode = Write_Extend(join(location, 'result_certificate.md'))
 
         # Filter_Mode
         with open(join(location, 'result_certificate.md'), Write_Mode, encoding='UTF-8', newline='') as md_file:
@@ -105,8 +105,7 @@ def Markdown_Table(Dict_Result, location):
 
     if (Dict_Result['HTTP_Methods'] != {}):
         # Check_For_Existing_File
-        if (exists(join(location, 'result_http_methods.md'))):  Write_Mode = 'a'
-        else:                                                   Write_Mode = 'w'
+        Write_Mode = Write_Extend(join(location, 'result_http_methods.md'))
 
         # Filter_Mode
         with open(join(location, f'result_http_methods.md'), 'w', encoding='UTF-8', newline='') as md_file:
@@ -129,8 +128,7 @@ def Markdown_Table(Dict_Result, location):
 
     if (Dict_Result['SSL'] != {}):
         # Check_For_Existing_File
-        if (exists(join(location, 'result_ssl_ciphers.md'))):  Write_Mode = 'a'
-        else:                                                  Write_Mode = 'w'
+        Write_Mode = Write_Extend(join(location, 'result_ssl_ciphers.md'))
 
         # Filter_Mode
         with open(join(location, f'result_ssl_ciphers.md'), Write_Mode, encoding='UTF-8', newline='') as md_file:
