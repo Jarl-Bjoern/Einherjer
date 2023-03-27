@@ -5,7 +5,7 @@
 # Libraries
 from ..Header_Files.Variables import *
 
-def JSON_Table(Dict_Result, location):
+def JSON_Table(Dict_Result, location, Array_Files = []):
     def Write_JSON(keyword, location, result_file):
         with open(join(location, result_file), 'w', encoding='UTF-8') as f:
             json.dump(Dict_Result[keyword], f)
@@ -25,3 +25,5 @@ def JSON_Table(Dict_Result, location):
     if (Dict_Header['Certificate'] != {}):
         Array_Files.append(join(location, 'result_certificate.json'))
         Write_JSON('Header', location, 'result_certificate.json')
+
+    return Array_Files
