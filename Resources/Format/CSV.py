@@ -158,36 +158,41 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
 
     if (Dict_Result['SSL'] != {}):
         # Check_For_Existing_File
-        Write_Mode = Write_Extend(join(location, 'result_ssl_ciphers.csv'))
+        Write_Mode        = Write_Extend(join(location, 'result_ssl_ciphers.csv'))
+        Write_Second_Mode = Write_Extend(join(location, 'result_ssl_vulns.csv'))
 
         # Filter_Mode
         with open(join(location, f'result_ssl_ciphers.csv'), Write_Mode, encoding='UTF-8', newline='') as csv_file:
-            writer = csv.writer(csv_file)
-            if (Write_Mode == 'w'):
-                writer.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Encryption','Key_Exchange']))
+            with open(join(location, f'result_ssl_vulns.csv'), Write_Second_Mode, encoding='UTF-8', newline='') as csv_sec_file:
+                writer     = csv.writer(csv_file)
+                writer_Sec = csv.writer(csv_sec_file)
+                if (Write_Mode == 'w'):
+                    writer.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Encryption','Key_Exchange']))
+                if (Write_Second_Mode == 'w'):
+                    writer.writerow((['Host','DNS','Vulnerabilities']))
 
-            for Target in Dict_Result['SSL']:
-                Array_Temp = []
-                Array_Temp.append(Target)
-                for Result_Left, Result_Right in Dict_Result['SSL'][Target].items():
-                    if (Result_Left == "DNS" and Result_Right == ""):  Array_Temp.append("-")
-                    elif (Result_Left == "DNS" and Result_Right != ""): Array_Temp.append(Result_Right)
+                for Target in Dict_Result['SSL']:
+                    Array_Temp = []
+                    Array_Temp.append(Target)
+                    for Result_Left, Result_Right in Dict_Result['SSL'][Target].items():
+                        if (Result_Left == "DNS" and Result_Right == ""):  Array_Temp.append("-")
+                        elif (Result_Left == "DNS" and Result_Right != ""): Array_Temp.append(Result_Right)
 
-                    if (Result_Left == "Ciphers"):
-                        for _ in Result_Right:
-                            if (_['Protocol'] != "" and _['Ciphers'] != []):
-                                for Cipher in _['Ciphers']:
-                                    Temp_Arr = [_['Protocol'],Cipher['Key_Size'],Cipher['Name']
-                                    if (Cipher['Curve_Name'] != None and Cipher['Curve_Name'] != ''):
-                                        Temp_Arr.append(Cipher['Curve_Name'])
-                                    else: Temp_Arr.append('-')
-                                    if (Cipher['Type'] != '' and Cipher['Curve_Size'] != '' and Cipher['Curve_Size'] != None):
-                                        Temp_Arr.append(f"{Cipher['Type']}_{Cipher['Curve_Size']}")
-                                    else: Temp_Arr.append('-')
-                                    writer.writerow(Array_Temp + Temp_Arr)
-                    elif (Result_Left == "SSL_Vulns"):
-                        for _ in Result_Right:
-                            if (Result_Right[_] != ""):
-                                print (f'{_} : {Result_Right[_]}')
-                    elif (Result_Left == "Curves"):
-                        pass
+                        if (Result_Left == "Ciphers"):
+                            for _ in Result_Right:
+                                if (_['Protocol'] != "" and _['Ciphers'] != []):
+                                    for Cipher in _['Ciphers']:
+                                        Temp_Arr = [_['Protocol'],Cipher['Key_Size'],Cipher['Name']
+                                        if (Cipher['Curve_Name'] != None and Cipher['Curve_Name'] != ''):
+                                            Temp_Arr.append(Cipher['Curve_Name'])
+                                        else: Temp_Arr.append('-')
+                                        if (Cipher['Type'] != '' and Cipher['Curve_Size'] != '' and Cipher['Curve_Size'] != None):
+                                            Temp_Arr.append(f"{Cipher['Type']}_{Cipher['Curve_Size']}")
+                                        else: Temp_Arr.append('-')
+                                        writer.writerow(Array_Temp + Temp_Arr)
+                        elif (Result_Left == "SSL_Vulns"):
+                            for _ in Result_Right:
+                                if (Result_Right[_] != ""):
+                                    print (f'{_} : {Result_Right[_]}')
+                        elif (Result_Left == "Curves"):
+                            pass
