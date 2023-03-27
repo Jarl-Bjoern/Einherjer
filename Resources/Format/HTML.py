@@ -30,14 +30,12 @@ def HTML_Table(Dict_Result, location, Body_HTML = ""):
         Body_HTML += rf"""<tr>
     <td>{Target}</td>"""
         for Result_Left, Result_Right in Dict_Result['Header'][Target].items():
-            if ((Result_Left == "X-XSS-Protection" or Result_Left == Array_Header[1].lower() or Result_Left == Array_Header[1].isupper()) and (Result_Right == "1" or (Result_Right == "1; mode=block" or Result_Right == "1; mode=BLOCK"))): Result_Right = "FEHLT"
-            elif ((Result_Left == "X-Content-Type-Options" or Result_Left == Array_Header[4].lower() or Result_Left == Array_Header[4].isupper()) and (Result_Right != "nosniff" or Result_Right != "NOSNIFF")): Result_Right = "FEHLT"
-            elif ((Result_Left == "X-Frame-Options" or Result_Left == Array_Header[0].lower() or Result_Left == Array_Header[0].isupper()) and (Result_Right != "DENY" or Result_Right != "deny")): Result_Right = "FEHLT"
+            if (Result_Left == "DNS" and Result_Right == ""):        Result_Right = "FEHLT"
 
-            if (Result_Right != "FEHLT"): Body_HTML += r'  <td><p style="text-align:center;">✓</p></td>'
-            else: Body_HTML += r'  <td><p style="text-align:center;">X</td>'
-
-            if (Result_Left == 'Referrer-Policy'): Body_HTML += r"</tr><br />"
+            if (Result_Left != "DNS" and Result_Right != "FEHLT"):   Body_HTML += r'  <td><p style="text-align:center;">✓</p></td>'
+            elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Body_HTML += rf'  <td><p style="text-align:center;">{Result_Right}</p></td>'
+            elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Body_HTML += r'  <td><p style="text-align:center;">-</p></td>'
+            else: Body_HTML += r'  <td><p style="text-align:center;">X</p></td>'
 
     while True:
         try:
