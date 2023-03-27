@@ -192,6 +192,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                                         writer.writerow(Array_Temp + Temp_Arr)
                         elif (Result_Left == "SSL_Vulns"):
                             for _ in Result_Right:
+                                Temp_Arr = []
                                 if (_ == "POODLE" and Result_Right[_] != "False"):
                                     Temp_Arr = ['The system is vulnerable for POODLE (CVE-2014-3566)']
                                 elif (_ == "CRIME" and Result_Right[_] != "False"):
@@ -214,6 +215,8 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                                     Temp_Arr = ['The system is vulnerable for BEAST ()']
                                 elif (_ == "LUCKY13" and Result_Right[_] != "False"):
                                     Temp_Arr = ['The system is vulnerable for LUCKY13 ()']
-                                writer_Sec.writerow(Array_Temp + Temp_Arr)
+
+                                if (Temp_Arr != []):
+                                    writer_Sec.writerow(Array_Temp + Temp_Arr)
                         elif (Result_Left == "Curves"):
                             pass
