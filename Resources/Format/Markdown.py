@@ -110,8 +110,8 @@ def Markdown_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = "
         # Filter_Mode
         with open(join(location, f'result_http_methods.md'), 'w', encoding='UTF-8', newline='') as md_file:
             if (Write_Mode == 'w'):
-                md_file.write('| URL | DNS | CONNECT | DELETE | HEAD | OPTIONS | PATCH | POST | PUT | TRACE |\n')
-                md_file.write('| --- | --- | ------- | ------ | ---- | ------- | ----- | ---- | --- | ----- |\n')
+                md_file.write('| URL | DNS | TRACE |\n')
+                md_file.write('| --- | --- | ----- |\n')
 
             for Target in Dict_Result['HTTP_Methods']:
                 Temp_Word = ""
@@ -135,8 +135,8 @@ def Markdown_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = "
         with open(join(location, f'result_ssl_ciphers.md'), Write_Mode, encoding='UTF-8', newline='') as md_file:
             with open(join(location, f'result_ssl_vulns.md'), Write_Second_Mode, encoding='UTF-8', newline='') as md_sec_file:
                 if (Write_Mode == 'w'):
-                    md_file.write('| Host | DNS | Protocol | Key_Size | Ciphers | Anonymous | Encryption | Key_Exchange |\n')
-                    md_file.write('| ---- | --- | -------- | -------- | ------- | --------- | ---------- | ------------ |\n')
+                    md_file.write('| Host | DNS | Protocol | Key_Size | Ciphers | Encryption | Key_Exchange |\n')
+                    md_file.write('| ---- | --- | -------- | -------- | ------- | ---------- | ------------ |\n')
                 if (Write_Second_Mode == 'w'):
                     md_sec_file.write('| Host | DNS | Vulnerabilities |\n')
                     md_sec_file.write('| ---- | --- | --------------- |\n')                   
@@ -152,7 +152,7 @@ def Markdown_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = "
                             for _ in Result_Right:
                                 if (_['Protocol'] != "" and _['Ciphers'] != []):
                                     for Cipher in _['Ciphers']:
-                                        Temp_Word  += f" {_['Protocol']} | {Cipher['Key_Size']} | {Cipher['Name']} | {Cipher['Anonymous']} |"
+                                        Temp_Word  += f" {_['Protocol']} | {Cipher['Key_Size']} | {Cipher['Name']} |"
                                         if (Cipher['Curve_Name'] != None and Cipher['Curve_Name'] != ''):
                                             Temp_Word += f" {Cipher['Curve_Name']} |"
                                         else: Temp_Word += " - |"
