@@ -8,7 +8,7 @@ from ..Header_Files.Variables import *
 def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
     def Write_Extend(File_Name):
         if (exists(File_Name)):  return 'a'
-        else:                    return 'w'        
+        else:                    return 'w'
 
     if (Dict_Result['Header'] != {}):
         # Check_For_Existing_File
