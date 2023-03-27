@@ -128,63 +128,68 @@ def Markdown_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = "
 
     if (Dict_Result['SSL'] != {}):
         # Check_For_Existing_File
-        Write_Mode = Write_Extend(join(location, 'result_ssl_ciphers.md'))
+        Write_Mode        = Write_Extend(join(location, 'result_ssl_ciphers.md'))
+        Write_Second_Mode = Write_Extend(join(location, 'result_ssl_vulns.md'))
 
         # Filter_Mode
         with open(join(location, f'result_ssl_ciphers.md'), Write_Mode, encoding='UTF-8', newline='') as md_file:
-            if (Write_Mode == 'w'):
-                md_file.write('| Host | DNS | Protocol | Key_Size | Ciphers | Anonymous | Encryption | Key_Exchange |\n')
-                md_file.write('| ---- | --- | -------- | -------- | ------- | --------- | ---------- | ------------ |\n')
+            with open(join(location, f'result_ssl_vulns.md'), Write_Second_Mode, encoding='UTF-8', newline='') as md_sec_file:
+                if (Write_Mode == 'w'):
+                    md_file.write('| Host | DNS | Protocol | Key_Size | Ciphers | Anonymous | Encryption | Key_Exchange |\n')
+                    md_file.write('| ---- | --- | -------- | -------- | ------- | --------- | ---------- | ------------ |\n')
+                if (Write_Second_Mode == 'w'):
+                    md_sec_file.write('| Host | DNS | Vulnerabilities |\n')
+                    md_sec_file.write('| ---- | --- | --------------- |\n')                   
 
-            for Target in Dict_Result['SSL']:
-                Temp_Word = ""
-                Temp_Word += f"| {Target} |"
-                for Result_Left, Result_Right in Dict_Result['SSL'][Target].items():
-                    if (Result_Left == "DNS" and Result_Right == ""):  Temp_Word += " - |"
-                    elif (Result_Left == "DNS" and Result_Right != ""): Temp_Word += f" {Result_Right} |"
+                for Target in Dict_Result['SSL']:
+                    Temp_Word = ""
+                    Temp_Word += f"| {Target} |"
+                    for Result_Left, Result_Right in Dict_Result['SSL'][Target].items():
+                        if (Result_Left == "DNS" and Result_Right == ""):  Temp_Word += " - |"
+                        elif (Result_Left == "DNS" and Result_Right != ""): Temp_Word += f" {Result_Right} |"
 
-                    if (Result_Left == "Ciphers"):
-                        for _ in Result_Right:
-                            if (_['Protocol'] != "" and _['Ciphers'] != []):
-                                for Cipher in _['Ciphers']:
-                                    Temp_Word  += f" {_['Protocol']} | {Cipher['Key_Size']} | {Cipher['Name']} | {Cipher['Anonymous']} |"
-                                    if (Cipher['Curve_Name'] != None and Cipher['Curve_Name'] != ''):
-                                        Temp_Word += f" {Cipher['Curve_Name']} |"
-                                    else: Temp_Word += " - |"
-                                    if (Cipher['Type'] != '' and Cipher['Curve_Size'] != '' and Cipher['Curve_Size'] != None):
-                                        Temp_Word += f" {Cipher['Type']}_{Cipher['Curve_Size']} |"
-                                    else: Temp_Word += " - |"
-                                    md_file.write(f'{Temp_Word}\n')
-                    elif (Result_Left == "SSL_Vulns"):
-                        for _ in Result_Right:
-                            Temp_Word = ""
-                            Temp_Word += f"| {Target} |"
-                            if (_ == "POODLE" and Result_Right[_] != "False"):
-                                Temp_Word += ' The system is vulnerable for POODLE (CVE-2014-3566) |'
-                            elif (_ == "CRIME" and Result_Right[_] != False):
-                                Temp_Word += ' The system is vulnerable for CRIME (CVE-2012-4929) |'
-                            elif (_ == "HEARTBLEED" and Result_Right[_] != False):
-                                Temp_Word += ' The system is vulnerable for HEARTBLEED (CVE-2014-0160) |'
-                            elif (_ == "CCS_INJECTION" and Result_Right[_] != False):
-                                Temp_Word += ' The system is vulnerable for CCS_INJECTION (CVE-2014-0224) |'
-                            elif (_ == "ROBOT" and Result_Right[_] != False):
-                                Temp_Word += ' The system is vulnerable for ROBOT () |'
-                            elif (_ == "CLIENT_RENEGOTIATION_DOS" and Result_Right[_] != False):
-                                Temp_Word += ' The system is vulnerable for CLIENT_RENEGOTIATION_DOS () |'
-                            elif (_ == "FALLBACK_SCSV" and Result_Right[_] != False):
-                                Temp_Word += ' The system is vulnerable for FALLBACK_SCSV () |'
-                            elif (_ == "BREACH" and Result_Right[_] != "False"):
-                                Temp_Word += ' The system is vulnerable for BREACH (CVE-2013-3587) |'
-                            elif (_ == "LOGJAM" and Result_Right[_] != False):
-                                Temp_Word += ' The system is vulnerable for LOGJAM (CVE-2015-4000) |'
-                            elif (_ == "BEAST" and Result_Right[_] != False):
-                                Temp_Word += ' The system is vulnerable for BEAST () |'
-                            elif (_ == "LUCKY13" and Result_Right[_] != False):
-                                Temp_Word += ' The system is vulnerable for LUCKY13 () |'
+                        if (Result_Left == "Ciphers"):
+                            for _ in Result_Right:
+                                if (_['Protocol'] != "" and _['Ciphers'] != []):
+                                    for Cipher in _['Ciphers']:
+                                        Temp_Word  += f" {_['Protocol']} | {Cipher['Key_Size']} | {Cipher['Name']} | {Cipher['Anonymous']} |"
+                                        if (Cipher['Curve_Name'] != None and Cipher['Curve_Name'] != ''):
+                                            Temp_Word += f" {Cipher['Curve_Name']} |"
+                                        else: Temp_Word += " - |"
+                                        if (Cipher['Type'] != '' and Cipher['Curve_Size'] != '' and Cipher['Curve_Size'] != None):
+                                            Temp_Word += f" {Cipher['Type']}_{Cipher['Curve_Size']} |"
+                                        else: Temp_Word += " - |"
+                                        md_file.write(f'{Temp_Word}\n')
+                        elif (Result_Left == "SSL_Vulns"):
+                            for _ in Result_Right:
+                                Temp_Word = ""
+                                Temp_Word += f"| {Target} |"
+                                if (_ == "POODLE" and Result_Right[_] != "False"):
+                                    Temp_Word += ' The system is vulnerable for POODLE (CVE-2014-3566) |'
+                                elif (_ == "CRIME" and Result_Right[_] != False):
+                                    Temp_Word += ' The system is vulnerable for CRIME (CVE-2012-4929) |'
+                                elif (_ == "HEARTBLEED" and Result_Right[_] != False):
+                                    Temp_Word += ' The system is vulnerable for HEARTBLEED (CVE-2014-0160) |'
+                                elif (_ == "CCS_INJECTION" and Result_Right[_] != False):
+                                    Temp_Word += ' The system is vulnerable for CCS_INJECTION (CVE-2014-0224) |'
+                                elif (_ == "ROBOT" and Result_Right[_] != False):
+                                    Temp_Word += ' The system is vulnerable for ROBOT () |'
+                                elif (_ == "CLIENT_RENEGOTIATION_DOS" and Result_Right[_] != False):
+                                    Temp_Word += ' The system is vulnerable for CLIENT_RENEGOTIATION_DOS () |'
+                                elif (_ == "FALLBACK_SCSV" and Result_Right[_] != False):
+                                    Temp_Word += ' The system is vulnerable for FALLBACK_SCSV () |'
+                                elif (_ == "BREACH" and Result_Right[_] != "False"):
+                                    Temp_Word += ' The system is vulnerable for BREACH (CVE-2013-3587) |'
+                                elif (_ == "LOGJAM" and Result_Right[_] != False):
+                                    Temp_Word += ' The system is vulnerable for LOGJAM (CVE-2015-4000) |'
+                                elif (_ == "BEAST" and Result_Right[_] != False):
+                                    Temp_Word += ' The system is vulnerable for BEAST () |'
+                                elif (_ == "LUCKY13" and Result_Right[_] != False):
+                                    Temp_Word += ' The system is vulnerable for LUCKY13 () |'
 
-                            md_file.write(f'{Temp_Word}\n')
-                    elif (Result_Left == "Curves"):
-                        pass
+                                md_file.write(f'{Temp_Word}\n')
+                        elif (Result_Left == "Curves"):
+                            pass
 
     if (Dict_Result['SSH'] != {}):
         pass
