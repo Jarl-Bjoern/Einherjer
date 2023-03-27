@@ -193,9 +193,9 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                         elif (Result_Left == "SSL_Vulns"):
                             for _ in Result_Right:
                                 if (_ == "POODLE" and Result_Right[_] != "False"):
-                                    Temp_Arr = ['']
+                                    Temp_Arr = ['The system is vulnerable for POODLE (CVE-2014-3566)']
                                 elif (_ == "CRIME" and Result_Right[_] != "False"):
-                                    Temp_Arr = ['']
+                                    Temp_Arr = ['The system is vulnerable for CRIME (CVE-2012-4929)']
                                 elif (_ == "HEARTBLEED" and Result_Right[_] != "False"):
                                     Temp_Arr = ['']
                                 elif (_ == "CCS_INJECTION" and Result_Right[_] != "False"):
