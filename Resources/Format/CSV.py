@@ -5,11 +5,14 @@
 # Libraries
 from ..Header_Files.Variables import *
 
-def CSV_Table(Dict_Result, location, Write_Mode = ""):
+def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
+    def Write_Extend(File_Name)
+        if (exists(File_Name)):  return 'a'
+        else:                    return 'w'        
+
     if (Dict_Result['Header'] != {}):
         # Check_For_Existing_File
-        if (exists(join(location, 'result_header.csv'))):  Write_Mode = 'a'
-        else:                                              Write_Mode = 'w'
+        Write_Mode = Write_Extend(join(location, 'result_header.csv'))
 
         # Filter_Mode
         with open(join(location, 'result_header.csv'), Write_Mode, encoding='UTF-8', newline='') as csv_file:
@@ -31,8 +34,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = ""):
 
     if (Dict_Result['Information'] != {}):
         # Check_For_Existing_File
-        if (exists(join(location, 'result_information_disclosure.csv'))):  Write_Mode = 'a'
-        else:                                                              Write_Mode = 'w'
+        Write_Mode = Write_Extend(join(location, 'result_information_disclosure.csv'))
 
         # Filter_Mode
         with open(join(location, 'result_information_disclosure.csv'), Write_Mode, encoding='UTF-8', newline='') as csv_file:
@@ -55,8 +57,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = ""):
 
     if (Dict_Result['SSH'] != {}):
         # Check_For_Existing_File
-        if (exists(join(location, 'result_ssh_vulns.csv'))):  Write_Mode = 'a'
-        else:                                                 Write_Mode = 'w'
+        Write_Mode = Write_Extend(join(location, 'result_ssh_vulns.csv'))
 
         # Filter_Mode
         with open(join(location, 'result_ssh_vulns.csv'), Write_Mode, encoding='UTF-8', newline='') as csv_file:
@@ -84,8 +85,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = ""):
 
     if (Dict_Result['Security_Flag'] != {}):
         # Check_For_Existing_File
-        if (exists(join(location, 'result_security_flags.csv'))):  Write_Mode = 'a'
-        else:                                                      Write_Mode = 'w'
+        Write_Mode = Write_Extend(join(location, 'result_security_flags.csv'))
 
         with open(join(location, f'result_security_flags.csv'), Write_Mode, encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
@@ -112,8 +112,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = ""):
 
     if (Dict_Result['Certificate'] != {}):
         # Check_For_Existing_File
-        if (exists(join(location, 'result_certificate.csv'))):  Write_Mode = 'a'
-        else:                                                   Write_Mode = 'w'
+        Write_Mode = Write_Extend(join(location, 'result_certificate.csv'))
 
         # Filter_Mode
         with open(join(location, f'result_certificate.csv'), Write_Mode, encoding='UTF-8', newline='') as csv_file:
@@ -136,8 +135,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = ""):
 
     if (Dict_Result['HTTP_Methods'] != {}):
         # Check_For_Existing_File
-        if (exists(join(location, 'result_http_methods.csv'))):  Write_Mode = 'a'
-        else:                                                    Write_Mode = 'w'
+        Write_Mode = Write_Extend(join(location, 'result_http_methods.csv'))
 
         # Filter_Mode
         with open(join(location, f'result_http_methods.csv'), Write_Mode, encoding='UTF-8', newline='') as csv_file:
@@ -160,14 +158,13 @@ def CSV_Table(Dict_Result, location, Write_Mode = ""):
 
     if (Dict_Result['SSL'] != {}):
         # Check_For_Existing_File
-        if (exists(join(location, 'result_ssl_ciphers.csv'))):  Write_Mode = 'a'
-        else:                                                   Write_Mode = 'w'
+        Write_Mode = Write_Extend(join(location, 'result_ssl_ciphers.csv'))
 
         # Filter_Mode
         with open(join(location, f'result_ssl_ciphers.csv'), Write_Mode, encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
             if (Write_Mode == 'w'):
-                writer.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Anonymous','Encryption','Key_Exchange']))
+                writer.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Encryption','Key_Exchange']))
 
             for Target in Dict_Result['SSL']:
                 Array_Temp = []
@@ -180,7 +177,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = ""):
                         for _ in Result_Right:
                             if (_['Protocol'] != "" and _['Ciphers'] != []):
                                 for Cipher in _['Ciphers']:
-                                    Temp_Arr = [_['Protocol'],Cipher['Key_Size'],Cipher['Name'],Cipher['Anonymous']]
+                                    Temp_Arr = [_['Protocol'],Cipher['Key_Size'],Cipher['Name']
                                     if (Cipher['Curve_Name'] != None and Cipher['Curve_Name'] != ''):
                                         Temp_Arr.append(Cipher['Curve_Name'])
                                     else: Temp_Arr.append('-')
