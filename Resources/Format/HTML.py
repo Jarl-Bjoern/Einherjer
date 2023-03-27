@@ -29,7 +29,7 @@ def HTML_Table(Dict_Result, location, Body_HTML = ""):
     for Target in Dict_Result:
         Body_HTML += rf"""<tr>
     <td>{Target}</td>"""
-        for Result_Left, Result_Right in Dict_Result['Header'][Target].items():
+        for Result_Left, Result_Right in Dict_Result['Header'].items():
             if (Result_Left == "DNS" and Result_Right == ""):        Result_Right = "FEHLT"
 
             if (Result_Left != "DNS" and Result_Right != "FEHLT"):   Body_HTML += r'  <td><p style="text-align:center;">✓</p></td>'
