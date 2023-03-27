@@ -191,6 +191,6 @@ def CSV_Table(Dict_Result, location, Write_Mode = ""):
                     elif (Result_Left == "SSL_Vulns"):
                         for _ in Result_Right:
                             if (Result_Right[_] != ""):
-                                print (Result_Right[_])
+                                print (f'{_} : {Result_Right[_]}')
                     elif (Result_Left == "Curves"):
                         pass
