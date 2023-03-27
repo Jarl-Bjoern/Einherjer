@@ -41,5 +41,6 @@ def HTML_Table(Dict_Result, location, Body_HTML = ""):
         try:
             with open(join(location, f'main.html'), 'w') as f:
                 f.write(Head_HTML), f.write(Body_HTML), f.write(Footer_HTML)
+            break
         except PermissionError: Logs.Error_Message(f"The file is already open!\nPlease close it and wait five seconds.")
         sleep(5)
