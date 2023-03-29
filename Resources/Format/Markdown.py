@@ -120,10 +120,10 @@ def Markdown_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = "
                     if (Result_Left == "DNS" and Result_Right == ""):  Result_Right = "FEHLT"
                     elif (Result_Left != "DNS" and Result_Right == "FEHLT"): Result_Right = "FEHLT"
 
-                    if (Result_Left != "DNS" and Result_Right != "FEHLT"): Temp_Word += ' ✓ |'
+                    if (Result_Left != "DNS" and Result_Right != "FEHLT"): Temp_Word += ' X |'
                     elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Temp_Word += f' {Result_Right} |'
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Temp_Word += " - |"
-                    else: Temp_Word += " X |"
+                    else: Temp_Word += " ✓ |"
                 md_file.write(f'{Temp_Word}\n')
 
     if (Dict_Result['SSL'] != {}):
