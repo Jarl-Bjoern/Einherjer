@@ -15,11 +15,10 @@ def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locat
 
     # Function
     async def Check_Methods():
-        Limit = TCPConnector(limit_per_host=5)
+        Limit, Switch_Error = TCPConnector(limit_per_host=5), False
 
         async with ClientSession(connector=Limit, trust_env=True, read_timeout=float(t_seconds), conn_timeout=float(t_seconds)) as s:
             for Method in Array_HTTP_Methods:
-                Switch_Error = False
                 try:
                     # Basic_Auth_With_Proxy
                     if (Dict_Proxies['http'] != '' and Dict_Auth['user'] != ''):
