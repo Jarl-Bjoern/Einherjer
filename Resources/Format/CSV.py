@@ -49,7 +49,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                     if (Result_Left == "DNS" and Result_Right == ""): Result_Right = "FEHLT"
                     elif (Result_Left in Array_Information_Disclosure_Header and Result_Right == ""): Result_Right = "FEHLT"
 
-                    if (Result_Left != "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
+                    if (Result_Left != "DNS" and Result_Right != "FEHLT"):   Array_Temp.append(Result_Right)
                     elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
                     else: Array_Temp.append("X")
@@ -77,7 +77,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                             Result_Right = "FEHLT"
                             break
 
-                    if (Result_Left != "DNS" and Result_Right != "FEHLT"): Array_Temp.append("✓")
+                    if (Result_Left != "DNS" and Result_Right != "FEHLT"):   Array_Temp.append("✓")
                     elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
                     else: Array_Temp.append("X")
@@ -104,7 +104,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                             Result_Right = "FEHLT"
                             break
 
-                    if (Result_Left != "DNS" and Result_Right != "FEHLT"): Array_Temp.append("✓")
+                    if (Result_Left != "DNS" and Result_Right != "FEHLT"):   Array_Temp.append("✓")
                     elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
                     else: Array_Temp.append("X")
@@ -124,10 +124,10 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                 Array_Temp = []
                 Array_Temp.append(Target)
                 for Result_Left, Result_Right in Dict_Result['Certificate'][Target].items():
-                    if (Result_Left == "DNS" and Result_Right == ""):  Result_Right = "FEHLT"
-                    elif (Result_Left != "DNS" and Result_Right == ""): Result_Right = "FEHLT"
+                    if (Result_Left == "DNS" and Result_Right == ""):        Result_Right = "FEHLT"
+                    elif (Result_Left != "DNS" and Result_Right == ""):      Result_Right = "FEHLT"
 
-                    if (Result_Left != "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
+                    if (Result_Left != "DNS" and Result_Right != "FEHLT"):   Array_Temp.append(Result_Right)
                     elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
                     else: Array_Temp.append("-")
@@ -147,10 +147,10 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                 Array_Temp = []
                 Array_Temp.append(Target)
                 for Result_Left, Result_Right in Dict_Result['HTTP_Methods'][Target].items():
-                    if (Result_Left == "DNS" and Result_Right == ""):  Result_Right = "FEHLT"
-                    elif (Result_Left != "DNS" and Result_Right == ""): Result_Right = "FEHLT"
+                    if (Result_Left == "DNS" and Result_Right == ""):        Result_Right = "FEHLT"
+                    elif (Result_Left != "DNS" and Result_Right == ""):      Result_Right = "FEHLT"
 
-                    if (Result_Left != "DNS" and Result_Right == "FEHLT"): Array_Temp.append("✓")
+                    if (Result_Left != "DNS" and Result_Right == "FEHLT"):   Array_Temp.append("✓")
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
                     elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
                     elif (Result_Left != "DNS" and Result_Right != "FEHLT"): Array_Temp.append("X")
@@ -175,7 +175,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                     Array_Temp = []
                     Array_Temp.append(Target)
                     for Result_Left, Result_Right in Dict_Result['SSL'][Target].items():
-                        if (Result_Left == "DNS" and Result_Right == ""):  Array_Temp.append("-")
+                        if (Result_Left == "DNS" and Result_Right == ""):   Array_Temp.append("-")
                         elif (Result_Left == "DNS" and Result_Right != ""): Array_Temp.append(Result_Right)
 
                         if (Result_Left == "Ciphers"):
