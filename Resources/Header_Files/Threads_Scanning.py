@@ -191,7 +191,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             )
 
             # Scan_HTTP_Methods
-            Dict_Result['HTTP_Methods'][url] = Check_HTTP_Methods(url, Host_Name, dict_proxies, dict_auth, Location)
+            Dict_Result['HTTP_Methods'][url] = Check_HTTP_Methods(url, t_seconds, Host_Name, dict_proxies, dict_auth, Location, allow_redirects)
             Dict_Temp['HTTP_Methods'][url]   = Dict_Result['HTTP_Methods'][url]
 
             # Trace_End
