@@ -8,7 +8,7 @@ from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 from ..Standard_Operations.Standard import Standard
 
-def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Location, Dict_Temp = {}, Switch_URL = False):
+def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Location, Allow_Redirects, Dict_Temp = {}, Switch_URL = False):
     # Get_Host_Name
     if (Host_Name != ""): Dict_Temp['DNS'] = Host_Name
     else:                 Dict_Temp['DNS'] = ""
@@ -17,12 +17,12 @@ def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locat
     async def Check_Methods():
         Limit = TCPConnector(limit_per_host=5)
 
-        async with ClientSession(connector=Limit, trust_env=True) as s:
+        async with ClientSession(connector=Limit, trust_env=True, read_timeout=float(t_seconds), conn_timeout=float(t_seconds)) as s:
             for Method in Array_HTTP_Methods:
                 try:
                     # Basic_Auth_With_Proxy
                     if (Dict_Proxies['http'] != '' and Dict_Auth['user'] != ''):
-                        async with s.request(Method, url, ssl=False, auth=BasicAuth(Dict_Auth['user'], Dict_Auth['password']), proxy=Dict_Proxies['http'], timeout=t_seconds, allow_redirects=False) as r:
+                        async with s.request(Method, url, ssl=False, auth=BasicAuth(Dict_Auth['user'], Dict_Auth['password']), proxy=Dict_Proxies['http'], timeout=t_seconds, allow_redirects=Allow_Redirects) as r:
                             if (str(r.status) == "200"):
                                 Dict_Temp[Method] = "True"
                             else:
@@ -30,7 +30,7 @@ def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locat
 
                     # Basic_Auth
                     elif (Dict_Proxies['http'] == '' and Dict_Auth['user'] != ''):
-                        async with s.request(Method, url, ssl=False, auth=BasicAuth(Dict_Auth['user'], Dict_Auth['password']), timeout=t_seconds, allow_redirects=False) as r:
+                        async with s.request(Method, url, ssl=False, auth=BasicAuth(Dict_Auth['user'], Dict_Auth['password']), timeout=t_seconds, allow_redirects=Allow_Redirects) as r:
                             if (str(r.status) == "200"):
                                 Dict_Temp[Method] = "True"
                             else:
@@ -38,7 +38,7 @@ def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locat
 
                     # Proxy
                     elif (Dict_Proxies['http'] != '' and Dict_Auth['user'] == ''):
-                          async with s.request(Method, url, ssl=False, proxy=Dict_Proxies['http'], timeout=t_seconds, allow_redirects=False) as r:
+                          async with s.request(Method, url, ssl=False, proxy=Dict_Proxies['http'], timeout=t_seconds, allow_redirects=Allow_Redirects) as r:
                             if (str(r.status) == "200"):
                                 Dict_Temp[Method] = "True"
                             else:
@@ -46,7 +46,7 @@ def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locat
 
                     # Nothing
                     elif (Dict_Proxies['http'] == '' and Dict_Auth['user'] == ''):
-                        async with s.request(Method, url, ssl=False, timeout=t_seconds, allow_redirects=False) as r:
+                        async with s.request(Method, url, ssl=False, timeout=t_seconds, allow_redirects=Allow_Redirects) as r:
                             if (str(r.status) == "200"):
                                 Dict_Temp[Method] = "True"
                             else:
