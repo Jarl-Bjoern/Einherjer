@@ -8,7 +8,7 @@ from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 from ..Standard_Operations.Standard import Standard
 
-def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Location, Allow_Redirects, Dict_Temp = {}, Switch_URL = False, Switch_Error = False):
+def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Location, Allow_Redirects, Dict_Temp = {}, Switch_URL = False):
     # Get_Host_Name
     if (Host_Name != ""): Dict_Temp['DNS'] = Host_Name
     else:                 Dict_Temp['DNS'] = ""
@@ -19,6 +19,7 @@ def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locat
 
         async with ClientSession(connector=Limit, trust_env=True, read_timeout=float(t_seconds), conn_timeout=float(t_seconds)) as s:
             for Method in Array_HTTP_Methods:
+                Switch_Error = False
                 try:
                     # Basic_Auth_With_Proxy
                     if (Dict_Proxies['http'] != '' and Dict_Auth['user'] != ''):
