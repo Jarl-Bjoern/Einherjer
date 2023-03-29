@@ -51,7 +51,7 @@ def Check_HTTP_Methods(url, Host_Name, Dict_Proxies, Dict_Auth, Location, Dict_T
                                 Dict_Temp[Method] = "True"
                             else:
                                 Dict_Temp[Method] = "FEHLT"
-                except ClientConnectorError, ServerDisconnectedError:
+                except (ClientConnectorError, ServerDisconnectedError):
                     Dict_Temp[Method] = "FEHLT"
 
     # Start_Scan
