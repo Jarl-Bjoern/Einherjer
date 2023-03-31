@@ -40,6 +40,7 @@ class Check_FTP:
                         +Colors.ORANGE+'\nEinherjer Output'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n',
                         join(Location, 'Logs')
                     )
+                    Standard.Write_Output_File('affected_ftp_targets.txt', f'{url} ({Host_Name})', Location)
                 else:
                     Logs.Log_File(
                         Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
@@ -50,6 +51,7 @@ class Check_FTP:
                         +Colors.ORANGE+'\nEinherjer Output'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n',
                         join(Location, 'Logs')
                     )
+                    Standard.Write_Output_File('affected_ftp_targets.txt', f'{url} (-)', Location)
 
             except ConnectionRefusedError:
                 pass
