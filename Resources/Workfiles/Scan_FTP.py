@@ -29,27 +29,27 @@ class Check_FTP:
                 if ("Login successful." in msg):
                     Dict_Temp['Anonymous_Login'] = "True"
 
-            # Logging
-            if (Host_Name != ""):
-                Logs.Log_File(
-                    Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                    +Colors.BLUE+'FTP-Check\n'
-                    +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                    +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - {Host_Name} - '+Colors.CYAN+f'{r}'
-                    +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
-                    +Colors.ORANGE+'\nEinherjer Output'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n',
-                    join(Location, 'Logs')
-                )
-            else:
-                Logs.Log_File(
-                    Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                    +Colors.BLUE+'FTP-Check\n'
-                    +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                    +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - '+Colors.CYAN+f'{r}'
-                    +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
-                    +Colors.ORANGE+'\nEinherjer Output'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n',
-                    join(Location, 'Logs')
-                )
+                # Logging
+                if (Host_Name != ""):
+                    Logs.Log_File(
+                        Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                        +Colors.BLUE+'FTP-Check\n'
+                        +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                        +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - {Host_Name} - '+Colors.CYAN+f'{r}'
+                        +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
+                        +Colors.ORANGE+'\nEinherjer Output'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n',
+                        join(Location, 'Logs')
+                    )
+                else:
+                    Logs.Log_File(
+                        Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                        +Colors.BLUE+'FTP-Check\n'
+                        +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                        +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - '+Colors.CYAN+f'{r}'
+                        +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
+                        +Colors.ORANGE+'\nEinherjer Output'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n',
+                        join(Location, 'Logs')
+                    )
 
             except ConnectionRefusedError:
                 pass
