@@ -88,23 +88,20 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
     def Filter_Mode(Date, Output_location, args, Array_Output = []):
         # Filtering_Options
-        if (args.nmap_files_location    == None and
-            args.screenshot_location    == None and
+        if (args.file_split             == None and
             args.hostname_template_file == None and
-            args.hostname_target_file   == None):
+            args.hostname_target_file   == None and
+            args.nmap_files_location    == None and
+            args.screenshot_location    == None):
                 from Resources.Header_Files.ArgParser_Filter_Intro import Argument_Parser
                 Argument_Parser("\n\n\t\t\tThe program cannot be started without filter methods!\n\t\t\t For more information use the parameter -h or --help.\n"), rmdir(Output_location), exit() 
         else:
             # Program_Start
             Standard.Initialien(args.debug)
 
-            if (args.nmap_files_location != None):
-                from Resources.Filter.Filter_SSH_NMAP import SSH_Nmap
-                Array_Output = SSH_Nmap(args.nmap_files_location, Output_location)
-
-            if (args.screenshot_location != None):
-                from Resources.Filter.Filter_Screenshot import Screenshot_Frame
-                Array_Output = Screenshot_Frame(args.screenshot_location, args.screenshot_frame_thickness)
+            if (args.file_split != None):
+                from Resources.Filter.Filter_Target_Split import Target_Split
+                Array_Output = Target_Split(args.file_split, Output_location)
 
             if ((args.hostname_template_file != None and args.hostname_target_file == None) or
                 (args.hostname_template_file == None and args.hostname_target_file != None)):
@@ -114,6 +111,14 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             elif (args.hostname_template_file != None and args.hostname_target_file != None):
                 from Resources.Filter.Filter_Hostname import Hostname_Filter
                 Array_Output = Hostname_Filter(args.hostname_template_file, args.hostname_target_file, Output_location)
+
+            if (args.nmap_files_location != None):
+                from Resources.Filter.Filter_SSH_NMAP import SSH_Nmap
+                Array_Output = SSH_Nmap(args.nmap_files_location, Output_location)
+
+            if (args.screenshot_location != None):
+                from Resources.Filter.Filter_Screenshot import Screenshot_Frame
+                Array_Output = Screenshot_Frame(args.screenshot_location, args.screenshot_frame_thickness)
 
         return Array_Output
 
