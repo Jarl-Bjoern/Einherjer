@@ -131,7 +131,7 @@ def Markdown_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = "
         Write_Mode = Write_Extend(join(location, 'result_ftp.md'))
 
         # Filter_Mode
-        with open(join(location, 'result_ftp.md'), Write_Mode, encoding='UTF-8', newline='') as csv_file:
+        with open(join(location, 'result_ftp.md'), Write_Mode, encoding='UTF-8', newline='') as md_file:
             if (Write_Mode == 'w'):
                     md_file.write('| URL | DNS | BANNER | ANONYMOUS_LOGIN |\n')
                     md_file.write('| --- | --- | ------ | --------------- |\n')
