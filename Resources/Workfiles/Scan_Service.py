@@ -4,7 +4,7 @@
 
 def Port_Scan(addr, port):
     socket_defaulttimeout(1)
-    with (socket(AF_INET, SOCK_STREAM)) as s:
+    with socket(AF_INET, SOCK_STREAM) as s:
         result = s.connect_ex((addr, port))
 
     return port
