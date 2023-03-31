@@ -98,6 +98,8 @@ class Standard:
                             Protocol = "http"
                         elif ('https' in elem.attrib['name'] or ('http' in elem.attrib['name'] and 'ssl' in elem.attrib['name'])):
                             Protocol = "https"
+                        elif ('ftp' in elem.attrib['name']):
+                            Protocol = "ftp"
                 elif (elem.tag == 'port'):
                     if (Skip_Attributes != True):
                         Port = elem.attrib['portid']
