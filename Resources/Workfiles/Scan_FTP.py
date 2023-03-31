@@ -28,7 +28,8 @@ class Check_FTP:
 
             if ("Login successful." in msg):
                 Dict_Temp['Anonymous_Login'] = "True"
-        except ConnectionRefusedError: pass
+        except ConnectionRefusedError:
+            print ("Error")
 
         print (Dict_Temp)
 
