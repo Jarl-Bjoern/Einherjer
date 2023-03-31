@@ -511,7 +511,8 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                                         zF.write(join(root, file), file)
 
                                 if ('Screenshots' in root):
-                                    Switch_Screenshots = True
+                                    if (len(listdir(join(Location, 'Screenshots'))) > 0):
+                                        Switch_Screenshots = True
                                 remove(join(root, file))
                             else:
                                 if (join(root, file) not in Array_Output):
