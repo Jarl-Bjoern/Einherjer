@@ -12,15 +12,15 @@ class Check_FTP:
         if ('ftp://' in url):    URL = url.split('ftp://')[1]
         else:                    URL = url
 
-        if (url.count(':') > 1): Port = url.split(':')[2]
-        else:                    Port = 21
+        if (url.count(':') > 1): Target, Port = URL.split(':')[2]
+        else:                    Target, Port = URL, 21
 
         if (Host_Name != ""):    Dict_Temp['DNS'] = Host_Name
         else:                    Dict_Temp['DNS'] = ""
 
         ftp = FTP()
         try:
-            ftp.connect(URL, int(Port))
+            ftp.connect(Target, int(Port))
             msg    = ftp.login()
             Banner = ftp.getwelcome()
             if (str(Banner) != ""):
@@ -29,7 +29,7 @@ class Check_FTP:
             if ("Login successful." in msg):
                 Dict_Temp['Anonymous_Login'] = "True"
         except ConnectionRefusedError:
-            print ("Error")
+            pass
 
         print (Dict_Temp)
 
