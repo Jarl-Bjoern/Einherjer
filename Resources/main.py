@@ -104,7 +104,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
         return Array_Output
 
-    def Scanning_Mode(Date, args, Database_Password, Array_Thread_Args = [], Dict_Threads = {}, Dict_Proxies = {'http': "",'https': ""}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None, Switch_Screenshots = False, Array_Targets = [], Array_SSL_Targets = []):
+    def Scanning_Mode(Date, args, Location, Database_Password, Array_Thread_Args = [], Dict_Threads = {}, Dict_Proxies = {'http': "",'https': ""}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None, Switch_Screenshots = False, Array_Targets = [], Array_SSL_Targets = []):
         # Dict_Declaration
         Dict_Result = {
             'Certificate':               {},
@@ -560,7 +560,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
     # Program_Mode
     if (Program_Mode == "Scanning_Mode"):
-        Array_Output, Switch_Screenshots = Scanning_Mode(Date, args, Database_Password)
+        Array_Output, Switch_Screenshots = Scanning_Mode(Date, args, Location, Database_Password)
     elif (Program_Mode == "Filter_Mode"):
         Array_Output = Filter_Mode(Date, Location, args)
     elif (Program_Mode == "Brute_Force_Mode"):
