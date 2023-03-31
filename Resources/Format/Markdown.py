@@ -126,6 +126,33 @@ def Markdown_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = "
                     else: Temp_Word += " ✓ |"
                 md_file.write(f'{Temp_Word}\n')
 
+    if (Dict_Result['FTP'] != {}):
+        # Check_For_Existing_File
+        Write_Mode = Write_Extend(join(location, 'result_ftp.md'))
+
+        # Filter_Mode
+        with open(join(location, 'result_ftp.md'), Write_Mode, encoding='UTF-8', newline='') as csv_file:
+            if (Write_Mode == 'w'):
+                    md_file.write('| URL | DNS | BANNER | ANONYMOUS_LOGIN |\n')
+                    md_file.write('| --- | --- | ------ | --------------- |\n')
+
+            for Target in Dict_Result['FTP']:
+                Temp_Word = ""
+                Temp_Word += f"| {Target} |"
+                for Result_Left, Result_Right in Dict_Result['FTP'][Target].items():
+                    if (Result_Left == "DNS" and Result_Right == ""):        Result_Right = "FEHLT"
+
+                    if (Result_Left != "DNS" and Result_Right != "False"):
+                        if (Result_Left == "Anonymous_Login"): Temp_Word += " X |"
+                        else:                                  Temp_Word += f" {Result_Right} |"
+                    elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Temp_Word += f" {Result_Right} |"
+                    elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Temp_Word += " - |"
+                    elif (Result_Left != "DNS" and Result_Right == "False"):
+                        if (Result_Left == "Anonymous_Login"): Temp_Word += f" ✓ |"
+                        else:                                  Temp_Word += f" {Result_Right} |"
+
+                md_file.write(f'{Temp_Word}\n')
+
     if (Dict_Result['SSL'] != {}):
         # Check_For_Existing_File
         Write_Mode        = Write_Extend(join(location, 'result_ssl_ciphers.md'))
