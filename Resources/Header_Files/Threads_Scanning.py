@@ -249,11 +249,13 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
                 join(Location, 'Logs')
             )
 
+
         # SSH
         if (dict_switch['scan_ssh'] != False and 'ssh://' in url):
             pass
 #            try: Dict_Result['SSH'][url] = SSH_Vulns(url)
 #            except SSHException: Logs.Write_Log(url, Host_Name, join(Location, 'Logs'))
+
 
         # Write_File_Format
         file_format(Dict_Temp, Location)
