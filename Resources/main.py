@@ -104,7 +104,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
         return Array_Output
 
-    def Scanning_Mode(Date, args, Location, Database_Password, Array_Thread_Args = [], Dict_Threads = {}, Dict_Proxies = {'http': "",'https': ""}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None, Switch_Screenshots = False, Array_Targets = [], Array_SSL_Targets = []):
+    def Scanning_Mode(Date, args, Output_Location, Database_Password, Array_Thread_Args = [], Dict_Threads = {}, Dict_Proxies = {'http': "",'https': ""}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None, Switch_Screenshots = False, Array_Targets = [], Array_SSL_Targets = []):
         # Dict_Declaration
         Dict_Result = {
             'Certificate':               {},
@@ -144,7 +144,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
         # Target_Options
         if (args.target == None and args.import_list == None and args.add_nmap_xml_result == None):
             from Resources.Header_Files.ArgParser_Scan_Intro import Argument_Parser
-            Argument_Parser("\n\n\t\t\t   The program cannot be started without targets!\n\t\t\tFor more information use the parameter -h or --help.\n"), rmdir(Location), exit()
+            Argument_Parser("\n\n\t\t\t   The program cannot be started without targets!\n\t\t\tFor more information use the parameter -h or --help.\n"), rmdir(Output_Location), exit()
         elif (args.target == None and (args.import_list != None or args.add_nmap_xml_result != None)):
             if (args.import_list != None):
                 try:
@@ -255,7 +255,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             else:                environ["CHROME_DRIVER_PATH"] = join(dirname(realpath(__file__)), "Webdriver/chromedriver")
 
             # Screenshot_Path
-            Screen_Dir = join(Location, 'Screenshots')
+            Screen_Dir = join(Output_Location, 'Screenshots')
             try: makedirs(Screen_Dir)
             except FileExistsError: pass
 
@@ -276,7 +276,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             args.scan_site_ssl            == False and
             args.scan_ssh                 == False):
                     from Resources.Header_Files.ArgParser_Intro import Argument_Parser
-                    Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), rmdir(Location), exit()
+                    Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), rmdir(Output_Location), exit()
         elif (args.scan_all               != False and
             args.scan_host_name           == False and
             args.scan_security_flags      == False and
@@ -330,7 +330,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             from Resources.Format.PDF import Create_PDF
             from Resources.Format.Word import Word_Table
             Output_Write = Word_Table
-            if (osname == 'nt'): Create_PDF(Location)
+            if (osname == 'nt'): Create_PDF(Output_Location)
             else: print("At this point it's not be possible to convert a docx file into a pdf under linux.\nPlease try it under windows.\n")
         elif ("tex" in args.format):
             from Resources.Format.LaTeX import Latex_Table
@@ -382,7 +382,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                                 Dict_Proxies,
                                 Dict_Auth,
                                 Output_Write,
-                                Location,
+                                Output_Location,
                                 args.allow_redirects
                             ]
 
@@ -395,7 +395,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                                         else:
                                             if ((int(time()) - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
                                                 Dict_Threads[Thread_ID][0].terminate()
-                                                Logs.Write_Log(Target, "", join(Location, 'Logs'))
+                                                Logs.Write_Log(Target, "", join(Output_Location, 'Logs'))
                                                 Dict_Threads.pop(Thread_ID, None)
                                                 Counter_Connections -= 1
                                     sleep(2.25)
@@ -426,7 +426,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                                 Dict_Proxies,
                                 Dict_Auth,
                                 Output_Write,
-                                Location
+                                Output_Location
                             ]
 
                             if (Counter_Connections == args.max_connections):
@@ -438,7 +438,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                                         else:
                                             if ((int(time()) - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
                                                 Dict_Threads[Thread_ID][0].terminate()
-                                                Logs.Write_Log(Target, "", join(Location, 'Logs'))
+                                                Logs.Write_Log(Target, "", join(Output_Location, 'Logs'))
                                                 Dict_Threads.pop(Thread_ID, None)
                                                 Counter_Connections -= 1
                                     sleep(2.25)
@@ -489,19 +489,19 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
                 # Get_All_Files
                 progress.start_task(task_Filter)
-                Temp_Path_Length = len(Standard.List_Directory_Recursive(Location))
+                Temp_Path_Length = len(Standard.List_Directory_Recursive(Output_Location))
 
                 if (Temp_Path_Length > 0):
                     Counter_Bar_Filter = 100/Temp_Path_Length
                     progress.update(task_Filter, total=Temp_Path_Length)
-                    for root, _, files in walk(Location, topdown=False):
+                    for root, _, files in walk(Output_Location, topdown=False):
                         for file in files:
                             if (args.zip_file != False):
-                                if (join(Location, 'Einherjer_Output.zip') not in Array_Output):
-                                    Array_Output.append(join(Location, 'Einherjer_Output.zip'))
+                                if (join(Output_Location, 'Einherjer_Output.zip') not in Array_Output):
+                                    Array_Output.append(join(Output_Location, 'Einherjer_Output.zip'))
 
                                 # Write_Encrypted_Zip_File
-                                with AESZipFile(join(Location, 'Einherjer_Output.zip'), 'a', compression=ZIP_LZMA, encryption=WZ_AES) as zF:
+                                with AESZipFile(join(Output_Location, 'Einherjer_Output.zip'), 'a', compression=ZIP_LZMA, encryption=WZ_AES) as zF:
                                     zF.setpassword(bytes(Password_Input, encoding='utf-8'))
                                     if ('Screenshots' in root):
                                         zF.write(join(root, file), join('Screenshots', file))
@@ -511,7 +511,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                                         zF.write(join(root, file), file)
 
                                 if ('Screenshots' in root):
-                                    if (len(listdir(join(Location, 'Screenshots'))) > 0):
+                                    if (len(listdir(join(Output_Location, 'Screenshots'))) > 0):
                                         Switch_Screenshots = True
                                 remove(join(root, file))
                             else:
@@ -521,7 +521,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
                     if (args.zip_file != False):
                         kp    = create_database(
-                            join(Location, 'zip.kdbx'),
+                            join(Output_Location, 'zip.kdbx'),
                             password=Database_Password,
                             keyfile=None,
                             transformed_key=None
@@ -540,28 +540,28 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                     sleep(0.01)
 
         if (args.scan_site_screenshot != False):
-            Filter_Output_File = Web.Screenshot_Filter(Screen_Dir, Location)
+            Filter_Output_File = Web.Screenshot_Filter(Screen_Dir, Output_Location)
             if (Filter_Output_File != ""):
                 Array_Output.append(Filter_Output_File)
 
         if (args.zip_file != False):
-            for _ in listdir(Location):
-                if (isdir(join(Location, _))):
-                    try:            rmdir(join(Location, _))
+            for _ in listdir(Output_Location):
+                if (isdir(join(Output_Location, _))):
+                    try:            rmdir(join(Output_Location, _))
                     except OSError:
                         pass
-                        #rmtree(join(Location, _), ignore_errors=True)
+                        #rmtree(join(Output_Location, _), ignore_errors=True)
 
         return Array_Output, Switch_Screenshots
 
     # Output_Location
     if (args.output_location != None):
         if ('.' in args.output_location or './' in args.output_location):
-            if ('./' in args.output_location): Location = Standard.Create_Location_Dir(join(getcwd(), f"{args.output_location[2:]}/{Date}"))
-            else: Location = Standard.Create_Location_Dir(join(getcwd(), f"{args.output_location}/{Date}"))
+            if ('./' in args.output_location):                                      Location = Standard.Create_Location_Dir(join(getcwd(), f"{args.output_location[2:]}/{Date}"))
+            else:                                                                   Location = Standard.Create_Location_Dir(join(getcwd(), f"{args.output_location}/{Date}"))
         elif ('.' not in args.output_location and '/' not in args.output_location): Location = Standard.Create_Location_Dir(join(getcwd(), f"{args.output_location}/{Date}"))
-        elif ('/' in args.output_location and not '.' in args.output_location): Location = Standard.Create_Location_Dir(f"{args.output_location}/{Date}")
-    else: Location = Standard.Create_Location_Dir(join(dirname(realpath(__file__)).replace('/Resources','/einherjer_output'), Date))
+        elif ('/' in args.output_location and not '.' in args.output_location):     Location = Standard.Create_Location_Dir(f"{args.output_location}/{Date}")
+    else:                                                                           Location = Standard.Create_Location_Dir(join(dirname(realpath(__file__)).replace('/Resources','/einherjer_output'), Date))
 
     # Program_Mode
     if (Program_Mode == "Scanning_Mode"):
