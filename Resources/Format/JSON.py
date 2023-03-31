@@ -11,32 +11,32 @@ def JSON_Table(Dict_Result, location, Array_Files = []):
             json.dump(Dict_Result[keyword], f)
 
     # Certificates
-    if (Dict_Header['Certificate'] != {}):
+    if (Dict_Result['Certificate'] != {}):
         Array_Files.append(join(location, 'result_certificate.json'))
         Write_JSON('Header', location, 'result_certificate.json')
 
     # Cookie_Flags
-    if (Dict_Header['Security_Flag'] != {}):
+    if (Dict_Result['Security_Flag'] != {}):
         Array_Files.append(join(location, 'result_security_flags.json'))
         Write_JSON('Security_Flag', location, 'result_security_flags.json')
 
     # FTP
-    if (Dict_Header['FTP'] != {}):
+    if (Dict_Result['FTP'] != {}):
         Array_Files.append(join(location, 'result_ftp.json'))
         Write_JSON('FTP', location, 'result_ftp.json')
 
     # HTTP_Header
-    if (Dict_Header['Header'] != {}):
+    if (Dict_Result['Header'] != {}):
         Array_Files.append(join(location, 'result_header.json'))
         Write_JSON('Header', location, 'result_header.json')
 
     # HTTP_Information_Disclosure
-    if (Dict_Header['Information'] != {}):
+    if (Dict_Result['Information'] != {}):
         Array_Files.append(join(location, 'result_information_disclosure.json'))
         Write_JSON('Information', location, 'result_information_disclosure.json')
 
     # SSH
-    if (Dict_Header['SSH'] != {}):
+    if (Dict_Result['SSH'] != {}):
         Array_Files.append(join(location, 'result_ssh_vulns.json'))
         Write_JSON('SSH', location, 'result_ssh_vulns.json')
 
