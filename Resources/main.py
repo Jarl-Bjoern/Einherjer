@@ -86,7 +86,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             args.hostname_template_file == None and
             args.hostname_target_file   == None):
                 from Resources.Header_Files.ArgParser_Filter_Intro import Argument_Parser
-                Argument_Parser("\n\n\t\t\tThe program cannot be started without filter methods!\n\t\t\t For more information use the parameter -h or --help.\n"), exit() 
+                Argument_Parser("\n\n\t\t\tThe program cannot be started without filter methods!\n\t\t\t For more information use the parameter -h or --help.\n"), rmdir(Output_location), exit() 
         else:
             # Program_Start
             Standard.Initialien(args.debug)
@@ -98,7 +98,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             if ((args.hostname_template_file != None and args.hostname_target_file == None) or
                 (args.hostname_template_file == None and args.hostname_target_file != None)):
                     from Resources.Header_Files.ArgParser_Filter_Intro import Argument_Parser
-                    Argument_Parser("\n\n\t\t\tThe program cannot be started if only one hostname filtering parameter is specified!\n\t\t\t\t\tFor more information use the parameter -h or --help.\n"), exit() 
+                    Argument_Parser("\n\n\t\t\tThe program cannot be started if only one hostname filtering parameter is specified!\n\t\t\t\t\tFor more information use the parameter -h or --help.\n"), rmdir(Output_location), exit() 
             elif (args.hostname_template_file != None and args.hostname_target_file != None):
                 Array_Output = Filter.Hostname_Filter(args.hostname_template_file, args.hostname_target_file, Output_location)
 
@@ -144,7 +144,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
         # Target_Options
         if (args.target == None and args.import_list == None and args.add_nmap_xml_result == None):
             from Resources.Header_Files.ArgParser_Scan_Intro import Argument_Parser
-            Argument_Parser("\n\n\t\t\t   The program cannot be started without targets!\n\t\t\tFor more information use the parameter -h or --help.\n"), exit()
+            Argument_Parser("\n\n\t\t\t   The program cannot be started without targets!\n\t\t\tFor more information use the parameter -h or --help.\n"), rmdir(Location), exit()
         elif (args.target == None and (args.import_list != None or args.add_nmap_xml_result != None)):
             if (args.import_list != None):
                 try:
@@ -252,7 +252,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
             # Chromedriver_Settings
             if (osname == 'nt'): environ["CHROME_DRIVER_PATH"] = join(dirname(realpath(__file__)), "Webdriver/chromedriver.exe")
-            else: environ["CHROME_DRIVER_PATH"] = join(dirname(realpath(__file__)), "Webdriver/chromedriver")
+            else:                environ["CHROME_DRIVER_PATH"] = join(dirname(realpath(__file__)), "Webdriver/chromedriver")
 
             # Screenshot_Path
             Screen_Dir = join(Location, 'Screenshots')
@@ -276,7 +276,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             args.scan_site_ssl            == False and
             args.scan_ssh                 == False):
                     from Resources.Header_Files.ArgParser_Intro import Argument_Parser
-                    Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
+                    Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), rmdir(Location), exit()
         elif (args.scan_all               != False and
             args.scan_host_name           == False and
             args.scan_security_flags      == False and
