@@ -54,7 +54,7 @@ def Check_Certificate(url, t_seconds, Host_Name, Location, context = create_unve
                 Date_Block = str(cert.not_valid_after).split(' ')[0].split('-')
                 Date_Difference = (Current_Date - datetime(int(Date_Block[0]), int(Date_Block[1]), int(Date_Block[2]))).days
                 if (Date_Difference < 0): Dict_Temp['Date_Difference'] = f'{str(Date_Difference)[1:]} days before expires'
-                else: Dict_Temp['Date_Difference'] = f'expired since {Date_Difference} days'
+                else:                     Dict_Temp['Date_Difference'] = f'expired since {Date_Difference} days'
 
                 # Add_Scan_Date
                 Dict_Temp['Current_Date'] = str(Current_Date).split('.')[0]
