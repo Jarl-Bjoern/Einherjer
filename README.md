@@ -82,7 +82,12 @@ UNDER CONSTRUCTION
 
 <a name="special_thanks"></a>
 # 🏆 Special thanks
+In the context of the development of the tool, I would like to thank the following people for their contribution:
+  - Explie
+  - HomeSen
+  - janstarke
 
+But also the developer would like to thank the people who do not have a GitHub account and have helped the success of the tool in any way.
 <br />
 
 # ⚠️ Remark
