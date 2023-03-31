@@ -248,7 +248,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             # Custom_Chromium
             if (args.custom_chromium_path != None): driver_options.binary_location = args.custom_chromium_path
             else:
-                if (osname != 'nt'): driver_options.binary_location = "/usr/bin/chromium"
+                if (osname != 'nt'):                driver_options.binary_location = "/usr/bin/chromium"
 
             # Chromedriver_Settings
             if (osname == 'nt'): environ["CHROME_DRIVER_PATH"] = join(dirname(realpath(__file__)), "Webdriver/chromedriver.exe")
@@ -500,6 +500,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                                 if (join(Location, 'Einherjer_Output.zip') not in Array_Output):
                                     Array_Output.append(join(Location, 'Einherjer_Output.zip'))
 
+                                # Write_Encrypted_Zip_File
                                 with AESZipFile(join(Location, 'Einherjer_Output.zip'), 'a', compression=ZIP_LZMA, encryption=WZ_AES) as zF:
                                     zF.setpassword(bytes(Password_Input, encoding='utf-8'))
                                     if ('Screenshots' in root):
