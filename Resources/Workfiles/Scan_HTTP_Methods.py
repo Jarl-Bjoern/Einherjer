@@ -67,6 +67,7 @@ def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locat
                     +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n',
                     join(Location, 'Logs')
                 )
+                Standard.Write_Output_File('affected_http_methods_targets.txt', f'{url} ({Host_Name})', Location)
             elif (Host_Name == "" and Switch_Error == False):
                 Logs.Log_File(
                     Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
@@ -77,12 +78,8 @@ def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locat
                     +Colors.ORANGE+Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n',
                     join(Location, 'Logs')
                 )
-
-            # Write_Output
-            if (Host_Name == "" and Switch_Error == False):
                 Standard.Write_Output_File('affected_http_methods_targets.txt', f'{url} (-)', Location)
-            elif (Host_Name != "" and Switch_Error == False):
-                Standard.Write_Output_File('affected_http_methods_targets.txt', f'{url} ({Host_Name})', Location)
+
 
     # Start_Scan
     asyncio.run(Check_Methods())
