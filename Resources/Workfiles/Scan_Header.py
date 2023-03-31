@@ -134,6 +134,8 @@ def Check_Site_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locati
                     +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp_Information_Disclosure}\n\n',
                     join(Location, 'Logs')
                 )
+                Standard.Write_Output_File('affected_http_information_disclosure_targets.txt', f'{url} ({Host_Name})', Location)
+            Standard.Write_Output_File('affected_header_targets.txt', f'{url} ({Host_Name})', Location)
         else:
             Logs.Log_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
@@ -158,17 +160,12 @@ def Check_Site_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locati
                     +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp_Information_Disclosure}\n\n',
                     join(Location, 'Logs')
                 )
+                Standard.Write_Output_File('affected_http_information_disclosure_targets.txt', f'{url} (-)', Location)
+            Standard.Write_Output_File('affected_header_targets.txt', f'{url} (-)', Location)
 
         # Terminate_Session
         r.close()
 
-        # Write_Output
-        if (Host_Name == ""):
-            Standard.Write_Output_File('affected_header_targets.txt', f'{url} (-)', Location)
-            Standard.Write_Output_File('affected_http_information_disclosure_targets.txt', f'{url} (-)', Location)
-        else:
-            Standard.Write_Output_File('affected_header_targets.txt', f'{url} ({Host_Name})', Location)
-            Standard.Write_Output_File('affected_http_information_disclosure_targets.txt', f'{url} ({Host_Name})', Location)
 
     except ReadTimeout:
         Logs.Write_Log(url, Host_Name, join(Location, 'Logs'))
