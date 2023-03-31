@@ -19,7 +19,7 @@ if (Program_Mode == "Scanning_Mode"):
             Dict_Header = Standard.Read_File_Special(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_header_api.txt"))
     elif (args.read_config_http_header     == True and
           args.read_config_http_header_api == True):
-            exit()
+            exit(Colors.RED+"It's not possible to use both http_header templates at the same time."+Colors.RESET)
     else: Dict_Header = {}
 
     Array_Information_Disclosure_Header = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_information_disclosure.txt"))
