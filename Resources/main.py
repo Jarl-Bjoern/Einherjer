@@ -11,7 +11,6 @@ SYSTEM_PATH.append(dirname(realpath(__file__)).split("Resources")[0])
 from Resources.Header_Files.Threads_Scanning import *
 from Resources.Header_Files.Threads_SSL import *
 from Resources.Workfiles.Scan_Screen import Web
-from Resources.Filter.Methods import Filter
 
 # Main_Function
 def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False):
@@ -100,15 +99,21 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             Standard.Initialien(args.debug)
 
             if (args.nmap_files_location != None):
-                Array_Output = Filter.SSH_Nmap(args.nmap_files_location, Output_location)
+                from Resources.Filter.Filter_SSH_NMAP import SSH_Nmap
+                Array_Output = SSH_Nmap(args.nmap_files_location, Output_location)
+
             if (args.screenshot_location != None):
-                Array_Output = Filter.Screenshot_Frame(args.screenshot_location, args.screenshot_frame_thickness)
+                from Resources.Filter.Filter_Screenshot import Screenshot_Frame
+                Array_Output = Screenshot_Frame(args.screenshot_location, args.screenshot_frame_thickness)
+
             if ((args.hostname_template_file != None and args.hostname_target_file == None) or
                 (args.hostname_template_file == None and args.hostname_target_file != None)):
                     from Resources.Header_Files.ArgParser_Filter_Intro import Argument_Parser
                     Argument_Parser("\n\n\t\t\tThe program cannot be started if only one hostname filtering parameter is specified!\n\t\t\t\t\tFor more information use the parameter -h or --help.\n"), rmdir(Output_location), exit() 
+
             elif (args.hostname_template_file != None and args.hostname_target_file != None):
-                Array_Output = Filter.Hostname_Filter(args.hostname_template_file, args.hostname_target_file, Output_location)
+                from Resources.Filter.Filter_Hostname import Hostname_Filter
+                Array_Output = Hostname_Filter(args.hostname_template_file, args.hostname_target_file, Output_location)
 
         return Array_Output
 
