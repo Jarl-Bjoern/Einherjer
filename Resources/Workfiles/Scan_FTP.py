@@ -12,7 +12,7 @@ class Check_FTP:
         if ('ftp://' in url):    URL = url.split('ftp://')[1]
         else:                    URL = url
 
-        if (url.count(':') > 1): Target, Port = URL.split(':')[2]
+        if (url.count(':') > 1): Target, Port = URL.split(':')
         else:                    Target, Port = URL, 21
 
         if (Host_Name != ""):    Dict_Temp['DNS'] = Host_Name
