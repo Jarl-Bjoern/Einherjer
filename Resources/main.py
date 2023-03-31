@@ -547,7 +547,9 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             for _ in listdir(Location):
                 if (isdir(join(Location, _))):
                     try:            rmdir(join(Location, _))
-                    except OSError: rmtree(join(Location, _), ignore_errors=True)
+                    except OSError:
+                        pass
+                        #rmtree(join(Location, _), ignore_errors=True)
 
         return Array_Output, Switch_Screenshots
 
