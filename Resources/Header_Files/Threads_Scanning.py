@@ -174,7 +174,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             )
 
             # Scanning_Process
-            Dict_Result['FTP'][url] = Check_FTP.FTP_Anonymous_Check(url, Host_Name)
+            Dict_Result['FTP'][url] = Check_FTP.FTP_Anonymous_Check(url, Host_Name, Location)
             Dict_Temp['FTP'][url]   = Dict_Result['FTP'][url]
 
             # Trace_End
