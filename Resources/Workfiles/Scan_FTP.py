@@ -18,20 +18,18 @@ class Check_FTP:
         if (Host_Name != ""):    Dict_Temp['DNS'] = Host_Name
         else:                    Dict_Temp['DNS'] = ""
 
-        ftp = FTP()
-        try:
-            ftp.connect(Target, int(Port))
-            msg    = ftp.login()
-            Banner = ftp.getwelcome()
-            if (str(Banner) != ""):
-                Dict_Temp['Banner'] = str(Banner).split('220')[1][2:-1]
+        with FTP() as ftp:
+            try:
+                ftp.connect(Target, int(Port))
+                msg    = ftp.login()
+                Banner = ftp.getwelcome()
+                if (str(Banner) != ""):
+                    Dict_Temp['Banner'] = str(Banner).split('220')[1][2:-1]
 
-            if ("Login successful." in msg):
-                Dict_Temp['Anonymous_Login'] = "True"
-        except ConnectionRefusedError:
-            pass
-
-        print (Dict_Temp)
+                if ("Login successful." in msg):
+                    Dict_Temp['Anonymous_Login'] = "True"
+            except ConnectionRefusedError:
+                pass
 
         return Dict_Temp
 
