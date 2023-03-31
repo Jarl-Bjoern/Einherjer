@@ -23,16 +23,16 @@ if (Program_Mode == "Scanning_Mode"):
     else: Dict_Header = {}
 
     Array_Information_Disclosure_Header = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_information_disclosure.txt"))
-    Array_HTTP_Methods = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_methods.txt"))
-    Array_TLS_Algorithms = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/ssl_ciphers.txt"))
+    Array_HTTP_Methods                  = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_methods.txt"))
+    Array_TLS_Algorithms                = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/ssl_ciphers.txt"))
 
     # Arrays
     Array_Paths, Array_SSL_Vulns, Array_Results = [],[],[]
     Array_SSH_Header = ['kex_algorithms', 'server_host_key_algorithms', 'encryption_algorithms', 'mac_algorithms']
 
     # Variables
-    COLOR_Headline = "black"
-    existing_nmap_file = ""
+    COLOR_Headline       = "black"
+    existing_nmap_file   = ""
     Chromedriver_Version = "110.0.5481.77"
 
 if (Program_Mode == "Scanning_Mode" or Program_Mode == "Filter_Mode"):
