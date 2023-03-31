@@ -35,7 +35,7 @@ class Check_FTP:
                         Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
                         +Colors.BLUE+'FTP-Check\n'
                         +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                        +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - {Host_Name} - '+Colors.CYAN+f'{r}'
+                        +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - {Host_Name}'
                         +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
                         +Colors.ORANGE+'\nEinherjer Output'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n',
                         join(Location, 'Logs')
@@ -45,7 +45,7 @@ class Check_FTP:
                         Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
                         +Colors.BLUE+'FTP-Check\n'
                         +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                        +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - '+Colors.CYAN+f'{r}'
+                        +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url}'
                         +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
                         +Colors.ORANGE+'\nEinherjer Output'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n',
                         join(Location, 'Logs')
