@@ -163,6 +163,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
         # FTP
         if (dict_switch['scan_ftp'] != False and 'ftp://' in url):
+            print ("Test")
             # Library_Import
             from ..Workfiles.Scan_FTP.Check_FTP import FTP_Anonymous_Check
 
@@ -175,7 +176,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
             # Scanning_Process
             Dict_Result['FTP'][url] = FTP_Anonymous_Check(url, Host_Name)
-            Dict_Temp['FTP'][URL]   = Dict_Result['FTP'][url]
+            Dict_Temp['FTP'][url]   = Dict_Result['FTP'][url]
 
             # Trace_End
             Logs.Trace_File(
