@@ -163,7 +163,6 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
         # FTP
         if (dict_switch['scan_ftp'] != False and 'ftp://' in url):
-            print ("Test")
             # Library_Import
             from ..Workfiles.Scan_FTP import Check_FTP
 
