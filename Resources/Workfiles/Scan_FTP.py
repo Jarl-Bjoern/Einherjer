@@ -30,6 +30,8 @@ class Check_FTP:
                 Dict_Temp['Anonymous_Login'] = "True"
         except ConnectionRefusedError: pass
 
+        print (Dict_Temp)
+
         return Dict_Temp
 
     def FTP_Brute_Force(url):
