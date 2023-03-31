@@ -69,6 +69,7 @@ def Check_Certificate(url, t_seconds, Host_Name, Location, context = create_unve
                 +'Certificate Information was succesfully recorded.\n\n',
                 join(Location, 'Logs')
             )
+            Standard.Write_Output_File('affected_certificate_targets.txt', f'{url} ({Host_Name})', Location)
         else:
             Logs.Log_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
@@ -78,12 +79,7 @@ def Check_Certificate(url, t_seconds, Host_Name, Location, context = create_unve
                 +Colors.CYAN+'Certificate Information was successfully recorded.\n\n',
                 join(Location, 'Logs')
             )
-
-        # Write_Output
-        if (Host_Name == ""):
             Standard.Write_Output_File('affected_certificate_targets.txt', f'{url} (-)', Location)
-        else:
-            Standard.Write_Output_File('affected_certificate_targets.txt', f'{url} ({Host_Name})', Location)
 
     except (ConnectionRefusedError, gaierror, SSLError, SSLZeroReturnError, TimeoutError):
         Logs.Write_Log(url, Host_Name, join(Location, 'Logs'))
