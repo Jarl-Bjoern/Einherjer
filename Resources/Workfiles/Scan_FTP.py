@@ -20,7 +20,7 @@ class Check_FTP:
 
         ftp = FTP()
         try:
-            ftp.connect(URL, Port)
+            ftp.connect(URL, int(Port))
             msg    = ftp.login()
             Banner = ftp.getwelcome()
             if (str(Banner) != ""):
