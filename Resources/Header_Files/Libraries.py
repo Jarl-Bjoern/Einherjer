@@ -134,11 +134,12 @@ try:
             if (args.scan_all                 == False and
                 args.scan_site_certificate    == False and
                 args.scan_dns                 == False and
-                args.scan_smtp                == False and
+                args.scan_ftp                 == False and
                 args.scan_site_http_methods   == False and
                 args.scan_site_screenshot     == False and
                 args.scan_site_ssl            == False and
                 args.scan_site_header         == False and
+                args.scan_smtp                == False and
                 args.scan_ssh                 == False and
                 args.scan_security_flags      == False):
                         from .ArgParser_Scan_Intro import Argument_Parser
@@ -146,11 +147,12 @@ try:
             elif (args.scan_all               != False and
                   args.scan_site_certificate  == False and
                   args.scan_dns               == False and
-                  args.scan_smtp              == False and
+                  args.scan_ftp               == False and
                   args.scan_site_http_methods == False and
                   args.scan_site_screenshot   == False and
                   args.scan_site_ssl          == False and
                   args.scan_site_header       == False and
+                  args.scan_smtp              == False and
                   args.scan_ssh               == False and
                   args.scan_security_flags    == False):
                         from aiohttp                      import BasicAuth, ClientSession, TCPConnector
@@ -191,6 +193,22 @@ try:
                         with redirect_stdout(None):
                             from webdriver_manager.chrome import ChromeDriverManager
             elif (args.scan_all == False):
+                if (args.scan_dns != False):
+                    from dns.query       import xfr
+                    from dns.zone        import from_xfr
+                if (args.scan_ftp != False):
+                    from ftplib          import FTP
+                if (args.scan_security_flags != False):
+                    from requests        import Session
+                    from requests_pkcs12 import get as pkcs_get, Pkcs12Adapter
+                if (args.scan_smtp != False):
+                    from smtplib import SMTP, SMTPServerDisconnected
+                if (args.scan_site_header != False):
+                    from requests        import get
+                    from requests_pkcs12 import get as pkcs_get, Pkcs12Adapter
+                if (args.scan_site_http_methods != False):
+                    from aiohttp import BasicAuth, ClientSession, TCPConnector
+                    import asyncio
                 if (args.scan_site_screenshot != False):
                     from cv2      import countNonZero, error as CVError, imread, imwrite, rectangle, split as cvsplit, subtract
                     from os       import environ, rename
@@ -203,6 +221,12 @@ try:
                     from webbrowser import open as webbrowser_open
                     with redirect_stdout(None):
                        from webdriver_manager.chrome import ChromeDriverManager
+                if (args.scan_ssh != False):
+                    from asyncssh        import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
+                    import asyncio
+                    with catch_warnings():
+                        simplefilter("ignore")
+                        from paramiko.transport import Transport
                 if (args.scan_site_ssl != False or args.scan_site_certificate != False):
                     from cryptography.x509 import load_der_x509_certificate
                     from cryptography.hazmat.backends import default_backend
@@ -218,26 +242,6 @@ try:
                         ServerHostnameCouldNotBeResolved,
                         SslyzeOutputAsJson
                     )
-                if (args.scan_dns != False):
-                    from dns.query       import xfr
-                    from dns.zone        import from_xfr                    
-                if (args.scan_site_header != False):
-                    from requests        import get
-                    from requests_pkcs12 import get as pkcs_get, Pkcs12Adapter
-                if (args.scan_ssh != False):
-                    from asyncssh        import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
-                    import asyncio
-                    with catch_warnings():
-                        simplefilter("ignore")
-                        from paramiko.transport import Transport
-                if (args.scan_security_flags != False):
-                    from requests        import Session
-                    from requests_pkcs12 import get as pkcs_get, Pkcs12Adapter
-                if (args.scan_site_http_methods != False):
-                    from aiohttp import BasicAuth, ClientSession, TCPConnector
-                    import asyncio
-                if (args.scan_smtp != False):
-                    from smtplib import SMTP, SMTPServerDisconnected
         elif (argv[1] == '-h'):
             from .ArgParser_Mode import Argument_Parser
             Argument_Parser(""), exit()
