@@ -40,18 +40,21 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
     # Functions
     def Message_Chromium(Check_Dir):
-        try:
-            if (len(listdir(Check_Dir)) == 0 or not exists(Check_Dir)):
-                Chromium_Version = getoutput('apt-cache policy chromium').splitlines()[1][1:].split(':')[1][1:]
-                if (osname != 'nt'):
-                    if (Chromedriver_Version[:-4] in Chromium_Version):
-                        Standard.Stdout_Output(Colors.ORANGE+"\n\n\tUnfortunately, it was not possible to establish a connection via the webdriver, possibly the target\n\t\tsystem has a WAF in use, as the versions of the Chromedriver and Chromium match."+"\n\n\t\t\t\t    Chromium:             "+Colors.RED+f"{Chromium_Version}\n\t\t\t\t"+Colors.ORANGE+"    Chromedriver Version: "+Colors.RED+f"{Chromedriver_Version}\n"+Colors.RESET, 0.01)
-                    else:
-                        Standard.Stdout_Output(Colors.ORANGE+"\n\n\t\t    It was not possible to use the current chromium and webdriver version.\n\n\t\t\t\t    Chromium:             "+Colors.RED+f"{Chromium_Version}\n\t\t\t\t"+Colors.ORANGE+"    Chromedriver Version: "+Colors.RED+f"{Chromedriver_Version}\n"+Colors.RESET, 0.01)
+        def Write_Message_Chromium_Output():
+            Chromium_Version = getoutput('apt-cache policy chromium').splitlines()[1][1:].split(':')[1][1:]
+            if (osname != 'nt'):
+                if (Chromedriver_Version[:-4] in Chromium_Version):
+                    Standard.Stdout_Output(Colors.ORANGE+"\n\n\tUnfortunately, it was not possible to establish a connection via the webdriver, possibly the target\n\t\tsystem has a WAF in use, as the versions of the Chromedriver and Chromium match."+"\n\n\t\t\t\t    Chromium:             "+Colors.RED+f"{Chromium_Version}\n\t\t\t\t"+Colors.ORANGE+"    Chromedriver Version: "+Colors.RED+f"{Chromedriver_Version}\n"+Colors.RESET, 0.01)
                 else:
-                    Standard.Stdout_Output(Colors.ORANGE+"\n\n\t\t    It was not possible to use the current chromium and webdriver version.\n\n\t\t\t\t    Chromedriver Version: "+Colors.RED+f"{Chromedriver_Version}\n"+Colors.RESET, 0.01)
+                    Standard.Stdout_Output(Colors.ORANGE+"\n\n\t\t    It was not possible to use the current chromium and webdriver version.\n\n\t\t\t\t    Chromium:             "+Colors.RED+f"{Chromium_Version}\n\t\t\t\t"+Colors.ORANGE+"    Chromedriver Version: "+Colors.RED+f"{Chromedriver_Version}\n"+Colors.RESET, 0.01)
+            else:
+                Standard.Stdout_Output(Colors.ORANGE+"\n\n\t\t    It was not possible to use the current chromium and webdriver version.\n\n\t\t\t\t    Chromedriver Version: "+Colors.RED+f"{Chromedriver_Version}\n"+Colors.RESET, 0.01)
+
+        try:
+            if (len(listdir(Check_Dir)) == 0):
+                Write_Message_Chromium_Output()
         except FileNotFoundError:
-            pass
+            Write_Message_Chromium_Output()
 
     def Brute_Force_Mode(Date, Output_location, args, Array_Output = [], Switch_Screenshots = False):
         Dict_Switch = {
