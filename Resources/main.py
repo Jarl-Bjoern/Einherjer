@@ -546,7 +546,8 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
         if (args.zip_file != False):
             for _ in listdir(Location):
                 if (isdir(join(Location, _))):
-                    rmdir(join(Location, _))
+                    try:            rmdir(join(Location, _))
+                    except OSError: rmtree(join(Location, _))
 
         return Array_Output, Switch_Screenshots
 
