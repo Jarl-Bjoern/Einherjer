@@ -43,6 +43,7 @@ try:
     from subprocess   import getoutput, run
     from stdiomask    import getpass
     from secrets      import SystemRandom
+    from shutil       import rmtree
     from sys          import argv, stdout
     from time         import sleep, strftime, time
     from threading    import Thread, enumerate as Th_enumerate
