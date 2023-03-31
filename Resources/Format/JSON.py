@@ -13,7 +13,7 @@ def JSON_Table(Dict_Result, location, Array_Files = []):
     # Certificates
     if (Dict_Result['Certificate'] != {}):
         Array_Files.append(join(location, 'result_certificate.json'))
-        Write_JSON('Header', location, 'result_certificate.json')
+        Write_JSON('Certificate', location, 'result_certificate.json')
 
     # Cookie_Flags
     if (Dict_Result['Security_Flag'] != {}):
