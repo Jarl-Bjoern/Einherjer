@@ -18,9 +18,12 @@ class Logs:
     def Write_Log(url, host, Log_Path, Array_Temp = []):
         if (not exists(Log_Path)): makedirs(Log_Path)
         else:
-            # Check_For_Duplicate
-            with open(join(Log_Path, f'{Date}_failed-url.txt'), 'r') as f:
-                Array_Temp = f.read().splitlines()
+            try:
+                # Check_For_Duplicate
+                with open(join(Log_Path, f'{Date}_failed-url.txt'), 'r') as f:
+                    Array_Temp = f.read().splitlines()
+            except FileNotFoundError:
+                pass
 
         # Write_Fail
         if (url not in Array_Temp):
