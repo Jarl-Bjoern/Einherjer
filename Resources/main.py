@@ -275,6 +275,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
         # Scanning_Options
         if (args.scan_all                 == False and
+            args.scan_ftp                 == False and
             args.scan_host_name           == False and
             args.scan_security_flags      == False and
             args.scan_site_certificate    == False and
@@ -286,6 +287,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                     from Resources.Header_Files.ArgParser_Intro import Argument_Parser
                     Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), rmdir(Output_Location), exit()
         elif (args.scan_all               != False and
+            args.scan_ftp                 == False and
             args.scan_host_name           == False and
             args.scan_security_flags      == False and
             args.scan_site_certificate    == False and
@@ -309,6 +311,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                         'scan_ssl':                   True
                     }
         elif (args.scan_all == False):
+            if (args.scan_ftp               != False):          Dict_Switch['scan_ftp']                  = True
             if (args.scan_host_name         != False):          Dict_Switch['scan_host_name']            = True
             if (args.scan_security_flags    != False):          Dict_Switch['scan_security_flags']       = True
             if (args.scan_site_certificate  != False):          Dict_Switch['scan_certificate']          = True
