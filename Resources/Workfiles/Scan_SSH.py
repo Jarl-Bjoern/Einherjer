@@ -7,7 +7,7 @@ from ..Header_Files.Variables import *
 from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
 
-def SSH_Vulns(Target, Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': []}):
+def SSH_Vulns(Target, Dict_SSH_Version = {}, Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': []}):
     def Check_SSH_Values(List_With_Keys, Temp_Key = ""):
         Array_Temp = []
         for i in List_With_Keys:
@@ -18,17 +18,18 @@ def SSH_Vulns(Target, Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key
         return Array_Temp
 
     Dict_System = {}
-    opts = Transport(Target, 22).get_security_options()
-    Dict_System['kex_algorithms'] = Check_SSH_Values(opts.kex)
+    opts        = Transport(Target, 22).get_security_options()
+    Dict_System['kex_algorithms']             = Check_SSH_Values(opts.kex)
     Dict_System['server_host_key_algorithms'] = Check_SSH_Values(opts.key_types)
-    Dict_System['encryption_algorithms'] = Check_SSH_Values(opts.ciphers)
-    Dict_System['mac_algorithms'] = Check_SSH_Values(opts.digests)
+    Dict_System['encryption_algorithms']      = Check_SSH_Values(opts.ciphers)
+    Dict_System['mac_algorithms']             = Check_SSH_Values(opts.digests)
     #print(opts.compression)
 
     sock = create_connection((Target,22),5)
     sock.send(b"SSH-2.0-7331SSH\r\n")
-    Server_Banner = sock.recv(984)
-    print (Server_Banner)
+    Server_Banner = str(sock.recv(100), 'utf-8')
+    if ('SSH-1' in Server_Banner[::-(len(Server_Banner)-7)]):
+        print (Server_Banner)
 
     class MySSHClient(SSHClient):
         def connection_made(self, conn: SSHClientConnection) -> None:
