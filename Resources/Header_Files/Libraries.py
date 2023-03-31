@@ -64,7 +64,9 @@ try:
             argv.remove('--filter-mode')
             from .ArgParser_Filter import Argument_Parser
             args, Program_Mode = Argument_Parser(), "Filter_Mode"
-            from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
+
+            if (args.screenshot_location != None):
+                from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
 
         elif (argv[1] == "--brute-force-mode"):
             argv.remove('--brute-force-mode')
