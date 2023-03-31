@@ -19,12 +19,12 @@ class Logs:
         if (not exists(Log_Path)): makedirs(Log_Path)
         else:
             # Check_For_Duplicate
-            with open(join(Log_Path), f'{Date}_failed-url.txt', 'r') as f:
+            with open(join(Log_Path), f'{str(Date)}_failed-url.txt', 'r') as f:
                 Array_Temp = f.read().splitlines()
 
         # Write_Fail
         if (url not in Array_Temp):
-            with open(join(Log_Path, f'{Date}_failed-url.txt'), 'a') as f:
+            with open(join(Log_Path, f'{str(Date)}_failed-url.txt'), 'a') as f:
                 f.write(f'{url}\n')
 
         # Write_Fail_To_Global_Log
