@@ -67,18 +67,20 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
         Argument_Parser("\n\n\t\t\tThis section is UNDER CONSTRUCTION!\n\n"), exit()
 
         # Wordlist_Filtering
-        if (args.add_wordlist != None and args.add_multiple_wordlists == None):
-            Array_Wordlists = []
-            if (args.add_wordlist not in Array_Wordlists):
-                for word in Standard.Read_File(args.add_wordlist):
-                    if (word not in Array_Wordlists): Array_Wordlists.append(word)
-        elif (args.add_wordlist == None and args.add_multiple_wordlists != None):
-            Array_Wordlists = []
-            for root,_,files in walk(args.add_multiple_wordlists):
-                for file in files:
-                    for word in Standard.Read_File(join(root, file)):
-                        if (word not in Array_Wordlists):
-                            Array_Wordlists.append(word)
+        if (args.add_wordlist != None and
+            args.add_multiple_wordlists == None):
+                    Array_Wordlists = []
+                    if (args.add_wordlist not in Array_Wordlists):
+                        for word in Standard.Read_File(args.add_wordlist):
+                            if (word not in Array_Wordlists): Array_Wordlists.append(word)
+        elif (args.add_wordlist == None and
+              args.add_multiple_wordlists != None):
+                    Array_Wordlists = []
+                    for root,_,files in walk(args.add_multiple_wordlists):
+                        for file in files:
+                            for word in Standard.Read_File(join(root, file)):
+                                if (word not in Array_Wordlists):
+                                    Array_Wordlists.append(word)
 
         return Array_Output, Switch_Screenshots
 
