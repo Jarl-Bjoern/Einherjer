@@ -41,7 +41,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
     # Functions
     def Message_Chromium(Check_Dir):
         try:
-            if (len(listdir(Check_Dir)) == 0):
+            if (len(listdir(Check_Dir)) == 0 or not exists(Check_Dir)):
                 Chromium_Version = getoutput('apt-cache policy chromium').splitlines()[1][1:].split(':')[1][1:]
                 if (osname != 'nt'):
                     if (Chromedriver_Version[:-4] in Chromium_Version):
