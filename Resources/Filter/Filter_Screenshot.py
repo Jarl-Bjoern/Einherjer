@@ -8,9 +8,9 @@ from ..Header_Files.Variables import *
 def Screenshot_Frame(Screen_Dir, Screenshot_Thickness, Array_Temp = []):
     try:
         for Picture in listdir(Screen_Dir):
-            if (Picture.lower().endswith('.jpg') or
+            if (Picture.lower().endswith('.jpg')  or
                 Picture.lower().endswith('.jpeg') or
-                Picture.lower().endswith('.bmp') or
+                Picture.lower().endswith('.bmp')  or
                 Picture.lower().endswith('.png')):
                     raw_image              = imread(join(Screen_Dir, Picture))
                     height                 = raw_image.shape[0]
