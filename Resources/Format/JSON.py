@@ -20,6 +20,11 @@ def JSON_Table(Dict_Result, location, Array_Files = []):
         Array_Files.append(join(location, 'result_security_flags.json'))
         Write_JSON('Security_Flag', location, 'result_security_flags.json')
 
+    # FTP
+    if (Dict_Header['FTP'] != {}):
+        Array_Files.append(join(location, 'result_ftp.json'))
+        Write_JSON('FTP', location, 'result_ftp.json')
+
     # HTTP_Header
     if (Dict_Header['Header'] != {}):
         Array_Files.append(join(location, 'result_header.json'))
