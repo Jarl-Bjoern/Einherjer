@@ -18,9 +18,9 @@ class Check_SMTP:
         with SMTP(Target, int(Port)) as Mail:
             Output = Mail.docmd('ehlo all')
             for _ in str(Output[1]).split(r'\n'):
-                if   ("b'" in _):   Array_Temp.append(_[2:])
-                elif ("'"  in _):   Array_Temp.append(_[:-1])
-                else:               Array_Temp.append(_)
+                if   ("b'" in _):    Array_Temp.append(_[2:])
+                elif ("'"  in _):    Array_Temp.append(_[:-1])
+                else:                Array_Temp.append(_)
 
         Dict_Temp['Arguments'] = Array_Temp
 
