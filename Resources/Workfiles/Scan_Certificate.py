@@ -15,7 +15,7 @@ def Check_Certificate(url, t_seconds, Host_Name, Location, context = create_unve
     # Remove_Directories
     if ('/' in URL):
         Temp = URL.split('/')[0]
-        URL = Temp
+        URL  = Temp
 
     # Port_Filter
     if (url.count(':') > 1): Port = URL.split(':')[1]
