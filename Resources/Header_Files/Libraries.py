@@ -60,6 +60,8 @@ try:
 
     # Argument_Parser
     try:
+        Temp_Arg_List = argv
+
         if (argv[1] == "--filter-mode"):
             argv.remove('--filter-mode')
             from .ArgParser_Filter import Argument_Parser
