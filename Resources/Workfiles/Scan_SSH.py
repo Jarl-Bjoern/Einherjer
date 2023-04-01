@@ -37,6 +37,11 @@ def SSH_Vulns(Target, Dict_SSH_Version = {}, Dict_SSH_Results = {'kex_algorithms
     except TimeoutError:
         pass
 
+    # Confirm_Host_Keys
+    Port = 22
+    with Popen(['ssh','-T','-o','StrictHostKeyChecking=no',Target,'-p',Port], stdin=PIPE, stdout=PIPE) as process:
+        process.terminate()
+
     # Check_Auth_Methods
     async def check_auth(target):
         return await get_server_auth_methods(target)
