@@ -40,7 +40,7 @@ try:
     from selenium.common.exceptions import *
     from socket              import gaierror, gethostbyaddr, gethostbyname, herror, setdefaulttimeout as socket_defaulttimeout
     from ssl          import cert_time_to_seconds, create_default_context, _create_unverified_context as create_unverified_context, get_server_certificate, SSLError, SSLZeroReturnError
-    from subprocess   import getoutput, Popen, run
+    from subprocess   import getoutput, run
     from stdiomask    import getpass
     from secrets      import SystemRandom
     from shutil       import rmtree
@@ -189,6 +189,7 @@ try:
                             ServerScanStatusEnum
                         )
                         from socket     import AF_INET, create_connection, socket, SOCK_STREAM
+                        from subprocess import Popen
                         from webbrowser import open as webbrowser_open
                         import asyncio, pysnmp
                         with catch_warnings():
@@ -226,7 +227,8 @@ try:
                     with redirect_stdout(None):
                        from webdriver_manager.chrome import ChromeDriverManager
                 if (args.scan_ssh != False):
-                    from asyncssh        import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
+                    from asyncssh   import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
+                    from subprocess import Popen
                     import asyncio
                     with catch_warnings():
                         simplefilter("ignore")
