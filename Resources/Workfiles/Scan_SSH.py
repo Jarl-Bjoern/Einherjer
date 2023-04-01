@@ -54,7 +54,6 @@ def SSH_Vulns(url, Host_Name, Location, Dict_SSH_Version = {}, Dict_SSH_Results 
         pass
 
     # Confirm_Host_Keys
-    Port = 22
     with Popen(['ssh','-T','-o','StrictHostKeyChecking=no',Target,'-p',int(Port)], stdin=PIPE, stdout=PIPE) as process:
         process.terminate()
 
