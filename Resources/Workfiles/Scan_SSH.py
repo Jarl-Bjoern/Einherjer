@@ -42,12 +42,15 @@ def SSH_Vulns(Target, Dict_SSH_Version = {}, Dict_SSH_Results = {'kex_algorithms
         def auth_completed(self) -> None:
             print('Authentication successful.')
 
-    async def check_auth(url):
-        return await get_server_auth_methods(url)
+    # Check_Auth_Methods
+    async def check_auth(target):
+        return await get_server_auth_methods(target)
 
     #async def run_client():
     #    result = await asyncssh.get_server_auth_methods('127.0.0.1')
     #    conn, client = await asyncssh.create_connection(MySSHClient, '127.0.0.1', known_hosts=None)
+
+    # Start_Scans
     try:
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
