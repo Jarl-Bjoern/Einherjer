@@ -26,12 +26,16 @@ def SSH_Vulns(Target, Dict_SSH_Version = {}, Dict_SSH_Results = {'kex_algorithms
     #print(opts.compression)
 
     # Get_Banner
-    sock = create_connection((Target,22),5)
-    sock.send(b"SSH-2.0-7331SSH\r\n")
-    try:    Server_Banner = str(sock.recv(100), 'utf-8')
-    except: Server_Banner = sock.recv(100)
-    if ('SSH-1' in Server_Banner[::-(len(Server_Banner)-7)]):
-        print (Server_Banner)
+    socket_defaulttimeout(30)
+    try:
+        with create_connection((Target,22),5) as sock:
+            sock.send(b"SSH-2.0-7331SSH\r\n")
+            try:    Server_Banner = str(sock.recv(100), 'utf-8')
+            except: Server_Banner = sock.recv(100)
+            if ('SSH-1' in Server_Banner[::-(len(Server_Banner)-7)]):
+                print (Server_Banner)
+    except TimeoutError:
+        pass
 
     class MySSHClient(SSHClient):
         def connection_made(self, conn: SSHClientConnection) -> None:
