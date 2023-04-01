@@ -81,7 +81,7 @@ def SSH_Vulns(url, Host_Name, Location, Dict_SSH_Version = {}, Dict_SSH_Results 
         asyncio.set_event_loop(loop)
         Auth_Methods = loop.run_until_complete(check_auth(Target))
         #loop.run_until_complete(run_client())
-    except (OSError, AsyncSSHError) as e:
+    except (AsyncSSHError, OSError) as e:
         exit(f'SSH connection failed: {str(e)}')
 
     return Dict_System
