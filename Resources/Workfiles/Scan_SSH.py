@@ -37,6 +37,10 @@ def SSH_Vulns(Target, Dict_SSH_Version = {}, Dict_SSH_Results = {'kex_algorithms
     except TimeoutError:
         pass
 
+    # Check_Auth_Methods
+    async def check_auth(target):
+        return await get_server_auth_methods(target)
+
     class MySSHClient(SSHClient):
         def connection_made(self, conn: SSHClientConnection) -> None:
             print(conn.get_extra_info('client_version'))
@@ -45,10 +49,6 @@ def SSH_Vulns(Target, Dict_SSH_Version = {}, Dict_SSH_Results = {'kex_algorithms
 
         def auth_completed(self) -> None:
             print('Authentication successful.')
-
-    # Check_Auth_Methods
-    async def check_auth(target):
-        return await get_server_auth_methods(target)
 
     #async def run_client():
     #    result = await asyncssh.get_server_auth_methods('127.0.0.1')
