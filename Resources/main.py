@@ -590,7 +590,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
         Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
         +Colors.BLUE+'Command-Log\n'
         +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-        +Colors.ORANGE+'\nEinherjer Commands'+Colors.RED+' -> '+Colors.RESET+f'{Temp_Arg_List}\n\n',
+        +Colors.ORANGE+'\nEinherjer Commands'+Colors.RED+' -> '+Colors.RESET+f'{Temp_Arg_List}\n',
         join(Location, 'Logs')
     )
 
