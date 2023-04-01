@@ -53,7 +53,7 @@ class Check_FTP:
                     )
                     Standard.Write_Output_File('affected_ftp_targets.txt', f'{url} (-)', Location)
 
-            except ConnectionRefusedError:
+            except ConnectionRefusedError, OSError:
                 pass
 
         return Dict_Temp
