@@ -605,7 +605,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
     # Check_Only_Logging_Output
     if (Array_Output != []):
         Count_Temp_Output = 0
-        for _ in Array_Output
+        for _ in Array_Output:
             if ("Logs" in Array_Output):
                 Count_Temp_Output += 1
         if (Count_Temp_Output == len(Array_Output)):
