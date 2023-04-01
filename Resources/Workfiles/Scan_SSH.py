@@ -25,9 +25,11 @@ def SSH_Vulns(Target, Dict_SSH_Version = {}, Dict_SSH_Results = {'kex_algorithms
     Dict_System['mac_algorithms']             = Check_SSH_Values(opts.digests)
     #print(opts.compression)
 
+    # Get_Banner
     sock = create_connection((Target,22),5)
     sock.send(b"SSH-2.0-7331SSH\r\n")
-    Server_Banner = str(sock.recv(100), 'utf-8')
+    try:    Server_Banner = str(sock.recv(100), 'utf-8')
+    except: Server_Banner = sock.recv(100)
     if ('SSH-1' in Server_Banner[::-(len(Server_Banner)-7)]):
         print (Server_Banner)
 
@@ -40,7 +42,7 @@ def SSH_Vulns(Target, Dict_SSH_Version = {}, Dict_SSH_Results = {'kex_algorithms
         def auth_completed(self) -> None:
             print('Authentication successful.')
 
-    async def check_auth():
+    async def check_auth(url):
         return await get_server_auth_methods(url)
 
     #async def run_client():
@@ -49,8 +51,9 @@ def SSH_Vulns(Target, Dict_SSH_Version = {}, Dict_SSH_Results = {'kex_algorithms
     try:
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
-        Auth_Methods = loop.run_until_complete(check_auth())
+        Auth_Methods = loop.run_until_complete(check_auth(Target))
         #loop.run_until_complete(run_client())
-    except (OSError, asyncssh.Error) as e: exit(f'SSH connection failed: {str(e)}')
+    except (OSError, AsyncSSHError) as e:
+        exit(f'SSH connection failed: {str(e)}')
 
     return Dict_System
