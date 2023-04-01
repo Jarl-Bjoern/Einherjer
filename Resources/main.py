@@ -589,8 +589,8 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
     Logs.Log_File(
         Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
         +Colors.BLUE+'Command-Log\n'
-        +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------'
-        +Colors.ORANGE+'\nEinherjer Commands'+Colors.RED+' -> '+Colors.RESET+f'{Temp_Arg_List}\n\n',
+        +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+        +Colors.ORANGE+'Einherjer Commands'+Colors.RED+' -> '+Colors.RESET+f'{Temp_Arg_List}\n\n',
         join(Location, 'Logs')
     )
 
