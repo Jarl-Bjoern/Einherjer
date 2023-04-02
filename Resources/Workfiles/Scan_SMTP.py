@@ -6,6 +6,7 @@
 from ..Header_Files.Variables import *
 from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
+from ..Standard_Operations.Standard import Standard
 
 class Check_SMTP:
     def Check_Arguments(url, Host_Name, Array_Temp = [], Dict_Temp = {}):
