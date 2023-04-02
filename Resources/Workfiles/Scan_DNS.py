@@ -2,7 +2,9 @@
 # -*- coding: utf-8 -*-
 # Rainer Christian Bjoern Herold
 
-def Scan_DNS():
+# Libraries
+
+class Scan_DNS:
     def AXFR_Scan(Target, Hostname):
         Zones = from_xfr(xfr(Target, Hostname))
         Names = Zones.nodes.keys()
