@@ -60,3 +60,6 @@ class Check_SMTP:
                     print ("OK")
                 else:
                     print ("Unencrypted!")
+
+    def User_Enumeration(url, Dict_Temp = {}):
+        pass
