@@ -32,15 +32,6 @@ def SSH_Vulns(url, Host_Name, Location, Dict_SSH_Version = {}, Dict_SSH_Results 
     if (Host_Name != ""):    Dict_Temp['DNS'] = Host_Name
     else:                    Dict_Temp['DNS'] = ""
 
-
-    Dict_System = {}
-    opts        = Transport(Target, int(Port)).get_security_options()
-    Dict_System['kex_algorithms']             = Check_SSH_Values(opts.kex)
-    Dict_System['server_host_key_algorithms'] = Check_SSH_Values(opts.key_types)
-    Dict_System['encryption_algorithms']      = Check_SSH_Values(opts.ciphers)
-    Dict_System['mac_algorithms']             = Check_SSH_Values(opts.digests)
-    #print(opts.compression)
-
     # Get_Banner
     socket_defaulttimeout(30)
     try:
@@ -61,6 +52,16 @@ def SSH_Vulns(url, Host_Name, Location, Dict_SSH_Version = {}, Dict_SSH_Results 
     # Check_Auth_Methods
     async def check_auth(target):
         return await get_server_auth_methods(target)
+
+
+    # Experimental
+    Dict_System = {}
+    opts        = Transport(Target, int(Port)).get_security_options()
+    Dict_System['kex_algorithms']             = Check_SSH_Values(opts.kex)
+    Dict_System['server_host_key_algorithms'] = Check_SSH_Values(opts.key_types)
+    Dict_System['encryption_algorithms']      = Check_SSH_Values(opts.ciphers)
+    Dict_System['mac_algorithms']             = Check_SSH_Values(opts.digests)
+    #print(opts.compression)
 
     class MySSHClient(SSHClient):
         def connection_made(self, conn: SSHClientConnection) -> None:
