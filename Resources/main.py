@@ -611,6 +611,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                 Count_Temp_Output += 1
         if (Count_Temp_Output == len(Array_Output)):
             Switch_Unsuccesful_Scanning = True
+    print (Switch_Unsuccesful_Scanning)
 
     # Output_End
     if (Array_Output != [] and Switch_Unsuccesful_Scanning == False):
