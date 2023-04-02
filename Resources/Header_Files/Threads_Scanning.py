@@ -111,6 +111,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
                         join(Location, 'Logs')
                     )
 
+
         # Header
         elif (dict_switch['scan_header']         != False and
               dict_switch['scan_security_flags'] == False and
@@ -162,6 +163,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
                         join(Location, 'Logs')
                     )
 
+
         # FTP
         if (dict_switch['scan_ftp'] != False and 'ftp://' in url):
             # Library_Import
@@ -183,6 +185,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
                 Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.RESET+'Scan_FTP - '+Colors.GREEN+'OK'+Colors.RESET,
                 join(Location, 'Logs')
             )
+
 
         # HTTP_Methods
         if (dict_switch['scan_http_methods'] != False and '//' in url and 'http' in url):
