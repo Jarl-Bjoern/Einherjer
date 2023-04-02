@@ -54,6 +54,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
                 Host_Name != " " and
                 Host_Name != "-"):
                     Standard.Write_Output_File('DNS_Template.txt', f'{Temp_Target}:{Host_Name}', Location)
+                    Dict_Result['Hostnames'][Temp_Target] = Host_Name
 
             # Trace_End
             Logs.Trace_File(
