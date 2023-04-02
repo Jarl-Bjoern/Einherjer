@@ -48,8 +48,9 @@ def SSH_Vulns(url, Host_Name, Location, Dict_SSH_Version = {}, Dict_SSH_Results 
             sock.send(b"SSH-2.0-7331SSH\r\n")
             try:              Server_Banner = str(sock.recv(100), 'utf-8')
             except TypeError: Server_Banner = sock.recv(100)
-                if ('SSH-1' in str(Server_Banner)[::-(len(Server_Banner)-7)]):
-                    print (Server_Banner)
+
+        if ('SSH-1' in str(Server_Banner)[::-(len(Server_Banner)-7)]):
+            print (Server_Banner)
     except TimeoutError:
         pass
 
