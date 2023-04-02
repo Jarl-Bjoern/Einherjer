@@ -68,7 +68,7 @@ def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Res
     format_arguments.add_argument('-zF', '--zip-file', type=bool, nargs='?', default=False, help=Colors.GREEN+'This parameter determines whether your output should be saved to a ZipFile.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     format_arguments.add_argument('-zFp', '--zip-file-password', type=bool, nargs='?', default=False, help=Colors.GREEN+'With this parameter you set the switch so that you can set a password for your zipfile.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
-    optional.add_argument('-app', '--append-to-existing-xlsx', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    #optional.add_argument('-app', '--append-to-existing-xlsx', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     optional.add_argument('-c', '--custom-chromium-path', type=str, help=Colors.GREEN+'Specify the location of your custom chromium.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     optional.add_argument('-h','--help', action='help', default=SUPPRESS, help=Colors.GREEN+'Show this help message and exit.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
