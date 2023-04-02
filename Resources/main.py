@@ -609,7 +609,6 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
         for _ in Array_Output:
             if ("Logs" in _):
                 Count_Temp_Output += 1
-        print (Count_Temp_Output)
         if (Count_Temp_Output == len(Array_Output)):
             Switch_Unsuccesful_Scanning = True
 
