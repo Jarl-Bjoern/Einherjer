@@ -130,6 +130,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             'FTP':                       {},
             'Header':                    {},
             'HTTP_Methods':              {},
+            'Hostnames':                 {},
             'Information':               {},
             'Security_Flag':             {},
             'SMTP':                      {},
