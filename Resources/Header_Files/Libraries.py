@@ -163,10 +163,16 @@ try:
                         from asyncssh                     import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
                         from cryptography.x509            import load_der_x509_certificate
                         from cryptography.hazmat.backends import default_backend
+                        from cryptography.exceptions                         import InvalidSignature, UnsupportedAlgorithm
+                        from cryptography.hazmat.primitives                  import hashes, serialization
+                        from cryptography.hazmat.primitives.asymmetric       import ec, rsa, padding
+                        from cryptography.hazmat.primitives.asymmetric.utils import decode_dss_signature, encode_dss_signature
+                        from cryptography.hazmat.primitives.ciphers          import algorithms, Cipher, modes
                         from cv2       import countNonZero, error as CVError, imread, imwrite, rectangle, split as cvsplit, subtract
                         from dns.query import xfr
                         from dns.zone  import from_xfr
                         from ftplib    import error_perm, FTP
+                        from hashlib import md5, sha1, sha256, sha512
                         from json      import loads as json_loads
                         from os        import environ, rename
                         from requests  import get, request, Session
@@ -228,6 +234,12 @@ try:
                        from webdriver_manager.chrome import ChromeDriverManager
                 if (args.scan_ssh != False):
                     from asyncssh   import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
+                    from cryptography.exceptions                         import InvalidSignature, UnsupportedAlgorithm
+                    from cryptography.hazmat.primitives                  import hashes, serialization
+                    from cryptography.hazmat.primitives.asymmetric       import ec, rsa, padding
+                    from cryptography.hazmat.primitives.asymmetric.utils import decode_dss_signature, encode_dss_signature
+                    from cryptography.hazmat.primitives.ciphers          import algorithms, Cipher, modes
+                    from hashlib    import md5, sha1, sha256, sha512
                     from subprocess import Popen
                     import asyncio
                     with catch_warnings():
