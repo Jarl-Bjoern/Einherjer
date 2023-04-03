@@ -172,7 +172,7 @@ try:
                         from dns.query import xfr
                         from dns.zone  import from_xfr
                         from ftplib    import error_perm, FTP
-                        from hashlib import md5, sha1, sha256, sha512
+                        from hashlib   import md5, sha1, sha256, sha512
                         from json      import loads as json_loads
                         from os        import environ, rename
                         from requests  import get, request, Session
