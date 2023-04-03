@@ -3,7 +3,10 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-
+from ..Header_Files.Variables import *
+from ..Standard_Operations.Logs import Logs
+from ..Standard_Operations.Colors import Colors
+from ..Standard_Operations.Standard import Standard
 
 class Get_Information:
     def Check_Website(url, t_seconds, Dict_Temp = {}, Array_Output = [], Temp_Array = []):
