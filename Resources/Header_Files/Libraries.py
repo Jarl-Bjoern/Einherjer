@@ -94,7 +94,7 @@ try:
                   args.brute_screenshot_recursive == False):
                         from aiohttp  import BasicAuth, ClientSession, TCPConnector
                         from cv2      import countNonZero, error as CVError, imread, imwrite, rectangle, split as cvsplit, subtract
-                        from ftplib   import FTP
+                        from ftplib   import error_perm, FTP
                         from json     import loads as json_loads
                         from os       import environ, rename
                         from requests import get, request, Session
@@ -166,7 +166,7 @@ try:
                         from cv2       import countNonZero, error as CVError, imread, imwrite, rectangle, split as cvsplit, subtract
                         from dns.query import xfr
                         from dns.zone  import from_xfr
-                        from ftplib    import FTP
+                        from ftplib    import error_perm, FTP
                         from json      import loads as json_loads
                         from os        import environ, rename
                         from requests  import get, request, Session
@@ -202,7 +202,7 @@ try:
                     from dns.query       import xfr
                     from dns.zone        import from_xfr
                 if (args.scan_ftp != False):
-                    from ftplib          import FTP
+                    from ftplib          import error_perm, FTP
                 if (args.scan_security_flags != False):
                     from requests        import Session
                     from requests_pkcs12 import get as pkcs_get, Pkcs12Adapter
