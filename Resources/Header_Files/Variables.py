@@ -51,6 +51,12 @@ progress_columns = (
     TimeRemainingColumn(),
 )
 
+# Dictionaries
+Dict_Ports = {
+    "TCP": {},
+    "UDP": {}
+}
+
 # Functions
 def Check_Website(url, t_seconds, Dict_Temp = {}, Array_Output = [], Temp_Array = []):
     Array_Filter = ["Apache/", "Tomcat/", "Server Version:"]
