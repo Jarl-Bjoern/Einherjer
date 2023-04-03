@@ -175,6 +175,7 @@ try:
                         from hashlib   import md5, sha1, sha256, sha512
                         from json      import loads as json_loads
                         from os        import environ, rename
+                        from pysnmp.hlapi import *
                         from requests  import get, request, Session
                         from requests_pkcs12 import get as pkcs_get, Pkcs12Adapter
                         from selenium  import webdriver
@@ -197,7 +198,7 @@ try:
                         from socket     import AF_INET, create_connection, socket, SOCK_STREAM
                         from subprocess import Popen
                         from webbrowser import open as webbrowser_open
-                        import asyncio, pysnmp
+                        import asyncio
                         with catch_warnings():
                             simplefilter("ignore")
                             from paramiko.transport       import Transport
@@ -214,6 +215,8 @@ try:
                     from requests_pkcs12 import get as pkcs_get, Pkcs12Adapter
                 if (args.scan_smtp != False):
                     from smtplib import SMTP, SMTPServerDisconnected
+                if (args.scan_snmp != False):
+                    from pysnmp.hlapi import *
                 if (args.scan_site_header != False):
                     from requests        import get
                     from requests_pkcs12 import get as pkcs_get, Pkcs12Adapter
