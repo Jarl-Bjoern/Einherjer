@@ -94,7 +94,7 @@ class Standard:
                         Skip_Attributes = True
                 elif (elem.tag == 'service'):
                     if (Skip_Attributes != True):
-                        if ('http' in elem.attrib['name'] and not 'ssl' in elem.attrib['name']):
+                        if ('http' in elem.attrib['name'] and not 'ssl' in elem.attrib['name'] and not 'https' in elem.attrib['name']):
                             Protocol = "http"
                         elif ('https' in elem.attrib['name'] or ('http' in elem.attrib['name'] and 'ssl' in elem.attrib['name'])):
                             Protocol = "https"
