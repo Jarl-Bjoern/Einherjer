@@ -96,7 +96,10 @@ class Standard:
 
         return Dict_Temp
 
-    def Read_Targets_XML(file_path, Array_Out = [], Array_SSL_Out = []):
+    def Read_Targets_XML(file_path, Array_Out = [], Array_SSL_Out = [], Array_Template = []):
+        if (exists(join(dirname(realpath(__file__)).split("Resources/Standard_Operations")[0], "scan.state")))):
+            Array_Template = Standard.Read_File(join(dirname(realpath(__file__)).split("Resources/Standard_Operations")[0], "scan.state")))
+
         Protocol, Address, Port, Skip_Attributes = "","","",False
         for event, elem in ET.iterparse(file_path, events=("end",)):
             if (event == "end"):
@@ -123,21 +126,27 @@ class Standard:
 
                         if ('ssl://' in Full_Target):
                             if (Full_Target not in Array_SSL_Out):
-                                Array_SSL_Out.append(Full_Target)
+                                if (Full_Target not in Array_Template):
+                                    Array_SSL_Out.append(Full_Target)
                         elif ('https://' in Full_Target):
                             if (Full_Target not in Array_SSL_Out):
-                                Array_SSL_Out.append(Full_Target)
-                                Array_Out.append(Full_Target)
+                                if (Full_Target not in Array_Template):
+                                    Array_SSL_Out.append(Full_Target)
+                                    Array_Out.append(Full_Target)
                         else:
                             if (Full_Target not in Array_Out):
-                                Array_Out.append(Full_Target)
+                                if (Full_Target not in Array_Template):
+                                    Array_Out.append(Full_Target)
                         Full_Target = ""
 
                     Skip_Attributes = False
 
         return Array_Out, Array_SSL_Out
 
-    def Read_Targets_v4(file_path, Array_Out = [], Array_SSL_Out = []):
+    def Read_Targets_v4(file_path, Array_Out = [], Array_SSL_Out = [], Array_Template = []):
+        if (exists(join(dirname(realpath(__file__)).split("Resources/Standard_Operations")[0], "scan.state")))):
+            Array_Template = Standard.Read_File(join(dirname(realpath(__file__)).split("Resources/Standard_Operations")[0], "scan.state")))
+
         for Target in Standard.Read_File(file_path):
             if (Target.count('/') > 2):
                 Counter, Position = 0, ''
@@ -149,25 +158,31 @@ class Standard:
                     else: break
                 if ('ssl://' in Target):
                     if (f'{Target[:Position]}/{Target[Position+1:]}' not in Array_SSL_Out):
-                        Array_SSL_Out.append(f'{Target[:Position]}/{Target[Position+1:]}')
+                        if (f'{Target[:Position]}/{Target[Position+1:]}' not in Array_Template):
+                            Array_SSL_Out.append(f'{Target[:Position]}/{Target[Position+1:]}')
                 elif ('https://' in Target):
                     if (f'{Target[:Position]}/{Target[Position+1:]}' not in Array_SSL_Out):
-                        Array_SSL_Out.append(f'{Target[:Position]}/{Target[Position+1:]}')
-                        Array_Out.append(f'{Target[:Position]}/{Target[Position+1:]}')
+                        if (f'{Target[:Position]}/{Target[Position+1:]}' not in Array_Template):
+                            Array_SSL_Out.append(f'{Target[:Position]}/{Target[Position+1:]}')
+                            Array_Out.append(f'{Target[:Position]}/{Target[Position+1:]}')
                 else:
                     if (f'{Target[:Position]}/{Target[Position+1:]}' not in Array_Out):
-                        Array_Out.append(f'{Target[:Position]}/{Target[Position+1:]}')
+                        if (f'{Target[:Position]}/{Target[Position+1:]}' not in Array_Template):
+                            Array_Out.append(f'{Target[:Position]}/{Target[Position+1:]}')
             else:
                 if ('ssl://' in Target):
                     if (Target not in Array_SSL_Out):
-                        Array_SSL_Out.append(Target)
+                        if (Target not in Array_Template):
+                            Array_SSL_Out.append(Target)
                 elif ('https://' in Target):
                     if (Target not in Array_SSL_Out):
-                        Array_SSL_Out.append(Target)
-                        Array_Out.append(Target)
+                        if (Target not in Array_Template):
+                            Array_SSL_Out.append(Target)
+                            Array_Out.append(Target)
                 else:
                     if (Target not in Array_Out):
-                        Array_Out.append(Target)
+                        if (Target not in Array_Template):
+                            Array_Out.append(Target)
 
         return Array_Out, Array_SSL_Out
 
