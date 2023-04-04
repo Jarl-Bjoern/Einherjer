@@ -367,6 +367,10 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             from Resources.Format.YAML import YAML_Table
             #Output_Write = YAML_Table
 
+        # Remove_Old_State_File
+        if (exists(join(dirname(realpath(__file__)).split("Resources")[0], "scan.state"))):
+            remove(join(dirname(realpath(__file__)).split("Resources")[0], "scan.state"))
+
         # Program_Start
         Standard.Initialien(args.debug)
         socket_defaulttimeout(args.timeout)
