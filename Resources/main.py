@@ -590,9 +590,6 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
         elif ('/' in args.output_location and not '.' in args.output_location):     Location = Standard.Create_Location_Dir(f"{args.output_location}/{Date}")
     else:                                                                           Location = Standard.Create_Location_Dir(join(dirname(realpath(__file__)).replace('/Resources','/einherjer_output'), Date))
 
-    # Set_State_Location
-    Dict_State['Location'] = Location
-
     # Write_Command_Log
     Logs.Log_File(
         Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
