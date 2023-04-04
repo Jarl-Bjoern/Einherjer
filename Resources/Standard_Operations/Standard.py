@@ -180,3 +180,8 @@ class Standard:
         with open(join(Location, Output_File_Name), Write_Mode) as f:
             if (Text not in Array_Check):
                 f.write(f'{Text}\n')
+
+    def Write_State_File(Array_State, Location):
+        with open(join(Location, 'scan.state'), 'w') as f:
+            for _ in Array_State:
+                f.write(f'{_}\n')
