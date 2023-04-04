@@ -56,3 +56,7 @@ Dict_Ports = {
     "TCP": {},
     "UDP": {}
 }
+
+Dict_State = {
+    "State": []
+}
