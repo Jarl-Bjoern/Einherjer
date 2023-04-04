@@ -426,6 +426,8 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                             p = Process(target=Thread_Scanning_Start, args=Array_Thread_Args, daemon=True)
                             p.start()
                             Counter_Connections += 1
+                            if (Target not in Dict_State['State']):
+                                Dict_State['State'].append(Target)
                             if (p.name not in Dict_Threads):
                                 Dict_Threads[p.name] = [p, int(time()), Target]
                                 sleep(args.sleep)
@@ -469,6 +471,8 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                             p = Process(target=Thread_SSL_Start, args=Array_Thread_Args, daemon=True)
                             p.start()
                             Counter_Connections += 1
+                            if (Target not in Dict_State['State']):
+                                Dict_State['State'].append(Target)
                             if (p.name not in Dict_Threads):
                                 Dict_Threads[p.name] = [p, int(time()), Target]
                                 sleep(args.sleep)
@@ -645,5 +649,9 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
 # Main
 if __name__ == '__main__':
-    try: main(Date, Program_Mode, args)
-    except KeyboardInterrupt: exit()
+    try:
+        main(Date, Program_Mode, args)
+    except KeyboardInterrupt:
+        if (len(Dict_State['State']) > 0):
+            Standard.Write_State_File(Dict_State['State'], Dict_State['Location'])
+        exit()
