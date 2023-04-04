@@ -98,7 +98,7 @@ class Standard:
 
     def Read_Targets_XML(file_path, Array_Out = [], Array_SSL_Out = [], Array_Template = []):
         if (exists(join(dirname(realpath(__file__)).split("Resources/Standard_Operations")[0], "scan.state"))):
-            Array_Template = Standard.Read_File(join(dirname(realpath(__file__)).split("Resources/Standard_Operations")[0], "scan.state")))
+            Array_Template = Standard.Read_File(join(dirname(realpath(__file__)).split("Resources/Standard_Operations")[0], "scan.state"))
 
         Protocol, Address, Port, Skip_Attributes = "","","",False
         for event, elem in ET.iterparse(file_path, events=("end",)):
@@ -145,7 +145,7 @@ class Standard:
 
     def Read_Targets_v4(file_path, Array_Out = [], Array_SSL_Out = [], Array_Template = []):
         if (exists(join(dirname(realpath(__file__)).split("Resources/Standard_Operations")[0], "scan.state"))):
-            Array_Template = Standard.Read_File(join(dirname(realpath(__file__)).split("Resources/Standard_Operations")[0], "scan.state")))
+            Array_Template = Standard.Read_File(join(dirname(realpath(__file__)).split("Resources/Standard_Operations")[0], "scan.state"))
 
         for Target in Standard.Read_File(file_path):
             if (Target.count('/') > 2):
