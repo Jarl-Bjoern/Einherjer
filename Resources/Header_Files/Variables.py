@@ -58,5 +58,6 @@ Dict_Ports = {
 }
 
 Dict_State = {
-    "State": []
+    "State": [],
+    "Location": "."
 }
