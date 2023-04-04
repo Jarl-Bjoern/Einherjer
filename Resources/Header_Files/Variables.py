@@ -59,5 +59,5 @@ Dict_Ports = {
 
 Dict_State = {
     "State": [],
-    "Location": "."
+    "Location": dirname(realpath(__file__)).split('Resources/Header_Files')[0]
 }
