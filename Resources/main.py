@@ -370,7 +370,8 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
         # Program_Start
         Standard.Initialien(args.debug)
         socket_defaulttimeout(args.timeout)
-        Counter_Bar = float(100/(len(Array_Targets)+len(Array_SSL_Targets)))
+        try:                      Counter_Bar = float(100/(len(Array_Targets)+len(Array_SSL_Targets)))
+        except ZeroDivisionError: Counter_Bar = 100
 
         if __name__ == '__main__':
             with Progress(*progress_columns) as progress:
@@ -519,7 +520,8 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                 Temp_Path_Length = len(Standard.List_Directory_Recursive(Output_Location))
 
                 if (Temp_Path_Length > 0):
-                    Counter_Bar_Filter = 100/Temp_Path_Length
+                    try:                      Counter_Bar_Filter = 100/Temp_Path_Length
+                    except ZeroDivisionError: Counter_Bar_Filter = 100
                     progress.update(task_Filter, total=Temp_Path_Length)
                     for root, _, files in walk(Output_Location, topdown=False):
                         for file in files:
