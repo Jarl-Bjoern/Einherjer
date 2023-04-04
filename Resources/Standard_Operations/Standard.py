@@ -97,7 +97,7 @@ class Standard:
         return Dict_Temp
 
     def Read_Targets_XML(file_path, Array_Out = [], Array_SSL_Out = [], Array_Template = []):
-        if (exists(join(dirname(realpath(__file__)).split("Resources/Standard_Operations")[0], "scan.state")))):
+        if (exists(join(dirname(realpath(__file__)).split("Resources/Standard_Operations")[0], "scan.state"))):
             Array_Template = Standard.Read_File(join(dirname(realpath(__file__)).split("Resources/Standard_Operations")[0], "scan.state")))
 
         Protocol, Address, Port, Skip_Attributes = "","","",False
@@ -144,7 +144,7 @@ class Standard:
         return Array_Out, Array_SSL_Out
 
     def Read_Targets_v4(file_path, Array_Out = [], Array_SSL_Out = [], Array_Template = []):
-        if (exists(join(dirname(realpath(__file__)).split("Resources/Standard_Operations")[0], "scan.state")))):
+        if (exists(join(dirname(realpath(__file__)).split("Resources/Standard_Operations")[0], "scan.state"))):
             Array_Template = Standard.Read_File(join(dirname(realpath(__file__)).split("Resources/Standard_Operations")[0], "scan.state")))
 
         for Target in Standard.Read_File(file_path):
