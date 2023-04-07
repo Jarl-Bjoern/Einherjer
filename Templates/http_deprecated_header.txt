@@ -1,4 +1,4 @@
-Feature-Policy
-Expect-CT
-Public-Key-Pins
-X-XSS-Protection
+FEATURE-POLICY
+EXPECT-CT
+PUBLIC-KEY-PINS
+X-XSS-PROTECTION
