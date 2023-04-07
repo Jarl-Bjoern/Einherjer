@@ -10,7 +10,8 @@ from ..Standard_Operations.Logs import *
 
 # Template_Filtering
 if (Program_Mode == "Scanning_Mode"):
-    Array_Security_Flags = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_cookie_security.txt"))
+    Array_Security_Flags                = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_cookie_security.txt"))
+    Array_Deprecated_Header             = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_deprecated_header.txt"))
     if (args.read_config_http_header       == True and
         args.read_config_http_header_api   == False):
             Dict_Header = Standard.Read_File_Special(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_header.txt"))
