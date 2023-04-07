@@ -1,1 +1,4 @@
-
+Feature-Policy
+Expect-CT
+Public-Key-Pins
+X-XSS-Protection
