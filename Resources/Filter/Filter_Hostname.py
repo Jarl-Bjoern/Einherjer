@@ -22,10 +22,10 @@ def Hostname_Filter(Template_File, Input_File, Output_Location, Template_Array =
                 for _ in Target_Array:
                     # Split_Port
                     if (':' in _):
-                        if (count(':') == 2):
+                        if (_.count(':') == 2):
                             Temp = _.split('//')[1]
                             Target, Port = Temp.split(':')
-                        elif (count(':') == 1):
+                        elif (_.count(':') == 1):
                             Target, Port = _.split(':')
                     else:
                         Target, Port = _, ""
