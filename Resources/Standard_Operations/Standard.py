@@ -63,8 +63,11 @@ class Standard:
             return files
 
     def Read_File(file_path):
-        with open(file_path, 'r') as f:
-            return f.read().splitlines()
+        try:
+            with open(file_path, 'r') as f:
+                return f.read().splitlines()
+        except IsADirectoryError:
+            print ("It's not possible to use a directory as a file."), exit()
 
     def Read_Template(template_file):
         if (exists(template_file)):
