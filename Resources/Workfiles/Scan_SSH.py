@@ -3,8 +3,8 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-from ..Header_Files.Variables import *
-from ..Standard_Operations.Logs import Logs
+from ..Header_Files.Variables     import *
+from ..Standard_Operations.Logs   import Logs
 from ..Standard_Operations.Colors import Colors
 
 def SSH_Vulns(url, Host_Name, Location, Dict_SSH_Version = {}, Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': []}, Dict_Temp = {}):
