@@ -3,9 +3,9 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-from ..Header_Files.Variables import *
-from ..Workfiles.Scan_Host_Name import Get_Host_Name
-from ..Standard_Operations.Logs import Logs
+from ..Header_Files.Variables     import *
+from ..Workfiles.Scan_Host_Name   import Get_Host_Name
+from ..Standard_Operations.Logs   import Logs
 from ..Standard_Operations.Colors import Colors
 
 def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['http_headers', 'certificate_info','rejected_cipher_suites','rejected_curves'], Start_Scan = datetime.now(), Temp = ""):
