@@ -10,15 +10,15 @@ from ..Standard_Operations.Colors import Colors
 class Web:
     def Driver_Specification(options, Chrome_Driver_Location = ""):
         if (osname == 'nt'): Chrome_Driver_Location = join(dirname(realpath(__file__)).split('Workfiles')[0], 'Webdriver/chromedriver.exe')
-        else: Chrome_Driver_Location = join(dirname(realpath(__file__)).split('Workfiles')[0], 'Webdriver/chromedriver')
+        else:                Chrome_Driver_Location = join(dirname(realpath(__file__)).split('Workfiles')[0], 'Webdriver/chromedriver')
         return webdriver.Chrome(service=Service(Chrome_Driver_Location), options=options, executable_path=Chrome_Driver_Location)
 
     def Configurate_Driver(options, driver = None):
         try: driver = Web.Driver_Specification(options)
-        except AttributeError as e: Logs.Error_Message(f"It was not possible to use the chromedriver. Please check that the used chromedriver is a executeable file or try a another one.\n")
-        except (ConnectionError): pass
+        except AttributeError as e:                             Logs.Error_Message(f"It was not possible to use the chromedriver. Please check that the used chromedriver is a executeable file or try a another one.\n")
+        except ConnectionError:                                 pass
         except (MaxRetryError, ProxyError, ProxySchemeUnknown): Logs.Error_Message("\n\nThere is a error in your proxy configuration or the proxy server is blocking your connection.\n\n")
-        except (gaierror, NewConnectionError): Logs.Error_Message("\n\nIt was not possible to connect to the Server.\n\n")
+        except (gaierror, NewConnectionError):                  Logs.Error_Message("\n\nIt was not possible to connect to the Server.\n\n")
         except SessionNotCreatedException as e:
             if (osname != 'nt'):
                 print (f'Chromium: {getoutput("apt-cache policy chromium").splitlines()[1][1:].split(":")[1][1:]})')
@@ -40,9 +40,9 @@ class Web:
             for _ in listdir(Path):
                 if (_ != Picture):
                     try:
-                        Duplicate = imread(join(Path, _))
+                        Duplicate  = imread(join(Path, _))
                         Difference = subtract(Original_Picture, Duplicate)
-                        b,g,r = cvsplit(Difference)
+                        b,g,r      = cvsplit(Difference)
 
                         if (countNonZero(b) == 0 and countNonZero(g) == 0 and countNonZero(r) == 0):
                             remove(join(Path, _))
@@ -57,17 +57,17 @@ def Take_Screenshot(url, driver_options, Screen_Dir, switch_internet_connection,
     if (switch_internet_connection == True):
         if (osname == 'nt'):
             Chrome_Path = ChromeDriverManager().install()
-            driver = webdriver.Chrome(service=Service(Chrome_Path), options=driver_options)
+            driver      = webdriver.Chrome(service=Service(Chrome_Path), options=driver_options)
         else:
-            driver = Web.Driver_Specification(driver_options)
-    else: driver = Web.Driver_Specification(driver_options)
+            driver      = Web.Driver_Specification(driver_options)
+    else:   driver      = Web.Driver_Specification(driver_options)
     driver.implicitly_wait(webdriver_timeout), driver.set_window_size(1920,1080), driver.execute_script("document.body.style.zoom='250%'")
 
     if ("://" in url): Screen_Name = url.split('://')[1]
     else: Screen_Name = url
     try:
         if (':' in Screen_Name): Full_Screen_Name = join(Screen_Dir, f"{Date}_({Screen_Name.replace(':', '_')}).png")
-        else: Full_Screen_Name = join(Screen_Dir, f"{Date}_({Screen_Name}).png")
+        else:                    Full_Screen_Name = join(Screen_Dir, f"{Date}_({Screen_Name}).png")
         driver.get(url)
         sleep(screenshot_wait)
         driver.save_screenshot(Full_Screen_Name)
@@ -110,5 +110,5 @@ def Take_Screenshot(url, driver_options, Screen_Dir, switch_internet_connection,
         start_point, end_point = (0,0), (width, height)
         color                  = (0,0,0)
         thickness              = 10
-        img = rectangle(raw_image, start_point, end_point, color, thickness)
+        img                    = rectangle(raw_image, start_point, end_point, color, thickness)
         imwrite(join(Screen_Dir, Picture), img)
