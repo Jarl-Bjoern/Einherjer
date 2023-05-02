@@ -3,9 +3,9 @@
 # Rainer Christian Bjoern Herold
 
 # Libraries
-from .Colors import Colors
+from .Colors                  import Colors
 from ..Header_Files.Variables import *
-from .Logs import *
+from .Logs                    import *
 
 class Standard:
     def Stdout_Output(Text_Array, Output_Seconds):
@@ -36,7 +36,7 @@ class Standard:
     def Initialien(debug_parameter):
         if (debug_parameter == False):
             if (osname == 'nt'): system('cls')
-            else: system('clear')
+            else:                system('clear')
         else: system('')
         Header = """
 💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀
