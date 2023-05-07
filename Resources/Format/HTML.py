@@ -35,7 +35,7 @@ def HTML_Table(Dict_Result, location, Body_HTML = ""):
             if (Result_Left != "DNS" and Result_Right != "FEHLT"):   Body_HTML += r'  <td><p style="text-align:center;">✓</p></td>'
             elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Body_HTML += rf'  <td><p style="text-align:center;">{Result_Right}</p></td>'
             elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Body_HTML += r'  <td><p style="text-align:center;">-</p></td>'
-            else: Body_HTML += r'  <td><p style="text-align:center;">X</p></td>'
+            else:                                                    Body_HTML += r'  <td><p style="text-align:center;">X</p></td>'
 
     while True:
         try:
