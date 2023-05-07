@@ -24,9 +24,9 @@ def Markdown_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = "
                 Temp_Word = ""
                 Temp_Word += f"| {Target} |"
                 for Result_Left, Result_Right in Dict_Result['Header'][Target].items():
-                    if (Result_Left == "DNS" and Result_Right == ""): Result_Right = "FEHLT"
+                    if (Result_Left == "DNS" and Result_Right == ""):        Result_Right = "FEHLT"
 
-                    if (Result_Left != "DNS" and Result_Right != "FEHLT"): Temp_Word += " ✓ |"
+                    if (Result_Left != "DNS" and Result_Right != "FEHLT"):   Temp_Word += " ✓ |"
                     elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Temp_Word += f' {Result_Right} |'
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Temp_Word += " - |"
                     else: Temp_Word += " X |"
@@ -46,10 +46,10 @@ def Markdown_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = "
                 Temp_Word = ""
                 Temp_Word += f"| {Target} |"
                 for Result_Left, Result_Right in Dict_Result['Information'][Target].items():
-                    if (Result_Left == "DNS" and Result_Right == ""): Result_Right = "FEHLT"
+                    if (Result_Left == "DNS" and Result_Right == ""):        Result_Right = "FEHLT"
                     elif (Result_Left in Array_Information_Disclosure_Header and Result_Right == ""): Result_Right = "FEHLT"
 
-                    if (Result_Left != "DNS" and Result_Right != "FEHLT"): Temp_Word += f' {Result_Right} |'
+                    if (Result_Left != "DNS" and Result_Right != "FEHLT"):   Temp_Word += f' {Result_Right} |'
                     elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Temp_Word += f' {Result_Right} |'
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Temp_Word += ' - |'
                     else: Temp_Word += ' X |'
@@ -69,15 +69,15 @@ def Markdown_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = "
                 Temp_Word = ""
                 Temp_Word += f"| {Target} |"
                 for Result_Left, Result_Right in Dict_Result['Security_Flag'][Target].items():
-                    if (Result_Left == "HTTPONLY" and Result_Right != "HTTPONLY"): Result_Right = "FEHLT"
+                    if (Result_Left == "HTTPONLY" and Result_Right != "HTTPONLY"):   Result_Right = "FEHLT"
                     elif (Result_Left == "SAMESITE" and Result_Right != "SAMESITE"): Result_Right = "FEHLT"
                     elif (Result_Left == "SECURITY" and Result_Right != "SECURITY"): Result_Right = "FEHLT"
-                    elif (Result_Left == "DNS" and Result_Right == ""): Result_Right = "FEHLT"
+                    elif (Result_Left == "DNS" and Result_Right == ""):              Result_Right = "FEHLT"
 
-                    if (Result_Left != "DNS" and Result_Right != "FEHLT"): Temp_Word += " ✓ |"
+                    if (Result_Left != "DNS" and Result_Right != "FEHLT"):   Temp_Word += " ✓ |"
                     elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Temp_Word += f' {Result_Right} |'
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Temp_Word += " - |"
-                    else: Temp_Word += " X |"
+                    else:                                                    Temp_Word += " X |"
                 md_file.write(f'{Temp_Word}\n')
 
     if (Dict_Result['Certificate'] != {}):
@@ -94,13 +94,13 @@ def Markdown_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = "
                 Temp_Word = ""
                 Temp_Word += f"| {Target} |"
                 for Result_Left, Result_Right in Dict_Result['Certificate'][Target].items():
-                    if (Result_Left == "DNS" and Result_Right == ""):  Result_Right = "FEHLT"
+                    if (Result_Left == "DNS" and Result_Right == ""):   Result_Right = "FEHLT"
                     elif (Result_Left != "DNS" and Result_Right == ""): Result_Right = "FEHLT"
 
-                    if (Result_Left != "DNS" and Result_Right != "FEHLT"): Temp_Word += f' {Result_Right} |'
+                    if (Result_Left != "DNS" and Result_Right != "FEHLT"):   Temp_Word += f' {Result_Right} |'
                     elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Temp_Word += f' {Result_Right} |'
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Temp_Word += " - |"
-                    else: Temp_Word += " - |"
+                    else:                                                    Temp_Word += " - |"
                 md_file.write(f'{Temp_Word}\n')
 
     if (Dict_Result['HTTP_Methods'] != {}):
@@ -117,13 +117,13 @@ def Markdown_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = "
                 Temp_Word = ""
                 Temp_Word += f"| {Target} |"
                 for Result_Left, Result_Right in Dict_Result['HTTP_Methods'][Target].items():
-                    if (Result_Left == "DNS" and Result_Right == ""):  Result_Right = "FEHLT"
+                    if (Result_Left == "DNS" and Result_Right == ""):        Result_Right = "FEHLT"
                     elif (Result_Left != "DNS" and Result_Right == "FEHLT"): Result_Right = "FEHLT"
 
-                    if (Result_Left != "DNS" and Result_Right != "FEHLT"): Temp_Word += ' X |'
+                    if (Result_Left != "DNS" and Result_Right != "FEHLT"):   Temp_Word += ' X |'
                     elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Temp_Word += f' {Result_Right} |'
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Temp_Word += " - |"
-                    else: Temp_Word += " ✓ |"
+                    else:                                                    Temp_Word += " ✓ |"
                 md_file.write(f'{Temp_Word}\n')
 
     if (Dict_Result['FTP'] != {}):
@@ -172,7 +172,7 @@ def Markdown_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = "
                     Temp_Word = ""
                     Temp_Word += f"| {Target} |"
                     for Result_Left, Result_Right in Dict_Result['SSL'][Target].items():
-                        if (Result_Left == "DNS" and Result_Right == ""):  Temp_Word += " - |"
+                        if (Result_Left == "DNS" and Result_Right == ""):   Temp_Word += " - |"
                         elif (Result_Left == "DNS" and Result_Right != ""): Temp_Word += f" {Result_Right} |"
 
                         if (Result_Left == "Ciphers"):
