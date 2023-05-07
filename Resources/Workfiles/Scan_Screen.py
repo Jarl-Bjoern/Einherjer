@@ -31,7 +31,7 @@ class Web:
         except WebDriverException:
             Chromium_Check = getoutput("apt-cache policy chromium").splitlines()[1][1:].split(":")[1][1:]
             if ('none' in Chromium_Check): Logs.Error_Message("\nIt looks like that you do not have Chromium installed.\n\nPlease use apt install -y chromium or set up the location of your custom chromium path as a argument.\n")
-            else: Logs.Error_Message(f"\nChromium: {Chromium_Check}\n\nIt looks like that you do not have Chromedriver installed.\n\nPlease go to https://chromedriver.chromium.org/downloads and download the correct chromedriver and paste it into the Resources folder.\n")
+            else:                          Logs.Error_Message(f"\nChromium: {Chromium_Check}\n\nIt looks like that you do not have Chromedriver installed.\n\nPlease go to https://chromedriver.chromium.org/downloads and download the correct chromedriver and paste it into the Resources folder.\n")
         return driver
 
     def Screenshot_Filter(Path, Location, Temp_Output_File = ""):
@@ -64,7 +64,7 @@ def Take_Screenshot(url, driver_options, Screen_Dir, switch_internet_connection,
     driver.implicitly_wait(webdriver_timeout), driver.set_window_size(1920,1080), driver.execute_script("document.body.style.zoom='250%'")
 
     if ("://" in url): Screen_Name = url.split('://')[1]
-    else: Screen_Name = url
+    else:              Screen_Name = url
     try:
         if (':' in Screen_Name): Full_Screen_Name = join(Screen_Dir, f"{Date}_({Screen_Name.replace(':', '_')}).png")
         else:                    Full_Screen_Name = join(Screen_Dir, f"{Date}_({Screen_Name}).png")
