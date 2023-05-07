@@ -46,7 +46,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                 Array_Temp = []
                 Array_Temp.append(Target)
                 for Result_Left, Result_Right in Dict_Result['Information'][Target].items():
-                    if (Result_Left == "DNS" and Result_Right == ""): Result_Right = "FEHLT"
+                    if (Result_Left == "DNS" and Result_Right == ""):        Result_Right = "FEHLT"
                     elif (Result_Left in Array_Information_Disclosure_Header and Result_Right == ""): Result_Right = "FEHLT"
 
                     if (Result_Left != "DNS" and Result_Right != "FEHLT"):   Array_Temp.append(Result_Right)
