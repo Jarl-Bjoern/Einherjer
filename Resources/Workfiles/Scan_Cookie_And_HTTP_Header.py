@@ -219,8 +219,8 @@ def Check_Cookie_And_HTTP_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_A
         Logs.Write_Log(url, Host_Name, join(Location, 'Logs'))
 
     # Empty_Filter
-    if (Dict_Temp_Cookie['SAMESITE'] == ""): Dict_Temp_Cookie['SAMESITE'] = "FEHLT"
     if (Dict_Temp_Cookie['HTTPONLY'] == ""): Dict_Temp_Cookie['HTTPONLY'] = "FEHLT"
+    if (Dict_Temp_Cookie['SAMESITE'] == ""): Dict_Temp_Cookie['SAMESITE'] = "FEHLT"
     if (Dict_Temp_Cookie['SECURE']   == ""): Dict_Temp_Cookie['SECURE']   = "FEHLT"
 
     return Dict_Temp_Cookie, Dict_Temp_Header, Dict_Temp_Information_Disclosure
