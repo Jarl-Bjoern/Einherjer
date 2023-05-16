@@ -8,7 +8,7 @@ from ..Standard_Operations.Logs     import Logs
 from ..Standard_Operations.Colors   import Colors
 from ..Standard_Operations.Standard import Standard
 
-def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Location, Allow_Redirects, Dict_Temp = {'DNS': "", 'SAMESITE': "", 'HTTPONLY': "", 'SECURE': ""}, Switch_SameSite = False):
+def Check_Security_Flags(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Location, Allow_Redirects, Dict_Temp = {'DNS': "", 'HTTPONLY': "", 'SAMESITE': "", 'SECURE': ""}, Switch_SameSite = False):
     # Session_Creation
     with Session() as s:
 
