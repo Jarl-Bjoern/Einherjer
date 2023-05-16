@@ -8,7 +8,7 @@ from ..Standard_Operations.Logs     import Logs
 from ..Standard_Operations.Colors   import Colors
 from ..Standard_Operations.Standard import Standard
 
-def Check_Site_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Location, Allow_Redirects, Dict_Temp_Header = {}, Dict_Temp_Information_Disclosure = {}, Dict_Temp_Deprecated_Header = {}):
+def Check_Site_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Location, Allow_Redirects, Dict_Temp_Header = {}, Dict_Temp_Information_Disclosure = {'DNS': "", 'SERVER': "", 'X-ASPNET-VERSION': "", 'X-FESERVER': "", 'X-POWERED-BY': "", 'X-OWA-VERSION': ""}, Dict_Temp_Deprecated_Header = {}):
     try:
         # Auth_Configuration
         if (Dict_Auth['pkcs12_cert'] != ''):
