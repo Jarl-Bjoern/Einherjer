@@ -82,7 +82,10 @@ def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locat
 
 
     # Start_Scan
-    asyncio.run(Check_Methods())
+    try:
+        asyncio.run(Check_Methods())
+    except asyncio.timeouterror:
+        Logs.Write_Log(url, Host_Name, join(Location, 'Logs'))
 
     # Output
     return Dict_Temp
