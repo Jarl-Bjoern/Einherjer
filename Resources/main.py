@@ -96,7 +96,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                 from Resources.Header_Files.ArgParser_Filter_Intro import Argument_Parser
                 Argument_Parser("\n\n\t\t\tThe program cannot be started without filter methods!\n\t\t\t For more information use the parameter -h or --help.\n")
                 try:            rmdir(Output_location)
-                except OSError: rmtree(Output_location) 
+                except OSError: rmtree(Output_location)
                 finally:        exit()
         else:
             # Program_Start
