@@ -15,41 +15,41 @@ def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Re
                 for Result in range(1, len(Report)-1):
                     if ("Nmap scan report" in Report[Result]):
                         IP_Address = Report[Result].split(" ")[4]
-                    elif ("Host is" not in Report[Result] and
-                          "Scanned" not in Report[Result] and
-                          "PORT" not in Report[Result] and
+                    elif ("Host is"     not in Report[Result] and
+                          "Scanned"     not in Report[Result] and
+                          "PORT"        not in Report[Result] and
                           "MAC Address" not in Report[Result] and
-                          "syn-ack" not in Report[Result] and
-                          "|" not in Report[Result] and
-                          "#" not in Report[Result] and
-                          "Read data" not in Report[Result] and
-                          "filtered" not in Report[Result] and
-                          "closed" not in Report[Result] and
-                          "unknown" not in Report[Result] and
-                          "" not in Report[Result]):
+                          "syn-ack"     not in Report[Result] and
+                          "|"           not in Report[Result] and
+                          "#"           not in Report[Result] and
+                          "Read data"   not in Report[Result] and
+                          "filtered"    not in Report[Result] and
+                          "closed"      not in Report[Result] and
+                          "unknown"     not in Report[Result] and
+                          ""            not in Report[Result]):
                                 pass
-                    elif ("tcp" in Report[Result] and
-                          "ssh" in Report[Result] and
-                         "filtered" not in Report[Result] and
-                         "unknown" not in Report[Result] and
-                         "closed" not in Report[Result]):
+                    elif ("tcp"      in Report[Result] and
+                          "ssh"      in Report[Result] and
+                         "filtered"  not in Report[Result] and
+                         "unknown"   not in Report[Result] and
+                         "closed"    not in Report[Result]):
                                 Port = Report[Result].split('/')[0]
                     elif ("|" in Report[Result]):
-                         if ("kex_algorithms" in Report[Result][4:-1] or
+                         if ("kex_algorithms"             in Report[Result][4:-1] or
                              "server_host_key_algorithms" in Report[Result][4:-1] or
-                             "encryption_algorithms" in Report[Result][4:-1] or
-                             "mac_algorithms" in Report[Result][4:-1]):
+                             "encryption_algorithms"      in Report[Result][4:-1] or
+                             "mac_algorithms"             in Report[Result][4:-1]):
                                     Dict_System[f'{IP_Address}:{Port}'] = ""
                                     Target = Report[Result][4:-1].split(" ")[0][:-1]
                                     while True:
                                          Result += 1
                                          if ("server_host_key_algorithms" not in Report[Result] and
-                                             "encryption_algorithms" not in Report[Result] and
-                                             "mac_algorithms" not in Report[Result] and
-                                             "compression_algorithms" not in Report[Result] and
-                                             "filtered" not in Report[Result] and
-                                             "closed" not in Report[Result] and
-                                             "unknown" not in Report[Result]):
+                                             "encryption_algorithms"      not in Report[Result] and
+                                             "mac_algorithms"             not in Report[Result] and
+                                             "compression_algorithms"     not in Report[Result] and
+                                             "filtered"                   not in Report[Result] and
+                                             "closed"                     not in Report[Result] and
+                                             "unknown"                    not in Report[Result]):
                                                   if ('@' in Report[Result][8:]):
                                                        if (Report[Result][8:].split("@")[0] not in Array_SSH_Algorithms):
                                                            Dict_SSH_Results[Target].append(Report[Result][8:])
@@ -61,15 +61,15 @@ def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Re
                                Dict_System[f'{IP_Address}:{Port}'] = ""
                                while True:
                                     Result += 1
-                                    if ("ssh2-enum-algos" not in Report[Result] and
+                                    if ("ssh2-enum-algos"            not in Report[Result] and
                                         "server_host_key_algorithms" not in Report[Result] and
-                                        "encryption_algorithms" not in Report[Result] and
-                                        "mac_algorithms" not in Report[Result] and
-                                        "compression_algorithms" not in Report[Result] and
-                                        "MAC Address:" not in Report[Result] and
-                                        "filtered" not in Report[Result] and
-                                        "closed" not in Report[Result] and
-                                        "unknown" not in Report[Result] and
+                                        "encryption_algorithms"      not in Report[Result] and
+                                        "mac_algorithms"             not in Report[Result] and
+                                        "compression_algorithms"     not in Report[Result] and
+                                        "MAC Address:"               not in Report[Result] and
+                                        "filtered"                   not in Report[Result] and
+                                        "closed"                     not in Report[Result] and
+                                        "unknown"                    not in Report[Result] and
                                         "|" in Report[Result]):
                                                    if ("publickey" not in Report[Result]):
                                                        Dict_SSH_Results['auth_methods'].append(Report[Result][6:])
