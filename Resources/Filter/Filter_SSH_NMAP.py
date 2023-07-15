@@ -74,9 +74,13 @@ def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Re
                                                    if ("publickey" not in Report[Result]):
                                                        Dict_SSH_Results['auth_methods'].append(Report[Result][6:])
                                     else: break
+
                     elif ("MAC Address:" in Report[Result]):
                            Dict_System[f'{IP_Address}:{Port}'] = Dict_SSH_Results
                            Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': [], 'auth_methods': []}
+
+                    elif ("Nmap done" in Report[Result+1]):
+                          Dict_System[f'{IP_Address}:{Port}'] = Dict_SSH_Results
 
         Array_Temp.append(join(output_location, 'ssh-vulns.csv'))
         with open(join(output_location, 'ssh-vulns.csv'), 'w') as f:
