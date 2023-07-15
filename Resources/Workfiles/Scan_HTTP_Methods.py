@@ -52,7 +52,7 @@ def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locat
                             else:
                                 Dict_Temp[Method] = "FEHLT"
 
-                except (ClientConnectorError, ServerDisconnectedError):
+                except (ClientConnectorError, ClientResponseError, ServerDisconnectedError):
                     Logs.Write_Log(url, Host_Name, join(Location, 'Logs'))
                     Switch_Error = True
 
