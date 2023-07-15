@@ -53,7 +53,7 @@ First of all, a `virtual environment` for Python must be created.
 ```bash
 sudo git clone https://github.com/Jarl-Bjoern/einherjer/
 cd einherjer
-virtualenv venv
+sudo virtualenv venv
 source venv/bin/activate
 pip3 install -r Setup/requirements.txt
 deactivate
