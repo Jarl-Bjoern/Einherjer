@@ -88,11 +88,11 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
     def Filter_Mode(Date, Output_location, args, Array_Output = []):
         # Filtering_Options
-        if (args.file_split             == None and
-            args.hostname_template_file == None and
-            args.hostname_target_file   == None and
-            args.nmap_files_location    == None and
-            args.screenshot_location    == None):
+        if (args.file_split                == None and
+            args.hostname_template_file    == None and
+            args.hostname_target_file      == None and
+            args.nmap_ssh_output_location  == None and
+            args.screenshot_location       == None):
                 from Resources.Header_Files.ArgParser_Filter_Intro import Argument_Parser
                 Argument_Parser("\n\n\t\t\tThe program cannot be started without filter methods!\n\t\t\t For more information use the parameter -h or --help.\n")
                 try:            rmdir(Output_location)
@@ -117,7 +117,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
             if (args.nmap_files_location != None):
                 from Resources.Filter.Filter_SSH_NMAP import SSH_Nmap
-                Array_Output = SSH_Nmap(args.nmap_files_location, Output_location)
+                Array_Output = SSH_Nmap(args.nmap_ssh_output_location, Output_location)
 
             if (args.screenshot_location != None):
                 from Resources.Filter.Filter_Screenshot import Screenshot_Frame
