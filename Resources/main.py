@@ -9,8 +9,8 @@ SYSTEM_PATH.append(dirname(realpath(__file__)).split("Resources")[0])
 
 # Libraries
 from Resources.Header_Files.Threads_Scanning import *
-from Resources.Header_Files.Threads_SSL import *
-from Resources.Workfiles.Scan_Screen import Web
+from Resources.Header_Files.Threads_SSL      import *
+from Resources.Workfiles.Scan_Screen         import Web
 
 # Main_Function
 def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False, Switch_Unsuccesful_Scanning = False):
