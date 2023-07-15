@@ -55,7 +55,7 @@ sudo git clone https://github.com/Jarl-Bjoern/einherjer/
 cd einherjer
 sudo virtualenv venv
 source venv/bin/activate
-pip3 install -r Setup/requirements.txt
+sudo pip3 install -r Setup/requirements.txt
 deactivate
 ```
 
