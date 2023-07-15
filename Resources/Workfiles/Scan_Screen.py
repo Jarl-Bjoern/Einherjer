@@ -109,6 +109,6 @@ def Take_Screenshot(url, driver_options, Screen_Dir, switch_internet_connection,
         width                  = raw_image.shape[1]
         start_point, end_point = (0,0), (width, height)
         color                  = (0,0,0)
-        thickness              = 10
+        thickness              = 5
         img                    = rectangle(raw_image, start_point, end_point, color, thickness)
         imwrite(join(Screen_Dir, Picture), img)
