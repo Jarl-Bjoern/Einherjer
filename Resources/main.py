@@ -414,7 +414,8 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                                 Dict_Auth,
                                 Output_Write,
                                 Output_Location,
-                                args.allow_redirects
+                                args.allow_redirects,
+                                args.screenshot_frame_thickness
                             ]
 
                             if (Counter_Connections == args.max_connections):
