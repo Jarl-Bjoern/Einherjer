@@ -53,7 +53,7 @@ class Web:
                         pass
         return Temp_Output_File
 
-def Take_Screenshot(url, driver_options, Screen_Dir, switch_internet_connection, screenshot_wait, webdriver_timeout):
+def Take_Screenshot(url, driver_options, Screen_Dir, switch_internet_connection, screenshot_wait, webdriver_timeout, screenshot_frame_thickness):
     if (switch_internet_connection == True):
         if (osname == 'nt'):
             Chrome_Path = ChromeDriverManager().install()
@@ -109,6 +109,6 @@ def Take_Screenshot(url, driver_options, Screen_Dir, switch_internet_connection,
         width                  = raw_image.shape[1]
         start_point, end_point = (0,0), (width, height)
         color                  = Screenshot_Color
-        thickness              = 5
+        thickness              = screenshot_frame_thickness
         img                    = rectangle(raw_image, start_point, end_point, color, thickness)
         imwrite(join(Screen_Dir, Picture), img)
