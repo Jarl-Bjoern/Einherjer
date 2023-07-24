@@ -16,7 +16,7 @@ def Screenshot_Frame(Screen_Dir, Screenshot_Thickness, Array_Temp = []):
                     height                 = raw_image.shape[0]
                     width                  = raw_image.shape[1]
                     start_point, end_point = (0,0), (width, height)
-                    color                  = (0,0,0)
+                    color                  = Screenshot_Color
                     img                    = rectangle(raw_image, start_point, end_point, color, int(Screenshot_Thickness))
                     imwrite(join(Screen_Dir, Picture), img)
                     Array_Temp.append(join(Screen_Dir, Picture))
