@@ -73,9 +73,9 @@ class Standard:
         if (exists(template_file)):
             R,G,B = 0,0,0
             for _ in Standard.Read_File(template_file):
-                if   ('R:' in _): R = _.split('R:')[1]
-                elif ('G:' in _): G = _.split('G:')[1]
-                elif ('B:' in _): B = _.split('B:')[1]
+                if   ('R:' in _): R = int(_.split('R:')[1])
+                elif ('G:' in _): G = int(_.split('G:')[1])
+                elif ('B:' in _): B = int(_.split('B:')[1])
             return (R,G,B)
         else: Logs.Error_Message(f'The requested File {template_file} does not exist!')
 
