@@ -38,6 +38,7 @@ if (Program_Mode == "Scanning_Mode"):
 
 if (Program_Mode == "Scanning_Mode" or Program_Mode == "Filter_Mode"):
     Array_SSH_Algorithms = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/ssh_ciphers.txt"))
+    Screenshot_Color     = Standard.Read_Color(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_screenshot_color.txt"))
 
 # Design
 disable_warnings(InsecureRequestWarning)
