@@ -15,7 +15,7 @@ python-docx==0.8.11
 pyzipper==0.3.6
 requests==2.31.0
 requests-pkcs12==1.15
-rich==12.6.0
+rich==13.5.2
 scapy==2.4.5
 selenium==4.7.2
 sslyze==5.1.3
