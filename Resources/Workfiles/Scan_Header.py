@@ -16,6 +16,7 @@ def Check_Site_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locati
                 r = pkcs_get(
                     url,
                     timeout=(t_seconds, t_seconds),
+                    headers={'Connection': 'close'}
                     verify=False,
                     allow_redirects=Allow_Redirects,
                     proxies=Dict_Proxies,
@@ -27,6 +28,7 @@ def Check_Site_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locati
                 r = pkcs_get(
                     url,
                     timeout=(t_seconds, t_seconds),
+                    headers={'Connection': 'close'}
                     verify=False,
                     allow_redirects=Allow_Redirects,
                     pkcs12_filename=Dict_Auth['pkcs12_cert'],
@@ -37,6 +39,7 @@ def Check_Site_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locati
                 r = get(
                     url,
                     timeout=(t_seconds, t_seconds),
+                    headers={'Connection': 'close'}
                     verify=False,
                     allow_redirects=Allow_Redirects,
                     proxies=Dict_Proxies,
@@ -47,6 +50,7 @@ def Check_Site_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locati
                 r = get(
                     url,
                     timeout=(t_seconds, t_seconds),
+                    headers={'Connection': 'close'}
                     verify=False,
                     allow_redirects=Allow_Redirects,
                     auth=(Dict_Auth['user'], Dict_Auth['password'])
@@ -56,6 +60,7 @@ def Check_Site_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locati
                 r = get(
                     url,
                     timeout=(t_seconds, t_seconds),
+                    headers={'Connection': 'close'}
                     verify=False,
                     allow_redirects=Allow_Redirects,
                     proxies=Dict_Proxies
@@ -65,6 +70,7 @@ def Check_Site_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locati
                 r = get(
                     url,
                     timeout=(t_seconds, t_seconds),
+                    headers={'Connection': 'close'}
                     verify=False,
                     allow_redirects=Allow_Redirects
                 )
