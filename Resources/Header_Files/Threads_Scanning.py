@@ -284,7 +284,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         # Write_File_Format
         file_format(Dict_Temp, Location)
 
-    except (ConnectionError, gaierror, WebDriverException, RequestException):
+    except (ConnectionError, gaierror, RequestException, SSLError, TimeoutError, WebDriverException):
         Logs.Write_Log(url, Host_Name, join(Location, 'Logs'))
     finally:
         queue.put(Dict_Result)
