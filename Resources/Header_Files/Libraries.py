@@ -140,6 +140,7 @@ try:
                 args.scan_site_certificate    == False and
                 args.scan_dns                 == False and
                 args.scan_ftp                 == False and
+                args.scan_host_name           == False and
                 args.scan_site_http_methods   == False and
                 args.scan_site_screenshot     == False and
                 args.scan_site_ssl            == False and
@@ -153,6 +154,7 @@ try:
                   args.scan_site_certificate  == False and
                   args.scan_dns               == False and
                   args.scan_ftp               == False and
+                  args.scan_host_name         == False and
                   args.scan_site_http_methods == False and
                   args.scan_site_screenshot   == False and
                   args.scan_site_ssl          == False and
