@@ -58,6 +58,11 @@ try:
         simplefilter("ignore")
         from paramiko.ssh_exception import SSHException
 
+    # Chromium_Check
+    if (osname != 'nt'):
+        if ('(none)' in getoutput('apt-cache policy chromium')):
+            Module_Error("\nIt looks like that you do not have Chromium installed.\n\nPlease use apt install -y chromium or set up the location of your custom chromium path as a argument.\n")
+
     # Argument_Parser
     try:
         Temp_Arg_List = argv
@@ -230,17 +235,17 @@ try:
                     from aiohttp import BasicAuth, ClientSession, TCPConnector
                     import asyncio
                 if (args.scan_site_screenshot != False):
-                    from cv2      import countNonZero, error as CVError, imread, imwrite, rectangle, split as cvsplit, subtract
-                    from os       import environ, rename
-                    from selenium import webdriver
-                    from selenium.webdriver.common.by        import By
-                    from selenium.webdriver.common.keys      import Keys
-                    from selenium.webdriver.chrome.options   import Options
-                    from selenium.webdriver.chrome.service   import Service
-                    from selenium.webdriver.remote.webdriver import WebDriver
-                    from webbrowser import open as webbrowser_open
-                    with redirect_stdout(None):
-                       from webdriver_manager.chrome import ChromeDriverManager
+                        from cv2      import countNonZero, error as CVError, imread, imwrite, rectangle, split as cvsplit, subtract
+                        from os       import environ, rename
+                        from selenium import webdriver
+                        from selenium.webdriver.common.by        import By
+                        from selenium.webdriver.common.keys      import Keys
+                        from selenium.webdriver.chrome.options   import Options
+                        from selenium.webdriver.chrome.service   import Service
+                        from selenium.webdriver.remote.webdriver import WebDriver
+                        from webbrowser import open as webbrowser_open
+                        with redirect_stdout(None):
+                           from webdriver_manager.chrome import ChromeDriverManager
                 if (args.scan_ssh != False):
                     from asyncssh   import Error as AsyncSSHError, get_server_auth_methods, SSHClient, SSHClientConnection
                     from cryptography.exceptions                         import InvalidSignature, UnsupportedAlgorithm
