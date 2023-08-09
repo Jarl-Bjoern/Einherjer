@@ -61,7 +61,7 @@ try:
     # Chromium_Check
     if (osname != 'nt'):
         if ('(none)' in getoutput('apt-cache policy chromium')):
-            Module_Error("\nIt looks like that you do not have Chromium installed.\n\nPlease use apt install -y chromium or set up the location of your custom chromium path as a argument.\n")
+            Module_Error("\nIt looks like that you do not have \033[0;31mChromium\033[0m installed.\n\nPlease use \033[1;33mapt install -y chromium\033[0m.\n\n")
 
     # Argument_Parser
     try:
