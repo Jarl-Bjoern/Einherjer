@@ -13,7 +13,8 @@ __status__     = "Production"
 
 # Base_Function
 def Module_Error(Text):
-    input(Text), exit()
+    try: input(Text), exit()
+    except KeyboardInterrupt: exit()
 
 # Define_Module_Path
 from os.path import dirname, realpath
