@@ -5,7 +5,14 @@
 # Libraries
 from ..Header_Files.Variables import *
 
-def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': [], 'auth_methods': []}, Array_Temp = []):
+def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Results = {'smb-security-mode': [], 'smb2-security-mode': [], 'smb-protocols': []}, Array_Temp = []):
+#    if (isdir(nmap_files_location)):
+#        print ("Directory")
+#    elif (isfile(nmap_files_location)):
+#        print ("File")
+
+#    exit()
+
     try:
         for nmap_file in listdir(nmap_files_location):
             if (nmap_file.endswith('.nmap')):
@@ -28,63 +35,60 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
                           "unknown"     not in Report[Result] and
                           ""            not in Report[Result]):
                                 pass
-                    elif ("tcp"      in Report[Result] and
-                          "ssh"      in Report[Result] and
-                         "filtered"  not in Report[Result] and
-                         "unknown"   not in Report[Result] and
-                         "closed"    not in Report[Result]):
+                    elif ("tcp"           in Report[Result] and
+                          "microsoft-ds"  in Report[Result] and
+                          "filtered"      not in Report[Result] and
+                          "unknown"       not in Report[Result] and
+                          "closed"        not in Report[Result]):
                                 Port = Report[Result].split('/')[0]
                     elif ("|" in Report[Result]):
-                         if ("kex_algorithms"             in Report[Result][4:-1] or
-                             "server_host_key_algorithms" in Report[Result][4:-1] or
-                             "encryption_algorithms"      in Report[Result][4:-1] or
-                             "mac_algorithms"             in Report[Result][4:-1]):
+                         if ("smb2-security-mode"         in Report[Result][2:-1] or
+                             "smb-security-mode"          in Report[Result][2:-1]):
                                     Dict_System[f'{IP_Address}:{Port}'] = ""
-                                    Target = Report[Result][4:-1].split(" ")[0][:-1]
+                                    Target = Report[Result][2:-1].split(" ")[0][:-1]
                                     while True:
                                          Result += 1
-                                         if ("server_host_key_algorithms" not in Report[Result] and
-                                             "encryption_algorithms"      not in Report[Result] and
-                                             "mac_algorithms"             not in Report[Result] and
-                                             "compression_algorithms"     not in Report[Result] and
-                                             "filtered"                   not in Report[Result] and
-                                             "closed"                     not in Report[Result] and
-                                             "unknown"                    not in Report[Result]):
-                                                  if ('@' in Report[Result][8:]):
-                                                       if (Report[Result][8:].split("@")[0] not in Array_SSH_Algorithms):
-                                                           Dict_SSH_Results[Target].append(Report[Result][8:])
-                                                  else:
-                                                       if (Report[Result][8:] not in Array_SSH_Algorithms):
-                                                            Dict_SSH_Results[Target].append(Report[Result][8:])
+                                         if ("smb-protocols"              not in Report[Result] and
+                                             "smb-security-mode"          not in Report[Result] and
+                                             "smb2-security-mode"         not in Report[Result] and
+                                             "MAC Address:"               not in Report[Result] and
+                                             "Nmap scan report"           not in Report[Result]):
+                                                 if (':' in Report[Result]):
+                                                     # SMBv1
+                                                     if (Report[Result].count(':') == 1):
+                                                         if ('disabled' in Report[Result] and 'message_signing' in Report[Result]):
+#                                                             print (Report[Result])
+                                                             Dict_SMB_Results[Target].append(Report[Result][8:])
+                                                     # SMBv2_SMBv3
+                                                     elif (Report[Result].count(':') == 3):
+                                                         pass
+#                                                         print (Report[Result][4:-2].replace(':', '_'))
                                          else: break
-                         elif ("Supported authentication methods" in Report[Result][4:-1]):
-                               Dict_System[f'{IP_Address}:{Port}'] = ""
+                         elif ("smb-protocols" in Report[Result][2:-1]):
+#                               Dict_System[f'{IP_Address}:{Port}'] = ""
                                while True:
                                     Result += 1
-                                    if ("ssh2-enum-algos"            not in Report[Result] and
-                                        "server_host_key_algorithms" not in Report[Result] and
-                                        "encryption_algorithms"      not in Report[Result] and
-                                        "mac_algorithms"             not in Report[Result] and
-                                        "compression_algorithms"     not in Report[Result] and
+                                    if ("smb-security-mode"          not in Report[Result] and
+                                        "smb2-security-mode"         not in Report[Result] and
                                         "MAC Address:"               not in Report[Result] and
-                                        "filtered"                   not in Report[Result] and
-                                        "closed"                     not in Report[Result] and
-                                        "unknown"                    not in Report[Result] and
-                                        "|" in Report[Result]):
-                                                   if ("publickey" not in Report[Result]):
-                                                       Dict_SSH_Results['auth_methods'].append(Report[Result][6:])
+                                        "Nmap scan report"           not in Report[Result]):
+#                                                       Dict_SMB_Results['smb-protocols'].append(Report[Result][6:])
+                                            if ("dialects" in Report[Result]):
+                                                Result += 1
+                                            else:
+                                                print (Report[Result][6:])
                                     else: break
 
                     elif ("MAC Address:" in Report[Result]):
-                           Dict_System[f'{IP_Address}:{Port}'] = Dict_SSH_Results
-                           Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': [], 'auth_methods': []}
+                           Dict_System[f'{IP_Address}:{Port}'] = Dict_SMB_Results
+                           Dict_SMB_Results = {'smb-security-mode': [], 'smb2-security-mode': [], 'smb-protocols': []}
 
                     elif ("Nmap done" in Report[Result+1]):
-                          Dict_System[f'{IP_Address}:{Port}'] = Dict_SSH_Results
+                          Dict_System[f'{IP_Address}:{Port}'] = Dict_SMB_Results
 
-        Array_Temp.append(join(output_location, 'ssh-vulns.csv'))
-        with open(join(output_location, 'ssh-vulns.csv'), 'w') as f:
-             f.write("Host;kex_algorithms;server_host_key_algorithms;encryption_algorithms;mac_algorithms;auth_methods\n")
+        Array_Temp.append(join(output_location, 'smb-vulns.csv'))
+        with open(join(output_location, 'smb-vulns.csv'), 'w') as f:
+             f.write("Host;smb-security-mode;smb2-security-mode;smb-protocols\n")
              for i in Dict_System:
                  f.write(f'{i};')
                  for j in Dict_System[i]:
