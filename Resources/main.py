@@ -510,15 +510,20 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                         break
                 else:
                     while (len(Dict_Threads) > 0):
-                        for Thread_ID in array(list(Dict_Threads)):
-                            if (Thread_ID in str(active_children())):
-                                progress.update(task_Processes, advance=0.75)
-                                Dict_Threads[Thread_ID][0].terminate()
-                                Dict_Threads.pop(Thread_ID, None)
-                            else:
-                                progress.update(task_Processes, advance=0.75)
-                                Dict_Threads.pop(Thread_ID, None)
-                        sleep(0.25)
+                        Start_Kill, End_Kill = int(time()), int(time())
+                        while ((End_Kill - Start_Kill) < 300):
+                            for Thread_ID in array(list(Dict_Threads)):
+                                if (Thread_ID in str(active_children())):
+                                    progress.update(task_Processes, advance=0.75)
+                                    Dict_Threads[Thread_ID][0].terminate()
+                                    Dict_Threads.pop(Thread_ID, None)
+                                else:
+                                    progress.update(task_Processes, advance=0.75)
+                                    Dict_Threads.pop(Thread_ID, None)
+                            End_Kill = int(time())
+                            sleep(0.25)
+                        else:
+                            break
 
                 # Get_Results
                 Dict_Result = queue.get()
