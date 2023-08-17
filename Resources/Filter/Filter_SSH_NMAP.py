@@ -6,10 +6,10 @@
 from ..Header_Files.Variables import *
 
 def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': [], 'auth_methods': []}, Array_Temp = []):
-    if (isfile(nmap_files_location)):
-        pass
-    elif (isdir(nmap_files_location)):
-        try:
+    try:
+        if (isfile(nmap_files_location)):
+            pass
+        elif (isdir(nmap_files_location)):
             for nmap_file in listdir(nmap_files_location):
                 if (nmap_file.endswith('.nmap')):
                     with open(join(nmap_files_location, nmap_file), 'r') as f:
@@ -98,7 +98,7 @@ def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Re
                              else: f.write(f'{Dict_System[i][j][k]}')
                          f.write(f';')
                      f.write('\n')
-        except FileNotFoundError:
-            pass
+    except FileNotFoundError:
+        pass
 
     return Array_Temp
