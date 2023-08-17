@@ -508,6 +508,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                         sleep(0.75)
                     else:
                         break
+                    break
                 else:
                     while (len(Dict_Threads) > 0):
                         Start_Kill, End_Kill = int(time()), int(time())
@@ -524,9 +525,10 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                             sleep(0.25)
                         else:
                             break
+                        break
 
                 # Get_Results
-                Dict_Result = queue.get()
+                Dict_Result = queue.get(block=True, timeout=3600)
 
                 # Get_All_Files
                 progress.start_task(task_Filter)
