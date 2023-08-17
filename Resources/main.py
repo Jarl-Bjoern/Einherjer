@@ -395,7 +395,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                     Dict_Switch['scan_host_name']      != False or
                     Dict_Switch['scan_header']         != False or
                     Dict_Switch['scan_http_methods']   != False or
-                    Dict_Switch['scan_screenshot']     != None or
+                    Dict_Switch['scan_screenshot']     != None  or
                     Dict_Switch['scan_snmp']           != False or
                     Dict_Switch['scan_smtp']           != False or
                     Dict_Switch['scan_security_flags'] != False):
