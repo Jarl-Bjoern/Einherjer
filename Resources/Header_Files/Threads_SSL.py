@@ -54,4 +54,4 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
         pass
 #        Logs.Write_Log(url)
     finally:
-        queue.put(Dict_Result)
+        queue.put(Dict_Result, block=False, timeout=30)
