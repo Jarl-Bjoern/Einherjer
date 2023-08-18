@@ -96,7 +96,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                 from Resources.Header_Files.ArgParser_Filter_Intro import Argument_Parser
                 Argument_Parser("\n\n\t\t\tThe program cannot be started without filter methods!\n\t\t\t For more information use the parameter -h or --help.\n")
                 try:            rmdir(Output_location)
-                except OSError: rmtree(Output_location)
+                except OSError: rmtree(Output_location, ignore_errors=True)
                 finally:        exit()
         else:
             # Program_Start
@@ -166,7 +166,10 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
         # Target_Options
         if (args.target == None and args.import_list == None and args.add_nmap_xml_result == None):
             from .Header_Files.ArgParser_Scan_Intro import Argument_Parser
-            Argument_Parser("\n\n\t\t\t   The program cannot be started without targets!\n\t\t\tFor more information use the parameter -h or --help.\n"), rmdir(Output_Location), exit()
+            Argument_Parser("\n\n\t\t\t   The program cannot be started without targets!\n\t\t\tFor more information use the parameter -h or --help.\n")
+            try:            rmdir(Output_location)
+            except OSError: rmtree(Output_location, ignore_errors=True)
+            finally:        exit()
         elif (args.target == None and (args.import_list != None or args.add_nmap_xml_result != None)):
             if (args.import_list != None):
                 try:
@@ -243,7 +246,6 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             Array_Selenium = [
                 '--start_maximized',
                 '--no-sandbox',
-                '--remote-debugging-port=19222',
                 '--ignore-certificate-errors',
                 '--test-type',
                 '--log-level=3',
