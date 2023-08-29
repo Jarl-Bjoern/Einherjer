@@ -441,7 +441,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                                 Dict_State['State'].append(Target)
                             if (p.name not in Dict_Threads):
                                 Dict_Threads[p.name] = [p, int(time()), Target]
-                                sleep(args.sleep)
+                                sleep(args.process_sleep)
                             progress.update(task_Scan, advance=Counter_Bar)
 
                 # SSL_Targets
