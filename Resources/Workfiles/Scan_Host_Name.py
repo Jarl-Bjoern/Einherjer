@@ -23,7 +23,9 @@ def Get_Host_Name(url, Target = "", Temp = "", Word = ""):
     if ('//' in url):
         if (url.count(':') == 2): Target = url.split('//')[1].split(':')[0]
         else:                     Target = url.split('//')[1]
-    else:                         Target = url
+    else:
+        if (url.count(':') == 1): Target = url.split(':')[0]
+        else:                     Target = url
 
     try: Temp = gethostbyaddr(Target)
     except (gaierror, herror):
