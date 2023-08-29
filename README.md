@@ -59,6 +59,11 @@ sudo pip3 install -r Setup/requirements.txt
 deactivate
 ```
 
+After that you must install the `chromium` and `chromium-driver` packages.
+```bash
+sudo apt install -y chromium chromium-driver
+```
+
 Since the latest release of Kali, certain global packages still need to be installed, so it is recommended to use the command below.
 ```bash
 cd einherjer
