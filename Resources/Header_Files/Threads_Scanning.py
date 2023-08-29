@@ -47,6 +47,8 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
                 Temp_Target = url.split(':')[1]
                 if ('//' in Temp_Target):
                     Temp_Target = Temp_Target.split('//')[1]
+            elif (url.count(':') == 1):
+                Temp_Target = url.split(':')[0]
             else:
                 Temp_Target = url
 
