@@ -276,7 +276,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
             # Chromedriver_Settings
             if (osname == 'nt'): environ["CHROME_DRIVER_PATH"] = join(dirname(realpath(__file__)), "Webdriver/chromedriver.exe")
-            else:                environ["CHROME_DRIVER_PATH"] = "/usr/bin/chromiumdiver " #join(dirname(realpath(__file__)), "Webdriver/chromedriver")
+            else:                environ["CHROME_DRIVER_PATH"] = "/usr/bin/chromiumdriver" #join(dirname(realpath(__file__)), "Webdriver/chromedriver")
 
             # Screenshot_Path
             Screen_Dir = join(Output_Location, 'Screenshots')
