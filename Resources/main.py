@@ -267,7 +267,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             # Proxy_Settings
             if (Dict_Proxies['http'] != ''):        driver_options.add_argument(f'--proxy-server=http://{Dict_Proxies["http"]}')
             if (Dict_Proxies['https'] != ''):       driver_options.add_argument(f'--proxy-server=https://{Dict_Proxies["https"]}')
-            if (args.add_socks_proxy != None):      driver_options.add_argument(f'--proxy-server=socks5://{args.add_socks_proxy}')
+            if (args.add_socks_proxy != None):      driver_options.add_argument(f'--proxy-server=socks5://"{args.add_socks_proxy}"')
 
             # Custom_Chromium
             if (args.custom_chromium_path != None): driver_options.binary_location = args.custom_chromium_path
@@ -276,7 +276,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
             # Chromedriver_Settings
             if (osname == 'nt'): environ["CHROME_DRIVER_PATH"] = join(dirname(realpath(__file__)), "Webdriver/chromedriver.exe")
-            else:                environ["CHROME_DRIVER_PATH"] = "/usr/bin/chromiumdiver "join(dirname(realpath(__file__)), "Webdriver/chromedriver")
+            else:                environ["CHROME_DRIVER_PATH"] = "/usr/bin/chromiumdiver " #join(dirname(realpath(__file__)), "Webdriver/chromedriver")
 
             # Screenshot_Path
             Screen_Dir = join(Output_Location, 'Screenshots')
