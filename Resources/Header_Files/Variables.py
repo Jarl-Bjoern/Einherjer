@@ -34,11 +34,10 @@ if (Program_Mode == "Scanning_Mode"):
     # Variables
     COLOR_Headline       = "black"
     existing_nmap_file   = ""
-    Chromedriver_Version = "113.0.5672.63"
 
 if (Program_Mode == "Scanning_Mode" or Program_Mode == "Filter_Mode"):
     Array_SSH_Algorithms = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/ssh_ciphers.txt"))
-    Screenshot_Color     = Standard.Read_Color(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_screenshot_color.txt"))
+    Screenshot_Color     = Standard.Read_Color(dirname(realpath(__file__)).replace('Resources/Header_Files', "Config/http_screenshot_color.cfg"))
 
 # Design
 disable_warnings(InsecureRequestWarning)
