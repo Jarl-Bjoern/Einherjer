@@ -273,7 +273,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                 environ["CHROME_DRIVER_PATH"] = args.custom_chromium_webdriver_path
             else:
                 if (osname == 'nt'): environ["CHROME_DRIVER_PATH"] = join(dirname(realpath(__file__)), "Webdriver/chromedriver.exe")
-                else:                environ["CHROME_DRIVER_PATH"] = "/usr/bin/chromiumdriver"
+                else:                environ["CHROME_DRIVER_PATH"] = "/usr/bin/chromedriver"
 
             # Screenshot_Path
             Screen_Dir = join(Output_Location, 'Screenshots')
