@@ -322,10 +322,11 @@ try:
     for _ in listdir(dirname(realpath(__file__)).replace('Header_Files', 'Webdriver')):
         temp_file = Path(join(dirname(realpath(__file__)).replace('Header_Files', 'Webdriver'), _))
         temp_file.chmod(temp_file.stat().st_mode | stat.S_IEXEC)
-except ileNotFoundError: pass
+    del temp_file
+except FileNotFoundError: pass
 
 # Delete_Unused_Functions
-del catch_warnings, chmod, Path, redirect_stdout, simplefilter, stat, temp_file
+del catch_warnings, chmod, Path, redirect_stdout, simplefilter, stat
 
 # Static_Date
 Date = strftime('%Y-%m-%d_%H-%M-%S')
