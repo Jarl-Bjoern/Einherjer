@@ -63,6 +63,8 @@ try:
     if (osname != 'nt'):
         if ('(none)' in getoutput('apt-cache policy chromium')):
             Module_Error(f"\n{getoutput('apt-cache policy chromium')}\n\nIt looks like that you do not have \033[0;31mChromium\033[0m installed.\n\nPlease use \033[1;33mapt install -y chromium\033[0m.\n\n")
+        if ('(none)' in getoutput('apt-cache policy chromium-driver')):
+            Module_Error(f"\n{getoutput('apt-cache policy chromium-driver')}\n\nIt looks like that you do not have \033[0;31mChromium-Driver\033[0m installed.\n\nPlease use \033[1;33mapt install -y chromium-driver\033[0m.\n\n")
 
     # Argument_Parser
     try:
