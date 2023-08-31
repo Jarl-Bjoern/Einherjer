@@ -77,9 +77,6 @@ Under the following link, you can see all the implemented features that the tool
 
 ## ⚔ Live Example
 UNDER CONSTRUCTION
-/*<p align=center>
-    <img src="https://github.com/Jarl-Bjoern/Jarl-Bjoern/blob/main/Screencasts/yggrdasil_installation.gif" width=700 height=500
-</p>*/
 
 <br />
 
