@@ -40,14 +40,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
     # Functions
     def Message_Chromium(Check_Dir):
         def Write_Message_Chromium_Output():
-            #Chromium_Version = getoutput('apt-cache policy chromium').splitlines()[1][1:].split(':')[1][1:]
-            #if (osname != 'nt'):
-                #if (Chromedriver_Version[:-4] in Chromium_Version):
             Standard.Stdout_Output(Colors.ORANGE+"\n\n\tUnfortunately, it was not possible to establish a connection via the webdriver, possibly the target\n\t\tsystem has a WAF in use, as the versions of the Chromedriver and Chromium match or try to set the timings longer if the systems may be a bit too slow to response."+Colors.RESET, 0.01)
-                #else:
-                #    Standard.Stdout_Output(Colors.ORANGE+"\n\n\t\t    It was not possible to use the current chromium and webdriver version.\n\n\t\t\t\t    Chromium:             "+Colors.RED+f"{Chromium_Version}\n\t\t\t\t"+Colors.ORANGE+"    Chromedriver Version: "+Colors.RED+f"{Chromedriver_Version}\n"+Colors.RESET, 0.01)
-            #else:
-                #Standard.Stdout_Output(Colors.ORANGE+"\n\n\t\t    It was not possible to use the current chromium and webdriver version.\n\n\t\t\t\t    Chromedriver Version: "+Colors.RED+f"{Chromedriver_Version}\n"+Colors.RESET, 0.01)
 
         try:
             if (len(listdir(Check_Dir)) == 0):
@@ -272,11 +265,15 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             # Custom_Chromium
             if (args.custom_chromium_path != None): driver_options.binary_location = args.custom_chromium_path
             else:
-                if (osname != 'nt'):                driver_options.binary_location = "/usr/bin/chromium"
+                if (osname == 'nt'): pass
+                else:                driver_options.binary_location = "/usr/bin/chromium"
 
             # Chromedriver_Settings
-            if (osname == 'nt'): environ["CHROME_DRIVER_PATH"] = join(dirname(realpath(__file__)), "Webdriver/chromedriver.exe")
-            else:                environ["CHROME_DRIVER_PATH"] = "/usr/bin/chromiumdriver" #join(dirname(realpath(__file__)), "Webdriver/chromedriver")
+            if (args.custom_chromium_webdriver_path != None):
+                environ["CHROME_DRIVER_PATH"] = args.custom_chromium_webdriver_path
+            else
+                if (osname == 'nt'): environ["CHROME_DRIVER_PATH"] = join(dirname(realpath(__file__)), "Webdriver/chromedriver.exe")
+                else:                environ["CHROME_DRIVER_PATH"] = "/usr/bin/chromiumdriver"
 
             # Screenshot_Path
             Screen_Dir = join(Output_Location, 'Screenshots')
