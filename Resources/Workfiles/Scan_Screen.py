@@ -10,7 +10,7 @@ from ..Standard_Operations.Colors import Colors
 class Web:
     def Driver_Specification(options, Chrome_Driver_Location = ""):
         if (osname == 'nt'): Chrome_Driver_Location = join(dirname(realpath(__file__)).split('Workfiles')[0], 'Webdriver/chromedriver.exe')
-        else:                Chrome_Driver_Location = join(dirname(realpath(__file__)).split('Workfiles')[0], 'Webdriver/chromedriver')
+        else:                Chrome_Driver_Location = '/usr/bin/chromedriver'
         return webdriver.Chrome(service=Service(Chrome_Driver_Location), options=options, executable_path=Chrome_Driver_Location)
 
     def Configurate_Driver(options, driver = None):
