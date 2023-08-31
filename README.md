@@ -53,6 +53,8 @@ The name `Einherjer` comes from the Old Norse language and means `lone fighter`.
 <strong>Upcoming changes for version</strong> `0.9`:
  - UNDER CONSTRUCTION
 
+<br />
+
 ## 🛡️ Official Documentation
 Under the link below you can find the official documentation about the tool.
 
