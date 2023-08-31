@@ -7,6 +7,7 @@ from ..Header_Files.Variables import *
 
 def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': [], 'auth_methods': []}, Array_Temp = []):
     try:
+        # Check_For_One_File
         if (isfile(nmap_files_location)):
             if (nmap_files_location.endswith('.nmap') or nmap_files_location.endswith('.log')):
                     with open(nmap_files_location, 'r') as f:
@@ -87,6 +88,7 @@ def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Re
                     pass
 
 
+        # Check_For_Multiple_Files
         elif (isdir(nmap_files_location)):
             for nmap_file in listdir(nmap_files_location):
                 if (nmap_file.endswith('.nmap')):
