@@ -318,9 +318,11 @@ try:
 except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
 
 # Change_Permissions_For_Webdriver
-#for _ in listdir(dirname(realpath(__file__)).replace('Header_Files', 'Webdriver')):
-#    temp_file = Path(join(dirname(realpath(__file__)).replace('Header_Files', 'Webdriver'), _))
-#    temp_file.chmod(temp_file.stat().st_mode | stat.S_IEXEC)
+try:
+    for _ in listdir(dirname(realpath(__file__)).replace('Header_Files', 'Webdriver')):
+        temp_file = Path(join(dirname(realpath(__file__)).replace('Header_Files', 'Webdriver'), _))
+        temp_file.chmod(temp_file.stat().st_mode | stat.S_IEXEC)
+except ileNotFoundError: pass
 
 # Delete_Unused_Functions
 del catch_warnings, chmod, Path, redirect_stdout, simplefilter, stat, temp_file
