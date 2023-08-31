@@ -43,51 +43,22 @@ The name `Einherjer` comes from the Old Norse language and means `lone fighter`.
 
 <strong>Please do `not` use the program `for illegal intentions`.</strong><br />
 
-# 📖 Table of Contents
-- [How to download and install the tool](#download_install)
-  - [Download and start the tool](#start_install)
-  - [Usage](#help_install)
+<div align="center">
+➡️ <a href="https://github.com/Jarl-Bjoern/Einherjer/blob/main/Changelog/Changelog.md">
+  Full Changelog
+</a> ⬅️
+</div><br />
 
-<a name="start_install"></a>
-## ⚔ Download and start the tool
-### ⚔ Preparations
-First of all, a `virtual environment` for Python must be created.
-```bash
-sudo git clone https://github.com/Jarl-Bjoern/einherjer/
-cd einherjer
-sudo virtualenv venv
-source venv/bin/activate
-sudo pip3 install -r Setup/requirements.txt
-deactivate
-```
 
-After that you must install the `chromium` and `chromium-driver` packages.
-```bash
-sudo apt install -y chromium chromium-driver
-```
+## 🛡️ Official Documentation
+Under the link below you can find the official documentation about the tool.
 
-Since the latest release of Kali, certain global packages still need to be installed, so it is recommended to use the command below.
-```bash
-cd einherjer
-pip3 install -r Setup/requirements.txt
-```
+<div align="center">
+➡️ <a href="https://github.com/Jarl-Bjoern/Einherjer/wiki">
+  Official Documentation
+</a> ⬅️
+</div><br />
 
-### ⚔ Starting the tool
-#### Linux
-```bash
-sudo python3 Einherjer.py
-```
-
-#### Windows
-```PowerShell
-python Einherjer.py
-```
-
-<a name="help_install"></a>
-## ⚔ Usage
-```python
-UNDER CONSTRUCTION
-```
 
 <a name="special_thanks"></a>
 # 🏆 Special thanks
