@@ -60,7 +60,6 @@ Under the link below you can find the official documentation about the tool.
 </div><br />
 
 
-<a name="special_thanks"></a>
 # 🏆 Special thanks
 In the context of the development of the tool, I would like to thank the following people for their contribution:
   - Explie
@@ -71,4 +70,4 @@ But also the developer would like to thank the people who do not have a GitHub a
 <br />
 
 # ⚠️ Remark
-The Script is still under development
+It should be said that the script is still under development.
