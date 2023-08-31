@@ -64,6 +64,14 @@ Under the link below you can find the official documentation about the tool.
 </a> ⬅️
 </div><br />
 
+## 📃 Features
+Under the following link, you can see all the implemented features that the tool currently offers.
+
+<div align="center">
+➡️ <a href="https://github.com/Jarl-Bjoern/Einherjer/wiki/%F0%9F%93%83-Features-overview">
+  List of all features
+</a> ⬅️
+</div><br />
 
 # 🏆 Special thanks
 In the context of the development of the tool, I would like to thank the following people for their contribution:
