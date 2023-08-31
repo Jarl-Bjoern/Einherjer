@@ -7,8 +7,14 @@ from ..Header_Files.Variables import *
 
 def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Results = {'smb-security-mode': [], 'smb2-security-mode': [], 'smb-protocols': []}, Array_Temp = []):
     try:
+        # Check_For_One_File
         if (isfile(nmap_files_location)):
-            pass
+            if (nmap_files_location.endswith('.nmap') or nmap_files_location.endswith('.log')):
+                pass
+            elif (nmap_files_location.endswith('.xml')):
+                pass
+
+        # Looking_For_Multiple_Files
         elif (isdir(nmap_files_location)):
             for nmap_file in listdir(nmap_files_location):
                 if (nmap_file.endswith('.nmap')):
