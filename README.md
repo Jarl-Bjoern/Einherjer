@@ -72,7 +72,7 @@ In the context of the development of the tool, I would like to thank the followi
   - janstarke
 
 But also the developer would like to thank the people who do not have a GitHub account and have helped the success of the tool in any way.
-<br />
+<br /><br />
 
 # ⚠️ Remark
 It should be said that the script is still under development.
