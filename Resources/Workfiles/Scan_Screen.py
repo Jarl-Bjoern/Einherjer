@@ -107,7 +107,7 @@ def Take_Screenshot(url, driver_options, Screen_Dir, switch_internet_connection,
         raw_image              = imread(join(Screen_Dir, Picture))
         height                 = raw_image.shape[0]
         width                  = raw_image.shape[1]
-        start_point, end_point = (0,0), (width, height)
+        start_point, end_point = (-1,-1), (width, height)
         color                  = Screenshot_Color
         thickness              = screenshot_frame_thickness
         img                    = rectangle(raw_image, start_point, end_point, color, thickness)
