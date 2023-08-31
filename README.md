@@ -42,6 +42,11 @@ The current use is at your own risk.
 The name `Einherjer` comes from the Old Norse language and means `lone fighter`. Furthermore, the immortal warriors were also called Einherjer in Valhalla, who fight together in the great battle Ragnarök.
 
 <strong>Please do `not` use the program `for illegal intentions`.</strong><br />
+<br />
+
+## ❗ News
+<strong>Upcoming changes for version</strong> `0.9`:
+ - UNDER CONSTRUCTION
 
 <div align="center">
 ➡️ <a href="https://github.com/Jarl-Bjoern/Einherjer/blob/main/Changelog/Changelog.md">
@@ -49,11 +54,6 @@ The name `Einherjer` comes from the Old Norse language and means `lone fighter`.
 </a> ⬅️
 </div><br />
 
-## ❗ News
-<strong>Upcoming changes for version</strong> `0.9`:
- - UNDER CONSTRUCTION
-
-<br />
 
 ## 🛡️ Official Documentation
 Under the link below you can find the official documentation about the tool.
