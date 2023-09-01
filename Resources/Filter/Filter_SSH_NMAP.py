@@ -161,8 +161,8 @@ def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Re
                         elif ("MAC Address:"     in Report[Result]   or
                               "Nmap done"        in Report[Result+1] or
                               "Nmap scan report" in Report[Result+1]):
-                                   try:    Dict_System[f'{IP_Address}:{Port}'] = Dict_SSH_Results
-                                   except: pass
+                                   try:                      Dict_System[f'{IP_Address}:{Port}'] = Dict_SSH_Results
+                                   except UnboundLocalError: pass
                                    Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': [], 'auth_methods': []}
 
             Array_Temp.append(join(output_location, 'ssh-vulns.csv'))
