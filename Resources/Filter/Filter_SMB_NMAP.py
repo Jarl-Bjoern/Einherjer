@@ -20,7 +20,7 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
                 if (nmap_file.endswith('.nmap')):
                     with open(join(nmap_files_location, nmap_file), 'r') as f:
                         Report = f.read().splitlines()
-    
+
                     for Result in range(1, len(Report)-1):
                         if ("Nmap scan report" in Report[Result]):
                             IP_Address = Report[Result].split(" ")[4]
@@ -80,14 +80,14 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
                                                 else:
                                                     print (Report[Result][6:])
                                         else: break
-    
-                        elif ("MAC Address:" in Report[Result]):
-                               Dict_System[f'{IP_Address}:{Port}'] = Dict_SMB_Results
-                               Dict_SMB_Results = {'smb-security-mode': [], 'smb2-security-mode': [], 'smb-protocols': []}
-    
-                        elif ("Nmap done" in Report[Result+1]):
-                              Dict_System[f'{IP_Address}:{Port}'] = Dict_SMB_Results
-    
+
+                        elif ("MAC Address:"     in Report[Result]   or
+                              "Nmap done"        in Report[Result+1] or
+                              "Nmap scan report" in Report[Result+1]):
+                                   try:                      Dict_System[f'{IP_Address}:{Port}'] = Dict_SMB_Results
+                                   except UnboundLocalError: pass
+                                   Dict_SMB_Results = {'smb-security-mode': [], 'smb2-security-mode': [], 'smb-protocols': []}
+
             Array_Temp.append(join(output_location, 'smb-vulns.csv'))
             with open(join(output_location, 'smb-vulns.csv'), 'w') as f:
                  f.write("Host;smb-security-mode;smb2-security-mode;smb-protocols\n")
