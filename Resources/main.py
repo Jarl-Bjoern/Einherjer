@@ -263,21 +263,14 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             if (args.add_socks_proxy != None):      driver_options.add_argument(f'--proxy-server=socks5://"{args.add_socks_proxy}"')
 
             # Custom_Chromium
-            if (args.custom_chromium_path != None): driver_options.binary_location = args.custom_chromium_path
-            else:
-                if (osname == 'nt'): pass
-                else:                driver_options.binary_location = "/usr/bin/chromium"
+            driver_options.binary_location = args.custom_chromium_path
 
             # Chromedriver_Settings
-            if (args.custom_chromium_webdriver_path != None):
-                environ["CHROME_DRIVER_PATH"] = args.custom_chromium_webdriver_path
-            else:
-                if (osname == 'nt'): environ["CHROME_DRIVER_PATH"] = join(dirname(realpath(__file__)), "Webdriver/chromedriver.exe")
-                else:                environ["CHROME_DRIVER_PATH"] = "/usr/bin/chromedriver"
+            environ["CHROME_DRIVER_PATH"] = args.custom_chromium_webdriver_path
 
             # Screenshot_Path
             Screen_Dir = join(Output_Location, 'Screenshots')
-            try: makedirs(Screen_Dir)
+            try:                    makedirs(Screen_Dir)
             except FileExistsError: pass
 
         # Auth_Settings
@@ -414,7 +407,8 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                                 Output_Write,
                                 Output_Location,
                                 args.allow_redirects,
-                                args.screenshot_frame_thickness
+                                args.screenshot_frame_thickness,
+                                args.custom_chromium_webdriver_path
                             ]
 
                             if (Counter_Connections == args.max_connections):
@@ -592,9 +586,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             for _ in listdir(Output_Location):
                 if (isdir(join(Output_Location, _))):
                     try:            rmdir(join(Output_Location, _))
-                    except OSError:
-                        pass
-                        #rmtree(join(Output_Location, _), ignore_errors=True)
+                    except OSError: rmtree(join(Output_Location, _), ignore_errors=True)
 
         return Array_Output, Switch_Screenshots
 
