@@ -8,10 +8,8 @@ from ..Standard_Operations.Logs   import Logs
 from ..Standard_Operations.Colors import Colors
 
 class Web:
-    def Driver_Specification(options, Chrome_Driver_Location = ""):
-        if (osname == 'nt'): Chrome_Driver_Location = join(dirname(realpath(__file__)).split('Workfiles')[0], 'Webdriver/chromedriver.exe')
-        else:                Chrome_Driver_Location = '/usr/bin/chromedriver'
-        return webdriver.Chrome(service=Service(Chrome_Driver_Location), options=options)
+    def Driver_Specification(options, driver_path):
+        return webdriver.Chrome(service=Service(driver_path), options=options)
 
     def Configurate_Driver(options, driver = None):
         try: driver = Web.Driver_Specification(options)
@@ -53,14 +51,14 @@ class Web:
                         pass
         return Temp_Output_File
 
-def Take_Screenshot(url, driver_options, Screen_Dir, switch_internet_connection, screenshot_wait, webdriver_timeout, screenshot_frame_thickness):
+def Take_Screenshot(url, driver_options, driver_path, Screen_Dir, switch_internet_connection, screenshot_wait, webdriver_timeout, screenshot_frame_thickness):
     if (switch_internet_connection == True):
         if (osname == 'nt'):
             Chrome_Path = ChromeDriverManager().install()
             driver      = webdriver.Chrome(service=Service(Chrome_Path), options=driver_options)
         else:
-            driver      = Web.Driver_Specification(driver_options)
-    else:   driver      = Web.Driver_Specification(driver_options)
+            driver      = Web.Driver_Specification(driver_options, driver_path)
+    else:   driver      = Web.Driver_Specification(driver_options, driver_path)
     driver.implicitly_wait(webdriver_timeout), driver.set_window_size(1920,1080), driver.execute_script("document.body.style.zoom='250%'")
 
     if ("://" in url): Screen_Name = url.split('://')[1]
