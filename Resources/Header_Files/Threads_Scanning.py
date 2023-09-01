@@ -225,7 +225,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             )
 
             # Take_Screenshot
-            Take_Screenshot(url, dict_switch['scan_screenshot'], diver_path, screen_dir, switch_internet_connection, screenshot_wait, webdriver_timeout, screenshot_frame_thickness)
+            Take_Screenshot(url, dict_switch['scan_screenshot'], driver_path, screen_dir, switch_internet_connection, screenshot_wait, webdriver_timeout, screenshot_frame_thickness)
 
             # Trace_End
             Logs.Trace_File(
