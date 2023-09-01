@@ -12,7 +12,7 @@ def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Re
             if (nmap_files_location.endswith('.nmap') or nmap_files_location.endswith('.log')):
                     with open(nmap_files_location, 'r') as f:
                         Report = f.read().splitlines()
-    
+
                     for Result in range(1, len(Report)-1):
                         if ("Nmap scan report" in Report[Result]):
                             IP_Address = Report[Result].split(" ")[4]
@@ -75,7 +75,7 @@ def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Re
                                                        if ("publickey" not in Report[Result]):
                                                            Dict_SSH_Results['auth_methods'].append(Report[Result][6:])
                                         else: break
-    
+
                         elif ("MAC Address:"     in Report[Result]   or
                               "Nmap done"        in Report[Result+1] or
                               "Nmap scan report" in Report[Result+1]):
@@ -84,8 +84,8 @@ def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Re
                                    Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': [], 'auth_methods': []}
 
 
-                elif (nmap_files_location.endswith('.xml')):
-                    pass
+            elif (nmap_files_location.endswith('.xml')):
+                pass
 
 
         # Check_For_Multiple_Files
@@ -94,7 +94,7 @@ def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Re
                 if (nmap_file.endswith('.nmap')):
                     with open(join(nmap_files_location, nmap_file), 'r') as f:
                         Report = f.read().splitlines()
-    
+
                     for Result in range(1, len(Report)-1):
                         if ("Nmap scan report" in Report[Result]):
                             IP_Address = Report[Result].split(" ")[4]
@@ -157,14 +157,14 @@ def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Re
                                                        if ("publickey" not in Report[Result]):
                                                            Dict_SSH_Results['auth_methods'].append(Report[Result][6:])
                                         else: break
-    
+
                         elif ("MAC Address:"     in Report[Result]   or
                               "Nmap done"        in Report[Result+1] or
                               "Nmap scan report" in Report[Result+1]):
                                    try:    Dict_System[f'{IP_Address}:{Port}'] = Dict_SSH_Results
                                    except: pass
                                    Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': [], 'auth_methods': []}
-    
+
             Array_Temp.append(join(output_location, 'ssh-vulns.csv'))
             with open(join(output_location, 'ssh-vulns.csv'), 'w') as f:
                  f.write("Host;kex_algorithms;server_host_key_algorithms;encryption_algorithms;mac_algorithms;auth_methods\n")
