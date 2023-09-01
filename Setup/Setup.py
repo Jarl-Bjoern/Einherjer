@@ -9,12 +9,12 @@ setuptools.setup(
     include_package_data=True,
     name='Einherjer',
     version='0.9.0',
-    description='',
+    description='UNDER CONSTRUCTION',
     url='',
     author='Jarl-Bjoern',
     packages=setuptools.find_packages(),
     install_requires=['','']
-    long_description='',
+    long_description='UNDER CONSTRUCTION',
     long_description_content_type='text/markdown',
     classifiers=[
         "Programming Language :: Python :: 3",
