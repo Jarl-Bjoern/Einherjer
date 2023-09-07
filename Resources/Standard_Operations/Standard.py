@@ -202,12 +202,12 @@ class Standard:
     def Remove_From_Filtered_File(filter_file_name, delete_entry):
         if (exists(filter_file_name)):
             Array_Temp = Standard.Read_File(filter_file_name)
-            print (Array_Temp)
-            if (delete_entry in Array_Temp):
-                Array_Temp.remove(delete_entry)
-                with open(filter_file_name, 'w'):
-                    for _ in Array_Temp:
-                        f.write(f'{_}\n')
+            for _ in Array_Temp:
+                if (delete_entry in _):
+                    Array_Temp.remove(_)
+                    with open(filter_file_name, 'w'):
+                        for _ in Array_Temp:
+                            f.write(f'{_}\n')
         else: Logs.Error_Message(f'The requested File {filter_file_name} does not exist!')
 
     def Remove_Empty_Filter_File(filter_file_name):
