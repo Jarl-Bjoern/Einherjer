@@ -34,7 +34,6 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                 if (Array_Temp.count('✓') != len(Dict_Header)):
                     writer.writerow(Array_Temp)
                 else:
-                    print (Target)
                     Standard.Remove_From_Filtered_File(join(location, 'affected_header_targets.txt'), Target)
         Standard.Remove_Empty_Filter_File(join(location, 'result_header.csv')), Standard.Remove_Empty_Filter_File(join(location, 'affected_header_targets.txt'))
 
