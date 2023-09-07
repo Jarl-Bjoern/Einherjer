@@ -199,6 +199,20 @@ class Standard:
 
         return Array_Out, Array_SSL_Out
 
+    def Remove_From_Filtered_File(filter_file_name, delete_entry):
+        if (exists(filter_file_name)):
+            Array_Temp = Standard.Read_File(filter_file_name)
+            if (delete_entry in Array_Temp):
+                Array_Temp.remove(delete_entry)
+                with open(filter_file_name, 'w'):
+                    for _ in Array_Temp:
+                        f.write(f'{_}\n')
+        else: Logs.Error_Message(f'The requested File {filter_file_name} does not exist!')
+
+    def Remove_Empty_Filter_File(filter_file_name):
+        if (len(Standard.Read_File(filter_file_name)) < 2):
+            remove(filter_file_name)
+
     def Try_Remove_File(x):
         while True:
             try:
