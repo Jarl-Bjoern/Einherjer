@@ -65,8 +65,6 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                     Standard.Remove_From_Filtered_File(join(location, 'affected_http_information_disclosure_targets.txt'), Target)
         Standard.Remove_Empty_Filter_File(join(location, 'result_information_disclosure.csv')), Standard.Remove_Empty_Filter_File(join(location, 'affected_http_information_disclosure_targets.txt'))
 
-                writer.writerow(Array_Temp)
-
     if (Dict_Result['SSH'] != {}):
         # Check_For_Existing_File
         Write_Mode = Write_Extend(join(location, 'result_ssh_vulns.csv'))
@@ -126,8 +124,6 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                 else:
                     Standard.Remove_From_Filtered_File(join(location, 'affected_security_flags_targets.txt'), Target)
         Standard.Remove_Empty_Filter_File(join(location, 'result_security_flags.csv')), Standard.Remove_Empty_Filter_File(join(location, 'affected_security_flags_targets.txt'))
-
-                writer.writerow(Array_Temp)
 
     if (Dict_Result['Certificate'] != {}):
         # Check_For_Existing_File
@@ -205,8 +201,6 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                 else:
                     Standard.Remove_From_Filtered_File(join(location, 'affected_http_methods_targets.txt'), Target)
         Standard.Remove_Empty_Filter_File(join(location, 'result_http_methods.csv')), Standard.Remove_Empty_Filter_File(join(location, 'affected_http_methods_targets.txt'))
-
-                writer.writerow(Array_Temp)
 
     if (Dict_Result['SSL'] != {}):
         # Check_For_Existing_File
