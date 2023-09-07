@@ -202,11 +202,9 @@ class Standard:
     def Remove_From_Filtered_File(filter_file_name, delete_entry):
         if (exists(filter_file_name)):
             Array_Temp = Standard.Read_File(filter_file_name)
-            print (delete_entry)
+            print (Array_Temp)
             if (delete_entry in Array_Temp):
                 Array_Temp.remove(delete_entry)
-                print (delete_entry)
-                print (Array_Temp)
                 with open(filter_file_name, 'w'):
                     for _ in Array_Temp:
                         f.write(f'{_}\n')
