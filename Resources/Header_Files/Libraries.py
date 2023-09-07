@@ -24,6 +24,7 @@ SYSTEM_PATH.append(dirname(realpath(__file__)).split('Resources/Header_Files')[0
 # Libraries
 try:
     from aiohttp.client_exceptions import *
+    from base64              import b64encode
     from contextlib          import redirect_stdout
     from datetime            import datetime
     from http.client         import RemoteDisconnected
