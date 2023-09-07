@@ -13,7 +13,7 @@ from Resources.Header_Files.Threads_SSL      import *
 from Resources.Workfiles.Scan_Screen         import Web
 
 # Main_Function
-def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False, Switch_Unsuccesful_Scanning = False):
+def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False, Switch_Unsuccessful_Scanning = False):
     # Set_Password
     if (Program_Mode == "Scanning_Mode"):
         if (args.zip_file != False):
@@ -623,10 +623,10 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             if ("Logs" in _):
                 Count_Temp_Output += 1
         if (Count_Temp_Output == len(Array_Output)):
-            Switch_Unsuccesful_Scanning = True
+            Switch_Unsuccessful_Scanning = True
 
     # Output_End
-    if (Array_Output != [] and Switch_Unsuccesful_Scanning == False):
+    if (Array_Output != [] and Switch_Unsuccessful_Scanning == False):
         if (Program_Mode == "Scanning_Mode"):
             if (args.scan_site_screenshot != False and Switch_Screenshots == False):
                 Message_Chromium(join(Location, 'Screenshots'))
