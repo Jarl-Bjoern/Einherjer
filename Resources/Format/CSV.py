@@ -61,6 +61,9 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
 
                 if (Array_Temp.count('X') != len(Array_Information_Disclosure_Header)):
                     writer.writerow(Array_Temp)
+                else:
+                    Standard.Remove_From_Filtered_File(join(location, 'affected_http_information_disclosure_targets.txt'), Target)
+        Standard.Remove_Empty_Filter_File(join(location, 'result_information_disclosure.csv')), Standard.Remove_Empty_Filter_File(join(location, 'affected_http_information_disclosure_targets.txt'))
 
                 writer.writerow(Array_Temp)
 
@@ -120,6 +123,9 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
 
                 if (Array_Temp.count('✓') != len(Array_Security_Flags)):
                     writer.writerow(Array_Temp)
+                else:
+                    Standard.Remove_From_Filtered_File(join(location, 'affected_security_flags_targets.txt'), Target)
+        Standard.Remove_Empty_Filter_File(join(location, 'result_security_flags.csv')), Standard.Remove_Empty_Filter_File(join(location, 'affected_security_flags_targets.txt'))
 
                 writer.writerow(Array_Temp)
 
@@ -196,6 +202,9 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
 
                 if (Array_Temp.count('✓') != len(Array_HTTP_Methods)):
                     writer.writerow(Array_Temp)
+                else:
+                    Standard.Remove_From_Filtered_File(join(location, 'affected_http_methods_targets.txt'), Target)
+        Standard.Remove_Empty_Filter_File(join(location, 'result_http_methods.csv')), Standard.Remove_Empty_Filter_File(join(location, 'affected_http_methods_targets.txt'))
 
                 writer.writerow(Array_Temp)
 
