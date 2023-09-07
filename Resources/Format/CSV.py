@@ -55,6 +55,10 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                     elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
                     else: Array_Temp.append("X")
+
+                if (Array_Temp.count('X') != len(Array_Information_Disclosure_Header)):
+                    writer.writerow(Array_Temp)
+
                 writer.writerow(Array_Temp)
 
     if (Dict_Result['SSH'] != {}):
@@ -110,6 +114,10 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                     elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
                     else: Array_Temp.append("X")
+
+                if (Array_Temp.count('✓') != len(Array_Security_Flags)):
+                    writer.writerow(Array_Temp)
+
                 writer.writerow(Array_Temp)
 
     if (Dict_Result['Certificate'] != {}):
@@ -182,6 +190,10 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
                     elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
                     elif (Result_Left != "DNS" and Result_Right != "FEHLT"): Array_Temp.append("X")
+
+                if (Array_Temp.count('✓') != len(Array_HTTP_Methods)):
+                    writer.writerow(Array_Temp)
+
                 writer.writerow(Array_Temp)
 
     if (Dict_Result['SSL'] != {}):
