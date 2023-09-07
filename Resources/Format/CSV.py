@@ -30,7 +30,9 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                     elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
                     else: Array_Temp.append("X")
-                writer.writerow(Array_Temp)
+
+                if (Array_Temp.count('✓') != len(Dict_Header)):
+                    writer.writerow(Array_Temp)
 
     if (Dict_Result['Information'] != {}):
         # Check_For_Existing_File
