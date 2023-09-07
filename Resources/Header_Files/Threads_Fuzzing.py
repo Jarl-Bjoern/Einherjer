@@ -21,7 +21,7 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
         # Fuzzing
         if (dict_switch['scan_fuzzing'] != False and '//' in url and 'http' in url):
             # Library_Import
-            from ..Workfiles.Brute_Fuzzing import Check_Site_Paths
+            from ..Workfiles.Fuzz_Fuzzing import Check_Site_Paths
 
             # Trace_Start
             Logs.Trace_File(
