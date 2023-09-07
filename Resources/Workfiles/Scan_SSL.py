@@ -22,12 +22,12 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
         if (url.count(':') > 1):
             Temp, Port = URL.split(':')
             URL        = Temp
-        else: Port = 443
 
-        # Remove_Slashes
-        if (url.count('/') > 1):
-            Temp = URL.split('/')[0]
-            URL  = Temp
+            # Remove_Slashes
+            if (URL.count('/') > 1):
+                Temp   = URL.split('/')[0]
+                URL    = Temp
+        else: Port = 443
 
         try:
             Array_Attack.append(
