@@ -19,13 +19,19 @@ def Filter_Host_Name(Element, Target, Array_Temp, Word):
 
     return Word
 
-def Get_Host_Name(url, Target = "", Temp = "", Word = ""):
+def Get_Host_Name(url, Target = "", Temp = "", Sec_Temp = "", Word = ""):
+    # Remove_All_Protocol_Slashes_And_Colon
     if ('//' in url):
         if (url.count(':') == 2): Target = url.split('//')[1].split(':')[0]
         else:                     Target = url.split('//')[1]
     else:
         if (url.count(':') == 1): Target = url.split(':')[0]
         else:                     Target = url
+
+    # Remove_All_Slashes
+    if ('/' in Target):
+        Sec_Temp = Target.split('/')[0]
+        Target   = Sec_Temp
 
     try: Temp = gethostbyaddr(Target)
     except (gaierror, herror):
