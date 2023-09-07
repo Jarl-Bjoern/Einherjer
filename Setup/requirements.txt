@@ -14,6 +14,8 @@ pysnmp==4.4.12
 python-docx==0.8.11
 pyzipper==0.3.6
 requests==2.31.0
+requests-ntlm==1.2.0
+requests-ntlm2==6.5.3
 requests-pkcs12==1.15
 rich==13.5.2
 scapy==2.4.5
