@@ -21,8 +21,13 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
         # Port_Filter
         if (url.count(':') > 1):
             Temp, Port = URL.split(':')
-            URL = Temp
+            URL        = Temp
         else: Port = 443
+
+        # Remove_Slashes
+        if (url.count('/') > 1):
+            Temp = URL.split('/')[0]
+            URL  = Temp
 
         try:
             Array_Attack.append(
@@ -31,7 +36,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                         hostname=URL,
                         ip_address=URL,
                         port=Port
-                    ), 
+                    ),
                     network_configuration=ServerNetworkConfiguration(
                         URL,
                         network_timeout=ssl_timeout,
