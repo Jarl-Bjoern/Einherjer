@@ -205,7 +205,7 @@ class Standard:
             for _ in Array_Temp:
                 if (delete_entry in _):
                     Array_Temp.remove(_)
-                    with open(filter_file_name, 'w'):
+                    with open(filter_file_name, 'w') as f:
                         for _ in Array_Temp:
                             f.write(f'{_}\n')
         else: Logs.Error_Message(f'The requested File {filter_file_name} does not exist!')
