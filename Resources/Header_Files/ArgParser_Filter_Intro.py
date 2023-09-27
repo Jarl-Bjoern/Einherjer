@@ -38,7 +38,8 @@ def Argument_Parser(Error_Text, Template_Location = dirname(realpath(__file__)).
     filter_arguments.add_argument('-sFt', '--screenshot-frame-thickness', type=int, default=5, help=Colors.GREEN+'Using this parameter you can set the thickness of a frame.\n\nDefault: 5'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     nmap_arguments.add_argument('-nSSH', '--nmap-ssh-output-location', type=str, help=Colors.GREEN+'With this parameter you can include nmap files with SSH results, which are filtered\nand then output as a CSV file.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
-    nmap_arguments.add_argument('-nSMB', '--nmap-smb-output-location', type=str, help=Colors.GREEN+'With this parameter you can include nmap files with SMB results, which are filtered\nand then output as a CSV file.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    nmap_arguments.add_argument('-nSMB', '--nmap-smb-output-location', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    nmap_arguments.add_argument('-nU', '--nmap-file-location', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     optional.add_argument('-h','--help', action='help', default=SUPPRESS, help=Colors.GREEN+'Show this help message and exit.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
