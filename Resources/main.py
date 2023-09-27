@@ -230,8 +230,9 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             del shuffle
 
         # Proxy_Settings
-        if (args.add_http_proxy  != None):                   Dict_Proxies['http']         = args.add_http_proxy
-        if (args.add_https_proxy != None):                   Dict_Proxies['https']        = args.add_https_proxy
+        if (args.add_http_proxy  != None):                   Dict_Proxies['http']                        = args.add_http_proxy
+        if (args.add_https_proxy != None):                   Dict_Proxies['https']                       = args.add_https_proxy
+        if (args.add_socks_proxy != None):                   Dict_Proxies['http'], Dict_Proxies['https'] = f'socks5://{args.add_socks_proxy}', f'socks5://{args.add_socks_proxy}'
 
         # Webdriver_Options
         if (args.scan_site_screenshot != False):
