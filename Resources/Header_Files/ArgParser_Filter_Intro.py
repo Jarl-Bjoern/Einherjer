@@ -24,6 +24,7 @@ def Argument_Parser(Error_Text, Template_Location = dirname(realpath(__file__)).
     config_arguments  = parser.add_argument_group(Colors.ORANGE+'config arguments'+Colors.RESET)
     debug_arguments   = parser.add_argument_group(Colors.ORANGE+'debug arguments'+Colors.RESET)
     filter_arguments  = parser.add_argument_group(Colors.ORANGE+'format arguments'+Colors.RESET)
+    nmap_arguments    = parser.add_argument_group(Colors.ORANGE+'nmap arguments'+Colors.RESET)
     optional          = parser.add_argument_group(Colors.ORANGE+'optional arguments'+Colors.RESET)
 
     config_arguments.add_argument('-o', '--output-location', type=str, help=Colors.GREEN+'Specify the location where the result should be saved.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
@@ -33,10 +34,11 @@ def Argument_Parser(Error_Text, Template_Location = dirname(realpath(__file__)).
     filter_arguments.add_argument('-fS', '--file-split', type=str, help=Colors.GREEN+'This parameter splits a destination file by exactly half the words.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     filter_arguments.add_argument('-hnTf', '--hostname-template-file', type=str, help=Colors.GREEN+'With this argument you load the template for the hostnames.\n\nMake sure that it has the following format:\n127.0.0.1:localhost\n\n       or\n\n127.0.0.1=localhost'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     filter_arguments.add_argument('-hnT', '--hostname-target-file', type=str, help=Colors.GREEN+'With this argument you load the target file, which consists only of IP addresses, in\norder to be able to use the filter for the hostnames.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
-    filter_arguments.add_argument('-nSSH', '--nmap-ssh-output-location', type=str, help=Colors.GREEN+'With this parameter you can include nmap files with SSH results, which are filtered\nand then output as a CSV file.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
-    filter_arguments.add_argument('-nSMB', '--nmap-smb-output-location', type=str, help=Colors.GREEN+'With this parameter you can include nmap files with SMB results, which are filtered\nand then output as a CSV file.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     filter_arguments.add_argument('-sL', '--screenshot-location', type=str, help=Colors.GREEN+'Using this parameter you can specify a folder with screenshots, which will be loaded\ninto the filter mode and all screenshots in it will be decorated with a black frame.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     filter_arguments.add_argument('-sFt', '--screenshot-frame-thickness', type=int, default=5, help=Colors.GREEN+'Using this parameter you can set the thickness of a frame.\n\nDefault: 5'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+
+    nmap_arguments.add_argument('-nSSH', '--nmap-ssh-output-location', type=str, help=Colors.GREEN+'With this parameter you can include nmap files with SSH results, which are filtered\nand then output as a CSV file.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    nmap_arguments.add_argument('-nSMB', '--nmap-smb-output-location', type=str, help=Colors.GREEN+'With this parameter you can include nmap files with SMB results, which are filtered\nand then output as a CSV file.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     optional.add_argument('-h','--help', action='help', default=SUPPRESS, help=Colors.GREEN+'Show this help message and exit.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
