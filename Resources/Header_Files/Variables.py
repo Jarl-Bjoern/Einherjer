@@ -62,6 +62,10 @@ Dict_Protocols = {
     "test": {}
 }
 
+Dict_Timer_Presets = {
+    "1": {}
+}
+
 Dict_State = {
     "State": [],
     "Location": dirname(realpath(__file__)).split('Resources/Header_Files')[0]
