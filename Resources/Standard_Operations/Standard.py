@@ -114,45 +114,48 @@ class Standard:
             Array_Template = Standard.Read_File(join(dirname(realpath(__file__)).split("Resources/Standard_Operations")[0], "scan.state"))
 
         Protocol, Address, Port, Skip_Attributes = "","","",False
-        for event, elem in ET.iterparse(file_path, events=("end",)):
-            if (event == "end"):
-                if (elem.tag == 'address'):
-                    if (Skip_Attributes != True):
-                        Address = elem.attrib['addr']
-                elif (elem.tag == 'state'):
-                    if (elem.attrib['state'] != "open"):
-                        Skip_Attributes = True
-                elif (elem.tag == 'service'):
-                    if (Skip_Attributes != True):
-                        if ('http' in elem.attrib['name'] and not 'ssl' in elem.attrib['name'] and not 'https' in elem.attrib['name']):
-                            Protocol = "http"
-                        elif ('https' in elem.attrib['name'] or ('http' in elem.attrib['name'] and 'ssl' in elem.attrib['name'])):
-                            Protocol = "https"
-                        elif ('ftp' in elem.attrib['name']):
-                            Protocol = "ftp"
-                elif (elem.tag == 'port'):
-                    if (Skip_Attributes != True):
-                        Port = elem.attrib['portid']
-                    if (Protocol != "" and Address != "" and Port != ""):
-                        Full_Target = f'{Protocol}://{Address}:{Port}'
-                        Protocol, Address, Port = "","",""
-
-                        if ('ssl://' in Full_Target):
-                            if (Full_Target not in Array_SSL_Out):
-                                if (Full_Target not in Array_Template):
-                                    Array_SSL_Out.append(Full_Target)
-                        elif ('https://' in Full_Target):
-                            if (Full_Target not in Array_SSL_Out):
-                                if (Full_Target not in Array_Template):
-                                    Array_SSL_Out.append(Full_Target)
-                                    Array_Out.append(Full_Target)
-                        else:
-                            if (Full_Target not in Array_Out):
-                                if (Full_Target not in Array_Template):
-                                    Array_Out.append(Full_Target)
-                        Full_Target = ""
-
-                    Skip_Attributes = False
+        try:
+            for event, elem in ET.iterparse(file_path, events=("end",)):
+                if (event == "end"):
+                    if (elem.tag == 'address'):
+                        if (Skip_Attributes != True):
+                            Address = elem.attrib['addr']
+                    elif (elem.tag == 'state'):
+                        if (elem.attrib['state'] != "open"):
+                            Skip_Attributes = True
+                    elif (elem.tag == 'service'):
+                        if (Skip_Attributes != True):
+                            if ('http' in elem.attrib['name'] and not 'ssl' in elem.attrib['name'] and not 'https' in elem.attrib['name']):
+                                Protocol = "http"
+                            elif ('https' in elem.attrib['name'] or ('http' in elem.attrib['name'] and 'ssl' in elem.attrib['name'])):
+                                Protocol = "https"
+                            elif ('ftp' in elem.attrib['name']):
+                                Protocol = "ftp"
+                    elif (elem.tag == 'port'):
+                        if (Skip_Attributes != True):
+                            Port = elem.attrib['portid']
+                        if (Protocol != "" and Address != "" and Port != ""):
+                            Full_Target = f'{Protocol}://{Address}:{Port}'
+                            Protocol, Address, Port = "","",""
+    
+                            if ('ssl://' in Full_Target):
+                                if (Full_Target not in Array_SSL_Out):
+                                    if (Full_Target not in Array_Template):
+                                        Array_SSL_Out.append(Full_Target)
+                            elif ('https://' in Full_Target):
+                                if (Full_Target not in Array_SSL_Out):
+                                    if (Full_Target not in Array_Template):
+                                        Array_SSL_Out.append(Full_Target)
+                                        Array_Out.append(Full_Target)
+                            else:
+                                if (Full_Target not in Array_Out):
+                                    if (Full_Target not in Array_Template):
+                                        Array_Out.append(Full_Target)
+                            Full_Target = ""
+    
+                        Skip_Attributes = False
+        except ParseError:
+            print (f"It's seems that the xml file {file_path} is empty."), exit()
 
         return Array_Out, Array_SSL_Out
 
