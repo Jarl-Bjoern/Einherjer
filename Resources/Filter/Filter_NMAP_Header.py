@@ -24,15 +24,15 @@ def NMAP_Unencrypted(nmap_files_location, Dict_System = {}):
                                         if (Skip_Attributes != True):
                                             if (elem.attrib['addrtype'] == "ipv4"):
                                                 Address = elem.attrib['addr']
-                
+
                                     elif (elem.tag == "state"):
                                         if (elem.attrib['state'] != "open"):
                                             Skip_Attributes = True
-                
+
                                     elif (elem.tag == "service"):
                                         if (Skip_Attributes != True):
                                             Protocol = elem.attrib['name']
-                
+
                                             Product, Version, Extra_Info = "","",""
                                             try:             Product    = elem.attrib['product']
                                             except KeyError: pass
@@ -40,7 +40,7 @@ def NMAP_Unencrypted(nmap_files_location, Dict_System = {}):
                                             except KeyError: pass
                                             try:             Extra_Info = elem.attrib['extrainfo']
                                             except KeyError: pass
-                
+
                                             Word = ""
                                             if (Product    != ""): Word += f"{Product} "
                                             if (Version    != ""): Word += f"{Version} "
@@ -51,13 +51,13 @@ def NMAP_Unencrypted(nmap_files_location, Dict_System = {}):
 
                                     elif (elem.tag == 'port'):
                                         Port = elem.attrib['portid']
-                
+
                                         if (Protocol != "" and Address != "" and Port != ""):
                                            if (Protocol not in Array_Filter_Protocols):
                                                print (f'{Address} {Protocol} open {Word}')
-                
+
                                         Skip_Attributes = False
-                
+
                         except ET.ParseError:
                             pass #print ("It's seems that the xml file"+Colors.RED+f" {file_path} "+Colors.RESET+"is empty."), exit()
 
