@@ -33,6 +33,4 @@ def Responder_Logs(responder_files_location, output_location, Array_Temp = []):
     except FileNotFoundError:
         pass
 
-
-
     return Array_Temp
