@@ -137,7 +137,7 @@ class Standard:
                         if (Protocol != "" and Address != "" and Port != ""):
                             Full_Target = f'{Protocol}://{Address}:{Port}'
                             Protocol, Address, Port = "","",""
-    
+
                             if ('ssl://' in Full_Target):
                                 if (Full_Target not in Array_SSL_Out):
                                     if (Full_Target not in Array_Template):
@@ -152,7 +152,7 @@ class Standard:
                                     if (Full_Target not in Array_Template):
                                         Array_Out.append(Full_Target)
                             Full_Target = ""
-    
+
                         Skip_Attributes = False
         except ParseError:
             print ("It's seems that the xml file"+Colors.RED+f" {file_path} "+Colors.RESET+"is empty."), exit()
