@@ -34,7 +34,11 @@ def Check_Certificate(url, t_seconds, Host_Name, Location, context = create_unve
             try:
                 with context.wrap_socket(sock, server_hostname=Target) as ssock:
                     # Cert_Connect_And_Collect
-                    cert_der = ssock.getpeercert(binary_form=True)
+                    try:
+                        cert_der = ssock.getpeercert(binary_form=True)
+                    except (ConnectionRefusedError, gaierror, SSLError, SSLZeroReturnError, TimeoutError):
+                        Logs.Write_Log(url, Host_Name, join(Location, 'Logs'))
+
                     try:
                         cert = load_der_x509_certificate(cert_der, default_backend())
                     except TypeError:
