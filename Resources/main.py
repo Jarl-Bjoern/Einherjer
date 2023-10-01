@@ -109,7 +109,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                 Array_Output = Hostname_Filter(args.hostname_template_file, args.hostname_target_file, Output_location)
 
             if (args.nmap_ssh_output_location != None):
-                from Resources.Filter.Filter_SSH_NMAP import SSH_Nmap
+                from Resources.Filter.Filter_NMAP_SSH import SSH_Nmap
                 Array_Output = SSH_Nmap(args.nmap_ssh_output_location, Output_location)
 
             if (args.screenshot_location != None):
