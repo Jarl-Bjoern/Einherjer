@@ -155,7 +155,7 @@ class Standard:
     
                         Skip_Attributes = False
         except ParseError:
-            print (f"It's seems that the xml file {file_path} is empty."), exit()
+            print ("It's seems that the xml file"+Colors.RED+f" {file_path} "+Colors.RESET+"is empty."), exit()
 
         return Array_Out, Array_SSL_Out
 
