@@ -41,20 +41,21 @@ try:
     from rich.progress       import BarColumn, Progress, SpinnerColumn, TaskProgressColumn, TimeElapsedColumn, TimeRemainingColumn
     from selenium.common.exceptions import *
     from socket              import gaierror, gethostbyaddr, gethostbyname, herror, setdefaulttimeout as socket_defaulttimeout
-    from ssl          import cert_time_to_seconds, create_default_context, _create_unverified_context as create_unverified_context, get_server_certificate, SSLError, SSLZeroReturnError
-    from subprocess   import getoutput, run
-    from stdiomask    import getpass
-    from secrets      import SystemRandom
-    from shutil       import rmtree
-    from sys          import argv, stdout
-    from time         import sleep, strftime, time
-    from threading    import Thread, enumerate as Th_enumerate
-    from traceback    import print_exc
-    from urllib3      import disable_warnings
-    from urllib3.exceptions import *
-    from urllib.parse import quote_plus as html_encode, unquote_plus as html_decode
-    from warnings     import catch_warnings, simplefilter
-    from zipfile      import ZipFile
+    from ssl                 import cert_time_to_seconds, create_default_context, _create_unverified_context as create_unverified_context, get_server_certificate, SSLError, SSLZeroReturnError
+    from subprocess          import getoutput, run
+    from stdiomask           import getpass
+    from secrets             import SystemRandom
+    from shutil              import rmtree
+    from sys                 import argv, stdout
+    from time                import sleep, strftime, time
+    from threading           import Thread, enumerate as Th_enumerate
+    from traceback           import print_exc
+    from urllib3             import disable_warnings
+    from urllib3.exceptions  import *
+    from urllib.parse        import quote_plus as html_encode, unquote_plus as html_decode
+    from warnings            import catch_warnings, simplefilter
+    from xml.etree.ElementTree import ParseError
+    from zipfile             import ZipFile
     import stat, xml.etree.ElementTree as ET
     with catch_warnings():
         simplefilter("ignore")
