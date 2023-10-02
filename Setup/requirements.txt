@@ -12,6 +12,7 @@ pykeepass==4.0.3
 pypandoc==1.11
 pysnmp==4.4.12
 python-docx==0.8.11
+pyzbar==0.1.9
 pyzipper==0.3.6
 requests==2.31.0
 #requests-kerberos==0.14.0
