@@ -5,7 +5,7 @@
 # Libraries
 from ..Header_Files.Variables import *
 
-def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': [], 'auth_methods': []}, Array_Temp = []):
+def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Results = {'DNS': "", 'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': [], 'auth_methods': []}, Array_Temp = []):
     try:
         # Check_For_One_File
         if (isfile(nmap_files_location)):
@@ -15,7 +15,10 @@ def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Re
 
                     for Result in range(1, len(Report)-1):
                         if ("Nmap scan report" in Report[Result]):
-                            IP_Address = Report[Result].split(" ")[4]
+                            if ('(' in Report[Result] and ')' in Report[Result]):
+                                IP_Address, Dict_SSH_Results['DNS'] = Report[Result].split(" ")[5][1:-1], Report[Result].split(" ")[4]
+                            else:
+                                IP_Address, Dict_SSH_Results['DNS'] = Report[Result].split(" ")[4], '-'
                         elif ("Host is"     not in Report[Result] and
                               "Scanned"     not in Report[Result] and
                               "PORT"        not in Report[Result] and
@@ -81,7 +84,7 @@ def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Re
                               "Nmap scan report" in Report[Result+1]):
                                    try:    Dict_System[f'{IP_Address}:{Port}'] = Dict_SSH_Results
                                    except: pass
-                                   Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': [], 'auth_methods': []}
+                                   Dict_SSH_Results = {'DNS': "", 'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': [], 'auth_methods': []}
 
 
             elif (nmap_files_location.endswith('.xml')):
@@ -163,19 +166,30 @@ def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Re
                               "Nmap scan report" in Report[Result+1]):
                                    try:                      Dict_System[f'{IP_Address}:{Port}'] = Dict_SSH_Results
                                    except UnboundLocalError: pass
-                                   Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': [], 'auth_methods': []}
+                                   Dict_SSH_Results = {'DNS': "", 'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': [], 'auth_methods': []}
 
-            Array_Temp.append(join(output_location, 'ssh-vulns.csv'))
-            with open(join(output_location, 'ssh-vulns.csv'), 'w') as f:
-                 f.write("Host;kex_algorithms;server_host_key_algorithms;encryption_algorithms;mac_algorithms;auth_methods\n")
-                 for i in Dict_System:
-                     f.write(f'{i};')
-                     for j in Dict_System[i]:
-                         for k in range(0, len(Dict_System[i][j])):
-                             if (k != len(Dict_System[i][j])-1): f.write(f'{Dict_System[i][j][k]}, ')
-                             else: f.write(f'{Dict_System[i][j][k]}')
-                         f.write(f';')
-                     f.write('\n')
+        # Write_Output
+        Array_Temp.append(join(output_location, 'ssh-vulns.csv'))
+        with open(join(output_location, 'ssh-vulns-temp.csv'), 'w') as f:
+            f.write("Host;DNS;kex_algorithms;server_host_key_algorithms;encryption_algorithms;mac_algorithms;auth_methods\n")
+            for i in Dict_System:
+                f.write(f'{i};')
+                for j in Dict_System[i]:
+                    if (type(Dict_System[i][j]) == str):
+                        f.write(f'{Dict_System[i][j]}')
+                    else:
+                        for k in range(0, len(Dict_System[i][j])):
+                            if (k != len(Dict_System[i][j])-1): f.write(f'{Dict_System[i][j][k]}, ')
+                            else: f.write(f'{Dict_System[i][j][k]}')
+                    f.write(f';')
+                f.write('\n')
+
+        # Check_Output_For_Empty_Fields
+        with open(join(output_location, 'ssh-vulns.csv'), 'w') as fw:
+            with open(join(output_location), 'ssh-vulns-temp.csv'), 'r') as f:
+                for _ in f.read().splitlines():
+                    if (';;;;;;' not in _):
+                        fw.write(f'{_}\n')
     except FileNotFoundError:
         pass
 
