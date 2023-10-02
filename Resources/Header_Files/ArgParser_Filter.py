@@ -41,7 +41,7 @@ def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Res
     nmap_arguments.add_argument('-nSMB', '--nmap-smb-output-location', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     nmap_arguments.add_argument('-nU', '--nmap-file-location', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
-    picture_arguments.add_argument('-qA', '--qrcoode-picture-location', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    picture_arguments.add_argument('-qA', '--qrcode-picture-location', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     picture_arguments.add_argument('-sL', '--screenshot-location', type=str, help=Colors.GREEN+'Using this parameter you can specify a folder with screenshots, which will be\nloaded into the filter mode and all screenshots in it will be decorated with a\nblack frame.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     picture_arguments.add_argument('-sFt', '--screenshot-frame-thickness', type=int, default=5, help=Colors.GREEN+'Using this parameter you can set the thickness of a frame.\n\nDefault: 5'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
