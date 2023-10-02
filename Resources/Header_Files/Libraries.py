@@ -80,6 +80,10 @@ try:
             if (args.screenshot_location != None):
                 from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
 
+            if (args.qrcode_picture_location != None):
+                from PIL import Image
+                from pyzbar import pyzbar
+
         elif (argv[1] == "--brute-force-mode"):
             argv.remove('--brute-force-mode')
             from .ArgParser_Brute import Argument_Parser
