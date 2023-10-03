@@ -117,6 +117,7 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
                     if (';;;' not in _):
                         fw.write(f'{_}\n')
 
+        remove(join(output_location, 'smb-vulns-temp.csv'))
     except FileNotFoundError:
         pass
 
