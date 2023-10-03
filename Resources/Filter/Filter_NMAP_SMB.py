@@ -50,6 +50,7 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
                         elif ("|" in Report[Result]):
                              if ("smb2-security-mode"         in Report[Result][2:-1] or
                                  "smb-security-mode"          in Report[Result][2:-1]):
+                                        print (Port)
                                         Dict_System[f'{IP_Address}:{Port}'] = ""
                                         Target = Report[Result][2:-1].split(" ")[0][:-1]
                                         while True:
