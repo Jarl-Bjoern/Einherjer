@@ -41,7 +41,7 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
                               ""            not in Report[Result]):
                                     pass
                         elif ("tcp"           in Report[Result] and
-                              "microsoft-ds"  in Report[Result] and
+                              "netbios-ssn"  in Report[Result] and
                               "filtered"      not in Report[Result] and
                               "unknown"       not in Report[Result] and
                               "closed"        not in Report[Result]):
