@@ -11,6 +11,7 @@ pycurl==7.45.2
 pykeepass==4.0.3
 pypandoc==1.11
 pysnmp==4.4.12
+PySocks==1.7.1
 python-docx==0.8.11
 pyzbar==0.1.9
 pyzipper==0.3.6
