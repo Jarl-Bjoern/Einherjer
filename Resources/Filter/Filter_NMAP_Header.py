@@ -65,16 +65,29 @@ def NMAP_Unencrypted(nmap_files_location, Dict_System = {}):
                 elif (isdir(nmap_files_location)):
                         pass
 
-                Array_Temp.append(join(output_location, 'result_header.csv'))
-                with open(join(output_location, 'result_header.csv'), 'w') as f:
-                        f.write("Host;kex_algorithms;server_host_key_algorithms;encryption_algorithms;mac_algorithms;auth_methods\n")
-                        for i in Dict_System:
-                                f.write(f'{i};')
-                                for j in Dict_System[i]:
-                                        for k in range(0, len(Dict_System[i][j])):
-                                                if (k != len(Dict_System[i][j])-1): f.write(f'{Dict_System[i][j][k]}, ')
-                                                else: f.write(f'{Dict_System[i][j][k]}')
-                                        f.write(f';')
-                                f.write('\n')
+                # Write_Output
+                Array_Temp.append(join(output_location, 'result-header.csv'))
+                with open(join(output_location, 'result-header-temp.csv'), 'w') as f:
+                    f.write("Host;DNS;kex_algorithms;server_host_key_algorithms;encryption_algorithms;mac_algorithms;auth_methods\n")
+                    for i in Dict_System:
+                        f.write(f'{i};')
+                        for j in Dict_System[i]:
+                            if (type(Dict_System[i][j]) == str):
+                                f.write(f'{Dict_System[i][j]}')
+                            else:
+                                for k in range(0, len(Dict_System[i][j])):
+                                    if (k != len(Dict_System[i][j])-1): f.write(f'{Dict_System[i][j][k]}, ')
+                                    else: f.write(f'{Dict_System[i][j][k]}')
+                            f.write(f';')
+                        f.write('\n')
+        
+                # Check_Output_For_Empty_Fields
+                with open(join(output_location, 'result-header.csv'), 'w') as fw:
+                    with open(join(output_location, 'result-header-temp.csv'), 'r') as f:
+                        for _ in f.read().splitlines():
+                            if (';;;;;;' not in _):
+                                fw.write(f'{_}\n')
+        
+                remove(join(output_location, 'result-header-temp.csv'))
     except FileNotFoundError:
         pass
