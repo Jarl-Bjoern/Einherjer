@@ -108,6 +108,10 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                 from Resources.Filter.Filter_Hostname import Hostname_Filter
                 Array_Output = Hostname_Filter(args.hostname_template_file, args.hostname_target_file, Output_location)
 
+            if (args.nmap_smb_output_location != None):
+                from Resources.Filter.Filter_NMAP_SMB import SMB_Nmap
+                Array_Output = SMB_Nmap(args.nmap_smb_output_location, Output_location)
+
             if (args.nmap_ssh_output_location != None):
                 from Resources.Filter.Filter_NMAP_SSH import SSH_Nmap
                 Array_Output = SSH_Nmap(args.nmap_ssh_output_location, Output_location)
