@@ -190,6 +190,8 @@ def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Re
                 for _ in f.read().splitlines():
                     if (';;;;;;' not in _):
                         fw.write(f'{_}\n')
+
+        remove(join(output_location, 'ssh-vulns-temp.csv'))
     except FileNotFoundError:
         pass
 
