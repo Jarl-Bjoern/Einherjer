@@ -186,7 +186,7 @@ def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Re
 
         # Check_Output_For_Empty_Fields
         with open(join(output_location, 'ssh-vulns.csv'), 'w') as fw:
-            with open(join(output_location), 'ssh-vulns-temp.csv'), 'r') as f:
+            with open(join(output_location, 'ssh-vulns-temp.csv'), 'r') as f:
                 for _ in f.read().splitlines():
                     if (';;;;;;' not in _):
                         fw.write(f'{_}\n')
