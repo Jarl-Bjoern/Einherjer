@@ -84,6 +84,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
         if (args.file_split                == None and
             args.hostname_template_file    == None and
             args.hostname_target_file      == None and
+            args.nmap_smb_output_location  == None and
             args.nmap_ssh_output_location  == None and
             args.screenshot_location       == None):
                 from Resources.Header_Files.ArgParser_Filter_Intro import Argument_Parser
