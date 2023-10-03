@@ -87,7 +87,10 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
                         elif ("MAC Address:"     in Report[Result]   or
                               "Nmap done"        in Report[Result+1] or
                               "Nmap scan report" in Report[Result+1]):
-                                   try:                      Dict_System[f'{IP_Address}:{Port}'] = Dict_SMB_Results
+                                   try:
+                                       Temp_Dict = Dict_SMB_Results
+                                       if (Temp_Dict != {'DNS':"", 'smb-security-mode': [], 'smb2-security-mode': [], 'smb-protocols': []}):
+                                           Dict_System[f'{IP_Address}:{Port}'] = Dict_SMB_Results
                                    except UnboundLocalError: pass
                                    Dict_SMB_Results = {'DNS':"", 'smb-security-mode': [], 'smb2-security-mode': [], 'smb-protocols': []}
 
@@ -109,7 +112,7 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
 
         # Check_Output_For_Empty_Fields
         with open(join(output_location, 'smb-vulns.csv'), 'w') as fw:
-            with open(join(output_location), 'smb-vulns-temp.csv'), 'r') as f:
+            with open(join(output_location, 'smb-vulns-temp.csv'), 'r') as f:
                 for _ in f.read().splitlines():
                     if (';;;' not in _):
                         fw.write(f'{_}\n')
