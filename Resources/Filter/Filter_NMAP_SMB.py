@@ -46,31 +46,32 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
                               "unknown"       not in Report[Result] and
                               "closed"        not in Report[Result]):
                                     Port = Report[Result].split('/')[0]
-                                    print (Port)
                         elif ("|" in Report[Result]):
                              if ("smb2-security-mode"         in Report[Result][2:-1] or
                                  "smb-security-mode"          in Report[Result][2:-1]):
-                                        print (Port)
                                         Dict_System[f'{IP_Address}:{Port}'] = ""
                                         Target = Report[Result][2:-1].split(" ")[0][:-1]
                                         while True:
-                                             Result += 1
-                                             if ("smb-protocols"              not in Report[Result] and
-                                                 "smb-security-mode"          not in Report[Result] and
-                                                 "smb2-security-mode"         not in Report[Result] and
-                                                 "MAC Address:"               not in Report[Result] and
-                                                 "Nmap scan report"           not in Report[Result]):
-                                                     if (':' in Report[Result]):
-                                                         # SMBv1
-                                                         if (Report[Result].count(':') == 1):
-                                                             if ('disabled' in Report[Result] and 'message_signing' in Report[Result]):
-    #                                                             print (Report[Result])
-                                                                 Dict_SMB_Results[Target].append(Report[Result][8:])
-                                                         # SMBv2_SMBv3
-                                                         elif (Report[Result].count(':') == 3):
-                                                             pass
-    #                                                         print (Report[Result][4:-2].replace(':', '_'))
-                                             else: break
+                                            Result += 1
+                                            try:
+                                                if ("smb-protocols"              not in Report[Result] and
+                                                    "smb-security-mode"          not in Report[Result] and
+                                                    "smb2-security-mode"         not in Report[Result] and
+                                                    "MAC Address:"               not in Report[Result] and
+                                                    "Nmap scan report"           not in Report[Result]):
+                                                        if (':' in Report[Result]):
+                                                              # SMBv1
+                                                              if (Report[Result].count(':') == 1):
+                                                                  if ('disabled' in Report[Result] and 'message_signing' in Report[Result]):
+    #                                                                 print (Report[Result])
+                                                                      Dict_SMB_Results[Target].append(Report[Result][8:])
+                                                               # SMBv2_SMBv3
+                                                               elif (Report[Result].count(':') == 3):
+                                                                   pass
+    #                                                              print (Report[Result][4:-2].replace(':', '_'))
+                                                else: break
+                                            except IndexError:
+                                                break
                              elif ("smb-protocols" in Report[Result][2:-1]):
     #                               Dict_System[f'{IP_Address}:{Port}'] = ""
                                    while True:
