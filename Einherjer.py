@@ -24,10 +24,13 @@ from os.path    import dirname, join, realpath
 from sys        import argv
 from subprocess import call
 
+# Variables
+Switch_Proxychains, Switch_Proxychains_Four = False, False
+
 # Filter_Proxychains
 if (osname != 'nt'):
     if ("proxychains" in argv and not "proxychains4" in argv):
-        Switch_Proxychains  = True
+        Switch_Proxychains      = True
         argv.remove("proxychains")
     elif ("proxychains" not in argv and "proxychains4" in argv):
         Switch_Proxychains_Four = True
