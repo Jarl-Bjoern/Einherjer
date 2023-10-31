@@ -29,7 +29,7 @@ if ("proxychains" in argv and not "proxychains4" in argv):
     Switch_Proxychains  = True
     argv.remove("proxychains")
 elif ("proxychains" not in argv and "proxychains4" in argv):
-    Switch_Proxychainsf = True
+    Switch_Proxychains_Four = True
     argv.remove("proxychains4")
 
 # Arguments
