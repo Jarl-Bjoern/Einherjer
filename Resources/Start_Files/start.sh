@@ -22,9 +22,9 @@ if [[ -d "$BASE_PATH/venv" ]]; then
         if [[ -f "/tmp/einherjer_proxy.ini" ]]; then
                 Proxy_Mode=$(cat "/tmp/einherjer_proxy.ini")
                 if [[ "$Proxy_Mode" == "proxychains" ]]; then
-                        sudo proxychains python3 "$SCRIPT_PATH/main.py" "$@"
+                        sudo proxychains -qs python3 "$SCRIPT_PATH/main.py" "$@"
                 elif [[ "$Proxy_Mode" == "proxychains4" ]]; then
-                        sudo proxychains4 python3 "$SCRIPT_PATH/main.py" "$@"
+                        sudo proxychains4 -qs python3 "$SCRIPT_PATH/main.py" "$@"
                 fi
                 rm -f "/tmp/einherjer_proxy.ini"
         else
