@@ -43,5 +43,15 @@ for _ in argv[1:]:
 
 # Main
 if __name__ == '__main__':
-    if (osname == 'nt'): call(f'powershell {join(dirname(realpath(__file__)), "Resources/Start_Files/start.ps1")} {Temp_Args}', shell=True)
-    else:                call(f'sudo bash {join(dirname(realpath(__file__)), "Resources/Start_Files/start.sh")} {Temp_Args}', shell=True)
+    if (osname == 'nt'):
+        call(f'powershell {join(dirname(realpath(__file__)), "Resources/Start_Files/start.ps1")} {Temp_Args}', shell=True)
+    else:
+        if (Switch_Proxychains        == False and
+            Switch_Proxychains_Four   == False):
+                call(f'sudo bash {join(dirname(realpath(__file__)), "Resources/Start_Files/start.sh")} {Temp_Args}', shell=True)
+        elif (Switch_Proxychains      == True and 
+              Switch_Proxychains_Four == False):
+                pass
+        elif (Switch_Proxychains      == False and
+              Switch_Proxychains_Four == True):
+                pass
