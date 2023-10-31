@@ -24,17 +24,18 @@ from os.path    import dirname, join, realpath
 from sys        import argv
 from subprocess import call
 
-# Variables
-Switch_Proxychains, Switch_Proxychains_Four = False, False
+# Function
+def Write_Proxy_File(Text):
+    with open('/tmp/einherjer_proxy.ini', 'w') as f:
+        f.write(Text)
 
 # Filter_Proxychains
 if (osname != 'nt'):
     if ("proxychains" in argv and not "proxychains4" in argv):
-        Switch_Proxychains      = True
-        argv.remove("proxychains")
+        Write_Proxy_File("proxychains"), argv.remove("proxychains")
     elif ("proxychains" not in argv and "proxychains4" in argv):
-        Switch_Proxychains_Four = True
-        argv.remove("proxychains4")
+        Write_Proxy_File("proxychains4"), argv.remove("proxychains4")
+del Write_Proxy_File
 
 # Arguments
 Temp_Args = ""
@@ -43,15 +44,5 @@ for _ in argv[1:]:
 
 # Main
 if __name__ == '__main__':
-    if (osname == 'nt'):
-        call(f'powershell {join(dirname(realpath(__file__)), "Resources/Start_Files/start.ps1")} {Temp_Args}', shell=True)
-    else:
-        if (Switch_Proxychains        == False and
-            Switch_Proxychains_Four   == False):
-                call(f'sudo bash {join(dirname(realpath(__file__)), "Resources/Start_Files/start.sh")} {Temp_Args}', shell=True)
-        elif (Switch_Proxychains      == True and
-              Switch_Proxychains_Four == False):
-                pass
-        elif (Switch_Proxychains      == False and
-              Switch_Proxychains_Four == True):
-                pass
+    if (osname == 'nt'): call(f'powershell {join(dirname(realpath(__file__)), "Resources/Start_Files/start.ps1")} {Temp_Args}', shell=True)
+    else:                call(f'sudo bash {join(dirname(realpath(__file__)), "Resources/Start_Files/start.sh")} {Temp_Args}', shell=True)
