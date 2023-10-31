@@ -24,6 +24,14 @@ from os.path    import dirname, join, realpath
 from sys        import argv
 from subprocess import call
 
+# Filter_Proxychains
+if ("proxychains" in argv and not "proxychains4" in argv):
+    Switch_Proxychains  = True
+    argv.remove("proxychains")
+elif ("proxychains" not in argv and "proxychains4" in argv):
+    Switch_Proxychainsf = True
+    argv.remove("proxychains4")
+
 # Arguments
 Temp_Args = ""
 for _ in argv[1:]:
