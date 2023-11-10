@@ -1,5 +1,5 @@
 aiohttp==3.8.5
-asyncssh==2.12.0
+asyncssh==2.14.1
 cryptography==41.0.5
 crc==4.1.0
 numpy==1.23.3
