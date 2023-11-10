@@ -52,7 +52,7 @@ try:
     from traceback           import print_exc
     from urllib3             import disable_warnings
     from urllib3.exceptions  import *
-    from urllib.parse        import quote_plus as html_encode, unquote_plus as html_decode
+    from urllib.parse        import quote_plus as url_encode, unquote_plus as url_decode
     from warnings            import catch_warnings, simplefilter
     from xml.etree.ElementTree import ParseError
     from zipfile             import ZipFile
