@@ -64,9 +64,9 @@ try:
     # Chromium_Check
     if (osname != 'nt'):
         if ('not found' in getoutput('which chromium') or '(none)' in getoutput('apt-cache policy chromium')):
-            Module_Error(f"\n{getoutput('apt-cache policy chromium')}\n\n{getoutput('which chromium')}\n\nIt looks like that you do not have \033[0;31mChromium\033[0m installed.\n\nPlease use \033[1;33mapt install -y chromium\033[0m.\n\n")
+            Module_Error(f"\n{getoutput('apt-cache policy chromium')}\n\nchromium not found.\n\nIt looks like that you do not have \033[0;31mChromium\033[0m installed.\n\nPlease use \033[1;33mapt install -y chromium\033[0m.\n\n")
         if ('not found' in getoutput('which chromium-driver') or '(none)' in getoutput('apt-cache policy chromium-driver')):
-            Module_Error(f"\n{getoutput('apt-cache policy chromium-driver')}\n\n{getoutput('which chromium-driver')}\n\nIt looks like that you do not have \033[0;31mChromium-Driver\033[0m installed.\n\nPlease use \033[1;33mapt install -y chromium-driver\033[0m.\n\n")
+            Module_Error(f"\n{getoutput('apt-cache policy chromium-driver')}\n\nchromium-driver not found.\n\nIt looks like that you do not have \033[0;31mChromium-Driver\033[0m installed.\n\nPlease use \033[1;33mapt install -y chromium-driver\033[0m.\n\n")
 
     # Argument_Parser
     try:
