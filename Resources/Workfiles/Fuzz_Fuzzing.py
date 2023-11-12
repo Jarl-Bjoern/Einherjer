@@ -20,6 +20,10 @@ def Check_Site_Paths(url, t_seconds, array_wordlists, Dict_Result = {"200": [], 
                             Dict_Result[str(r.status)].append(URL)
                     await asyncio.sleep(t_seconds)
 
-    asyncio.run(Check_Fuzz(url))
+    # Start_Scan
+    try:
+        asyncio.run(Check_Fuzz(url))
+    except asyncio.TimeoutError:
+        Logs.Write_Log(url, Host_Name, join(Location, 'Logs'))
 
     return Array_Temp
