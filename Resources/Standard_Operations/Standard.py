@@ -164,10 +164,10 @@ class Standard:
         if (exists(join(dirname(realpath(__file__)).split("Resources/Standard_Operations")[0], "scan.state"))):
             Check = input(Colors.ORANGE+f'\nIt was possible to find a old state file '+Colors.RED+f'{join(dirname(realpath(__file__)).split("Resources/Standard_Operations")[0], "scan.state")}'+Colors.ORANGE+'.\n\nShould it be loaded? (Y/n)\n\nDecision: '+Colors.RESET)
             if (Check == "Y" or Check == "y"):
-                print (Colors.ORANGE+"\n\nThe load of the state file was successful."+Colors.RESET), sleep(3), Standard.Print_Header()
+                print (Colors.ORANGE+"\n\nThe load of the state file was successful."+Colors.RESET), sleep(3)
                 Array_Template = Standard.Read_File(join(dirname(realpath(__file__)).split("Resources/Standard_Operations")[0], "scan.state"))
             elif (Check == "N" or Check == "n"):
-                pass
+                print (Colors.ORANGE+"\n\nThe state file was ignored and will be removed."+Colors.RESET), sleep(3)
 
         for Target in Standard.Read_File(file_path):
             if (Target.count('/') > 2):
