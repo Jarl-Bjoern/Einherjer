@@ -10,7 +10,8 @@ from ..Standard_Operations.Colors import Colors
 def Check_Site_Paths(url, t_seconds, Host_Name, array_wordlists, Location, Dict_Result = {"200": [], "204": [], "301": [], "302": [], "307": [], "308": [], "401": [], "403": [], "405": [], "500": []}, Array_Temp = [], Array_Status_Code = ["200", "204", "301", "302", "307", "308", "401", "403", "405", "500"]):
     async def Check_Fuzz(url):
         Limit, Client_Timeout = TCPConnector(limit_per_host=100), ClientTimeout(total=30)
-        async with ClientSession(connector=Limit, trust_env=True) as s:
+        Client_Headers = {'Connection': 'close'}
+        async with ClientSession(connector=Limit, trust_env=True, headers=Client_Headers) as s:
             for Word in array(array_wordlists):
                 URL = f'{url}/{Word}'
                 async with s.get(url_encode(URL), ssl=False, timeout=Client_Timeout) as r:
