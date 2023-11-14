@@ -162,7 +162,7 @@ class Standard:
 
     def Read_Targets_v4(file_path, Array_Out = [], Array_SSL_Out = [], Array_Template = []):
         if (exists(join(dirname(realpath(__file__)).split("Resources/Standard_Operations")[0], "scan.state"))):
-            Check = input(Colors.ORANGE+f'It was possible to find a old state file '+Colors.RED+f'{join(dirname(realpath(__file__)).split("Resources/Standard_Operations")[0], "scan.state")}.\n\n'+Colors.ORANGE+'Should it be loaded? (Y/n)\n\n'+Colors.RESET+'Decision: ')
+            Check = input(Colors.ORANGE+f'It was possible to find a old state file '+Colors.RED+f'{join(dirname(realpath(__file__)).split("Resources/Standard_Operations")[0], "scan.state")}'+Colors.ORANGE+'.\n\nShould it be loaded? (Y/n)\n\nDecision: '+Colors.RESET)
             if (Check == "Y" or Check == "y"):
                 print (Colors.ORANGE+"\n\nThe load of the state file was successful."+Colors.RESET), sleep(3), Standard.Print_Header()
                 Array_Template = Standard.Read_File(join(dirname(realpath(__file__)).split("Resources/Standard_Operations")[0], "scan.state"))
