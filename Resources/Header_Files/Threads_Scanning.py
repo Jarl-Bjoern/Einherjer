@@ -29,6 +29,9 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         # Socket_Timeout
         socket_defaulttimeout(t_seconds)
 
+        # Temp_Variable
+        Temp_URL_Switcher, Temp_URL_Backup = "", ""
+
         # Get_Host_Name
         if (dict_switch['scan_host_name'] != False):
             # Library_Import
@@ -87,6 +90,18 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
                 join(Location, 'Logs')
             )
 
+        # Create_URL_Backup
+        Temp_URL_Backup = url
+
+        # Convert_With_URL_Encoding
+        if (url.count('/') > 3 and '//' in url):
+            Temp_URL_Switcher = url_encode(url)
+            url               = Temp_URL_Switcher
+        elif (url.count('/') == 3 and '//' in url):
+            Temp_URL_Switcher = url[:-1]
+            url               = Temp_URL_Switcher
+        elif (url.count('/') == 2 and '//' in url):
+            pass
 
         # Cookie_Security_Flags
         if (dict_switch['scan_header']           == False and
@@ -165,6 +180,8 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
                         join(Location, 'Logs')
                     )
 
+        # Reset_URL
+        url = Temp_URL_Backup
 
         # FTP
         if (dict_switch['scan_ftp'] != False and 'ftp://' in url):
