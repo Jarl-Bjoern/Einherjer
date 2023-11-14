@@ -109,7 +109,7 @@ try:
                   args.brute_snmp                 == False and
                   args.brute_ftp                  == False and
                   args.brute_screenshot_recursive == False):
-                        from aiohttp  import BasicAuth, ClientSession, TCPConnector
+                        from aiohttp  import BasicAuth, ClientSession, ClientTimeout, TCPConnector
                         from cv2      import countNonZero, error as CVError, imread, imwrite, rectangle, split as cvsplit, subtract
                         from ftplib   import error_perm, FTP
                         from json     import loads as json_loads
