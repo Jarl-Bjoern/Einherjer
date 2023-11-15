@@ -189,31 +189,6 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
                         join(Location, 'Logs')
                     )
 
-        # Reset_URL
-        url = Temp_URL_Backup
-
-        # FTP
-        if (dict_switch['scan_ftp'] != False and 'ftp://' in url):
-            # Library_Import
-            from ..Workfiles.Scan_FTP import Check_FTP
-
-            # Trace_Start
-            Logs.Trace_File(
-                Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.CYAN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+' - Scan_FTP - '+Colors.BLUE+'Trying to connect'+Colors.RESET,
-                join(Location, 'Logs')
-            )
-
-            # Scanning_Process
-            Dict_Result['FTP'][url] = Check_FTP.FTP_Anonymous_Check(url, Host_Name, Location)
-            Dict_Temp['FTP'][url]   = Dict_Result['FTP'][url]
-
-            # Trace_End
-            Logs.Trace_File(
-                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.CYAN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+' - Scan_FTP - '+Colors.GREEN+'OK'+Colors.RESET,
-                join(Location, 'Logs')
-            )
-
 
         # HTTP_Methods
         if (dict_switch['scan_http_methods'] != False and '//' in url and 'http' in url):
@@ -256,6 +231,31 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             # Trace_End
             Logs.Trace_File(
                 Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.CYAN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+' - Screenshot - '+Colors.GREEN+'OK'+Colors.RESET,
+                join(Location, 'Logs')
+            )
+
+        # Reset_URL
+        url = Temp_URL_Backup
+
+        # FTP
+        if (dict_switch['scan_ftp'] != False and 'ftp://' in url):
+            # Library_Import
+            from ..Workfiles.Scan_FTP import Check_FTP
+
+            # Trace_Start
+            Logs.Trace_File(
+                Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.CYAN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+' - Scan_FTP - '+Colors.BLUE+'Trying to connect'+Colors.RESET,
+                join(Location, 'Logs')
+            )
+
+            # Scanning_Process
+            Dict_Result['FTP'][url] = Check_FTP.FTP_Anonymous_Check(url, Host_Name, Location)
+            Dict_Temp['FTP'][url]   = Dict_Result['FTP'][url]
+
+            # Trace_End
+            Logs.Trace_File(
+                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.CYAN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+' - Scan_FTP - '+Colors.GREEN+'OK'+Colors.RESET,
                 join(Location, 'Logs')
             )
 
