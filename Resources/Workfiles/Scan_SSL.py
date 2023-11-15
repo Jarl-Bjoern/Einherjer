@@ -31,8 +31,11 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
 
         # URL_Encode
         elif (URL.count('/') > 1):
-            Temp   = url_encode(URL)
+            Temp   = url_encode(URL).replace("2%F", "/")
             URL    = Temp
+
+        # Generate_URL_Encoded_Word
+        URL = f'{url}/{url_encode(Word).replace("2%F", "/")}'
 
         try:
             Array_Attack.append(
