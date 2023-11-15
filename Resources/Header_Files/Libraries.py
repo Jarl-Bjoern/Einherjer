@@ -87,6 +87,19 @@ try:
                 from PIL import Image
                 from pyzbar import pyzbar
 
+        elif (argv[1] == "--fuzzing-mode"):
+            argv.remove('--fuzzing-mode')
+            from .ArgParser_Fuzzing import Argument_Parser
+            args, Program_Mode = Argument_Parser(), "Fuzzing_Mode"
+
+            # Fuzzing_Module_Filter
+            if (args.fuzzing_sites                == False):
+                        from .ArgParser_Fuzzing_Intro import Argument_Parser
+                        Argument_Parser("\n\n\t\t\t\t\tThe fuzzing method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
+            elif (args.fuzzing_sites              != False):
+                from aiohttp  import BasicAuth, ClientSession, ClientTimeout, TCPConnector
+                import asyncio
+
         elif (argv[1] == "--brute-force-mode"):
             argv.remove('--brute-force-mode')
             from .ArgParser_Brute import Argument_Parser
@@ -101,7 +114,7 @@ try:
                 args.brute_ftp                    == False and
                 args.brute_screenshot_recursive   == False):
                         from .ArgParser_Scan_Intro import Argument_Parser
-                        Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
+                        Argument_Parser("\n\n\t\t\t\t\tThe brute force method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
             elif (args.brute_all                  != False and
                   args.brute_dns                  == False and
                   args.brute_smtp                 == False and
@@ -129,7 +142,7 @@ try:
                             from webdriver_manager.chrome import ChromeDriverManager
             elif (args.brute_all == False):
                 if (args.brute_fuzzing != False):
-                    from aiohttp  import BasicAuth, ClientSession, TCPConnector
+                    from aiohttp  import BasicAuth, ClientSession, ClientTimeout, TCPConnector
                     import asyncio
                 if (args.brute_screenshot_recursive != False):
                     from cv2      import countNonZero, error as CVError, imread, imwrite, rectangle, split as cvsplit, subtract
