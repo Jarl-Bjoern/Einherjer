@@ -133,6 +133,10 @@ def Check_Cookie_And_HTTP_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_A
             elif (Header_Key.upper() in Array_Information_Disclosure_Header):
                 Dict_Temp_Information_Disclosure[Header_Key.upper()] = Header_Values
 
+            # Check_Deprecated_Header
+#            elif (Header_Key.upper() in Array_Deprecated_Header):
+#                Dict_Temp_Deprecated_Header[Header_Key.upper()] = True
+
             # Check_For_Missing_Header
             else:
                 for Temp_Header in array(list(Dict_Header)):
