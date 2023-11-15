@@ -24,10 +24,7 @@ def Argument_Parser(Error_Text, Template_Location = dirname(realpath(__file__)).
     fuzzing_arguments   = parser.add_argument_group(Colors.ORANGE+'brute-force arguments'+Colors.RESET)
     optional          = parser.add_argument_group(Colors.ORANGE+'optional arguments'+Colors.RESET)
 
-    #brute_arguments.add_argument('-bDNS', '--brute-dns', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
-    #brute_arguments.add_argument('-bF', '--brute-fuzz', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
-    #brute_arguments.add_argument('-bFTP', '--brute-ftp', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
-    #brute_arguments.add_argument('-bSNMP', '--brute-snmp', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    fuzzing_arguments.add_argument('-fS', '--fuzzing-sites', type=str, help=Colors.GREEN+'With this parameter it is possible to fuzz websites.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     optional.add_argument('-h','--help', action='help', default=SUPPRESS, help=Colors.GREEN+'Show this help message and exit.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
