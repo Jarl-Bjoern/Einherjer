@@ -25,7 +25,7 @@ def Argument_Parser(Error_Text, Template_Location = dirname(realpath(__file__)).
     optional          = parser.add_argument_group(Colors.ORANGE+'optional arguments'+Colors.RESET)
     target_arguments      = parser.add_argument_group(Colors.ORANGE+'target arguments'+Colors.RESET)
 
-    fuzzing_arguments.add_argument('-fS', '--fuzzing-sites', type=str, help=Colors.GREEN+'With this parameter it is possible to fuzz websites.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    fuzzing_arguments.add_argument('-fS', '--fuzzing-sites', type=bool, nargs='?', help=Colors.GREEN+'With this parameter it is possible to fuzz websites.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     optional.add_argument('-h','--help', action='help', default=SUPPRESS, help=Colors.GREEN+'Show this help message and exit.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
