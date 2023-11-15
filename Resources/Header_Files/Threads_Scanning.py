@@ -93,13 +93,22 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         # Create_URL_Backup
         Temp_URL_Backup = url
 
+        # Get_Protocol
+        if ('http://' in url):
+            Protocol, Begin =  'http://', 7
+        elif ('https://' in url):
+            Protocol, Begin = 'https://', 8
+
         # Convert_With_URL_Encoding
         if (url.count('/') > 3 and '//' in url):
-            Temp_URL_Switcher = url_encode(url)
-            url               = Temp_URL_Switcher
+            Temp_URL_Switcher = url_encode(url[Begin:])
+            url               = f'{Protocol}{Temp_URL_Switcher.replace("2%F", "/")}'
         elif (url.count('/') == 3 and '//' in url):
-            Temp_URL_Switcher = url[:-1]
-            url               = Temp_URL_Switcher
+            if (url[-1:] == '/'):
+                Temp_URL_Switcher = url[Begin:-1]
+            else:
+                Temp_URL_Switcher = url_encode(url[Begin:])
+            url               = f'{Protocol}{Temp_URL_Switcher.replace("2%F", "/")}'
         elif (url.count('/') == 2 and '//' in url):
             pass
 
