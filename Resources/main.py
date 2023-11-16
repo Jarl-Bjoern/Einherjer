@@ -126,6 +126,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
     def Fuzzing_Mode(Date, Output_location, args, Array_Output = []):
         # Filtering_Options
         print (args.fuzzing_sites)
+        exit()
         if (args.fuzzing_sites             == None):
                 from Resources.Header_Files.ArgParser_Fuzzing_Intro import Argument_Parser
                 Argument_Parser("\n\n\t\t\tThe program cannot be started without fuzzing methods!\n\t\t\t For more information use the parameter -h or --help.\n")
