@@ -139,7 +139,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             # Program_Start
             Standard.Initialien(args.debug)
 
-            print ("\n\nUNDER CONSTRUCTION")
+            print ("\nUNDER CONSTRUCTION")
 
 
     def Scanning_Mode(Date, args, Output_Location, Database_Password, Array_Thread_Args = [], Dict_Threads = {}, Dict_Proxies = {'http': "",'https': ""}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None, Switch_Screenshots = False, Array_Targets = [], Array_SSL_Targets = []):
@@ -645,8 +645,8 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
     # Check_Only_Logging_Output
     if (Array_Output != []):
-        Count_Temp_Output = 0
         try:
+            Count_Temp_Output = 0
             for _ in Array_Output:
                 if ("Logs" in _):
                     Count_Temp_Output += 1
