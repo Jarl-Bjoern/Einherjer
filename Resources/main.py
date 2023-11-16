@@ -48,6 +48,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
         except FileNotFoundError:
             Write_Message_Chromium_Output()
 
+
     def Brute_Force_Mode(Date, Output_location, args, Array_Output = [], Switch_Screenshots = False):
         Dict_Switch = {
             'brute_dns':                  False,
@@ -78,6 +79,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                                     Array_Wordlists.append(word)
 
         return Array_Output, Switch_Screenshots
+
 
     def Filter_Mode(Date, Output_location, args, Array_Output = []):
         # Filtering_Options
@@ -123,9 +125,11 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
         return Array_Output
 
+
     def Fuzzing_Mode(Date, Output_location, args, Array_Output = []):
         # Filtering_Options
-        if (args.fuzzing_sites             == None):
+        if (args.fuzzing_sites             == None and
+            args.add_wordlist              == None):
                 from Resources.Header_Files.ArgParser_Fuzzing_Intro import Argument_Parser
                 Argument_Parser("\n\n\t\t\tThe program cannot be started without fuzzing methods!\n\t\t\t For more information use the parameter -h or --help.\n")
                 try:            rmdir(Output_location)
@@ -134,6 +138,9 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
         else:
             # Program_Start
             Standard.Initialien(args.debug)
+
+            print ("\n\nUNDER CONSTRUCTION")
+
 
     def Scanning_Mode(Date, args, Output_Location, Database_Password, Array_Thread_Args = [], Dict_Threads = {}, Dict_Proxies = {'http': "",'https': ""}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None, Switch_Screenshots = False, Array_Targets = [], Array_SSL_Targets = []):
         # Dict_Declaration
