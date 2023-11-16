@@ -26,6 +26,8 @@ def Argument_Parser(Error_Text, Template_Location = dirname(realpath(__file__)).
     target_arguments      = parser.add_argument_group(Colors.ORANGE+'target arguments'+Colors.RESET)
 
     fuzzing_arguments.add_argument('-fS', '--fuzzing-sites', type=bool, nargs='?', default=False, help=Colors.GREEN+'With this parameter it is possible to fuzz websites.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    fuzzing_arguments.add_argument('-aW', '--add-wordlist', type=str, help=Colors.GREEN+'With this function you add a wordlist for fuzzing.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    fuzzing_arguments.add_argument('-amW', '--add-multiple-wordlists', type=str, help=Colors.GREEN+'This parameter specifies a location with several wordlists which will be checked for\nduplicates and sort them out for fuzzing.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     optional.add_argument('-h','--help', action='help', default=SUPPRESS, help=Colors.GREEN+'Show this help message and exit.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
