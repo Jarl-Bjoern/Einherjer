@@ -274,7 +274,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
 
             # Scanning_Process
             pass
-            #Dict_Result['SMTP'][url] = Check_SMTP.(url, t_seconds, Host_Name)
+            #Dict_Result['SMTP'][url] = Check_SMTP.Check_Open_Relay(url, sender, receiver, message)
             #Dict_Temp['SMTP'][url]   = Dict_Result['SMTP'][url]
 
             # Trace_End
