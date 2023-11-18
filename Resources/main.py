@@ -147,7 +147,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
         if (args.hash_detect              == None and
             args.add_wordlist             == None):
                 from Resources.Header_Files.ArgParser_Detector_Intro import Argument_Parser
-                Argument_Parser("\n\n\t\t\tThe program cannot be started without fuzzing methods!\n\t\t\t For more information use the parameter -h or --help.\n")
+                Argument_Parser("\n\n\t\t\tThe program cannot be started without detection methods!\n\t\t\t For more information use the parameter -h or --help.\n")
                 try:            rmdir(Output_location)
                 except OSError: rmtree(Output_location, ignore_errors=True)
                 finally:        exit()
