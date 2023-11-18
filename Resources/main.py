@@ -143,6 +143,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
 
     def Detector_Mode(Date, Output_location, args, Array_Output = []):
+        print ("Test")
         # Filtering_Options
         if (args.hash_detect               == None and
             (args.add_wordlist             == None or
