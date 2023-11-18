@@ -143,11 +143,9 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
 
     def Detector_Mode(Date, Output_location, args, Array_Output = []):
-        print ("Test")
         # Filtering_Options
-        if (args.hash_detect               == None and
-            (args.add_wordlist             == None or
-            args.add_multiple_wordlist     == None)):
+        if (args.hash_detect              == None and
+            args.add_wordlist             == None):
                 from Resources.Header_Files.ArgParser_Detector_Intro import Argument_Parser
                 Argument_Parser("\n\n\t\t\tThe program cannot be started without fuzzing methods!\n\t\t\t For more information use the parameter -h or --help.\n")
                 try:            rmdir(Output_location)
