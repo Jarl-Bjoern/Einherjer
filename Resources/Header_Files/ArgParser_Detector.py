@@ -28,6 +28,7 @@ def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Res
 
     config_arguments.add_argument('-aW', '--add-wordlist', type=str, help=Colors.GREEN+'With this function you add a file with hashes.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     config_arguments.add_argument('-amW', '--add-multiple-wordlists', type=str, help=Colors.GREEN+'This parameter specifies a location with several files which will be checked for\nduplicates and sort them out.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    config_arguments.add_argument('-o', '--output-location', type=str, help=Colors.GREEN+'Specify the location where the result should be saved.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     debug_arguments.add_argument('-d', '--debug', type=bool, nargs='?', default=False, help=Colors.GREEN+'This Parameter deactivates the terminal clearing after starting the tool.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
