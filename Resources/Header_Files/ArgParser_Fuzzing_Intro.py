@@ -22,8 +22,8 @@ def Argument_Parser(Error_Text, Template_Location = dirname(realpath(__file__)).
 
     parser = ArgumentParser(add_help=False, formatter_class=RawTextHelpFormatter, description=Colors.ORANGE+Program_Description+Colors.RESET, allow_abbrev=False, usage=SUPPRESS)
     fuzzing_arguments   = parser.add_argument_group(Colors.ORANGE+'fuzzing arguments'+Colors.RESET)
-    optional          = parser.add_argument_group(Colors.ORANGE+'optional arguments'+Colors.RESET)
-    target_arguments      = parser.add_argument_group(Colors.ORANGE+'target arguments'+Colors.RESET)
+    optional            = parser.add_argument_group(Colors.ORANGE+'optional arguments'+Colors.RESET)
+    target_arguments    = parser.add_argument_group(Colors.ORANGE+'target arguments'+Colors.RESET)
 
     fuzzing_arguments.add_argument('-fS', '--fuzzing-sites', type=bool, nargs='?', const=True, default=False, help=Colors.GREEN+'With this parameter it is possible to fuzz websites.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     fuzzing_arguments.add_argument('-aW', '--add-wordlist', type=str, help=Colors.GREEN+'With this function you add a wordlist for fuzzing.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
