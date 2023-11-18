@@ -36,6 +36,6 @@ def Argument_Parser(Error_Text, Template_Location = dirname(realpath(__file__)).
     optional.add_argument('-h','--help', action='help', default=SUPPRESS, help=Colors.GREEN+'Show this help message and exit.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     del ArgumentParser, RawTextHelpFormatter, SUPPRESS
-    return parser.parse_args()
+    parser.print_help()
 
     print (Colors.RED+Error_Text+Colors.RESET)
