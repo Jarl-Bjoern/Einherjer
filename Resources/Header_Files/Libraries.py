@@ -100,6 +100,18 @@ try:
                 from aiohttp  import BasicAuth, ClientSession, ClientTimeout, TCPConnector
                 import asyncio
 
+        elif (argv[1] == "--detector-mode"):
+            argv.remove('--detector-mode')
+            from .ArgParser_Detector import Argument_Parser
+            args, Program_Mode = Argument_Parser(), "Detector_Mode"
+
+            # Detector_Module_Filter
+            if (args.hash_detect                == False):
+                        from .ArgParser_Detector_Intro import Argument_Parser
+                        Argument_Parser("\n\n\t\t\t\t\tThe decetion method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
+            elif (args.hash_detect              != False):
+                from haipy.haipy import detect as hash_detect
+
         elif (argv[1] == "--brute-force-mode"):
             argv.remove('--brute-force-mode')
             from .ArgParser_Brute import Argument_Parser
