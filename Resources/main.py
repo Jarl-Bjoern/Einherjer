@@ -142,6 +142,23 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             print ("\nUNDER CONSTRUCTION")
 
 
+    def Detector_Mode(Date, Output_location, args, Array_Output = []):
+        # Filtering_Options
+        if (args.hash_detect               == None and
+            (args.add_wordlist             == None or
+            args.add_multiple_wordlist     == None)):
+                from Resources.Header_Files.ArgParser_Detector_Intro import Argument_Parser
+                Argument_Parser("\n\n\t\t\tThe program cannot be started without fuzzing methods!\n\t\t\t For more information use the parameter -h or --help.\n")
+                try:            rmdir(Output_location)
+                except OSError: rmtree(Output_location, ignore_errors=True)
+                finally:        exit()
+        else:
+            # Program_Start
+            Standard.Initialien(args.debug)
+
+            print ("\nUNDER CONSTRUCTION")
+
+
     def Scanning_Mode(Date, args, Output_Location, Database_Password, Array_Thread_Args = [], Dict_Threads = {}, Dict_Proxies = {'http': "",'https': ""}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None, Switch_Screenshots = False, Array_Targets = [], Array_SSL_Targets = []):
         # Dict_Declaration
         Dict_Result = {
@@ -640,6 +657,8 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
         Array_Output = Filter_Mode(Date, Location, args)
     elif (Program_Mode == "Fuzzing_Mode"):
         Array_Output = Fuzzing_Mode(Date, Location, args)
+    elif (Program_Mode == "Detector_Mode"):
+        Array_Output = Detector_Mode(Date, Location, args)
     elif (Program_Mode == "Brute_Force_Mode"):
         Array_Output, Switch_Screenshots = Brute_Force_Mode(Date, Location, args)
 
