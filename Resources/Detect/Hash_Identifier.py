@@ -4,3 +4,6 @@
 
 # Libraries
 from ..Header_Files.Variables import *
+
+def Get_Hash(Hash):
+    print (hash_detect(Hash))
