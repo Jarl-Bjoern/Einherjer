@@ -23,6 +23,8 @@ if (Program_Mode == "Scanning_Mode"):
             exit(Colors.RED+"It's not possible to use both http_header templates at the same time."+Colors.RESET)
     else:   Dict_Header = {}
 
+    print (args.read_custom_header_file), exit()
+
     if (args.read_custom_header_file != None):
         with open(dirname(realpath(__file__)).replace('Resources/Header_Files', "Config/http_custom_header.json"), 'r', encoding='utf-8') as jsonFile:
             try:
