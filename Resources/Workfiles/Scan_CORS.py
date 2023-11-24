@@ -87,6 +87,30 @@ def Check_CORS_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locati
             Dict_Temp_CORS['DNS']                 = ""
 
 
+        # Scanning_CORS_Output
+        for Header_Key, Header_Values in r.headers.items():
+            # Check_Header
+            if (Header_Key.upper() in Dict_Header):
+                Temp_Head = Header_Key.upper()
+                if (type(Dict_Header[Temp_Head]) == str):
+                    if (Header_Values.upper() == Dict_Header[Temp_Head]):
+                        Dict_Temp_Header[Temp_Head] = Header_Values.upper()
+
+                elif (type(Dict_Header[Temp_Head]) == list):
+                    Check_Counter = 0
+                    for _ in Dict_Header[Temp_Head]:
+                        if (_ in Header_Values.upper()):
+                            Check_Counter += 1
+
+                    if (Check_Counter == len(Dict_Header[Temp_Head])):
+                        Dict_Temp_Header[Temp_Head] = Header_Values.upper()
+                    elif (Dict_Header[Temp_Head] != "CONTENT-SECURITY-POLICY" and
+                          Dict_Header[Temp_Head] != "STRICT-TRANSPORT-SECURITY" and
+                          Check_Counter > 0):
+                                Dict_Temp_Header[Temp_Head] = Header_Values.upper()
+                    else:
+                        Dict_Temp_Header[Temp_Head] = "FEHLT"
+
         # Logging
         if (Host_Name != ""):
             Logs.Log_File(
@@ -97,7 +121,7 @@ def Check_CORS_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locati
                 +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
                 +Colors.ORANGE+'\nOriginal Output'+Colors.RED+' -> '+Colors.RESET+f'{r.headers.items()}'
                 +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
-                +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n',
+                +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp_CORS}\n\n',
                 join(Location, 'Logs')
             )
             Standard.Write_Output_File('affected_cors_targets.txt', f'{url} ({Host_Name})', Location)
@@ -110,13 +134,10 @@ def Check_CORS_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locati
                 +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
                 +Colors.ORANGE+'\nOriginal Output'+Colors.RED+' -> '+Colors.RESET+f'{r.headers.items()}'
                 +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
-                +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n',
+                +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp_CORS}\n\n',
                 join(Location, 'Logs')
             )
             Standard.Write_Output_File('affected_cors_targets.txt', f'{url} (-)', Location)
-
-        # Terminate_Session
-        r.close()
 
 
         # Terminate_Session
@@ -125,3 +146,5 @@ def Check_CORS_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locati
 
     except ReadTimeout:
         Logs.Write_Log(url, Host_Name, join(Location, 'Logs'))
+
+    return Dict_Temp_CORS
