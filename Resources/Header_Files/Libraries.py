@@ -29,7 +29,7 @@ try:
     from datetime            import datetime
     from http.client         import RemoteDisconnected
     from ipaddress           import IPv4Network
-    from json                import loads as json_loads
+    from json                import load as json_loads
     from json.decoder        import JSONDecodeError
     from multiprocessing     import active_children, Process, Queue
     from numpy               import array
