@@ -27,11 +27,8 @@ if (Program_Mode == "Scanning_Mode"):
         with open(dirname(realpath(__file__)).replace('Resources/Header_Files', "Config/http_custom_header.json"), 'r', encoding='utf-8') as jsonFile:
             try:
                 Dict_Custom_Header = json_loads(jsonFile)
-                print (Dict_Custom_Header), exit()
-            except TypeError:
-                print ("TypeError")
             except JSONDecodeError:
-                print("Error")
+                exit(Colors.RED+"There was a problem with the encoding in the file."+Colors.RESET)
         jsonFile.close()
     else:
         Dict_Custom_Header = {"Connection": "Close"}
