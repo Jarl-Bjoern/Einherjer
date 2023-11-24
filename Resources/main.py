@@ -449,7 +449,8 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                                 Output_Location,
                                 args.allow_redirects,
                                 args.screenshot_frame_thickness,
-                                args.custom_chromium_webdriver_path
+                                args.custom_chromium_webdriver_path,
+                                Dict_Custom_Header
                             ]
 
                             if (Counter_Connections == args.max_connections):
