@@ -43,7 +43,6 @@ if (Program_Mode == "Scanning_Mode"):
 
     # Variables
     COLOR_Headline       = "black"
-    existing_nmap_file   = ""
 
 if (Program_Mode == "Scanning_Mode" or Program_Mode == "Filter_Mode"):
     Array_SSH_Algorithms = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/ssh_ciphers.txt"))
