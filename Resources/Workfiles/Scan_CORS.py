@@ -8,7 +8,7 @@ from ..Standard_Operations.Logs     import Logs
 from ..Standard_Operations.Colors   import Colors
 from ..Standard_Operations.Standard import Standard
 
-def Check_CORS_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Location, Allow_Redirects, dict_custom_header):
+def Check_CORS_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Location, Allow_Redirects, dict_custom_header, Dict_Temp_CORS = {}):
     try
         # Session_Creation
         with Session() as s:
@@ -79,6 +79,45 @@ def Check_CORS_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locati
                         verify=False,
                         allow_redirects=Allow_Redirects
                     )
+
+        # Get_Host_Name
+        if (Host_Name != ""):
+            Dict_Temp_CORS['DNS']                 = Host_Name
+        else:
+            Dict_Temp_CORS['DNS']                 = ""
+
+
+        # Logging
+        if (Host_Name != ""):
+            Logs.Log_File(
+                Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                +Colors.BLUE+'CORS-Check\n'
+                +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - {Host_Name} - '+Colors.CYAN+f'{r}'
+                +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
+                +Colors.ORANGE+'\nOriginal Output'+Colors.RED+' -> '+Colors.RESET+f'{r.headers.items()}'
+                +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
+                +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n',
+                join(Location, 'Logs')
+            )
+            Standard.Write_Output_File('affected_cors_targets.txt', f'{url} ({Host_Name})', Location)
+        else:
+            Logs.Log_File(
+                Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                +Colors.BLUE+'CORS-Check\n'
+                +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - '+Colors.CYAN+f'{r}'
+                +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
+                +Colors.ORANGE+'\nOriginal Output'+Colors.RED+' -> '+Colors.RESET+f'{r.headers.items()}'
+                +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
+                +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp}\n\n',
+                join(Location, 'Logs')
+            )
+            Standard.Write_Output_File('affected_cors_targets.txt', f'{url} (-)', Location)
+
+        # Terminate_Session
+        r.close()
+
 
         # Terminate_Session
         r.close()
