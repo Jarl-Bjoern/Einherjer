@@ -8,7 +8,7 @@ from ..Standard_Operations.Logs     import Logs
 from ..Standard_Operations.Colors   import Colors
 from ..Standard_Operations.Standard import Standard
 
-def Check_Cookie_And_HTTP_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Location, Allow_Redirects, Dict_Temp_Header = {}, Dict_Temp_Information_Disclosure = {'DNS': "", 'SERVER': "", 'X-ASPNET-VERSION': "", 'X-FESERVER': "", 'X-POWERED-BY': "", 'X-OWA-VERSION': ""}, Dict_Temp_Deprecated_Header = {}, Dict_Temp_Cookie = {'DNS': "", 'HTTPONLY': "", 'SAMESITE': "", 'SECURE': ""}, Switch_SameSite = False):
+def Check_Cookie_And_HTTP_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Location, Allow_Redirects, dict_custom_header, Dict_Temp_Header = {}, Dict_Temp_Information_Disclosure = {'DNS': "", 'SERVER': "", 'X-ASPNET-VERSION': "", 'X-FESERVER': "", 'X-POWERED-BY': "", 'X-OWA-VERSION': ""}, Dict_Temp_Deprecated_Header = {}, Dict_Temp_Cookie = {'DNS': "", 'HTTPONLY': "", 'SAMESITE': "", 'SECURE': ""}, Switch_SameSite = False):
     try:
         # Session_Creation
         with Session() as s:
@@ -20,7 +20,7 @@ def Check_Cookie_And_HTTP_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_A
                     r = s.get(
                         url,
                         timeout=(t_seconds, t_seconds),
-                        headers={'Connection': 'close'},
+                        headers=dict_custom_header,
                         verify=False,
                         allow_redirects=Allow_Redirects,
                         proxies=Dict_Proxies,
@@ -32,7 +32,7 @@ def Check_Cookie_And_HTTP_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_A
                     r = s.get(
                         url,
                         timeout=(t_seconds, t_seconds),
-                        headers={'Connection': 'close'},
+                        headers=dict_custom_header,
                         verify=False,
                         allow_redirects=Allow_Redirects,
                         pkcs12_filename=Dict_Auth['pkcs12_cert'],
@@ -43,7 +43,7 @@ def Check_Cookie_And_HTTP_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_A
                     r = s.get(
                         url,
                         timeout=(t_seconds, t_seconds),
-                        headers={'Connection': 'close'},
+                        headers=dict_custom_header,
                         verify=False,
                         allow_redirects=Allow_Redirects,
                         proxies=Dict_Proxies,
@@ -54,7 +54,7 @@ def Check_Cookie_And_HTTP_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_A
                     r = s.get(
                         url,
                         timeout=(t_seconds, t_seconds),
-                        headers={'Connection': 'close'},
+                        headers=dict_custom_header,
                         verify=False,
                         allow_redirects=Allow_Redirects,
                         auth=(Dict_Auth['user'], Dict_Auth['password'])
@@ -64,7 +64,7 @@ def Check_Cookie_And_HTTP_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_A
                     r = s.get(
                         url,
                         timeout=(t_seconds, t_seconds),
-                        headers={'Connection': 'close'},
+                        headers=dict_custom_header,
                         verify=False,
                         allow_redirects=Allow_Redirects,
                         proxies=Dict_Proxies
@@ -74,7 +74,7 @@ def Check_Cookie_And_HTTP_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_A
                     r = s.get(
                         url,
                         timeout=(t_seconds, t_seconds),
-                        headers={'Connection': 'close'},
+                        headers=dict_custom_header,
                         verify=False,
                         allow_redirects=Allow_Redirects
                     )
