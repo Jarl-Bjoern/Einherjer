@@ -25,7 +25,9 @@ if (Program_Mode == "Scanning_Mode"):
 
     if (args.read_custom_header_file == True):
         with open(dirname(realpath(__file__)).replace('Resources/Header_Files', "Config/http_custom_header.json"), 'r', encoding='utf-8') as jsonFile:
-            try: Dict_Custom_Header = json.load(jsonFile)
+            try:
+                Dict_Custom_Header = json.load(jsonFile)
+                print (Dict_Custom_Header)
             except json.decoder.JSONDecodeError:
                 print("Error")
         jsonFile.close()
