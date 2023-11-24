@@ -81,10 +81,8 @@ def Check_CORS_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locati
                     )
 
         # Get_Host_Name
-        if (Host_Name != ""):
-            Dict_Temp_CORS['DNS']                 = Host_Name
-        else:
-            Dict_Temp_CORS['DNS']                 = ""
+        if (Host_Name != ""):  Dict_Temp_CORS['DNS']  = Host_Name
+        else:                  Dict_Temp_CORS['DNS']  = ""
 
 
         # Scanning_CORS_Output
