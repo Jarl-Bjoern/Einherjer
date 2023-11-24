@@ -196,13 +196,9 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             'scan_ssl':                  False
         }
 
-        print (args.target)
-        print (args.import_list)
-        print (args.add_nmap_xml_result)
-
         # Target_Options
         if (args.target == None and args.import_list == None and args.add_nmap_xml_result == None):
-            from .Header_Files.ArgParser_Scan_Intro import Argument_Parser
+            from Resources.Header_Files.ArgParser_Scan_Intro import Argument_Parser
             Argument_Parser("\n\n\t\t\t   The program cannot be started without targets!\n\t\t\tFor more information use the parameter -h or --help.\n")
             try:            rmdir(Output_location)
             except OSError: rmtree(Output_location, ignore_errors=True)
