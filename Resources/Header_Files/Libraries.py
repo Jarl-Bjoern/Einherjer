@@ -29,6 +29,7 @@ try:
     from datetime            import datetime
     from http.client         import RemoteDisconnected
     from ipaddress           import IPv4Network
+    from json                import loads as json_loads
     from json.decoder        import JSONDecodeError
     from multiprocessing     import active_children, Process, Queue
     from numpy               import array
@@ -138,7 +139,6 @@ try:
                         from aiohttp  import BasicAuth, ClientSession, ClientTimeout, TCPConnector
                         from cv2      import countNonZero, error as CVError, imread, imwrite, rectangle, split as cvsplit, subtract
                         from ftplib   import error_perm, FTP
-                        from json     import loads as json_loads
                         from os       import environ, rename
                         from requests import get, request, Session
                         from requests.adapters import HTTPAdapter
@@ -219,7 +219,6 @@ try:
                         from dns.zone  import from_xfr
                         from ftplib    import error_perm, FTP
                         from hashlib   import md5, sha1, sha256, sha512
-                        from json      import loads as json_loads
                         from os        import environ, rename
                         from pysnmp.hlapi import *
                         from requests  import get, request, Session
