@@ -23,6 +23,15 @@ if (Program_Mode == "Scanning_Mode"):
             exit(Colors.RED+"It's not possible to use both http_header templates at the same time."+Colors.RESET)
     else:   Dict_Header = {}
 
+    if (args.read_custom_header_file == True):
+        with open(dirname(realpath(__file__)).replace('Resources/Header_Files', "Config/http_custom_header.json"), 'r', encoding='utf-8') as jsonFile:
+            try: Dict_Custom_Header = json.load(jsonFile)
+            except json.decoder.JSONDecodeError:
+                print("Error")
+        jsonFile.close()
+    else:
+        Dict_Custom_Header = {"Connection": "Close"}
+
     Array_Information_Disclosure_Header = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_information_disclosure.txt"))
     Array_HTTP_Methods                  = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_methods.txt"))
     Array_TLS_Algorithms                = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/ssl_ciphers.txt"))
