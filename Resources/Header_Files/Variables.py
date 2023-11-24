@@ -28,6 +28,8 @@ if (Program_Mode == "Scanning_Mode"):
             try:
                 Dict_Custom_Header = json_loads(jsonFile)
                 print (Dict_Custom_Header), exit()
+            except TypeError:
+                print ("TypeError")
             except JSONDecodeError:
                 print("Error")
         jsonFile.close()
