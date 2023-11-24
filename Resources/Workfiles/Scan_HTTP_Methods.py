@@ -8,7 +8,7 @@ from ..Standard_Operations.Logs     import Logs
 from ..Standard_Operations.Colors   import Colors
 from ..Standard_Operations.Standard import Standard
 
-def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Location, Allow_Redirects, Dict_Temp = {}, Switch_URL = False):
+def Check_HTTP_Methods(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Location, Allow_Redirects, dict_custom_header, Dict_Temp = {}, Switch_URL = False):
     # Get_Host_Name
     if (Host_Name != ""): Dict_Temp['DNS'] = Host_Name
     else:                 Dict_Temp['DNS'] = ""
