@@ -167,7 +167,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                             from Resources.Detect.Hash_Identifier import Get_Hash
                             Array_Output = Get_Hash(rf'{args.add_hashfile}', Output_location)
                 elif (args.add_hashfile           == None and
-                      args.add_multiple_hashfiles != None)):
+                      args.add_multiple_hashfiles != None):
                             # Program_Start
                             Standard.Initialien(args.debug)
 
