@@ -28,7 +28,6 @@ def Argument_Parser(Error_Text, Template_Location = dirname(realpath(__file__)).
 
     config_arguments.add_argument('-aHf', '--add-hashfile', type=str, help=Colors.GREEN+'With this function you add a file with hashes.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     config_arguments.add_argument('-amHf', '--add-multiple-hashfiles', type=str, help=Colors.GREEN+'This parameter specifies a location with several files which will be checked for\nduplicates and sort them out.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
-    config_arguments.add_argument('-dSh', '--detect-single-hash', type=str, help=Colors.GREEN+'This tries to detect one single hash value.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     debug_arguments.add_argument('-d', '--debug', type=bool, nargs='?', default=False, help=Colors.GREEN+'This Parameter deactivates the terminal clearing after starting the tool.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
