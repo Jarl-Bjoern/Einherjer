@@ -11,6 +11,7 @@ from ..Workfiles.Scan_SSL import SSL_Vulns
 def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict_proxies, dict_auth, file_format, Location):
     Dict_Temp = {
         'Certificate':   {},
+        'CORS':          {},
         'DNS':           {},
         'FTP':           {},
         'Header':        {},
