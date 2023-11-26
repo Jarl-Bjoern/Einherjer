@@ -131,6 +131,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                         if (k not in Array_Result_Filter):
                                             if (k == 'accepted_cipher_suites'):
                                                 for z in Deep_Result[k]:
+                                                    print (Deep_Result[k])
                                                     Cipher_Filter = findall(rf'{Array_TLS_Algorithms[0]}', z['cipher_suite']['name'])
                                                     if (Cipher_Filter != []):
                                                         Dict_Temp_Ciphers['Anonymous']      = z['cipher_suite']['is_anonymous']
