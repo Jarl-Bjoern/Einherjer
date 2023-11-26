@@ -6,4 +6,5 @@
 from ..Header_Files.Variables import *
 
 def Get_Hash(Hash, output_location):
+    print (Hash)
     print (hash_detect(Hash))
