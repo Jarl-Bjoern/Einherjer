@@ -26,8 +26,8 @@ def Argument_Parser(Error_Text, Template_Location = dirname(realpath(__file__)).
     detector_arguments    = parser.add_argument_group(Colors.ORANGE+'format arguments'+Colors.RESET)
     optional              = parser.add_argument_group(Colors.ORANGE+'optional arguments'+Colors.RESET)
 
-    config_arguments.add_argument('-aW', '--add-wordlist', type=str, help=Colors.GREEN+'With this function you add a file with hashes.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
-    config_arguments.add_argument('-amW', '--add-multiple-wordlists', type=str, help=Colors.GREEN+'This parameter specifies a location with several files which will be checked for\nduplicates and sort them out.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    config_arguments.add_argument('-aHf', '--add-hashfile', type=str, help=Colors.GREEN+'With this function you add a file with hashes.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    config_arguments.add_argument('-amHf', '--add-multiple-hashfiles', type=str, help=Colors.GREEN+'This parameter specifies a location with several files which will be checked for\nduplicates and sort them out.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     debug_arguments.add_argument('-d', '--debug', type=bool, nargs='?', default=False, help=Colors.GREEN+'This Parameter deactivates the terminal clearing after starting the tool.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
