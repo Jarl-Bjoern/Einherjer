@@ -220,12 +220,15 @@ class Standard:
         else: Logs.Error_Message(f'The requested File {filter_file_name} does not exist!')
 
     def Remove_Empty_Filter_File(filter_file_name):
-        if ('affected' in filter_file_name):
-            if (len(Standard.Read_File(filter_file_name)) == 0):
-                remove(filter_file_name)
-        else:
-            if (len(Standard.Read_File(filter_file_name)) < 2):
-                remove(filter_file_name)
+        try:
+            if ('affected' in filter_file_name):
+                if (len(Standard.Read_File(filter_file_name)) == 0):
+                    remove(filter_file_name)
+            else:
+                if (len(Standard.Read_File(filter_file_name)) < 2):
+                    remove(filter_file_name)
+        except FileNotFoundError:
+            pass
 
     def Try_Remove_File(x):
         while True:
