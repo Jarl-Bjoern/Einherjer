@@ -32,12 +32,12 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
         # SSL
         if (dict_switch['scan_ssl'] != False):
             # Trace_Start
-            for _ in array_ssl:
-                Logs.Trace_File(
-                    Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                    +Colors.ORANGE+f'{_}'+Colors.RED+' -> '+Colors.CYAN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+' - Scan_SSL - '+Colors.BLUE+'Trying to connect'+Colors.RESET,
-                    join(Location, 'Logs')
-                )
+#            for _ in array_ssl:
+            Logs.Trace_File(
+                Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                +Colors.ORANGE+f'{array_ssl}'+Colors.RED+' -> '+Colors.CYAN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+' - Scan_SSL - '+Colors.BLUE+'Trying to connect'+Colors.RESET,
+                join(Location, 'Logs')
+            )
 
             # Scan_SSL
             Dict_Temp['SSL'] = SSL_Vulns(array_ssl, ssl_timeout, Location)
