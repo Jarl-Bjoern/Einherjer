@@ -224,7 +224,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             from Resources.Workfiles.Fuzz_Fuzzing import Check_Site_Paths
 
             for url in Array_Targets:
-                Check_Site_Paths(url, 30, "", args.add_wordlist, Output_Location)
+                Check_Site_Paths(url, 30, "", args.add_wordlist, Output_location)
 #            print ("\nUNDER CONSTRUCTION")
 
 
