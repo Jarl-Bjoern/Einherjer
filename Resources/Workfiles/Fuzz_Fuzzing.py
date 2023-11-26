@@ -61,7 +61,7 @@ def Check_Site_Paths(url, t_seconds, Host_Name, array_wordlists, Location, Dict_
                         if (URL not in Array_Temp):
                             Array_Temp.append(URL)
                             Dict_Result[str(r.status)].append(URL)
-                    await asyncio.sleep(1.25)
+                    await asyncio.sleep(0.75)
 
     # Start_Scan
     try:
