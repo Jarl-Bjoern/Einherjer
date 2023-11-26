@@ -43,17 +43,17 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
         #)
 
         # Configure_Proxy_Settings
-        Proxy = None
+        SSL_Scanning_Proxy = None
 
         try:
-            if (Proxy != None):
+            if (SSL_Scanning_Proxy != None):
                 Array_Attack.append(
                         ServerScanRequest(
                             server_location=ServerNetworkLocation(
                                 hostname=URL,
                                 ip_address=URL,
                                 port=Port,
-                                http_proxy_settings=Proxy
+                                http_proxy_settings=SSL_Scanning_Proxy
                             ),
                             network_configuration=ServerNetworkConfiguration(
                                 URL,
