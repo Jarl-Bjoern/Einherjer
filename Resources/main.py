@@ -221,7 +221,11 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             # Program_Start
             Standard.Initialien(args.debug)
 
-            print ("\nUNDER CONSTRUCTION")
+            from Resources.Workfiles.Fuzz_Fuzzing import Check_Site_Paths
+
+            for url in Array_Targets:
+                Check_Site_Paths(url, 30, "", args.add_wordlist, Output_Location)
+#            print ("\nUNDER CONSTRUCTION")
 
 
     #######################################
