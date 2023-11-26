@@ -12,6 +12,7 @@ from ..Standard_Operations.Standard import Standard
 def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch_internet_connection, screenshot_wait, webdriver_timeout, ssl_timeout, dict_proxies, dict_auth, file_format, Location, allow_redirects, screenshot_frame_thickness, driver_path, dict_custom_header, Host_Name = ""):
     Dict_Temp = {
         'Certificate':   {},
+        'CORS',          {},
         'DNS':           {},
         'FTP':           {},
         'Header':        {},
@@ -188,6 +189,29 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
                         Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.CYAN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+' - Cookie_And_HTTP_Header - '+Colors.GREEN+'OK'+Colors.RESET,
                         join(Location, 'Logs')
                     )
+
+
+        # CORS
+        if (dict_switch['scan_cors'] != False and ('https://' in url or 'ssl://' in url)):
+            # Library_Import
+            from ..Workfiles.Scan_CORS import Check_CORS_Header
+
+            # Trace_Start
+            Logs.Trace_File(
+                Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.CYAN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+' - CORS - '+Colors.BLUE+'Trying to connect'+Colors.RESET,
+                join(Location, 'Logs')
+            )
+
+            # Scan_CORS
+            Dict_Result['CORS'][url] = Check_CORS_Header(url, t_seconds, Host_Name, dict_proxies, dict_auth, Location, allow_redirects, dict_custom_header)
+            Dict_Temp['CORS'][url]   = Dict_Result['CORS'][url]
+
+            # Trace_End
+            Logs.Trace_File(
+                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.CYAN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+' - CORS - '+Colors.GREEN+'OK'+Colors.RESET,
+                join(Location, 'Logs')
+            )
 
 
         # HTTP_Methods
