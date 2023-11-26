@@ -95,7 +95,8 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                 'CLIENT_RENEGOTIATION_DOS': "",
                 'SWEET32':                  "",
                 'LUCKY13':                  "",
-                'FALLBACK_SCSV':            ""
+                'FALLBACK_SCSV':            "",
+                'INACTIVE_TLS_1_3':         ""
             }
 
             if (server_scan_result.scan_status == ServerScanStatusEnum.ERROR_NO_CONNECTIVITY):
@@ -189,8 +190,8 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                 Dict_Full_SSL['Ciphers'].append(Dict_Ciphers)
 
                                                 # TLS_1_3_Check
-                                                if (TLS_Version == "TLS_1_3" and Supported_Version == True):
-                                                    print (Supported_Version)
+                                                if (TLS_Version == "TLS_1_3" and Supported_Version == False):
+                                                    Dict_SSL_Vulns['INACTIVE_TLS_1_3'] = True
 
                                                 TLS_Version, Supported_Version = "",""
                                                 Dict_Ciphers = {'Protocol':"", 'Ciphers': []}
