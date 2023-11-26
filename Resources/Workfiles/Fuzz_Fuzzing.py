@@ -48,6 +48,7 @@ def Check_Site_Paths(url, t_seconds, Host_Name, array_wordlists, Location, Dict_
                 n = 0
                 async with s.get(URL, ssl=False, timeout=Client_Timeout) as r:
                     # Counter
+                    print (n)
                     if (n == 20):
                         if (osname == 'nt'): system('cls'), Standard.Print_Header()
                         else:                system('clear'), Standard.Print_Header()
