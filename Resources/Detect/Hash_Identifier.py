@@ -10,7 +10,7 @@ def Get_Hash(Hash_Location, output_location, Array_Hashes = []):
     if (type(Hash_Location) == str):
         with open(Hash_Location, 'r', encoding='utf-8') as f:
             Array_Hashes = f.read().splitlines()
-    elif (type(Hash_Location) == list)
+    elif (type(Hash_Location) == list):
         for _ in listdir(Hash_Location):
             Array_Temp = []
             with open(join(Hash_Location, _), 'r', encoding='utf-8') as f:
