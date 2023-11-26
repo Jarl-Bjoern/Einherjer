@@ -6,6 +6,7 @@
 from ..Header_Files.Variables import *
 from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
+from ..Standard_Operations.Standard import Print_Header
 
 def Check_Site_Paths(url, t_seconds, Host_Name, array_wordlists, Location, Dict_Result = {"200": [], "204": [], "301": [], "302": [], "307": [], "308": [], "401": [], "403": [], "405": [], "500": []}, Array_Temp = [], Array_Status_Code = ["200", "204", "301", "302", "307", "308", "401", "403", "405", "500"]):
     async def Check_Fuzz(url):
@@ -44,8 +45,18 @@ def Check_Site_Paths(url, t_seconds, Host_Name, array_wordlists, Location, Dict_
                 URL = f'{url}/{url_encode(Word).replace("2%F", "/")}'
 
                 # Start_Fuzz
+                n = 0
                 async with s.get(URL, ssl=False, timeout=Client_Timeout) as r:
-                    print (f'{r.status} - {URL}')
+                    # Counter
+                    if (n == 20):
+                        if (osname == 'nt'): system('cls'), Print_Header()
+                        else:                system('clear'), Print_Header()
+                        n = 0
+                    else:
+                        n += 1
+
+                    # Fuzzing_Progress
+                    print (Colors.ORANGE+f'{r.status}'+Colors.RED+' - '+Colors.CYAN+'{URL}'+Colors.RESET)
                     if (str(r.status) in Array_Status_Code):    
                         if (URL not in Array_Temp):
                             Array_Temp.append(URL)
