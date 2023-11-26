@@ -21,5 +21,5 @@ def Get_Hash(Hash_Location, output_location, Array_Hashes = []):
     
     # Filter_Process
     for _ in Array_Hashes:
-        print (Hash)
-        print (hash_detect(Hash))
+        print (_)
+        print (hash_detect(_))
