@@ -136,6 +136,79 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                 except OSError: rmtree(Output_location, ignore_errors=True)
                 finally:        exit()
         else:
+            # Target_Options
+            if (args.target == None and args.import_list == None and args.add_nmap_xml_result == None):
+                from Resources.Header_Files.ArgParser_Fuzzing_Intro import Argument_Parser
+                Argument_Parser("\n\n\t\t\t   The program cannot be started without targets!\n\t\t\tFor more information use the parameter -h or --help.\n")
+                try:            rmdir(Output_location)
+                except OSError: rmtree(Output_location, ignore_errors=True)
+                finally:        exit()
+            elif (args.target == None and (args.import_list != None or args.add_nmap_xml_result != None)):
+                if (args.import_list != None):
+                    try:
+                        Array_Targets, Array_SSL_Targets = Standard.Read_Targets_v4(args.import_list)
+                    except FileNotFoundError as e:
+                        Logs.Error_Message(f"Your targetlist can't be found!\n\n{args.import_list}")
+    
+                if (args.add_nmap_xml_result != None):
+                    try:
+                        Array_Temp_Zero, Array_SSL_Zero = Standard.Read_Targets_XML(args.add_nmap_xml_result)
+                        if (len(Array_Targets) > 0):
+                            for _ in array(Array_Temp_Zero):
+                                if (_ not in Array_Targets):
+                                    Array_Targets.append(_)
+                        else:
+                            Array_Targets = Array_Temp_Zero
+    
+                        if (len(Array_SSL_Targets) > 0):
+                            for _ in array(Array_SSL_Zero):
+                                if (_ not in Array_SSL_Zero):
+                                    Array_SSL_Targets.append(_)
+                        else:
+                            Array_SSL_Targets = Array_SSL_Zero
+    
+                    except FileNotFoundError as e:
+                        Logs.Error_Message(f"Your targetlist can't be found!\n\n{args.add_nmap_xml_result}")
+            else:
+                if (len(args.target) > 1):
+                    Array_Targets, Array_SSL_Targets = [], []
+                    for _ in args.target:
+                        if (',' in _):
+                            if ('/' in _[:-1] and not '//' in _[:-1]):
+                                for IP in IPv4Network(_):
+                                    if (IP not in Array_Targets):
+                                        Array_Targets.append(IP)
+                            else:
+                                if ('https://' in _[:-1] or 'ssl://' in _[:-1]):
+                                    Array_SSL_Targets.append(_[:-1])
+                                Array_Targets.append(_[:-1])
+                        else:
+                            if ('/' in _ and not '//' in _):
+                                for IP in IPv4Network(_):
+                                    if (IP not in Array_Targets):
+                                        Array_Targets.append(IP)
+                            else:
+                                if ('https://' in _ or 'ssl://' in _):
+                                    Array_SSL_Targets.append(_)
+                                Array_Targets.append(_)
+                else:
+                    if (',' in args.target[0]):
+                        Temp_Split = args.target[0].split(',')
+                        for _ in Temp_Split:
+                            if (_ != ''):
+                                if ('https://' in Temp_Split or 'ssl://' in Temp_Split):
+                                    Array_SSL_Targets.append(_)
+                                Array_Targets.append(_)
+                    else:
+                        if ('https://' in args.target[0] or 'ssl://' in args.target[0]):
+                            Array_SSL_Targets = [args.target[0]]
+                        Array_Targets = [args.target[0]]
+            if (args.random_order == True):
+                try: from random import shuffle
+                except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
+                shuffle(Array_Targets)
+                del shuffle
+
             # Program_Start
             Standard.Initialien(args.debug)
 
