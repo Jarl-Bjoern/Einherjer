@@ -162,6 +162,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
         # Dict_Declaration
         Dict_Result = {
             'Certificate':               {},
+            'CORS',                      {},
             'DNS':                       {},
             'FTP':                       {},
             'Header':                    {},
@@ -183,6 +184,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
         Dict_Switch = {
             'scan_certificate':          False,
+            'scan_cors':                 False,
             'scan_dns':                  False,
             'scan_ftp':                  False,
             'scan_header':               False,
@@ -322,6 +324,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
         # Scanning_Options
         if (args.scan_all                 == False and
+            args.scan_cors                == False and
             args.scan_ftp                 == False and
             args.scan_host_name           == False and
             args.scan_security_flags      == False and
@@ -334,6 +337,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                     from Resources.Header_Files.ArgParser_Intro import Argument_Parser
                     Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), rmdir(Output_Location), exit()
         elif (args.scan_all               != False and
+            args.scan_cors                == False and
             args.scan_ftp                 == False and
             args.scan_host_name           == False and
             args.scan_security_flags      == False and
@@ -345,6 +349,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             args.scan_ssh                 == False):
                     Dict_Switch = {
                         'scan_certificate':           True,
+                        'scan_cors':                  True,
                         'scan_dns':                   True,
                         'scan_ftp':                   True,
                         'scan_header':                True,
@@ -358,6 +363,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                         'scan_ssl':                   True
                     }
         elif (args.scan_all == False):
+            if (args.scan_cors              != False):          Dict_Switch['scan_cors']                 = True
             if (args.scan_ftp               != False):          Dict_Switch['scan_ftp']                  = True
             if (args.scan_host_name         != False):          Dict_Switch['scan_host_name']            = True
             if (args.scan_security_flags    != False):          Dict_Switch['scan_security_flags']       = True
@@ -423,6 +429,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
                 # Normal_Targets
                 if (Dict_Switch['scan_certificate']    != False or
+                    Dict_Switch['scan_cors']           != False or
                     Dict_Switch['scan_dns']            != False or
                     Dict_Switch['scan_ftp']            != False or
                     Dict_Switch['scan_host_name']      != False or
