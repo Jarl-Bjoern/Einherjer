@@ -42,21 +42,41 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
         #    key_type=OpenSslFileTypeEnum.PEM
         #)
 
+        # Configure_Proxy_Settings
+        Proxy = None
+
         try:
-            Array_Attack.append(
-                ServerScanRequest(
-                    server_location=ServerNetworkLocation(
-                        hostname=URL,
-                        ip_address=URL,
-                        port=Port
-                    ),
-                    network_configuration=ServerNetworkConfiguration(
-                        URL,
-                        network_timeout=ssl_timeout,
-                        network_max_retries=2
+            if (Proxy != None):
+                Array_Attack.append(
+                        ServerScanRequest(
+                            server_location=ServerNetworkLocation(
+                                hostname=URL,
+                                ip_address=URL,
+                                port=Port,
+                                http_proxy_settings=Proxy
+                            ),
+                            network_configuration=ServerNetworkConfiguration(
+                                URL,
+                                network_timeout=ssl_timeout,
+                                network_max_retries=2
+                            )
+                        )
+                    )
+            else:
+                Array_Attack.append(
+                    ServerScanRequest(
+                        server_location=ServerNetworkLocation(
+                            hostname=URL,
+                            ip_address=URL,
+                            port=Port,
+                        ),
+                        network_configuration=ServerNetworkConfiguration(
+                            URL,
+                            network_timeout=ssl_timeout,
+                            network_max_retries=2
+                        )
                     )
                 )
-            )
         except ConnectionResetError:
             Logs.Log_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
