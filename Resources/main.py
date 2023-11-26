@@ -151,21 +151,21 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                 except OSError: rmtree(Output_location, ignore_errors=True)
                 finally:        exit()
         else:
-            # Program_Start
-            Standard.Initialien(args.debug)
-
             if (args.hash_detect != None):
                 if (args.detect_single_hash     == None and
                     args.add_hashfile           == None and
                     args.add_multiple_hashfiles == None):
                             from Resources.Header_Files.ArgParser_Detector_Intro import Argument_Parser
-                            Argument_Parser("\n\n\t\t\tThe program cannot be started without detection methods!\n\t\t\t For more information use the parameter -h or --help.\n")
+                            Argument_Parser("\n\n\t\t\tThe program cannot be started without the hash method!\n\t\t\t For more information use the parameter -h or --help.\n")
                             try:            rmdir(Output_location)
                             except OSError: rmtree(Output_location, ignore_errors=True)
                             finally:        exit()
                 elif (args.detect_single_hash     != None and
                       args.add_hashfile           == None and
                       args.add_multiple_hashfiles == None):
+                            # Program_Start
+                            Standard.Initialien(args.debug)
+
                             from Resources.Detect.Hash_Identifier import Get_Hash
                             Array_Output = Get_Hash(args.hash_detect, Output_location)
                 elif (args.detect_single_hash      == None and
