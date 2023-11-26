@@ -156,7 +156,11 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             # Program_Start
             Standard.Initialien(args.debug)
 
-            print ("\nUNDER CONSTRUCTION")
+            if (args.hash_detect != None):
+                from Resources.Detect.Hash_Identifier import Get_Hash
+                Array_Output = Get_Hash(args.hash_detect, Output_location)
+
+        return Array_Output
 
 
     def Scanning_Mode(Date, args, Output_Location, Database_Password, Array_Thread_Args = [], Dict_Threads = {}, Dict_Proxies = {'http': "",'https': ""}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None, Switch_Screenshots = False, Array_Targets = [], Array_SSL_Targets = []):
