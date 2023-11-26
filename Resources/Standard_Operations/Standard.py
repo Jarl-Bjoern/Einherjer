@@ -109,6 +109,16 @@ class Standard:
 
         return Dict_Temp
 
+    def Read_JSON_File(file_path, dict_temp):
+        with open(dirname(realpath(__file__)).replace('Resources/Header_Files', "Config/http_custom_header.json"), 'r', encoding='utf-8') as jsonFile:
+            try:
+                dict_temp = json_loads(jsonFile)
+            except JSONDecodeError:
+                exit(Colors.RED+"There was a problem with the encoding in the file."+Colors.RESET)
+        jsonFile.close()
+
+        return dict_temp
+
     def Read_Targets_XML(file_path, Array_Out = [], Array_SSL_Out = [], Array_Template = []):
         if (exists(join(dirname(realpath(__file__)).split("Resources/Standard_Operations")[0], "scan.state"))):
             Array_Template = Standard.Read_File(join(dirname(realpath(__file__)).split("Resources/Standard_Operations")[0], "scan.state"))
