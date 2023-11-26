@@ -49,6 +49,9 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             Write_Message_Chromium_Output()
 
 
+    #######################################
+    #         Brute-Force-Section         #
+    #######################################
     def Brute_Force_Mode(Date, Output_location, args, Array_Output = [], Switch_Screenshots = False):
         Dict_Switch = {
             'brute_dns':                  False,
@@ -81,6 +84,9 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
         return Array_Output, Switch_Screenshots
 
 
+    #######################################
+    #           Filter-Section            #
+    #######################################
     def Filter_Mode(Date, Output_location, args, Array_Output = []):
         # Filtering_Options
         if (args.file_split                == None and
@@ -126,6 +132,9 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
         return Array_Output
 
 
+    #######################################
+    #           Fuzzing-Section           #
+    #######################################
     def Fuzzing_Mode(Date, Output_location, args, Array_Output = []):
         # Filtering_Options
         if (args.fuzzing_sites             == None and
@@ -215,6 +224,9 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             print ("\nUNDER CONSTRUCTION")
 
 
+    #######################################
+    #           Detector-Section          #
+    #######################################
     def Detector_Mode(Date, Output_location, args, Array_Output = []):
         # Filtering_Options
         if (args.hash_detect               == None):
@@ -250,6 +262,9 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
         return Array_Output
 
 
+    #######################################
+    #           Scanning-Section          #
+    #######################################
     def Scanning_Mode(Date, args, Output_Location, Database_Password, Array_Thread_Args = [], Dict_Threads = {}, Dict_Proxies = {'http': "",'https': ""}, Counter_Connections = 0, Switch_Internet_Connection = False, Screen_Dir = "", driver_options = None, Switch_Screenshots = False, Array_Targets = [], Array_SSL_Targets = []):
         # Dict_Declaration
         Dict_Result = {
