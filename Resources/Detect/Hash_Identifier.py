@@ -22,4 +22,4 @@ def Get_Hash(Hash_Location, output_location, Array_Hashes = []):
     # Filter_Process
     for _ in Array_Hashes:
         for i in hash_detect(_):
-            print (f'{_} : {i}')
+            print (Colors.ORANGE+f'{_}'+Colors.RED+' : '+Colors.BLUE+f'{i}'+Colors.RESET)
