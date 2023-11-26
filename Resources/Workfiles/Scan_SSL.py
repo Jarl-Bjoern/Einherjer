@@ -57,12 +57,20 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                     )
                 )
             )
-        except (ConnectionResetError, ServerHostnameCouldNotBeResolved):
+        except ConnectionResetError:
             Logs.Log_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
                 +Colors.BLUE+'SSL-Check\n'
                 +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
                 +Colors.RED+f'{strftime("%Y-%m-%d %H:%M:%S")} - {url} - It was not possible to connect to the target\n',
+                join(Location, 'Logs')
+            )
+        except ServerHostnameCouldNotBeResolved:
+            Logs.Log_File(
+                Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                +Colors.BLUE+'SSL-Check\n'
+                +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                +Colors.RED+f'{strftime("%Y-%m-%d %H:%M:%S")} - {url} - It was not possible to resolve the server hostname\n',
                 join(Location, 'Logs')
             )
 
