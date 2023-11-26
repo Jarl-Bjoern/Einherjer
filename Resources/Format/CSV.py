@@ -6,8 +6,6 @@
 from ..Header_Files.Variables import *
 
 def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
-    print (Dict_Result), exit()
-
     def Write_Extend(File_Name):
         if (exists(File_Name)):  return 'a'
         else:                    return 'w'
