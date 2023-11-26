@@ -38,14 +38,13 @@ def Check_Site_Paths(url, t_seconds, Host_Name, array_wordlists, Location, Dict_
                     Temp_URL_Switcher = url_encode(url[Begin:])
                     url               = f'{Protocol}{Temp_URL_Switcher.replace("2%F", "/")}'
                 elif (url.count('/') == 2 and '//' in url):
-                    Temp_URL_Switcher = url_encode(url[Begin:])
-                    url               = f'{Protocol}{Temp_URL_Switcher.replace("2%F", "/")}'
+                    pass
 
                 # Generate_URL_Encoded_Word
                 URL = f'{url}/{url_encode(Word).replace("2%F", "/")}'
 
                 # Start_Fuzz
-                async with s.get(url_encode(URL), ssl=False, timeout=Client_Timeout) as r:
+                async with s.get(URL, ssl=False, timeout=Client_Timeout) as r:
                     if (str(r.status) in Array_Status_Code):
                         if (URL not in Array_Temp):
                             Array_Temp.append(URL)
