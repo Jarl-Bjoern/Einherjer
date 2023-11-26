@@ -88,26 +88,11 @@ def Check_CORS_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locati
         # Scanning_CORS_Output
         for Header_Key, Header_Values in r.headers.items():
             # Check_Header
-            if (Header_Key.upper() in Dict_Header):
+            if (Header_Key.upper() == "ACCESS-CONTROL-ALLOW-ORIGIN"):
                 Temp_Head = Header_Key.upper()
-                if (type(Dict_Header[Temp_Head]) == str):
-                    if (Header_Values.upper() == Dict_Header[Temp_Head]):
-                        Dict_Temp_Header[Temp_Head] = Header_Values.upper()
+                if (Header_Values.upper() == "*"):
+                    Dict_Temp_CORS[Temp_Head] = Header_Values.upper()
 
-                elif (type(Dict_Header[Temp_Head]) == list):
-                    Check_Counter = 0
-                    for _ in Dict_Header[Temp_Head]:
-                        if (_ in Header_Values.upper()):
-                            Check_Counter += 1
-
-                    if (Check_Counter == len(Dict_Header[Temp_Head])):
-                        Dict_Temp_Header[Temp_Head] = Header_Values.upper()
-                    elif (Dict_Header[Temp_Head] != "CONTENT-SECURITY-POLICY" and
-                          Dict_Header[Temp_Head] != "STRICT-TRANSPORT-SECURITY" and
-                          Check_Counter > 0):
-                                Dict_Temp_Header[Temp_Head] = Header_Values.upper()
-                    else:
-                        Dict_Temp_Header[Temp_Head] = "FEHLT"
 
         # Logging
         if (Host_Name != ""):
