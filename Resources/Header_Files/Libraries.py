@@ -96,8 +96,8 @@ try:
 
             # Fuzzing_Module_Filter
             if (args.fuzzing_sites                == False):
-                        from .ArgParser_Fuzzing_Intro import Argument_Parser
-                        Argument_Parser("\n\n\t\t\t\t\tThe fuzzing method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
+                from .ArgParser_Fuzzing_Intro import Argument_Parser
+                Argument_Parser("\n\n\t\t\t\t\tThe fuzzing method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
             elif (args.fuzzing_sites              != False):
                 from aiohttp  import BasicAuth, ClientSession, ClientTimeout, TCPConnector
                 import asyncio
@@ -109,8 +109,8 @@ try:
 
             # Detector_Module_Filter
             if (args.hash_detect                == False):
-                        from .ArgParser_Detector_Intro import Argument_Parser
-                        Argument_Parser("\n\n\t\t\t\t\tThe decetion method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
+                from .ArgParser_Detector_Intro import Argument_Parser
+                Argument_Parser("\n\n\t\t\t\t\tThe decetion method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
             elif (args.hash_detect              != False):
                 from haipy.haipy import detect as hash_detect
 
