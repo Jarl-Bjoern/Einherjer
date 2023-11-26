@@ -232,7 +232,8 @@ try:
                         from selenium.webdriver.remote.webdriver import WebDriver
                         from smtplib import SMTP, SMTPServerDisconnected
                         from sslyze  import (
-                            ClientAuthenticationCredentials
+                            ClientAuthenticationCredentials,
+                            OpenSslFileTypeEnum,
                             Scanner,
                             ServerNetworkLocation,
                             ServerNetworkConfiguration,
