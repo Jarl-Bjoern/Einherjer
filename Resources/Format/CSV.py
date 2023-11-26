@@ -264,6 +264,8 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                                     Temp_Arr = ['The system is vulnerable for BEAST (CVE-2011-3389)']
                                 elif (_ == "LUCKY13" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                     Temp_Arr = ['The system is vulnerable for LUCKY13 (CVE-2013-0169)']
+                                elif (_ == "INACTIVE_TLS_1_3" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
+                                    Temp_Arr = ['The system has TLS 1.3 disabled.']
 
                                 if (Temp_Arr != []):
                                     writer_Sec.writerow(Array_Temp + Temp_Arr)
