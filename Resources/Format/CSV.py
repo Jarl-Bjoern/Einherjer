@@ -217,7 +217,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
         with open(join(location, 'result_cors.csv'), Write_Mode, encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
             if (Write_Mode == 'w'):
-                writer.writerow((['URL','DNS','ACCESS-CONTROL-ALLOW-ORIGIN'])
+                writer.writerow(['URL','DNS','ACCESS-CONTROL-ALLOW-ORIGIN'])
 
 #            for Target in Dict_Result['CORS']:
 #                Array_Temp = []
