@@ -34,6 +34,9 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
             Temp   = url_encode(URL).replace("2%F", "/")
             URL    = Temp
 
+        # Setup_Auth_Method
+        ClientAuthenticationCredentials
+
         try:
             Array_Attack.append(
                 ServerScanRequest(
