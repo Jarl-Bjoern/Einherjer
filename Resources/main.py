@@ -162,7 +162,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
         # Dict_Declaration
         Dict_Result = {
             'Certificate':               {},
-            'CORS',                      {},
+            'CORS':                      {},
             'DNS':                       {},
             'FTP':                       {},
             'Header':                    {},
