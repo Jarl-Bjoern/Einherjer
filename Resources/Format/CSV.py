@@ -37,6 +37,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                     Standard.Remove_From_Filtered_File(join(location, 'affected_header_targets.txt'), Target)
         Standard.Remove_Empty_Filter_File(join(location, 'result_header.csv')), Standard.Remove_Empty_Filter_File(join(location, 'affected_header_targets.txt'))
 
+
     if (Dict_Result['Information'] != {}):
         # Check_For_Existing_File
         Write_Mode = Write_Extend(join(location, 'result_information_disclosure.csv'))
@@ -65,6 +66,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                     Standard.Remove_From_Filtered_File(join(location, 'affected_http_information_disclosure_targets.txt'), Target)
         Standard.Remove_Empty_Filter_File(join(location, 'result_information_disclosure.csv')), Standard.Remove_Empty_Filter_File(join(location, 'affected_http_information_disclosure_targets.txt'))
 
+
     if (Dict_Result['SSH'] != {}):
         # Check_For_Existing_File
         Write_Mode = Write_Extend(join(location, 'result_ssh_vulns.csv'))
@@ -92,6 +94,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
                     else: Array_Temp.append("X")
                 writer.writerow(Array_Temp)
+
 
     if (Dict_Result['Security_Flag'] != {}):
         # Check_For_Existing_File
@@ -125,6 +128,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                     Standard.Remove_From_Filtered_File(join(location, 'affected_security_flags_targets.txt'), Target)
         Standard.Remove_Empty_Filter_File(join(location, 'result_security_flags.csv')), Standard.Remove_Empty_Filter_File(join(location, 'affected_security_flags_targets.txt'))
 
+
     if (Dict_Result['Certificate'] != {}):
         # Check_For_Existing_File
         Write_Mode = Write_Extend(join(location, 'result_certificate.csv'))
@@ -147,6 +151,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
                     else: Array_Temp.append("-")
                 writer.writerow(Array_Temp)
+
 
     if (Dict_Result['FTP'] != {}):
         # Check_For_Existing_File
@@ -173,6 +178,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                         if (Result_Left == "Anonymous_Login"): Array_Temp.append("✓")
                         else:                                  Array_Temp.append(Result_Right)
                 writer.writerow(Array_Temp)
+
 
     if (Dict_Result['HTTP_Methods'] != {}):
         # Check_For_Existing_File
@@ -201,6 +207,35 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                 else:
                     Standard.Remove_From_Filtered_File(join(location, 'affected_http_methods_targets.txt'), Target)
         Standard.Remove_Empty_Filter_File(join(location, 'result_http_methods.csv')), Standard.Remove_Empty_Filter_File(join(location, 'affected_http_methods_targets.txt'))
+
+
+    if (Dict_Result['CORS'] != {}):
+        # Check_For_Existing_File
+        Write_Mode = Write_Extend(join(location, 'result_cors.csv'))
+
+        # Filter_Mode
+        with open(join(location, 'result_cors.csv'), Write_Mode, encoding='UTF-8', newline='') as csv_file:
+            writer = csv.writer(csv_file)
+            if (Write_Mode == 'w'):
+                writer.writerow((['URL','DNS','ACCESS-CONTROL-ALLOW-ORIGIN'])
+
+#            for Target in Dict_Result['CORS']:
+#                Array_Temp = []
+#                Array_Temp.append(Target)
+#                for Result_Left, Result_Right in Dict_Result['CORS'][Target].items():
+#                    if (Result_Left == "DNS" and Result_Right == ""):        Result_Right = "FEHLT"
+
+#                    if (Result_Left != "DNS" and Result_Right != "FEHLT"):   Array_Temp.append("✓")
+#                    elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
+#                    elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
+#                    else: Array_Temp.append("X")
+
+#                if (Array_Temp.count('✓') != len(Dict_Header)):
+#                    writer.writerow(Array_Temp)
+#                else:
+#                    Standard.Remove_From_Filtered_File(join(location, 'affected_cors_targets.txt'), Target)
+        Standard.Remove_Empty_Filter_File(join(location, 'result_cors.csv')), Standard.Remove_Empty_Filter_File(join(location, 'affected_cors_targets.txt'))
+
 
     if (Dict_Result['SSL'] != {}):
         # Check_For_Existing_File
@@ -271,3 +306,6 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                                     writer_Sec.writerow(Array_Temp + Temp_Arr)
                         elif (Result_Left == "Curves"):
                             pass
+
+        Standard.Remove_Empty_Filter_File(join(location, 'result_ssl_ciphers.csv')), Standard.Remove_Empty_Filter_File(join(location, 'affected_ssl_vulns.csv'))
+        Standard.Remove_Empty_Filter_File(join(location, 'affected_ssl_targets.txt'))
