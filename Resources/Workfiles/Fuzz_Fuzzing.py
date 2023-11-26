@@ -6,7 +6,7 @@
 from ..Header_Files.Variables import *
 from ..Standard_Operations.Logs import Logs
 from ..Standard_Operations.Colors import Colors
-from ..Standard_Operations.Standard import Print_Header
+from ..Standard_Operations.Standard import Standard
 
 def Check_Site_Paths(url, t_seconds, Host_Name, array_wordlists, Location, Dict_Result = {"200": [], "204": [], "301": [], "302": [], "307": [], "308": [], "401": [], "403": [], "405": [], "500": []}, Array_Temp = [], Array_Status_Code = ["200", "204", "301", "302", "307", "308", "401", "403", "405", "500"]):
     async def Check_Fuzz(url):
@@ -49,8 +49,8 @@ def Check_Site_Paths(url, t_seconds, Host_Name, array_wordlists, Location, Dict_
                 async with s.get(URL, ssl=False, timeout=Client_Timeout) as r:
                     # Counter
                     if (n == 20):
-                        if (osname == 'nt'): system('cls'), Print_Header()
-                        else:                system('clear'), Print_Header()
+                        if (osname == 'nt'): system('cls'), Standard.Print_Header()
+                        else:                system('clear'), Standard.Print_Header()
                         n = 0
                     else:
                         n += 1
