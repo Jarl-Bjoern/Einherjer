@@ -35,7 +35,12 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
             URL    = Temp
 
         # Setup_Auth_Method
-        ClientAuthenticationCredentials
+        ClientAuthenticationCredentials(
+            certificate_chain_path,
+            key_path,
+            key_password='',
+            key_type=OpenSslFileTypeEnum.PEM
+        )
 
         try:
             Array_Attack.append(
