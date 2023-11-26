@@ -25,7 +25,6 @@ if (Program_Mode == "Scanning_Mode"):
 
     if (args.read_custom_header_file != False):
         Dict_Custom_Header = Standard.Read_JSON_File(dirname(realpath(__file__)).replace('Resources/Header_Files', "Config/http_custom_header.json"))
-        print (Dict_Custom_Header), exit()
     else:
         Dict_Custom_Header = {"Connection": "Close"}
 
