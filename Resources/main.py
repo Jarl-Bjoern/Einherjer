@@ -167,7 +167,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                             Standard.Initialien(args.debug)
 
                             from Resources.Detect.Hash_Identifier import Get_Hash
-                            Array_Output = Get_Hash(args.detect_single_hash, Output_location)
+                            Array_Output = Get_Hash(rf'{args.detect_single_hash}', Output_location)
                 elif (args.detect_single_hash      == None and
                       (args.add_hashfile           != None or
                        args.add_multiple_hashfiles != None)):
