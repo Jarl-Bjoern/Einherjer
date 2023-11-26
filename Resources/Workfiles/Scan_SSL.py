@@ -189,8 +189,8 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                 Dict_Full_SSL['Ciphers'].append(Dict_Ciphers)
 
                                                 # TLS_1_3_Check
-                                                print (TLS_Version)
-                                                print (Supported_Version)
+                                                if (TLS_Version == "TLS_1_3" and Supported_Version == "True"):
+                                                    print (Supported_Version)
 
                                                 TLS_Version, Supported_Version = "",""
                                                 Dict_Ciphers = {'Protocol':"", 'Ciphers': []}
