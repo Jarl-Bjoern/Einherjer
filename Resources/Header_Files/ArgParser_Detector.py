@@ -28,12 +28,12 @@ def Argument_Parser(Template_Location = dirname(realpath(__file__)).replace('Res
 
     config_arguments.add_argument('-aHf', '--add-hashfile', type=str, help=Colors.GREEN+'With this function you add a file with hashes.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     config_arguments.add_argument('-amHf', '--add-multiple-hashfiles', type=str, help=Colors.GREEN+'This parameter specifies a location with several files which will be checked for\nduplicates and sort them out.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    config_arguments.add_argument('-dSh', '--detect-single-hash', type=str, help=Colors.GREEN+'This tries to detect one single hash value.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     config_arguments.add_argument('-o', '--output-location', type=str, help=Colors.GREEN+'Specify the location where the result should be saved.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     debug_arguments.add_argument('-d', '--debug', type=bool, nargs='?', default=False, help=Colors.GREEN+'This Parameter deactivates the terminal clearing after starting the tool.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     detector_arguments.add_argument('-hD', '--hash-detect', type=bool, nargs='?', const=True, help=Colors.GREEN+'With this parameter it is possible to detect hashes.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
-    detector_arguments.add_argument('-dSh', '--detect-single-hash', type=str, help=Colors.GREEN+'This tries to detect one single hash value.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     optional.add_argument('-h','--help', action='help', default=SUPPRESS, help=Colors.GREEN+'Show this help message and exit.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
