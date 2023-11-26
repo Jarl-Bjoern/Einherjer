@@ -46,6 +46,7 @@ def Check_Site_Paths(url, t_seconds, Host_Name, array_wordlists, Location, Dict_
                 # Start_Fuzz
                 async with s.get(URL, ssl=False, timeout=Client_Timeout) as r:
                     if (str(r.status) in Array_Status_Code):
+                        print (f'{r.status} - {URL}')
                         if (URL not in Array_Temp):
                             Array_Temp.append(URL)
                             Dict_Result[str(r.status)].append(URL)
