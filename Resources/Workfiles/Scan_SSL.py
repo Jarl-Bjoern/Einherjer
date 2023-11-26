@@ -54,7 +54,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
                 +Colors.BLUE+'SSL-Check\n'
                 +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                +f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the target\n',
+                +f'{strftime("%Y-%m-%d %H:%M:%S")} - {url} - It was not possible to connect to the target\n',
                 join(Location, 'Logs')
             )
 
@@ -103,7 +103,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                     Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
                     +Colors.BLUE+'SSL-Check\n'+Colors.YELLOW
                     +'-----------------------------------------------------------------------------------------------------------\n'
-                    +f'{strftime("%Y-%m-%d_%H:%M:%S")} - {server_scan_result.server_location.hostname} - It was not possible to connect to the target\n',
+                    +f'{strftime("%Y-%m-%d %H:%M:%S")} - {server_scan_result.server_location.hostname} - It was not possible to connect to the target\n',
                     join(Location, 'Logs')
                 )
             elif (server_scan_result.scan_status == ServerScanStatusEnum.COMPLETED):
@@ -127,8 +127,8 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                     for k in Deep_Result:
                                         if (k not in Array_Result_Filter):
                                             if (k == 'accepted_cipher_suites'):
+                                                print (Deep_Result[k][z])
                                                 for z in Deep_Result[k]:
-                                                    print (Deep_Result[k][z])
                                                     Cipher_Filter = findall(rf'{Array_TLS_Algorithms[0]}', z['cipher_suite']['name'])
                                                     if (Cipher_Filter != []):
                                                         Dict_Temp_Ciphers['Anonymous']      = z['cipher_suite']['is_anonymous']
@@ -196,7 +196,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                         Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
                                         +Colors.BLUE+'SSL-Check\n'+Colors.YELLOW
                                         +'-----------------------------------------------------------------------------------------------------------\n'
-                                        +f'{strftime("%Y-%m-%d_%H:%M:%S")} - {_["server_location"]["ip_address"]}:{_["server_location"]["port"]} - It was not possible to connect to the target\n',
+                                        +f'{strftime("%Y-%m-%d %H:%M:%S")} - {_["server_location"]["ip_address"]}:{_["server_location"]["port"]} - It was not possible to connect to the target\n',
                                         join(Location, 'Logs')
                                     )
 
@@ -220,7 +220,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
             Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
             +Colors.BLUE+'SSL-Check\n'+Colors.YELLOW
             +'-----------------------------------------------------------------------------------------------------------\n'
-            +f'{strftime("%Y-%m-%d_%H:%M:%S")} - {url} - It was not possible to connect to the target\n',
+            +f'{strftime("%Y-%m-%d %H:%M:%S")} - {url} - It was not possible to connect to the target\n',
             join(Location, 'Logs')
         )
 
