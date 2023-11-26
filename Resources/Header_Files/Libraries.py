@@ -305,14 +305,17 @@ try:
                     from json   import loads as json_loads
                     from socket import create_connection
                     from sslyze import (
+                        ClientAuthenticationCredentials,
+                        OpenSslFileTypeEnum,
+                        ScanCommandErrorReasonEnum,
                         Scanner,
                         ServerNetworkLocation,
-                        ServerScanStatusEnum,
                         ServerNetworkConfiguration,
                         ServerScanRequest,
                         ServerScanResultAsJson,
                         ServerHostnameCouldNotBeResolved,
-                        SslyzeOutputAsJson
+                        SslyzeOutputAsJson,
+                        ServerScanStatusEnum
                     )
         elif (argv[1] == '-h'):
             from .ArgParser_Mode import Argument_Parser
