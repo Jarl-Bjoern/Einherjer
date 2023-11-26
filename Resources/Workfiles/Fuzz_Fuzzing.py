@@ -56,7 +56,7 @@ def Check_Site_Paths(url, t_seconds, Host_Name, array_wordlists, Location, Dict_
                         n += 1
 
                     # Fuzzing_Progress
-                    print (Colors.ORANGE+f'{r.status}'+Colors.RED+' - '+Colors.CYAN+'{URL}'+Colors.RESET)
+                    print (Colors.ORANGE+f'{r.status}'+Colors.RED+' - '+Colors.CYAN+f'{URL}'+Colors.RESET)
                     if (str(r.status) in Array_Status_Code):    
                         if (URL not in Array_Temp):
                             Array_Temp.append(URL)
