@@ -33,6 +33,7 @@ def Check_Site_Paths(url, t_seconds, Host_Name, array_wordlists, Location, Dict_
                             Array_Wordlist.append(Word)
 
             # Encode_The_Words
+            n = 0
             for Word in array(Array_Wordlist):
                 # Convert_With_URL_Encoding
                 if (url.count('/') >= 3 and '//' in url):
@@ -45,10 +46,8 @@ def Check_Site_Paths(url, t_seconds, Host_Name, array_wordlists, Location, Dict_
                 URL = f'{url}/{url_encode(Word).replace("2%F", "/")}'
 
                 # Start_Fuzz
-                n = 0
                 async with s.get(URL, ssl=False, timeout=Client_Timeout) as r:
                     # Counter
-                    print (n)
                     if (n == 20):
                         if (osname == 'nt'): system('cls'), Standard.Print_Header()
                         else:                system('clear'), Standard.Print_Header()
