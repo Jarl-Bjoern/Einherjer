@@ -109,7 +109,7 @@ class Standard:
 
         return Dict_Temp
 
-    def Read_JSON_File(file_path, dict_temp):
+    def Read_JSON_File(file_path, dict_temp = {}):
         with open(file_path, 'r', encoding='utf-8') as jsonFile:
             try:
                 dict_temp = json_loads(jsonFile)
