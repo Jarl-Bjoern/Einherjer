@@ -38,7 +38,8 @@ def Check_Site_Paths(url, t_seconds, Host_Name, array_wordlists, Location, Dict_
                     Temp_URL_Switcher = url_encode(url[Begin:])
                     url               = f'{Protocol}{Temp_URL_Switcher.replace("2%F", "/")}'
                 elif (url.count('/') == 2 and '//' in url):
-                    pass
+                    Temp_URL_Switcher = url_encode(url[Begin:])
+                    url               = f'{Protocol}{Temp_URL_Switcher.replace("2%F", "/")}'
 
                 # Generate_URL_Encoded_Word
                 URL = f'{url}/{url_encode(Word).replace("2%F", "/")}'
