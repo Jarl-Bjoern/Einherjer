@@ -110,7 +110,7 @@ class Standard:
         return Dict_Temp
 
     def Read_JSON_File(file_path, dict_temp):
-        with open(dirname(realpath(__file__)).replace('Resources/Header_Files', "Config/http_custom_header.json"), 'r', encoding='utf-8') as jsonFile:
+        with open(file_path, 'r', encoding='utf-8') as jsonFile:
             try:
                 dict_temp = json_loads(jsonFile)
             except JSONDecodeError:
