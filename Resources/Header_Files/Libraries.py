@@ -234,6 +234,7 @@ try:
                         from sslyze  import (
                             ClientAuthenticationCredentials,
                             OpenSslFileTypeEnum,
+                            ScanCommandErrorReasonEnum,
                             Scanner,
                             ServerNetworkLocation,
                             ServerNetworkConfiguration,
