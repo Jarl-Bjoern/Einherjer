@@ -18,7 +18,21 @@ def Check_Site_Paths(url, t_seconds, Host_Name, array_wordlists, Location, Dict_
             elif ('https://' in url):
                 Protocol, Begin = 'https://', 8
 
-            for Word in array(array_wordlists):
+            # Filter_Wordlist
+            if (type(array_wordlists) == str):
+                with open(array_wordlists, 'r', encoding='latin-1') as f:
+                    Array_Wordlist = f.read().splitlines()
+            elif (type(array_wordlists) == list):
+                for _ in listdir(array_wordlists):
+                    Array_Temp_Wordlist = []
+                    with open(array_wordlists, 'r', encoding='latin-1') as f:
+                        Array_Temp_Wordlist = f.read().splitlines()
+                    for Word in array(Array_Temp_Wordlist):
+                        if (Word not in Array_Wordlist):
+                            Array_Wordlist.append(Word)
+
+            # Encode_The_Words
+            for Word in array(Array_Wordlist):
                 # Convert_With_URL_Encoding
                 if (url.count('/') >= 3 and '//' in url):
                     Temp_URL_Switcher = url_encode(url[Begin:])
