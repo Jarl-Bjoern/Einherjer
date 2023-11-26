@@ -127,7 +127,6 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                     for k in Deep_Result:
                                         if (k not in Array_Result_Filter):
                                             if (k == 'accepted_cipher_suites'):
-                                                print (Deep_Result[k])
                                                 for z in Deep_Result[k]:
                                                     Cipher_Filter = findall(rf'{Array_TLS_Algorithms[0]}', z['cipher_suite']['name'])
                                                     if (Cipher_Filter != []):
@@ -188,6 +187,11 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                             if (TLS_Version != "" and Supported_Version != ""):
                                                 Dict_Ciphers['Protocol'] = f'{TLS_Version}'
                                                 Dict_Full_SSL['Ciphers'].append(Dict_Ciphers)
+
+                                                # TLS_1_3_Check
+                                                print (TLS_Version)
+                                                print (Supported_Version)
+
                                                 TLS_Version, Supported_Version = "",""
                                                 Dict_Ciphers = {'Protocol':"", 'Ciphers': []}
 
