@@ -132,7 +132,8 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                 'DNS':                      "",
                 'Ciphers':                  [],
                 'SSL_Vulns':                {},
-                'Curves':                   []
+                'Curves':                   [],
+                'Good_Ciphers':             []
             }
             Dict_SSL_Vulns = {
                 'CRIME':                    "",
@@ -257,8 +258,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                             if (TLS_Version != "" and Supported_Version != ""):
                                                 Dict_Ciphers['Protocol'], Dict_Good_Ciphers['Protocol'] = f'{TLS_Version}',f'{TLS_Version}'
                                                 Dict_Full_SSL['Ciphers'].append(Dict_Ciphers)
-
-                                                print (Dict_Good_Ciphers)
+                                                Dict_Full_SSL['Good_Ciphers'].append(Dict_Good_Ciphers)
 
                                                 # TLS_1_3_Check
                                                 if (TLS_Version == "TLS_1_3" and Supported_Version == False):
