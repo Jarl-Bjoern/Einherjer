@@ -202,7 +202,8 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                             elif (k == 'supports_compression'):
                                                 Dict_SSL_Vulns['CRIME'] = Deep_Result[k]
                                             elif (k == 'supports_fallback_scsv'):
-                                                Dict_SSL_Vulns['FALLBACK_SCSV'] = Deep_Result[k]
+                                                if (Deep_Result[k] == False):
+                                                    Dict_SSL_Vulns['FALLBACK_SCSV'] = Deep_Result[k]
                                             elif (k == 'supported_curves'):
                                                 for z in Deep_Result[k]:
                                                     if (z['name'] not in Dict_Full_SSL['Curves']):
