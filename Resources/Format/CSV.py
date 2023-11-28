@@ -255,7 +255,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                     if (Write_Second_Mode == 'w'):
                         writer_Sec.writerow((['Host','DNS','Vulnerabilities']))
                     if (Write_Third_Mode == 'w'):
-                        writer.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Encryption','Key_Exchange']))
+                        writer_Third.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Encryption','Key_Exchange']))
     
                     for Target in Dict_Result['SSL']:
                         Array_Temp = []
