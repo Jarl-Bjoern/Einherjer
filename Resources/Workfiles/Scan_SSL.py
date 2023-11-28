@@ -108,7 +108,19 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                 'Protocol':                 "",
                 'Ciphers':                  []
             }
+            Dict_Good_Ciphers = {
+                'Protocol':                 "",
+                'Ciphers':                  []
+            }
             Dict_Temp_Ciphers =  {
+                'Anonymous':                "",
+                'Key_Size':                 "",
+                'Name':                     "",
+                'Curve_Name':               "",
+                'Type':                     "",
+                'Curve_Size':               ""
+            }
+            Dict_Temp_Good_Ciphers = {
                 'Anonymous':                "",
                 'Key_Size':                 "",
                 'Name':                     "",
@@ -167,6 +179,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                 for z in Deep_Result[k]:
                                                     Cipher_Filter = findall(rf'{Array_TLS_Algorithms[0]}', z['cipher_suite']['name'])
                                                     if (Cipher_Filter != []):
+                                                        # Bad_Ciphers
                                                         Dict_Temp_Ciphers['Anonymous']      = z['cipher_suite']['is_anonymous']
                                                         Dict_Temp_Ciphers['Key_Size']       = z['cipher_suite']['key_size']
                                                         Dict_Temp_Ciphers['Name']           = z['cipher_suite']['name']
@@ -177,6 +190,25 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                         if (Dict_Temp_Ciphers not in Dict_Ciphers['Ciphers']):
                                                             Dict_Ciphers['Ciphers'].append(Dict_Temp_Ciphers)
                                                             Dict_Temp_Ciphers = {
+                                                                'Anonymous':  "",
+                                                                'Key_Size':   "",
+                                                                'Name':       "",
+                                                                'Curve_Name': "",
+                                                                'Type':       "",
+                                                                'Curve_Size': ""
+                                                            }
+                                                    else:
+                                                        # Good_Ciphers
+                                                        Dict_Temp_Good_Ciphers['Anonymous']      = z['cipher_suite']['is_anonymous']
+                                                        Dict_Temp_Good_Ciphers['Key_Size']       = z['cipher_suite']['key_size']
+                                                        Dict_Temp_Good_Ciphers['Name']           = z['cipher_suite']['name']
+                                                        if (z['ephemeral_key'] != None):
+                                                            Dict_Temp_Good_Ciphers['Curve_Name'] = z['ephemeral_key']['curve_name']
+                                                            Dict_Temp_Good_Ciphers['Type']       = z['ephemeral_key']['type_name']
+                                                            Dict_Temp_Good_Ciphers['Curve_Size'] = z['ephemeral_key']['size']
+                                                        if (Dict_Temp_Good_Ciphers not in Dict_Good_Ciphers['Ciphers']):
+                                                            Dict_Good_Ciphers['Ciphers'].append(Dict_Temp_Good_Ciphers)
+                                                            Dict_Temp_Good_Ciphers = {
                                                                 'Anonymous':  "",
                                                                 'Key_Size':   "",
                                                                 'Name':       "",
@@ -223,15 +255,17 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                     #                            print (f'{k} : {Deep_Result[k]}')
 
                                             if (TLS_Version != "" and Supported_Version != ""):
-                                                Dict_Ciphers['Protocol'] = f'{TLS_Version}'
+                                                Dict_Ciphers['Protocol'], Dict_Good_Ciphers['Protocol'] = f'{TLS_Version}',f'{TLS_Version}'
                                                 Dict_Full_SSL['Ciphers'].append(Dict_Ciphers)
+
+                                                print (Dict_Good_Ciphers)
 
                                                 # TLS_1_3_Check
                                                 if (TLS_Version == "TLS_1_3" and Supported_Version == False):
                                                     Dict_SSL_Vulns['INACTIVE_TLS_1_3'] = True
 
                                                 TLS_Version, Supported_Version = "",""
-                                                Dict_Ciphers = {'Protocol':"", 'Ciphers': []}
+                                                Dict_Ciphers, Dict_Good_Ciphers = {'Protocol':"", 'Ciphers': []}, {'Protocol':"", 'Ciphers': []}
 
                                 except TypeError:
                                     Logs.Log_File(
