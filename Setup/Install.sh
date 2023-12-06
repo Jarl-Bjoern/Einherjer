@@ -4,15 +4,13 @@
 # Variables
 TEMP_PATH=$(readlink -f -- "$0")
 SCRIPT_NAME=$(basename "${BASH_SOURCE[0]}")
-SCRIPT_PATH=${TEMP_PATH::-${#SCRIPT_NAME}-16}
-BASE_PATH=${TEMP_PATH::-${#SCRIPT_NAME}-23}
+SCRIPT_PATH=${TEMP_PATH::-${#SCRIPT_NAME}-6}
 
 echo $SCRIPT_PATH
-echo $TEMP_PATH
 exit
 
-python3 -m virtualenv $BASE_PATH/venv
-source $BASE_PATH/venv/bin/activate
+python3 -m virtualenv $SCRIPT_PATH/venv
+source $SCRIPT_PATH/venv/bin/activate
 pip3 install -r Setup/requirements.txt
 deactivate
 
