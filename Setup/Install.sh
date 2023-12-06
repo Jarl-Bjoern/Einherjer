@@ -1,4 +1,5 @@
 #!/bin/bash
+# Rainer Christian Bjoern Herold
 
 # Variables
 TEMP_PATH=$(readlink -f -- "$0")
