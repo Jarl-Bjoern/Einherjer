@@ -11,11 +11,15 @@ def Responder_Logs(responder_files_location, output_location, Array_Temp = []):
         if (isfile(responder_files_location)):
             if (responder_files_location.endswith('.log')):
                 pass
+            elif (responder_file.endswith('.txt')):
+                pass
 
         # Check_For_Multiple_Files
         elif (isdir(responder_files_location)):
             for responder_file in listdir(responder_files_location):
                 if (responder_file.endswith('.log')):
+                    pass
+                elif (responder_file.endswith('.txt')):
                     pass
 
         Array_Temp.append(join(output_location, 'mitm-overview.csv'))
