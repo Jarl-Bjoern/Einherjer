@@ -34,7 +34,6 @@ def NMAP_Unencrypted(nmap_files_location, output_location, Dict_System = {}, Arr
                                             Protocol = elem.attrib['name']
 
                                             Product, Version, Extra_Info = "","",""
-                                            print (elem)
                                             try:             Product    = elem.attrib['product']
                                             except KeyError: pass
                                             try:             Version    = elem.attrib['version']
@@ -52,7 +51,7 @@ def NMAP_Unencrypted(nmap_files_location, output_location, Dict_System = {}, Arr
 
                                         if (Protocol != "" and Address != "" and Port != ""):
                                            if (Protocol not in Array_Filter_Protocols):
-                                               print (f'{Address} {Protocol} open {Word}')
+                                               print (f'{Address} {Protocol} {Port} open {Word}')
 
                                         Skip_Attributes = False
 
