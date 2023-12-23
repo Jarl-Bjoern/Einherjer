@@ -5,7 +5,7 @@
 # Libraries
 from ..Header_Files.Variables import *
 
-def NMAP_Unencrypted(nmap_files_location, Dict_System = {}, Array_Filter_Services  = ["access denied", ""], Array_Filter_Protocols = ['ssl','ldaps','https']):
+def NMAP_Unencrypted(nmap_files_location, Dict_System = {}, Array_Filter_Services  = ["access denied", ""], Array_Filter_Protocols = ['ssl','ldaps','https'], Array_Temp = []):
         try:
                 # Check_For_One_File
                 if (isfile(nmap_files_location)):
@@ -75,3 +75,5 @@ def NMAP_Unencrypted(nmap_files_location, Dict_System = {}, Array_Filter_Service
                                 f.write('\n')
         except FileNotFoundError:
                 pass
+
+        return Array_Temp
