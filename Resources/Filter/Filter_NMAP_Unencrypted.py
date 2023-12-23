@@ -34,6 +34,7 @@ def NMAP_Unencrypted(nmap_files_location, output_location, Dict_System = {}, Arr
                                             Protocol = elem.attrib['name']
 
                                             Product, Version, Extra_Info = "","",""
+                                            print (elem)
                                             try:             Product    = elem.attrib['product']
                                             except KeyError: pass
                                             try:             Version    = elem.attrib['version']
