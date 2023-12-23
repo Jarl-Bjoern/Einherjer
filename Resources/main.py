@@ -140,7 +140,8 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                 pass
 
             if (args.nmap_main_file_location != None):
-                pass
+                from Resources.Filter.Filter_NMAP_Unencrypted import NMAP_Unencrypted
+                Array_Output = NMAP_Unencrypted()
 
             if (args.qrcode_picture_location != None):
                 pass
