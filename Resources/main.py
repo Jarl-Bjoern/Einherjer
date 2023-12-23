@@ -137,7 +137,8 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                 pass
 
             if (args.nmap_service_scan_file_location != None):
-                pass
+                from Resources.Filter.Filter_NMAP_Services import NMAP_Services
+                Array_Output = NMAP_Services(args.nmap_service_scan_file_location, Output_location)
 
             if (args.nmap_main_file_location != None):
                 from Resources.Filter.Filter_NMAP_Unencrypted import NMAP_Unencrypted
