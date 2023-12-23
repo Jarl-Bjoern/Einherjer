@@ -89,12 +89,17 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
     #######################################
     def Filter_Mode(Date, Output_location, args, Array_Output = []):
         # Filtering_Options
-        if (args.file_split                == None and
-            args.hostname_template_file    == None and
-            args.hostname_target_file      == None and
-            args.nmap_smb_output_location  == None and
-            args.nmap_ssh_output_location  == None and
-            args.screenshot_location       == None):
+        if (args.file_split                      == None and
+            args.hostname_template_file          == None and
+            args.hostname_target_file            == None and
+            args.nmap_cookie_scan_location       == None and
+            args.nmap_header_scan_location       == None and
+            args.nmap_smb_output_location        == None and
+            args.nmap_ssh_output_location        == None and
+            args.nmap_service_scan_file_location == None and
+            args.nmap_main_file_location         == None and
+            args.qrcode_picture_location         == None and
+            args.screenshot_location             == None):
                 from Resources.Header_Files.ArgParser_Filter_Intro import Argument_Parser
                 Argument_Parser("\n\n\t\t\tThe program cannot be started without filter methods!\n\t\t\t For more information use the parameter -h or --help.\n")
                 try:            rmdir(Output_location)
@@ -124,6 +129,21 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             if (args.nmap_ssh_output_location != None):
                 from Resources.Filter.Filter_NMAP_SSH import SSH_Nmap
                 Array_Output = SSH_Nmap(args.nmap_ssh_output_location, Output_location)
+
+            if (args.nmap_cookie_scan_location != None):
+                pass
+
+            if (args.nmap_header_scan_location != None):
+                pass
+
+            if (args.nmap_service_scan_file_location != None):
+                pass
+
+            if (args.nmap_main_file_location != None):
+                pass
+
+            if (args.qrcode_picture_location != None):
+                pass
 
             if (args.screenshot_location != None):
                 from Resources.Filter.Filter_Screenshot import Screenshot_Frame
