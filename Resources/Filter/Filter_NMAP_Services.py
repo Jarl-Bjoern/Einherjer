@@ -5,7 +5,7 @@
 # Libraries
 from ..Header_Files.Variables import *
 
-def NMAP_Services(nmap_files_location, output_location, Array_Temp = []):
+def NMAP_Services(nmap_files_location, output_location, Dict_System = {}, Array_Filter_Services  = ["access denied", ""], Array_Temp = []):
         try:
                 # Check_For_One_File
                 if (isfile(nmap_files_location)):
@@ -50,8 +50,7 @@ def NMAP_Services(nmap_files_location, output_location, Array_Temp = []):
                                         Port = elem.attrib['portid']
 
                                         if (Protocol != "" and Address != "" and Port != "" and Word != ""):
-                                           if (Protocol not in Array_Filter_Protocols):
-                                               print (f'{Address} {Port} {Protocol} {Word}')
+                                                print (f'{Address} {Port} {Protocol} {Word}')
 
                                         Skip_Attributes = False
 
