@@ -20,7 +20,7 @@ def Responder_Logs(responder_files_location, output_location, Dict_System = {}, 
                     elif ("MDNS" in i):
                         Target = i.split(' ')
                         if (Target[10].count('.') > 2):
-                            print (f"{Target[10]} ({Target[14]})")
+                            print (f"{Target[10]} ({Target[15]})")
                         elif (Target[10].count(':') > 3):
                             print (f"{Target[10]} ({Target[13]})")
 
