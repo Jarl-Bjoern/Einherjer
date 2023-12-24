@@ -16,10 +16,9 @@ def Responder_Logs(responder_files_location, output_location, Dict_System = {}, 
                 for i in Text:
                     if ("Client" in i):
                         Client = i.split(' ')
-                        print (Client)
                     elif ("Username" in i):
                         User = i.split(' ')
-                        #print (f'{User[8]} - {User[4][1:-1]} - {User[5]} - {Client[8]}')
+                        print (f'{User[8]} - {User[4][1:-1]} - {User[5]} - {Client[10]}')
                     elif ("MDNS" in i):
                         Target = i.split(' ')
                         #if (Target[10].count('.') > 2):
