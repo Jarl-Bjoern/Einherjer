@@ -62,7 +62,7 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
                                                               # SMBv1
                                                               if (Report[Result].count(':') == 1):
                                                                   if ('disabled' in Report[Result] and 'message_signing' in Report[Result]):
-    #                                                                 print (Report[Result])
+                                                                      print (Report[Result])
                                                                       Dict_SMB_Results[Target].append(Report[Result][8:])
                                                               # SMBv2_SMBv3
                                                               elif (Report[Result].count(':') == 3):
