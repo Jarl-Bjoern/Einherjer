@@ -27,7 +27,8 @@ echo -e "💀\t\t\t\t\t\t\t\t💀"
 echo -e "💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀\n\n"
 
 # Virtual_Environment
-echo -e "Creating the ${RED}virtual environment${NOCOLOR}\n\n"
+echo -e "Creating the ${RED}virtual environment${NOCOLOR}"
+echo -e "${CYAN}-----------------------------------------------------------------${NOCOLOR}\n"
 python3 -m virtualenv "$SCRIPT_PATH/venv"
 source "$SCRIPT_PATH/venv/bin/activate"
 pip3 install -r "$SCRIPT_PATH/Setup/requirements.txt"
@@ -36,7 +37,8 @@ echo -e "\n\nThe ${RED}virtual environment${NOCOLOR} was created!\n\n"
 echo -e "${CYAN}-----------------------------------------------------------------${NOCOLOR}\n\n"
 
 # Install_Missing_Global_Packages
-echo -e "Installing the ${RED}global pip packages${NOCOLOR}\n\n"
+echo -e "Installing the ${RED}global pip packages${NOCOLOR}"
+echo -e "${CYAN}-----------------------------------------------------------------${NOCOLOR}\n"
 for LINE in $(cat "$SCRIPT_PATH/Setup/requirements.txt");
 do
   pip3 install $LINE || return 0
@@ -45,7 +47,8 @@ echo -e "\n\nThe ${RED}pip packages${NOCOLOR} was installed!\n\n"
 echo -e "${CYAN}-----------------------------------------------------------------${NOCOLOR}\n\n"
 
 # Install_Missing_APT_Packages
-echo -e "Installing the missing ${RED}apt packages${NOCOLOR}\n\n"
+echo -e "Installing the missing ${RED}apt packages${NOCOLOR}"
+echo -e "${CYAN}-----------------------------------------------------------------${NOCOLOR}\n"
 sudo apt install -y libcurl4-openssl-dev chromium chromium-driver
 echo -e "\n\nThe ${RED}apt packages${NOCOLOR} was installed!\n\n"
 echo -e "${CYAN}-----------------------------------------------------------------${NOCOLOR}\n\n"
