@@ -855,7 +855,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
 # Main
 if __name__ == '__main__':
     try:
-        main(Date, Program_Mode, args)
+        main(Date, Program_Mode, args, Copyright_Year)
     except KeyboardInterrupt:
         if (len(Dict_State['State']) > 0):
             Standard.Write_State_File(Dict_State['State'], Dict_State['Location'])
