@@ -104,8 +104,8 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
             for i in Dict_System:
                 f.write(f'{i};')
                 for j in Dict_System[i]:
-                    print (j)
                     if (type(Dict_System[i][j]) == str):
+                        print ({Dict_System[i][j]})
                         f.write(f'{Dict_System[i][j]}')
                     else:
                         for k in range(0, len(Dict_System[i][j])):
