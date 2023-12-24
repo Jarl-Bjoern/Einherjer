@@ -39,10 +39,7 @@ def NMAP_Header(nmap_files_location, output_location, Dict_System = {}, Dict_Hea
                                       "closed"    not in Report[Result]):
                                             Port = Report[Result].split('/')[0]
                                 elif ("|" in Report[Result]):
-                                     if ("kex_algorithms"             in Report[Result][4:-1] or
-                                         "server_host_key_algorithms" in Report[Result][4:-1] or
-                                         "encryption_algorithms"      in Report[Result][4:-1] or
-                                         "mac_algorithms"             in Report[Result][4:-1]):
+                                     if ("http-headers:"             in Report[Result][4:-1]):
                                                 Dict_System[f'{IP_Address}:{Port}'] = ""
                                                 Target = Report[Result][4:-1].split(" ")[0][:-1]
                                                 while True:
