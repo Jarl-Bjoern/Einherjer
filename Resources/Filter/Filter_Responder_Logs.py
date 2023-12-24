@@ -19,7 +19,10 @@ def Responder_Logs(responder_files_location, output_location, Dict_System = {}, 
                         print (f'{User[8]} - {User[4][1:-1]} - {User[5]}')
                     elif ("MDNS" in i):
                         Target = i.split(' ')
-                        print (f"{Target[10]} ({Target[13]})")
+                        if (Target[10].count('.') == 4):
+                            print (f"{Target[10]} ({Target[14]})")
+                        elif (Target[10].count(':') > 3):
+                            print (f"{Target[10]} ({Target[13]})")
 
             elif (responder_file.endswith('.txt') and "Responder-Session" in responder_files_location):
                 pass
