@@ -83,7 +83,7 @@ try:
         if (argv[1] == "--filter-mode"):
             argv.remove('--filter-mode')
             from .ArgParser_Filter import Argument_Parser
-            args, Program_Mode = Argument_Parser(), "Filter_Mode"
+            args, Program_Mode = Argument_Parser(Copyright_Year), "Filter_Mode"
 
             if (args.screenshot_location != None):
                 from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
@@ -95,12 +95,12 @@ try:
         elif (argv[1] == "--fuzzing-mode"):
             argv.remove('--fuzzing-mode')
             from .ArgParser_Fuzzing import Argument_Parser
-            args, Program_Mode = Argument_Parser(), "Fuzzing_Mode"
+            args, Program_Mode = Argument_Parser(Copyright_Year), "Fuzzing_Mode"
 
             # Fuzzing_Module_Filter
             if (args.fuzzing_sites                == False):
                 from .ArgParser_Fuzzing_Intro import Argument_Parser
-                Argument_Parser("\n\n\t\t\t\t\tThe fuzzing method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
+                Argument_Parser("\n\n\t\t\t\t\tThe fuzzing method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n", Copyright_Year), exit()
             elif (args.fuzzing_sites              != False):
                 from aiohttp  import BasicAuth, ClientSession, ClientTimeout, TCPConnector
                 import asyncio
@@ -113,14 +113,14 @@ try:
             # Detector_Module_Filter
             if (args.hash_detect                == False):
                 from .ArgParser_Detector_Intro import Argument_Parser
-                Argument_Parser("\n\n\t\t\t\t\tThe decetion method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
+                Argument_Parser("\n\n\t\t\t\t\tThe decetion method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n", Copyright_Year), exit()
             elif (args.hash_detect              != False):
                 from haipy.haipy import detect as hash_detect
 
         elif (argv[1] == "--brute-force-mode"):
             argv.remove('--brute-force-mode')
             from .ArgParser_Brute import Argument_Parser
-            args, Program_Mode = Argument_Parser(), "Brute_Force_Mode"
+            args, Program_Mode = Argument_Parser(Copyright_Year), "Brute_Force_Mode"
 
             # Brute_Force_Module_Filtering
             if (args.brute_all                    == False and
@@ -131,7 +131,7 @@ try:
                 args.brute_ftp                    == False and
                 args.brute_screenshot_recursive   == False):
                         from .ArgParser_Scan_Intro import Argument_Parser
-                        Argument_Parser("\n\n\t\t\t\t\tThe brute force method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
+                        Argument_Parser("\n\n\t\t\t\t\tThe brute force method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n", Copyright_Year), exit()
             elif (args.brute_all                  != False and
                   args.brute_dns                  == False and
                   args.brute_smtp                 == False and
@@ -179,7 +179,7 @@ try:
         elif (argv[1] == "--scanning-mode"):
             argv.remove('--scanning-mode')
             from .ArgParser_Scan import Argument_Parser
-            args, Program_Mode = Argument_Parser(), "Scanning_Mode"
+            args, Program_Mode = Argument_Parser(Copyright_Year), "Scanning_Mode"
 
             # Scanning_Module_Filtering
             if (args.scan_all                 == False and
@@ -195,7 +195,7 @@ try:
                 args.scan_ssh                 == False and
                 args.scan_security_flags      == False):
                         from .ArgParser_Scan_Intro import Argument_Parser
-                        Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), exit()
+                        Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n", Copyright_Year), exit()
             elif (args.scan_all               != False and
                   args.scan_site_certificate  == False and
                   args.scan_dns               == False and
@@ -322,10 +322,10 @@ try:
                     )
         elif (argv[1] == '-h'):
             from .ArgParser_Mode import Argument_Parser
-            Argument_Parser(""), exit()
+            Argument_Parser("", Copyright_Year), exit()
         else:
             from .ArgParser_Mode import Argument_Parser
-            Argument_Parser("\n\n\t\t\t   The program cannot be started without using the mode of the program!\n\t\t\tFor more information use one of the modes with the parameter -h or --help.\n"), exit()
+            Argument_Parser("\n\n\t\t\t   The program cannot be started without using the mode of the program!\n\t\t\tFor more information use one of the modes with the parameter -h or --help.\n", Copyright_Year), exit()
 
         if (Program_Mode == 'Brute_Force_Mode' or
             Program_Mode == 'Scanning_Mode'):
@@ -357,7 +357,7 @@ try:
             pass
     except IndexError:
         from .ArgParser_Mode import Argument_Parser
-        Argument_Parser("\n\n\t\t\t   The program cannot be started without using the mode of the program!\n\t\t\tFor more information use one of the modes with the parameter -h or --help.\n"), exit()
+        Argument_Parser("\n\n\t\t\t   The program cannot be started without using the mode of the program!\n\t\t\tFor more information use one of the modes with the parameter -h or --help.\n", Copyright_Year), exit()
 except ModuleNotFoundError as e: Module_Error(f"The module was not found\n\n{e}\n\nPlease confirm with the button 'Return'")
 
 # Change_Permissions_For_Webdriver
