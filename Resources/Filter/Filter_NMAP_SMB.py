@@ -45,6 +45,7 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
                               "filtered"      not in Report[Result] and
                               "unknown"       not in Report[Result] and
                               "closed"        not in Report[Result]):
+                                    print (Port)
                                     Port = Report[Result].split('/')[0]
                         elif ("|" in Report[Result]):
                              if ("smb2-security-mode"         in Report[Result][2:-1] or
