@@ -35,7 +35,7 @@ python3 -m virtualenv "$SCRIPT_PATH/venv"
 source "$SCRIPT_PATH/venv/bin/activate"
 pip3 install -r "$SCRIPT_PATH/Setup/requirements.txt"
 deactivate
-echo -e "\n\nThe ${RED}virtual environment${NOCOLOR} was created!\n"
+echo -e "\n\nThe ${RED}virtual environment${NOCOLOR} was created!"
 echo -e "${CYAN}-----------------------------------------------------------------${NOCOLOR}\n\n\n"
 
 # Install_Missing_Global_Packages
@@ -45,7 +45,7 @@ for LINE in $(cat "$SCRIPT_PATH/Setup/requirements.txt");
 do
   pip3 install $LINE || return 0
 done
-echo -e "\n\nThe ${RED}pip packages${NOCOLOR} was installed!\n"
+echo -e "\n\nThe ${RED}pip packages${NOCOLOR} was installed!"
 echo -e "${CYAN}-----------------------------------------------------------------${NOCOLOR}\n\n\n"
 
 # Install_Missing_APT_Packages
