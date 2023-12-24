@@ -5,7 +5,7 @@
 # Libraries
 from ..Header_Files.Variables import *
 
-def Responder_Logs(responder_files_location, output_location, Array_Temp = []):
+def Responder_Logs(responder_files_location, output_location, Array_Temp = [], Array_Output = []):
     try:
         # Check_For_One_File
         if (isfile(responder_files_location)):
