@@ -18,6 +18,7 @@ UNDERLINE='\033[0;4m'
 NOCOLOR='\033[0m'
 
 # Header
+clear
 echo "💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀"
 echo -e "💀\t\t\t\t\t\t\t\t💀"
 echo -e "💀\t\t     ${UNDERLINE}Einherjer - Installer${NOCOLOR}\t\t\t💀"
