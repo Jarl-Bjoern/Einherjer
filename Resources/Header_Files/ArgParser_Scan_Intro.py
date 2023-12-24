@@ -7,12 +7,12 @@ from ..Standard_Operations.Colors import Colors
 from .Libraries import dirname, join, realpath
 
 # Functions
-def Argument_Parser(Error_Text, Template_Location = dirname(realpath(__file__)).replace('Resources/Header_Files', 'Templates')):
+def Argument_Parser(Error_Text, Copyright_Year, Template_Location = dirname(realpath(__file__)).replace('Resources/Header_Files', 'Templates')):
     from argparse import ArgumentParser, RawTextHelpFormatter, SUPPRESS
 
-    Program_Description = """-------------------------------------------------------------------------------------
+    Program_Description = f"""-------------------------------------------------------------------------------------
 |  Rainer Christian Bjoern Herold                                                   |
-|  Copyright 2022-2023. All rights reserved.                                        |
+|  Copyright {Copyright_Year}. All rights reserved.                                        |
 |                                                                                   |
 |  Please do not use the program for illegal activities.                            |
 -------------------------------------------------------------------------------------
