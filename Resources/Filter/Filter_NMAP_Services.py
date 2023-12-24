@@ -9,7 +9,7 @@ def NMAP_Services(nmap_files_location, output_location, Dict_System = {}, Array_
         try:
                 # Check_For_One_File
                 if (isfile(nmap_files_location)):
-                    if (nmap_files_location.endswith('.nmap') or nmap_files_location.endswith('.log')):
+                    if (nmap_files_location.endswith('.nmap') or nmap_files_location.endswith('.log') or nmap_files_location.endswith('.txt')):
                             with open(nmap_files_location, 'r') as f:
                                 Report = f.read().splitlines()
 
