@@ -105,10 +105,13 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
                 f.write(f'{i};')
                 for j in Dict_System[i]:
                     if (type(Dict_System[i][j]) == str):
-                        print ({Dict_System[i][j]})
-                        f.write(f'{Dict_System[i][j]}')
+                        if ({Dict_System[i][j]} == ""):
+                            f.write('-')
+                        else:
+                            f.write(f'{Dict_System[i][j]}')
                     else:
                         for k in range(0, len(Dict_System[i][j])):
+                            print (Dict_System[i][j][k])
                             if (k != len(Dict_System[i][j])-1): f.write(f'{Dict_System[i][j][k]}, ')
                             else: f.write(f'{Dict_System[i][j][k]}')
                     f.write(f';')
