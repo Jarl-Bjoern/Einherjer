@@ -66,7 +66,7 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
                                                                       Dict_SMB_Results[Target].append(Report[Result][8:])
                                                               # SMBv2_SMBv3
                                                               elif (Report[Result].count(':') == 3):
-                                                                   print (f'{Report[Result][4:-2].replace(':', '_')} : {Report[Result+1]}')
+                                                                   print (f"{Report[Result][4:-2].replace(':', '_')} : {Report[Result+1]}")
                                                 else: break
                                             except IndexError:
                                                 break
