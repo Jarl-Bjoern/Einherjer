@@ -33,7 +33,7 @@ python3 -m virtualenv "$SCRIPT_PATH/venv"
 source "$SCRIPT_PATH/venv/bin/activate"
 pip3 install -r "$SCRIPT_PATH/Setup/requirements.txt"
 deactivate
-echo -e "\n\nThe ${RED}virtual environment${NOCOLOR} was created!\n\n"
+echo -e "\n\nThe ${RED}virtual environment${NOCOLOR} was created!\n"
 echo -e "${CYAN}-----------------------------------------------------------------${NOCOLOR}\n\n"
 
 # Install_Missing_Global_Packages
@@ -43,12 +43,12 @@ for LINE in $(cat "$SCRIPT_PATH/Setup/requirements.txt");
 do
   pip3 install $LINE || return 0
 done
-echo -e "\n\nThe ${RED}pip packages${NOCOLOR} was installed!\n\n"
+echo -e "\n\nThe ${RED}pip packages${NOCOLOR} was installed!\n"
 echo -e "${CYAN}-----------------------------------------------------------------${NOCOLOR}\n\n"
 
 # Install_Missing_APT_Packages
 echo -e "Installing the missing ${RED}apt packages${NOCOLOR}"
 echo -e "${CYAN}-----------------------------------------------------------------${NOCOLOR}\n"
 sudo apt install -y libcurl4-openssl-dev chromium chromium-driver
-echo -e "\n\nThe ${RED}apt packages${NOCOLOR} was installed!\n\n"
+echo -e "\n\nThe ${RED}apt packages${NOCOLOR} was installed!\n"
 echo -e "${CYAN}-----------------------------------------------------------------${NOCOLOR}\n\n"
