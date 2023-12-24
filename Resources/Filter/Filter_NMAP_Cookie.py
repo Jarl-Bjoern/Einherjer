@@ -5,13 +5,6 @@
 # Libraries
 from ..Header_Files.Variables import *
 
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# Rainer Christian Bjoern Herold
-
-# Libraries
-from ..Header_Files.Variables import *
-
 def NMAP_Cookie(nmap_files_location, output_location, Dict_System = {}, Array_Temp = []):
         try:
                 # Check_For_One_File
