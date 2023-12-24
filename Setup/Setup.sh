@@ -46,6 +46,6 @@ echo -e "${CYAN}----------------------------------------------------------------
 
 # Install_Missing_APT_Packages
 echo -e "Installing the missing ${RED}apt packages${NOCOLOR}\n\n"
-sudo apt install -y libcurl4-openssl-dev
+sudo apt install -y libcurl4-openssl-dev chromium chromium-driver
 echo -e "\n\nThe ${RED}apt packages${NOCOLOR} was installed!\n\n"
 echo -e "${CYAN}-----------------------------------------------------------------${NOCOLOR}\n\n"
