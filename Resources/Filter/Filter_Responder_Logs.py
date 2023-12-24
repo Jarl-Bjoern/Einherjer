@@ -9,17 +9,25 @@ def Responder_Logs(responder_files_location, output_location, Array_Temp = []):
     try:
         # Check_For_One_File
         if (isfile(responder_files_location)):
-            if (responder_files_location.endswith('.log')):
-                pass
-            elif (responder_file.endswith('.txt')):
+            if (responder_files_location.endswith('.log') and "Responder-Session" in responder_files_location):
+                with open(responder_files_location, 'r') as f:
+                    Text = f.read().splitlines()
+
+                for i in Text:
+                    if ("Username" in i):
+                        print (i)
+                    elif ("MDNS" in i):
+                        print (i)
+
+            elif (responder_file.endswith('.txt') and "Responder-Session" in responder_files_location):
                 pass
 
         # Check_For_Multiple_Files
         elif (isdir(responder_files_location)):
             for responder_file in listdir(responder_files_location):
-                if (responder_file.endswith('.log')):
+                if (responder_file.endswith('.log') and "Responder-Session" in responder_file):
                     pass
-                elif (responder_file.endswith('.txt')):
+                elif (responder_file.endswith('.txt') and "Responder-Session" in responder_file):
                     pass
 
         Array_Temp.append(join(output_location, 'mitm-overview.csv'))
