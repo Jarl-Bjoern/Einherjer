@@ -186,7 +186,7 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
                 f.write(f'{i};')
                 for j in Dict_System[i]:
                     if (type(Dict_System[i][j]) == str):
-                        if ({Dict_System[i][j]} == ""):
+                        if (Dict_System[i][j] == ""):
                             f.write('-')
                         else:
                             f.write(f'{Dict_System[i][j]}')
