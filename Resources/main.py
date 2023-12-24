@@ -99,6 +99,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             args.nmap_service_scan_file_location == None and
             args.nmap_main_file_location         == None and
             args.qrcode_picture_location         == None and
+            args.responder_logs_location         == None and
             args.screenshot_location             == None):
                 from Resources.Header_Files.ArgParser_Filter_Intro import Argument_Parser
                 Argument_Parser("\n\n\t\t\tThe program cannot be started without filter methods!\n\t\t\t For more information use the parameter -h or --help.\n")
@@ -148,6 +149,10 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
             if (args.qrcode_picture_location != None):
                 pass
+
+            if (args.responder_logs_location != None):
+                from Resources.Filter.Filter_Responder_Logs import Responder_Logs
+                Array_Output = Responder_Logs(args.responder_logs_location, Output_location)
 
             if (args.screenshot_location != None):
                 from Resources.Filter.Filter_Screenshot import Screenshot_Frame
