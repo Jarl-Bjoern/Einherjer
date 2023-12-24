@@ -194,7 +194,8 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
                         for k in range(0, len(Dict_System[i][j])):
                             if (k != len(Dict_System[i][j])-1): f.write(f'{Dict_System[i][j][k]}, ')
                             else:
-                                if (Dict_System[i][j][k] == []):
+                                print (Dict_System[i][j][k])
+                                if (Dict_System[i][j][k] == [] or Dict_System[i][j][k] == ""):
                                     f.write(f'-')    
                                 else:
                                     f.write(f'{Dict_System[i][j][k]}')
