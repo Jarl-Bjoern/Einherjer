@@ -5,7 +5,7 @@
 # Libraries
 from ..Header_Files.Variables import *
 
-def Responder_Logs(responder_files_location, output_location, Array_Temp = [], Array_Output = []):
+def Responder_Logs(responder_files_location, output_location, Dict_System = {}, Array_Temp = [], Array_Output = []):
     try:
         # Check_For_One_File
         if (isfile(responder_files_location)):
@@ -17,7 +17,7 @@ def Responder_Logs(responder_files_location, output_location, Array_Temp = [], A
                     if ("Username" in i):
                         print (i)
                     elif ("MDNS" in i):
-                        print (i)
+                        print (i.split(' ')[11])
 
             elif (responder_file.endswith('.txt') and "Responder-Session" in responder_files_location):
                 pass
