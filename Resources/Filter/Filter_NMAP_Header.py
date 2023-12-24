@@ -5,7 +5,7 @@
 # Libraries
 from ..Header_Files.Variables import *
 
-def NMAP_Unencrypted(nmap_files_location, Dict_System = {}):
+def NMAP_Header(nmap_files_location, Dict_System = {}):
         try:
                 # Check_For_One_File
                 if (isfile(nmap_files_location)):
