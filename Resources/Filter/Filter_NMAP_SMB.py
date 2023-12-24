@@ -94,9 +94,9 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
                                         Temp_Dict = Dict_SMB_Results
                                         if (Temp_Dict != {'DNS':"", 'smb-security-mode': [], 'smb2-security-mode': [], 'smb-protocols': []}):
                                             Dict_System[f'{IP_Address}:{Port}'] = Dict_SMB_Results
+                                            print (Dict_System)
                                    except UnboundLocalError: pass
                                    Dict_SMB_Results = {'DNS':"", 'smb-security-mode': [], 'smb2-security-mode': [], 'smb-protocols': []}
-                                   print (Dict_System)
 
         # Write_Output
         Array_Temp.append(join(output_location, 'smb-vulns.csv'))
