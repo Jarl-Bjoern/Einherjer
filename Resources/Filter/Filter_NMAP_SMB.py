@@ -22,6 +22,7 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
                         Report = f.read().splitlines()
 
                     for Result in range(1, len(Report)-1):
+                        print (Report[Result])
                         if ("Nmap scan report" in Report[Result]):
                             if ('(' in Report[Result] and ')' in Report[Result]):
                                 IP_Address, Dict_SMB_Results['DNS'] = Report[Result].split(" ")[5][1:-1], Report[Result].split(" ")[4]
@@ -45,7 +46,6 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
                               "filtered"      not in Report[Result] and
                               "unknown"       not in Report[Result] and
                               "closed"        not in Report[Result]):
-                                    print (Port)
                                     Port = Report[Result].split('/')[0]
                         elif ("|" in Report[Result]):
                              if ("smb2-security-mode"         in Report[Result][2:-1] or
