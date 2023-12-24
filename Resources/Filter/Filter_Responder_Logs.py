@@ -16,7 +16,7 @@ def Responder_Logs(responder_files_location, output_location, Dict_System = {}, 
                 for i in Text:
                     if ("Username" in i):
                         User = i.split(' ')
-                        print (f'{User[8]} - {User[6][1:-1]} - {User[7]}')
+                        print (f'{User[8]} - {User[5][1:-1]} - {User[7]}')
                     elif ("MDNS" in i):
                         Target = i.split(' ')
                         print (f"{Target[10]} ({Target[13]})")
