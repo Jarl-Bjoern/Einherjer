@@ -9,7 +9,7 @@ def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Re
     try:
         # Check_For_One_File
         if (isfile(nmap_files_location)):
-            if (nmap_files_location.endswith('.nmap') or nmap_files_location.endswith('.log')):
+            if (nmap_files_location.endswith('.nmap') or nmap_files_location.endswith('.log') or nmap_files_location.endswith('.txt')):
                     with open(nmap_files_location, 'r') as f:
                         Report = f.read().splitlines()
 
@@ -97,7 +97,7 @@ def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Re
         # Check_For_Multiple_Files
         elif (isdir(nmap_files_location)):
             for nmap_file in listdir(nmap_files_location):
-                if (nmap_file.endswith('.nmap')):
+                if (nmap_file.endswith('.nmap') or nmap_files_location.endswith('.txt') or nmap_files_location.endswith('.log')):
                     with open(join(nmap_files_location, nmap_file), 'r') as f:
                         Report = f.read().splitlines()
 
