@@ -83,10 +83,10 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
                                                 if ("dialects" in Report[Result]):
                                                     Result += 1
                                                 elif ("_" in Report[Result]):
-                                                    print (Report[Result][6:])
+                                                    print (Report[Result][6:].replace(':', '_'))
                                                     break
                                                 else:
-                                                    print (Report[Result][6:])
+                                                    print (Report[Result][6:].replace(':', '_'))
                                         else: break
 
                         elif ("MAC Address:"     in Report[Result]   or
