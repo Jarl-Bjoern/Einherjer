@@ -111,7 +111,6 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
                             f.write(f'{Dict_System[i][j]}')
                     else:
                         for k in range(0, len(Dict_System[i][j])):
-                            print (Dict_System[i][j][k])
                             if (k != len(Dict_System[i][j])-1): f.write(f'{Dict_System[i][j][k]}, ')
                             else: f.write(f'{Dict_System[i][j][k]}')
                     f.write(f';')
@@ -121,10 +120,10 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
         with open(join(output_location, 'smb-vulns.csv'), 'w') as fw:
             with open(join(output_location, 'smb-vulns-temp.csv'), 'r') as f:
                 for _ in f.read().splitlines():
-                    if (';;;' not in _):
+                    if (';;;;' not in _):
                         fw.write(f'{_}\n')
 
-        remove(join(output_location, 'smb-vulns-temp.csv'))
+        #remove(join(output_location, 'smb-vulns-temp.csv'))
     except FileNotFoundError:
         pass
 
