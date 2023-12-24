@@ -21,10 +21,12 @@ def Responder_Logs(responder_files_location, output_location, Dict_System = {}, 
                         print (f'{User[8]} - {User[4][1:-1]} - {User[5]} - {Client[10]}')
                     elif ("MDNS" in i):
                         Target = i.split(' ')
-                        #if (Target[10].count('.') > 2):
-                        #    print (f"{Target[10]} ({Target[15]})")
-                        #elif (Target[10].count(':') > 3):
-                        #    print (f"{Target[10]} ({Target[13]})")
+                        if (Target[10].count('.') > 2):
+                            print (f"{Target[10]} ({Target[15]})")
+                        elif (Target[10].count(':') > 3):
+                            print (f"{Target[10]} ({Target[13]})")
+                    elif ("LLMNR" in i):
+                        pass
 
             elif (responder_file.endswith('.txt') and "Responder-Session" in responder_files_location):
                 pass
