@@ -9,7 +9,7 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
     try:
         # Check_For_One_File
         if (isfile(nmap_files_location)):
-            if (nmap_files_location.endswith('.nmap') or nmap_files_location.endswith('.log')):
+            if (nmap_files_location.endswith('.nmap') or nmap_files_location.endswith('.log') or nmap_files_location.endswith('.txt')):
                 pass
             elif (nmap_files_location.endswith('.xml')):
                 pass
