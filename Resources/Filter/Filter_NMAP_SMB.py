@@ -82,6 +82,9 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
     #                                                       Dict_SMB_Results['smb-protocols'].append(Report[Result][6:])
                                                 if ("dialects" in Report[Result]):
                                                     Result += 1
+                                                elif ("_" in Report[Result]):
+                                                    print (Report[Result][6:])
+                                                    break
                                                 else:
                                                     print (Report[Result][6:])
                                         else: break
