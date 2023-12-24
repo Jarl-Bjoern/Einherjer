@@ -108,7 +108,7 @@ try:
         elif (argv[1] == "--detector-mode"):
             argv.remove('--detector-mode')
             from .ArgParser_Detector import Argument_Parser
-            args, Program_Mode = Argument_Parser(), "Detector_Mode"
+            args, Program_Mode = Argument_Parser(Copyright_Year), "Detector_Mode"
 
             # Detector_Module_Filter
             if (args.hash_detect                == False):
