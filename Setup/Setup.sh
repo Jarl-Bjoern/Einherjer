@@ -25,7 +25,6 @@ echo -e "💀\t\t\t  ${NORANGE}Version ${CYAN}0.1${NOCOLOR}   \t\t\t💀"
 echo -e "💀\t\t${CYAN}Rainer Christian Bjoern Herold${NOCOLOR}\t\t\t💀"
 echo -e "💀\t\t\t\t\t\t\t\t💀"
 echo -e "💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀\n\n"
-exit
 
 # Virtual_Environment
 echo -e "Creating the ${RED}virtual environment${NOCOLOR}\n\n"
