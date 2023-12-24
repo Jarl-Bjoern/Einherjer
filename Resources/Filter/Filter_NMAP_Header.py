@@ -89,5 +89,7 @@ def NMAP_Header(nmap_files_location, output_location, Dict_System = {}, Array_Te
                                 fw.write(f'{_}\n')
         
                 remove(join(output_location, 'result-header-temp.csv'))
-    except FileNotFoundError:
-        pass
+        except FileNotFoundError:
+                pass
+
+        return Array_Temp
