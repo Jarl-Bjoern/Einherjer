@@ -12,7 +12,7 @@ __maintainer__ = "Rainer Christian Bjoern Herold"
 __status__     = "Production"
 
 # Year
-Copyright = "2022-2024"
+Copyright_Year = "2022-2024"
 
 # Base_Function
 def Module_Error(Text):
