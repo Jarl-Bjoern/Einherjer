@@ -5,7 +5,7 @@
 # Libraries
 from ..Header_Files.Variables import *
 
-def Responder_Logs(responder_files_location, output_location, Dict_System = {}, Array_Temp = [], Array_Output = [], Dict_Temp = {'DNS': "", 'MDNS': "", 'LLMNR': "", 'USER'}):
+def Responder_Logs(responder_files_location, output_location, Dict_System = {}, Array_Temp = [], Array_Output = [], Dict_Temp = {'DNS': "", 'MDNS': "", 'LLMNR': "", 'USER': ""}):
     try:
         # Check_For_One_File
         if (isfile(responder_files_location)):
