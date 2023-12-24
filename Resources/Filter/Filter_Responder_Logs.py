@@ -5,7 +5,7 @@
 # Libraries
 from ..Header_Files.Variables import *
 
-def Responder_Logs(responder_files_location, output_location, Dict_System = {}, Array_Temp = [], Array_Output = []):
+def Responder_Logs(responder_files_location, output_location, Dict_System = {}, Array_Temp = [], Array_Output = [], Dict_Temp = {'DNS': "", 'MDNS': "", 'LLMNR': "", 'USER'}):
     try:
         # Check_For_One_File
         if (isfile(responder_files_location)):
@@ -14,9 +14,11 @@ def Responder_Logs(responder_files_location, output_location, Dict_System = {}, 
                     Text = f.read().splitlines()
 
                 for i in Text:
-                    if ("Username" in i):
+                    if ("Client" in i):
+                        Client = i.split(' ')
+                    elif ("Username" in i):
                         User = i.split(' ')
-                        print (f'{User[8]} - {User[4][1:-1]} - {User[5]}')
+                        print (f'{User[8]} - {User[4][1:-1]} - {User[5]} - {Client[8]}')
                     elif ("MDNS" in i):
                         Target = i.split(' ')
                         if (Target[10].count('.') > 2):
@@ -37,7 +39,7 @@ def Responder_Logs(responder_files_location, output_location, Dict_System = {}, 
 
         Array_Temp.append(join(output_location, 'mitm-overview.csv'))
         with open(join(output_location, 'mitm-overview.csv'), 'w') as f:
-             f.write("LLMNR;MDNS;USER\n")
+             f.write("LLMNR;MDNS;USER;COMPROMISED\n")
              for i in Dict_System:
                  f.write(f'{i};')
                  for j in Dict_System[i]:
