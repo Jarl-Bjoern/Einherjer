@@ -5,7 +5,7 @@
 # Libraries
 from ..Header_Files.Variables import *
 
-def NMAP_Header(nmap_files_location, Dict_System = {}):
+def NMAP_Header(nmap_files_location, output_location, Dict_System = {}, Array_Temp = []):
         try:
                 # Check_For_One_File
                 if (isfile(nmap_files_location)):
