@@ -33,7 +33,7 @@ def NMAP_Header(nmap_files_location, output_location, Dict_System = {}, Dict_Hea
                                       ""            not in Report[Result]):
                                             pass
                                 elif ("tcp"       in Report[Result] and
-                                      "ssh"       in Report[Result] and
+                                      "http"      in Report[Result] and
                                       "filtered"  not in Report[Result] and
                                       "unknown"   not in Report[Result] and
                                       "closed"    not in Report[Result]):
