@@ -132,11 +132,11 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
             if (args.nmap_cookie_scan_location != None):
                 from Resources.Filter.Filter_NMAP_Cookie import NMAP_Cookie
-                Array_Output = NMAP_Cookie(args.nmap_ssh_output_location, Output_location)
+                Array_Output = NMAP_Cookie(args.nmap_cookie_scan_location, Output_location)
 
             if (args.nmap_header_scan_location != None):
                 from Resources.Filter.Filter_NMAP_Header import NMAP_Header
-                Array_Output = NMAP_Header(args.nmap_ssh_output_location, Output_location)
+                Array_Output = NMAP_Header(args.nmap_header_scan_location, Output_location)
 
             if (args.nmap_service_scan_file_location != None):
                 from Resources.Filter.Filter_NMAP_Services import NMAP_Services
