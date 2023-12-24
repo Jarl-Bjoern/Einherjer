@@ -17,7 +17,7 @@ def Responder_Logs(responder_files_location, output_location, Dict_System = {}, 
                     if ("Username" in i):
                         print (i)
                     elif ("MDNS" in i):
-                        print (f"{i.split(' ')[10]} ({i.split(' ')[13]})")
+                        print (f"{i.split(' ')[10]} ({i.split(' ')[12]})")
 
             elif (responder_file.endswith('.txt') and "Responder-Session" in responder_files_location):
                 pass
