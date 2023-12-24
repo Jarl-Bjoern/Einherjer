@@ -16,15 +16,16 @@ def Responder_Logs(responder_files_location, output_location, Dict_System = {}, 
                 for i in Text:
                     if ("Client" in i):
                         Client = i.split(' ')
+                        print (Client)
                     elif ("Username" in i):
                         User = i.split(' ')
-                        print (f'{User[8]} - {User[4][1:-1]} - {User[5]} - {Client[8]}')
+                        #print (f'{User[8]} - {User[4][1:-1]} - {User[5]} - {Client[8]}')
                     elif ("MDNS" in i):
                         Target = i.split(' ')
-                        if (Target[10].count('.') > 2):
-                            print (f"{Target[10]} ({Target[15]})")
-                        elif (Target[10].count(':') > 3):
-                            print (f"{Target[10]} ({Target[13]})")
+                        #if (Target[10].count('.') > 2):
+                        #    print (f"{Target[10]} ({Target[15]})")
+                        #elif (Target[10].count(':') > 3):
+                        #    print (f"{Target[10]} ({Target[13]})")
 
             elif (responder_file.endswith('.txt') and "Responder-Session" in responder_files_location):
                 pass
