@@ -13,7 +13,7 @@ from Resources.Header_Files.Threads_SSL      import *
 from Resources.Workfiles.Scan_Screen         import Web
 
 # Main_Function
-def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False, Switch_Unsuccessful_Scanning = False):
+def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Screenshots = False, Switch_Unsuccessful_Scanning = False):
     # Set_Password
     if (Program_Mode == "Scanning_Mode"):
         if (args.zip_file != False):
@@ -63,7 +63,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
 
         #Standard.Initialien(args.debug)
         from Resources.Header_Files.ArgParser_Brute_Intro import Argument_Parser
-        Argument_Parser("\n\n\t\t\tThis section is UNDER CONSTRUCTION!\n\n"), exit()
+        Argument_Parser("\n\n\t\t\tThis section is UNDER CONSTRUCTION!\n\n", Copyright_Year), exit()
 
         # Wordlist_Filtering
         if (args.add_wordlist != None and
@@ -102,7 +102,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             args.responder_logs_location         == None and
             args.screenshot_location             == None):
                 from Resources.Header_Files.ArgParser_Filter_Intro import Argument_Parser
-                Argument_Parser("\n\n\t\t\tThe program cannot be started without filter methods!\n\t\t\t For more information use the parameter -h or --help.\n")
+                Argument_Parser("\n\n\t\t\tThe program cannot be started without filter methods!\n\t\t\t For more information use the parameter -h or --help.\n", Copyright_Year)
                 try:            rmdir(Output_location)
                 except OSError: rmtree(Output_location, ignore_errors=True)
                 finally:        exit()
@@ -117,7 +117,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             if ((args.hostname_template_file != None and args.hostname_target_file == None) or
                 (args.hostname_template_file == None and args.hostname_target_file != None)):
                     from Resources.Header_Files.ArgParser_Filter_Intro import Argument_Parser
-                    Argument_Parser("\n\n\t\t\tThe program cannot be started if only one hostname filtering parameter is specified!\n\t\t\t\t\tFor more information use the parameter -h or --help.\n"), rmdir(Output_location), exit() 
+                    Argument_Parser("\n\n\t\t\tThe program cannot be started if only one hostname filtering parameter is specified!\n\t\t\t\t\tFor more information use the parameter -h or --help.\n", Copyright_Year), rmdir(Output_location), exit() 
 
             elif (args.hostname_template_file != None and args.hostname_target_file != None):
                 from Resources.Filter.Filter_Hostname import Hostname_Filter
@@ -169,7 +169,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
         if (args.fuzzing_sites             == None and
             args.add_wordlist              == None):
                 from Resources.Header_Files.ArgParser_Fuzzing_Intro import Argument_Parser
-                Argument_Parser("\n\n\t\t\tThe program cannot be started without fuzzing methods!\n\t\t\t For more information use the parameter -h or --help.\n")
+                Argument_Parser("\n\n\t\t\tThe program cannot be started without fuzzing methods!\n\t\t\t For more information use the parameter -h or --help.\n", Copyright_Year)
                 try:            rmdir(Output_location)
                 except OSError: rmtree(Output_location, ignore_errors=True)
                 finally:        exit()
@@ -177,7 +177,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             # Target_Options
             if (args.target == None and args.import_list == None and args.add_nmap_xml_result == None):
                 from Resources.Header_Files.ArgParser_Fuzzing_Intro import Argument_Parser
-                Argument_Parser("\n\n\t\t\t   The program cannot be started without targets!\n\t\t\tFor more information use the parameter -h or --help.\n")
+                Argument_Parser("\n\n\t\t\t   The program cannot be started without targets!\n\t\t\tFor more information use the parameter -h or --help.\n", Copyright_Year)
                 try:            rmdir(Output_location)
                 except OSError: rmtree(Output_location, ignore_errors=True)
                 finally:        exit()
@@ -264,7 +264,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
         # Filtering_Options
         if (args.hash_detect               == None):
                 from Resources.Header_Files.ArgParser_Detector_Intro import Argument_Parser
-                Argument_Parser("\n\n\t\t\tThe program cannot be started without detection methods!\n\t\t\t For more information use the parameter -h or --help.\n")
+                Argument_Parser("\n\n\t\t\tThe program cannot be started without detection methods!\n\t\t\t For more information use the parameter -h or --help.\n", Copyright_Year)
                 try:            rmdir(Output_location)
                 except OSError: rmtree(Output_location, ignore_errors=True)
                 finally:        exit()
@@ -273,7 +273,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
                 if (args.add_hashfile           == None and
                     args.add_multiple_hashfiles == None):
                             from Resources.Header_Files.ArgParser_Detector_Intro import Argument_Parser
-                            Argument_Parser("\n\n\t\t\tThe program cannot be started without the hash file!\n\t\t\t For more information use the parameter -h or --help.\n")
+                            Argument_Parser("\n\n\t\t\tThe program cannot be started without the hash file!\n\t\t\t For more information use the parameter -h or --help.\n", Copyright_Year)
                             try:            rmdir(Output_location)
                             except OSError: rmtree(Output_location, ignore_errors=True)
                             finally:        exit()
@@ -341,7 +341,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
         # Target_Options
         if (args.target == None and args.import_list == None and args.add_nmap_xml_result == None):
             from Resources.Header_Files.ArgParser_Scan_Intro import Argument_Parser
-            Argument_Parser("\n\n\t\t\t   The program cannot be started without targets!\n\t\t\tFor more information use the parameter -h or --help.\n")
+            Argument_Parser("\n\n\t\t\t   The program cannot be started without targets!\n\t\t\tFor more information use the parameter -h or --help.\n", Copyright_Year)
             try:            rmdir(Output_location)
             except OSError: rmtree(Output_location, ignore_errors=True)
             finally:        exit()
@@ -475,7 +475,7 @@ def main(Date, Program_Mode, args, Array_Output = [], Switch_Screenshots = False
             args.scan_site_ssl            == False and
             args.scan_ssh                 == False):
                     from Resources.Header_Files.ArgParser_Intro import Argument_Parser
-                    Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n"), rmdir(Output_Location), exit()
+                    Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n", Copyright_Year), rmdir(Output_Location), exit()
         elif (args.scan_all               != False and
             args.scan_cors                == False and
             args.scan_ftp                 == False and
