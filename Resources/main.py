@@ -597,7 +597,8 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                                 args.allow_redirects,
                                 args.screenshot_frame_thickness,
                                 args.custom_chromium_webdriver_path,
-                                Dict_Custom_Header
+                                Dict_Custom_Header,
+                                args.screenshot_frame
                             ]
 
                             if (Counter_Connections == args.max_connections):
