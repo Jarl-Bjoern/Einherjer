@@ -9,7 +9,7 @@ from ..Standard_Operations.Colors import Colors
 from ..Standard_Operations.Standard import Standard
 
 # Functions
-def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch_internet_connection, screenshot_wait, webdriver_timeout, ssl_timeout, dict_proxies, dict_auth, file_format, Location, allow_redirects, screenshot_frame_thickness, driver_path, dict_custom_header, Host_Name = ""):
+def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch_internet_connection, screenshot_wait, webdriver_timeout, ssl_timeout, dict_proxies, dict_auth, file_format, Location, allow_redirects, screenshot_frame_thickness, driver_path, dict_custom_header, screen_frame_switch, Host_Name = ""):
     Dict_Temp = {
         'Certificate':   {},
         'CORS':          {},
@@ -250,7 +250,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             )
 
             # Take_Screenshot
-            Take_Screenshot(url, dict_switch['scan_screenshot'], driver_path, screen_dir, switch_internet_connection, screenshot_wait, webdriver_timeout, screenshot_frame_thickness)
+            Take_Screenshot(url, dict_switch['scan_screenshot'], driver_path, screen_dir, switch_internet_connection, screenshot_wait, webdriver_timeout, screenshot_frame_thickness, screen_frame_switch)
 
             # Trace_End
             Logs.Trace_File(
