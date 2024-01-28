@@ -19,6 +19,7 @@ def Screenshot_Frame(Screen_Dir, Screenshot_Thickness, Array_Temp = []):
                             break
                         except PermissionError:
                             input (f"It seems that the path {Screen_Dir} is not writeable. Please change the permissions and try it again.\n\nPress 'Return' to continue.")
+                            Standard.Print_Header()
 
                     raw_image              = imread(join(Screen_Dir, Picture))
                     height                 = raw_image.shape[0]
