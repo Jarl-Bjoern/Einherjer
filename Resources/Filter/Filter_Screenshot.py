@@ -12,13 +12,13 @@ def Screenshot_Frame(Screen_Dir, Screenshot_Thickness, Array_Temp = []):
                 Picture.lower().endswith('.jpeg') or
                 Picture.lower().endswith('.bmp')  or
                 Picture.lower().endswith('.png')):
-                    try:
-                        makedirs(join(Screen_Dir, 'Einherjer_Screenshot_Backup'))
-                        copy2(join(Screen_Dir, Picture), join(Screen_Dir, 'Einherjer_Screenshot_Backup'))
-                    except PermissionError:
-                        input (f"It seems that the path {Screen_Dir} is not writeable. Please change the permissions and try it again.")
-                        makedirs(join(Screen_Dir, 'Einherjer_Screenshot_Backup'))
-                        copy2(join(Screen_Dir, Picture), join(Screen_Dir, 'Einherjer_Screenshot_Backup'))
+                    while True:
+                        try:
+                            makedirs(join(Screen_Dir, 'Einherjer_Screenshot_Backup'))
+                            copy2(join(Screen_Dir, Picture), join(Screen_Dir, 'Einherjer_Screenshot_Backup'))
+                            break
+                        except PermissionError:
+                            input (f"It seems that the path {Screen_Dir} is not writeable. Please change the permissions and try it again.\n\nPress 'Return' to continue.")
 
                     raw_image              = imread(join(Screen_Dir, Picture))
                     height                 = raw_image.shape[0]
