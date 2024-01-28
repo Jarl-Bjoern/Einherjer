@@ -5,7 +5,7 @@
 # Libraries
 from ..Header_Files.Variables import *
 
-def Screenshot_Frame(Screen_Dir, Screenshot_Thickness, Array_Temp = []):
+def Screenshot_Frame(Screen_Dir, Screenshot_Thickness, Screen_Type, Array_Temp = []):
     try:
         for Picture in listdir(Screen_Dir):
             if (Picture.lower().endswith('.jpg')  or
@@ -24,13 +24,18 @@ def Screenshot_Frame(Screen_Dir, Screenshot_Thickness, Array_Temp = []):
                             input (Colors.ORANGE+"\nIt seems that the path"+Colors.RED+f" {Screen_Dir} "+Colors.ORANGE+"is not writeable. Please change the permissions and try it again.\n\nPress "+Colors.CYAN+"'Return'"+Colors.ORANGE+" to continue."+Colors.RESET)
                             Standard.Print_Header()
 
-                    raw_image              = imread(join(Screen_Dir, Picture))
-                    height                 = raw_image.shape[0]
-                    width                  = raw_image.shape[1]
-                    start_point, end_point = (-1,-1), (width, height)
-                    color                  = Screenshot_Color
-                    img                    = rectangle(raw_image, start_point, end_point, color, int(Screenshot_Thickness))
-                    imwrite(join(Screen_Dir, Picture), img)
+                    if (Screen_Type == "Drawning"):
+                        raw_image              = imread(join(Screen_Dir, Picture))
+                        height                 = raw_image.shape[0]
+                        width                  = raw_image.shape[1]
+                        start_point, end_point = (-1,-1), (width, height)
+                        color                  = Screenshot_Color
+                        img                    = rectangle(raw_image, start_point, end_point, color, int(Screenshot_Thickness))
+                        imwrite(join(Screen_Dir, Picture), img)
+                    elif (Screen_Type == "Border"):
+                        raw_image              = Image.open(join(Screen_Dir, Picture))
+                        manipulated_image      = ImageOps.expand(raw_image, border=1, fill='black')
+                        manipulated_image.save(join(Screen_Dir, Picture))
                     Array_Temp.append(join(Screen_Dir, Picture))
     except FileNotFoundError:
         pass        
