@@ -18,7 +18,7 @@ def Screenshot_Frame(Screen_Dir, Screenshot_Thickness, Array_Temp = []):
                             copy2(join(Screen_Dir, Picture), join(Screen_Dir, 'Einherjer_Screenshot_Backup'))
                             break
                         except PermissionError:
-                            input (COLORS.ORANGE+"\nIt seems that the path"+COLORS.RER+f" {Screen_Dir} "+COLORS.ORANGE+" is not writeable. Please change the permissions and try it again.\n\nPress "+COLORS.CYAN+"'Return'"+COLORS.ORANGE+" to continue.")
+                            input (Colors.ORANGE+"\nIt seems that the path"+Colors.RED+f" {Screen_Dir} "+Colors.ORANGE+" is not writeable. Please change the permissions and try it again.\n\nPress "+Colors.CYAN+"'Return'"+Colors.ORANGE+" to continue.")
                             Standard.Print_Header()
 
                     raw_image              = imread(join(Screen_Dir, Picture))
