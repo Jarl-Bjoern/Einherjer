@@ -26,7 +26,7 @@ if (Program_Mode == "Scanning_Mode"):
     if (args.read_custom_header_file != False):
         Dict_Custom_Header = Standard.Read_JSON_File(dirname(realpath(__file__)).replace('Resources/Header_Files', "Config/http_custom_header.json"))
     else:
-        Dict_Custom_Header = {"Connection": "Close"}
+        Dict_Custom_Header = Standard.Read_JSON_File(dirname(realpath(__file__)).replace('Resources/Header_Files', "Config/http_custom_header.json"))
 
     Array_Information_Disclosure_Header = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_information_disclosure.txt"))
     Array_HTTP_Methods                  = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_methods.txt"))
