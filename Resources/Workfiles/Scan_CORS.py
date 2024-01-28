@@ -9,7 +9,7 @@ from ..Standard_Operations.Colors   import Colors
 from ..Standard_Operations.Standard import Standard
 
 def Check_CORS_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Location, Allow_Redirects, dict_custom_header, Dict_Temp_CORS = {}):
-    try
+    try:
         # Session_Creation
         with Session() as s:
 
