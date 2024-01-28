@@ -47,7 +47,7 @@ def Argument_Parser(Copyright_Year, Template_Location = dirname(realpath(__file_
 
     picture_arguments.add_argument('-qA', '--qrcode-picture-location', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     picture_arguments.add_argument('-sL', '--screenshot-location', type=str, help=Colors.GREEN+'Using this parameter you can specify a folder with screenshots, which will be\nloaded into the filter mode and all screenshots in it will be decorated with a\nblack frame.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
-    picture_arguments.add_argument('-sFt', '--screenshot-frame-thickness', type=int, default=3, help=Colors.GREEN+'Using this parameter you can set the thickness of a frame.\n\nDefault: 3'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    picture_arguments.add_argument('-sFt', '--screenshot-frame-thickness', type=int, default=2, help=Colors.GREEN+'Using this parameter you can set the thickness of a frame.\n\nDefault: 2'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     responder_arguments.add_argument('-rLL', '--responder-logs-location', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
