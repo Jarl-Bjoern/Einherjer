@@ -217,23 +217,23 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
         with open(join(location, 'result_cors.csv'), Write_Mode, encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
             if (Write_Mode == 'w'):
-                writer.writerow(['URL','DNS','ACCESS-CONTROL-ALLOW-ORIGIN'])
+                writer.writerow(['URL','DNS',] + Array_CORS_Header)
 
-#            for Target in Dict_Result['CORS']:
-#                Array_Temp = []
-#                Array_Temp.append(Target)
-#                for Result_Left, Result_Right in Dict_Result['CORS'][Target].items():
-#                    if (Result_Left == "DNS" and Result_Right == ""):        Result_Right = "FEHLT"
+            for Target in Dict_Result['CORS']:
+                Array_Temp = []
+                Array_Temp.append(Target)
+                for Result_Left, Result_Right in Dict_Result['CORS'][Target].items():
+                    if (Result_Left == "DNS" and Result_Right == ""):        Result_Right = "FEHLT"
 
-#                    if (Result_Left != "DNS" and Result_Right != "FEHLT"):   Array_Temp.append("✓")
-#                    elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
-#                    elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
-#                    else: Array_Temp.append("X")
+                    if (Result_Left != "DNS" and Result_Right != "FEHLT"):   Array_Temp.append("✓")
+                    elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
+                    elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
+                    else: Array_Temp.append("X")
 
-#                if (Array_Temp.count('✓') != len(Dict_Header)):
-#                    writer.writerow(Array_Temp)
-#                else:
-#                    Standard.Remove_From_Filtered_File(join(location, 'affected_cors_targets.txt'), Target)
+                if (Array_Temp.count('✓') != len(Array_CORS_Header)):
+                    writer.writerow(Array_Temp)
+                else:
+                    Standard.Remove_From_Filtered_File(join(location, 'affected_cors_targets.txt'), Target)
         Standard.Remove_Empty_Filter_File(join(location, 'result_cors.csv')), Standard.Remove_Empty_Filter_File(join(location, 'affected_cors_targets.txt'))
 
 
