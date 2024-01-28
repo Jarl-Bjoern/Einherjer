@@ -16,7 +16,7 @@ def Screenshot_Frame(Screen_Dir, Screenshot_Thickness, Array_Temp = []):
                         makedirs(join(Screen_Dir, 'Einherjer_Screenshot_Backup'))
                         copy2(join(Screen_Dir, Picture), join(Screen_Dir, 'Einherjer_Screenshot_Backup'))
                     except PermissionError:
-                        input (f"It seems that the path {} is not writeable. Please change the permissions and try it again.")
+                        input (f"It seems that the path {Screen_Dir} is not writeable. Please change the permissions and try it again.")
                         makedirs(join(Screen_Dir, 'Einherjer_Screenshot_Backup'))
                         copy2(join(Screen_Dir, Picture), join(Screen_Dir, 'Einherjer_Screenshot_Backup'))
 
