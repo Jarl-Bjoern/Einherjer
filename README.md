@@ -75,6 +75,16 @@ Under the following link, you can see all the implemented features that the tool
 </div><br />
 
 
+## ☢️ Cheat Sheet
+The following link contains the official cheat sheet for the tool.
+
+<div align="center">
+➡️ <a href="https://github.com/Jarl-Bjoern/Einherjer/wiki/%E2%98%A2%EF%B8%8F-Cheat-Sheet">
+  Cheat Sheet
+</a> ⬅️
+</div><br />
+
+
 ## ⚔ Live Example
 UNDER CONSTRUCTION
 
