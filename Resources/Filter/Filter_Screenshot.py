@@ -12,8 +12,14 @@ def Screenshot_Frame(Screen_Dir, Screenshot_Thickness, Array_Temp = []):
                 Picture.lower().endswith('.jpeg') or
                 Picture.lower().endswith('.bmp')  or
                 Picture.lower().endswith('.png')):
-                    makedirs(join(Screen_Dir, 'Einherjer_Screenshot_Backup'))
-                    copy2(join(Screen_Dir, Picture), join(Screen_Dir, 'Einherjer_Screenshot_Backup'))
+                    try:
+                        makedirs(join(Screen_Dir, 'Einherjer_Screenshot_Backup'))
+                        copy2(join(Screen_Dir, Picture), join(Screen_Dir, 'Einherjer_Screenshot_Backup'))
+                    except PermissionError:
+                        input (f"It seems that the path {} is not writeable. Please change the permissions and try it again.")
+                        makedirs(join(Screen_Dir, 'Einherjer_Screenshot_Backup'))
+                        copy2(join(Screen_Dir, Picture), join(Screen_Dir, 'Einherjer_Screenshot_Backup'))
+
                     raw_image              = imread(join(Screen_Dir, Picture))
                     height                 = raw_image.shape[0]
                     width                  = raw_image.shape[1]
@@ -23,6 +29,6 @@ def Screenshot_Frame(Screen_Dir, Screenshot_Thickness, Array_Temp = []):
                     imwrite(join(Screen_Dir, Picture), img)
                     Array_Temp.append(join(Screen_Dir, Picture))
     except FileNotFoundError:
-        pass
+        pass        
 
     return Array_Temp
