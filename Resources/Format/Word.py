@@ -66,4 +66,4 @@ def Word_Table(Dict_Result, location):
         n += 1
 
     try:            document.save(join(location, f'Findings.docx'))
-    except OSError: sleep(10), document.save(join(location, f'Findings.docx')
+    except OSError: sleep(10), document.save(join(location, f'Findings.docx'))
