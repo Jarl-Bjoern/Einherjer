@@ -156,7 +156,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
 
             if (args.screenshot_location != None):
                 from Resources.Filter.Filter_Screenshot import Screenshot_Frame
-                Array_Output = Screenshot_Frame(args.screenshot_location, args.screenshot_frame_thickness)
+                Array_Output = Screenshot_Frame(args.screenshot_location, args.screenshot_frame_thickness, args.screenshot_border_mode)
 
         return Array_Output
 
@@ -598,7 +598,8 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                                 args.screenshot_frame_thickness,
                                 args.custom_chromium_webdriver_path,
                                 Dict_Custom_Header,
-                                args.screenshot_frame
+                                args.screenshot_frame,
+                                args.screenshot_border_mode
                             ]
 
                             if (Counter_Connections == args.max_connections):
