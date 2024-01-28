@@ -86,7 +86,8 @@ try:
             args, Program_Mode = Argument_Parser(Copyright_Year), "Filter_Mode"
 
             if (args.screenshot_location != None):
-                from cv2 import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
+                from cv2    import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
+                from shutil import copy2
 
             if (args.qrcode_picture_location != None):
                 from PIL import Image
