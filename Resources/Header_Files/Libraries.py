@@ -87,6 +87,7 @@ try:
 
             if (args.screenshot_location != None):
                 from cv2    import countNonZero, imread, imwrite, rectangle, split as cvsplit, subtract
+                from PIL    import Image, ImageOps
                 from shutil import copy2
 
             if (args.qrcode_picture_location != None):
@@ -280,6 +281,7 @@ try:
                     import asyncio
                 if (args.scan_site_screenshot != False):
                         from cv2      import countNonZero, error as CVError, imread, imwrite, rectangle, split as cvsplit, subtract
+                        from PIL    import Image, ImageOps
                         from os       import environ, rename
                         from selenium import webdriver
                         from selenium.webdriver.common.by        import By
