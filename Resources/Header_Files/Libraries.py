@@ -186,6 +186,7 @@ try:
             # Scanning_Module_Filtering
             if (args.scan_all                 == False and
                 args.scan_site_certificate    == False and
+                args.scan_cors                == False and
                 args.scan_dns                 == False and
                 args.scan_ftp                 == False and
                 args.scan_host_name           == False and
@@ -200,6 +201,7 @@ try:
                         Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n", Copyright_Year), exit()
             elif (args.scan_all               != False and
                   args.scan_site_certificate  == False and
+                  args.scan_cors              == False and
                   args.scan_dns               == False and
                   args.scan_ftp               == False and
                   args.scan_host_name         == False and
@@ -272,10 +274,11 @@ try:
                     from smtplib import SMTP, SMTPServerDisconnected
                 if (args.scan_snmp != False):
                     from pysnmp.hlapi import *
-                if (args.scan_site_header != False):
-                    from requests        import get
-                    from requests_pkcs12 import get as pkcs_get, Pkcs12Adapter
-                    from requests.adapters import HTTPAdapter
+                if (args.scan_site_header != False or
+                    args.scan_cors        != False):
+                        from requests        import get
+                        from requests_pkcs12 import get as pkcs_get, Pkcs12Adapter
+                        from requests.adapters import HTTPAdapter
                 if (args.scan_site_http_methods != False):
                     from aiohttp import BasicAuth, ClientSession, TCPConnector
                     import asyncio
