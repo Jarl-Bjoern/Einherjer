@@ -107,7 +107,8 @@ def Check_CORS_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locati
                 +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp_CORS}\n\n',
                 join(Location, 'Logs')
             )
-            Standard.Write_Output_File('affected_cors_targets.txt', f'{url} ({Host_Name})', Location)
+            if ("ACCESS-CONTROL-ALLOW-ORIGIN" in Dict_Temp_CORS):
+                Standard.Write_Output_File('affected_cors_targets.txt', f'{url} ({Host_Name})', Location)
         else:
             Logs.Log_File(
                 Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
@@ -120,7 +121,8 @@ def Check_CORS_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locati
                 +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_Temp_CORS}\n\n',
                 join(Location, 'Logs')
             )
-            Standard.Write_Output_File('affected_cors_targets.txt', f'{url} (-)', Location)
+            if ("ACCESS-CONTROL-ALLOW-ORIGIN" in Dict_Temp_CORS):
+                Standard.Write_Output_File('affected_cors_targets.txt', f'{url} (-)', Location)
 
 
         # Terminate_Session
