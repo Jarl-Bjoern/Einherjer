@@ -51,7 +51,7 @@ class Web:
                         pass
         return Temp_Output_File
 
-def Take_Screenshot(url, driver_options, driver_path, Screen_Dir, switch_internet_connection, screenshot_wait, webdriver_timeout, screenshot_frame_thickness, screen_frame_switch):
+def Take_Screenshot(url, driver_options, driver_path, Screen_Dir, switch_internet_connection, screenshot_wait, webdriver_timeout, screenshot_frame_thickness, screen_frame_switch, Screen_Type):
     if (switch_internet_connection == True):
         if (osname == 'nt'):
             Chrome_Path = ChromeDriverManager().install()
@@ -103,11 +103,15 @@ def Take_Screenshot(url, driver_options, driver_path, Screen_Dir, switch_interne
 
     if (screen_frame_switch == True):
         for Picture in listdir(Screen_Dir):
-            raw_image              = imread(join(Screen_Dir, Picture))
-            height                 = raw_image.shape[0]
-            width                  = raw_image.shape[1]
-            start_point, end_point = (-1,-1), (width, height)
-            color                  = Screenshot_Color
-            thickness              = screenshot_frame_thickness
-            img                    = rectangle(raw_image, start_point, end_point, color, thickness)
-            imwrite(join(Screen_Dir, Picture), img)
+            if (Screen_Type == "Drawning"):
+                raw_image              = imread(join(Screen_Dir, Picture))
+                height                 = raw_image.shape[0]
+                width                  = raw_image.shape[1]
+                start_point, end_point = (-1,-1), (width, height)
+                color                  = Screenshot_Color
+                img                    = rectangle(raw_image, start_point, end_point, color, int(Screenshot_Thickness))
+                imwrite(join(Screen_Dir, Picture), img)
+            elif (Screen_Type == "Border"):
+                raw_image              = Image.open(join(Screen_Dir, Picture))
+                manipulated_image      = ImageOps.expand(raw_image, border=1, fill='black')
+                manipulated_image.save(join(Screen_Dir, Picture))
