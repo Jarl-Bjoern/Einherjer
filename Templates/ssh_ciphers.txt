@@ -33,3 +33,4 @@ hmac-sha2-256-etm
 hmac-sha2-512-etm
 umac-128
 umac-128-etm
+kex-strict-s-v00
