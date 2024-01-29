@@ -249,9 +249,11 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
             with open(join(location, f'result_ssl_vulns.csv'), Write_Second_Mode, encoding='UTF-8', newline='') as csv_sec_file:
                 with open(join(location, f'result_ssl_good_ciphers.csv'), Write_Third_Mode, encoding='UTF-8', newline='') as csv_third_file:
                     with open(join(location, f'result_ssl_overview.csv'), Write_Fourth_Mode, encoding='UTF-8', newline='') as csv_overview_file:
-                        writer       = csv.writer(csv_file)
-                        writer_Sec   = csv.writer(csv_sec_file)
-                        writer_Third = csv.writer(csv_third_file)
+                        writer          = csv.writer(csv_file)
+                        writer_Sec      = csv.writer(csv_sec_file)
+                        writer_Third    = csv.writer(csv_third_file)
+                        writer_Overview = csv.writer(csv_overview_file)
+
                         if (Write_Mode == 'w'):
                             writer.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Encryption','Key_Exchange','Anonymous']))
                         if (Write_Second_Mode == 'w'):
@@ -259,7 +261,10 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                         if (Write_Third_Mode == 'w'):
                             writer_Third.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Encryption','Key_Exchange','Anonymous']))
                         if (Write_Fourth_Mode == 'w'):
-                            writer_Third.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Encryption','Key_Exchange','Anonymous']))
+                            writer_Overview.writerow((['Host','DNS','Insecure_Certificate_Signature','Certificate_Expired','Heartbleed','CCS_Injection',
+                                                       'ROBOT','Compression','SCSV_SUPPORT','Client_Renegetation','SSLv2','SSLv3','TLS_1.0','TLS_1.1',
+                                                       'Missing TLS_1.3','MD5','SHA1','NULL','Anonymous','Export','RC2','RC4','DES','3DES','IDEA',
+                                                       'DHE <= 1024','PFS','CBC']))
     
                         for Target in Dict_Result['SSL']:
                             Array_Temp = []
