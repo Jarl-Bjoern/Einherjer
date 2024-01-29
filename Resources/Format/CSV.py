@@ -242,87 +242,95 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
         Write_Mode        = Write_Extend(join(location, 'result_ssl_bad_ciphers.csv'))
         Write_Second_Mode = Write_Extend(join(location, 'result_ssl_vulns.csv'))
         Write_Third_Mode  = Write_Extend(join(location, 'result_ssl_good_ciphers.csv'))
+        Write_Fourth_Mode = Write_Extend(join(location, 'result_ssl_overview.csv'))
 
         # Filter_Mode
         with open(join(location, f'result_ssl_bad_ciphers.csv'), Write_Mode, encoding='UTF-8', newline='') as csv_file:
             with open(join(location, f'result_ssl_vulns.csv'), Write_Second_Mode, encoding='UTF-8', newline='') as csv_sec_file:
-                with open(join(location, f'result_ssl_good_ciphers.csv'), Write_Mode, encoding='UTF-8', newline='') as csv_third_file:
-                    writer       = csv.writer(csv_file)
-                    writer_Sec   = csv.writer(csv_sec_file)
-                    writer_Third = csv.writer(csv_third_file)
-                    if (Write_Mode == 'w'):
-                        writer.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Encryption','Key_Exchange']))
-                    if (Write_Second_Mode == 'w'):
-                        writer_Sec.writerow((['Host','DNS','Vulnerabilities']))
-                    if (Write_Third_Mode == 'w'):
-                        writer_Third.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Encryption','Key_Exchange']))
-
-                    for Target in Dict_Result['SSL']:
-                        Array_Temp = []
-                        Array_Temp.append(Target)
-                        for Result_Left, Result_Right in Dict_Result['SSL'][Target].items():
-                            if (Result_Left == "DNS" and Result_Right == ""):   Array_Temp.append("-")
-                            elif (Result_Left == "DNS" and Result_Right != ""): Array_Temp.append(Result_Right)
+                with open(join(location, f'result_ssl_good_ciphers.csv'), Write_Third_Mode, encoding='UTF-8', newline='') as csv_third_file:
+                    with open(join(location, f'result_ssl_overview.csv'), Write_Fourth_Mode, encoding='UTF-8', newline='') as csv_overview_file:
+                        writer       = csv.writer(csv_file)
+                        writer_Sec   = csv.writer(csv_sec_file)
+                        writer_Third = csv.writer(csv_third_file)
+                        if (Write_Mode == 'w'):
+                            writer.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Encryption','Key_Exchange','Anonymous']))
+                        if (Write_Second_Mode == 'w'):
+                            writer_Sec.writerow((['Host','DNS','Vulnerabilities']))
+                        if (Write_Third_Mode == 'w'):
+                            writer_Third.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Encryption','Key_Exchange','Anonymous']))
+                        if (Write_Fourth_Mode == 'w'):
+                            writer_Third.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Encryption','Key_Exchange','Anonymous']))
     
-                            if (Result_Left == "Ciphers"):
-                                for _ in Result_Right:
-                                    if (_['Protocol'] != "" and _['Ciphers'] != []):
-                                        for Cipher in _['Ciphers']:
-                                            Temp_Arr = [_['Protocol'],Cipher['Key_Size'],Cipher['Name']]
-                                            if (Cipher['Curve_Name'] != None and Cipher['Curve_Name'] != ''):
-                                                Temp_Arr.append(Cipher['Curve_Name'])
-                                            else: Temp_Arr.append('-')
-                                            if (Cipher['Type'] != '' and Cipher['Curve_Size'] != '' and Cipher['Curve_Size'] != None):
-                                                Temp_Arr.append(f"{Cipher['Type']}_{Cipher['Curve_Size']}")
-                                            else: Temp_Arr.append('-')
-                                            writer.writerow(Array_Temp + Temp_Arr)
-                            elif (Result_Left == "Good_Ciphers"):
-                                for _ in Result_Right:
-                                    if (_['Protocol'] != "" and _['Ciphers'] != []):
-                                        for Cipher in _['Ciphers']:
-                                            Temp_Arr = [_['Protocol'],Cipher['Key_Size'],Cipher['Name']]
-                                            if (Cipher['Curve_Name'] != None and Cipher['Curve_Name'] != ''):
-                                                Temp_Arr.append(Cipher['Curve_Name'])
-                                            else: Temp_Arr.append('-')
-                                            if (Cipher['Type'] != '' and Cipher['Curve_Size'] != '' and Cipher['Curve_Size'] != None):
-                                                Temp_Arr.append(f"{Cipher['Type']}_{Cipher['Curve_Size']}")
-                                            else: Temp_Arr.append('-')
-                                            writer_Third.writerow(Array_Temp + Temp_Arr)
-                            elif (Result_Left == "SSL_Vulns"):
-                                for _ in Result_Right:
-                                    Temp_Arr = []
-                                    if (type(Result_Right[_]) != bool): Length_Vuln = len(Result_Right[_])
-                                    else:                               Length_Vuln = 1
-
-                                    if (_ == "POODLE" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
-                                        Temp_Arr = ['The system is vulnerable for POODLE (CVE-2014-3566)']
-                                    elif (_ == "CRIME" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
-                                        Temp_Arr = ['The system is vulnerable for CRIME (CVE-2012-4929)']
-                                    elif (_ == "HEARTBLEED" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
-                                        Temp_Arr = ['The system is vulnerable for HEARTBLEED (CVE-2014-0160)']
-                                    elif (_ == "CCS_INJECTION" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
-                                        Temp_Arr = ['The system is vulnerable for CCS_INJECTION (CVE-2014-0224)']
-                                    elif (_ == "ROBOT" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
-                                        Temp_Arr = ['The system is vulnerable for ROBOT (CVE-2017-13099)']
-                                    elif (_ == "CLIENT_RENEGOTIATION_DOS" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
-                                        Temp_Arr = ['The system is vulnerable for CLIENT_RENEGOTIATION_DOS (CVE-2011-1473)']
-                                    elif (_ == "FALLBACK_SCSV" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
-                                        Temp_Arr = ['The system is vulnerable for FALLBACK_SCSV (CVE-2014-3513)']
-                                    elif (_ == "BREACH" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
-                                        Temp_Arr = ['The system is vulnerable for BREACH (CVE-2013-3587)']
-                                    elif (_ == "LOGJAM" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
-                                        Temp_Arr = ['The system is vulnerable for LOGJAM (CVE-2015-4000)']
-                                    elif (_ == "BEAST" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
-                                        Temp_Arr = ['The system is vulnerable for BEAST (CVE-2011-3389)']
-                                    elif (_ == "LUCKY13" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
-                                        Temp_Arr = ['The system is vulnerable for LUCKY13 (CVE-2013-0169)']
-                                    elif (_ == "INACTIVE_TLS_1_3" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
-                                        Temp_Arr = ['The system has TLS 1.3 disabled.']
-
-                                    if (Temp_Arr != []):
-                                        writer_Sec.writerow(Array_Temp + Temp_Arr)
-                            elif (Result_Left == "Curves"):
-                                pass
+                        for Target in Dict_Result['SSL']:
+                            Array_Temp = []
+                            Array_Temp.append(Target)
+                            for Result_Left, Result_Right in Dict_Result['SSL'][Target].items():
+                                if (Result_Left == "DNS" and Result_Right == ""):   Array_Temp.append("-")
+                                elif (Result_Left == "DNS" and Result_Right != ""): Array_Temp.append(Result_Right)
+        
+                                if (Result_Left == "Ciphers"):
+                                    for _ in Result_Right:
+                                        if (_['Protocol'] != "" and _['Ciphers'] != []):
+                                            for Cipher in _['Ciphers']:
+                                                Temp_Arr = [_['Protocol'],Cipher['Key_Size'],Cipher['Name']]
+                                                if (Cipher['Curve_Name'] != None and Cipher['Curve_Name'] != ''):
+                                                    Temp_Arr.append(Cipher['Curve_Name'])
+                                                else: Temp_Arr.append('-')
+                                                if (Cipher['Type'] != '' and Cipher['Curve_Size'] != '' and Cipher['Curve_Size'] != None):
+                                                    Temp_Arr.append(f"{Cipher['Type']}_{Cipher['Curve_Size']}")
+                                                else: Temp_Arr.append('-')
+                                                Temp_Arr.append(Cipher['Anonymous'])
+                                                writer.writerow(Array_Temp + Temp_Arr)
+                                elif (Result_Left == "Good_Ciphers"):
+                                    for _ in Result_Right:
+                                        if (_['Protocol'] != "" and _['Ciphers'] != []):
+                                            for Cipher in _['Ciphers']:
+                                                Temp_Arr = [_['Protocol'],Cipher['Key_Size'],Cipher['Name']]
+                                                if (Cipher['Curve_Name'] != None and Cipher['Curve_Name'] != ''):
+                                                    Temp_Arr.append(Cipher['Curve_Name'])
+                                                else: Temp_Arr.append('-')
+                                                if (Cipher['Type'] != '' and Cipher['Curve_Size'] != '' and Cipher['Curve_Size'] != None):
+                                                    Temp_Arr.append(f"{Cipher['Type']}_{Cipher['Curve_Size']}")
+                                                else: Temp_Arr.append('-')
+                                                Temp_Arr.append(Cipher['Anonymous'])
+                                                writer_Third.writerow(Array_Temp + Temp_Arr)
+                                elif (Result_Left == "SSL_Vulns"):
+                                    for _ in Result_Right:
+                                        Temp_Arr = []
+                                        if (type(Result_Right[_]) != bool): Length_Vuln = len(Result_Right[_])
+                                        else:                               Length_Vuln = 1
+    
+                                        if (_ == "POODLE" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
+                                            Temp_Arr = ['The system is vulnerable for POODLE (CVE-2014-3566)']
+                                        elif (_ == "CRIME" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
+                                            Temp_Arr = ['The system is vulnerable for CRIME (CVE-2012-4929)']
+                                        elif (_ == "HEARTBLEED" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
+                                            Temp_Arr = ['The system is vulnerable for HEARTBLEED (CVE-2014-0160)']
+                                        elif (_ == "CCS_INJECTION" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
+                                            Temp_Arr = ['The system is vulnerable for CCS_INJECTION (CVE-2014-0224)']
+                                        elif (_ == "ROBOT" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
+                                            Temp_Arr = ['The system is vulnerable for ROBOT (CVE-2017-13099)']
+                                        elif (_ == "CLIENT_RENEGOTIATION_DOS" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
+                                            Temp_Arr = ['The system is vulnerable for CLIENT_RENEGOTIATION_DOS (CVE-2011-1473)']
+                                        elif (_ == "FALLBACK_SCSV" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
+                                            Temp_Arr = ['The system is vulnerable for FALLBACK_SCSV (CVE-2014-3513)']
+                                        elif (_ == "BREACH" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
+                                            Temp_Arr = ['The system is vulnerable for BREACH (CVE-2013-3587)']
+                                        elif (_ == "LOGJAM" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
+                                            Temp_Arr = ['The system is vulnerable for LOGJAM (CVE-2015-4000)']
+                                        elif (_ == "BEAST" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
+                                            Temp_Arr = ['The system is vulnerable for BEAST (CVE-2011-3389)']
+                                        elif (_ == "LUCKY13" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
+                                            Temp_Arr = ['The system is vulnerable for LUCKY13 (CVE-2013-0169)']
+                                        elif (_ == "SWEET32" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
+                                            Temp_Arr = ['The system is vulnerable for SWEET32 (CVE-2016-6329)']
+                                        elif (_ == "INACTIVE_TLS_1_3" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
+                                            Temp_Arr = ['The system has TLS 1.3 disabled.']
+    
+                                        if (Temp_Arr != []):
+                                            writer_Sec.writerow(Array_Temp + Temp_Arr)
+                                elif (Result_Left == "Curves"):
+                                    pass
 
         Standard.Remove_Empty_Filter_File(join(location, 'result_ssl_bad_ciphers.csv')), Standard.Remove_Empty_Filter_File(join(location, 'result_ssl_vulns.csv')), Standard.Remove_Empty_Filter_File(join(location, 'result_ssl_good_ciphers.csv'))
         Standard.Remove_Empty_Filter_File(join(location, 'affected_ssl_vulns.txt')), Standard.Remove_Empty_Filter_File(join(location, 'affected_ssl_targets.txt'))
