@@ -113,6 +113,11 @@ class Standard:
         with open(file_path, 'r', encoding='utf-8') as jsonFile:
             try:
                 dict_temp = json_loads(jsonFile)
+            except TypeError:
+                try:
+                    dict_temp = json_load(jsonFile)
+                except TypeError:
+                    dict_temp = json_dumps(jsonFile)
             except JSONDecodeError:
                 exit(Colors.RED+"There was a problem with the encoding in the file."+Colors.RESET)
         jsonFile.close()
