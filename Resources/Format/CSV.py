@@ -332,5 +332,5 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                                 elif (Result_Left == "Curves"):
                                     pass
 
-        Standard.Remove_Empty_Filter_File(join(location, 'result_ssl_bad_ciphers.csv')), Standard.Remove_Empty_Filter_File(join(location, 'result_ssl_vulns.csv')), Standard.Remove_Empty_Filter_File(join(location, 'result_ssl_good_ciphers.csv'))
+        Standard.Remove_Empty_Filter_File(join(location, 'result_ssl_bad_ciphers.csv')), Standard.Remove_Empty_Filter_File(join(location, 'result_ssl_vulns.csv')), Standard.Remove_Empty_Filter_File(join(location, 'result_ssl_good_ciphers.csv')), Standard.Remove_Empty_Filter_File(join(location, 'result_ssl_overview.csv'))
         Standard.Remove_Empty_Filter_File(join(location, 'affected_ssl_vulns.txt')), Standard.Remove_Empty_Filter_File(join(location, 'affected_ssl_targets.txt'))
