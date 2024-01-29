@@ -184,6 +184,17 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                         Dict_Temp_Ciphers['Anonymous']      = z['cipher_suite']['is_anonymous']
                                                         Dict_Temp_Ciphers['Key_Size']       = z['cipher_suite']['key_size']
                                                         Dict_Temp_Ciphers['Name']           = z['cipher_suite']['name']
+
+                                                        # SWEET32
+                                                        if ("DES" in z['cipher_suite']['name']):
+                                                            Dict_SSL_Vulns['SWEET32'] = True
+
+                                                        # LUCKY13
+                                                        if ("CBC" in z['cipher_suite']['name']):
+                                                            Dict_SSL_Vulns['LUCKY13'] = True
+                                                            if (z['cipher_suite']['key_size'] < 128):
+                                                                Dict_SSL_Vulns['SWEET32'] = True
+
                                                         if (z['ephemeral_key'] != None):
                                                             Dict_Temp_Ciphers['Curve_Name'] = z['ephemeral_key']['curve_name']
                                                             Dict_Temp_Ciphers['Type']       = z['ephemeral_key']['type_name']
