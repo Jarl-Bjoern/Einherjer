@@ -6,6 +6,11 @@
 from ..Header_Files.Variables import *
 
 def Screenshot_Frame(Screen_Dir, Screenshot_Thickness, Screen_Type, Array_Temp = []):
+    def Copy_To_Backup_Screenshot(scan_path, picture, screen_dir):
+        for Check in listdir(scan_path):
+            if (Check != Picture):                                
+                copy2(join(screen_dir, picture), scan_path)
+
     try:
         for Picture in listdir(Screen_Dir):
             if (Picture.lower().endswith('.jpg')  or
@@ -14,11 +19,11 @@ def Screenshot_Frame(Screen_Dir, Screenshot_Thickness, Screen_Type, Array_Temp =
                 Picture.lower().endswith('.png')):
                     while True:
                         try:
-                            makedirs(join(Screen_Dir, 'Einherjer_Screenshot_Backup'))
-                            copy2(join(Screen_Dir, Picture), join(Screen_Dir, 'Einherjer_Screenshot_Backup'))
-                            break
-                        except FileExistsError:
-                            copy2(join(Screen_Dir, Picture), join(Screen_Dir, 'Einherjer_Screenshot_Backup'))
+                            try:
+                                makedirs(join(Screen_Dir, 'Einherjer_Screenshot_Backup'))
+                                Copy_To_Backup_Screenshot(join(Screen_Dir, 'Einherjer_Screenshot_Backup'), Picture, Screen_Dir)
+                            except FileExistsError:
+                                Copy_To_Backup_Screenshot(join(Screen_Dir, 'Einherjer_Screenshot_Backup'), Picture, Screen_Dir)
                             break
                         except PermissionError:
                             input (Colors.ORANGE+"\nIt seems that the path"+Colors.RED+f" {Screen_Dir} "+Colors.ORANGE+"is not writeable. Please change the permissions and try it again.\n\nPress "+Colors.CYAN+"'Return'"+Colors.ORANGE+" to continue."+Colors.RESET)
