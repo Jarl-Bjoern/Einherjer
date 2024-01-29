@@ -256,7 +256,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                         writer_Sec.writerow((['Host','DNS','Vulnerabilities']))
                     if (Write_Third_Mode == 'w'):
                         writer_Third.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Encryption','Key_Exchange']))
-    
+
                     for Target in Dict_Result['SSL']:
                         Array_Temp = []
                         Array_Temp.append(Target)
@@ -293,7 +293,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                                     Temp_Arr = []
                                     if (type(Result_Right[_]) != bool): Length_Vuln = len(Result_Right[_])
                                     else:                               Length_Vuln = 1
-    
+
                                     if (_ == "POODLE" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                         Temp_Arr = ['The system is vulnerable for POODLE (CVE-2014-3566)']
                                     elif (_ == "CRIME" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
@@ -318,7 +318,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                                         Temp_Arr = ['The system is vulnerable for LUCKY13 (CVE-2013-0169)']
                                     elif (_ == "INACTIVE_TLS_1_3" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                         Temp_Arr = ['The system has TLS 1.3 disabled.']
-    
+
                                     if (Temp_Arr != []):
                                         writer_Sec.writerow(Array_Temp + Temp_Arr)
                             elif (Result_Left == "Curves"):
