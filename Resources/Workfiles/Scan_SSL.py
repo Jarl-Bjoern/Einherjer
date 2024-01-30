@@ -145,6 +145,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                 'SWEET32':                  "",
                 'LUCKY13':                  "",
                 'FALLBACK_SCSV':            "",
+                'FREAK':                    "",
                 'INACTIVE_TLS_1_3':         ""
             }
 
@@ -194,6 +195,10 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                             Dict_SSL_Vulns['LUCKY13'] = True
                                                             if (z['cipher_suite']['key_size'] < 128):
                                                                 Dict_SSL_Vulns['SWEET32'] = True
+
+                                                        # FREAK
+                                                        if ("ECDHE" not in z['cipher_suite']['name'] or 'DHE' not in z['cipher_suite']['name']):
+                                                            Dict_SSL_Vulns['FREAK'] = True
 
                                                         if (z['ephemeral_key'] != None):
                                                             Dict_Temp_Ciphers['Curve_Name'] = z['ephemeral_key']['curve_name']
