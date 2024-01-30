@@ -261,23 +261,94 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                         if (Write_Third_Mode == 'w'):
                             writer_Third.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Encryption','Key_Exchange','Anonymous']))
                         if (Write_Fourth_Mode == 'w'):
-                            writer_Overview.writerow((['Host','DNS','Insecure_Certificate_Signature','Certificate_Expired','Heartbleed','CCS_Injection',
-                                                       'ROBOT','Compression','SCSV_SUPPORT','Client_Renegetation','SSLv2','SSLv3','TLS_1.0','TLS_1.1',
+                            writer_Overview.writerow((['Host','DNS','Insecure_Certificate_Signature','Certificate_Expired','DHE <= 1024','Heartbleed','CCS_Injection',
+                                                       'ROBOT','Compression','SCSV_SUPPORT','Client_Renegotiation','SSLv2','SSLv3','TLS_1.0','TLS_1.1',
                                                        'Missing TLS_1.3','MD5','SHA1','NULL','Anonymous','Export','RC2','RC4','DES','3DES','IDEA',
-                                                       'DHE <= 1024','PFS','CBC']))
-    
+                                                       'PFS','CBC']))
+
+                        Dict_Overview_SSL = {}
                         for Target in Dict_Result['SSL']:
                             Array_Temp = []
                             Array_Temp.append(Target)
                             for Result_Left, Result_Right in Dict_Result['SSL'][Target].items():
                                 if (Result_Left == "DNS" and Result_Right == ""):   Array_Temp.append("-")
                                 elif (Result_Left == "DNS" and Result_Right != ""): Array_Temp.append(Result_Right)
-        
+
                                 if (Result_Left == "Ciphers"):
                                     for _ in Result_Right:
                                         if (_['Protocol'] != "" and _['Ciphers'] != []):
+                                            if (Target not in Dict_Overview_SSL):
+                                                Dict_Overview_SSL[Target] = {
+                                                           'DNS': "",
+                                'Insecure_Certificate_Signature': False,
+                                           'Certificate_Expired': False,
+                                                   'DHE <= 1024': False,
+                                                    'Heartbleed': False,
+                                                 'CCS_Injection': False,
+                                                         'ROBOT': False,
+                                                   'Compression': False,
+                                                  'SCSV_SUPPORT': False,
+                                          'Client_Renegotiation': False,
+                                                         'SSLv2': False,
+                                                         'SSLv3': False,
+                                                       'TLS_1.0': False,
+                                                       'TLS_1.1': False,
+                                               'Missing TLS_1.3': False,
+                                                           'MD5': False,
+                                                          'SHA1': False,
+                                                          'NULL': False,
+                                                     'Anonymous': False,
+                                                        'Export': False,
+                                                           'RC2': False,
+                                                           'RC4': False,
+                                                           'DES': False,
+                                                          '3DES': False,
+                                                          'IDEA': False,
+                                                           'PFS': False,
+                                                           'CBC': False
+                                            }
+
+                                            # DNS_Name
+                                            if (Result_Left == "DNS" and Result_Right == ""):   Dict_Overview_SSL[Target]['DNS'] = ""
+                                            elif (Result_Left == "DNS" and Result_Right != ""): Dict_Overview_SSL[Target]['DNS'] = Result_Right
+
+
+                                            # Protocol_Check
+                                            if (_['Protocol'] == "SSLv2" or _['Protocol'] == "SSLv23"):
+                                                Dict_Overview_SSL[Target]['SSLv2']   = True
+                                            elif (_['Protocol'] == "SSLv3"):
+                                                Dict_Overview_SSL[Target]['SSLv3']   = True
+                                            elif (_['Protocol'] == "TLS_1.0"):
+                                                Dict_Overview_SSL[Target]['TLS_1.0'] = True
+                                            elif (_['Protocol'] == "TLS_1.1"):
+                                                Dict_Overview_SSL[Target]['TLS_1.1'] = True
+
                                             for Cipher in _['Ciphers']:
                                                 Temp_Arr = [_['Protocol'],Cipher['Key_Size'],Cipher['Name']]
+
+                                                # Check_Ciphers
+                                                if ("MD5" in Cipher['Name']):
+                                                    Dict_Overview_SSL[Target]['MD5']    = True
+                                                elif ("SHA1" in Cipher['Name']):
+                                                    Dict_Overview_SSL[Target]['SHA1']   = True
+                                                elif ("NULL" in Cipher['Name']):
+                                                    Dict_Overview_SSL[Target]['NULL']   = True
+                                                elif ("EXPORT" in Cipher['Name'] or "EXP" in Cipher['Name']):
+                                                    Dict_Overview_SSL[Target]['Export'] = True
+                                                elif ("RC2" in Cipher['Name']):
+                                                    Dict_Overview_SSL[Target]['RC2']    = True
+                                                elif ("RC4" in Cipher['Name']):
+                                                    Dict_Overview_SSL[Target]['RC4']    = True
+                                                elif ("DES" in Cipher['Name'] and not "3DES" in Cipher['Name']):
+                                                    Dict_Overview_SSL[Target]['DES']    = True
+                                                elif ("DES" in Cipher['Name'] and "3DES" in Cipher['Name']):
+                                                    Dict_Overview_SSL[Target]['3DES']   = True
+                                                elif ("IDEA" in Cipher['Name']):
+                                                    Dict_Overview_SSL[Target]['IDEA']   = True
+                                                elif ("CBC" in Cipher['Name']):
+                                                    Dict_Overview_SSL[Target]['CBC']    = True
+
+                                                # Write_Bad_Ciphers
                                                 if (Cipher['Curve_Name'] != None and Cipher['Curve_Name'] != ''):
                                                     Temp_Arr.append(Cipher['Curve_Name'])
                                                 else: Temp_Arr.append('-')
@@ -286,6 +357,8 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                                                 else: Temp_Arr.append('-')
                                                 Temp_Arr.append(Cipher['Anonymous'])
                                                 writer.writerow(Array_Temp + Temp_Arr)
+
+
                                 elif (Result_Left == "Good_Ciphers"):
                                     for _ in Result_Right:
                                         if (_['Protocol'] != "" and _['Ciphers'] != []):
@@ -300,42 +373,125 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                                                 Temp_Arr.append(Cipher['Anonymous'])
                                                 writer_Third.writerow(Array_Temp + Temp_Arr)
                                 elif (Result_Left == "SSL_Vulns"):
+                                    if (Target not in Dict_Overview_SSL):
+                                                Dict_Overview_SSL[Target] = {
+                                                           'DNS': "",
+                                'Insecure_Certificate_Signature': False,
+                                           'Certificate_Expired': False,
+                                                   'DHE <= 1024': False,
+                                                    'Heartbleed': False,
+                                                 'CCS_Injection': False,
+                                                         'ROBOT': False,
+                                                   'Compression': False,
+                                                  'SCSV_SUPPORT': False,
+                                          'Client_Renegotiation': False,
+                                                         'SSLv2': False,
+                                                         'SSLv3': False,
+                                                       'TLS_1.0': False,
+                                                       'TLS_1.1': False,
+                                               'Missing TLS_1.3': False,
+                                                           'MD5': False,
+                                                          'SHA1': False,
+                                                          'NULL': False,
+                                                     'Anonymous': False,
+                                                        'Export': False,
+                                                           'RC2': False,
+                                                           'RC4': False,
+                                                           'DES': False,
+                                                          '3DES': False,
+                                                          'IDEA': False,
+                                                           'PFS': False,
+                                                           'CBC': False
+                                                }
+
+                                    # SSL_Vulns
                                     for _ in Result_Right:
                                         Temp_Arr = []
                                         if (type(Result_Right[_]) != bool): Length_Vuln = len(Result_Right[_])
                                         else:                               Length_Vuln = 1
-    
+
                                         if (_ == "POODLE" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                             Temp_Arr = ['The system is vulnerable for POODLE (CVE-2014-3566)']
+                                            Dict_Overview_SSL[Target]['POODLE'] = True
+
                                         elif (_ == "CRIME" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                             Temp_Arr = ['The system is vulnerable for CRIME (CVE-2012-4929)']
+                                            Dict_Overview_SSL[Target]['CRIME'] = True
+
                                         elif (_ == "HEARTBLEED" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                             Temp_Arr = ['The system is vulnerable for HEARTBLEED (CVE-2014-0160)']
+                                            Dict_Overview_SSL[Target]['HEARTBLEED'] = True
+
                                         elif (_ == "CCS_INJECTION" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                             Temp_Arr = ['The system is vulnerable for CCS_INJECTION (CVE-2014-0224)']
+                                            Dict_Overview_SSL[Target]['CCS_Injection'] = True
+
                                         elif (_ == "ROBOT" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                             Temp_Arr = ['The system is vulnerable for ROBOT (CVE-2017-13099)']
+                                            Dict_Overview_SSL[Target]['ROBOT'] = True
+
                                         elif (_ == "CLIENT_RENEGOTIATION_DOS" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                             Temp_Arr = ['The system is vulnerable for CLIENT_RENEGOTIATION_DOS (CVE-2011-1473)']
+                                            Dict_Overview_SSL[Target]['Client_Renegotiation'] = True
+
                                         elif (_ == "FALLBACK_SCSV" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                             Temp_Arr = ['The system is vulnerable for FALLBACK_SCSV (CVE-2014-3513)']
+                                            Dict_Overview_SSL[Target]['SCSV_SUPPORT'] = True
+
                                         elif (_ == "BREACH" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                             Temp_Arr = ['The system is vulnerable for BREACH (CVE-2013-3587)']
+                                            Dict_Overview_SSL[Target]['BREACH'] = True
+
                                         elif (_ == "LOGJAM" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                             Temp_Arr = ['The system is vulnerable for LOGJAM (CVE-2015-4000)']
+                                            Dict_Overview_SSL[Target]['LOGJAM'] = True
+
                                         elif (_ == "BEAST" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                             Temp_Arr = ['The system is vulnerable for BEAST (CVE-2011-3389)']
+                                            Dict_Overview_SSL[Target]['BEAST'] = True
+
                                         elif (_ == "LUCKY13" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                             Temp_Arr = ['The system is vulnerable for LUCKY13 (CVE-2013-0169)']
+                                            Dict_Overview_SSL[Target]['LUCKY13'] = True
+
                                         elif (_ == "SWEET32" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                             Temp_Arr = ['The system is vulnerable for SWEET32 (CVE-2016-6329)']
+                                            Dict_Overview_SSL[Target]['SWEET32'] = True
+
+                                        elif (_ == "FREAK" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
+                                            Temp_Arr = ['The system is vulnerable for FREAK (CVE-2015-0204)']
+                                            Dict_Overview_SSL[Target]['PFS'] = True
+
                                         elif (_ == "INACTIVE_TLS_1_3" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                             Temp_Arr = ['The system has TLS 1.3 disabled.']
-    
+                                            Dict_Overview_SSL[Target]['Missing TLS_1.3'] = True
+
                                         if (Temp_Arr != []):
                                             writer_Sec.writerow(Array_Temp + Temp_Arr)
                                 elif (Result_Left == "Curves"):
                                     pass
+
+                        # Filter_SSL_Overview_File
+                        Array_Temp_Second = []
+                        for _ in Dict_Overview_SSL:
+                            Array_Temp_Second.append(_)
+                            for j in Dict_Overview_SSL[_]:
+                                #print(f'{j} : {Dict_Overview_SSL[_][j]}')
+                                if (j == "DNS" and Dict_Overview_SSL[_][j] != ''):
+                                    Array_Temp_Second.append(Dict_Overview_SSL[_][j])
+                                elif (j == "DNS" and Dict_Overview_SSL[_][j] == ''):
+                                    Array_Temp_Second.append('-')
+
+                                if (j != "DNS" and Dict_Overview_SSL[_][j] == False):
+                                    Array_Temp_Second.append("✓")
+                                elif (j != "DNS" and Dict_Overview_SSL[_][j] == True):
+                                    Array_Temp_Second.append("X")
+
+                            if (Array_Temp_Second.count('✓') != len(Dict_Overview_SSL[_])-1):
+                                writer_Overview.writerow(Array_Temp_Second)
+                            else:
+                                Standard.Remove_From_Filtered_File(join(location, 'result_ssl_overview.csv'), _)
+                            Array_Temp_Second = []
 
         Standard.Remove_Empty_Filter_File(join(location, 'result_ssl_bad_ciphers.csv')), Standard.Remove_Empty_Filter_File(join(location, 'result_ssl_vulns.csv')), Standard.Remove_Empty_Filter_File(join(location, 'result_ssl_good_ciphers.csv')), Standard.Remove_Empty_Filter_File(join(location, 'result_ssl_overview.csv'))
         Standard.Remove_Empty_Filter_File(join(location, 'affected_ssl_vulns.txt')), Standard.Remove_Empty_Filter_File(join(location, 'affected_ssl_targets.txt'))
