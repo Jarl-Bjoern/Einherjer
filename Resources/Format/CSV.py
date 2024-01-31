@@ -10,6 +10,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
         if (exists(File_Name)):  return 'a'
         else:                    return 'w'
 
+    Dict_Overview_SSL = {}
     if (Dict_Result['Header'] != {}):
         # Check_For_Existing_File
         Write_Mode = Write_Extend(join(location, 'result_header.csv'))
@@ -260,11 +261,6 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                             writer_Sec.writerow((['Host','DNS','Vulnerabilities']))
                         if (Write_Third_Mode == 'w'):
                             writer_Third.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Encryption','Key_Exchange','Anonymous']))
-                        if (Write_Fourth_Mode == 'w'):
-                            writer_Overview.writerow((['Host','DNS','Insecure_Certificate_Signature','Certificate_Expired','DHE <= 1024','Heartbleed','CCS_Injection',
-                                                       'ROBOT','Compression','SCSV_SUPPORT','Client_Renegotiation','SSLv2','SSLv3','TLS_1.0','TLS_1.1',
-                                                       'Missing TLS_1.3','MD5','SHA1','NULL','Anonymous','Export','RC2','RC4','DES','3DES','IDEA',
-                                                       'PFS','CBC']))
 
                         Dict_Overview_SSL = {}
                         for Target in Dict_Result['SSL']:
@@ -472,7 +468,16 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                                     pass
 
                         # Filter_SSL_Overview_File
-                        Array_Temp_Second = []
+                        Array_Temp_Second, Array_Temp_Head = [], []
+                        if (Write_Fourth_Mode == 'w'):
+                            for _ in Dict_Overview_SSL:
+                                Array_Temp_Head.append('Host')
+                                for j in Dict_Overview_SSL[_]:
+                                    if (j not in Array_Temp_Head):
+                                        Array_Temp_Head.append(j)
+                                break
+                            writer_Overview.writerow(Array_Temp_Head)
+
                         for _ in Dict_Overview_SSL:
                             Array_Temp_Second.append(_)
                             for j in Dict_Overview_SSL[_]:
