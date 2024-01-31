@@ -197,6 +197,7 @@ class Standard:
                     if (f'{Target[:Position]}/{Target[Position+1:]}' not in Array_SSL_Out):
                         if (f'{Target[:Position]}/{Target[Position+1:]}' not in Array_Template):
                             Array_SSL_Out.append(f'{Target[:Position]}/{Target[Position+1:]}')
+                            Array_Out.append(f'{Target[:Position]}/{Target[Position+1:]}')
                 elif ('https://' in Target):
                     if (f'{Target[:Position]}/{Target[Position+1:]}' not in Array_SSL_Out):
                         if (f'{Target[:Position]}/{Target[Position+1:]}' not in Array_Template):
