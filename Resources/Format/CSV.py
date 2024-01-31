@@ -456,6 +456,10 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
 
                                         elif (_ == "FREAK" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                             Temp_Arr = ['The system is vulnerable for FREAK (CVE-2015-0204)']
+                                            Dict_Overview_SSL[Target]['FREAK'] = True
+
+                                        elif (_ == "PFS" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
+                                            Temp_Arr = ["The system doesn't use PFS"]
                                             Dict_Overview_SSL[Target]['PFS'] = True
 
                                         elif (_ == "INACTIVE_TLS_1_3" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
