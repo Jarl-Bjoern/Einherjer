@@ -197,13 +197,18 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                                 Dict_SSL_Vulns['SWEET32'] = True
 
                                                         # FREAK
-                                                        if ("ECDHE" not in z['cipher_suite']['name'] or 'DHE' not in z['cipher_suite']['name']):
+                                                        if ("EXPORT" in z['ephemeral_key']['type_name']):
                                                             Dict_SSL_Vulns['FREAK'] = True
 
                                                         if (z['ephemeral_key'] != None):
                                                             Dict_Temp_Ciphers['Curve_Name'] = z['ephemeral_key']['curve_name']
                                                             Dict_Temp_Ciphers['Type']       = z['ephemeral_key']['type_name']
                                                             Dict_Temp_Ciphers['Curve_Size'] = z['ephemeral_key']['size']
+
+                                                            # PFS
+                                                            if ("ECDHE" not in z['ephemeral_key']['type_name'] or 'DHE' not in z['ephemeral_key']['type_name']):
+                                                                Dict_SSL_Vulns['FREAK'] = True
+
                                                         if (Dict_Temp_Ciphers not in Dict_Ciphers['Ciphers']):
                                                             Dict_Ciphers['Ciphers'].append(Dict_Temp_Ciphers)
                                                             Dict_Temp_Ciphers = {
