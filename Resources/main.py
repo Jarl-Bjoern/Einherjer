@@ -579,7 +579,8 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                     Dict_Switch['scan_snmp']           != False or
                     Dict_Switch['scan_smtp']           != False or
                     Dict_Switch['scan_security_flags'] != False):
-                        for Target in array(Array_Targets+Array_SSL_Targets):
+
+                        for Target in array(Array_Targets):
                             Array_Thread_Args = [
                                 Target,
                                 args.timeout,
