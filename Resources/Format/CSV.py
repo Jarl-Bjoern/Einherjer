@@ -141,13 +141,24 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                 writer.writerow(['Host','DNS','Self_Signed','Issuer','Subject','Signature_Algorithm','Public_Key','Cert_Creation_Date','Cert_EOL','Date_Difference','Tested_Date'])
 
             for Target in Dict_Result['Certificate']:
+                if ('//' in Target):
+                    Target_New = Target.split('//')[1]
+                else:
+                    Target_New = Target
+
                 Array_Temp = []
-                Array_Temp.append(Target)
-                for Result_Left, Result_Right in Dict_Result['Certificate'][Target].items():
+                Array_Temp.append(Target_New)
+                for Result_Left, Result_Right in Dict_Result['Certificate'][Target_New].items():
                     if (Result_Left == "DNS" and Result_Right == ""):        Result_Right = "FEHLT"
                     elif (Result_Left != "DNS" and Result_Right == ""):      Result_Right = "FEHLT"
 
-                    if (Result_Left != "DNS" and Result_Right != "FEHLT"):   Array_Temp.append(Result_Right)
+                    if (Result_Left != "DNS" and Result_Right != "FEHLT"):
+                        if (Result_Left == 'Self_Signed' and Result_Right == True):
+                            Dict_Overview_SSL[Target_New]['Insecure_Certificate_Signature'] = True
+                        elif (Result_Left == 'Cert_EOL' and 'expired' in Result_Right):
+                            Dict_Overview_SSL[Target_New]['Certificate_Expired'] = True
+                        
+                        Array_Temp.append(Result_Right)
                     elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
                     else: Array_Temp.append("-")
