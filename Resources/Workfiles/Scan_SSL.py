@@ -206,10 +206,6 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                             Dict_Temp_Ciphers['Type']       = z['ephemeral_key']['type_name']
                                                             Dict_Temp_Ciphers['Curve_Size'] = z['ephemeral_key']['size']
 
-                                                            # PFS
-                                                            if ("ECDHE" not in z['ephemeral_key']['type_name'] or 'DHE' not in z['ephemeral_key']['type_name']):
-                                                                Dict_SSL_Vulns['FREAK'] = True
-
                                                         if (Dict_Temp_Ciphers not in Dict_Ciphers['Ciphers']):
                                                             Dict_Ciphers['Ciphers'].append(Dict_Temp_Ciphers)
                                                             Dict_Temp_Ciphers = {
@@ -243,28 +239,43 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                 TLS_Version = Deep_Result[k]
                                             elif (k == 'is_tls_version_supported'):
                                                 Supported_Version = Deep_Result[k]
+
+                                            # Heartbleed
                                             elif (k == 'is_vulnerable_to_heartbleed'):
                                                 Dict_SSL_Vulns['HEARTBLEED'] = Deep_Result[k]
+
+                                            # CCS
                                             elif (k == 'is_vulnerable_to_ccs_injection'):
                                                 Dict_SSL_Vulns['CCS_INJECTION'] = Deep_Result[k]
+
+                                            # Robot
                                             elif (k == 'robot_result'):
                                                 if ('NOT_VULNERABLE' in Deep_Result[k]):
                                                     Dict_SSL_Vulns['ROBOT'] = False
                                                 else:
                                                     Dict_SSL_Vulns['ROBOT'] = True
+
+                                            # Client_Renegotiation_DoS
                                             elif (k == 'is_vulnerable_to_client_renegotiation_dos'):
                                                 Dict_SSL_Vulns['CLIENT_RENEGOTIATION_DOS'] = Deep_Result[k]
+
+                                            # CRIME
                                             elif (k == 'supports_compression'):
                                                 Dict_SSL_Vulns['CRIME'] = Deep_Result[k]
+
+                                            # SCSV
                                             elif (k == 'supports_fallback_scsv'):
                                                 if (Deep_Result[k] == False):
                                                     Dict_SSL_Vulns['FALLBACK_SCSV'] = Deep_Result[k]
+
+                                            # PFS
+                                            elif (k == 'supports_ecdh_key_exchange'):
+                                                Dict_SSL_Vulns['PFS'] = Deep_Result[k]
+
                                             elif (k == 'supported_curves'):
                                                 for z in Deep_Result[k]:
                                                     if (z['name'] not in Dict_Full_SSL['Curves']):
                                                         Dict_Full_SSL['Curves'].append(z['name'])
-                                            elif (k == 'supports_ecdh_key_exchange'):
-                                                pass
                                             elif (k == 'supports_secure_renegotiation'           or
                                                   k == 'supports_early_data'                     or
                                                   k == 'session_id_attempted_resumptions_count'  or
