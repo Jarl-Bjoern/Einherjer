@@ -214,13 +214,14 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                                 Dict_Temp_Ciphers['Type']       = "RSA"
 
                                                         # Encryption
-                                                        Encryption_Type = ""
+                                                        Encryption_Type, Hash_Algorithm = "", ""
                                                         if ("TLS" in z['cipher_suite']['openssl_name']):
                                                             Temp_Cipher = z['cipher_suite']['openssl_name'].split('TLS_')[1]
                                                             if ("_SHA" in Temp_Cipher):
                                                                 Encryption_Type = Temp_Cipher.split('_SHA')[0]
+                                                                Hash_Algorithm  = Temp_Cipher.split('_')[-1]
                                                             else:
-                                                                Encryption_Type = Temp_Cipher
+                                                                Encryption_Type, Hash_Algorithm = Temp_Cipher, '-'
 
                                                         if (Dict_Temp_Ciphers not in Dict_Ciphers['Ciphers']):
                                                             Dict_Ciphers['Ciphers'].append(Dict_Temp_Ciphers)
@@ -237,13 +238,14 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                         Dict_Temp_Good_Ciphers['Anonymous']      = z['cipher_suite']['is_anonymous']
                                                         Dict_Temp_Good_Ciphers['Key_Size']       = z['cipher_suite']['key_size']
                                                         Dict_Temp_Good_Ciphers['Name']           = z['cipher_suite']['name']
-                                                        Encryption_Type = ""
+                                                        Encryption_Type, Hash_Algorithm = "", ""
                                                         if ("TLS" in z['cipher_suite']['openssl_name']):
                                                             Temp_Cipher = z['cipher_suite']['openssl_name'].split('TLS_')[1]
                                                             if ("_SHA" in Temp_Cipher):
                                                                 Encryption_Type = Temp_Cipher.split('_SHA')[0]
+                                                                Hash_Algorithm  = Temp_Cipher.split('_')[-1]
                                                             else:
-                                                                Encryption_Type = Temp_Cipher
+                                                                Encryption_Type, Hash_Algorithm = Temp_Cipher, '-'
                                                         if (z['ephemeral_key'] != None):
                                                             Dict_Temp_Good_Ciphers['Curve_Name'] = z['ephemeral_key']['curve_name']
                                                             Dict_Temp_Good_Ciphers['Type']       = z['ephemeral_key']['type_name']
