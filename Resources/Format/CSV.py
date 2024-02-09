@@ -470,7 +470,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                                             Dict_Overview_SSL[Target]['FREAK'] = True
 
                                         elif (_ == "PFS" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
-                                            Temp_Arr = ["The system doesn't use PFS"]
+                                            Temp_Arr = ["The system is using ciphers without Perfect Forward Security (PFS)"]
                                             Dict_Overview_SSL[Target]['Support for PFS ciphers'] = True
 
                                         elif (_ == "INACTIVE_TLS_1_3" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
