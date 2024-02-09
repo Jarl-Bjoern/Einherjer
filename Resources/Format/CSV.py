@@ -301,18 +301,18 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                                            'Support for TLS_1.0': False,
                                            'Support for TLS_1.1': False,
                                           'Support for  TLS_1.3': False,
-                                                           'MD5': False,
-                                                          'SHA1': False,
-                                                          'NULL': False,
-                                                     'Anonymous': False,
-                                            'Support for Export': False,
-                                               'Support for RC2': False,
-                                               'Support for RC4': False,
-                                               'Support for DES': False,
-                                              'Support for 3DES': False,
-                                              'Support for IDEA': False,
+                                               'Support for MD5': False,
+                                              'Support for SHA1': False,
+                                      'Support for NULL ciphers': False,
+                                 'Support for Anonymous ciphers': False,
+                                    'Support for Export ciphers': False,
+                                       'Support for RC2 ciphers': False,
+                                       'Support for RC4 ciphers': False,
+                                       'Support for DES ciphers': False,
+                                      'Support for 3DES ciphers': False,
+                                      'Support for IDEA ciphers': False,
                                        'Support for PFS ciphers': False,
-                                               'Support for CBC': False
+                                       'Support for CBC ciphers': False
                                             }
 
                                             # DNS_Name
@@ -335,25 +335,25 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
 
                                                 # Check_Ciphers
                                                 if ("MD5" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['Support for MD5']    = True
+                                                    Dict_Overview_SSL[Target]['Support for MD5']  = True
                                                 elif ("SHA1" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['Support for SHA1']   = True
+                                                    Dict_Overview_SSL[Target]['Support for SHA1'] = True
                                                 elif ("NULL" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['Support for NULL']   = True
+                                                    Dict_Overview_SSL[Target]['Support for NULL ciphers']   = True
                                                 elif ("EXPORT" in Cipher['Name'] or "EXP" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['Support for Export'] = True
+                                                    Dict_Overview_SSL[Target]['Support for Export ciphers'] = True
                                                 elif ("RC2" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['Support for RC2']    = True
+                                                    Dict_Overview_SSL[Target]['Support for RC2 ciphers']    = True
                                                 elif ("RC4" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['Support for RC4']    = True
+                                                    Dict_Overview_SSL[Target]['Support for RC4 ciphers']    = True
                                                 elif ("DES" in Cipher['Name'] and not "3DES" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['Support for DES']    = True
+                                                    Dict_Overview_SSL[Target]['Support for DES ciphers']    = True
                                                 elif ("DES" in Cipher['Name'] and "3DES" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['Support for 3DES']   = True
+                                                    Dict_Overview_SSL[Target]['Support for 3DES ciphers']   = True
                                                 elif ("IDEA" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['Support for IDEA']   = True
+                                                    Dict_Overview_SSL[Target]['Support for IDEA ciphers']   = True
                                                 elif ("CBC" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['Support for CBC']    = True
+                                                    Dict_Overview_SSL[Target]['Support for CBC ciphers']    = True
 
                                                 # Write_Bad_Ciphers
                                                 if (Cipher['Curve_Name'] != None and Cipher['Curve_Name'] != ''):
