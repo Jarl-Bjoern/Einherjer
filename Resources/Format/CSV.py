@@ -311,7 +311,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                                        'Support for DES ciphers': False,
                                       'Support for 3DES ciphers': False,
                                       'Support for IDEA ciphers': False,
-                                       'Support for PFS ciphers': False,
+                               'Support for ciphers without PFS': False,
                                        'Support for CBC ciphers': False
                                             }
 
@@ -407,7 +407,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                                                'Support for DES': False,
                                               'Support for 3DES': False,
                                               'Support for IDEA': False,
-                                       'Support for PFS ciphers': False,
+                               'Support for ciphers without PFS': False,
                                                'Support for CBC': False
                                             }
 
@@ -475,7 +475,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
 
                                         elif (_ == "PFS" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                             Temp_Arr = ["The system is using ciphers without Perfect Forward Security (PFS)"]
-                                            Dict_Overview_SSL[Target]['Support for PFS ciphers'] = True
+                                            Dict_Overview_SSL[Target]['Support for ciphers without PFS'] = True
 
                                         elif (_ == "INACTIVE_TLS_1_3" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                             Temp_Arr = ['The system has TLS 1.3 disabled.']
