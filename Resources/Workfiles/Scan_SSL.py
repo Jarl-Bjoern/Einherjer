@@ -209,6 +209,9 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                             Dict_Temp_Ciphers['Curve_Name'] = z['ephemeral_key']['curve_name']
                                                             Dict_Temp_Ciphers['Type']       = z['ephemeral_key']['type_name']
                                                             Dict_Temp_Ciphers['Curve_Size'] = z['ephemeral_key']['size']
+                                                        else:
+                                                            if ("RSA" in z['cipher_suite']['name']):
+                                                                Dict_Temp_Ciphers['Type']       = "RSA"
 
                                                         # Encryption
                                                         Encryption_Type = ""
