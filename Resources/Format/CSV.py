@@ -425,6 +425,10 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                                             Temp_Arr = ['The system is vulnerable for CRIME (CVE-2012-4929)']
                                             Dict_Overview_SSL[Target]['CRIME'] = True
 
+                                        elif (_ == "DROWN" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
+                                            Temp_Arr = ['The system is vulnerable for DROWN (CVE-2016-0800)']
+                                            Dict_Overview_SSL[Target]['DROWN'] = True
+
                                         elif (_ == "HEARTBLEED" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                             Temp_Arr = ['The system is vulnerable for HEARTBLEED (CVE-2014-0160)']
                                             Dict_Overview_SSL[Target]['HEARTBLEED'] = True
