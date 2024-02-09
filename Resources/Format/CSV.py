@@ -267,11 +267,11 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                         writer_Overview = csv.writer(csv_overview_file)
 
                         if (Write_Mode == 'w'):
-                            writer.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Encryption','Key_Exchange','Anonymous']))
+                            writer.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Encryption','Key_Exchange','Hash_Algorithm','Anonymous']))
                         if (Write_Second_Mode == 'w'):
                             writer_Sec.writerow((['Host','DNS','Vulnerabilities']))
                         if (Write_Third_Mode == 'w'):
-                            writer_Third.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Encryption','Key_Exchange','Anonymous']))
+                            writer_Third.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Encryption','Key_Exchange','Hash_Algorithm','Anonymous']))
 
                         Dict_Overview_SSL = {}
                         for Target in Dict_Result['SSL']:
@@ -296,23 +296,23 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                                                    'Compression': False,
                                                   'SCSV_SUPPORT': False,
                                           'Client_Renegotiation': False,
-                                                         'SSLv2': False,
-                                                         'SSLv3': False,
-                                                       'TLS_1.0': False,
-                                                       'TLS_1.1': False,
-                                               'Missing TLS_1.3': False,
+                                             'Support for SSLv2': False,
+                                             'Support for SSLv3': False,
+                                           'Support for TLS_1.0': False,
+                                           'Support for TLS_1.1': False,
+                                          'Support for  TLS_1.3': False,
                                                            'MD5': False,
                                                           'SHA1': False,
                                                           'NULL': False,
                                                      'Anonymous': False,
-                                                        'Export': False,
-                                                           'RC2': False,
-                                                           'RC4': False,
-                                                           'DES': False,
-                                                          '3DES': False,
-                                                          'IDEA': False,
-                                                           'PFS': False,
-                                                           'CBC': False
+                                            'Support for Export': False,
+                                               'Support for RC2': False,
+                                               'Support for RC4': False,
+                                               'Support for DES': False,
+                                              'Support for 3DES': False,
+                                              'Support for IDEA': False,
+                                       'Support for PFS ciphers': False,
+                                               'Support for CBC': False
                                             }
 
                                             # DNS_Name
@@ -322,38 +322,38 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
 
                                             # Protocol_Check
                                             if (_['Protocol'] == "SSLv2" or _['Protocol'] == "SSLv23"):
-                                                Dict_Overview_SSL[Target]['SSLv2']   = True
+                                                Dict_Overview_SSL[Target]['Support for SSLv2']   = True
                                             elif (_['Protocol'] == "SSLv3"):
-                                                Dict_Overview_SSL[Target]['SSLv3']   = True
+                                                Dict_Overview_SSL[Target]['Support for SSLv3']   = True
                                             elif (_['Protocol'] == "TLS_1.0"):
-                                                Dict_Overview_SSL[Target]['TLS_1.0'] = True
+                                                Dict_Overview_SSL[Target]['Support for TLS_1.0'] = True
                                             elif (_['Protocol'] == "TLS_1.1"):
-                                                Dict_Overview_SSL[Target]['TLS_1.1'] = True
+                                                Dict_Overview_SSL[Target]['Support for TLS_1.1'] = True
 
                                             for Cipher in _['Ciphers']:
                                                 Temp_Arr = [_['Protocol'],Cipher['Key_Size'],Cipher['Name']]
 
                                                 # Check_Ciphers
                                                 if ("MD5" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['MD5']    = True
+                                                    Dict_Overview_SSL[Target]['Support for MD5']    = True
                                                 elif ("SHA1" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['SHA1']   = True
+                                                    Dict_Overview_SSL[Target]['Support for SHA1']   = True
                                                 elif ("NULL" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['NULL']   = True
+                                                    Dict_Overview_SSL[Target]['Support for NULL']   = True
                                                 elif ("EXPORT" in Cipher['Name'] or "EXP" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['Export'] = True
+                                                    Dict_Overview_SSL[Target]['Support for Export'] = True
                                                 elif ("RC2" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['RC2']    = True
+                                                    Dict_Overview_SSL[Target]['Support for RC2']    = True
                                                 elif ("RC4" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['RC4']    = True
+                                                    Dict_Overview_SSL[Target]['Support for RC4']    = True
                                                 elif ("DES" in Cipher['Name'] and not "3DES" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['DES']    = True
+                                                    Dict_Overview_SSL[Target]['Support for DES']    = True
                                                 elif ("DES" in Cipher['Name'] and "3DES" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['3DES']   = True
+                                                    Dict_Overview_SSL[Target]['Support for 3DES']   = True
                                                 elif ("IDEA" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['IDEA']   = True
+                                                    Dict_Overview_SSL[Target]['Support for IDEA']   = True
                                                 elif ("CBC" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['CBC']    = True
+                                                    Dict_Overview_SSL[Target]['Support for CBC']    = True
 
                                                 # Write_Bad_Ciphers
                                                 if (Cipher['Curve_Name'] != None and Cipher['Curve_Name'] != ''):
@@ -392,24 +392,24 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                                                    'Compression': False,
                                                   'SCSV_SUPPORT': False,
                                           'Client_Renegotiation': False,
-                                                         'SSLv2': False,
-                                                         'SSLv3': False,
-                                                       'TLS_1.0': False,
-                                                       'TLS_1.1': False,
-                                               'Missing TLS_1.3': False,
+                                             'Support for SSLv2': False,
+                                             'Support for SSLv3': False,
+                                           'Support for TLS_1.0': False,
+                                           'Support for TLS_1.1': False,
+                                          'Support for  TLS_1.3': False,
                                                            'MD5': False,
                                                           'SHA1': False,
                                                           'NULL': False,
                                                      'Anonymous': False,
-                                                        'Export': False,
-                                                           'RC2': False,
-                                                           'RC4': False,
-                                                           'DES': False,
-                                                          '3DES': False,
-                                                          'IDEA': False,
-                                                           'PFS': False,
-                                                           'CBC': False
-                                                }
+                                            'Support for Export': False,
+                                               'Support for RC2': False,
+                                               'Support for RC4': False,
+                                               'Support for DES': False,
+                                              'Support for 3DES': False,
+                                              'Support for IDEA': False,
+                                       'Support for PFS ciphers': False,
+                                               'Support for CBC': False
+                                            }
 
                                     # SSL_Vulns
                                     for _ in Result_Right:
@@ -471,11 +471,11 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
 
                                         elif (_ == "PFS" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                             Temp_Arr = ["The system doesn't use PFS"]
-                                            Dict_Overview_SSL[Target]['PFS'] = True
+                                            Dict_Overview_SSL[Target]['Support for PFS ciphers'] = True
 
                                         elif (_ == "INACTIVE_TLS_1_3" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                             Temp_Arr = ['The system has TLS 1.3 disabled.']
-                                            Dict_Overview_SSL[Target]['Missing TLS_1.3'] = True
+                                            Dict_Overview_SSL[Target]['Support for TLS_1.3'] = True
 
                                         if (Temp_Arr != []):
                                             writer_Sec.writerow(Array_Temp + Temp_Arr)
