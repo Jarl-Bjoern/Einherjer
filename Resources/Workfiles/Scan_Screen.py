@@ -109,7 +109,7 @@ def Take_Screenshot(url, driver_options, driver_path, Screen_Dir, switch_interne
                 width                  = raw_image.shape[1]
                 start_point, end_point = (-1,-1), (width, height)
                 color                  = Screenshot_Color
-                img                    = rectangle(raw_image, start_point, end_point, color, int(Screenshot_Thickness))
+                img                    = rectangle(raw_image, start_point, end_point, color, int(screenshot_frame_thickness))
                 imwrite(join(Screen_Dir, Picture), img)
             elif (Screen_Type == "Border"):
                 raw_image              = Image.open(join(Screen_Dir, Picture))
