@@ -84,6 +84,8 @@ class Standard:
             Temp_Array = []
             for _ in Standard.Read_File(template_file):
                 if ('#' not in _): Temp_Array.append(_)
+            if (len(Temp_Array) > 0):
+                Temp_Array.sort()
             return Temp_Array
         else: Logs.Error_Message(f'The requested File {template_file} does not exist!')
 
