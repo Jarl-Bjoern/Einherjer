@@ -7,9 +7,12 @@ from ..Header_Files.Variables import *
 
 def Screenshot_Frame(Screen_Dir, Screenshot_Thickness, Screen_Type, Array_Temp = []):
     def Copy_To_Backup_Screenshot(scan_path, picture, screen_dir):
-        for Check in listdir(scan_path):
-            if (Check != picture):                                
-                copy2(join(screen_dir, picture), scan_path)
+        if (len(listdir(scan_path)) == 0):
+            copy2(join(screen_dir, picture), scan_path)
+        else:
+            for Check in listdir(scan_path):
+                if (Check != picture):
+                    copy2(join(screen_dir, picture), scan_path)
 
     try:
         for Picture in listdir(Screen_Dir):
@@ -43,6 +46,6 @@ def Screenshot_Frame(Screen_Dir, Screenshot_Thickness, Screen_Type, Array_Temp =
                         manipulated_image.save(join(Screen_Dir, Picture))
                     Array_Temp.append(join(Screen_Dir, Picture))
     except FileNotFoundError:
-        pass        
+        pass
 
     return Array_Temp
