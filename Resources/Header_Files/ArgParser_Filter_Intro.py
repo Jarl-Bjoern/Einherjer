@@ -41,7 +41,7 @@ def Argument_Parser(Error_Text, Copyright_Year, Template_Location = dirname(real
     nmap_arguments.add_argument('-nSMB', '--nmap-smb-output-location', type=str, help=Colors.GREEN+'With this parameter you can include nmap files with SMB results, which are\nfiltered and then output as a CSV file.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     picture_arguments.add_argument('-sL', '--screenshot-location', type=str, help=Colors.GREEN+'Using this parameter you can specify a folder with screenshots, which will be loaded\ninto the filter mode and all screenshots in it will be decorated with a black frame.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
-    picture_arguments.add_argument('-sFt', '--screenshot-frame-thickness', type=int, default=5, help=Colors.GREEN+'Using this parameter you can set the thickness of a frame.\n\nDefault: 5'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    picture_arguments.add_argument('-sFt', '--screenshot-frame-thickness', type=int, default=5, help=Colors.GREEN+'Using this parameter you can set the thickness of a frame.\n\nDefault: 2'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     optional.add_argument('-h','--help', action='help', default=SUPPRESS, help=Colors.GREEN+'Show this help message and exit.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
