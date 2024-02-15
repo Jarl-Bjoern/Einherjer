@@ -8,7 +8,7 @@ from ..Header_Files.Variables import *
 def Screenshot_Frame(Screen_Dir, Screenshot_Thickness, Screen_Type, Array_Temp = []):
     def Copy_To_Backup_Screenshot(scan_path, picture, screen_dir):
         for Check in listdir(scan_path):
-            if (Check != Picture):                                
+            if (Check != picture):                                
                 copy2(join(screen_dir, picture), scan_path)
 
     try:
