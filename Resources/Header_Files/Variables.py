@@ -35,7 +35,7 @@ if (Program_Mode == "Scanning_Mode"):
 
     # Arrays
     Array_Paths, Array_SSL_Vulns, Array_Results = [],[],[]
-    Array_SSH_Header = ['kex_algorithms', 'server_host_key_algorithms', 'encryption_algorithms', 'mac_algorithms']
+    Array_SSH_Header = ['encryption_algorithms', 'kex_algorithms', 'mac_algorithms', 'server_host_key_algorithms']
 
     # Variables
     COLOR_Headline       = "black"
