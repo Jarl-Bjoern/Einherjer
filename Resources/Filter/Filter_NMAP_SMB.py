@@ -59,7 +59,7 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
                                                               # SMBv2_SMBv3
                                                               elif (Report[Result].count(':') == 3):
                                                                    if ("message signing enabled but not required" not in Report[Result+1]):
-                                                                        Dict_SMB_Results['smb2-security-mode'].append(f"{Report[Result+1][6:]}")
+                                                                        Dict_SMB_Results['smb2-security-mode'].append(f"{Report[Result+1][6:].replace('required','enforced')}")
                                                 else: break
                                             except IndexError:
                                                 break
@@ -149,7 +149,7 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
                                                               # SMBv2_SMBv3
                                                               elif (Report[Result].count(':') == 3):
                                                                    if ("message signing enabled but not required" not in Report[Result+1]):
-                                                                        Dict_SMB_Results['smb2-security-mode'].append(f"{Report[Result+1][6:]}")
+                                                                        Dict_SMB_Results['smb2-security-mode'].append(f"{Report[Result+1][6:].replace('required','enforced')}")
                                                 else: break
                                             except IndexError:
                                                 break
