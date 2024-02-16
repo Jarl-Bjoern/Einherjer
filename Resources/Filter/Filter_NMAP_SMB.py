@@ -55,11 +55,11 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
                                                               # SMBv1
                                                               if (Report[Result].count(':') == 1):
                                                                   if ('disabled' in Report[Result] and 'message_signing' in Report[Result]):
-                                                                      Dict_SMB_Results[Target].append(Report[Result][8:])
+                                                                      Dict_SMB_Results[Target].append(Report[Result][4:].replace('message_signing','Message signing').replace('(dangerous, but default)',' '))
                                                               # SMBv2_SMBv3
                                                               elif (Report[Result].count(':') == 3):
                                                                    if ("message signing enabled but not required" not in Report[Result+1]):
-                                                                        Dict_SMB_Results['smb2-security-mode'].append(f"{Report[Result][4:-2].replace(':', '_')} : {Report[Result+1][6:]}")
+                                                                        Dict_SMB_Results['smb2-security-mode'].append(f"{Report[Result+1][6:]}")
                                                 else: break
                                             except IndexError:
                                                 break
@@ -73,6 +73,8 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
                                             "Nmap scan report"           not in Report[Result]):
                                                 if ("dialects" in Report[Result]):
                                                     Result += 1
+                                                elif ("(SMBv1)" in Report[Result]):
+                                                    Dict_SMB_Results['smb-protocols'].append(Report[Result][6:24])
                                                 elif ("_" in Report[Result]):
                                                     Dict_SMB_Results['smb-protocols'].append(Report[Result][6:].replace(':', '_'))
                                                     break
@@ -143,11 +145,11 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
                                                               # SMBv1
                                                               if (Report[Result].count(':') == 1):
                                                                   if ('disabled' in Report[Result] and 'message_signing' in Report[Result]):
-                                                                      Dict_SMB_Results[Target].append(Report[Result][8:])
+                                                                      Dict_SMB_Results[Target].append(Report[Result][4:].replace('message_signing','Message signing').replace('(dangerous, but default)',' '))
                                                               # SMBv2_SMBv3
                                                               elif (Report[Result].count(':') == 3):
                                                                    if ("message signing enabled but not required" not in Report[Result+1]):
-                                                                        Dict_SMB_Results['smb2-security-mode'].append(f"{Report[Result][4:-2].replace(':', '_')} : {Report[Result+1][6:]}")
+                                                                        Dict_SMB_Results['smb2-security-mode'].append(f"{Report[Result+1][6:]}")
                                                 else: break
                                             except IndexError:
                                                 break
@@ -161,6 +163,8 @@ def SMB_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SMB_Re
                                             "Nmap scan report"           not in Report[Result]):
                                                 if ("dialects" in Report[Result]):
                                                     Result += 1
+                                                elif ("(SMBv1)" in Report[Result]):
+                                                    Dict_SMB_Results['smb-protocols'].append(Report[Result][6:24])
                                                 elif ("_" in Report[Result]):
                                                     Dict_SMB_Results['smb-protocols'].append(Report[Result][6:].replace(':', '_'))
                                                     break
