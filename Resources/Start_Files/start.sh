@@ -33,5 +33,5 @@ if [[ -d "$BASE_PATH/venv" ]]; then
 
         deactivate
 else
-        echo -e "\n${RED}Please use a virtual python environment!${NOCOLOR}\n\nInstruction:\n${CYAN}-------------------------------------\n${ORANGE}python3 -m virtualenv $BASE_PATH/venv\nsource $BASE_PATH/venv/bin/activate\npip3 install -r $BASE_PATH/Setup/requirements.txt\ndeactivate${NOCOLOR}"
+        echo -e "\n${RED}Please use the installation script!${NOCOLOR}\n\nInstruction:\n${CYAN}-------------------------------------\n${ORANGE}sudo bash $BASE_PATH/Setup/Setup.sh\n${NOCOLOR}"
 fi
