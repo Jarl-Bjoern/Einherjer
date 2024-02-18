@@ -377,5 +377,19 @@ except FileNotFoundError: pass
 # Delete_Unused_Functions
 del catch_warnings, chmod, Path, redirect_stdout, simplefilter, stat
 
+# Software_Database
+#if (not exists(join(dirname(realpath(__file__)).split('Resources/Header_Files')[0]), 'Config/Database/Software.json')):
+    pass
+#    r = get('')
+#    Array_Software = resplit('"|,',r.text[1:-2])
+
+#    with open(join(dirname(realpath(__file__)).split('Resources/Header_Files')[0]), 'Config/Database/Software.json'), 'w') as f:
+#            for i in Array_Software:
+#                    if (i != ""):
+#                            r = get(f'{i}.json')
+#                            f.write(f'{r.text}\n')
+#                            sleep (10)
+#    r.close()
+
 # Static_Date
 Date = strftime('%Y-%m-%d_%H-%M-%S')
