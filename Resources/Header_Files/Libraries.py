@@ -378,12 +378,11 @@ except FileNotFoundError: pass
 del catch_warnings, chmod, Path, redirect_stdout, simplefilter, stat
 
 # Software_Database
-#if (not exists(join(dirname(realpath(__file__)).split('Resources/Header_Files')[0]), 'Config/Database/Software.json')):
-    pass
+#if (not exists(join(dirname(realpath(__file__)).split('Resources/Header_Files')[0]), 'Config/Database/software.json')):
 #    r = get('')
 #    Array_Software = resplit('"|,',r.text[1:-2])
 
-#    with open(join(dirname(realpath(__file__)).split('Resources/Header_Files')[0]), 'Config/Database/Software.json'), 'w') as f:
+#    with open(join(dirname(realpath(__file__)).split('Resources/Header_Files')[0]), 'Config/Database/software.json'), 'w') as f:
 #            for i in Array_Software:
 #                    if (i != ""):
 #                            r = get(f'{i}.json')
