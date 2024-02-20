@@ -5,7 +5,7 @@
 # Libraries
 from ..Header_Files.Variables import *
 
-def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Results = {'DNS': "", 'encryption_algorithms': [], 'kex_algorithms': [], 'mac_algorithms': [], 'server_host_key_algorithms': [], 'auth_methods': []}, Array_Temp = []):
+def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Results = {'DNS': "", 'encryption_algorithms': [], 'kex_algorithms': [], 'mac_algorithms': [], 'server_host_key_algorithms': [], 'auth_methods': [], 'sshv1': []}, Array_Temp = []):
     try:
         # Check_For_One_File
         if (isfile(nmap_files_location)):
@@ -86,10 +86,10 @@ def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Re
                               "Nmap scan report" in Report[Result+1]):
                                    try:
                                        Temp_Dict = Dict_SSH_Results
-                                       if (Temp_Dict != {'DNS': "", 'encryption_algorithms': [], 'kex_algorithms': [], 'mac_algorithms': [], 'server_host_key_algorithms': [], 'auth_methods': []}):
+                                       if (Temp_Dict != {'DNS': "", 'encryption_algorithms': [], 'kex_algorithms': [], 'mac_algorithms': [], 'server_host_key_algorithms': [], 'auth_methods': [], 'sshv1': []}):
                                            Dict_System[f'{IP_Address}:{Port}'] = Dict_SSH_Results
                                    except: pass
-                                   Dict_SSH_Results = {'DNS': "", 'encryption_algorithms': [], 'kex_algorithms': [], 'mac_algorithms': [], 'server_host_key_algorithms': [], 'auth_methods': []}
+                                   Dict_SSH_Results = {'DNS': "", 'encryption_algorithms': [], 'kex_algorithms': [], 'mac_algorithms': [], 'server_host_key_algorithms': [], 'auth_methods': [], 'sshv1': []}
 
 
             elif (nmap_files_location.endswith('.xml')):
@@ -172,15 +172,15 @@ def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Re
                               "Nmap scan report" in Report[Result+1]):
                                    try:
                                        Temp_Dict = Dict_SSH_Results
-                                       if (Temp_Dict != {'DNS': "", 'encryption_algorithms': [], 'kex_algorithms': [], 'mac_algorithms': [], 'server_host_key_algorithms': [], 'auth_methods': []}):
+                                       if (Temp_Dict != {'DNS': "", 'encryption_algorithms': [], 'kex_algorithms': [], 'mac_algorithms': [], 'server_host_key_algorithms': [], 'auth_methods': [], 'sshv1': []}):
                                            Dict_System[f'{IP_Address}:{Port}'] = Dict_SSH_Results
                                    except UnboundLocalError: pass
-                                   Dict_SSH_Results = {'DNS': "", 'encryption_algorithms': [], 'kex_algorithms': [], 'mac_algorithms': [], 'server_host_key_algorithms': [], 'auth_methods': []}
+                                   Dict_SSH_Results = {'DNS': "", 'encryption_algorithms': [], 'kex_algorithms': [], 'mac_algorithms': [], 'server_host_key_algorithms': [], 'auth_methods': [], 'sshv1': []}
 
         # Write_Output
         Array_Temp.append(join(output_location, 'ssh-vulns.csv'))
         with open(join(output_location, 'ssh-vulns-temp.csv'), 'w') as f:
-            f.write("Host;DNS;encryption_algorithms;kex_algorithms;mac_algorithms;server_host_key_algorithms;auth_methods\n")
+            f.write("Host;DNS;encryption_algorithms;kex_algorithms;mac_algorithms;server_host_key_algorithms;auth_methods;SSH-V1\n")
             for i in Dict_System:
                 f.write(f'{i};')
                 for j in Dict_System[i]:
