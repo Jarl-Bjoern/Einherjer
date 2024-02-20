@@ -53,6 +53,7 @@ def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Re
                                                  "compression_algorithms"     not in Report[Result] and
                                                  "filtered"                   not in Report[Result] and
                                                  "closed"                     not in Report[Result] and
+                                                 "fingerprint-strings"        not in Report[Result] and
                                                  "unknown"                    not in Report[Result]):
                                                       if ('@' in Report[Result][8:]):
                                                            if (Report[Result][8:].split("@")[0] not in Array_SSH_Algorithms):
@@ -73,6 +74,7 @@ def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Re
                                             "MAC Address:"               not in Report[Result] and
                                             "filtered"                   not in Report[Result] and
                                             "closed"                     not in Report[Result] and
+                                            "fingerprint-strings"        not in Report[Result] and
                                             "unknown"                    not in Report[Result] and
                                             "|" in Report[Result]):
                                                        if ("publickey" not in Report[Result]):
@@ -158,6 +160,7 @@ def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Re
                                             "MAC Address:"               not in Report[Result] and
                                             "filtered"                   not in Report[Result] and
                                             "closed"                     not in Report[Result] and
+                                            "fingerprint-strings"        not in Report[Result] and
                                             "unknown"                    not in Report[Result] and
                                             "|" in Report[Result]):
                                                        if ("publickey" not in Report[Result]):
