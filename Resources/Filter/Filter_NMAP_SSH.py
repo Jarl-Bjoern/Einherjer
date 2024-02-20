@@ -39,6 +39,9 @@ def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Re
                               "closed"    not in Report[Result]):
                                     Port = Report[Result].split('/')[0]
                         elif ("|" in Report[Result]):
+                             if ("_sshv1" in Report[Result]):
+                                 if ("Server supports SSHv1" in Report[Result]):
+                                     SSH_One = "X"
                              if ("kex_algorithms"             in Report[Result][4:-1] or
                                  "server_host_key_algorithms" in Report[Result][4:-1] or
                                  "encryption_algorithms"      in Report[Result][4:-1] or
@@ -85,11 +88,12 @@ def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Re
                               "Nmap done"        in Report[Result+1] or
                               "Nmap scan report" in Report[Result+1]):
                                    try:
+                                       if (SSH_One != ""): Dict_SSH_Results['sshv1'] = SSH_One
                                        Temp_Dict = Dict_SSH_Results
                                        if (Temp_Dict != {'DNS': "", 'encryption_algorithms': [], 'kex_algorithms': [], 'mac_algorithms': [], 'server_host_key_algorithms': [], 'auth_methods': [], 'sshv1': []}):
                                            Dict_System[f'{IP_Address}:{Port}'] = Dict_SSH_Results
                                    except: pass
-                                   Dict_SSH_Results = {'DNS': "", 'encryption_algorithms': [], 'kex_algorithms': [], 'mac_algorithms': [], 'server_host_key_algorithms': [], 'auth_methods': [], 'sshv1': []}
+                                   Dict_SSH_Results, SSH_One = {'DNS': "", 'encryption_algorithms': [], 'kex_algorithms': [], 'mac_algorithms': [], 'server_host_key_algorithms': [], 'auth_methods': [], 'sshv1': []}, ""
 
 
             elif (nmap_files_location.endswith('.xml')):
@@ -126,6 +130,10 @@ def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Re
                               "closed"    not in Report[Result]):
                                     Port = Report[Result].split('/')[0]
                         elif ("|" in Report[Result]):
+                             if ("_sshv1" in Report[Result]):
+                                 if ("Server supports SSHv1" in Report[Result]):
+                                     SSH_One = "X"
+
                              if ("kex_algorithms"             in Report[Result][4:-1] or
                                  "server_host_key_algorithms" in Report[Result][4:-1] or
                                  "encryption_algorithms"      in Report[Result][4:-1] or
@@ -171,11 +179,12 @@ def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Re
                               "Nmap done"        in Report[Result+1] or
                               "Nmap scan report" in Report[Result+1]):
                                    try:
+                                       if (SSH_One != ""): Dict_SSH_Results['sshv1'] = SSH_One
                                        Temp_Dict = Dict_SSH_Results
                                        if (Temp_Dict != {'DNS': "", 'encryption_algorithms': [], 'kex_algorithms': [], 'mac_algorithms': [], 'server_host_key_algorithms': [], 'auth_methods': [], 'sshv1': []}):
                                            Dict_System[f'{IP_Address}:{Port}'] = Dict_SSH_Results
                                    except UnboundLocalError: pass
-                                   Dict_SSH_Results = {'DNS': "", 'encryption_algorithms': [], 'kex_algorithms': [], 'mac_algorithms': [], 'server_host_key_algorithms': [], 'auth_methods': [], 'sshv1': []}
+                                   Dict_SSH_Results, SSH_One = {'DNS': "", 'encryption_algorithms': [], 'kex_algorithms': [], 'mac_algorithms': [], 'server_host_key_algorithms': [], 'auth_methods': [], 'sshv1': []}, ""
 
         # Write_Output
         Array_Temp.append(join(output_location, 'ssh-vulns.csv'))
