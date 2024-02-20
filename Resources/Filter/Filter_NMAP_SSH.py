@@ -211,7 +211,7 @@ def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Re
         with open(join(output_location, 'ssh-vulns.csv'), 'w') as fw:
             with open(join(output_location, 'ssh-vulns-temp.csv'), 'r') as f:
                 for _ in f.read().splitlines():
-                    if (';;;;;;' not in _):
+                    if (';;;;;;' not in _ and _.count(';') == 1):
                         fw.write(f'{_}\n')
 
         remove(join(output_location, 'ssh-vulns-temp.csv'))
