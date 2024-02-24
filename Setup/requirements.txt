@@ -1,6 +1,6 @@
 aiohttp==3.9.2
 asyncssh==2.14.2
-cryptography==42.0.2
+cryptography==42.0.4
 crc==4.1.0
 haipy==1.5.1
 numpy==1.23.3
