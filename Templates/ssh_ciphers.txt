@@ -23,8 +23,6 @@ aes128-ctr
 aes192-ctr
 aes256-ctr
 chacha20-poly1305
-aes128-gcm
-aes256-gcm
 sntrup761x25519-sha512
 hmac-sha2-256
 hmac-sha2-512
