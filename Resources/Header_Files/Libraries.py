@@ -348,11 +348,6 @@ try:
                 #    from docx.shared      import Inches, Pt, RGBColor
                 elif ("json" in args.format):
                     import json
-                #elif ("pdf" in args.format):
-                #    if (osname == 'nt'):
-                #        from docx2pdf     import convert
-                #    else:
-                #        print("At this point it's not be possible to convert a docx file into a pdf under linux.\nPlease try it under windows.\n")
                 elif ("xlsx" in args.format):
                     from xlsxwriter       import Workbook
                     from pandas           import ExcelFile, DataFrame, read_excel
