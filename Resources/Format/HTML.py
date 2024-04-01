@@ -19,11 +19,9 @@ def Screenshot_Table_File(location, Body_HTML = ""):
 """
     Head_HTML += "<th>Host</th>"
     Head_HTML += "<th>Screenshot</th>\n</tr>"
-    Body_HTML = "<tr>"
     for Body in listdir(location):
-        Body_HTML += f"<td>{Body.split('(')[1].split(')')[0].replace('_', ':')}</td>\n"
-        Body_HTML += f"<td><img src='{join(location, Body)}' width=800/></td>\n"
-    Body_HTML += "</tr>"
+        Body_HTML += f"<tr><td>{Body.split('(')[1].split(')')[0].replace('_', ':')}</td></tr>\n"
+        Body_HTML += f"<tr><td><img src='{join(location, Body)}' width=800/></td></tr>\n"
     Footer_HTML = """</table>
 </body>
 </html>"""
