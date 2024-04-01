@@ -30,15 +30,15 @@ def Check_Certificate(url, t_seconds, Host_Name, Location, context = create_unve
     else:                    Dict_Temp['DNS'] = ""
 
     # Check_Self_Signed_Certificate
-    try:
-        with create_connection((Target, int(Port)), timeout=t_seconds) as sock:
-            try:
-                with self_signed_check.wrap_socket(sock, server_hostname=Target) as ssock:
-                    Dict_Temp['Self_Signed'] = False
-            except SSLCertVerificationError:
-                Dict_Temp['Self_Signed'] = True
-    except (ConnectionRefusedError, gaierror, SSLError, SSLZeroReturnError, TimeoutError):
-        pass
+    #try:
+    #    with create_connection((Target, int(Port)), timeout=t_seconds) as sock:
+    #        try:
+    #            with self_signed_check.wrap_socket(sock, server_hostname=Target) as ssock:
+    #                Dict_Temp['Self_Signed'] = False
+    #        except SSLCertVerificationError:
+    #            Dict_Temp['Self_Signed'] = True
+    #except (ConnectionRefusedError, gaierror, SSLError, SSLZeroReturnError, TimeoutError):
+    #    pass
 
     # Grab_Cert_Information
     try:
