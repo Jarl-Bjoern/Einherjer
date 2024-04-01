@@ -92,8 +92,6 @@ def Check_CORS_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_Auth, Locati
                 Temp_Head = Header_Key.upper()
                 if (Header_Values.upper() == "*"):
                     Dict_Temp_CORS[Temp_Head] = Header_Values.upper()
-                else:
-                    Dict_Temp_CORS[Temp_Head] = "FEHLT"
 
 
         # Logging
