@@ -20,7 +20,7 @@ def Screenshot_Table_File(location, Body_HTML = ""):
     Head_HTML += "<th>URL</th>"
     Head_HTML += "<th>DNS</th>"
     for Head in listdir(location):
-        Head_HTML += f"<th><img src='{join(location, Head)}'/></th>"
+        Head_HTML += f"<th><img src='{join(location, Head)}' width=400/></th>"
     Head_HTML += "</tr>"
     Footer_HTML = """</table>
 </body>
