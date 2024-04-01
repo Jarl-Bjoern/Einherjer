@@ -5,6 +5,31 @@
 # Libraries
 from ..Header_Files.Variables import *
 
+def Screenshot_Table_File(location, Body_HTML = ""):
+    Head_HTML = f"""<!DOCTYPE html>
+<html>
+<head>
+<title>
+    Scan - Result
+</title>
+<body style="background-color:black;font-color:white">
+<h1>Einherjer - Screenshots</h1>
+<table style="width:100%">
+<tr>
+"""
+    #Head_HTML += "<th>URL</th>"
+    #Head_HTML += "<th>DNS</th>"
+    #for Head in list(Dict_Header):
+    #    Head_HTML += f"<th>{Head}</th>"
+    #Head_HTML += "</tr>"
+    Footer_HTML = """</table>
+</body>
+</html>"""
+
+    with open(join(location, f'screenshots.html'), 'w') as f:
+        f.write(Head_HTML), f.write(Body_HTML), f.write(Footer_HTML)
+
+
 def HTML_Table(Dict_Result, location, Body_HTML = ""):
     Head_HTML = f"""<!DOCTYPE html>
 <html>
