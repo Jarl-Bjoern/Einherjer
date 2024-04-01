@@ -17,11 +17,13 @@ def Screenshot_Table_File(location, Body_HTML = ""):
 <table style="width:100%">
 <tr>
 """
-    Head_HTML += "<th>URL</th>"
-    Head_HTML += "<th>DNS</th>"
-    for Head in listdir(location):
-        Head_HTML += f"<th><img src='{join(location, Head)}' width=800/></th>"
-    Head_HTML += "</tr>"
+    Head_HTML += "<th>Host</th>"
+    Head_HTML += "<th>Screenshot</th>\n</tr>"
+    Body_HTML = "<tr>"
+    for Body in listdir(location):
+        Body_HTML += f"<td>{Body.split('(')[1].split(')')[0].replace('_', ':')}</td>\n"
+        Body_HTML += f"<td><img src='{join(location, Body)}' width=800/></td>\n"
+    Body_HTML += "</tr>"
     Footer_HTML = """</table>
 </body>
 </html>"""
