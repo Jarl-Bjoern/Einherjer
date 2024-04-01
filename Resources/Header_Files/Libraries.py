@@ -338,21 +338,21 @@ try:
                 # Format_Import
                 if ("csv" in args.format):
                     import csv
-                elif ("docx" in args.format):
-                    from docx             import Document
-                    from docx.enum.style  import WD_STYLE_TYPE
-                    from docx.enum.table  import WD_ALIGN_VERTICAL
-                    from docx.enum.text   import WD_ALIGN_PARAGRAPH
-                    from docx.oxml.shared import OxmlElement
-                    from docx.oxml.ns     import qn
-                    from docx.shared      import Inches, Pt, RGBColor
+                #elif ("docx" in args.format):
+                #    from docx             import Document
+                #    from docx.enum.style  import WD_STYLE_TYPE
+                #    from docx.enum.table  import WD_ALIGN_VERTICAL
+                #    from docx.enum.text   import WD_ALIGN_PARAGRAPH
+                #    from docx.oxml.shared import OxmlElement
+                #    from docx.oxml.ns     import qn
+                #    from docx.shared      import Inches, Pt, RGBColor
                 elif ("json" in args.format):
                     import json
-                elif ("pdf" in args.format):
-                    if (osname == 'nt'):
-                        from docx2pdf     import convert
-                    else:
-                        print("At this point it's not be possible to convert a docx file into a pdf under linux.\nPlease try it under windows.\n")
+                #elif ("pdf" in args.format):
+                #    if (osname == 'nt'):
+                #        from docx2pdf     import convert
+                #    else:
+                #        print("At this point it's not be possible to convert a docx file into a pdf under linux.\nPlease try it under windows.\n")
                 elif ("xlsx" in args.format):
                     from xlsxwriter       import Workbook
                     from pandas           import ExcelFile, DataFrame, read_excel
