@@ -12,7 +12,7 @@ def Screenshot_Table_File(location, Body_HTML = ""):
 <title>
     Scan - Result
 </title>
-<body style="background-color:black;font-color:white">
+<body style="background-color:black">
 <h1>Einherjer - Screenshots</h1>
 <table style="width:100%">
 <tr>
