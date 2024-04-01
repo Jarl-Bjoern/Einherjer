@@ -138,7 +138,8 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
         with open(join(location, f'result_certificate.csv'), Write_Mode, encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
             if (Write_Mode == 'w'):
-                writer.writerow(['Host','DNS','Self_Signed','Issuer','Subject','Signature_Algorithm','Public_Key','Cert_Creation_Date','Cert_EOL','Date_Difference','Tested_Date'])
+#                writer.writerow(['Host','DNS','Self_Signed','Issuer','Subject','Signature_Algorithm','Public_Key','Cert_Creation_Date','Cert_EOL','Date_Difference','Tested_Date'])
+                writer.writerow(['Host','DNS','Issuer','Subject','Signature_Algorithm','Public_Key','Cert_Creation_Date','Cert_EOL','Date_Difference','Tested_Date'])
 
             for Target in Dict_Result['Certificate']:
                 if ('//' in Target):
@@ -153,9 +154,9 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                     elif (Result_Left != "DNS" and Result_Right == ""):      Result_Right = "FEHLT"
 
                     if (Result_Left != "DNS" and Result_Right != "FEHLT"):
-                        if (Result_Left == 'Self_Signed' and Result_Right == True):
-                            Dict_Overview_SSL[Target_New]['Insecure_Certificate_Signature'] = True
-                        elif (Result_Left == 'Cert_EOL' and 'expired' in Result_Right):
+                       # if (Result_Left == 'Self_Signed' and Result_Right == True):
+                       #     Dict_Overview_SSL[Target_New]['Insecure_Certificate_Signature'] = True
+                        if (Result_Left == 'Cert_EOL' and 'expired' in Result_Right):
                             Dict_Overview_SSL[Target_New]['Certificate_Expired'] = True
                         
                         Array_Temp.append(Result_Right)
@@ -462,11 +463,11 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                                             Dict_Overview_SSL[Target]['BEAST'] = True
 
                                         elif (_ == "LUCKY13" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
-                                            Temp_Arr = ['The system is vulnerable for LUCKY13 (CVE-2013-0169)']
+                                            Temp_Arr = ['The system is potentially vulnerable for LUCKY13 (CVE-2013-0169)']
                                             Dict_Overview_SSL[Target]['LUCKY13'] = True
 
                                         elif (_ == "SWEET32" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
-                                            Temp_Arr = ['The system is vulnerable for SWEET32 (CVE-2016-6329)']
+                                            Temp_Arr = ['The system is potentially vulnerable for SWEET32 (CVE-2016-6329)']
                                             Dict_Overview_SSL[Target]['SWEET32'] = True
 
                                         elif (_ == "FREAK" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
