@@ -17,11 +17,11 @@ def Screenshot_Table_File(location, Body_HTML = ""):
 <table style="width:100%">
 <tr>
 """
-    #Head_HTML += "<th>URL</th>"
-    #Head_HTML += "<th>DNS</th>"
-    #for Head in list(Dict_Header):
-    #    Head_HTML += f"<th>{Head}</th>"
-    #Head_HTML += "</tr>"
+    Head_HTML += "<th>URL</th>"
+    Head_HTML += "<th>DNS</th>"
+    for Head in listdir(location):
+        Head_HTML += f"<th><img src='{join(location, Head)}'/></th>"
+    Head_HTML += "</tr>"
     Footer_HTML = """</table>
 </body>
 </html>"""
