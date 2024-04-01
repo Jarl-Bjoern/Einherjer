@@ -518,36 +518,12 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
         if ("csv" in args.format):
             from Resources.Format.CSV import CSV_Table
             Output_Write = CSV_Table
-        elif ("docx" in args.format):
-            from Resources.Format.Word import Word_Table
-            Output_Write = Word_Table
-        elif ("html" in args.format):
-            from Resources.Format.HTML import HTML_Table
-            Output_Write = HTML_Table
         elif ("json" in args.format):
             from Resources.Format.JSON import JSON_Table
             Output_Write = JSON_Table
-        elif ("md" in args.format):
-            from Resources.Format.Markdown import Markdown_Table
-            Output_Write = Markdown_Table
-        elif ("pdf" in args.format):
-            from Resources.Format.PDF import Create_PDF
-            from Resources.Format.Word import Word_Table
-            Output_Write = Word_Table
-            if (osname == 'nt'): Create_PDF(Output_Location)
-            else: print("At this point it's not be possible to convert a docx file into a pdf under linux.\nPlease try it under windows.\n")
-        elif ("tex" in args.format):
-            from Resources.Format.LaTeX import Latex_Table
-            Output_Write = Latex_Table
         elif ("xlsx" in args.format):
             from Resources.Format.Excel import Excel_Table
             Output_Write = Excel_Table
-        elif ("xml" in args.format):
-            from Resources.Format.XML import XML_Table
-            #Output_Write = XML_Table
-        elif ("yaml" in args.format):
-            from Resources.Format.YAML import YAML_Table
-            #Output_Write = YAML_Table
 
         # Remove_Old_State_File
         if (exists(join(dirname(realpath(__file__)).split("Resources")[0], "scan.state"))):
