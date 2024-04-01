@@ -244,6 +244,7 @@ def CSV_Table(Dict_Result, location, Write_Mode = "", Write_Second_Mode = ""):
                     else: Array_Temp.append("X")
 
                 if (Array_Temp.count('✓') != len(Array_CORS_Header)):
+                    print (Array_Temp)
                     writer.writerow(Array_Temp)
                 else:
                     Standard.Remove_From_Filtered_File(join(location, 'affected_cors_targets.txt'), Target)
