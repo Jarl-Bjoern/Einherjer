@@ -84,14 +84,18 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             )
 
             # Scan_Certificate
-            Dict_Result['Certificate'][url] = Check_Certificate(url, t_seconds, Host_Name, Location)
-            Dict_Temp['Certificate'][url]   = Dict_Result['Certificate'][url]
+            try:
+                Dict_Result['Certificate'][url] = Check_Certificate(url, t_seconds, Host_Name, Location)
+                Dict_Temp['Certificate'][url]   = Dict_Result['Certificate'][url]
 
-            # Trace_End
-            Logs.Trace_File(
-                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.CYAN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+' - Certificate - '+Colors.GREEN+'OK'+Colors.RESET,
-                join(Location, 'Logs')
-            )
+                # Trace_End
+                Logs.Trace_File(
+                    Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.CYAN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+' - Certificate - '+Colors.GREEN+'OK'+Colors.RESET,
+                    join(Location, 'Logs')
+                )
+            except TimeoutError:
+                Logs.Write_Log(url, Host_Name, join(Location, 'Logs'))
+
 
         # Create_URL_Backup
         Temp_URL_Backup = url
