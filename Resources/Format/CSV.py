@@ -381,6 +381,7 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
                                             for Cipher in _['Ciphers']:
                                                 Temp_Arr = [_['Protocol'],Cipher['Key_Size'],Cipher['Name']]
 
+                                                print (Cipher)
                                                 if (Cipher['Encryption'] != None):
                                                     Temp_Arr.append(Cipher['Encryption'])
                                                 if (Cipher['Key_Exchange'] != None):
