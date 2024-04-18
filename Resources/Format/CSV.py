@@ -302,7 +302,7 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
                                              'Support for SSLv3': False,
                                            'Support for TLS_1.0': False,
                                            'Support for TLS_1.1': False,
-                                          'Support for  TLS_1.3': False,
+                                           'Support for TLS_1.3': False,
                                                'Support for MD5': False,
                                               'Support for SHA1': False,
                                       'Support for NULL ciphers': False,
@@ -360,8 +360,8 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
                                                 # Write_Bad_Ciphers
                                                 if (Cipher['Encryption'] != None):
                                                     Temp_Arr.append(Cipher['Encryption'])
-                                                if (Cipher['Key_Exchange'] != None):
-                                                    Temp_Arr.append(Cipher['Key_Exchange'])
+                                                if (Cipher['Type'] != None):
+                                                    Temp_Arr.append(Cipher['Type'])
                                                 if (Cipher['Hash_Algorithm'] != None):
                                                     Temp_Arr.append(Cipher['Hash_Algorithm'])
 
@@ -381,11 +381,10 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
                                             for Cipher in _['Ciphers']:
                                                 Temp_Arr = [_['Protocol'],Cipher['Key_Size'],Cipher['Name']]
 
-                                                print (Cipher)
                                                 if (Cipher['Encryption'] != None):
                                                     Temp_Arr.append(Cipher['Encryption'])
-                                                if (Cipher['Key_Exchange'] != None):
-                                                    Temp_Arr.append(Cipher['Key_Exchange'])
+                                                if (Cipher['Type'] != None):
+                                                    Temp_Arr.append(Cipher['Type'])
                                                 if (Cipher['Hash_Algorithm'] != None):
                                                     Temp_Arr.append(Cipher['Hash_Algorithm'])
 
@@ -414,7 +413,7 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
                                              'Support for SSLv3': False,
                                            'Support for TLS_1.0': False,
                                            'Support for TLS_1.1': False,
-                                          'Support for  TLS_1.3': False,
+                                           'Support for TLS_1.3': False,
                                                            'MD5': False,
                                                           'SHA1': False,
                                                           'NULL': False,
