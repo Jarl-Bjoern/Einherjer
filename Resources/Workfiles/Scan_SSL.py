@@ -121,7 +121,6 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                 'Type':                     "",
                 'Curve_Size':               "",
                 "Encryption":               "",
-                "Key_Exchange":             "",
                 "Hash_Algorithm":           ""
             }
             Dict_Temp_Good_Ciphers = {
@@ -132,7 +131,6 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                 'Type':                     "",
                 'Curve_Size':               "",
                 "Encryption":               "",
-                "Key_Exchange":             "",
                 "Hash_Algorithm":           ""
             }
             Dict_Full_SSL = {
@@ -232,8 +230,8 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                             if ("WITH_" in Temp_Cipher):
                                                                 Temp_Cipher = Temp_Cipher.split('WITH_')[1]
                                                             if ("_SHA" in Temp_Cipher):
-                                                                Dict_Temp_Ciphers['Encryption'] = Temp_Cipher.split('_SHA')[0]
-                                                                Dict_Temp_Ciphers['Hash_Algorithm']  = Temp_Cipher.split('_')[-1]
+                                                                Dict_Temp_Ciphers['Encryption']     = Temp_Cipher.split('_SHA')[0]
+                                                                Dict_Temp_Ciphers['Hash_Algorithm'] = Temp_Cipher.split('_')[-1]
                                                             else:
                                                                 Dict_Temp_Ciphers['Encryption_Type'], Dict_Temp_Ciphers['Hash_Algorithm'] = Temp_Cipher, '-'
 
@@ -247,7 +245,6 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                                 'Type':       "",
                                                                 'Curve_Size': "",
                                                                 "Encryption": "",
-                                                                "Key_Exchange": "",
                                                                 "Hash_Algorithm": ""
                                                             }
                                                     else:
@@ -260,8 +257,8 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                             if ("WITH_" in Temp_Cipher):
                                                                 Temp_Cipher = Temp_Cipher.split('WITH_')[1]
                                                             if ("_SHA" in Temp_Cipher):
-                                                                Dict_Temp_Good_Ciphers['Encryption'] = Temp_Cipher.split('_SHA')[0]
-                                                                Dict_Temp_Good_Ciphers['Hash_Algorithm']  = Temp_Cipher.split('_')[-1]
+                                                                Dict_Temp_Good_Ciphers['Encryption']     = Temp_Cipher.split('_SHA')[0]
+                                                                Dict_Temp_Good_Ciphers['Hash_Algorithm'] = Temp_Cipher.split('_')[-1]
                                                             else:
                                                                 Dict_Temp_Good_Ciphers['Encryption'], Dict_Temp_Good_Ciphers['Hash_Algorithm'] = Temp_Cipher, '-'
                                                         if (z['ephemeral_key'] != None):
@@ -278,7 +275,6 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                                 'Type':       "",
                                                                 'Curve_Size': "",
                                                                 "Encryption": "",
-                                                                "Key_Exchange": "",
                                                                 "Hash_Algorithm": ""
                                                             }
                                             elif (k == 'tls_version_used'):
