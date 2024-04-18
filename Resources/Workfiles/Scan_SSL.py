@@ -260,10 +260,26 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                                 Dict_Temp_Good_Ciphers['Hash_Algorithm'] = Temp_Cipher.split('_')[-1]
                                                             else:
                                                                 Dict_Temp_Good_Ciphers['Encryption'], Dict_Temp_Good_Ciphers['Hash_Algorithm'] = Temp_Cipher, '-'
+
                                                         if (z['ephemeral_key'] != None):
                                                             Dict_Temp_Good_Ciphers['Curve_Name'] = z['ephemeral_key']['curve_name']
                                                             Dict_Temp_Good_Ciphers['Type']       = z['ephemeral_key']['type_name']
                                                             Dict_Temp_Good_Ciphers['Curve_Size'] = z['ephemeral_key']['size']
+                                                        else:
+                                                            if ("RSA" in z['cipher_suite']['name']):
+                                                                Dict_Temp_Good_Ciphers['Type']   = "RSA"
+
+                                                        # Encryption
+                                                        if ("TLS" in z['cipher_suite']['name']):
+                                                            Temp_Cipher = z['cipher_suite']['name'].split('TLS_')[1]
+                                                            if ("WITH_" in Temp_Cipher):
+                                                                Temp_Cipher = Temp_Cipher.split('WITH_')[1]
+                                                            if ("_SHA" in Temp_Cipher):
+                                                                Dict_Temp_Good_Ciphers['Encryption']     = Temp_Cipher.split('_SHA')[0]
+                                                                Dict_Temp_Good_Ciphers['Hash_Algorithm'] = Temp_Cipher.split('_')[-1]
+                                                            else:
+                                                                Dict_Temp_Good_Ciphers['Encryption_Type'], Dict_Temp_Good_Ciphers['Hash_Algorithm'] = Temp_Cipher, '-'
+
                                                         if (Dict_Temp_Good_Ciphers not in Dict_Good_Ciphers['Ciphers']):
                                                             Dict_Good_Ciphers['Ciphers'].append(Dict_Temp_Good_Ciphers)
                                                             Dict_Temp_Good_Ciphers = {
