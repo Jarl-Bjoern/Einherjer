@@ -28,6 +28,13 @@ echo -e "💀\t\t\t\t\t\t\t\t💀"
 echo -e "💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀\n\n"
 sleep 2
 
+# Install_Missing_APT_Packages
+echo -e "Installing the missing ${RED}apt packages${NOCOLOR}"
+echo -e "${CYAN}-----------------------------------------------------------------${NOCOLOR}\n"
+sudo apt install -y libcurl4-openssl-dev chromium chromium-driver python3-pip python3-venv
+echo -e "\n\nThe ${RED}apt packages${NOCOLOR} was installed!\n"
+echo -e "${CYAN}-----------------------------------------------------------------${NOCOLOR}\n\n\n"
+
 # Virtual_Environment
 echo -e "Creating the ${RED}virtual environment${NOCOLOR}"
 echo -e "${CYAN}-----------------------------------------------------------------${NOCOLOR}\n"
@@ -46,11 +53,4 @@ do
   pip3 install $LINE || return 0
 done
 echo -e "\n\nThe ${RED}pip packages${NOCOLOR} was installed!"
-echo -e "${CYAN}-----------------------------------------------------------------${NOCOLOR}\n\n\n"
-
-# Install_Missing_APT_Packages
-echo -e "Installing the missing ${RED}apt packages${NOCOLOR}"
-echo -e "${CYAN}-----------------------------------------------------------------${NOCOLOR}\n"
-sudo apt install -y libcurl4-openssl-dev chromium chromium-driver
-echo -e "\n\nThe ${RED}apt packages${NOCOLOR} was installed!\n"
 echo -e "${CYAN}-----------------------------------------------------------------${NOCOLOR}\n\n\n"
