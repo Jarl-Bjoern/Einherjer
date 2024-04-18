@@ -1,6 +1,5 @@
 aiohttp==3.9.2
 asyncssh==2.14.2
-cryptography==42.0.4
 crc==4.1.0
 haipy==1.5.1
 numpy==1.23.3
@@ -17,8 +16,8 @@ python-docx==0.8.11
 pyzbar==0.1.9
 pyzipper==0.3.6
 requests==2.31.0
-requests-ntlm==1.2.0
-requests-ntlm2==6.5.3
+#requests-ntlm==1.2.0
+#requests-ntlm2==6.5.3
 requests-pkcs12==1.15
 rich==13.5.2
 scapy==2.4.5
