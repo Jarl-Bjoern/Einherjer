@@ -58,7 +58,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                             network_configuration=ServerNetworkConfiguration(
                                 URL,
                                 network_timeout=ssl_timeout,
-                                network_max_retries=2
+                                network_max_retries=5
                             )
                         )
                     )
@@ -73,7 +73,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                         network_configuration=ServerNetworkConfiguration(
                             URL,
                             network_timeout=ssl_timeout,
-                            network_max_retries=2
+                            network_max_retries=5
                         )
                     )
                 )
@@ -206,12 +206,12 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                             if (z['cipher_suite']['key_size'] < 128):
                                                                 Dict_SSL_Vulns['SWEET32'] = True
 
-                                                        # FREAK
-                                                        if ("EXPORT" in z['ephemeral_key']['type_name']):
-                                                            Dict_SSL_Vulns['FREAK'] = True
-
                                                         # Curve
                                                         if (z['ephemeral_key'] != None):
+                                                            # FREAK
+                                                            if ("EXPORT" in z['ephemeral_key']['type_name']):
+                                                                Dict_SSL_Vulns['FREAK'] = True
+
                                                             Dict_Temp_Ciphers['Curve_Name'] = z['ephemeral_key']['curve_name']
                                                             Dict_Temp_Ciphers['Type']       = z['ephemeral_key']['type_name']
                                                             Dict_Temp_Ciphers['Curve_Size'] = z['ephemeral_key']['size']
