@@ -1,4 +1,4 @@
-aiohttp==3.9.2
+aiohttp==3.9.4
 asyncssh==2.14.2
 crc==4.1.0
 haipy==1.5.1
