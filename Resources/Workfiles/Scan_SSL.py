@@ -122,7 +122,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                 'Curve_Size':               "",
                 "Encryption":               "",
                 "Key_Exchange":             "",
-                "Hash_Algoritm":            ""
+                "Hash_Algorithm":           ""
             }
             Dict_Temp_Good_Ciphers = {
                 'Anonymous':                "",
@@ -133,7 +133,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                 'Curve_Size':               "",
                 "Encryption":               "",
                 "Key_Exchange":             "",
-                "Hash_Algoritm":            ""
+                "Hash_Algorithm":           ""
             }
             Dict_Full_SSL = {
                 'DNS':                      "",
@@ -248,7 +248,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                                 'Curve_Size': "",
                                                                 "Encryption": "",
                                                                 "Key_Exchange": "",
-                                                                "Hash_Algoritm": ""
+                                                                "Hash_Algorithm": ""
                                                             }
                                                     else:
                                                         # Good_Ciphers
@@ -279,7 +279,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                                 'Curve_Size': "",
                                                                 "Encryption": "",
                                                                 "Key_Exchange": "",
-                                                                "Hash_Algoritm": ""
+                                                                "Hash_Algorithm": ""
                                                             }
                                             elif (k == 'tls_version_used'):
                                                 TLS_Version = Deep_Result[k]
