@@ -223,17 +223,19 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                             Dict_Temp_Ciphers['Curve_Size'] = z['ephemeral_key']['size']
                                                         else:
                                                             if ("RSA" in z['cipher_suite']['name']):
-                                                                Dict_Temp_Ciphers['Type']       = "RSA"
+                                                                Dict_Temp_Ciphers['Type']   = "RSA"
 
                                                         # Encryption
                                                         Encryption_Type, Hash_Algorithm = "", ""
-                                                        if ("TLS" in z['cipher_suite']['openssl_name']):
-                                                            Temp_Cipher = z['cipher_suite']['openssl_name'].split('TLS_')[1]
+                                                        if ("TLS" in z['cipher_suite']['name']):
+                                                            Temp_Cipher = z['cipher_suite']['name'].split('TLS_')[1]
+                                                            if ("WITH_" in Temp_Cipher):
+                                                                Temp_Cipher = Temp_Cipher.split('WITH_')[1]
                                                             if ("_SHA" in Temp_Cipher):
-                                                                Encryption_Type = Temp_Cipher.split('_SHA')[0]
-                                                                Hash_Algorithm  = Temp_Cipher.split('_')[-1]
+                                                                Dict_Temp_Ciphers['Encryption'] = Temp_Cipher.split('_SHA')[0]
+                                                                Dict_Temp_Ciphers['Hash_Algorithm']  = Temp_Cipher.split('_')[-1]
                                                             else:
-                                                                Encryption_Type, Hash_Algorithm = Temp_Cipher, '-'
+                                                                Dict_Temp_Ciphers['Encryption_Type'], Dict_Temp_Ciphers['Hash_Algorithm'] = Temp_Cipher, '-'
 
                                                         if (Dict_Temp_Ciphers not in Dict_Ciphers['Ciphers']):
                                                             Dict_Ciphers['Ciphers'].append(Dict_Temp_Ciphers)
@@ -253,14 +255,15 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                         Dict_Temp_Good_Ciphers['Anonymous']      = z['cipher_suite']['is_anonymous']
                                                         Dict_Temp_Good_Ciphers['Key_Size']       = z['cipher_suite']['key_size']
                                                         Dict_Temp_Good_Ciphers['Name']           = z['cipher_suite']['name']
-                                                        Encryption_Type, Hash_Algorithm = "", ""
                                                         if ("TLS" in z['cipher_suite']['openssl_name']):
                                                             Temp_Cipher = z['cipher_suite']['openssl_name'].split('TLS_')[1]
+                                                            if ("WITH_" in Temp_Cipher):
+                                                                Temp_Cipher = Temp_Cipher.split('WITH_')[1]
                                                             if ("_SHA" in Temp_Cipher):
-                                                                Encryption_Type = Temp_Cipher.split('_SHA')[0]
-                                                                Hash_Algorithm  = Temp_Cipher.split('_')[-1]
+                                                                Dict_Temp_Good_Ciphers['Encryption'] = Temp_Cipher.split('_SHA')[0]
+                                                                Dict_Temp_Good_Ciphers['Hash_Algorithm']  = Temp_Cipher.split('_')[-1]
                                                             else:
-                                                                Encryption_Type, Hash_Algorithm = Temp_Cipher, '-'
+                                                                Dict_Temp_Good_Ciphers['Encryption'], Dict_Temp_Good_Ciphers['Hash_Algorithm'] = Temp_Cipher, '-'
                                                         if (z['ephemeral_key'] != None):
                                                             Dict_Temp_Good_Ciphers['Curve_Name'] = z['ephemeral_key']['curve_name']
                                                             Dict_Temp_Good_Ciphers['Type']       = z['ephemeral_key']['type_name']
@@ -351,7 +354,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                         Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
                                         +Colors.BLUE+'SSL-Check\n'+Colors.YELLOW
                                         +'-----------------------------------------------------------------------------------------------------------\n'
-                                        +Colors.RED+f'{strftime("%Y-%m-%d %H:%M:%S")} - {_["server_location"]["ip_address"]}:{_["server_location"]["port"]} - It was not possible to connect to the target\n',
+                                        +Colors.RED+f'{strftime("%Y-%m-%d %H:%M:%S")} - {_["server_location"]["ip_address"]}:{_["server_location"]["port"]} - There was a TypeError inside the filter process.\n',
                                         join(Location, 'Logs')
                                     )
 
