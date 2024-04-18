@@ -358,12 +358,19 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
                                                     Dict_Overview_SSL[Target]['Support for CBC ciphers']    = True
 
                                                 # Write_Bad_Ciphers
-                                                if (Cipher['Curve_Name'] != None and Cipher['Curve_Name'] != ''):
-                                                    Temp_Arr.append(Cipher['Curve_Name'])
-                                                else: Temp_Arr.append('-')
-                                                if (Cipher['Type'] != '' and Cipher['Curve_Size'] != '' and Cipher['Curve_Size'] != None):
-                                                    Temp_Arr.append(f"{Cipher['Type']}_{Cipher['Curve_Size']}")
-                                                else: Temp_Arr.append('-')
+                                                if (Cipher['Encryption'] != None):
+                                                    Temp_Arr.append(Cipher['Encryption'])
+                                                if (Cipher['Key_Exchange'] != None):
+                                                    Temp_Arr.append(Cipher['Key_Exchange'])
+                                                if (Cipher['Hash_Algorithm'] != None):
+                                                    Temp_Arr.append(Cipher['Hash_Algorithm'])
+
+#                                                if (Cipher['Curve_Name'] != None and Cipher['Curve_Name'] != ''):
+#                                                    Temp_Arr.append(Cipher['Curve_Name'])
+#                                                else: Temp_Arr.append('-')
+#                                                if (Cipher['Type'] != '' and Cipher['Curve_Size'] != '' and Cipher['Curve_Size'] != None):
+#                                                    Temp_Arr.append(f"{Cipher['Type']}_{Cipher['Curve_Size']}")
+#                                                else: Temp_Arr.append('-')
                                                 Temp_Arr.append(Cipher['Anonymous'])
                                                 writer.writerow(Array_Temp + Temp_Arr)
 
