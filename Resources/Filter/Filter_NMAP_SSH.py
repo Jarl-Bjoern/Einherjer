@@ -6,6 +6,8 @@
 from ..Header_Files.Variables import *
 
 def SSH_Nmap(nmap_files_location, output_location, Dict_System = {}, Dict_SSH_Results = {'DNS': "", 'encryption_algorithms': [], 'kex_algorithms': [], 'mac_algorithms': [], 'server_host_key_algorithms': [], 'auth_methods': [], 'sshv1': []}, Array_Temp = []):
+    SSH_One = ""
+
     try:
         # Check_For_One_File
         if (isfile(nmap_files_location)):
