@@ -224,7 +224,6 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                                 Dict_Temp_Ciphers['Type']   = "RSA"
 
                                                         # Encryption
-                                                        Encryption_Type, Hash_Algorithm = "", ""
                                                         if ("TLS" in z['cipher_suite']['name']):
                                                             Temp_Cipher = z['cipher_suite']['name'].split('TLS_')[1]
                                                             if ("WITH_" in Temp_Cipher):
