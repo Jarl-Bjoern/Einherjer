@@ -119,7 +119,10 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                 'Name':                     "",
                 'Curve_Name':               "",
                 'Type':                     "",
-                'Curve_Size':               ""
+                'Curve_Size':               "",
+                "Encryption":               "",
+                "Key_Exchange":             "",
+                "Hash_Algoritm":            ""
             }
             Dict_Temp_Good_Ciphers = {
                 'Anonymous':                "",
@@ -127,7 +130,10 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                 'Name':                     "",
                 'Curve_Name':               "",
                 'Type':                     "",
-                'Curve_Size':               ""
+                'Curve_Size':               "",
+                "Encryption":               "",
+                "Key_Exchange":             "",
+                "Hash_Algoritm":            ""
             }
             Dict_Full_SSL = {
                 'DNS':                      "",
@@ -237,7 +243,10 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                                 'Name':       "",
                                                                 'Curve_Name': "",
                                                                 'Type':       "",
-                                                                'Curve_Size': ""
+                                                                'Curve_Size': "",
+                                                                "Encryption": "",
+                                                                "Key_Exchange": "",
+                                                                "Hash_Algoritm": ""
                                                             }
                                                     else:
                                                         # Good_Ciphers
@@ -264,7 +273,10 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                                 'Name':       "",
                                                                 'Curve_Name': "",
                                                                 'Type':       "",
-                                                                'Curve_Size': ""
+                                                                'Curve_Size': "",
+                                                                "Encryption": "",
+                                                                "Key_Exchange": "",
+                                                                "Hash_Algoritm": ""
                                                             }
                                             elif (k == 'tls_version_used'):
                                                 TLS_Version = Deep_Result[k]
