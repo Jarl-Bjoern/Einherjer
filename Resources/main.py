@@ -633,7 +633,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                                             Dict_Threads.pop(Thread_ID, None)
                                             Counter_Connections -= 1
                                         else:
-                                            if ((int(time()) - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
+                                            if ((int(time()) - Dict_Threads[Thread_ID][1]) > args.thread_ssl_timeout):
                                                 Dict_Threads[Thread_ID][0].terminate()
                                                 Logs.Write_Log(Target, "", join(Output_Location, 'Logs'))
                                                 Dict_Threads.pop(Thread_ID, None)
