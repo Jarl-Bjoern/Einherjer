@@ -220,6 +220,11 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                             Dict_Temp_Ciphers['Type']       = z['ephemeral_key']['type_name']
                                                             Dict_Temp_Ciphers['Curve_Size'] = z['ephemeral_key']['size']
                                                         else:
+                                                            # PFS
+                                                            if ("DHE" not in z['cipher_suite']['name']):
+                                                                Dict_SSL_Vulns['PFS'] = False
+
+                                                            # RSA
                                                             if ("RSA" in z['cipher_suite']['name']):
                                                                 Dict_Temp_Ciphers['Type']   = "RSA"
 
@@ -326,11 +331,11 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                     Dict_SSL_Vulns['FALLBACK_SCSV'] = Deep_Result[k]
 
                                             # PFS
-                                            elif (k == 'supports_ecdh_key_exchange'):
-                                                if (Deep_Result[k] == True):
-                                                    Dict_SSL_Vulns['PFS'] = False
-                                                else:
-                                                    Dict_SSL_Vulns['PFS'] = Deep_Result[k]
+#                                            elif (k == 'supports_ecdh_key_exchange'):
+#                                                if (Deep_Result[k] == True):
+#                                                    Dict_SSL_Vulns['PFS'] = False
+#                                                else:
+#                                                    Dict_SSL_Vulns['PFS'] = Deep_Result[k]
 
                                             elif (k == 'supported_curves'):
                                                 for z in Deep_Result[k]:
