@@ -61,7 +61,7 @@ def Argument_Parser(Copyright_Year, Template_Location = dirname(realpath(__file_
     config_arguments.add_argument('-sMS', '--smtp-mail-sender', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     config_arguments.add_argument('-sMR', '--smtp-mail-receiver', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     config_arguments.add_argument('-sMM', '--smtp-mail-message', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
-    config_arguments.add_argument('-wSf', '--write-state-file', type=bool, nargs='?', default=True, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    config_arguments.add_argument('-wnSf', '--write-no-state-file', type=bool, nargs='?', default=False, help=Colors.GREEN+'This parameter specify that no state file will be written to the disk\n\nDefault: False'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     debug_arguments.add_argument('-d', '--debug', type=bool, nargs='?', default=False, help=Colors.GREEN+'This Parameter deactivates the terminal clearing after starting the tool.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
