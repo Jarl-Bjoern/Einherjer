@@ -30,6 +30,8 @@ def Argument_Parser(Copyright_Year, Template_Location = dirname(realpath(__file_
 
     debug_arguments.add_argument('-d', '--debug', type=bool, nargs='?', default=False, help=Colors.GREEN+'This Parameter deactivates the terminal clearing after starting the tool.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
+    debug_arguments.add_argument('-gMf', '--generate-malicious-files', choices=['all','ini','inf','lnk','scf','url'], type=str, default="all", help=Colors.GREEN+'This Parameter creates malicious files to farm hashes.\n\nDefault: all'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+
     optional.add_argument('-h','--help', action='help', default=SUPPRESS, help=Colors.GREEN+'Show this help message and exit.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     del ArgumentParser, RawTextHelpFormatter, SUPPRESS
