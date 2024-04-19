@@ -838,7 +838,7 @@ if __name__ == '__main__':
     try:
         main(Date, Program_Mode, args, Copyright_Year)
     except KeyboardInterrupt:
+        Standard.Stdout_Output(Colors.ORANGE+f'\n\t\t\t\tA State file was written to continue the scan the next time!\n\n\t\t\t\t     The program will now be closed.'+Colors.RESET, 0.01)
         if (len(Dict_State['State']) > 0):
-            Standard.Write_State_File(Dict_State['State'], Dict_State['Location'])
-            Standard.Stdout_Output(Colors.ORANGE+f'\n\t\t\t\tA State file was written to continue the scan the next time!\n\n\t\t\t     The program will now be closed.'+Colors.RESET, 0.01)
+            Standard.Write_State_File(Dict_State['State'], Dict_State['Location'])    
         exit()
