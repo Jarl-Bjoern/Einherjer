@@ -60,6 +60,7 @@ try:
     from urllib3.exceptions  import *
     from warnings            import catch_warnings, simplefilter
     from xml.etree.ElementTree import ParseError
+    from yaml                import safe_load as yaml_safe_load
     from zipfile             import ZipFile
 
     # Encoder_Decoder
