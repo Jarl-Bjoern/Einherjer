@@ -89,6 +89,22 @@ class Standard:
             return Temp_Array
         else: Logs.Error_Message(f'The requested File {template_file} does not exist!')
 
+    def Read_YAML_Template(template_file):
+        if (exists(template_file)):
+            Temp_Array = []
+            with open(template_file, 'r') as f:
+                yaml_in_template = yaml_safe_load(f)
+
+            for i in yaml_in_template:
+                for j in yaml_in_template[i]:
+                    if (j not in Temp_Array):
+                        Temp_Array.append(j)
+
+            if (len(Temp_Array) > 0):
+                Temp_Array.sort()
+            return Temp_Array
+        else: Logs.Error_Message(f'The requested File {template_file} does not exist!')      
+
     def Read_File_Special(file_path, Dict_Temp = {}):
         for _ in Standard.Read_Template(file_path):
             if (":" in _):
