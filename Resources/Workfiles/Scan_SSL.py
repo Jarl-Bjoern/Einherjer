@@ -217,17 +217,17 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                         if (z['cipher_suite']['is_anonymous'] == True):
                                                             Dict_SSL_Vulns['ANONYMOUS'] = z['cipher_suite']['is_anonymous']
 
-                                                        # SWEET32
+                                                        # SWEET32, Usage of DES ciphers
                                                         if ("DES" in z['cipher_suite']['name']):
                                                             Dict_SSL_Vulns['SWEET32'] = True
 
-                                                        # LUCKY13
+                                                        # LUCKY13, Usage of CBC ciphers with key size lower than 128
                                                         if ("CBC" in z['cipher_suite']['name']):
                                                             Dict_SSL_Vulns['LUCKY13'] = True
                                                             if (z['cipher_suite']['key_size'] < 128):
                                                                 Dict_SSL_Vulns['SWEET32'] = True
 
-                                                        # FREAK
+                                                        # FREAK, Usage of Export ciphers
                                                         if ("EXPORT" in z['cipher_suite']['name']):
                                                             Dict_SSL_Vulns['FREAK'] = True
 
@@ -237,7 +237,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                             Dict_Temp_Ciphers['Type']       = z['ephemeral_key']['type_name']
                                                             Dict_Temp_Ciphers['Curve_Size'] = z['ephemeral_key']['size']
                                                         else:
-                                                            # PFS
+                                                            # PFS, cipher suites without ephemeral
                                                             if ("DHE" not in z['cipher_suite']['name']):
                                                                 Dict_SSL_Vulns['PFS'] = False
 
