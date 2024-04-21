@@ -292,9 +292,17 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
                                 'Insecure_Certificate_Signature': False,
                                            'Certificate_Expired': False,
                                                    'DHE <= 1024': False,
-                                                    'Heartbleed': False,
+                                                    'HEARTBLEED': False,
                                                  'CCS_Injection': False,
                                                          'ROBOT': False,
+                                                         'BEAST': False,
+                                                         'CRIME': False,
+                                                         'DROWN': False,
+                                                        'LOGJAM': False,
+                                                        'POODLE': False,
+                                                       'SWEET32': False,
+                                                       'LUCKY13': False,
+                                                         'FREAK': False,
                                                    'Compression': False,
                                                   'SCSV_SUPPORT': False,
                                           'Client_Renegotiation': False,
@@ -302,14 +310,13 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
                                              'Support for SSLv3': False,
                                            'Support for TLS_1.0': False,
                                            'Support for TLS_1.1': False,
-                                           'Support for TLS_1.3': False,
+                                        'No Support for TLS_1.3': False,
                                                'Support for MD5': False,
                                               'Support for SHA1': False,
                                       'Support for NULL ciphers': False,
                                  'Support for Anonymous ciphers': False,
                                     'Support for Export ciphers': False,
-                                       'Support for RC2 ciphers': False,
-                                       'Support for RC4 ciphers': False,
+                                        'Support for RC ciphers': False,
                                        'Support for DES ciphers': False,
                                       'Support for 3DES ciphers': False,
                                       'Support for IDEA ciphers': False,
@@ -346,10 +353,8 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
                                                     Dict_Overview_SSL[Target]['Support for Anonymous ciphers'] = True
                                                 elif ("EXPORT" in Cipher['Name'] or "EXP" in Cipher['Name']):
                                                     Dict_Overview_SSL[Target]['Support for Export ciphers']    = True
-                                                elif ("RC2" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['Support for RC2 ciphers']       = True
-                                                elif ("RC4" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['Support for RC4 ciphers']       = True
+                                                elif ("RC2" in Cipher['Name'] or "RC4" in Cipher['Name']):
+                                                    Dict_Overview_SSL[Target]['Support for RC ciphers']        = True
                                                 elif ("DES" in Cipher['Name'] and not "3DES" in Cipher['Name']):
                                                     Dict_Overview_SSL[Target]['Support for DES ciphers']       = True
                                                 elif ("DES" in Cipher['Name'] and "3DES" in Cipher['Name']):
@@ -403,9 +408,17 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
                                 'Insecure_Certificate_Signature': False,
                                            'Certificate_Expired': False,
                                                    'DHE <= 1024': False,
-                                                    'Heartbleed': False,
+                                                    'HEARTBLEED': False,
                                                  'CCS_Injection': False,
                                                          'ROBOT': False,
+                                                         'BEAST': False,
+                                                         'CRIME': False,
+                                                         'DROWN': False,
+                                                        'LOGJAM': False,
+                                                        'POODLE': False,
+                                                       'SWEET32': False,
+                                                       'LUCKY13': False,
+                                                         'FREAK': False,
                                                    'Compression': False,
                                                   'SCSV_SUPPORT': False,
                                           'Client_Renegotiation': False,
@@ -413,19 +426,18 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
                                              'Support for SSLv3': False,
                                            'Support for TLS_1.0': False,
                                            'Support for TLS_1.1': False,
-                                           'Support for TLS_1.3': False,
-                                                           'MD5': False,
-                                                          'SHA1': False,
-                                                          'NULL': False,
-                                                     'Anonymous': False,
-                                            'Support for Export': False,
-                                               'Support for RC2': False,
-                                               'Support for RC4': False,
-                                               'Support for DES': False,
-                                              'Support for 3DES': False,
-                                              'Support for IDEA': False,
+                                        'No Support for TLS_1.3': False,
+                                               'Support for MD5': False,
+                                              'Support for SHA1': False,
+                                      'Support for NULL ciphers': False,
+                                 'Support for Anonymous ciphers': False,
+                                    'Support for Export ciphers': False,
+                                        'Support for RC ciphers': False,
+                                       'Support for DES ciphers': False,
+                                      'Support for 3DES ciphers': False,
+                                      'Support for IDEA ciphers': False,
                                'Support for ciphers without PFS': False,
-                                               'Support for CBC': False
+                                       'Support for CBC ciphers': False
                                             }
 
                                     # SSL_Vulns
@@ -492,7 +504,7 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
 
                                         elif (_ == "ANONYMOUS" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                             Temp_Arr = ['The system is using anonymous ciphers']
-                                            Dict_Overview_SSL[Target]['ANONYMOUS'] = True
+                                            Dict_Overview_SSL[Target]['Support for Anonymous ciphers'] = True
 
                                         elif (_ == "PFS" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                             Temp_Arr = ["The system is using ciphers without Perfect Forward Security (PFS)"]
@@ -500,7 +512,7 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
 
                                         elif (_ == "INACTIVE_TLS_1_3" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                             Temp_Arr = ['The system has TLS 1.3 disabled.']
-                                            Dict_Overview_SSL[Target]['Support for TLS_1.3'] = True
+                                            Dict_Overview_SSL[Target]['No Support for TLS_1.3'] = True
 
                                         if (Temp_Arr != []):
                                             writer_Sec.writerow(Array_Temp + Temp_Arr)
