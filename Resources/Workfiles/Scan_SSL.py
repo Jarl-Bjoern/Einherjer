@@ -221,9 +221,10 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                         if ("DES" in z['cipher_suite']['name']):
                                                             Dict_SSL_Vulns['SWEET32'] = True
 
-                                                        # LUCKY13, Usage of CBC ciphers with key size lower than 128
+                                                        # LUCKY13, Usage of CBC ciphers
                                                         if ("CBC" in z['cipher_suite']['name']):
                                                             Dict_SSL_Vulns['LUCKY13'] = True
+                                                            # SWEET32, Usage of CBC ciphers with key size lower than 128
                                                             if (z['cipher_suite']['key_size'] < 128):
                                                                 Dict_SSL_Vulns['SWEET32'] = True
 
