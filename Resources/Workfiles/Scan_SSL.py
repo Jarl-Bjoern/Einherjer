@@ -343,7 +343,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                             # SCSV
                                             elif (k == 'supports_fallback_scsv'):
                                                 if (Deep_Result[k] == False):
-                                                    Dict_SSL_Vulns['FALLBACK_SCSV'] = Deep_Result[k]
+                                                    Dict_SSL_Vulns['FALLBACK_SCSV'] = True
 
                                             # PFS
 #                                            elif (k == 'supports_ecdh_key_exchange'):
