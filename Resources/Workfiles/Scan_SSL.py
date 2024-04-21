@@ -155,6 +155,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                 'FALLBACK_SCSV':            "",
                 'FREAK':                    "",
                 'PFS':                      "",
+                'ANONYMOUS_CIPHERS':        "",
                 'INACTIVE_TLS_1_3':         ""
             }
 
