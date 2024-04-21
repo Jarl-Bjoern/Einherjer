@@ -358,6 +358,20 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                 Dict_Full_SSL['Ciphers'].append(Dict_Ciphers)
                                                 Dict_Full_SSL['Good_Ciphers'].append(Dict_Good_Ciphers)
 
+                                                # BEAST
+                                                if (TLS_Version == "TLS_1_0"):
+                                                    for _ in Dict_Ciphers:
+                                                        if ("CBC" in _):
+                                                            Dict_SSL_Vulns['BEAST'] = True
+                                                            break
+
+                                                # POODLE
+                                                if ("SSL" in TLS_Version):
+                                                    for _ in Dict_Ciphers:
+                                                        if ("CBC" in _):
+                                                            Dict_SSL_Vulns['POODLE'], Dict_SSL_Vulns['BEAST'] = True, True
+                                                            break                 
+
                                                 # TLS_1_3_Check
                                                 if (TLS_Version == "TLS_1_3" and Supported_Version == False):
                                                     Dict_SSL_Vulns['INACTIVE_TLS_1_3'] = True
