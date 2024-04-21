@@ -474,9 +474,6 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
                                             Temp_Arr = ['The system is vulnerable for CLIENT_RENEGOTIATION_DOS (CVE-2011-1473)']
                                             Dict_Overview_SSL[Target]['Client_Renegotiation'] = True
 
-                                        elif (_ == "FALLBACK_SCSV"):
-                                            print (Result_Right[_])
-
                                         elif (_ == "FALLBACK_SCSV" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                             Temp_Arr = ['The system does not support FALLBACK_SCSV as protection against downgrade attacks']
                                             Dict_Overview_SSL[Target]['SCSV_SUPPORT'] = True
