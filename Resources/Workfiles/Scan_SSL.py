@@ -185,6 +185,8 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
 #                        if (Output_File_Name == _):
 #                                Counter_Name += 1
 #                                Output_File_Name = Output_File_Name.replace('')
+#                with open(join(Backup_Out, Output_File_Name)) as f:
+#                        json.dump(temp_json_output)
 #                print (temp_json_output)
 
                 # Results
