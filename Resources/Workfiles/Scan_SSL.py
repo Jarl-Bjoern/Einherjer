@@ -114,7 +114,6 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                 'Ciphers':                  []
             }
             Dict_Temp_Ciphers =  {
-                'Anonymous':                "",
                 'Key_Size':                 "",
                 'Name':                     "",
                 'Curve_Name':               "",
@@ -124,7 +123,6 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                 "Hash_Algorithm":           ""
             }
             Dict_Temp_Good_Ciphers = {
-                'Anonymous':                "",
                 'Key_Size':                 "",
                 'Name':                     "",
                 'Curve_Name':               "",
@@ -155,7 +153,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                 'FALLBACK_SCSV':            "",
                 'FREAK':                    "",
                 'PFS':                      "",
-                'ANONYMOUS_CIPHERS':        "",
+                'ANONYMOUS':                "",
                 'INACTIVE_TLS_1_3':         ""
             }
 
@@ -212,9 +210,12 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                     Cipher_Filter = findall(rf'{Array_TLS_Algorithms[0]}', z['cipher_suite']['name'])
                                                     if (Cipher_Filter != []):
                                                         # Bad_Ciphers
-                                                        Dict_Temp_Ciphers['Anonymous']      = z['cipher_suite']['is_anonymous']
                                                         Dict_Temp_Ciphers['Key_Size']       = z['cipher_suite']['key_size']
                                                         Dict_Temp_Ciphers['Name']           = z['cipher_suite']['name']
+
+                                                        # Anonymous_Ciphers
+                                                        if (z['cipher_suite']['is_anonymous'] == True):
+                                                            Dict_SSL_Vulns['ANONYMOUS'] = z['cipher_suite']['is_anonymous']
 
                                                         # SWEET32
                                                         if ("DES" in z['cipher_suite']['name']):
@@ -258,7 +259,6 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                         if (Dict_Temp_Ciphers not in Dict_Ciphers['Ciphers']):
                                                             Dict_Ciphers['Ciphers'].append(Dict_Temp_Ciphers)
                                                             Dict_Temp_Ciphers = {
-                                                                'Anonymous':  "",
                                                                 'Key_Size':   "",
                                                                 'Name':       "",
                                                                 'Curve_Name': "",
@@ -269,7 +269,6 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                             }
                                                     else:
                                                         # Good_Ciphers
-                                                        Dict_Temp_Good_Ciphers['Anonymous']      = z['cipher_suite']['is_anonymous']
                                                         Dict_Temp_Good_Ciphers['Key_Size']       = z['cipher_suite']['key_size']
                                                         Dict_Temp_Good_Ciphers['Name']           = z['cipher_suite']['name']
                                                         if ("TLS" in z['cipher_suite']['openssl_name']):
@@ -304,7 +303,6 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                         if (Dict_Temp_Good_Ciphers not in Dict_Good_Ciphers['Ciphers']):
                                                             Dict_Good_Ciphers['Ciphers'].append(Dict_Temp_Good_Ciphers)
                                                             Dict_Temp_Good_Ciphers = {
-                                                                'Anonymous':  "",
                                                                 'Key_Size':   "",
                                                                 'Name':       "",
                                                                 'Curve_Name': "",
