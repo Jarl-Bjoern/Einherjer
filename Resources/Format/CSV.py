@@ -373,7 +373,6 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
 #                                                if (Cipher['Type'] != '' and Cipher['Curve_Size'] != '' and Cipher['Curve_Size'] != None):
 #                                                    Temp_Arr.append(f"{Cipher['Type']}_{Cipher['Curve_Size']}")
 #                                                else: Temp_Arr.append('-')
-                                                Temp_Arr.append(Cipher['Anonymous'])
                                                 writer.writerow(Array_Temp + Temp_Arr)
 
 
@@ -396,7 +395,6 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
 #                                                if (Cipher['Type'] != '' and Cipher['Curve_Size'] != '' and Cipher['Curve_Size'] != None):
 #                                                    Temp_Arr.append(f"{Cipher['Type']}_{Cipher['Curve_Size']}")
 #                                                else: Temp_Arr.append('-')
-                                                Temp_Arr.append(Cipher['Anonymous'])
                                                 writer_Third.writerow(Array_Temp + Temp_Arr)
                                 elif (Result_Left == "SSL_Vulns"):
                                     if (Target not in Dict_Overview_SSL):
