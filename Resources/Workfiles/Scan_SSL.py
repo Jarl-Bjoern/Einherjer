@@ -370,7 +370,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                                     for _ in Dict_Ciphers:
                                                         if ("CBC" in _):
                                                             Dict_SSL_Vulns['POODLE'], Dict_SSL_Vulns['BEAST'] = True, True
-                                                            break                 
+                                                            break
 
                                                 # TLS_1_3_Check
                                                 if (TLS_Version == "TLS_1_3" and Supported_Version == False):
