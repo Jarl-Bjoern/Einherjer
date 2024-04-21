@@ -41,7 +41,8 @@ if (Program_Mode == "Scanning_Mode"):
     COLOR_Headline       = "black"
 
 if (Program_Mode == "Scanning_Mode" or Program_Mode == "Filter_Mode"):
-    Array_SSH_Algorithms = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/ssh_ciphers.txt"))
+    Array_SSH_Algorithms = Standard.Read_YAML_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/ssh_ciphers.yaml"))
+    print (Array_SSH_Algorithms)
     Screenshot_Color     = Standard.Read_Color(dirname(realpath(__file__)).replace('Resources/Header_Files', "Config/http_screenshot_color.cfg"))
 
 # Design
