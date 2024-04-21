@@ -269,11 +269,11 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
                         writer_Overview = csv.writer(csv_overview_file)
 
                         if (Write_Mode == 'w'):
-                            writer.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Encryption','Key_Exchange','Hash_Algorithm','Anonymous']))
+                            writer.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Encryption','Key_Exchange','Hash_Algorithm']))
                         if (Write_Second_Mode == 'w'):
                             writer_Sec.writerow((['Host','DNS','Vulnerabilities']))
                         if (Write_Third_Mode == 'w'):
-                            writer_Third.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Encryption','Key_Exchange','Hash_Algorithm','Anonymous']))
+                            writer_Third.writerow((['Host','DNS','Protocol','Key_Size','Ciphers','Encryption','Key_Exchange','Hash_Algorithm']))
 
                         Dict_Overview_SSL = {}
                         for Target in Dict_Result['SSL']:
@@ -337,25 +337,27 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
 
                                                 # Check_Ciphers
                                                 if ("MD5" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['Support for MD5']  = True
+                                                    Dict_Overview_SSL[Target]['Support for MD5']               = True
                                                 elif ("SHA1" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['Support for SHA1'] = True
+                                                    Dict_Overview_SSL[Target]['Support for SHA1']              = True
                                                 elif ("NULL" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['Support for NULL ciphers']   = True
+                                                    Dict_Overview_SSL[Target]['Support for NULL ciphers']      = True
+                                                elif ("ANON" in Cipher['Name']):
+                                                    Dict_Overview_SSL[Target]['Support for Anonymous ciphers'] = True
                                                 elif ("EXPORT" in Cipher['Name'] or "EXP" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['Support for Export ciphers'] = True
+                                                    Dict_Overview_SSL[Target]['Support for Export ciphers']    = True
                                                 elif ("RC2" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['Support for RC2 ciphers']    = True
+                                                    Dict_Overview_SSL[Target]['Support for RC2 ciphers']       = True
                                                 elif ("RC4" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['Support for RC4 ciphers']    = True
+                                                    Dict_Overview_SSL[Target]['Support for RC4 ciphers']       = True
                                                 elif ("DES" in Cipher['Name'] and not "3DES" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['Support for DES ciphers']    = True
+                                                    Dict_Overview_SSL[Target]['Support for DES ciphers']       = True
                                                 elif ("DES" in Cipher['Name'] and "3DES" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['Support for 3DES ciphers']   = True
+                                                    Dict_Overview_SSL[Target]['Support for 3DES ciphers']      = True
                                                 elif ("IDEA" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['Support for IDEA ciphers']   = True
+                                                    Dict_Overview_SSL[Target]['Support for IDEA ciphers']      = True
                                                 elif ("CBC" in Cipher['Name']):
-                                                    Dict_Overview_SSL[Target]['Support for CBC ciphers']    = True
+                                                    Dict_Overview_SSL[Target]['Support for CBC ciphers']       = True
 
                                                 # Write_Bad_Ciphers
                                                 if (Cipher['Encryption'] != None):
@@ -489,6 +491,10 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
                                         elif (_ == "FREAK" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                             Temp_Arr = ['The system is vulnerable for FREAK (CVE-2015-0204)']
                                             Dict_Overview_SSL[Target]['FREAK'] = True
+
+                                        elif (_ == "ANONYMOUS" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
+                                            Temp_Arr = ['The system is using anonymous ciphers']
+                                            Dict_Overview_SSL[Target]['ANONYMOUS'] = True
 
                                         elif (_ == "PFS" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                             Temp_Arr = ["The system is using ciphers without Perfect Forward Security (PFS)"]
