@@ -191,7 +191,8 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
 
                 # Results
                 for _ in json_loads(temp_json_output)['server_scan_results']:
-                    Dict_Full_Output[f"{_['server_location']['ip_address']}:{_['server_location']['port']}"] = {}
+                    Log_Target = f"{_['server_location']['ip_address']}:{_['server_location']['port']}"
+                    Dict_Full_Output[Log_Target] = {}
                     Scan_Result = _['scan_result']
                     if (Scan_Result != None):
                         for i in Scan_Result:
@@ -398,18 +399,18 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                         Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
                                         +Colors.BLUE+'SSL-Check\n'+Colors.YELLOW
                                         +'-----------------------------------------------------------------------------------------------------------\n'
-                                        +Colors.RED+f'{strftime("%Y-%m-%d %H:%M:%S")} - {_["server_location"]["ip_address"]}:{_["server_location"]["port"]} - There was a TypeError inside the filter process.\n',
+                                        +Colors.RED+f'{strftime("%Y-%m-%d %H:%M:%S")} - {Log_Target} - There was a TypeError inside the filter process.\n',
                                         join(Location, 'Logs')
                                     )
 
                         Dict_Full_SSL['SSL_Vulns'] = Dict_SSL_Vulns
-                        Dict_Full_Output[f"{_['server_location']['ip_address']}:{_['server_location']['port']}"] = Dict_Full_SSL
+                        Dict_Full_Output[Log_Target] = Dict_Full_SSL
 
                         Logs.Log_File(
                             Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
                             +Colors.BLUE+'SSL-Check\n'
                             +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
-                            +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {_["server_location"]["ip_address"]}:{_["server_location"]["port"]}'
+                            +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {Log_Target}'
                             +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
                             +Colors.ORANGE+'\nEinherjer Output'
                             +Colors.RED+' -> '+Colors.RESET+f'{Dict_Full_SSL}'+Colors.BLUE
