@@ -1,7 +1,7 @@
 cookie_names: ["SET-COOKIE", "COOKIE"]
 cookie_flags: ["HTTPONLY", "SAMESITE", "SECURE"]
-cors_header: ["ACCESS-CONTROL-ALLOW-ORIGIN"]
-deprecated_header: ["FEATURE-POLICY", "EXPECT-CT", "PUBLIC-KEY-PINS", "X-XSS-PROTECTION"]
+http_cors_header: ["ACCESS-CONTROL-ALLOW-ORIGIN"]
+http_deprecated_header: ["FEATURE-POLICY", "EXPECT-CT", "PUBLIC-KEY-PINS", "X-XSS-PROTECTION"]
 http_header: [
   "X-FRAME-OPTIONS:DENY,SAMEORIGIN",
   "X-XSS-PROTECTION:0",
