@@ -8,7 +8,7 @@ from ..Header_Files.Variables import *
 def JSON_Table(Dict_Result, location, Array_Files = []):
     def Write_JSON(keyword, location, result_file):
         with open(join(location, result_file), 'w', encoding='UTF-8') as f:
-            json.dump(Dict_Result[keyword], f)
+            json_dumps(Dict_Result[keyword], f)
 
     # Certificates
     if (Dict_Result['Certificate'] != {}):
