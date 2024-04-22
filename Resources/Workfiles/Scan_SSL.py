@@ -176,17 +176,16 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                 temp_json_output = json_output.json(sort_keys=True, indent=4, ensure_ascii=True)
 
                 # Output_Backup
-#                Backup_Out, Output_File_Name, Counter_Name = join(location, 'SSL_Backup'), "SSL_Scan_Out_0.json", 0
-#                if (not exists(Backup_Out)):
-#                        makedirs(Backup_Out)
+                Backup_Out, Output_File_Name = join(location, 'SSL_Backup'), "SSL_Scan_Out_0.json"
+                if (not exists(Backup_Out)):
+                        makedirs(Backup_Out)
 
-#                for _ in listdir(Backup_Out):
-#                        if (Output_File_Name == _):
-#                                Counter_Name += 1
-#                                Output_File_Name = Output_File_Name.replace('')
-#                with open(join(Backup_Out, Output_File_Name)) as f:
-#                        json.dump(temp_json_output)
-#                print (temp_json_output)
+                if (len(listdir(Backup_Out)) > 0):
+                    Counter_Name     = len(Path_SSL_JSON_Files)+1
+                    Output_File_Name = Output_File_Name.replace(Backup_Val, str(Counter_Name))
+
+                with open(join(Backup_Out, Output_File_Name)) as f:
+                        json.dump(temp_json_output, f)
 
                 # Results
                 for _ in json_loads(temp_json_output)['server_scan_results']:
