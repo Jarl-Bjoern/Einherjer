@@ -1,7 +1,21 @@
-cookie_names: ["SET-COOKIE", "COOKIE"]
-cookie_flags: ["HTTPONLY", "SAMESITE", "SECURE"]
-http_cors_header: ["ACCESS-CONTROL-ALLOW-ORIGIN"]
-http_deprecated_header: ["FEATURE-POLICY", "EXPECT-CT", "PUBLIC-KEY-PINS", "X-XSS-PROTECTION"]
+cookie_names: [
+  "COOKIE",
+  "SET-COOKIE",
+]
+cookie_flags: [
+  "HTTPONLY",
+  "SAMESITE",
+  "SECURE"
+]
+http_cors_header: [
+  "ACCESS-CONTROL-ALLOW-ORIGIN"
+]
+http_deprecated_header: [
+  "EXPECT-CT",
+  "FEATURE-POLICY",
+  "PUBLIC-KEY-PINS",
+  "X-XSS-PROTECTION"
+]
 http_header: [
   "X-FRAME-OPTIONS:DENY,SAMEORIGIN",
   "X-XSS-PROTECTION:0",
@@ -24,4 +38,7 @@ http_information_disclosure_header: [
   "X-POWERED-BY",
   "X-OWA-VERSION"
 ]
-http_methods: ["TRACE", "TRACK"]
+http_methods: [
+  "TRACE",
+  "TRACK"
+]
