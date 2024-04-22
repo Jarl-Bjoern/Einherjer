@@ -53,6 +53,7 @@ def SSH_Vulns(url, Host_Name, Location, Dict_SSH_Version = {}, Dict_SSH_Results 
     async def check_auth(target):
         return await get_server_auth_methods(target)
 
+    print (get_server_auth_methods(target))
 
     # Experimental
     Dict_System = {}
