@@ -1,12 +1,13 @@
 encryption_algorithms: [
-  'chacha20-poly1305',
   'aes128-ctr',
   'aes192-ctr',
   'aes256-ctr',
   'AEAD_AES_128_GCM',
-  'AEAD_AES_256_GCM'
+  'AEAD_AES_256_GCM',
+  'chacha20-poly1305'
 ]
 kex_algorithms: [
+  'curve25519-sha256',
   'diffie-hellman-group-exchange-sha256',
   'diffie-hellman-group14-sha256',
   'diffie-hellman-group15-sha512',
@@ -15,15 +16,14 @@ kex_algorithms: [
   'ecdh-sha2-nistp256',
   'ecdh-sha2-nistp384',
   'ecdh-sha2-nistp521',
-  'curve25519-sha256',
-  'sntrup761x25519-sha512',
-  'kex-strict-s-v00'
+  'kex-strict-s-v00',
+  'sntrup761x25519-sha512'
 ]
 server_host_key_algorithms: [
-  'pgp-sign-dss',
   'ecdsa-sha2-nistp256',
   'ecdsa-sha2-nistp384',
   'ecdsa-sha2-nistp521',
+  'pgp-sign-dss',
   'x509v3-ecdsa-sha2-nistp256',
   'x509v3-ecdsa-sha2-nistp384',
   'x509v3-ecdsa-sha2-nistp521'
