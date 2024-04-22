@@ -11,7 +11,7 @@ def Nessus_Reader(nessus_file_location, output_location, Array_Temp = []):
       with open(nessus_file_location, 'r') as f:
           Report = f.read().splitlines()
 
-  for Result in Report:
-      pass
+      for Result in Report:
+          pass
 
   return Array_Temp
