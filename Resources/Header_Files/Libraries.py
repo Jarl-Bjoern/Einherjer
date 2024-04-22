@@ -226,7 +226,7 @@ try:
                         from cv2       import countNonZero, error as CVError, imread, imwrite, rectangle, split as cvsplit, subtract
                         from dns.query import xfr
                         from dns.zone  import from_xfr
-                        from ftplib    import error_perm, FTP
+                        from ftplib    import error_perm, FTP, FTP_TLS
                         from hashlib   import md5, sha1, sha256, sha512
                         from os        import environ, rename
                         from pysnmp.hlapi import *
@@ -267,7 +267,7 @@ try:
                     from dns.query       import xfr
                     from dns.zone        import from_xfr
                 if (args.scan_ftp != False):
-                    from ftplib          import error_perm, FTP
+                    from ftplib          import error_perm, FTP, FTP_TLS
                 if (args.scan_security_flags != False or
                     args.scan_cors           != False):
                         from requests        import Session
