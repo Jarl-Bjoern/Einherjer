@@ -185,7 +185,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                     Output_File_Name = Output_File_Name.replace(Backup_Val, str(Counter_Name))
 
                 with open(join(Backup_Out, Output_File_Name), 'w', encoding='UTF-8') as f:
-                    json_dumps(temp_json_output, f)
+                    f.write(temp_json_output)
 
                 # Results
                 for _ in json_loads(temp_json_output)['server_scan_results']:
