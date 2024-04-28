@@ -337,6 +337,9 @@ try:
 
         if (Program_Mode == 'Brute_Force_Mode' or
             Program_Mode == 'Scanning_Mode'):
+                # Trace_Module
+                from scapy.all import *
+
                 # Format_Import
                 if ("csv" in args.format):
                     import csv
