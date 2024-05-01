@@ -53,7 +53,7 @@ try:
     from secrets             import SystemRandom
     from shutil              import rmtree
     from sys                 import argv, stdout
-    from time                import sleep, strftime, time
+    from time                import sleep, strftime, time as time_now
     from threading           import Thread, enumerate as Th_enumerate
     from traceback           import print_exc
     from urllib3             import disable_warnings
