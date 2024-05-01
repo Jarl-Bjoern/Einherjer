@@ -758,7 +758,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                     try:            rmdir(join(Output_Location, _))
                     except OSError: rmtree(join(Output_Location, _), ignore_errors=True)
 
-        return Array_Output, Switch_Screenshots
+        return Array_Output, Switch_Screenshots, Dict_Result
 
     # Output_Location
     if (args.output_location != None):
@@ -780,7 +780,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
 
     # Program_Mode
     if (Program_Mode == "Scanning_Mode"):
-        Array_Output, Switch_Screenshots = Scanning_Mode(Date, args, Location, Database_Password)
+        Array_Output, Switch_Screenshots, Dict_Result = Scanning_Mode(Date, args, Location, Database_Password)
     elif (Program_Mode == "Filter_Mode"):
         Array_Output = Filter_Mode(Date, Location, args)
     elif (Program_Mode == "Fuzzing_Mode"):
@@ -836,7 +836,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
     # SSL_Output
     if (args.scan_site_ssl != False):
         pass
-        print (Dict_Result['SSL'])
+        print (Dict_Result)
 
 # Main
 if __name__ == '__main__':
