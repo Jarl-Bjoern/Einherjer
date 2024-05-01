@@ -15,7 +15,7 @@ def Get_Hash(Hash_Location, output_location, Array_Hashes = []):
             Array_Temp = []
             with open(join(Hash_Location, _), 'r', encoding='utf-8') as f:
                 Array_Temp = f.read().splitlines()
-            for _ in array(Array_Temp):
+            for _ in np_array(Array_Temp):
                 if (_ not in Array_Hashes):
                     Array_Hashes.append(_)
     
