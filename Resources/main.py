@@ -587,7 +587,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                                             Dict_Threads.pop(Thread_ID, None)
                                             Counter_Connections -= 1
                                         else:
-                                            if ((int(time()) - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
+                                            if ((int(time_now()) - Dict_Threads[Thread_ID][1]) > args.thread_timeout):
                                                 Dict_Threads[Thread_ID][0].terminate()
                                                 Logs.Write_Log(Target, "", join(Output_Location, 'Logs'))
                                                 Dict_Threads.pop(Thread_ID, None)
@@ -600,7 +600,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                             if (Target not in Dict_State['State']):
                                 Dict_State['State'].append(Target)
                             if (p.name not in Dict_Threads):
-                                Dict_Threads[p.name] = [p, int(time()), Target]
+                                Dict_Threads[p.name] = [p, int(time_now()), Target]
                                 sleep(args.process_sleep)
                             progress.update(task_Scan, advance=Counter_Bar)
 
@@ -633,7 +633,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                                             Dict_Threads.pop(Thread_ID, None)
                                             Counter_Connections -= 1
                                         else:
-                                            if ((int(time()) - Dict_Threads[Thread_ID][1]) > args.thread_ssl_timeout):
+                                            if ((int(time_now()) - Dict_Threads[Thread_ID][1]) > args.thread_ssl_timeout):
                                                 Dict_Threads[Thread_ID][0].terminate()
                                                 Logs.Write_Log(Target, "", join(Output_Location, 'Logs'))
                                                 Dict_Threads.pop(Thread_ID, None)
@@ -646,8 +646,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                             if (Target not in Dict_State['State']):
                                 Dict_State['State'].append(Target)
                             if (p.name not in Dict_Threads):
-                                Now_Time             = int(time())
-                                Dict_Threads[p.name] = [p, Now_Time, Target]
+                                Dict_Threads[p.name] = [p, int(time_now()), Target]
                                 sleep(args.process_sleep)
                             progress.update(task_Scan, advance=Counter_Bar)
                             Max_Len_SSL_Targets =- Counter_SSL_Targets
@@ -656,7 +655,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                 # Terminate_Timeout_Processes
                 progress.start_task(task_Processes)
                 if (len(Dict_Threads) > 0): progress.update(task_Processes, total=len(Dict_Threads))
-                Start_Kill, End_Kill = int(time()), int(time())
+                Start_Kill, End_Kill = int(time_now()), int(time_now())
                 while ((End_Kill - Start_Kill) < 3600):
                     while (len(Dict_Threads) > 0):
                         for Thread_ID in np_array(list(Dict_Threads)):
@@ -664,18 +663,18 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                                 progress.update(task_Processes, advance=0.75)
                                 Dict_Threads.pop(Thread_ID, None)
                             else:
-                                if ((int(time()) - Dict_Threads[Thread_ID][1]) > 900):
+                                if ((int(time_now()) - Dict_Threads[Thread_ID][1]) > 900):
                                     progress.update(task_Processes, advance=0.75)
                                     Dict_Threads[Thread_ID][0].terminate()
                                     Dict_Threads.pop(Thread_ID, None)
-                        End_Kill = int(time())
+                        End_Kill = int(time_now())
                         sleep(0.75)
                     else:
                         break
                     break
                 else:
                     while (len(Dict_Threads) > 0):
-                        Start_Kill, End_Kill = int(time()), int(time())
+                        Start_Kill, End_Kill = int(time_now()), int(time_now())
                         while ((End_Kill - Start_Kill) < 300):
                             for Thread_ID in np_array(list(Dict_Threads)):
                                 if (Thread_ID in str(active_children())):
@@ -685,7 +684,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                                 else:
                                     progress.update(task_Processes, advance=0.75)
                                     Dict_Threads.pop(Thread_ID, None)
-                            End_Kill = int(time())
+                            End_Kill = int(time_now())
                             sleep(0.25)
                         else:
                             break
