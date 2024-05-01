@@ -646,7 +646,8 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                             if (Target not in Dict_State['State']):
                                 Dict_State['State'].append(Target)
                             if (p.name not in Dict_Threads):
-                                Dict_Threads[p.name] = [p, int(time()), Target]
+                                Now_Time             = int(time())
+                                Dict_Threads[p.name] = [p, Now_Time, Target]
                                 sleep(args.process_sleep)
                             progress.update(task_Scan, advance=Counter_Bar)
                             Max_Len_SSL_Targets =- Counter_SSL_Targets
