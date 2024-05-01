@@ -192,14 +192,14 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                     try:
                         Array_Temp_Zero, Array_SSL_Zero = Standard.Read_Targets_XML(args.add_nmap_xml_result)
                         if (len(Array_Targets) > 0):
-                            for _ in array(Array_Temp_Zero):
+                            for _ in np_array(Array_Temp_Zero):
                                 if (_ not in Array_Targets):
                                     Array_Targets.append(_)
                         else:
                             Array_Targets = Array_Temp_Zero
 
                         if (len(Array_SSL_Targets) > 0):
-                            for _ in array(Array_SSL_Zero):
+                            for _ in np_array(Array_SSL_Zero):
                                 if (_ not in Array_SSL_Zero):
                                     Array_SSL_Targets.append(_)
                         else:
@@ -356,14 +356,14 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                 try:
                     Array_Temp_Zero, Array_SSL_Zero = Standard.Read_Targets_XML(args.add_nmap_xml_result)
                     if (len(Array_Targets) > 0):
-                        for _ in array(Array_Temp_Zero):
+                        for _ in np_array(Array_Temp_Zero):
                             if (_ not in Array_Targets):
                                 Array_Targets.append(_)
                     else:
                         Array_Targets = Array_Temp_Zero
 
                     if (len(Array_SSL_Targets) > 0):
-                        for _ in array(Array_SSL_Zero):
+                        for _ in np_array(Array_SSL_Zero):
                             if (_ not in Array_SSL_Zero):
                                 Array_SSL_Targets.append(_)
                     else:
@@ -556,7 +556,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                     Dict_Switch['scan_smtp']           != False or
                     Dict_Switch['scan_security_flags'] != False):
 
-                        for Target in array(Array_Targets):
+                        for Target in np_array(Array_Targets):
                             Array_Thread_Args = [
                                 Target,
                                 args.timeout,
@@ -582,7 +582,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
 
                             if (Counter_Connections == args.max_connections):
                                 while (len(Dict_Threads) > 0):
-                                    for Thread_ID in array(list(Dict_Threads)):
+                                    for Thread_ID in np_array(list(Dict_Threads)):
                                         if (Thread_ID not in str(active_children())):
                                             Dict_Threads.pop(Thread_ID, None)
                                             Counter_Connections -= 1
@@ -607,7 +607,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                 # SSL_Targets
                 if (Dict_Switch['scan_ssl'] == True):
                     Temp_SSL_Array, Counter_SSL_Targets, Max_Len_SSL_Targets = [], 0, len(Array_SSL_Targets)
-                    for Target in array(Array_SSL_Targets):
+                    for Target in np_array(Array_SSL_Targets):
                         if (Counter_SSL_Targets != args.max_ssl_targets or Counter_SSL_Targets != Max_Len_SSL_Targets):
                             Temp_SSL_Array.append(Target)
                             Counter_SSL_Targets += 1
@@ -628,7 +628,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
 
                             if (Counter_Connections == args.max_connections):
                                 while (len(Dict_Threads) > 0):
-                                    for Thread_ID in array(list(Dict_Threads)):
+                                    for Thread_ID in np_array(list(Dict_Threads)):
                                         if (Thread_ID not in str(active_children())):
                                             Dict_Threads.pop(Thread_ID, None)
                                             Counter_Connections -= 1
@@ -658,7 +658,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                 Start_Kill, End_Kill = int(time()), int(time())
                 while ((End_Kill - Start_Kill) < 3600):
                     while (len(Dict_Threads) > 0):
-                        for Thread_ID in array(list(Dict_Threads)):
+                        for Thread_ID in np_array(list(Dict_Threads)):
                             if (Thread_ID not in str(active_children())):
                                 progress.update(task_Processes, advance=0.75)
                                 Dict_Threads.pop(Thread_ID, None)
@@ -676,7 +676,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                     while (len(Dict_Threads) > 0):
                         Start_Kill, End_Kill = int(time()), int(time())
                         while ((End_Kill - Start_Kill) < 300):
-                            for Thread_ID in array(list(Dict_Threads)):
+                            for Thread_ID in np_array(list(Dict_Threads)):
                                 if (Thread_ID in str(active_children())):
                                     progress.update(task_Processes, advance=0.75)
                                     Dict_Threads[Thread_ID][0].terminate()
