@@ -402,7 +402,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                                         join(Location, 'Logs')
                                     )
 
-                        Dict_Full_SSL['SSL_Vulns'] = Dict_SSL_Vulns
+                        Dict_Full_SSL['SSL_Vulns']   = Dict_SSL_Vulns
                         Dict_Full_Output[Log_Target] = Dict_Full_SSL
 
                         Logs.Log_File(
