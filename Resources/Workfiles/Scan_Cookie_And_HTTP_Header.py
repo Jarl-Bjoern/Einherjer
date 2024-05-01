@@ -139,7 +139,7 @@ def Check_Cookie_And_HTTP_Header(url, t_seconds, Host_Name, Dict_Proxies, Dict_A
 
             # Check_For_Missing_Header
             else:
-                for Temp_Header in array(list(Dict_Header)):
+                for Temp_Header in np_array(list(Dict_Header)):
                     if (Temp_Header not in Dict_Temp_Header):
                         Dict_Temp_Header[Temp_Header] = "FEHLT"
 
