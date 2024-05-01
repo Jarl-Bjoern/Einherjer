@@ -608,7 +608,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                 if (Dict_Switch['scan_ssl'] == True):
                     Temp_SSL_Array, Counter_SSL_Targets, Max_Len_SSL_Targets = [], 0, len(Array_SSL_Targets)
                     for Target in array(Array_SSL_Targets):
-                        if (Counter_SSL_Targets != args.max_ssl_targets and Counter_SSL_Targets != Max_Len_SSL_Targets):
+                        if (Counter_SSL_Targets != args.max_ssl_targets or Counter_SSL_Targets != Max_Len_SSL_Targets):
                             Temp_SSL_Array.append(Target)
                             Counter_SSL_Targets += 1
 
