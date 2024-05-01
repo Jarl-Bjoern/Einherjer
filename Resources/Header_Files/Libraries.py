@@ -36,7 +36,7 @@ try:
     from json                import dumps as json_dumps, load as json_load, loads as json_loads
     from json.decoder        import JSONDecodeError
     from multiprocessing     import active_children, Process, Queue
-    from numpy               import array
+    from numpy               import array as np_array
     from os                  import chmod, getcwd, listdir, makedirs, name as osname, remove, rmdir, system, walk
     from os.path             import exists, isdir, isfile, join
     from pathlib             import Path
