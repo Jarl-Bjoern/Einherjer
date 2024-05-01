@@ -79,7 +79,7 @@ def Excel_Table(Dict_Result, location, Array_Header_Letter = ['A','B','C','D','E
         elif (Question == 'N' or Question == 'n'):
             n = 0
             for _, _, files in walk('.', topdown=False):
-                for file in array(files):
+                for file in np_array(files):
                     if (file.endswith('.xlsx') and 'Findings' in file): n += 1
             Generate_Excel(join(location, f'Findings_{n}.xlsx'))
         else: Error_Message("Your decision is not acceptable.","")
