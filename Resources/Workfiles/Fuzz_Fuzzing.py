@@ -28,13 +28,13 @@ def Check_Site_Paths(url, t_seconds, Host_Name, array_wordlists, Location, Dict_
                     Array_Temp_Wordlist = []
                     with open(array_wordlists, 'r', encoding='latin-1') as f:
                         Array_Temp_Wordlist = f.read().splitlines()
-                    for Word in array(Array_Temp_Wordlist):
+                    for Word in np_array(Array_Temp_Wordlist):
                         if (Word not in Array_Wordlist):
                             Array_Wordlist.append(Word)
 
             # Encode_The_Words
             n = 0
-            for Word in array(Array_Wordlist):
+            for Word in np_array(Array_Wordlist):
                 # Convert_With_URL_Encoding
                 if (url.count('/') >= 3 and '//' in url):
                     Temp_URL_Switcher = url_encode(url[Begin:])
