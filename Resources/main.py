@@ -836,7 +836,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
     # SSL_Output
     if (args.scan_site_ssl != False):
         pass
-        print (Dict_Result)
+#        print (Dict_Result)
 
 # Main
 if __name__ == '__main__':
