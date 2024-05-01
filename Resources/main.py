@@ -187,7 +187,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                         Array_Targets, Array_SSL_Targets = Standard.Read_Targets_v4(args.import_list)
                     except FileNotFoundError as e:
                         Logs.Error_Message(f"Your targetlist can't be found!\n\n{args.import_list}")
-    
+
                 if (args.add_nmap_xml_result != None):
                     try:
                         Array_Temp_Zero, Array_SSL_Zero = Standard.Read_Targets_XML(args.add_nmap_xml_result)
@@ -197,14 +197,14 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                                     Array_Targets.append(_)
                         else:
                             Array_Targets = Array_Temp_Zero
-    
+
                         if (len(Array_SSL_Targets) > 0):
                             for _ in array(Array_SSL_Zero):
                                 if (_ not in Array_SSL_Zero):
                                     Array_SSL_Targets.append(_)
                         else:
                             Array_SSL_Targets = Array_SSL_Zero
-    
+
                     except FileNotFoundError as e:
                         Logs.Error_Message(f"Your targetlist can't be found!\n\n{args.add_nmap_xml_result}")
             else:
