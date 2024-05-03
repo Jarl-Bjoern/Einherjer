@@ -24,6 +24,6 @@ selenium==4.11.2
 selenium-wire==5.1.0
 sslyze==5.2.0
 stdiomask==0.0.4
-tqdm==4.64.1
+tqdm==4.66.3
 webdriver-manager==3.8.5
 XlsxWriter==3.0.2
