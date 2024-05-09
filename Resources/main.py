@@ -834,9 +834,12 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
             Standard.Stdout_Output(Colors.ORANGE+f'\n\t\t\t\tIt was not possible to collect any kind of data!\n\n\t\t\t     Check your locations or target files and try it again.'+Colors.RESET, 0.01)
 
     # SSL_Output
-    if (args.scan_site_ssl != False):
+    try:
+        if (args.scan_site_ssl != False):
+            pass
+            #print (Dict_Result)
+    except:
         pass
-#        print (Dict_Result)
 
 # Main
 if __name__ == '__main__':
