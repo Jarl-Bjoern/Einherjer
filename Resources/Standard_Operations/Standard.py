@@ -116,7 +116,10 @@ class Standard:
 
             # JSON
             elif (mode == 'json'):
-                pass
+                for j in yaml_in_template[section_name]:
+                    print (j)
+#                    if (j not in Temp_Array):
+#                        Temp_Array.append(j)
 
             # SSH_Filter
             elif (mode == 'ssh'):
