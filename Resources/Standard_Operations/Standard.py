@@ -98,7 +98,7 @@ class Standard:
             # Color
             if (mode == 'color'):
                 R,G,B = 0,0,0
-                for _ in yaml_in_template[i]:
+                for _ in yaml_in_template[section_name]:
                     if   ('R:' in _): R = int(_.split('R:')[1])
                     elif ('G:' in _): G = int(_.split('G:')[1])
                     elif ('B:' in _): B = int(_.split('B:')[1])
