@@ -47,6 +47,7 @@ The name `Einherjer` comes from the old norse language and means `lone fighter`.
 ## ❗ News
 <strong>Upcoming changes for version</strong> `0.9`:
  - UNDER CONSTRUCTION
+ - Lots of bug fixes
 
 <div align="center">
 ➡️ <a href="https://github.com/Jarl-Bjoern/Einherjer/blob/main/Changelog/Changelog.md">
