@@ -90,6 +90,30 @@ class Standard:
         else: Logs.Error_Message(f'The requested File {template_file} does not exist!')
 
     def Read_YAML_Config_File(template_file, section_name, mode):
+        def Special_Filter(YAML_Array):
+            Dict_Temp = {}
+            for i in YAML_Array:
+                for _ in i:
+                    if (":" in _):
+                        Temp = _.split(':')
+                        try:
+                            if (';' in Temp[1]):
+                                Array_Value_Temp = Temp[1].split(';')
+                                if (Temp[0] not in Dict_Temp):
+                                    Dict_Temp[Temp[0]] = Temp[1].split(';')
+                            elif (',' in Temp[1]):
+                                Array_Value_Temp = Temp[1].split(',')
+                                if (Temp[0] not in Dict_Temp):
+                                    Dict_Temp[Temp[0]] = Temp[1].split(',')
+                            else:
+                                if (Temp[0] not in Dict_Temp):
+                                    Dict_Temp[Temp[0]] = Temp[1]
+                        except IndexError:
+                            if (Temp[0] not in Dict_Temp):
+                                Dict_Temp[Temp[0]] = Temp[1]
+    
+            return Dict_Temp
+
         if (exists(template_file)):
             Temp_Array, Temp_Array_Names, Temp_Array_Ciphers = [],[],[]
             with open(template_file, 'r') as f:
@@ -116,7 +140,10 @@ class Standard:
 
             # JSON
             elif (mode == 'json'):
-                return yaml_in_template[section_name]
+                if (section_name == 'http_custom_header'):
+                    return yaml_in_template[section_name]
+                elif (section_name == 'http_header' or section_name == 'http_header_api'):
+                    return Special_Filter(yaml_in_template[section_name])
 
             # SSH_Filter
             elif (mode == 'ssh'):
