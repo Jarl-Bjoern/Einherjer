@@ -28,6 +28,8 @@ if (Program_Mode == "Scanning_Mode"):
     else:
         Dict_Custom_Header = Standard.Read_JSON_File(dirname(realpath(__file__)).replace('Resources/Header_Files', "Config/http_custom_header.json"))
 
+    Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', 'Config/http_config_yaml')
+
     Array_CORS_Header                   = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_cors_header.txt"))
     Array_Information_Disclosure_Header = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_information_disclosure.txt"))
     Array_HTTP_Methods                  = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_methods.txt"))
