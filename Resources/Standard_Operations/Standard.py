@@ -92,26 +92,26 @@ class Standard:
     def Read_YAML_Config_File(template_file, section_name, mode):
         def Special_Filter(YAML_Array):
             Dict_Temp = {}
-            for i in YAML_Array:
-                print (i)
-                for _ in i:
-                    if (":" in _):
-                        Temp = _.split(':')
-                        try:
-                            if (';' in Temp[1]):
-                                Array_Value_Temp = Temp[1].split(';')
-                                if (Temp[0] not in Dict_Temp):
-                                    Dict_Temp[Temp[0]] = Temp[1].split(';')
-                            elif (',' in Temp[1]):
-                                Array_Value_Temp = Temp[1].split(',')
-                                if (Temp[0] not in Dict_Temp):
-                                    Dict_Temp[Temp[0]] = Temp[1].split(',')
-                            else:
-                                if (Temp[0] not in Dict_Temp):
-                                    Dict_Temp[Temp[0]] = Temp[1]
-                        except IndexError:
+            for _ in YAML_Array:
+                if (":" in _):
+                    Temp = _.split(':')
+                    try:
+                        if (';' in Temp[1]):
+                            Array_Value_Temp = Temp[1].split(';')
+                            if (Temp[0] not in Dict_Temp):
+                                Dict_Temp[Temp[0]] = Temp[1].split(';')
+                        elif (',' in Temp[1]):
+                            Array_Value_Temp = Temp[1].split(',')
+                            if (Temp[0] not in Dict_Temp):
+                                Dict_Temp[Temp[0]] = Temp[1].split(',')
+                        else:
                             if (Temp[0] not in Dict_Temp):
                                 Dict_Temp[Temp[0]] = Temp[1]
+                    except IndexError:
+                        if (Temp[0] not in Dict_Temp):
+                            Dict_Temp[Temp[0]] = Temp[1]
+
+            print (Dict_Temp)
     
             return Dict_Temp
 
