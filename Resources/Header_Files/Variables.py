@@ -36,14 +36,18 @@ if (Program_Mode == "Scanning_Mode"):
 
     # Arrays
     Array_Paths, Array_SSL_Vulns, Array_Results = [],[],[]
-    Array_SSH_Header = ['encryption_algorithms', 'kex_algorithms', 'mac_algorithms', 'server_host_key_algorithms']
 
     # Variables
     COLOR_Headline       = "black"
 
 if (Program_Mode == "Scanning_Mode" or Program_Mode == "Filter_Mode"):
-    Array_SSH_Algorithms = Standard.Read_YAML_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Config/ssh_ciphers.yaml"))
-    Screenshot_Color     = Standard.Read_Color(dirname(realpath(__file__)).replace('Resources/Header_Files', "Config/http_screenshot_color.cfg"))
+    Array_SSH_Header, Array_SSH_Algorithms = Standard.Read_YAML_Config_File(dirname(realpath(__file__)).replace('Resources/Header_Files', "Config/ssh_ciphers.yaml"))
+
+    print (Array_SSH_Header)
+    print (Array_SSH_Algorithms)
+    exit()
+
+    Screenshot_Color                       = Standard.Read_Color(dirname(realpath(__file__)).replace('Resources/Header_Files', "Config/http_screenshot_color.cfg"))
 
 # Design
 disable_warnings(InsecureRequestWarning)
