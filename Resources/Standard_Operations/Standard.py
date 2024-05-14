@@ -158,6 +158,10 @@ class Standard:
                 if (len(Temp_Array_Ciphers) > 0):    Temp_Array_Ciphers.sort()
                 return Temp_Array_Names, Temp_Array_Ciphers
 
+            # TLS_Filter
+            elif (mode == 'tls'):
+                pass
+
         else: Logs.Error_Message(f'The requested File {template_file} does not exist!')  
 
     def Read_YAML_Template(template_file):
