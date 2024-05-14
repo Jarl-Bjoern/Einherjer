@@ -110,8 +110,6 @@ class Standard:
                     except IndexError:
                         if (Temp[0] not in Dict_Temp):
                             Dict_Temp[Temp[0]] = Temp[1]
-
-            print (Dict_Temp)
     
             return Dict_Temp
 
