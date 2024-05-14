@@ -41,7 +41,7 @@ if (Program_Mode == "Scanning_Mode"):
     COLOR_Headline       = "black"
 
 if (Program_Mode == "Scanning_Mode" or Program_Mode == "Filter_Mode"):
-    Array_SSH_Header, Array_SSH_Algorithms = Standard.Read_YAML_Config_File(dirname(realpath(__file__)).replace('Resources/Header_Files', "Config/ssh_ciphers.yaml"))
+    Array_SSH_Header, Array_SSH_Algorithms = Standard.Read_YAML_Config_File(dirname(realpath(__file__)).replace('Resources/Header_Files', "Config/ssh_ciphers.yaml"), 'ssh')
 
     print (Array_SSH_Header)
     print (Array_SSH_Algorithms)
