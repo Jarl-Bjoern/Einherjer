@@ -95,8 +95,17 @@ class Standard:
             with open(template_file, 'r') as f:
                 yaml_in_template = yaml_safe_load(f)
 
+            # Color
+            if (mode == 'color'):
+                R,G,B = 0,0,0
+                for _ in yaml_in_template[i]:
+                    if   ('R:' in _): R = int(_.split('R:')[1])
+                    elif ('G:' in _): G = int(_.split('G:')[1])
+                    elif ('B:' in _): B = int(_.split('B:')[1])
+                return (R,G,B)
+
             # HTTP_Config
-            if (mode == 'http'):
+            elif (mode == 'http'):
                 for j in yaml_in_template[section_name]:
                     if (j not in Temp_Array):
                         Temp_Array.append(j)
