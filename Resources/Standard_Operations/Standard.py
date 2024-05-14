@@ -93,6 +93,7 @@ class Standard:
         def Special_Filter(YAML_Array):
             Dict_Temp = {}
             for i in YAML_Array:
+                print (i)
                 for _ in i:
                     if (":" in _):
                         Temp = _.split(':')
