@@ -42,3 +42,8 @@ http_methods: [
   "TRACE",
   "TRACK"
 ]
+screenshot_color: [
+  "R:0",
+  "G:0",
+  "B:0"
+]
