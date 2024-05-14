@@ -116,8 +116,9 @@ class Standard:
 
             # JSON
             elif (mode == 'json'):
-                for j in yaml_in_template[section_name]:
-                    print (j)
+                print (yaml_in_template[section_name])
+#                for j in yaml_in_template[section_name]:
+#                    print (j)
 #                    if (j not in Temp_Array):
 #                        Temp_Array.append(j)
 
