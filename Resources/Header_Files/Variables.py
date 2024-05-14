@@ -10,8 +10,11 @@ from ..Standard_Operations.Logs import *
 
 # Template_Filtering
 if (Program_Mode == "Scanning_Mode"):
-    Array_Security_Flags                = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_cookie_security.txt"))
-    Array_Deprecated_Header             = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_deprecated_header.txt"))
+    Array_Security_Flags                = Standard.Read_JSON_File(dirname(realpath(__file__)).replace('Resources/Header_Files', 'Config/http_config.yaml'), 'cookie_flags')
+    Array_Deprecated_Header             = Standard.Read_JSON_File(dirname(realpath(__file__)).replace('Resources/Header_Files', 'Config/http_config.yaml'), 'http_deprecated_header')
+
+#    Array_Security_Flags                = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_cookie_security.txt"))
+#    Array_Deprecated_Header             = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_deprecated_header.txt"))
     if (args.read_config_http_header       == True and
         args.read_config_http_header_api   == False):
             Dict_Header = Standard.Read_File_Special(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_header.txt"))
@@ -28,11 +31,15 @@ if (Program_Mode == "Scanning_Mode"):
     else:
         Dict_Custom_Header = Standard.Read_JSON_File(dirname(realpath(__file__)).replace('Resources/Header_Files', "Config/http_custom_header.json"))
 
-    Standard.Read_YAML_Config_File(dirname(realpath(__file__)).replace('Resources/Header_Files', 'Config/http_config.yaml'))
+    Array_CORS_Header                   = Standard.Read_YAML_Config_File(dirname(realpath(__file__)).replace('Resources/Header_Files', 'Config/http_config.yaml'), 'http_cors_header')
+    Array_Information_Disclosure_Header = Standard.Read_YAML_Config_File(dirname(realpath(__file__)).replace('Resources/Header_Files', 'Config/http_config.yaml'), 'http_information_disclosure_header')
+    Array_HTTP_Methods                  = Standard.Read_YAML_Config_File(dirname(realpath(__file__)).replace('Resources/Header_Files', 'Config/http_config.yaml'), 'http_methods')
 
-    Array_CORS_Header                   = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_cors_header.txt"))
-    Array_Information_Disclosure_Header = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_information_disclosure.txt"))
-    Array_HTTP_Methods                  = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_methods.txt"))
+    print (Array_Information_Disclosure_Header, Array_HTTP_Methods, Array_CORS_Header, Array_Security_Flags, Array_Deprecated_Header), exit()
+
+    #Array_CORS_Header                   = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_cors_header.txt"))
+    #Array_Information_Disclosure_Header = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_information_disclosure.txt"))
+    #Array_HTTP_Methods                  = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_methods.txt"))
     Array_TLS_Algorithms                = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/ssl_ciphers.txt"))
 
     # Arrays
