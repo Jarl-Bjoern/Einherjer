@@ -10,7 +10,7 @@ from ..Standard_Operations.Logs import *
 
 # Template_Filtering
 if (Program_Mode == "Scanning_Mode"):
-    Array_Security_Flags                = Standard.Read_YAML_Config_Filee(dirname(realpath(__file__)).replace('Resources/Header_Files', 'Config/http_config.yaml'), 'cookie_flags')
+    Array_Security_Flags                = Standard.Read_YAML_Config_File(dirname(realpath(__file__)).replace('Resources/Header_Files', 'Config/http_config.yaml'), 'cookie_flags')
     Array_Deprecated_Header             = Standard.Read_YAML_Config_File(dirname(realpath(__file__)).replace('Resources/Header_Files', 'Config/http_config.yaml'), 'http_deprecated_header')
 
 #    Array_Security_Flags                = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_cookie_security.txt"))
