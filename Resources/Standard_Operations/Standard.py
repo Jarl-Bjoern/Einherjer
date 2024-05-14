@@ -90,7 +90,7 @@ class Standard:
         else: Logs.Error_Message(f'The requested File {template_file} does not exist!')
 
     def Read_YAML_Config_File(template_file):
-        Array_Security_Flags, Array_Deprecated_Header, Array_CORS_Header, Array_Information_Disclosure_Header, Array_HTTP_Methods, Array_TLS_Algorithms = [],[],[],[],[]
+        Array_Security_Flags, Array_Deprecated_Header, Array_CORS_Header, Array_Information_Disclosure_Header, Array_HTTP_Methods, Array_TLS_Algorithms = [],[],[],[],[],[]
 
         if (exists(template_file)):
             Temp_Array = []
