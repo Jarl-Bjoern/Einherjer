@@ -89,19 +89,17 @@ class Standard:
             return Temp_Array
         else: Logs.Error_Message(f'The requested File {template_file} does not exist!')
 
-    def Read_YAML_Config_File(template_file):
-        Array_Security_Flags, Array_Deprecated_Header, Array_CORS_Header, Array_Information_Disclosure_Header, Array_HTTP_Methods, Array_TLS_Algorithms = [],[],[],[],[],[]
+    def Read_YAML_Config_File(template_file, section_name):
+        Temp_Array = []
 
         if (exists(template_file)):
             Temp_Array = []
             with open(template_file, 'r') as f:
                 yaml_in_template = yaml_safe_load(f)
 
-            for i in yaml_in_template:
-                print (i)
-#                for j in yaml_in_template[i]:
-#                    if (j not in Temp_Array):
-#                        Temp_Array.append(j)
+            for j in yaml_in_template[section_name]:
+                if (j not in Temp_Array):
+                    Temp_Array.append(j)
 
             if (len(Temp_Array) > 0):
                 Temp_Array.sort()
