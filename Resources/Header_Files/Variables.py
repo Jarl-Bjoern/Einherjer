@@ -34,9 +34,6 @@ if (Program_Mode == "Scanning_Mode"):
     Array_HTTP_Methods                  = Standard.Read_YAML_Config_File(dirname(realpath(__file__)).replace('Resources/Header_Files', 'Config/http_config.yaml'), 'http_methods')
     Array_TLS_Algorithms                = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Config/ssl_ciphers.txt"))
 
-    # Arrays
-    Array_Paths, Array_SSL_Vulns, Array_Results = [],[],[]
-
     # Variables
     COLOR_Headline       = "black"
 
