@@ -10,6 +10,9 @@ cookie_flags: [
 http_cors_header: [
   "ACCESS-CONTROL-ALLOW-ORIGIN"
 ]
+http_custom_header: {
+  "Connection": "Close"
+}
 http_deprecated_header: [
   "EXPECT-CT",
   "FEATURE-POLICY",
