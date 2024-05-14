@@ -13,12 +13,12 @@ if (Program_Mode == "Scanning_Mode"):
     # Templates
     if (args.read_config_http_header       == True and
         args.read_config_http_header_api   == False):
-            #Dict_Header = Standard.Read_File_Special(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_header.txt"))
-            Dict_Header = Standard.Read_YAML_Config_File(dirname(realpath(__file__)).replace('Resources/Header_Files', 'Config/http_config.yaml'), 'http_header', 'json')
+            Dict_Header = Standard.Read_File_Special(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_header.txt"))
+            #Dict_Header = Standard.Read_YAML_Config_File(dirname(realpath(__file__)).replace('Resources/Header_Files', 'Config/http_config.yaml'), 'http_header', 'json')
     elif (args.read_config_http_header     == False and
           args.read_config_http_header_api == True):
-            #Dict_Header = Standard.Read_File_Special(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_header_api.txt"))
-            Dict_Header = Standard.Read_YAML_Config_File(dirname(realpath(__file__)).replace('Resources/Header_Files', 'Config/http_config.yaml'), 'http_header_api', 'json')
+            Dict_Header = Standard.Read_File_Special(dirname(realpath(__file__)).replace('Resources/Header_Files', "Templates/http_header_api.txt"))
+            #Dict_Header = Standard.Read_YAML_Config_File(dirname(realpath(__file__)).replace('Resources/Header_Files', 'Config/http_config.yaml'), 'http_header_api', 'json')
     elif (args.read_config_http_header     == True and
           args.read_config_http_header_api == True):
             exit(Colors.RED+"It's not possible to use both http_header templates at the same time."+Colors.RESET)
