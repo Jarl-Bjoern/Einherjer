@@ -16,7 +16,7 @@ python-docx==0.8.11
 pyyaml
 pyzbar==0.1.9
 pyzipper==0.3.6
-requests==2.31.0
+requests==2.32.0
 requests-pkcs12==1.15
 rich==13.5.2
 scapy==2.5.0
