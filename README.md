@@ -51,8 +51,8 @@ I spend a lot of time in this project until it is completely ready and bug free.
 
 ## ❗ News
 <strong>Upcoming changes for version</strong> `0.9`:
- - UNDER CONSTRUCTION
  - Lots of bug fixes
+ - SSL/TLS Scanner
 
 <div align="center">
 ➡️ <a href="https://github.com/Jarl-Bjoern/Einherjer/blob/main/Changelog/Changelog.md">
