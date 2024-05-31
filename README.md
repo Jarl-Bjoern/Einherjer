@@ -37,8 +37,8 @@ The name `Einherjer` comes from the old norse language and means `lone fighter`.
 I spend a lot of time in this project until it is completely ready and bug free.
 
 > [!WARNING]
-> UNDER CONSTRUCTION<br />
-> Not all functions are working yet.<br />
+> UNDER CONSTRUCTION<br /><br />
+> Not all functions are working yet.<br /><br />
 > The current use is at your own risk.
 <br />
 
