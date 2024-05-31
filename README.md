@@ -33,7 +33,9 @@
 
 UNDER CONSTRUCTION
 
-Not all functions are working yet.
+> [!WARNING]
+> Not all functions are working yet.
+<br />
 
 I spend a lot of time in this project until it is completely ready and bug free.
 
