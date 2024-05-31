@@ -32,6 +32,8 @@
 </div><br/>
 
 The name `Einherjer` comes from the old norse language and means `lone fighter`. Furthermore, the immortal warriors were also called Einherjer in valhalla, who fight together in the great battle ragnarök.
+<br />
+The program was designed to take over as many tasks as possible during a penetration test and at the same time to utilize the output in such a way that it can be used immediately in the report in order to save as much time as possible.
 <br /><br />
 
 I spend a lot of time in this project until it is completely ready and bug free.
