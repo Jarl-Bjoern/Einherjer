@@ -31,18 +31,16 @@
   </a>
 </div><br/>
 
-UNDER CONSTRUCTION
-
-> [!WARNING]
-> Not all functions are working yet.
-<br />
+The name `Einherjer` comes from the old norse language and means `lone fighter`. Furthermore, the immortal warriors were also called Einherjer in valhalla, who fight together in the great battle ragnarök.
+<br /><br />
 
 I spend a lot of time in this project until it is completely ready and bug free.
 
-The current use is at your own risk.
-
-The name `Einherjer` comes from the old norse language and means `lone fighter`. Furthermore, the immortal warriors were also called Einherjer in valhalla, who fight together in the great battle ragnarök.
-<br /><br />
+> [!WARNING]
+> UNDER CONSTRUCTION
+> Not all functions are working yet.
+> The current use is at your own risk.
+<br />
 
 > [!IMPORTANT]
 > <strong>Please do `not` use the program `for illegal intentions`.</strong><br />
