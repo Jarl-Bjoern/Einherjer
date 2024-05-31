@@ -38,7 +38,6 @@ I spend a lot of time in this project until it is completely ready and bug free.
 <br /><br />
 
 > [!WARNING]
-> UNDER CONSTRUCTION<br /><br />
 > Not all functions are working yet.<br /><br />
 > The current use is at your own risk.
 <br />
