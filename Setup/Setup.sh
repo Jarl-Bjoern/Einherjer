@@ -31,7 +31,7 @@ sleep 2
 # Install_Missing_APT_Packages
 echo -e "Installing the missing ${RED}apt packages${NOCOLOR}"
 echo -e "${CYAN}-----------------------------------------------------------------${NOCOLOR}\n"
-sudo apt install -y libcurl4-openssl-dev chromium chromium-driver python3-pip python3-venv
+sudo apt install -y libcurl4-openssl-dev libssl-dev chromium chromium-driver python3-pip python3-venv
 echo -e "\n\nThe ${RED}apt packages${NOCOLOR} was installed!\n"
 echo -e "${CYAN}-----------------------------------------------------------------${NOCOLOR}\n\n\n"
 
