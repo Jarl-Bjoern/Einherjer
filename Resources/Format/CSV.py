@@ -506,7 +506,7 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
                                             Temp_Arr = ['The system is using anonymous ciphers']
                                             Dict_Overview_SSL[Target]['Support for Anonymous ciphers'] = True
 
-                                        elif (_ == "PFS" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
+                                        elif (_ == "Missing_PFS" and (Result_Right[_] != "False" and Result_Right[_] != False and Length_Vuln > 0)):
                                             Temp_Arr = ["The system is using ciphers without Perfect Forward Security (PFS)"]
                                             Dict_Overview_SSL[Target]['Support for ciphers without PFS'] = True
 
