@@ -61,3 +61,8 @@ fi
 if [[ ! -f "/usr/bin/Einherjer" ]]; then
   ln -s "$SCRIPT_PATH/Einherjer.py" /usr/bin/Einherjer
 fi
+
+# Information
+echo -e "${NORANGE}The installation was finished.${NOCOLOR}"
+echo -e "${CYAN}-----------------------------------------------------------------${NOCOLOR}\n"
+echo -e "The program can now be used with ${BLUE}'Einherjer'${NOCOLOR} or ${BLUE}'einherjer'${NOCOLOR}"
