@@ -55,7 +55,7 @@ done
 echo -e "\n\nThe ${RED}pip packages${NOCOLOR} was installed!\n\n"
 
 # Softlink
-sudo chmod +x $SCRIPT_PATH/Einherjer.py
+sudo chmod +x "$SCRIPT_PATH/Einherjer.py"
 if [[ ! -f "/usr/bin/einherjer" ]]; then
   sudo ln -s "$SCRIPT_PATH/Einherjer.py" /usr/bin/einherjer
 fi
