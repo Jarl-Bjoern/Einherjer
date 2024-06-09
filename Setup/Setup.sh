@@ -56,8 +56,8 @@ echo -e "\n\nThe ${RED}pip packages${NOCOLOR} was installed!\n\n"
 
 # Softlink
 if [[ ! -f "/usr/bin/einherjer" ]]; then
-  ln -s Einherjer.py /usr/bin/einherjer
+  ln -s "$SCRIPT_PATH/Einherjer.py" /usr/bin/einherjer
 fi
 if [[ ! -f "/usr/bin/Einherjer" ]]; then
-  #ln -s Einherjer.py /usr/bin/Einherjer
+  ln -s "$SCRIPT_PATH/Einherjer.py" /usr/bin/Einherjer
 fi
