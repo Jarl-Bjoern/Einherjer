@@ -22,7 +22,7 @@ def Argument_Parser(Error_Text, Copyright_Year, Template_Location = dirname(real
     scan_arguments   = parser.add_argument_group(Colors.ORANGE+'scan arguments'+Colors.RESET)
     target_arguments = parser.add_argument_group(Colors.ORANGE+'target arguments'+Colors.RESET)
 
-    #scan_arguments.add_argument('-sA', '--scan-all', type=bool, nargs='?', const=True, help=Colors.GREEN+'With this it is possible to scan all functions.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET, default=False)
+    #scan_arguments.add_argument('-sALL', '--scan-all', type=bool, nargs='?', const=True, help=Colors.GREEN+'With this it is possible to scan all functions.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET, default=False)
     scan_arguments.add_argument('-sCORS', '--scan-cors', type=bool, nargs='?', const=True, help=Colors.GREEN+'Use this function to check for CORS vulnerabilities.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET, default=False)
     scan_arguments.add_argument('-sFTP', '--scan-ftp', type=bool, nargs='?', const=True, help=Colors.GREEN+'This parameter can be used to check an FTP server for minor vulnerabilities.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET, default=False)
     scan_arguments.add_argument('-sHn', '--scan-host-name', type=bool, nargs='?', const=True, help=Colors.GREEN+'With this parameter you can filter out the hostnames.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET, default=False)
