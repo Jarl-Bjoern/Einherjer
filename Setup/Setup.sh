@@ -55,4 +55,5 @@ done
 echo -e "\n\nThe ${RED}pip packages${NOCOLOR} was installed!\n\n"
 
 # Softlink
-#ln -s 
+#ln -s Einherjer.py /usr/bin/einherjer
+#ln -s Einherjer.py /usr/bin/Einherjer
