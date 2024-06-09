@@ -53,3 +53,6 @@ do
   pip3 install $LINE || return 0
 done
 echo -e "\n\nThe ${RED}pip packages${NOCOLOR} was installed!\n\n"
+
+# Softlink
+#ln -s 
