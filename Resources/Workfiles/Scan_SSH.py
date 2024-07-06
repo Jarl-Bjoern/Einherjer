@@ -35,7 +35,7 @@ def SSH_Vulns(url, Host_Name, Location, Dict_SSH_Version = {}, Dict_SSH_Results 
     # Get_Banner
     socket_defaulttimeout(30)
     try:
-        with create_connection((Target, int(Port)),5) as sock:
+        with sock_create_connection((Target, int(Port)),5) as sock:
             sock.send(b"SSH-2.0-7331SSH\r\n")
             try:              Server_Banner = str(sock.recv(100), 'utf-8')
             except TypeError: Server_Banner = sock.recv(100)
@@ -46,14 +46,14 @@ def SSH_Vulns(url, Host_Name, Location, Dict_SSH_Version = {}, Dict_SSH_Results 
         pass
 
     # Confirm_Host_Keys
-    with Popen(['ssh','-T','-o','StrictHostKeyChecking=no',Target,'-p',int(Port)], stdin=PIPE, stdout=PIPE) as process:
+    with sub_Popen(['ssh','-T','-o','StrictHostKeyChecking=no',Target,'-p',int(Port)], stdin=sub_PIPE, stdout=sub_PIPE) as process:
         process.terminate()
 
     # Check_Auth_Methods
-    async def check_auth(target):
-        return await get_server_auth_methods(target)
+    async def check_auth(Target):
+        return await get_server_auth_methods(Target)
 
-    print (get_server_auth_methods(target))
+    print (get_server_auth_methods(Target))
 
     # Experimental
     Dict_System = {}
