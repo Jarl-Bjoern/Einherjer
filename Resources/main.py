@@ -529,6 +529,18 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
         if (exists(join(dirname(realpath(__file__)).split("Resources")[0], "scan.state"))):
             remove(join(dirname(realpath(__file__)).split("Resources")[0], "scan.state"))
 
+        # Trace_File
+        #capture = sniff(filter="tcp", count=100)
+        #wrpcap('/tmp/temp_einherjer.pcap', capture)
+        
+        #pcap    = rdpcap('/tmp/temp_einherjer.pcap')
+        #ports   = 443
+        
+        #for packet in pcap:
+        #       print (packet.getlayer(TCP).sport)
+        #        if (packet.haslayer(TCP) and packet.getlayer(TCP).sport == ports):
+        #                wrpcap('filtered.pcap', packet, append=True)
+
         # Program_Start
         Standard.Initialien(args.debug)
         socket_defaulttimeout(args.timeout)
