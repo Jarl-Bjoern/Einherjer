@@ -35,7 +35,7 @@ def SSH_Vulns(url, Host_Name, Location, Dict_SSH_Version = {}, Dict_SSH_Results 
     # Get_Banner
     socket_defaulttimeout(30)
     try:
-        with sock_create_connection((Target, int(Port)),5) as sock:
+        with socket_create_connection((Target, int(Port)),5) as sock:
             sock.send(b"SSH-2.0-7331SSH\r\n")
             try:              Server_Banner = str(sock.recv(100), 'utf-8')
             except TypeError: Server_Banner = sock.recv(100)
