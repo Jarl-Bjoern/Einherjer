@@ -7,7 +7,7 @@ from ..Header_Files.Variables     import *
 from ..Standard_Operations.Logs   import Logs
 from ..Standard_Operations.Colors import Colors
 
-def SSH_Vulns(url, Host_Name, Location, Dict_SSH_Version = {}, Dict_SSH_Results = {'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': []}, Dict_Temp = {}):
+def SSH_Vulns(url, Host_Name, Location, Dict_SSH_Version = {}, Dict_SSH_Results = {'auth_methods': [], 'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': []}, Dict_Temp = {}):
     def Check_SSH_Values(List_With_Keys, Temp_Key = ""):
         Array_Temp = []
         for i in List_With_Keys:
@@ -46,14 +46,12 @@ def SSH_Vulns(url, Host_Name, Location, Dict_SSH_Version = {}, Dict_SSH_Results 
         pass
 
     # Confirm_Host_Keys
-    with sub_Popen(['ssh','-T','-o','StrictHostKeyChecking=no',Target,'-p',int(Port)], stdin=sub_PIPE, stdout=sub_PIPE) as process:
-        process.terminate()
+    #with sub_Popen(['ssh','-T','-o','StrictHostKeyChecking=no',Target,'-p',int(Port)], stdin=sub_PIPE, stdout=sub_PIPE) as process:
+    #    process.terminate()
 
     # Check_Auth_Methods
     async def check_auth(Target):
         return await get_server_auth_methods(Target)
-
-    print (get_server_auth_methods(Target))
 
     # Experimental
     Dict_System = {}
@@ -73,15 +71,14 @@ def SSH_Vulns(url, Host_Name, Location, Dict_SSH_Version = {}, Dict_SSH_Results 
         def auth_completed(self) -> None:
             print('Authentication successful.')
 
-    #async def run_client():
-    #    result = await asyncssh.get_server_auth_methods('127.0.0.1')
-    #    conn, client = await asyncssh.create_connection(MySSHClient, '127.0.0.1', known_hosts=None)
+#    async def run_client():
+#        conn, client = await asyncssh.create_connection(MySSHClient, '127.0.0.1', known_hosts=None)
 
     # Start_Scans
     try:
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
-        Auth_Methods = loop.run_until_complete(check_auth(Target))
+        Dict_System['auth_methods'] = loop.run_until_complete(check_auth(Target))
         #loop.run_until_complete(run_client())
     except (AsyncSSHError, OSError) as e:
         exit(f'SSH connection failed: {str(e)}')
