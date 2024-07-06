@@ -68,24 +68,11 @@ def SSH_Vulns(url, Host_Name, Location, Dict_SSH_Version = {}, Dict_SSH_Results 
     Dict_System['mac_algorithms']             = Check_SSH_Values(opts.digests)
     #print(opts.compression)
 
-    class MySSHClient(SSHClient):
-        def connection_made(self, conn: SSHClientConnection) -> None:
-            print(conn.get_extra_info('client_version'))
-            print(conn.get_extra_info('send_mac'))
-            print(conn.get_extra_info('send_compression'))
-
-        def auth_completed(self) -> None:
-            print('Authentication successful.')
-
-#    async def run_client():
-#        conn, client = await asyncssh.create_connection(MySSHClient, '127.0.0.1', known_hosts=None)
-
     # Start_Scans
     try:
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
         Dict_System['auth_methods'] = loop.run_until_complete(check_auth(Target))
-        #loop.run_until_complete(run_client())
     except (AsyncSSHError, OSError) as e:
         exit(f'SSH connection failed: {str(e)}')
 
