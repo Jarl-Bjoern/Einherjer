@@ -42,7 +42,7 @@ def Check_Certificate(url, t_seconds, Host_Name, Location, context = create_unve
 
     # Grab_Cert_Information
     try:
-        with create_connection((Target, int(Port)), timeout=t_seconds) as sock:
+        with socket_create_connection((Target, int(Port)), timeout=t_seconds) as sock:
             try:
                 with context.wrap_socket(sock, server_hostname=Target) as ssock:
                     # Cert_Connect_And_Collect
