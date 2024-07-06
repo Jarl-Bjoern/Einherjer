@@ -17,6 +17,8 @@ def SSH_Vulns(url, Host_Name, Location, Dict_SSH_Version = {}, Dict_SSH_Results 
                 Array_Temp.append(Temp_Key)
         return Array_Temp
 
+    filter_values = r'x88|x01|x00|x15|xd5|\\|&|@openssh.com'
+
     # Split_Protocol
     if ('ssh://' in url):    URL = url.split('ssh://')[1]
 
@@ -39,6 +41,10 @@ def SSH_Vulns(url, Host_Name, Location, Dict_SSH_Version = {}, Dict_SSH_Results 
             sock.send(b"SSH-2.0-7331SSH\r\n")
             try:              Server_Banner = str(sock.recv(100), 'utf-8')
             except TypeError: Server_Banner = sock.recv(100)
+
+            # Get_Ciphers
+            Ciphers = s.recv(4096)
+            print (resplit(filter_values, str(Ciphers)))
 
         if ('SSH-1' in str(Server_Banner)[::-(len(Server_Banner)-7)]):
             print (Server_Banner)
