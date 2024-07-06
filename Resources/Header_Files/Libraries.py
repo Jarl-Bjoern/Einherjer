@@ -253,7 +253,7 @@ try:
                             SslyzeOutputAsJson,
                             ServerScanStatusEnum
                         )
-                        from socket     import AF_INET, create_connection as sock_create_connection, socket, SOCK_STREAM
+                        from socket     import AF_INET, create_connection as socket_create_connection, socket, SOCK_STREAM
                         from subprocess import PIPE as sub_PIPE, Popen as sub_Popen
                         from webbrowser import open as webbrowser_open
                         import asyncio
