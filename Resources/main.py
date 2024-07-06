@@ -566,6 +566,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                     Dict_Switch['scan_screenshot']     != None  or
                     Dict_Switch['scan_snmp']           != False or
                     Dict_Switch['scan_smtp']           != False or
+                    Dict_Switch['scan_ssh']            != False or
                     Dict_Switch['scan_security_flags'] != False):
 
                         for Target in np_array(Array_Targets):
