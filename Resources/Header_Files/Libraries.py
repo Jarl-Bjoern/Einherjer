@@ -254,7 +254,7 @@ try:
                             ServerScanStatusEnum
                         )
                         from socket     import AF_INET, create_connection as sock_create_connection, socket, SOCK_STREAM
-                        from subprocess import Popen as sub_Popen
+                        from subprocess import PIPE as sub_PIPE, Popen as sub_Popen
                         from webbrowser import open as webbrowser_open
                         import asyncio
                         with catch_warnings():
