@@ -64,7 +64,8 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
 
             # Trace_Write
             Captured_Packages = a.stop()
-            wrpcap(f'{Location}/einherjer_trace.pcap', Captured_Packages, append=True)
+            try:    wrpcap(f'{Location}/Logs/einherjer_trace.pcap', Captured_Packages, append=True)
+            except: pass
 
             # Trace_End
             Logs.Trace_File(
