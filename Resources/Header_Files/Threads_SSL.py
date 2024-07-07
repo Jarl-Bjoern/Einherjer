@@ -36,9 +36,9 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
             # Port_Filter
             for _ in array_ssl:
                 if (_.count(':') > 1):
-                    Temp_Port = _(::-1).split(':')[0][::-1]
+                    Temp_Port = _[::-1].split(':')[0][::-1]
                 else:
-                    Temp_Port = _(::-1).split(':')[0]
+                    Temp_Port = _[::-1].split(':')[0]
                 if (Temp_Port not in Array_Filtered_Port): Array_Filtered_Ports.append(Temp_Port)
 
             for _ in range(0, len(Array_Filtered_Ports)):
