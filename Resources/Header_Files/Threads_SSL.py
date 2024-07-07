@@ -29,17 +29,20 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
         # Socket_Timeout
         socket_defaulttimeout(t_seconds)
 
-        # Global_Trace
-        Port_Filter = "tcp"
-        def Global_Trace(timeout, Port_Filter):
-            Capture_Trace_File = sniff(filter=Port_Filter, count=1000000, timeout=timeout)
-            wrpcap(f'{Location}/einherjer_trace.pcap', Capture_Trace_File, append=True)
+#        Port_Filter = "tcp"
+#        def Global_Trace(timeout, Port_Filter):
+#            Capture_Trace_File = sniff(filter=Port_Filter, count=1000000, timeout=timeout)
+            
 
-        t1 = Thread(target=Global_Trace, args=[t_seconds, Port_Filter], daemon=True)
-        t1.start()
+#        t1 = Thread(target=Global_Trace, args=[t_seconds, Port_Filter], daemon=True)
+#        t1.start()
 
         # SSL
         if (dict_switch['scan_ssl'] != False):
+            # Global_Trace
+            a = AsyncSniffer()
+            a.start()
+
             # Trace_Start
 #            for _ in array_ssl:
             Logs.Trace_File(
@@ -51,6 +54,10 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
             # Scan_SSL
             Dict_Temp['SSL'] = SSL_Vulns(array_ssl, ssl_timeout, Location)
             Dict_Result['SSL'].update(Dict_Temp['SSL'])
+
+            # Trace_Write
+            Captured_Packages = a.stop()
+            wrpcap(f'{Location}/einherjer_trace.pcap', Captured_Packages, append=True)
 
             # Trace_End
             Logs.Trace_File(
