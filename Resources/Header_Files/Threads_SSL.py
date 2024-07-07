@@ -41,13 +41,10 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
                     Temp_Port = _[::-1].split(':')[0]
                 if (Temp_Port not in Array_Filtered_Ports): Array_Filtered_Ports.append(Temp_Port)
 
-            for _ in range(0, len(Array_Filtered_Ports)-1):
-                if (_ != len(Array_Filtered_Ports)):
-                    Port_Protocol_Filter += f"port {Array_Filtered_Ports[_]} and "
-                else:
-                    Port_Protocol_Filter += f"port {Array_Filtered_Ports[_]}"
-            print (Port_Protocol_Filter)
-
+            for _ in range(0, len(Array_Filtered_Ports)):
+                Port_Protocol_Filter += f"port {Array_Filtered_Ports[_]}  "
+                if ((_ + 1) != len(Array_Filtered_Ports)):
+                    Port_Protocol_Filter += f"and "                    
 
             # Start_Trace
             a = AsyncSniffer(filter=Port_Protocol_Filter)
