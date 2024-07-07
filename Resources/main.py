@@ -838,7 +838,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
     try:
         Pcap_File    = rdpcap(join(Location, 'Logs/einherjer_temp_trace.pcap'))
         Filter_Port  = 443
-    
+
         for Packet in Pcap_File:
             print (Packet.getlayer(TCP).sport)
             if (Packet.haslayer(TCP) and Packet.getlayer(TCP).sport == Filter_Port):
