@@ -834,19 +834,6 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
         elif (Program_Mode == "Filter_Mode"):
             Standard.Stdout_Output(Colors.ORANGE+f'\n\t\t\t\tIt was not possible to collect any kind of data!\n\n\t\t\t     Check your locations or target files and try it again.'+Colors.RESET, 0.01)
 
-    # Trace_Filter
-    #try:
-    #    Pcap_File    = rdpcap(join(Location, 'Logs/einherjer_temp_trace.pcap'))
-    #    Filter_Port  = 443
-
-#        for Packet in Pcap_File:
-#            print (Packet.getlayer(TCP).sport)
-#            if (Packet.haslayer(TCP) and Packet.getlayer(TCP).sport == Filter_Port):
-#                wrpcap(join(Location, 'Logs/einherjer_trace.pcap'), Packet, append=True)
-#        remove (join(Location, 'Logs/einherjer_temp_trace.pcap'))
-#    except FileNotFoundError:
-#        pass
-
     # SSL_Output
     try:
         if (args.scan_site_ssl != False):
