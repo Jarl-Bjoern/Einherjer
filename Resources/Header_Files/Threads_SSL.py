@@ -35,10 +35,10 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
 
             # Port_Filter
             for _ in array_ssl:
-                if (_.count(':') == 2):
-                    Temp_Port = _[::-1].split(':')[0][::-1]
-                else:
-                    Temp_Port = _[::-1].split(':')[0]
+                if   (_.count(':') == 2): Temp_Port = _[::-1].split(':')[0][::-1]
+                elif (_.count(':') == 1): Temp_Port = _[::-1].split(':')[0]
+                elif (_.count(':') == 0): Temp_Port = '443'
+
                 if (Temp_Port not in Array_Filtered_Ports): Array_Filtered_Ports.append(Temp_Port)
 
             for _ in range(0, len(Array_Filtered_Ports)):
@@ -64,8 +64,7 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
 
             # Trace_Write
             Captured_Packages = a.stop()
-            try:    wrpcap(f'{Location}/Logs/einherjer_trace.pcap', Captured_Packages, append=True)
-            except: pass
+            wrpcap(f'{Location}/Logs/einherjer_trace.pcap', Captured_Packages, append=True)
 
             # Trace_End
             Logs.Trace_File(
