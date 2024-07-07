@@ -31,7 +31,7 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
 
         # Global_Trace
         def Global_Trace(timeout):
-            Capture_Trace_File = sniff(filter="tcp", count=1000, timeout=timeout)
+            Capture_Trace_File = sniff(filter="tcp", timeout=timeout)
             wrpcap(f'{Location}/einherjer_temp_trace.pcap', Capture_Trace_File, append=True)
 
         t1 = Thread(target=Global_Trace, args=[ssl_timeout], daemon=True)
