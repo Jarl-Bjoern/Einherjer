@@ -529,9 +529,6 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
         if (exists(join(dirname(realpath(__file__)).split("Resources")[0], "scan.state"))):
             remove(join(dirname(realpath(__file__)).split("Resources")[0], "scan.state"))
 
-        # Trace_File
-        Capture_Trace_File = sniff(filter="tcp", count=1000)
-
         # Program_Start
         Standard.Initialien(args.debug)
         socket_defaulttimeout(args.timeout)
@@ -743,9 +740,6 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                         kp.save()
                 else:
                     Counter_Bar_Filter = 0.75
-
-                # Trace_File_Write
-                wrpcap(f'{Output_Location}/einherjer_temp_trace.pcap', Capture_Trace_File)
 
                 # Progress_End
                 while not progress.finished:
