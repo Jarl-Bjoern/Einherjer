@@ -46,6 +46,7 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
                     Port_Protocol_Filter += f"port {_} and "
                 else:
                     Port_Protocol_Filter += f"port {_}"
+            print (Port_Protocol_Filter)
 
             # Start_Trace
             a = AsyncSniffer(filter=Port_Protocol_Filter)
