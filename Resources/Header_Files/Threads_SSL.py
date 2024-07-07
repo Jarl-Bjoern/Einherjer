@@ -32,6 +32,7 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
         # SSL
         if (dict_switch['scan_ssl'] != False):
             # Global_Trace
+            print (array_ssl)
             Port_Protocol_Filter = "tcp"
             a = AsyncSniffer(filter=Port_Protocol_Filter)
             a.start()
