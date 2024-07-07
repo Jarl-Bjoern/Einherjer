@@ -530,11 +530,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
             remove(join(dirname(realpath(__file__)).split("Resources")[0], "scan.state"))
 
         # Trace_File
-        Capture_Trace_File = sniff(filter="tcp", count=100)
-        wrpcap(f'{Output_Location}/einherjer_temp_trace.pcap', Capture_Trace_File)
-
-        Pcap_File    = rdpcap(f'{Output_Location}/einherjer_temp_trace.pcap')
-        Filter_Port  = 443
+        Capture_Trace_File = sniff(filter="tcp", count=1000)
 
         # Program_Start
         Standard.Initialien(args.debug)
@@ -748,6 +744,9 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                 else:
                     Counter_Bar_Filter = 0.75
 
+                # Trace_File_Write
+                wrpcap(f'{Output_Location}/einherjer_temp_trace.pcap', Capture_Trace_File)
+
                 # Progress_End
                 while not progress.finished:
                     progress.update(task_Scan, advance=Counter_Bar)
@@ -766,7 +765,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                     try:            rmdir(join(Output_Location, _))
                     except OSError: rmtree(join(Output_Location, _), ignore_errors=True)
 
-        return Array_Output, Switch_Screenshots, Dict_Result, Pcap_File
+        return Array_Output, Switch_Screenshots, Dict_Result
 
     # Output_Location
     if (args.output_location != None):
@@ -842,6 +841,9 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
             Standard.Stdout_Output(Colors.ORANGE+f'\n\t\t\t\tIt was not possible to collect any kind of data!\n\n\t\t\t     Check your locations or target files and try it again.'+Colors.RESET, 0.01)
 
     # Trace_Filter
+    Pcap_File    = rdpcap(f'{Output_Location}/einherjer_temp_trace.pcap')
+    Filter_Port  = 443
+
     for Packet in Pcap_File:
         print (Packet.getlayer(TCP).sport)
         if (Packet.haslayer(TCP) and Packet.getlayer(TCP).sport == Filter_Port):
