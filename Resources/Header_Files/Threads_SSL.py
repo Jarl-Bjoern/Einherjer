@@ -30,7 +30,12 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
         socket_defaulttimeout(t_seconds, timeout=ssl_timeout)
 
         # Global_Trace
-        Capture_Trace_File = sniff(filter="tcp", count=1000)
+        def Global_Trace(timeout):
+            Capture_Trace_File = sniff(filter="tcp", count=1000, timeout=timeout)
+            wrpcap(f'{Location}/einherjer_temp_trace.pcap', Capture_Trace_File, append=True)
+
+        t1 = Thread(target=Global_Trace, args=[ssl_timeout], daemon=True)
+        t1.start()
 
         # SSL
         if (dict_switch['scan_ssl'] != False):
@@ -51,9 +56,6 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
                 Colors.ORANGE+f'{array_ssl}'+Colors.RED+' <- '+Colors.CYAN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+' - Scan_SSL - '+Colors.GREEN+'OK'+Colors.RESET,
                 join(Location, 'Logs')
             )
-
-        # Global_Trace_Write
-        wrpcap(f'{Location}/einherjer_temp_trace.pcap', Capture_Trace_File, append=True)
 
         # Write_File_Format
         file_format(Dict_Temp, Location, language)
