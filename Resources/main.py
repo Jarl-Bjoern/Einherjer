@@ -536,11 +536,6 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
         Pcap_File    = rdpcap(f'{Output_Location}/einherjer_temp_trace.pcap')
         Filter_Port  = 443
 
-        for Packet in Pcap_File:
-            print (Packet.getlayer(TCP).sport)
-            if (Packet.haslayer(TCP) and Packet.getlayer(TCP).sport == Filter_Port):
-                wrpcap(f'{Output_Location}/einherjer_trace.pcap', Packet, append=True)
-
         # Program_Start
         Standard.Initialien(args.debug)
         socket_defaulttimeout(args.timeout)
@@ -845,6 +840,12 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
             Standard.Stdout_Output(Colors.ORANGE+f'\n\t\t\t\tIt was not possible to collect any kind of data!\n\n\t\t\t     Check your connection or target file and try it again.'+Colors.RESET, 0.01)
         elif (Program_Mode == "Filter_Mode"):
             Standard.Stdout_Output(Colors.ORANGE+f'\n\t\t\t\tIt was not possible to collect any kind of data!\n\n\t\t\t     Check your locations or target files and try it again.'+Colors.RESET, 0.01)
+
+    # Trace_Filter
+    for Packet in Pcap_File:
+        print (Packet.getlayer(TCP).sport)
+        if (Packet.haslayer(TCP) and Packet.getlayer(TCP).sport == Filter_Port):
+            wrpcap(f'{Output_Location}/einherjer_trace.pcap', Packet, append=True)
 
     # SSL_Output
     try:
