@@ -35,7 +35,7 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
 
             # Port_Filter
             for _ in array_ssl:
-                if (_.count(':') > 1):
+                if (_.count(':') == 2):
                     Temp_Port = _[::-1].split(':')[0][::-1]
                 else:
                     Temp_Port = _[::-1].split(':')[0]
@@ -43,9 +43,9 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
 
             for _ in range(0, len(Array_Filtered_Ports)):
                 if (_ != len(Array_Filtered_Ports)):
-                    Port_Protocol_Filter += f"port {_} and "
+                    Port_Protocol_Filter += f"port {Array_Filtered_Ports[_]} and "
                 else:
-                    Port_Protocol_Filter += f"port {_}"
+                    Port_Protocol_Filter += f"port {Array_Filtered_Ports[_]}"
             print (Port_Protocol_Filter)
 
             # Start_Trace
