@@ -38,7 +38,13 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
                 if   ('ssl://' in _):   Check_Host = _.split('ssl://')[1]
                 elif ('https://' in _): Check_Host = _.split('https://')[1]
 
-                if (IPv4Network(Check_Host) == True):
+                try:
+                    IPv4Network(Check_Host)
+                    IP_Check = True
+                except:
+                    IP_Check = False
+
+                if (IP_Check == True):
                     if   (_.count(':') == 2): Temp_Port = _[::-1].split(':')[0][::-1]
                     elif (_.count(':') == 1): Temp_Port = _[::-1].split(':')[0]
                     elif (_.count(':') == 0): Temp_Port = '443'
