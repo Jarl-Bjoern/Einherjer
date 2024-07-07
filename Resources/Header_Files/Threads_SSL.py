@@ -29,18 +29,11 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
         # Socket_Timeout
         socket_defaulttimeout(t_seconds)
 
-#        Port_Filter = "tcp"
-#        def Global_Trace(timeout, Port_Filter):
-#            Capture_Trace_File = sniff(filter=Port_Filter, count=1000000, timeout=timeout)
-            
-
-#        t1 = Thread(target=Global_Trace, args=[t_seconds, Port_Filter], daemon=True)
-#        t1.start()
-
         # SSL
         if (dict_switch['scan_ssl'] != False):
             # Global_Trace
-            a = AsyncSniffer()
+            Port_Protocol_Filter = "tcp"
+            a = AsyncSniffer(filter=Port_Protocol_Filter)
             a.start()
 
             # Trace_Start
