@@ -27,7 +27,7 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
         Dict_Result = queue.get()
 
         # Socket_Timeout
-        socket_defaulttimeout(t_seconds, timeout=ssl_timeout)
+        socket_defaulttimeout(t_seconds)
 
         # Global_Trace
         def Global_Trace(timeout):
