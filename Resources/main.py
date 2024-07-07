@@ -530,16 +530,16 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
             remove(join(dirname(realpath(__file__)).split("Resources")[0], "scan.state"))
 
         # Trace_File
-        #capture = sniff(filter="tcp", count=100)
-        #wrpcap('/tmp/temp_einherjer.pcap', capture)
+        Capture_Trace_File = sniff(filter="tcp", count=100)
+        wrpcap(f'{Output_Location}/einherjer_temp_trace.pcap', Capture_Trace_File)
+
+        Pcap_File    = rdpcap(f'{Output_Location}/einherjer_temp_trace.pcap')
+        Filter_Port  = 443
         
-        #pcap    = rdpcap('/tmp/temp_einherjer.pcap')
-        #ports   = 443
-        
-        #for packet in pcap:
-        #       print (packet.getlayer(TCP).sport)
-        #        if (packet.haslayer(TCP) and packet.getlayer(TCP).sport == ports):
-        #                wrpcap('filtered.pcap', packet, append=True)
+        for Packet in Pcap_File:
+            print (Packet.getlayer(TCP).sport)
+            if (Packet.haslayer(TCP) and Packet.getlayer(TCP).sport == Filter_Port):
+                wrpcap(f'{Output_Location}/einherjer_trace.pcap', Packet, append=True)
 
         # Program_Start
         Standard.Initialien(args.debug)
