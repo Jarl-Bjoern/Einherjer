@@ -305,6 +305,7 @@ try:
                     from cryptography.hazmat.primitives.asymmetric.utils import decode_dss_signature, encode_dss_signature
                     from cryptography.hazmat.primitives.ciphers          import algorithms, Cipher, modes
                     from hashlib    import md5, sha1, sha256, sha512
+                    from socket     import AF_INET, create_connection as socket_create_connection, socket, SOCK_STREAM
                     from subprocess import Popen
                     import asyncio
                     with catch_warnings():
@@ -314,7 +315,7 @@ try:
                     from cryptography.x509 import load_der_x509_certificate
                     from cryptography.hazmat.backends import default_backend
                     from json   import loads as json_loads
-                    from socket import create_connection
+                    from socket import socket_create_connection
                     from sslyze import (
                         ClientAuthenticationCredentials,
                         OpenSslFileTypeEnum,
