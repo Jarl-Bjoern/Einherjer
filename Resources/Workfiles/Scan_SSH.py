@@ -43,7 +43,7 @@ def SSH_Vulns(url, Host_Name, Location, Dict_SSH_Version = {}, Dict_SSH_Results 
             except TypeError: Server_Banner = sock.recv(100)
 
             # Get_Ciphers
-            Ciphers = s.recv(4096)
+            Ciphers = sock.recv(4096)
             print (resplit(filter_values, str(Ciphers)))
 
         if ('SSH-1' in str(Server_Banner)[::-(len(Server_Banner)-7)]):
