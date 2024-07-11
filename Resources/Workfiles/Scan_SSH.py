@@ -126,5 +126,4 @@ def SSH_Vulns(url, t_seconds, Host_Name, Location):
     except (AsyncSSHError, OSError) as e:
         Logs.Write_Log(url, Host_Name, join(Location, 'Logs'))
 
-
     return Dict_SSH_Results
