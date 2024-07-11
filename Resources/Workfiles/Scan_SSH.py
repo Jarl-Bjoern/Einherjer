@@ -44,7 +44,10 @@ def SSH_Vulns(url, t_seconds, Host_Name, Location):
                         for Cipher_Check in Temp_Check:
                             if (Cipher_Check != ''):
                                 cipher = Cipher_Check.lower()
-                                print (cipher)
+                                if (cipher not in Temp_Filter):
+                                    if (cipher[0] == 'i'):   Temp_Filter.append(cipher[1:])
+                                    else:                    Temp_Filter.append(cipher)    
+
                                 if ('ssh'   in cipher or
                                     'ecdsa' in cipher or
                                     'x509'  in cipher or
@@ -79,7 +82,7 @@ def SSH_Vulns(url, t_seconds, Host_Name, Location):
         else:
             Dict_SSH_Results['SSH_Version'] = '2'
     except TimeoutError:
-        pass
+        Logs.Write_Log(url, Host_Name, join(Location, 'Logs'))
 
     # Confirm_Host_Keys
     #with sub_Popen(['ssh','-T','-o','StrictHostKeyChecking=no',Target,'-p',int(Port)], stdin=sub_PIPE, stdout=sub_PIPE) as process:
@@ -94,8 +97,34 @@ def SSH_Vulns(url, t_seconds, Host_Name, Location):
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
         Dict_SSH_Results['auth_methods'] = loop.run_until_complete(check_auth(Target))
+
+        # Logging
+        if (Host_Name != ""):
+            Logs.Log_File(
+                Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                +Colors.BLUE+'SSH-Check\n'
+                +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - {Host_Name} - '+Colors.CYAN+f'{r}'
+                +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
+                +Colors.ORANGE+'\nOriginal Output'+Colors.RED+' -> '+Colors.RESET+f'{Temp_Filter}'
+                +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
+                +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_SSH_Results}\n\n',
+                join(Location, 'Logs')
+            )
+        else:
+            Logs.Log_File(
+                Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                +Colors.BLUE+'SSH-Check\n'
+                +Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                +Colors.GREEN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+f' - {url} - '+Colors.CYAN+f'{r}'
+                +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
+                +Colors.ORANGE+'\nOriginal Output'+Colors.RED+' -> '+Colors.RESET+f'{Temp_Filter}'
+                +Colors.BLUE+'\n-----------------------------------------------------------------------------------------------------------'
+                +Colors.ORANGE+'\nEinherjer Filter'+Colors.RED+' -> '+Colors.RESET+f'{Dict_SSH_Results}\n\n',
+                join(Location, 'Logs')
+            )
     except (AsyncSSHError, OSError) as e:
-        pass
-        #exit(f'SSH connection failed: {str(e)}')
+        Logs.Write_Log(url, Host_Name, join(Location, 'Logs'))
+
 
     return Dict_SSH_Results
