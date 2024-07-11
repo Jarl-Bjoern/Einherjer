@@ -18,8 +18,8 @@
   <a href="https://GitHub.com/jarl-bjoern/einherjer/releases/">
     <img alt="repo size" src="https://img.shields.io/github/repo-size/jarl-bjoern/einherjer?logo=github&logoColor=cyan" />
   </a>
-  <a href="https://GitHub.com/jarl-bjoern/einherjer/releases/">
-    <img alt="releases" src="https://img.shields.io/github/downloads/jarl-bjoern/einherjer/total?color=blue&logo=github&logoColor=cyan" />
+  <a href="https://GitHub.com/jarl-bjoern/einherjer/issues/">
+    <img alt="releases" src="https://img.shields.io/github/issues/jarl-bjoern/einherjer?style=flat&logo=Github&logoColor=cyan&label=issues&color=blue" />
   </a>
   <a href="https://github.com/jarl-bjoern">
       <img title="Follower" src="https://img.shields.io/github/followers/jarl-bjoern?color=blue&label=follow&logo=github&logoColor=cyan&style=flat-square">
