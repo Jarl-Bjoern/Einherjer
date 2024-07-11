@@ -73,12 +73,10 @@ def SSH_Vulns(url, Host_Name, Location, Dict_SSH_Version = {}, Dict_Temp = {}):
                                           if (cipher not in Dict_SSH_Results['encryption_algorithms']):
                                               Dict_SSH_Results['encryption_algorithms'].append(cipher)
 
-
+        Dict_SSH_Results['SSH_Banner']  = str(Server_Banner)[:-2]
         if ('SSH-1' in str(Server_Banner)[::-(len(Server_Banner)-7)]):
-            Dict_SSH_Results['SSH_Banner']  = str(Server_Banner)[:-2]
             Dict_SSH_Results['SSH_Version'] = '1'
         else:
-            Dict_SSH_Results['SSH_Banner']  = str(Server_Banner)[:-2]
             Dict_SSH_Results['SSH_Version'] = '2'
     except TimeoutError:
         pass
