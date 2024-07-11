@@ -331,7 +331,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
                                  Dict_Result['SSH'][url] = SSH_Vulns(url, t_seconds, Host_Name, Location)
                                  Dict_Temp['SSH'][url]   = Dict_Result['SSH'][url]
             except SSHException: Logs.Write_Log(url, Host_Name, join(Location, 'Logs'))
-            print (Dict_Temp['SSH'])
+            #print (Dict_Temp['SSH'])
 
             # Trace_End
             Logs.Trace_File(
