@@ -46,6 +46,9 @@ def SSH_Vulns(url, Host_Name, Location, Dict_SSH_Version = {}, Dict_SSH_Results 
             Dict_System = {}
             Ciphers = sock.recv(4096)
             print (resplit(filter_values, str(Ciphers)))
+            for _ in resplit(filter_values, str(Ciphers)):
+                if (_ != ''):
+                    print (_)
 
         if ('SSH-1' in str(Server_Banner)[::-(len(Server_Banner)-7)]):
             print (Server_Banner)
