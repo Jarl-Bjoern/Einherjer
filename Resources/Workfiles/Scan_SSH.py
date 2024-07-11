@@ -43,6 +43,7 @@ def SSH_Vulns(url, Host_Name, Location, Dict_SSH_Version = {}, Dict_SSH_Results 
             except TypeError: Server_Banner = sock.recv(100)
 
             # Get_Ciphers
+            Dict_System = {}
             Ciphers = sock.recv(4096)
             print (resplit(filter_values, str(Ciphers)))
 
@@ -60,12 +61,11 @@ def SSH_Vulns(url, Host_Name, Location, Dict_SSH_Version = {}, Dict_SSH_Results 
         return await get_server_auth_methods(Target)
 
     # Experimental
-    Dict_System = {}
-    opts        = Transport(Target, int(Port)).get_security_options()
-    Dict_System['kex_algorithms']             = Check_SSH_Values(opts.kex)
-    Dict_System['server_host_key_algorithms'] = Check_SSH_Values(opts.key_types)
-    Dict_System['encryption_algorithms']      = Check_SSH_Values(opts.ciphers)
-    Dict_System['mac_algorithms']             = Check_SSH_Values(opts.digests)
+    #opts        = Transport(Target, int(Port)).get_security_options()
+    #Dict_System['kex_algorithms']             = Check_SSH_Values(opts.kex)
+    #Dict_System['server_host_key_algorithms'] = Check_SSH_Values(opts.key_types)
+    #Dict_System['encryption_algorithms']      = Check_SSH_Values(opts.ciphers)
+    #Dict_System['mac_algorithms']             = Check_SSH_Values(opts.digests)
     #print(opts.compression)
 
     # Start_Scans
