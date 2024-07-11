@@ -21,13 +21,17 @@ def Argument_Parser(Copyright_Year, Template_Location = dirname(realpath(__file_
 """
 
     parser = ArgumentParser(add_help=False, formatter_class=RawTextHelpFormatter, description=Colors.ORANGE+Program_Description+Colors.RESET, allow_abbrev=False, usage=SUPPRESS)
-    config_arguments    = parser.add_argument_group(Colors.ORANGE+'config arguments'+Colors.RESET)
-    debug_arguments     = parser.add_argument_group(Colors.ORANGE+'debug arguments'+Colors.RESET)
-    filter_arguments    = parser.add_argument_group(Colors.ORANGE+'format arguments'+Colors.RESET)
-    nmap_arguments      = parser.add_argument_group(Colors.ORANGE+'nmap arguments'+Colors.RESET)
-    picture_arguments   = parser.add_argument_group(Colors.ORANGE+'picture arguments'+Colors.RESET)
-    responder_arguments = parser.add_argument_group(Colors.ORANGE+'responder arguments'+Colors.RESET)
-    optional            = parser.add_argument_group(Colors.ORANGE+'optional arguments'+Colors.RESET)
+    bloodhound_arguments = parser.add_argument_group(Colors.ORANGE+'bloodhound arguments'+Colors.RESET)
+    config_arguments     = parser.add_argument_group(Colors.ORANGE+'config arguments'+Colors.RESET)
+    debug_arguments      = parser.add_argument_group(Colors.ORANGE+'debug arguments'+Colors.RESET)
+    filter_arguments     = parser.add_argument_group(Colors.ORANGE+'format arguments'+Colors.RESET)
+    nmap_arguments       = parser.add_argument_group(Colors.ORANGE+'nmap arguments'+Colors.RESET)
+    picture_arguments    = parser.add_argument_group(Colors.ORANGE+'picture arguments'+Colors.RESET)
+    responder_arguments  = parser.add_argument_group(Colors.ORANGE+'responder arguments'+Colors.RESET)
+    optional             = parser.add_argument_group(Colors.ORANGE+'optional arguments'+Colors.RESET)
+
+    bloodhound_arguments.add_argument('-bURL', '--bloodhound-url', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    bloodhound_arguments.add_argument('-bUSER', '--bloodhound-users-file', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     config_arguments.add_argument('-o', '--output-location', type=str, help=Colors.GREEN+'Specify the location where the result should be saved.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
