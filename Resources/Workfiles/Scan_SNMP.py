@@ -63,5 +63,19 @@ class Check_SNMP:
         return Dict_System
 
 
-    def String_Enumeration(url, Dict_Temp = {}):
-        pass
+    def String_Enumeration(url, t_seconds, Host_Name, Location, Dict_Temp = {}):
+        for _ in Array_Community_Strings:
+            Temp_Output = getCmd(
+                                SnmpEngine(),
+                                CommunityData(i, mpModel=0),
+                                UdpTransportTarget((f'192.168.193.139', 161), timeout=2.0, retries=1),
+                                ContextData(),
+                                ObjectType(ObjectIdentity('iso.3.6.1.2.1.1.5.0')),
+                                lexicographicMode=False
+            )
+        
+            for errorIndication, errorStatus, errorIndex, varBinds in Temp_Output:
+                       if (errorIndication == None):
+                           print (i)
+            break
+
