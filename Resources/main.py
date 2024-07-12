@@ -836,7 +836,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
 
     # SSH_Output
     try:
-        if (args.scan_site_ssh != False):
+        if (args.scan_ssh != False):
             pass
             #print (Dict_Result)
     except:
