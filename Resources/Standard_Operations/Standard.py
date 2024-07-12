@@ -114,7 +114,7 @@ class Standard:
             return Dict_Temp
 
         if (exists(template_file)):
-            Temp_Array, Temp_Array_Names, Temp_Array_Ciphers = [],[],[]
+            Temp_Array, Temp_Array_Ciphers = [],[]
             with open(template_file, 'r') as f:
                 yaml_in_template = yaml_safe_load(f)
 
@@ -147,16 +147,12 @@ class Standard:
             # SSH_Filter
             elif (mode == 'ssh'):
                 for i in yaml_in_template:
-                    if (i not in Temp_Array_Names):
-                        Temp_Array_Names.append(i)
-
                     for j in yaml_in_template[i]:
                         if (j not in Temp_Array_Ciphers):
                             Temp_Array_Ciphers.append(j)
 
-                if (len(Temp_Array_Names) > 0):      Temp_Array_Names.sort()
                 if (len(Temp_Array_Ciphers) > 0):    Temp_Array_Ciphers.sort()
-                return Temp_Array_Names, Temp_Array_Ciphers
+                return Temp_Array_Ciphers
 
             # TLS_Filter
             elif (mode == 'tls'):
