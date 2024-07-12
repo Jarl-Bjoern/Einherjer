@@ -140,6 +140,9 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
         Standard.Remove_Empty_Filter_File(join(location, 'result_security_flags.csv')), Standard.Remove_Empty_Filter_File(join(location, 'affected_security_flags_targets.txt'))
 
 
+    if (Dict_Result['SNMP'] != {}):
+        pass
+
     if (Dict_Result['Certificate'] != {}):
         # Check_For_Existing_File
         Write_Mode = Write_Extend(join(location, 'result_certificate.csv'))
