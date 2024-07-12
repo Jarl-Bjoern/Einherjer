@@ -8,7 +8,7 @@ from ..Standard_Operations.Logs   import Logs
 from ..Standard_Operations.Colors import Colors
 
 def SSH_Vulns(url, t_seconds, Host_Name, Location, Dict_System = {}):
-    filter_values    = r'x88|x01|x00|x15|xd5|\\|&|@|none|x03|x0c|x14|x9f|x98|x7fl|xb4|xe6o|xa7|xee|x1b|xd8|x8c|x034|x92|~|x0f|x9d|xb8{|xf4|xe7|xcc|x89$Q|xef|xaa|xea|x93^|xe3|t:"F|/|openssh.com|xd1b+|xa0|xe8|xd9|x85|xba|xbf|lysator.liu.se'
+    filter_values    = r'x88|x01|x00|x15|xd5|\\|&|@|none|x03|x0c|x14|x9f|x98|x7fl|xb4|xe6o|xa7|xee|x1b|xd8|x8c|x034|x92|~|x0f|x9d|xb8{|xf4|xe7|xcc|x89$Q|xef|xaa|xea|x93^|xe3|t:"F|/|openssh.com|xd1b+|xa0|xe8|xd9|x85|xba|xbf|lysator.liu.se|libssh.org'
     Dict_SSH_Results = {'DNS': "", 'encryption_algorithms': [], 'kex_algorithms': [], 'mac_algorithms': [], 'server_host_key_algorithms': [], 'auth_methods': [], 'ssh_version': "", 'ssh_banner': ""} 
 
     # Split_Protocol
