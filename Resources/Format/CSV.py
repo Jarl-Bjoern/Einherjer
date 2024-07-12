@@ -72,11 +72,8 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
         def Filter_SSH_Algorithms(array_temp, array_algorithm):
             Temp_Word = ""
             for check_algorithm in array_algorithm:
-                for i in range(0, len(array_temp)-1):
-                    if (check_algorithm != array_temp[i] and
-                        check_algorithm != array_temp[i].isupper() and
-                        check_algorithm != array_temp[i].lower()):
-                            Temp_Word += f"{check_algorithm}, "
+                if (check_algorithm.lower() not in array_temp):
+                    Temp_Word += f"{check_algorithm}, "
             if (Temp_Word == ""): Temp_Word = "-"
             return Temp_Word
 
