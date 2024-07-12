@@ -312,7 +312,7 @@ try:
                     from cryptography.x509 import load_der_x509_certificate
                     from cryptography.hazmat.backends import default_backend
                     from json   import loads as json_loads
-                    from socket import socket_create_connection
+                    from socket import create_connection as socket_create_connection
                     from sslyze import (
                         ClientAuthenticationCredentials,
                         OpenSslFileTypeEnum,
