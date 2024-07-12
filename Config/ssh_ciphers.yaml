@@ -2,8 +2,8 @@ encryption_algorithms: [
   'aes128-ctr',
   'aes192-ctr',
   'aes256-ctr',
-  'AEAD_AES_128_GCM',
-  'AEAD_AES_256_GCM',
+  'aead_aes_128_gcm',
+  'aead_aes_256_gcm',
   'chacha20-poly1305'
 ]
 kex_algorithms: [
