@@ -87,7 +87,7 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
                         if (Result_Left == "DNS" and Result_Right == ""):
                             Result_Right = "FEHLT"
                             break
-                        elif ((Result_Left == Array_SSH_Algorithmsr[i] or Result_Left == Array_SSH_Algorithms[i].isupper() or Result_Left == Array_SSH_Algorithms[i].lower()) and Result_Right == ""):
+                        elif ((Result_Left == Array_SSH_Algorithms[i] or Result_Left == Array_SSH_Algorithms[i].isupper() or Result_Left == Array_SSH_Algorithms[i].lower()) and Result_Right == ""):
                             Result_Right = "FEHLT"
                             break
 
