@@ -91,6 +91,9 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
                             Result_Right = "FEHLT"
                             break
 
+                    if (Result_Left == "DNS" and Result_Right == "FEHLT"):   Array_Temp.append("-")
+                    elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
+
                     if (Result_Left == "encryption_algorithms"):
                         pass
                     elif (Result_Left == "kex_algorithms"):
@@ -106,10 +109,6 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
                     elif (Result_Left == "ssh_banner"):
                         pass
 
-                    if (Result_Left != "DNS" and Result_Right != "FEHLT"):   print(Result_Right)
-                    elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
-                    elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
-                    else: Array_Temp.append("X")
                 writer.writerow(Array_Temp)
 
 
