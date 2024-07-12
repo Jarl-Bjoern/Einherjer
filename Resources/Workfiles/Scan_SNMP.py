@@ -10,13 +10,13 @@ from ..Standard_Operations.Standard import Standard
 
 class Check_SNMP:
     def Basic_Check(url, t_seconds, Host_Name, Location, Dict_System = {}):
-        def Walk_SNMP(oid, url, snmp_version, community_string):
+        def Walk_SNMP(oid, url, snmp_version, community_string, t_seconds):
             Temp_Output = ""
             if ('iso' in oid):
                 Temp_Output = getCmd(
                                 SnmpEngine(),
                                 CommunityData(community_string, mpModel=snmp_version),
-                                UdpTransportTarget((f'{url}', 161)),
+                                UdpTransportTarget((f'{url}', 161), timeout=t_seconds, retries=2),
                                 ContextData(),
                                 ObjectType(ObjectIdentity(oid)),
                                 lexicographicMode=False
@@ -25,7 +25,7 @@ class Check_SNMP:
                 Temp_Output = nextCmd(
                                 SnmpEngine(),
                                 CommunityData(community_string, mpModel=snmp_version),
-                                UdpTransportTarget(('{url}', 161)),
+                                UdpTransportTarget(('{url}', 161), timeout=t_seconds, retries=2),
                                 ContextData(),
                                 ObjectType(ObjectIdentity(oid)),
                                 lexicographicMode=False
