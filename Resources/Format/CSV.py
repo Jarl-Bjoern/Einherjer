@@ -71,9 +71,9 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
     if (Dict_Result['SSH'] != {}):
         def Filter_SSH_Algorithms(array_temp, check_algorithm):
             for i in range(0, len(array_temp)-1):
-                if (check_algorithm == Array_SSH_Algorithms[i] or
-                    check_algorithm == Array_SSH_Algorithms[i].isupper() or
-                    check_algorithm == Array_SSH_Algorithms[i].lower()):
+                if (check_algorithm == array_temp[i] or
+                    check_algorithm == array_temp[i].isupper() or
+                    check_algorithm == array_temp[i].lower()):
                         Result_Right = "FEHLT"
                         break
 
