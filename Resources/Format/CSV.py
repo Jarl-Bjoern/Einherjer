@@ -69,13 +69,16 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
 
 
     if (Dict_Result['SSH'] != {}):
-        def Filter_SSH_Algorithms(array_temp, check_algorithm):
-            for i in range(0, len(array_temp)-1):
-                if (check_algorithm == array_temp[i] or
-                    check_algorithm == array_temp[i].isupper() or
-                    check_algorithm == array_temp[i].lower()):
-                        Result_Right = "FEHLT"
-                        break
+        def Filter_SSH_Algorithms(array_temp, array_algorithm):
+            Temp_Word = ""
+            for check_algorithm in array_algorithm:
+                for i in range(0, len(array_temp)-1):
+                    if (check_algorithm == array_temp[i] or
+                        check_algorithm == array_temp[i].isupper() or
+                        check_algorithm == array_temp[i].lower()):
+                            Temp_Word += f"{check_algorithm}, "
+            if (Temp_Word == ""): Temp_Word = "-"
+            return Temp_Word
 
         # Check_For_Existing_File
         Write_Mode = Write_Extend(join(location, 'result_ssh_vulns.csv'))
@@ -88,26 +91,19 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
 
             for Target in Dict_Result['SSH']:
                 Array_Temp = []
-                if ('//' in Target):    Array_Temp.append(Target.split('//')[1])
-                else:                   Array_Temp.append(Target)
+                if ('//' in Target):                                       Array_Temp.append(Target.split('//')[1])
+                else:                                                      Array_Temp.append(Target)
                 for Result_Left, Result_Right in Dict_Result['SSH'][Target]['SSH_Results'].items():
-                    if (Result_Left == "DNS" and Result_Right == ""):   Array_Temp.append("-")
-                    elif (Result_Left == "DNS" and Result_Right != ""): Array_Temp.append(Result_Right)
+                    if (Result_Left == "DNS" and Result_Right == ""):      Array_Temp.append("-")
+                    elif (Result_Left == "DNS" and Result_Right != ""):    Array_Temp.append(Result_Right)
 
-                    if (Result_Left == "encryption_algorithms"):
-                        pass
-                    elif (Result_Left == "kex_algorithms"):
-                        pass
-                    elif (Result_Left == "mac_algorithms"):
-                        pass
-                    elif (Result_Left == "server_host_key_algorithms"):
-                        pass
-                    elif (Result_Left == "auth_methods"):
-                        pass
-                    elif (Result_Left == "ssh_version"):
-                        pass
-                    elif (Result_Left == "ssh_banner"):
-                        pass
+                    if (Result_Left == "encryption_algorithms"):           Array_Temp.append(Filter_SSH_Algorithms(Array_SSH_Algorithms, Result_Right))
+                    elif (Result_Left == "kex_algorithms"):                Array_Temp.append(Filter_SSH_Algorithms(Array_SSH_Algorithms, Result_Right))
+                    elif (Result_Left == "mac_algorithms"):                Array_Temp.append(Filter_SSH_Algorithms(Array_SSH_Algorithms, Result_Right))
+                    elif (Result_Left == "server_host_key_algorithms"):    Array_Temp.append(Filter_SSH_Algorithms(Array_SSH_Algorithms, Result_Right))
+                    elif (Result_Left == "auth_methods"):                  Array_Temp.append(Filter_SSH_Algorithms(Array_SSH_Algorithms, Result_Right))
+                    elif (Result_Left == "ssh_version"):                   Array_Temp.append(Filter_SSH_Algorithms(Array_SSH_Algorithms, Result_Right))
+                    elif (Result_Left == "ssh_banner"):                    Array_Temp.append(Filter_SSH_Algorithms(Array_SSH_Algorithms, Result_Right))
 
                 writer.writerow(Array_Temp)
 
