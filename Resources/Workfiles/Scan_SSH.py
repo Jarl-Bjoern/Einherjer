@@ -52,6 +52,7 @@ def SSH_Vulns(url, t_seconds, Host_Name, Location, Dict_System = {}):
                                     'rsa'   in cipher or
                                     'ecdsa' in cipher or
                                     'x509'  in cipher or
+                                    'ecdh'  in cipher or
                                     'pgp'   in cipher):
                                           if (cipher[0].isdecimal()):
                                               if (cipher not in Dict_SSH_Results['server_host_key_algorithms']):
