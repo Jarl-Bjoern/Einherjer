@@ -83,11 +83,11 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
                 if ('//' in Target):    Array_Temp.append(Target.split('//')[1])
                 else:                   Array_Temp.append(Target)
                 for Result_Left, Result_Right in Dict_Result['SSH'][Target]['SSH_Results'].items():
-                    for i in range(0, len(Array_SSH_Header)-1):
+                    for i in range(0, len(Array_SSH_Algorithms)-1):
                         if (Result_Left == "DNS" and Result_Right == ""):
                             Result_Right = "FEHLT"
                             break
-                        elif ((Result_Left == Array_SSH_Header[i] or Result_Left == Array_SSH_Header[i].isupper() or Result_Left == Array_SSH_Header[i].lower()) and Result_Right == ""):
+                        elif ((Result_Left == Array_SSH_Algorithmsr[i] or Result_Left == Array_SSH_Algorithms[i].isupper() or Result_Left == Array_SSH_Algorithms[i].lower()) and Result_Right == ""):
                             Result_Right = "FEHLT"
                             break
 
