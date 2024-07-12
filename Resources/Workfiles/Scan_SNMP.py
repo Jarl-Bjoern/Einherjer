@@ -16,7 +16,7 @@ class Check_SNMP:
                 Temp_Output = getCmd(
                                 SnmpEngine(),
                                 CommunityData(community_string, mpModel=snmp_version),
-                                UdpTransportTarget((f'{url}', 161), timeout=t_seconds, retries=2),
+                                UdpTransportTarget((f'{url}', 161), timeout=t_seconds, retries=1),
                                 ContextData(),
                                 ObjectType(ObjectIdentity(oid)),
                                 lexicographicMode=False
@@ -25,7 +25,7 @@ class Check_SNMP:
                 Temp_Output = nextCmd(
                                 SnmpEngine(),
                                 CommunityData(community_string, mpModel=snmp_version),
-                                UdpTransportTarget(('{url}', 161), timeout=t_seconds, retries=2),
+                                UdpTransportTarget(('{url}', 161), timeout=t_seconds, retries=1),
                                 ContextData(),
                                 ObjectType(ObjectIdentity(oid)),
                                 lexicographicMode=False
