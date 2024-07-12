@@ -91,7 +91,7 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
                             Result_Right = "FEHLT"
                             break
 
-                    if (Result_Left != "DNS" and Result_Right != "FEHLT"):   Array_Temp.append("✓")
+                    if (Result_Left != "DNS" and Result_Right != "FEHLT"):   print(Result_Right)
                     elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
                     else: Array_Temp.append("X")
