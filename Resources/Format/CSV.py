@@ -80,7 +80,8 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
 
             for Target in Dict_Result['SSH']:
                 Array_Temp = []
-                Array_Temp.append(Target)
+                if ('//' in Target):    Array_Temp.append(Target.split('//')[1])
+                else:                   Array_Temp.append(Target)
                 for Result_Left, Result_Right in Dict_Result['SSH'][Target].items():
                     for i in range(0, len(Array_SSH_Header)-1):
                         if (Result_Left == "DNS" and Result_Right == ""):
