@@ -114,7 +114,7 @@ class Standard:
             return Dict_Temp
 
         if (exists(template_file)):
-            Temp_Array, Temp_Array_Ciphers = [],[]
+            Temp_Array, Temp_Array_Ciphers, Temp_Array_Community = [],[],[]
             with open(template_file, 'r') as f:
                 yaml_in_template = yaml_safe_load(f)
 
@@ -156,10 +156,14 @@ class Standard:
 
             # SNMP
             elif (mode == 'snmp'):
-                for i in yaml_in_template:
-                    pass
+                for _ in yaml_in_template['oid']:
+                    if (_ not in Temp_Array):
+                        Temp_Array.append(_)
+                for _ in yaml_in_template['community_strings']:
+                    if (_ not in Temp_Array_Community):
+                        Temp_Array_Community.append(_)
 
-                return Temp_Array
+                return Temp_Array, Temp_Array_Community
 
             # TLS_Filter
             elif (mode == 'tls'):
