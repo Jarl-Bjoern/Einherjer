@@ -13,3 +13,9 @@ oid: [
     "iso.3.6.1.2.1.25.3.2.1.3.196608",
     "iso.3.6.1.2.1.25.3.2.1.3.196609"
 ]
+community_strings: [
+    "public",
+    "Public",
+    "private",
+    "Private"
+]
