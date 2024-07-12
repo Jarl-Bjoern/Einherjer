@@ -81,7 +81,7 @@ def SSH_Vulns(url, t_seconds, Host_Name, Location, Dict_System = {}):
             Dict_SSH_Results['ssh_version'] = '1'
         else:
             Dict_SSH_Results['ssh_version'] = '2'
-    except TimeoutError:
+    except (OSError, TimeoutError):
         Logs.Write_Log(url, Host_Name, join(Location, 'Logs'))
 
     # Confirm_Host_Keys
