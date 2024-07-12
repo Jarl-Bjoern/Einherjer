@@ -9,7 +9,7 @@ from ..Standard_Operations.Colors   import Colors
 from ..Standard_Operations.Standard import Standard
 
 class Check_SNMP:
-    def Basic_Check(url, Dict_System = {}):
+    def Basic_Check(url, t_seconds, Host_Name, Location, Dict_System = {}):
         def Walk_SNMP(oid, url, snmp_version, community_string):
             Temp_Output = ""
             if ('iso' in oid):
