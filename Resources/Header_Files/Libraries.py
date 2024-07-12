@@ -67,9 +67,8 @@ try:
     from urllib.parse        import quote_plus as url_encode, unquote_plus as url_decode
 
     import stat, xml.etree.ElementTree as ET
-    with catch_warnings():
-        simplefilter("ignore")
-        from paramiko.ssh_exception import SSHException
+#    with catch_warnings():
+#        simplefilter("ignore")
 
     # Chromium_Check
     if (osname != 'nt'):
@@ -257,9 +256,8 @@ try:
                         from subprocess import PIPE as sub_PIPE, Popen as sub_Popen
                         from webbrowser import open as webbrowser_open
                         import asyncio
-                        with catch_warnings():
-                            simplefilter("ignore")
-                            from paramiko.transport       import Transport
+#                        with catch_warnings():
+#                            simplefilter("ignore")
                         with redirect_stdout(None):
                             from webdriver_manager.chrome import ChromeDriverManager
             elif (args.scan_all == False):
@@ -308,9 +306,8 @@ try:
                     from socket     import AF_INET, create_connection as socket_create_connection, socket, SOCK_STREAM
                     from subprocess import Popen
                     import asyncio
-                    with catch_warnings():
-                        simplefilter("ignore")
-                        from paramiko.transport import Transport
+#                    with catch_warnings():
+#                        simplefilter("ignore")
                 if (args.scan_site_ssl != False or args.scan_site_certificate != False):
                     from cryptography.x509 import load_der_x509_certificate
                     from cryptography.hazmat.backends import default_backend
