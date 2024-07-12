@@ -16,7 +16,7 @@ class Check_SNMP:
                 Temp_Output = getCmd(
                                 SnmpEngine(),
                                 CommunityData(community_string, mpModel=snmp_version),
-                                UdpTransportTarget((url, 161), timeout=t_seconds, retries=1),
+                                UdpTransportTarget((url, 161), timeout=2.0, retries=1),
                                 ContextData(),
                                 ObjectType(ObjectIdentity(oid)),
                                 lexicographicMode=False
@@ -25,7 +25,7 @@ class Check_SNMP:
                 Temp_Output = nextCmd(
                                 SnmpEngine(),
                                 CommunityData(community_string, mpModel=snmp_version),
-                                UdpTransportTarget((url, 161), timeout=t_seconds, retries=1),
+                                UdpTransportTarget((url, 161), timeout=2.0, retries=1),
                                 ContextData(),
                                 ObjectType(ObjectIdentity(oid)),
                                 lexicographicMode=False
@@ -63,7 +63,7 @@ class Check_SNMP:
         return Dict_System
 
 
-    def String_Enumeration(url, t_seconds, Host_Name, Location, Dict_Temp = {}):
+    def String_Enumeration(url, t_seconds, Host_Name, Location, Dict_System = {}):
         for _ in Array_Community_Strings:
             Temp_Output = getCmd(
                                 SnmpEngine(),
