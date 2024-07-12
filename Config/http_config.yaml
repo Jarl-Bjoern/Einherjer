@@ -11,7 +11,8 @@ http_cors_header: [
   "ACCESS-CONTROL-ALLOW-ORIGIN"
 ]
 http_custom_header: {
-  "Connection": "Close"
+  "Connection": "Close",
+  "X-Einherjer": "0.8"
 }
 http_deprecated_header: [
   "EXPECT-CT",
