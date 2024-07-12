@@ -10,7 +10,31 @@ from ..Standard_Operations.Standard import Standard
 
 class Check_SNMP:
     def Basic_Check(url, Dict_Temp = {}):
-        pass
+        for oid in Array_OIDs:
+            if ('iso' in oid):
+                g = getCmd(
+                        SnmpEngine(),
+                        CommunityData('Public', mpModel=0),
+                        UdpTransportTarget((f'{url}', 161)),
+                        ContextData(),
+                        ObjectType(ObjectIdentity(oid)),
+                        lexicographicMode=False
+                )
+            else:
+                g = nextCmd(
+                        SnmpEngine(),
+                        CommunityData('Public', mpModel=0),
+                        UdpTransportTarget(('{url}', 161)),
+                        ContextData(),
+                        ObjectType(ObjectIdentity(oid)),
+                        lexicographicMode=False
+                )
+    
+        
+            for Indication_Error, Status_Error, Index_Error, Bind_Variables in Temp_Output:
+                for _ in Bind_Variables:
+                    print (_)
+
 
     def String_Enumeration(url, Dict_Temp = {}):
         pass
