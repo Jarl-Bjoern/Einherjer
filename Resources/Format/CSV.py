@@ -69,6 +69,14 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
 
 
     if (Dict_Result['SSH'] != {}):
+        def Filter_SSH_Algorithms(array_temp, check_algorithm):
+            for i in range(0, len(array_temp)-1):
+                if (check_algorithm == Array_SSH_Algorithms[i] or
+                    check_algorithm == Array_SSH_Algorithms[i].isupper() or
+                    check_algorithm == Array_SSH_Algorithms[i].lower()):
+                        Result_Right = "FEHLT"
+                        break
+
         # Check_For_Existing_File
         Write_Mode = Write_Extend(join(location, 'result_ssh_vulns.csv'))
 
@@ -83,16 +91,8 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
                 if ('//' in Target):    Array_Temp.append(Target.split('//')[1])
                 else:                   Array_Temp.append(Target)
                 for Result_Left, Result_Right in Dict_Result['SSH'][Target]['SSH_Results'].items():
-                    for i in range(0, len(Array_SSH_Algorithms)-1):
-                        if (Result_Left == "DNS" and Result_Right == ""):
-                            Result_Right = "FEHLT"
-                            break
-                        elif ((Result_Left == Array_SSH_Algorithms[i] or Result_Left == Array_SSH_Algorithms[i].isupper() or Result_Left == Array_SSH_Algorithms[i].lower()) and Result_Right == ""):
-                            Result_Right = "FEHLT"
-                            break
-
-                    if (Result_Left == "DNS" and Result_Right == "FEHLT"):   Array_Temp.append("-")
-                    elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
+                    if (Result_Left == "DNS" and Result_Right == ""):   Array_Temp.append("-")
+                    elif (Result_Left == "DNS" and Result_Right != ""): Array_Temp.append(Result_Right)
 
                     if (Result_Left == "encryption_algorithms"):
                         pass
