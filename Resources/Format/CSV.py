@@ -85,7 +85,7 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
         with open(join(location, 'result_ssh_vulns.csv'), Write_Mode, encoding='UTF-8', newline='') as csv_file:
             writer = csv.writer(csv_file, delimiter=';')
             if (Write_Mode == 'w'):
-                writer.writerow(["Host;DNS;encryption_algorithms;kex_algorithms;mac_algorithms;server_host_key_algorithms;auth_methods;ssh_version;ssh_banner"])
+                writer.writerow(["Host","DNS","encryption_algorithms","kex_algorithms","mac_algorithms","server_host_key_algorithms","auth_methods","ssh_version","ssh_banner"])
 
             for Target in Dict_Result['SSH']:
                 Array_Temp = []
