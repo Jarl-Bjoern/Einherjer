@@ -158,7 +158,7 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
                        #     Dict_Overview_SSL[Target_New]['Insecure_Certificate_Signature'] = True
                         if (Result_Left == 'Cert_EOL' and 'expired' in Result_Right):
                             Dict_Overview_SSL[Target_New]['Certificate_Expired'] = True
-                        
+
                         Array_Temp.append(Result_Right)
                     elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
