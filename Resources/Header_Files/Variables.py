@@ -26,7 +26,7 @@ if (Program_Mode == "Scanning_Mode"):
     Array_Deprecated_Header                = Standard.Read_YAML_Config_File(dirname(realpath(__file__)).replace('Resources/Header_Files', 'Config/http_config.yaml'), 'http_deprecated_header', 'http')
     Array_HTTP_Methods                     = Standard.Read_YAML_Config_File(dirname(realpath(__file__)).replace('Resources/Header_Files', 'Config/http_config.yaml'), 'http_methods', 'http')
     Array_Information_Disclosure_Header    = Standard.Read_YAML_Config_File(dirname(realpath(__file__)).replace('Resources/Header_Files', 'Config/http_config.yaml'), 'http_information_disclosure_header', 'http')
-    Array_OIDs                             = Standard.Read_YAML_Config_File(dirname(realpath(__file__)).replace('Resources/Header_Files', 'Config/snmp_config.yaml'), 'empty', 'snmp')
+    Array_OIDs, Array_Community_Strings    = Standard.Read_YAML_Config_File(dirname(realpath(__file__)).replace('Resources/Header_Files', 'Config/snmp_config.yaml'), 'empty', 'snmp')
     Array_Security_Flags                   = Standard.Read_YAML_Config_File(dirname(realpath(__file__)).replace('Resources/Header_Files', 'Config/http_config.yaml'), 'cookie_flags', 'http')
     Array_TLS_Algorithms                   = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Config/ssl_ciphers.txt"))
     Dict_Custom_Header                     = Standard.Read_YAML_Config_File(dirname(realpath(__file__)).replace('Resources/Header_Files', "Config/http_config.yaml"), 'http_custom_header', 'json')
