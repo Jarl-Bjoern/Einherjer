@@ -52,6 +52,7 @@ I spend a lot of time in this project until it is completely ready and bug free.
 ## ❗ News
 <strong>Upcoming changes for version</strong> `0.9`:
  - Lots of bug fixes
+ - SSH Scanner
  - SSL/TLS Scanner
 
 <div align="center">
