@@ -10,12 +10,12 @@ from ..Standard_Operations.Standard import Standard
 
 class Check_SNMP:
     def Basic_Check(url, Dict_System = {}):
-        def Walk_SNMP(oid, url, snmp_version):
+        def Walk_SNMP(oid, url, snmp_version, community_string):
             Temp_Output = ""
             if ('iso' in oid):
                 Temp_Output = getCmd(
                                 SnmpEngine(),
-                                CommunityData('Public', mpModel=0),
+                                CommunityData(community_string, mpModel=snmp_version),
                                 UdpTransportTarget((f'{url}', 161)),
                                 ContextData(),
                                 ObjectType(ObjectIdentity(oid)),
@@ -24,7 +24,7 @@ class Check_SNMP:
             else:
                 Temp_Output = nextCmd(
                                 SnmpEngine(),
-                                CommunityData('Public', mpModel=0),
+                                CommunityData(community_string, mpModel=snmp_version),
                                 UdpTransportTarget(('{url}', 161)),
                                 ContextData(),
                                 ObjectType(ObjectIdentity(oid)),
@@ -50,11 +50,11 @@ class Check_SNMP:
         Temp_Output = None
         for oid in Array_OIDs:
             # SNMPv1
-            Temp_Output = Walk_SNMP(oid, url, 0)
+            Temp_Output = Walk_SNMP(oid, url, 0, 'Public')
 
             # SNMPv2
             if (Temp_Output == None):
-                Temp_Output = Walk_SNMP(oid, url, 1)
+                Temp_Output = Walk_SNMP(oid, url, 1, 'Public')
 
             for Indication_Error, Status_Error, Index_Error, Bind_Variables in Temp_Output:
                 for _ in Bind_Variables:
