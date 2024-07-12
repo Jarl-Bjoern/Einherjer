@@ -34,3 +34,6 @@ server_host_key_algorithms: [
   'x509v3-ecdsa-sha2-nistp384',
   'x509v3-ecdsa-sha2-nistp521'
 ]
+auth_methods: [
+  'publickey'
+]
