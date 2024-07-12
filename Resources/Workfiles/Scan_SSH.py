@@ -9,7 +9,7 @@ from ..Standard_Operations.Colors import Colors
 
 def SSH_Vulns(url, t_seconds, Host_Name, Location, Dict_System = {}):
     filter_values    = r'x88|x01|x00|x15|xd5|\\|&|@|none|x03|x0c|x14|x9f|x98|x7fl|xb4|xe6o|xa7|xee|x1b|xd8|x8c|x034|x92|~|x0f|x9d|xb8{|xf4|xe7|xcc|x89$Q|xef|xaa|xea|x93^|xe3|t:"F|/|openssh.com|xd1b+|xa0|xe8|xd9|x85|xba|xbf|lysator.liu.se'
-    Dict_SSH_Results = {'DNS': "", 'auth_methods': [], 'kex_algorithms': [], 'server_host_key_algorithms': [], 'encryption_algorithms': [], 'mac_algorithms': [], 'SSH_Version': "", 'SSH_Banner': ""} 
+    Dict_SSH_Results = {'DNS': "", 'encryption_algorithms': [], 'kex_algorithms': [], 'mac_algorithms': [], 'server_host_key_algorithms': [], 'auth_methods': [], 'ssh_version': "", 'ssh_banner': ""} 
 
     # Split_Protocol
     if ('ssh://' in url):    URL = url.split('ssh://')[1]
@@ -76,11 +76,11 @@ def SSH_Vulns(url, t_seconds, Host_Name, Location, Dict_System = {}):
                                           if (cipher not in Dict_SSH_Results['encryption_algorithms']):
                                               Dict_SSH_Results['encryption_algorithms'].append(cipher)
 
-        Dict_SSH_Results['SSH_Banner']  = str(Server_Banner)[:-2]
+        Dict_SSH_Results['ssh_banner']  = str(Server_Banner)[:-2]
         if ('SSH-1' in str(Server_Banner)[::-(len(Server_Banner)-7)]):
-            Dict_SSH_Results['SSH_Version'] = '1'
+            Dict_SSH_Results['ssh_version'] = '1'
         else:
-            Dict_SSH_Results['SSH_Version'] = '2'
+            Dict_SSH_Results['ssh_version'] = '2'
     except TimeoutError:
         Logs.Write_Log(url, Host_Name, join(Location, 'Logs'))
 
