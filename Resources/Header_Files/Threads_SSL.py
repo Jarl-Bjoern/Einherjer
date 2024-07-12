@@ -19,6 +19,7 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
         'Information':   {},
         'Security_Flag': {},
         'SMTP':          {},
+        'SNMP':          {},
         'SSH':           {},
         'SSL':           {}
     }
