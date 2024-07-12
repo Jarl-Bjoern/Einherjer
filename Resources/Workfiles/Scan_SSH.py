@@ -46,7 +46,7 @@ def SSH_Vulns(url, t_seconds, Host_Name, Location, Dict_System = {}):
                                 cipher = Cipher_Check.lower()
                                 if (cipher not in Temp_Filter):
                                     if (cipher[0] == 'i'):   Temp_Filter.append(cipher[1:])
-                                    else:                    Temp_Filter.append(cipher)    
+                                    else:                    Temp_Filter.append(cipher)
 
                                 if ('ssh'   in cipher or
                                     'ecdsa' in cipher or
