@@ -104,6 +104,7 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
                     elif (Result_Left == "ssh_banner"):                    Array_Temp.append(Result_Right)
 
                 writer.writerow(Array_Temp)
+        Standard.Remove_Empty_Filter_File(join(location, 'result_ssh_vulns.csv'))
 
 
     if (Dict_Result['Security_Flag'] != {}):
