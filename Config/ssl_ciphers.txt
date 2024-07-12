@@ -1,1 +1,1 @@
-(?<!-)\b(?:(?:[^\W_]+_)+(?:TLS_RSA|TLS_DHE|TLS_DH|RC4|EXPORT|anon|MD5|CBC|NULL|RC2|3DES|PSK)(?:_[^\W_]+)+|(?:[^\W_]+_)+CCM|GCM|SHA)\b
+(?<!-)\b(?:(?:[^\W_]+_)+(?:TLS_RSA|TLS_DHE|TLS_DH|RC4|EXPORT|anon|MD5|CBC|NULL|RC2|3DES|PSK)(?:_[^\W_]+)+|(?:[^\W_]+_)+CCM|SHA)\b
