@@ -52,7 +52,6 @@ def SSH_Vulns(url, t_seconds, Host_Name, Location, Dict_System = {}):
                                     'rsa'   in cipher or
                                     'ecdsa' in cipher or
                                     'x509'  in cipher or
-                                    'ecdh'  in cipher or
                                     'pgp'   in cipher):
                                           if (cipher[0].isdecimal()):
                                               if (cipher not in Dict_SSH_Results['server_host_key_algorithms']):
@@ -61,6 +60,7 @@ def SSH_Vulns(url, t_seconds, Host_Name, Location, Dict_System = {}):
                                               if (cipher not in Dict_SSH_Results['server_host_key_algorithms']):
                                                   Dict_SSH_Results['server_host_key_algorithms'].append(cipher)
                                 elif ('diffie-hellman'  in cipher or
+                                      'chacha'          in cipher or
                                       'curve'           in cipher or
                                       'sntrup'          in cipher or
                                       'kex'             in cipher or
