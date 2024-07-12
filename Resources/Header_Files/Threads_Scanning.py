@@ -20,6 +20,7 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
         'Information':   {},
         'Security_Flag': {},
         'SMTP':          {},
+        'SNMP':          {},
         'SSH':           {},
         'SSL':           {}
     }
