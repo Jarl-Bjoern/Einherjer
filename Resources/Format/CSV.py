@@ -91,6 +91,21 @@ def CSV_Table(Dict_Result, location, language, Write_Mode = "", Write_Second_Mod
                             Result_Right = "FEHLT"
                             break
 
+                    if (Result_Left == "encryption_algorithms"):
+                        pass
+                    elif (Result_Left == "kex_algorithms"):
+                        pass
+                    elif (Result_Left == "mac_algorithms"):
+                        pass
+                    elif (Result_Left == "server_host_key_algorithms"):
+                        pass
+                    elif (Result_Left == "auth_methods"):
+                        pass
+                    elif (Result_Left == "ssh_version"):
+                        pass
+                    elif (Result_Left == "ssh_banner"):
+                        pass
+
                     if (Result_Left != "DNS" and Result_Right != "FEHLT"):   print(Result_Right)
                     elif (Result_Left == "DNS" and Result_Right != "FEHLT"): Array_Temp.append(Result_Right)
                     elif (Result_Left == "DNS" and Result_Right == "FEHLT"): Array_Temp.append("-")
