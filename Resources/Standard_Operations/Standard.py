@@ -154,6 +154,13 @@ class Standard:
                 if (len(Temp_Array_Ciphers) > 0):    Temp_Array_Ciphers.sort()
                 return Temp_Array_Ciphers
 
+            # SNMP
+            elif (mode == 'snmp'):
+                for i in yaml_in_template:
+                    pass
+
+                return Temp_Array
+
             # TLS_Filter
             elif (mode == 'tls'):
                 pass
