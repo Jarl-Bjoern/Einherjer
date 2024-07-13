@@ -328,8 +328,8 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             )
 
             # Scanning_Process
-            Dict_Result['SNMP'][url] = Check_SNMP.Basic_Check(url, t_seconds, Host_Name, Location)
-            Dict_Temp['SNMP'][url]   = Dict_Result['SNMP'][url]
+            #Dict_Result['SNMP'][url] = Check_SNMP.Basic_Check(url, t_seconds, Host_Name, Location)
+            #Dict_Temp['SNMP'][url]   = Dict_Result['SNMP'][url]
 
             # Trace_End
             Logs.Trace_File(
