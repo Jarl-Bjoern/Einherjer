@@ -32,7 +32,7 @@ def Argument_Parser(Copyright_Year, Template_Location = dirname(realpath(__file_
 
     debug_arguments.add_argument('-d', '--debug', type=bool, nargs='?', default=False, help=Colors.GREEN+'This Parameter deactivates the terminal clearing after starting the tool.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
-    generator_arguments.add_argument('-gMf', '--generate-malicious-files', type=str, help=Colors.GREEN+'This Parameter creates malicious files to farm hashes.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    generator_arguments.add_argument('-gMf', '--generate-malicious-files', type=bool, nargs='?', const=True, help=Colors.GREEN+'This Parameter creates malicious files to farm hashes.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     malicious_arguments.add_argument('-mFt', '--malicious-file-types', choices=['all','ini','inf','lnk','scf','url'], type=str, default="all", help=Colors.GREEN+'This Parameter creates malicious files to farm hashes.\n\nDefault: all'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
     malicious_arguments.add_argument('-mT', '--malicious-target', type=str, nargs='*', help=Colors.GREEN+'This Parameter sets the attack host for the malicious files.\n'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
