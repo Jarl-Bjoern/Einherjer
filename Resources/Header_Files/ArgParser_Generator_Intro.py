@@ -34,6 +34,7 @@ def Argument_Parser(Copyright_Year, Template_Location = dirname(realpath(__file_
     generator_arguments.add_argument('-gMf', '--generate-malicious-files', choices=['all','ini','inf','lnk','scf','url'], type=str, default="all", help=Colors.GREEN+'This Parameter creates malicious files to farm hashes.\n\nDefault: all'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     target_arguments.add_argument('-mT', '--malicious-target', type=str, help=Colors.GREEN+'This Parameter sets the attack host for the malicious files.\n'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    target_arguments.add_argument('-mF', '--malicious-file-name', type=str, help=Colors.GREEN+'This Parameter sets the name for the malicious file.\n'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     optional.add_argument('-h','--help', action='help', default=SUPPRESS, help=Colors.GREEN+'Show this help message and exit.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
