@@ -311,6 +311,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
             'Information':               {},
             'Security_Flag':             {},
             'SMTP':                      {},
+            'SNMP':                      {},
             'SSH':                       {},
             'SSL':                       {}
         }
@@ -473,6 +474,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
             args.scan_site_http_methods   == False and
             args.scan_site_screenshot     == False and
             args.scan_site_ssl            == False and
+            args.scan_snmp                == False and
             args.scan_ssh                 == False):
                     from Resources.Header_Files.ArgParser_Intro import Argument_Parser
                     Argument_Parser("\n\n\t\t\t\t\tThe scanning method is missing!\n\t\t\t    For more information use the parameter -h or --help.\n", Copyright_Year), rmdir(Output_Location), exit()
@@ -486,6 +488,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
             args.scan_site_http_methods   == False and
             args.scan_site_screenshot     == False and
             args.scan_site_ssl            == False and
+            args.scan_snmp                == False and
             args.scan_ssh                 == False):
                     Dict_Switch = {
                         'scan_certificate':           True,
@@ -512,6 +515,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
             if (args.scan_site_http_methods != False):          Dict_Switch['scan_http_methods']         = True
             if (args.scan_site_screenshot   != False):          Dict_Switch['scan_screenshot']           = driver_options
             if (args.scan_site_ssl          != False):          Dict_Switch['scan_ssl']                  = True
+            if (args.scan_snmp              != False):          Dict_Switch['scan_snmp']                 = True
             if (args.scan_ssh               != False):          Dict_Switch['scan_ssh']                  = True
 
         # Setup_Output_Format
@@ -555,6 +559,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                     Dict_Switch['scan_snmp']           != False or
                     Dict_Switch['scan_smtp']           != False or
                     Dict_Switch['scan_ssh']            != False or
+                    Dict_Switch['scan_snmp']           != False or
                     Dict_Switch['scan_security_flags'] != False):
 
                         for Target in np_array(Array_Targets):
