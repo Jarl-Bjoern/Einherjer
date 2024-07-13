@@ -1,2 +1,2 @@
-Version `0.9`:
+Version `0.8`:
   - Lots of bug fixes
