@@ -315,6 +315,29 @@ def Thread_Scanning_Start(url, t_seconds, queue, dict_switch, screen_dir, switch
             )
 
 
+        # SNMP
+        if (dict_switch['scan_snmp'] != False and 'snmp://' in url):
+            # Library_Import
+            from ..Workfiles.Scan_SNMP import Check_SNMP
+
+            # Trace_Start
+            Logs.Trace_File(
+                Colors.YELLOW+'-----------------------------------------------------------------------------------------------------------\n'
+                +Colors.ORANGE+f'{url}'+Colors.RED+' -> '+Colors.CYAN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+' - Check_SNMP - '+Colors.BLUE+'Trying to connect'+Colors.RESET,
+                join(Location, 'Logs')
+            )
+
+            # Scanning_Process
+            Dict_Result['SNMP'][url] = Check_SNMP.Basic_Check(url, t_seconds, Host_Name, Location)
+            Dict_Temp['SNMP'][url]   = Dict_Result['SNMP'][url]
+
+            # Trace_End
+            Logs.Trace_File(
+                Colors.ORANGE+f'{url}'+Colors.RED+' <- '+Colors.CYAN+f'{strftime("%Y-%m-%d %H:%M:%S")}'+Colors.RESET+' - Check_SNMP - '+Colors.GREEN+'OK'+Colors.RESET,
+                join(Location, 'Logs')
+            )
+
+
         # SSH
         if (dict_switch['scan_ssh'] != False and 'ssh://' in url):
             # Library_Import
