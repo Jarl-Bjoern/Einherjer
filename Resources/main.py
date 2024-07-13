@@ -318,7 +318,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                 Standard.Initialien(args.debug)
     
                 from Resources.Generator.Generate_Mal_Files import Generate_Files
-                Array_Output = Generate_Files(args.generate_malicious_files, args.malicious_target, args.malicious_file_name, Output_location)
+                Array_Output = Generate_Files(args.malicious_file_types, args.malicious_target, args.malicious_file_name, Output_location)
 
         return Array_Output
 
