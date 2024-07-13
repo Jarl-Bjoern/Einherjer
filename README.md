@@ -50,7 +50,7 @@ I spend a lot of time in this project until it is completely ready and bug free.
 <br />
 
 ## ❗ News
-<strong>Upcoming changes for version</strong> `0.9`:
+<strong>Upcoming changes for version</strong> `0.8`:
  - Lots of bug fixes
  - SSH Scanner
  - SSL/TLS Scanner
