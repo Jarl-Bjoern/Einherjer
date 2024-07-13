@@ -85,6 +85,44 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
 
 
     #######################################
+    #           Detector-Section          #
+    #######################################
+    def Detector_Mode(Date, Output_location, args, Array_Output = []):
+        # Filtering_Options
+        if (args.hash_detect               == None):
+                from Resources.Header_Files.ArgParser_Detector_Intro import Argument_Parser
+                Argument_Parser("\n\n\t\t\tThe program cannot be started without detection methods!\n\t\t\t For more information use the parameter -h or --help.\n", Copyright_Year)
+                try:            rmdir(Output_location)
+                except OSError: rmtree(Output_location, ignore_errors=True)
+                finally:        exit()
+        else:
+            if (args.hash_detect != None):
+                if (args.add_hashfile           == None and
+                    args.add_multiple_hashfiles == None):
+                            from Resources.Header_Files.ArgParser_Detector_Intro import Argument_Parser
+                            Argument_Parser("\n\n\t\t\tThe program cannot be started without the hash file!\n\t\t\t For more information use the parameter -h or --help.\n", Copyright_Year)
+                            try:            rmdir(Output_location)
+                            except OSError: rmtree(Output_location, ignore_errors=True)
+                            finally:        exit()
+                elif (args.add_hashfile           != None and
+                      args.add_multiple_hashfiles == None):
+                            # Program_Start
+                            Standard.Initialien(args.debug)
+
+                            from Resources.Detect.Hash_Identifier import Get_Hash
+                            Array_Output = Get_Hash(rf'{args.add_hashfile}', Output_location)
+                elif (args.add_hashfile           == None and
+                      args.add_multiple_hashfiles != None):
+                            # Program_Start
+                            Standard.Initialien(args.debug)
+
+                            from Resources.Detect.Hash_Identifier import Get_Hash
+                            Array_Output = Get_Hash(rf'{args.add_multiple_hashfiles}', Output_location)
+
+        return Array_Output
+
+
+    #######################################
     #           Filter-Section            #
     #######################################
     def Filter_Mode(Date, Output_location, args, Array_Output = []):
@@ -258,39 +296,29 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
 
 
     #######################################
-    #           Detector-Section          #
+    #          Generator-Section          #
     #######################################
-    def Detector_Mode(Date, Output_location, args, Array_Output = []):
+    def Generator_Mode(Date, Output_location, args, Array_Output = []):
         # Filtering_Options
-        if (args.hash_detect               == None):
-                from Resources.Header_Files.ArgParser_Detector_Intro import Argument_Parser
-                Argument_Parser("\n\n\t\t\tThe program cannot be started without detection methods!\n\t\t\t For more information use the parameter -h or --help.\n", Copyright_Year)
+        if (args.generate_malicious_files       == None):
+                from Resources.Header_Files.ArgParser_Generator_Intro import Argument_Parser
+                Argument_Parser("\n\n\t\t\tThe program cannot be started without generator methods!\n\t\t\t For more information use the parameter -h or --help.\n", Copyright_Year)
                 try:            rmdir(Output_location)
                 except OSError: rmtree(Output_location, ignore_errors=True)
                 finally:        exit()
         else:
-            if (args.hash_detect != None):
-                if (args.add_hashfile           == None and
-                    args.add_multiple_hashfiles == None):
-                            from Resources.Header_Files.ArgParser_Detector_Intro import Argument_Parser
-                            Argument_Parser("\n\n\t\t\tThe program cannot be started without the hash file!\n\t\t\t For more information use the parameter -h or --help.\n", Copyright_Year)
-                            try:            rmdir(Output_location)
-                            except OSError: rmtree(Output_location, ignore_errors=True)
-                            finally:        exit()
-                elif (args.add_hashfile           != None and
-                      args.add_multiple_hashfiles == None):
-                            # Program_Start
-                            Standard.Initialien(args.debug)
-
-                            from Resources.Detect.Hash_Identifier import Get_Hash
-                            Array_Output = Get_Hash(rf'{args.add_hashfile}', Output_location)
-                elif (args.add_hashfile           == None and
-                      args.add_multiple_hashfiles != None):
-                            # Program_Start
-                            Standard.Initialien(args.debug)
-
-                            from Resources.Detect.Hash_Identifier import Get_Hash
-                            Array_Output = Get_Hash(rf'{args.add_multiple_hashfiles}', Output_location)
+            if (args.malicious_target == None):
+                from Resources.Header_Files.ArgParser_Generator_Intro import Argument_Parser
+                Argument_Parser("\n\n\t\t\tThe program cannot be started without a target!\n\t\t\t For more information use the parameter -h or --help.\n", Copyright_Year)
+                try:            rmdir(Output_location)
+                except OSError: rmtree(Output_location, ignore_errors=True)
+                finally:        exit()
+            else:
+                # Program_Start
+                Standard.Initialien(args.debug)
+    
+                from Resources.Generator.Generate_Mal_Files import Generate_Files
+                Array_Output = Generate_Files(args.generate_malicious_files, args.malicious_target, args.malicious_file_name, Output_location)
 
         return Array_Output
 
