@@ -1,6 +1,6 @@
 cookie_names: [
   "COOKIE",
-  "SET-COOKIE",
+  "SET-COOKIE"
 ]
 cookie_flags: [
   "HTTPONLY",
