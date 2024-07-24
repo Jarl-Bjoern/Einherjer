@@ -683,7 +683,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                                 Dict_Threads[p.name] = [p, int(time_now()), Target]
                                 sleep(args.process_sleep)
                             progress.update(task_Scan, advance=Counter_Bar)
-                            Max_Len_SSL_Targets =- Counter_SSL_Targets
+                            Max_Len_SSL_Targets -= Counter_SSL_Targets
                             Temp_SSL_Array,Counter_SSL_Targets = [], 0
 
                 # Terminate_Timeout_Processes
