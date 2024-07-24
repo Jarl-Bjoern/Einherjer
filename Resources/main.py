@@ -858,6 +858,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
             Standard.Stdout_Output(Colors.CYAN+"\n\nThe filter process was successful and the result will be found at the following location:\n"+Colors.RESET, 0.01)
 
         if (type(Array_Output) == list):
+            Array_Output.sort()
             for _ in Array_Output:
                 Standard.Stdout_Output(Colors.ORANGE+f'   - {_}\n'+Colors.RESET, 0.01)
         elif (type(Array_Output) == str):
