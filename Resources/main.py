@@ -742,7 +742,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                         with ZipFile(join(Output_Location, 'SSL_Backup.zip'), mode='a', compression=zf_ZIP_LZMA) as zF:
                             for _ in listdir(Path_zF):
                                 zF.write(join(Path_zF, _), _)
-                                remove(join(Path_zF, _))
+                            rmtree(Path_zF, ignore_errors=True)
 
                     for root, _, files in walk(Output_Location, topdown=False):
                         for file in files:
