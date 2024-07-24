@@ -188,6 +188,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                     for _ in listdir(Backup_Out):
                         Temp_Counter_Array.append(_[:-5].split('_')[-1:][0])
                     Temp_Counter_Array.sort()
+                    print (Temp_Counter_Array)
 
                     Backup_Val       = Temp_Counter_Array[-1:][0]
                     Counter_Name     = int(Backup_Val)+1
