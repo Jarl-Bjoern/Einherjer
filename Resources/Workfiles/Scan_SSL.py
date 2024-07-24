@@ -181,7 +181,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                     makedirs(Backup_Out)
 
                 if (len(listdir(Backup_Out)) > 0):
-                    Counter_Name     = len(Path_SSL_JSON_Files)+1
+                    Counter_Name     = len(listdir(Backup_Out))+1
                     Output_File_Name = Output_File_Name.replace(Backup_Val, str(Counter_Name))
 
                 with open(join(Backup_Out, Output_File_Name), 'w', encoding='UTF-8') as f:
