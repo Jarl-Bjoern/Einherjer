@@ -176,23 +176,23 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                 temp_json_output = json_output.json(sort_keys=True, indent=4, ensure_ascii=True)
 
                 # Output_Backup
-                Backup_Out, Output_File_Name = join(Location, 'SSL_Backup'), "SSL_Scan_Out_0.json"
+ #               Backup_Out, Output_File_Name = join(Location, 'SSL_Backup'), "SSL_Scan_Out_0.json"
+                Backup_Out, Output_File_Name = join(Location, 'SSL_Backup'), f"SSL_Scan_Out_{URL}_{Port}.json"
                 if (not exists(Backup_Out)):
                     makedirs(Backup_Out)
-                    Backup_Val = Output_File_Name[:-5].split('_')[-1:][0]
-                else:
-                    Backup_Val = ""
+ #                   Backup_Val = Output_File_Name[:-5].split('_')[-1:][0]
+ #               else:
+ #                   Backup_Val = ""
 
-                if (len(listdir(Backup_Out)) > 0):
-                    Temp_Counter_Array = []
-                    for _ in listdir(Backup_Out):
-                        Temp_Counter_Array.append(_[:-5].split('_')[-1:][0])
-                    Temp_Counter_Array.sort()
-                    print (Temp_Counter_Array)
+ #               if (len(listdir(Backup_Out)) > 0):
+ #                   Temp_Counter_Array = []
+ #                   for _ in listdir(Backup_Out):
+ #                       Temp_Counter_Array.append(_[:-5].split('_')[-1:][0])
+ #                   Temp_Counter_Array.sort()
 
-                    Backup_Val       = Temp_Counter_Array[::-1][0]
-                    Counter_Name     = int(Backup_Val)+1
-                    Output_File_Name = Output_File_Name.replace(str(Backup_Val), str(Counter_Name))
+ #                   Backup_Val       = Temp_Counter_Array[::-1][0]
+ #                   Counter_Name     = int(Backup_Val)+1
+ #                   Output_File_Name = Output_File_Name.replace(str(Backup_Val), str(Counter_Name))
 
                 with open(join(Backup_Out, Output_File_Name), 'w', encoding='UTF-8') as f:
                     f.write(temp_json_output)
