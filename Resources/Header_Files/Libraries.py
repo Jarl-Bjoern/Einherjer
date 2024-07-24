@@ -61,7 +61,7 @@ try:
     from warnings            import catch_warnings, simplefilter
     from xml.etree.ElementTree import ParseError
     from yaml                import safe_load as yaml_safe_load
-    from zipfile             import ZipFile
+    from zipfile             import ZipFile, ZIP_LZMA as zf_ZIP_LZMA
 
     # Encoder_Decoder
     from urllib.parse        import quote_plus as url_encode, unquote_plus as url_decode
