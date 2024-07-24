@@ -316,7 +316,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
             else:
                 # Program_Start
                 Standard.Initialien(args.debug)
-    
+
                 from Resources.Generator.Generate_Mal_Files import Generate_Files
                 Array_Output = Generate_Files(args.malicious_file_types, args.malicious_target, args.malicious_file_name, Output_location)
 
