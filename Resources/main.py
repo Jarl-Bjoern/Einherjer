@@ -739,7 +739,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
 
                     if (args.scan_site_ssl != False):
                         Path_zF = f'{Output_Location}/SSL_Backup'
-                        with ZipFile(join(Path_zF, 'SSL_Backup.zip'), mode='a', compression=zf_ZIP_LZMA) as zF:
+                        with ZipFile(join(Output_Location, 'SSL_Backup.zip'), mode='a', compression=zf_ZIP_LZMA) as zF:
                             for _ in listdir(Path_zF):
                                 zF.write(join(Path_zF, _), _)
                                 remove(join(Path_zF, _))
