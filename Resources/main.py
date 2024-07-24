@@ -18,7 +18,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
     if (Program_Mode == "Scanning_Mode"):
         if (args.zip_file != False):
             if (args.zip_file_password != False):
-                print (Colors.ORANGE+'\nPlease specify your ZipFile Password.'+Colors.RESET)
+                print (Colors.ORANGE+'\nPlease specify the ZipFile Password.'+Colors.RESET)
                 Password_Input = getpass('\n\nZipFile-Password: ')
                 if (len(Password_Input) < 16):
                     exit(Colors.RED+"\n\nPlease use a minimum password length of 16 digits!"+Colors.RESET)
@@ -30,7 +30,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
                 del Password_Creator
 
         if (args.database_password != False):
-            print (Colors.ORANGE+'\nPlease specify your Database Password.'+Colors.RESET)
+            print (Colors.ORANGE+'\nPlease specify the Database Password.'+Colors.RESET)
             Database_Password = getpass('\n\nDatabase-Password: ')
             if (len(Database_Password) < 8):
                 exit(Colors.RED+"\n\nPlease use a minimum password length of 8 digits!"+Colors.RESET)
