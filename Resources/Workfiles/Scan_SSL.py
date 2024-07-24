@@ -177,7 +177,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
 
                 # Output_Backup
                 Backup_Out, Output_File_Name = join(Location, 'SSL_Backup'), "SSL_Scan_Out_0.json"
-                Backup_Val = Output_File_Name[:-5].split('_')[:-1]
+                Backup_Val = Output_File_Name[:-5].split('_')[-1:]
                 print (Backup_Val)
                 if (not exists(Backup_Out)):
                     makedirs(Backup_Out)
