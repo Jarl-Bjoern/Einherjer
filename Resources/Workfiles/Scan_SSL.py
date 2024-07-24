@@ -191,7 +191,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
 
                     Backup_Val       = Temp_Counter_Array[-1:][0]
                     Counter_Name     = int(Backup_Val)+1
-                    Output_File_Name = Output_File_Name.replace(int(Backup_Val), str(Counter_Name))
+                    Output_File_Name = Output_File_Name.replace(str(Backup_Val), str(Counter_Name))
 
                 with open(join(Backup_Out, Output_File_Name), 'w', encoding='UTF-8') as f:
                     f.write(temp_json_output)
