@@ -10,7 +10,7 @@ from ..Standard_Operations.Colors import Colors
 
 def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['http_headers','rejected_cipher_suites','rejected_curves'], Start_Scan = datetime.now(), Temp = ""):
     # Variables
-    TLS_Version, Supported_Version, Array_Attack, Dict_Full_Output, Counter_Backup = "","",[],{},0
+    TLS_Version, Supported_Version, Array_Attack, Dict_Full_Output = "","",[],{}
 
     # Target_Preparation
     for url in array_ssl_targets:
@@ -179,7 +179,7 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
                 Backup_Out = join(Location, 'SSL_Backup')
                 if (not exists(Backup_Out)):
                     makedirs(Backup_Out)
-                    Output_File_Name = f"SSL_Scan_Out_{Counter_Backup}.json"
+                    Output_File_Name = f"SSL_Scan_Out_0.json"
                 else:
                     Temp_Counter_Array = []
                     for _ in listdir(Backup_Out):
@@ -192,7 +192,6 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, Array_Result_Filter = ['
 
                 with open(join(Backup_Out, Output_File_Name), 'w', encoding='UTF-8') as f:
                     f.write(temp_json_output)
-                Counter_Backup += 1
 
 
                 # Results
