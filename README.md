@@ -54,6 +54,7 @@ I spend a lot of time in this project until it is completely ready and bug free.
  - Lots of bug fixes
  - SSH Scanner
  - SSL/TLS Scanner
+ - Wiki Improvements
 
 <div align="center">
 ➡️ <a href="https://github.com/Jarl-Bjoern/Einherjer/blob/main/Changelog/Changelog.md">
