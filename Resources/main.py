@@ -826,6 +826,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
         Array_Output, Switch_Screenshots, Dict_Result, Array_Trace_Ports = Scanning_Mode(Date, args, Location, Database_Password)
         if (args.scan_site_screenshot != False):
             Screenshot_Table_File(join(Location, 'Screenshots'))
+            Array_Output.append(join(Location, 'screenshots.html'))
     elif (Program_Mode == "Filter_Mode"):
         Array_Output = Filter_Mode(Date, Location, args)
     elif (Program_Mode == "Fuzzing_Mode"):
