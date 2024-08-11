@@ -31,7 +31,7 @@ table, th, td {
     Head_HTML += "<th><font color='Orange'>Host</font></th>"
     Head_HTML += "<th><font color='Orange'>Screenshot</font></th>\n</tr>"
     for Body in listdir(location):
-        Body_HTML = "<tr>"
+        Body_HTML += "<tr>"
         Body_HTML += f"<td><center><font color='Orange'>{Body.split('(')[1].split(')')[0].replace('_', ':')}</font></center></td>\n"
         Body_HTML += f"<td><img class='center' src='{join(location, Body)}' width=800/></td>\n"
         Body_HTML += "</tr>\n"
