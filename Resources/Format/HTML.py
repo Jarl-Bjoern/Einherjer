@@ -22,7 +22,7 @@ table, th, td {
 </style>
 
 <title>
-    Scan - Result
+    Einherjer - Results
 </title>
 <body style="background-color:black">
 <table style="width:100%">
@@ -32,7 +32,7 @@ table, th, td {
     Head_HTML += "<th><font color='Orange'>Screenshot</font></th>\n</tr>"
     Body_HTML = "<tr>"
     for Body in listdir(location):
-        Body_HTML += f"<td><font color='Orange'>{Body.split('(')[1].split(')')[0].replace('_', ':')}</font></td>\n"
+        Body_HTML += f"<td><center><font color='Orange'>{Body.split('(')[1].split(')')[0].replace('_', ':')}</font></center></td>\n"
         Body_HTML += f"<td><img class='center' src='{join(location, Body)}' width=800/></td>\n"
     Body_HTML += "</tr>"
     Footer_HTML = """</table>
