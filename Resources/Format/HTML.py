@@ -43,6 +43,7 @@ h1 {
     Footer_HTML = """</table>
 <br /><br />
 <center><font color='Red'>1</font></center>
+<br />
 </body>
 </html>"""
 
