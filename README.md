@@ -51,6 +51,7 @@ I spend a lot of time in this project until it is completely ready and bug free.
 
 ## ❗ News
 <strong>Upcoming changes for version</strong> `0.8`:
+ - HTML overview page for screenshots
  - Lots of bug fixes
  - SSH Scanner
  - SSL/TLS Scanner
