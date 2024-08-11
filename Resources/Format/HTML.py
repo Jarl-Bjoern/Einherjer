@@ -11,16 +11,16 @@ def Screenshot_Table_File(location, Body_HTML = ""):
 <head>
 <style>
 table, th, td {
-  border: 1px solid turquoise;
+  border: 1px solid dimgrey;
   border-collapse: collapse;
 }
 .center {
   display: block;
   margin-left: auto;
   margin-right: auto;
-}
+}  
 h1 {
-  color: dimgrey;
+  color: turquoise;
 }
 hr {
   border: 1px solid darkred;
