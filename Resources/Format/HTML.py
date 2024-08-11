@@ -32,7 +32,7 @@ hr {
 </title>
 <body style="background-color:black">
 <table style="width:100%">
-<h1>Einherjer Version 0.8</h1>
+<h1>Einherjer - Version 0.8</h1>
 <hr><br />
 <tr>
 """
