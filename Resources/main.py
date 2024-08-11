@@ -821,8 +821,11 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
     )
 
     # Program_Mode
+    from Resources.Format.HTML import Screenshot_Table_File
     if (Program_Mode == "Scanning_Mode"):
         Array_Output, Switch_Screenshots, Dict_Result, Array_Trace_Ports = Scanning_Mode(Date, args, Location, Database_Password)
+        if (args.scan_site_screenshot != False):
+            Screenshot_Table_File(Location)
     elif (Program_Mode == "Filter_Mode"):
         Array_Output = Filter_Mode(Date, Location, args)
     elif (Program_Mode == "Fuzzing_Mode"):
@@ -831,6 +834,7 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
         Array_Output = Detector_Mode(Date, Location, args)
     elif (Program_Mode == "Brute_Force_Mode"):
         Array_Output, Switch_Screenshots = Brute_Force_Mode(Date, Location, args)
+    del Screenshot_Table_File
 
     # Check_Only_Logging_Output
     if (Array_Output != []):
