@@ -34,7 +34,7 @@ table, th, td {
 </body>
 </html>"""
 
-    with open(join(location, f'screenshots.html'), 'w') as f:
+    with open(join(location.replace('/screenshots', '/'), f'screenshots.html'), 'w') as f:
         f.write(Head_HTML), f.write(Body_HTML), f.write(Footer_HTML)
 
 
