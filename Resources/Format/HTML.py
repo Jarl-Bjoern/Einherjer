@@ -19,6 +19,9 @@ table, th, td {
   margin-left: auto;
   margin-right: auto;
 }
+h1 {
+  color: Orange;
+}
 </style>
 
 <title>
@@ -26,6 +29,8 @@ table, th, td {
 </title>
 <body style="background-color:black">
 <table style="width:100%">
+<h1>Einherjer Version 0.8</h1>
+<hr><br />
 <tr>
 """
     Head_HTML += "<th><font color='Orange'>Host</font></th>"
@@ -36,6 +41,8 @@ table, th, td {
         Body_HTML += f"<td><img class='center' src='{join(location, Body)}' width=800/></td>\n"
         Body_HTML += "</tr>\n"
     Footer_HTML = """</table>
+<br /><br />
+<center><font color='Red'>1</font></center>
 </body>
 </html>"""
 
