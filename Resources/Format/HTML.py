@@ -6,7 +6,7 @@
 from ..Header_Files.Variables import *
 
 def Screenshot_Table_File(location, Body_HTML = ""):
-    Head_HTML = f"""<!DOCTYPE html>
+    Head_HTML = """<!DOCTYPE html>
 <html>
 <head>
 <style>
