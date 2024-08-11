@@ -20,7 +20,10 @@ table, th, td {
   margin-right: auto;
 }
 h1 {
-  color: Orange;
+  color: dimgrey;
+}
+hr {
+  border: 1px solid darkred;
 }
 </style>
 
