@@ -14,6 +14,11 @@ table, th, td {
   border: 1px solid turquoise;
   border-collapse: collapse;
 }
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 </style>
 
 <title>
@@ -28,7 +33,7 @@ table, th, td {
     Body_HTML = "<tr>"
     for Body in listdir(location):
         Body_HTML += f"<td><font color='Orange'>{Body.split('(')[1].split(')')[0].replace('_', ':')}</font></td>\n"
-        Body_HTML += f"<td><img src='{join(location, Body)}' width=800/></td>\n"
+        Body_HTML += f"<td><img class='center' src='{join(location, Body)}' width=800/></td>\n"
     Body_HTML += "</tr>"
     Footer_HTML = """</table>
 </body>
