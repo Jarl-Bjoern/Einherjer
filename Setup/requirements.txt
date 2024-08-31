@@ -3,7 +3,7 @@ asyncssh==2.14.2
 crc==4.1.0
 haipy==1.5.1
 numpy==1.23.3
-opencv-python==4.6.0.66
+opencv-python==4.8.1.78
 pandas==1.5.2
 Pillow==10.3.0
 pycurl==7.45.2
