@@ -41,13 +41,11 @@ I spend a lot of time in this project until it is completely ready and bug free.
 <br /><br />
 
 > [!WARNING]
-> Not all functions are working yet.<br /><br />
-
-<br />
+> Not all functions are working yet.<br />
+<br /><br />
 
 > [!IMPORTANT]
 > <strong>Please do `not` use the program `for illegal intentions`.</strong><br />
-
 <br />
 
 ## ❗ News
