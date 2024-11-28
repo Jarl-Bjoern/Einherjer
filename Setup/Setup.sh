@@ -50,7 +50,7 @@ echo -e "Installing the ${RED}global pip packages${NOCOLOR}"
 echo -e "${CYAN}-----------------------------------------------------------------${NOCOLOR}\n"
 for LINE in $(cat "$SCRIPT_PATH/Setup/requirements.txt");
 do
-  pip3 install $LINE || return 0
+  pip3 install $LINE
 done
 echo -e "\n\nThe ${RED}pip packages${NOCOLOR} was installed!\n\n"
 
