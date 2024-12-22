@@ -158,7 +158,8 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, dict_proxies, dict_auth,
                 'FREAK':                    "",
                 'Missing_PFS':              "",
                 'ANONYMOUS':                "",
-                'INACTIVE_TLS_1_3':         ""
+                'INACTIVE_TLS_1_3':         "",
+                'DHE_Attack':               ""
             }
 
             if (server_scan_result.scan_status == ServerScanStatusEnum.ERROR_NO_CONNECTIVITY):
@@ -251,6 +252,10 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, dict_proxies, dict_auth,
                                                             # PFS, cipher suites without ephemeral
                                                             if ("DHE" not in z['cipher_suite']['name']):
                                                                 Dict_SSL_Vulns['Missing_PFS'] = True
+
+                                                            # DHE_Attack_Ciphers
+                                                            if ("DHE" in z['cipher_suite']['name'] and not 'ECDHE' in z['cipher_suite']['name']):
+                                                                Dict_SSL_Vulns['DHE_Attack'] = True
 
                                                             # RSA
                                                             if ("RSA" in z['cipher_suite']['name']):
