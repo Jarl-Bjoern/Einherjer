@@ -75,7 +75,7 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
             )
 
             # Scan_SSL
-            Dict_Temp['SSL'] = SSL_Vulns(array_ssl, ssl_timeout, Location)
+            Dict_Temp['SSL'] = SSL_Vulns(array_ssl, ssl_timeout, Location, dict_proxies)
             Dict_Result['SSL'].update(Dict_Temp['SSL'])
 
             # Trace_Write
