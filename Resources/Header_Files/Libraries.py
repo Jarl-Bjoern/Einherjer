@@ -339,6 +339,7 @@ try:
             Program_Mode == 'Scanning_Mode'):
                 # Trace_Module
                 from scapy.all import *
+                from scapy.error import Scapy_Exception
 
                 # Format_Import
                 if ("csv" in args.format):
