@@ -739,10 +739,13 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
 
                     if (args.scan_site_ssl != False):
                         Path_zF = f'{Output_Location}/SSL_Backup'
-                        with ZipFile(join(Output_Location, 'SSL_Backup.zip'), mode='a', compression=zf_ZIP_LZMA) as zF:
-                            for _ in listdir(Path_zF):
-                                zF.write(join(Path_zF, _), _)
-                            rmtree(Path_zF, ignore_errors=True)
+                        try:
+                            with ZipFile(join(Output_Location, 'SSL_Backup.zip'), mode='a', compression=zf_ZIP_LZMA) as zF:
+                                for _ in listdir(Path_zF):
+                                    zF.write(join(Path_zF, _), _)
+                                rmtree(Path_zF, ignore_errors=True)
+                        except FileNotFoundError:
+                            pass
 
                     for root, _, files in walk(Output_Location, topdown=False):
                         for file in files:
