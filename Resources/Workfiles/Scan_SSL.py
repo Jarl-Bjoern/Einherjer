@@ -34,6 +34,8 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, dict_proxies, Array_Resu
             Temp   = url_encode(URL).replace("2%F", "/")
             URL    = Temp
 
+        print (dict_proxies)
+
         # Setup_Auth_Method
         #ClientAuthenticationCredentials(
         #    certificate_chain_path,
