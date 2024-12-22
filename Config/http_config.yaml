@@ -46,6 +46,10 @@ http_methods: [
   "TRACE",
   "TRACK"
 ]
+http_output: [
+  "symbols": "true",
+  "text": "false"
+]
 screenshot_color: [
   "R:0",
   "G:0",
