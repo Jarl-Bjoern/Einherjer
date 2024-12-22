@@ -22,21 +22,21 @@ clear
 echo "💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀"
 echo -e "💀\t\t\t\t\t\t\t\t💀"
 echo -e "💀\t\t     ${UNDERLINE}Einherjer - Installer${NOCOLOR}\t\t\t💀"
-echo -e "💀\t\t\t  ${NORANGE}Version ${CYAN}0.1${NOCOLOR}   \t\t\t💀"
+echo -e "💀\t\t\t  ${NORANGE}Version ${CYAN}0.2${NOCOLOR}   \t\t\t💀"
 echo -e "💀\t\t${CYAN}Rainer Christian Bjoern Herold${NOCOLOR}\t\t\t💀"
 echo -e "💀\t\t\t\t\t\t\t\t💀"
 echo -e "💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀\n\n"
 sleep 2
 
 # Install_Missing_APT_Packages
-echo -e "Installing the missing ${RED}apt packages${NOCOLOR}"
+echo -e "Installing missing ${RED}apt packages${NOCOLOR}"
 echo -e "${CYAN}-----------------------------------------------------------------${NOCOLOR}\n"
 sudo apt install -y libcurl4-openssl-dev libssl-dev chromium chromium-driver python3-pip python3-venv
 echo -e "\n\nThe ${RED}apt packages${NOCOLOR} was installed!\n"
 echo -e "${CYAN}-----------------------------------------------------------------${NOCOLOR}\n\n\n"
 
 # Virtual_Environment
-echo -e "Creating the ${RED}virtual environment${NOCOLOR}"
+echo -e "Creating a new ${RED}virtual environment${NOCOLOR}"
 echo -e "${CYAN}-----------------------------------------------------------------${NOCOLOR}\n"
 python3 -m virtualenv "$SCRIPT_PATH/venv"
 source "$SCRIPT_PATH/venv/bin/activate"
@@ -46,7 +46,7 @@ echo -e "\n\nThe ${RED}virtual environment${NOCOLOR} was created!"
 echo -e "${CYAN}-----------------------------------------------------------------${NOCOLOR}\n\n\n"
 
 # Install_Missing_Global_Packages
-echo -e "Installing the ${RED}global pip packages${NOCOLOR}"
+echo -e "Installing missing ${RED}global pip packages${NOCOLOR}"
 echo -e "${CYAN}-----------------------------------------------------------------${NOCOLOR}\n"
 for LINE in $(cat "$SCRIPT_PATH/Setup/requirements.txt");
 do
