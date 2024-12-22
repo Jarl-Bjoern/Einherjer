@@ -60,8 +60,11 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
                     Port_Protocol_Filter += f"and "
 
             # Start_Trace
-            a = AsyncSniffer(filter=Port_Protocol_Filter)
-            a.start()
+            try:
+                a = AsyncSniffer(filter=Port_Protocol_Filter)
+                a.start()
+            except Scapy_Exception:
+                pass
 
             # Trace_Start
 #            for _ in array_ssl:
@@ -76,8 +79,11 @@ def Thread_SSL_Start(array_ssl, t_seconds, queue, dict_switch, ssl_timeout, dict
             Dict_Result['SSL'].update(Dict_Temp['SSL'])
 
             # Trace_Write
-            Captured_Packages = a.stop()
-            wrpcap(f'{Location}/Logs/einherjer_trace.pcap', Captured_Packages, append=True)
+            try:
+                Captured_Packages = a.stop()
+                wrpcap(f'{Location}/Logs/einherjer_trace.pcap', Captured_Packages, append=True)
+            except:
+                pass
 
             # Trace_End
             Logs.Trace_File(
