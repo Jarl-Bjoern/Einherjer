@@ -34,7 +34,6 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, dict_proxies, dict_auth,
             Temp   = url_encode(URL).replace("2%F", "/")
             URL    = Temp
 
-        print (dict_proxies)
         print (dict_auth)
 
         # Setup_Auth_Method
@@ -46,7 +45,9 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, dict_proxies, dict_auth,
         #)
 
         # Configure_Proxy_Settings
-        SSL_Scanning_Proxy = None
+        if (dict_proxies['http'] != ''):    SSL_Scanning_Proxy = dict_proxies['http']
+        elif (dict_proxies['https'] != ''): SSL_Scanning_Proxy = dict_proxies['https']
+        else:                               SSL_Scanning_Proxy = None
 
         try:
             if (SSL_Scanning_Proxy != None):
