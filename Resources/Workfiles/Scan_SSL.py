@@ -243,6 +243,10 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, dict_proxies, dict_auth,
                                                         if ("EXPORT" in z['cipher_suite']['name']):
                                                             Dict_SSL_Vulns['FREAK'] = True
 
+                                                        # DHE_Attack_Ciphers
+                                                        if ("DHE" in z['cipher_suite']['name'] and not 'ECDHE' in z['cipher_suite']['name']):
+                                                            Dict_SSL_Vulns['DHE_Attack'] = True
+
                                                         # Curve
                                                         if (z['ephemeral_key'] != None):
                                                             Dict_Temp_Ciphers['Curve_Name'] = z['ephemeral_key']['curve_name']
@@ -252,10 +256,6 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, dict_proxies, dict_auth,
                                                             # PFS, cipher suites without ephemeral
                                                             if ("DHE" not in z['cipher_suite']['name']):
                                                                 Dict_SSL_Vulns['Missing_PFS'] = True
-
-                                                            # DHE_Attack_Ciphers
-                                                            if ("DHE" in z['cipher_suite']['name'] and not 'ECDHE' in z['cipher_suite']['name']):
-                                                                Dict_SSL_Vulns['DHE_Attack'] = True
 
                                                             # RSA
                                                             if ("RSA" in z['cipher_suite']['name']):
