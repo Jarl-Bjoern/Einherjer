@@ -53,6 +53,8 @@ The program was designed to automate some tasks during a penetration test and cu
  - SSH Scanner
  - SSL/TLS Scanner
  - Wiki Improvements
+ - pipx installation compatibility
+ - Webdriver improvements for screenshots
 
 <div align="center">
 ➡️ <a href="https://github.com/Jarl-Bjoern/Einherjer/blob/main/Changelog/Changelog.md">
