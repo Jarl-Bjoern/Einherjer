@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "einherjer"
+authors = [
+    {name = "Rainer Christian Bjoern Herold"}
+]
+description = "package description"
+version = "0.8"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "aiohttp 3.10.11",
+    "asyncssh 2.14.2",
+    "crc 4.1.0",
+    "haipy 1.5.1",
+    "numpy 2.2.2",
+    "opencv-python 4.11.0.86",
+    "pandas 1.5.2",
+    "Pillow 10.3.0",
+    "pycurl 7.45.2",
+    "pykeepass 4.0.3",
+    "pypandoc 1.11",
+    "pysnmp 4.4.12",
+    "PySocks 1.7.1",
+    "python-docx 0.8.11",
+    "pyyaml",
+    "pyzbar 0.1.9",
+    "pyzipper 0.3.6",
+    "requests 2.32.0",
+    "requests-pkcs12 1.15",
+    "rich 13.5.2",
+    "scapy 2.5.0",
+    "selenium 4.11.2",
+    "selenium-wire 5.1.0",
+    "sslyze 6.0.0",
+    "stdiomask 0.0.4",
+    "tqdm 4.66.3",
+    "webdriver-manager 3.8.5",
+    "XlsxWriter 3.0.2"
+]
