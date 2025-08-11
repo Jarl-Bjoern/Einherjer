@@ -1,4 +1,4 @@
-aiohttp==3.10.11
+aiohttp==3.12.15
 asyncssh==2.14.2
 crc==4.1.0
 haipy==1.5.1
@@ -15,7 +15,7 @@ python-docx==0.8.11
 pyyaml
 pyzbar==0.1.9
 pyzipper==0.3.6
-requests==2.32.0
+requests==2.32.4
 requests-pkcs12==1.15
 rich==13.5.2
 scapy==2.5.0
