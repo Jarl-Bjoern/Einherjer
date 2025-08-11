@@ -95,6 +95,23 @@ try:
                 from PIL import Image
                 from pyzbar import pyzbar
 
+            if (args.sslyze_json != None and args.sslyze_output != None):
+                import csv
+                from pathlib import Path
+                from sslyze import (
+                    ClientAuthenticationCredentials,
+                    OpenSslFileTypeEnum,
+                    ScanCommandErrorReasonEnum,
+                    Scanner,
+                    ServerNetworkLocation,
+                    ServerNetworkConfiguration,
+                    ServerScanRequest,
+                    ServerScanResultAsJson,
+                    ServerHostnameCouldNotBeResolved,
+                    SslyzeOutputAsJson,
+                    ServerScanStatusEnum
+                )
+        
         elif (argv[1] == "--fuzzing-mode"):
             argv.remove('--fuzzing-mode')
             from .ArgParser_Fuzzing import Argument_Parser
@@ -393,3 +410,4 @@ del catch_warnings, chmod, Path, redirect_stdout, simplefilter, stat
 
 # Static_Date
 Date = strftime('%Y-%m-%d_%H-%M-%S')
+
