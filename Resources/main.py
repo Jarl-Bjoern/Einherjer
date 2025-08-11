@@ -138,7 +138,9 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
             args.nmap_main_file_location         == None and
             args.qrcode_picture_location         == None and
             args.responder_logs_location         == None and
-            args.screenshot_location             == None):
+            args.screenshot_location             == None and
+            args.sslyze_json                     == None and
+            args.sslyze_output                   == None):
                 from Resources.Header_Files.ArgParser_Filter_Intro import Argument_Parser
                 Argument_Parser("\n\n\t\t\tThe program cannot be started without filter methods!\n\t\t\t For more information use the parameter -h or --help.\n", Copyright_Year)
                 try:            rmdir(Output_location)
@@ -195,6 +197,30 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
             if (args.screenshot_location != None):
                 from Resources.Filter.Filter_Screenshot import Screenshot_Frame
                 Array_Output = Screenshot_Frame(args.screenshot_location, args.screenshot_frame_thickness, args.screenshot_border_mode)
+
+            if (args.sslyze_json != None and args.sslyze_output != None):
+                from Resources.Filter.Filter_SSLyze import SSL_Filter
+                Dict_Result = {
+                    'Certificate':               {},
+                    'CORS':                      {},
+                    'DNS':                       {},
+                    'FTP':                       {},
+                    'Header':                    {},
+                    'HTTP_Methods':              {},
+                    'Hostnames':                 {},
+                    'Information':               {},
+                    'Security_Flag':             {},
+                    'SMTP':                      {},
+                    'SNMP':                      {},
+                    'SSH':                       {},
+                    'SSL':                       {}
+                }
+
+                Dict_Result['SSL'] = SSL_Filter(args.sslyze_json, args.sslyze_output)
+                Array_Output = Dict_Result['SSL']
+
+                from Resources.Format.CSV import CSV_Table
+                CSV_Table(Dict_Result, args.sslyze_output, "de")
 
         return Array_Output
 
@@ -910,3 +936,4 @@ if __name__ == '__main__':
                 Standard.Write_State_File(Dict_State['State'], Dict_State['Location'])
                 print(Colors.ORANGE+f'\n\n\t\t\tA State file was written to continue the scan the next time!\n\n\t\t\t\t    Location: '+Colors.CYAN+f'{join(Dict_State["Location"], "scan.state")}\n\n\t\t\t\t      '+Colors.ORANGE+f'The program will now be closed.\n\n'+Colors.RESET)
         exit()
+
