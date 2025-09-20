@@ -57,8 +57,8 @@ def Argument_Parser(Copyright_Year, Template_Location = dirname(realpath(__file_
 
     responder_arguments.add_argument('-rLL', '--responder-logs-location', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
-    ssl_arguments.add_argument('-jSSL', '--sslyze-json', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
-    ssl_arguments.add_argument('-oSSL', '--sslyze-output', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.BLUE)
+    ssl_arguments.add_argument('-jSSL', '--sslyze-json-file', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    ssl_arguments.add_argument('-jSSLP', '--sslyze-json-path', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     optional.add_argument('-h','--help', action='help', default=SUPPRESS, help=Colors.GREEN+'Show this help message and exit.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
