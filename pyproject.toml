@@ -9,7 +9,7 @@ authors = [
 ]
 description = "package description"
 version = "0.8"
-license = {text = "MIT License"}
+license = "MIT"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
@@ -51,8 +51,8 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/Jarl-Bjoern/Einherjer"
-Documentation = "https://github.com/Jarl-Bjoern/Einherjer/wiki"
-Repository = "https://github.com/Jarl-Bjoern/Einherjer.git"
-Issues = "https://github.com/Jarl-Bjoern/Einherjer/issues"
-Changelog = "https://github.com/Jarl-Bjoern/Einherjer/blob/main/Changelog/Changelog.md"
+homepage = "https://github.com/Jarl-Bjoern/Einherjer"
+documentation = "https://github.com/Jarl-Bjoern/Einherjer/wiki"
+repository = "https://github.com/Jarl-Bjoern/Einherjer.git"
+issues = "https://github.com/Jarl-Bjoern/Einherjer/issues"
+changelog = "https://github.com/Jarl-Bjoern/Einherjer/blob/main/Changelog/Changelog.md"
