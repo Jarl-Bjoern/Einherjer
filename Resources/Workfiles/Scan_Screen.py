@@ -99,6 +99,7 @@ def Take_Screenshot(url, driver_options, driver_path, Screen_Dir, switch_interne
             Screen_Dir.replace('Screenshots', 'Logs')
         )
     finally:
+        driver.close()
         driver.quit()
 
     if (screen_frame_switch == True):

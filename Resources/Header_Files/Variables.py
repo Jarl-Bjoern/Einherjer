@@ -28,7 +28,6 @@ if (Program_Mode == "Scanning_Mode"):
     Array_Information_Disclosure_Header    = Standard.Read_YAML_Config_File(dirname(realpath(__file__)).replace('Resources/Header_Files', 'Config/http_config.yaml'), 'http_information_disclosure_header', 'http')
     Array_OIDs, Array_Community_Strings    = Standard.Read_YAML_Config_File(dirname(realpath(__file__)).replace('Resources/Header_Files', 'Config/snmp_config.yaml'), 'empty', 'snmp')
     Array_Security_Flags                   = Standard.Read_YAML_Config_File(dirname(realpath(__file__)).replace('Resources/Header_Files', 'Config/http_config.yaml'), 'cookie_flags', 'http')
-    Array_TLS_Algorithms                   = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Config/ssl_ciphers.txt"))
     Dict_Custom_Header                     = Standard.Read_YAML_Config_File(dirname(realpath(__file__)).replace('Resources/Header_Files', "Config/http_config.yaml"), 'http_custom_header', 'json')
 
     # Variables
@@ -36,6 +35,7 @@ if (Program_Mode == "Scanning_Mode"):
 
 if (Program_Mode == "Scanning_Mode" or Program_Mode == "Filter_Mode"):
     Array_SSH_Algorithms                   = Standard.Read_YAML_Config_File(dirname(realpath(__file__)).replace('Resources/Header_Files', "Config/ssh_ciphers.yaml"), "empty", 'ssh')
+    Array_TLS_Algorithms                   = Standard.Read_Template(dirname(realpath(__file__)).replace('Resources/Header_Files', "Config/ssl_ciphers.txt"))
     Screenshot_Color                       = Standard.Read_YAML_Config_File(dirname(realpath(__file__)).replace('Resources/Header_Files', "Config/http_config.yaml"), 'screenshot_color', 'color')
 
 # Design
@@ -69,3 +69,4 @@ Dict_State = {
     "State": [],
     "Location": dirname(realpath(__file__)).split('Resources/Header_Files')[0]
 }
+

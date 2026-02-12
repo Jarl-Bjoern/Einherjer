@@ -138,7 +138,9 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
             args.nmap_main_file_location         == None and
             args.qrcode_picture_location         == None and
             args.responder_logs_location         == None and
-            args.screenshot_location             == None):
+            args.screenshot_location             == None and
+            args.sslyze_json_file                == None and
+            args.sslyze_json_path                == None):
                 from Resources.Header_Files.ArgParser_Filter_Intro import Argument_Parser
                 Argument_Parser("\n\n\t\t\tThe program cannot be started without filter methods!\n\t\t\t For more information use the parameter -h or --help.\n", Copyright_Year)
                 try:            rmdir(Output_location)
@@ -195,6 +197,33 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
             if (args.screenshot_location != None):
                 from Resources.Filter.Filter_Screenshot import Screenshot_Frame
                 Array_Output = Screenshot_Frame(args.screenshot_location, args.screenshot_frame_thickness, args.screenshot_border_mode)
+
+            if (args.sslyze_json_file != None or args.sslyze_json_path != None):
+                from Resources.Filter.Filter_SSLyze import SSL_Filter
+                Dict_Result = {
+                    'Certificate':               {},
+                    'CORS':                      {},
+                    'DNS':                       {},
+                    'FTP':                       {},
+                    'Header':                    {},
+                    'HTTP_Methods':              {},
+                    'Hostnames':                 {},
+                    'Information':               {},
+                    'Security_Flag':             {},
+                    'SMTP':                      {},
+                    'SNMP':                      {},
+                    'SSH':                       {},
+                    'SSL':                       {}
+                }
+
+                if (args.sslyze_json_file != None):
+                    Dict_Result['SSL'] = SSL_Filter(args.sslyze_json_file, Output_location)
+                elif (args.sslyze_json_path != None):
+                    Dict_Result['SSL'] = SSL_Filter(args.sslyze_json_path, Output_location)
+                Array_Output = Dict_Result['SSL']
+
+                from Resources.Format.CSV import CSV_Table
+                CSV_Table(Dict_Result, Output_location, "de")
 
         return Array_Output
 
@@ -739,10 +768,13 @@ def main(Date, Program_Mode, args, Copyright_Year, Array_Output = [], Switch_Scr
 
                     if (args.scan_site_ssl != False):
                         Path_zF = f'{Output_Location}/SSL_Backup'
-                        with ZipFile(join(Output_Location, 'SSL_Backup.zip'), mode='a', compression=zf_ZIP_LZMA) as zF:
-                            for _ in listdir(Path_zF):
-                                zF.write(join(Path_zF, _), _)
-                            rmtree(Path_zF, ignore_errors=True)
+                        try:
+                            with ZipFile(join(Output_Location, 'SSL_Backup.zip'), mode='a', compression=zf_ZIP_LZMA) as zF:
+                                for _ in listdir(Path_zF):
+                                    zF.write(join(Path_zF, _), _)
+                                rmtree(Path_zF, ignore_errors=True)
+                        except FileNotFoundError:
+                            pass
 
                     for root, _, files in walk(Output_Location, topdown=False):
                         for file in files:
@@ -907,3 +939,5 @@ if __name__ == '__main__':
                 Standard.Write_State_File(Dict_State['State'], Dict_State['Location'])
                 print(Colors.ORANGE+f'\n\n\t\t\tA State file was written to continue the scan the next time!\n\n\t\t\t\t    Location: '+Colors.CYAN+f'{join(Dict_State["Location"], "scan.state")}\n\n\t\t\t\t      '+Colors.ORANGE+f'The program will now be closed.\n\n'+Colors.RESET)
         exit()
+
+

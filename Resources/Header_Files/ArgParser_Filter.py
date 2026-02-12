@@ -28,6 +28,7 @@ def Argument_Parser(Copyright_Year, Template_Location = dirname(realpath(__file_
     nmap_arguments       = parser.add_argument_group(Colors.ORANGE+'nmap arguments'+Colors.RESET)
     picture_arguments    = parser.add_argument_group(Colors.ORANGE+'picture arguments'+Colors.RESET)
     responder_arguments  = parser.add_argument_group(Colors.ORANGE+'responder arguments'+Colors.RESET)
+    ssl_arguments        = parser.add_argument_group(Colors.ORANGE+'sslyze arguments'+Colors.RESET)
     optional             = parser.add_argument_group(Colors.ORANGE+'optional arguments'+Colors.RESET)
 
     bloodhound_arguments.add_argument('-bURL', '--bloodhound-url', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
@@ -55,6 +56,9 @@ def Argument_Parser(Copyright_Year, Template_Location = dirname(realpath(__file_
     picture_arguments.add_argument('-sFt', '--screenshot-frame-thickness', type=int, default=2, help=Colors.GREEN+'Using this parameter you can set the thickness of a frame.\n\nDefault: 2'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     responder_arguments.add_argument('-rLL', '--responder-logs-location', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+
+    ssl_arguments.add_argument('-jSSL', '--sslyze-json-file', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
+    ssl_arguments.add_argument('-jSSLP', '--sslyze-json-path', type=str, help=Colors.GREEN+'UNDER CONSTRUCTION'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 
     optional.add_argument('-h','--help', action='help', default=SUPPRESS, help=Colors.GREEN+'Show this help message and exit.'+Colors.BLUE+'\n\n-------------------------------------------------------------------------------------'+Colors.RESET)
 

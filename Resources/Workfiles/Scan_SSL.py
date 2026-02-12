@@ -8,7 +8,7 @@ from ..Workfiles.Scan_Host_Name   import Get_Host_Name
 from ..Standard_Operations.Logs   import Logs
 from ..Standard_Operations.Colors import Colors
 
-def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, dict_proxies, Array_Result_Filter = ['http_headers','rejected_cipher_suites','rejected_curves'], Start_Scan = datetime.now(), Temp = ""):
+def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, dict_proxies, dict_auth, Array_Result_Filter = ['http_headers','rejected_cipher_suites','rejected_curves'], Start_Scan = datetime.now(), Temp = ""):
     # Variables
     TLS_Version, Supported_Version, Array_Attack, Dict_Full_Output = "","",[],{}
 
@@ -34,6 +34,8 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, dict_proxies, Array_Resu
             Temp   = url_encode(URL).replace("2%F", "/")
             URL    = Temp
 
+        print (dict_auth)
+
         # Setup_Auth_Method
         #ClientAuthenticationCredentials(
         #    certificate_chain_path,
@@ -43,7 +45,9 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, dict_proxies, Array_Resu
         #)
 
         # Configure_Proxy_Settings
-        SSL_Scanning_Proxy = None
+        if (dict_proxies['http'] != ''):    SSL_Scanning_Proxy = dict_proxies['http']
+        elif (dict_proxies['https'] != ''): SSL_Scanning_Proxy = dict_proxies['https']
+        else:                               SSL_Scanning_Proxy = None
 
         try:
             if (SSL_Scanning_Proxy != None):
@@ -154,7 +158,8 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, dict_proxies, Array_Resu
                 'FREAK':                    "",
                 'Missing_PFS':              "",
                 'ANONYMOUS':                "",
-                'INACTIVE_TLS_1_3':         ""
+                'INACTIVE_TLS_1_3':         "",
+                'DHE_Attack':               ""
             }
 
             if (server_scan_result.scan_status == ServerScanStatusEnum.ERROR_NO_CONNECTIVITY):
@@ -237,6 +242,10 @@ def SSL_Vulns(array_ssl_targets, ssl_timeout, Location, dict_proxies, Array_Resu
                                                         # FREAK, Usage of Export ciphers
                                                         if ("EXPORT" in z['cipher_suite']['name']):
                                                             Dict_SSL_Vulns['FREAK'] = True
+
+                                                        # DHE_Attack_Ciphers
+                                                        if ("DHE" in z['cipher_suite']['name'] and not 'ECDHE' in z['cipher_suite']['name']):
+                                                            Dict_SSL_Vulns['DHE_Attack'] = True
 
                                                         # Curve
                                                         if (z['ephemeral_key'] != None):
