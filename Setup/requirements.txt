@@ -18,7 +18,7 @@ pyzipper==0.3.6
 requests
 requests-pkcs12==1.15
 rich==13.5.2
-scapy==2.5.0
+scapy
 selenium==4.11.2
 selenium-wire==5.1.0
 sslyze
