@@ -14,7 +14,7 @@ PySocks==1.7.1
 python-docx
 pyyaml
 pyzbar==0.1.9
-pyzipper==0.3.6
+pyzipper==0.4.0
 requests
 requests-pkcs12==1.15
 rich==13.5.2
